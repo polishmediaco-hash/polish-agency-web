@@ -11,24 +11,22 @@ async function notifyNewLead(lead) {
   console.log(`[POLISH Lead Engine] New application received: ${lead.id} | ${lead.fullName || lead.name}`);
 
   const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
-  const leadTitle = isCreator ? '🌟 New Creator Application' : '💼 New Brand Growth Dossier';
   const name = isCreator ? lead.name : lead.fullName;
-  const subDetail = isCreator ? `Platform: ${lead.socialLink}` : `Brand: ${lead.brandName} (${lead.businessCategory})`;
 
-  // 1. Telegram Bot Notification (If TELEGRAM_BOT_TOKEN & TELEGRAM_CHAT_ID are set)
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  // 1. Telegram Bot Notification
+  const botToken = process.env.TELEGRAM_BOT_TOKEN || '8829600331:AAEOxPu-pdprEZQGvFDEdTWsdoimRxI5kjU';
+  const chatId = process.env.TELEGRAM_CHAT_ID || '8209512124';
 
   if (botToken && chatId) {
     try {
       const tgText = isCreator
-        ? `🚨 *POLISH — New Creator Application!*\n\n` +
+        ? `🌟 *POLISH — New Creator Application!*\n\n` +
           `👤 *Name:* ${escapeTg(lead.name)}\n` +
           `📱 *Social:* ${escapeTg(lead.socialLink)}\n` +
           `📎 *Portfolio:* ${escapeTg(lead.portfolio || 'None')}\n` +
           `📞 *Phone/WA:* ${escapeTg(lead.phone || 'None')}\n` +
           `🆔 *Ref:* \`${lead.id}\``
-        : `🚨 *POLISH — New Brand Application!*\n\n` +
+        : `💼 *POLISH — New Brand Application!*\n\n` +
           `🏢 *Brand:* ${escapeTg(lead.brandName)}\n` +
           `👤 *Contact:* ${escapeTg(lead.fullName)} (${escapeTg(lead.role)})\n` +
           `💄 *Category:* ${escapeTg(lead.businessCategory)}\n` +
@@ -38,7 +36,7 @@ async function notifyNewLead(lead) {
           `🎯 *Goal:* ${escapeTg(lead.primaryGoal || 'None')}\n` +
           `🆔 *Ref:* \`${lead.id}\``;
 
-      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      const res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -47,7 +45,12 @@ async function notifyNewLead(lead) {
           parse_mode: 'Markdown'
         })
       });
-      console.log('[Notification Service] Telegram notification dispatched successfully.');
+      const resData = await res.json();
+      if (!resData.ok) {
+        console.error('[Notification Service] Telegram API responded with error:', resData);
+      } else {
+        console.log('[Notification Service] Telegram notification dispatched successfully.');
+      }
     } catch (err) {
       console.error('[Notification Service] Telegram dispatch error:', err.message);
     }

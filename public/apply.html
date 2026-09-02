@@ -164,13 +164,14 @@
           </a>
         </div>
 
-        <div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="lang-toggle-slot"></div>
           <a href="/" class="btn-ghost">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 19"></polyline>
             </svg>
-            Return Home
+            <span data-i18n="nav.returnHome">Return Home</span>
           </a>
         </div>
       </div>
@@ -181,13 +182,13 @@
   <main class="hero-section" style="padding-top: 55px;">
     <div class="container">
       <div class="section-head" style="margin-bottom: 38px;">
-        <div class="eyebrow-tag">PARTNERSHIP APPLICATION</div>
+        <div class="eyebrow-tag" data-i18n="apply.eyebrow">BRAND PARTNERSHIP DOSSIER</div>
         <h1 class="section-h2" style="font-size: clamp(28px, 4vw, 42px);">
-          Let's Discuss Scaling Your Beauty Brand.<br>
-          <span class="gradient-accent">Direct Growth Partnership.</span>
+          <span data-i18n="apply.h1Line1">Accelerate Your Beauty Brand.</span><br>
+          <span class="gradient-accent" data-i18n="apply.h1Line2">Apply for Direct Studio Partnership.</span>
         </h1>
-        <p class="section-p" style="max-width: 620px; margin: 0 auto;">
-          Tell us about your product line, current channels, and growth targets. We will inspect your brand assets and prepare a tailored growth breakdown.
+        <p class="section-p" style="max-width: 620px; margin: 0 auto;" data-i18n="apply.p">
+          We partner with a limited roster of visionary beauty and skincare brands each quarter. Complete this confidential brief to explore growth acceleration.
         </p>
       </div>
 
@@ -200,7 +201,7 @@
           <div class="step-progress-wrap">
             <div class="step-info-row">
               <span class="step-counter" id="wizardStepCounter">Step 01 / 03</span>
-              <span class="step-title-hint" id="wizardStepPhase">About You & Your Brand</span>
+              <span class="step-title-hint" id="wizardStepPhase" data-i18n="apply.step1">1. Brand Overview</span>
             </div>
             <div class="progress-line-track">
               <div class="progress-line-fill" id="wizardProgressFill"></div>
@@ -210,82 +211,81 @@
           <form id="polishWizardForm" novalidate>
             <!-- STEP 1: About You & Your Brand -->
             <div class="form-step-pane active" data-step="1">
-              <h3 class="step-lead-title">About You & Your Brand</h3>
-              <p class="step-lead-desc">Where can our creative and performance directors inspect your products?</p>
+              <h3 class="step-lead-title" data-i18n="apply.step1Title">Brand & Contact Profile</h3>
+              <p class="step-lead-desc" data-i18n="apply.p">Where can our creative and performance directors inspect your products?</p>
 
               <div class="input-grid-2">
                 <div class="field-group">
-                  <label class="field-label" for="fullName">Full Name <span class="req">*</span></label>
+                  <label class="field-label" for="fullName"><span data-i18n="apply.fullName">Full Name</span> <span class="req">*</span></label>
                   <input type="text" id="fullName" name="fullName" class="form-input" placeholder="e.g. Elena Vance" required>
                 </div>
                 <div class="field-group">
-                  <label class="field-label" for="brandName">Brand or Company Name <span class="req">*</span></label>
+                  <label class="field-label" for="brandName"><span data-i18n="apply.brandName">Brand Name</span> <span class="req">*</span></label>
                   <input type="text" id="brandName" name="brandName" class="form-input" placeholder="e.g. Aurora Clinical Formulations" required>
                 </div>
               </div>
 
               <div class="field-group">
-                <label class="field-label" for="socialLink">Primary Website or Social Handle (Instagram / TikTok) <span class="req">*</span></label>
+                <label class="field-label" for="socialLink"><span data-i18n="apply.socialLink">Primary Social Profile (Instagram or TikTok)</span> <span class="req">*</span></label>
                 <input type="text" id="socialLink" name="socialLink" class="form-input" placeholder="e.g. instagram.com/auroracosmetics or @aurora" required>
               </div>
             </div>
 
             <!-- STEP 2: Category & Role Scope -->
             <div class="form-step-pane" data-step="2">
-              <h3 class="step-lead-title">Your Category & Role</h3>
+              <h3 class="step-lead-title" data-i18n="apply.step2Title">Your Category & Role</h3>
               <p class="step-lead-desc">Select your core formulation focus and your role in the brand.</p>
 
               <div class="field-group">
-                <label class="field-label">Primary Business Vertical <span class="req">*</span></label>
+                <label class="field-label"><span data-i18n="apply.businessCategory">Business Category</span> <span class="req">*</span></label>
                 <div class="category-badges-grid">
                   <label class="cat-badge-label">
                     <input type="radio" name="businessCategory" value="Skincare" checked>
-                    <div class="cat-badge-card">Skincare</div>
+                    <div class="cat-badge-card" data-i18n="apply.optSkin">Skincare & Dermatological</div>
                   </label>
 
                   <label class="cat-badge-label">
                     <input type="radio" name="businessCategory" value="Makeup & Color Cosmetics">
-                    <div class="cat-badge-card">Makeup & Color</div>
+                    <div class="cat-badge-card" data-i18n="apply.optColor">Color Cosmetics & Makeup</div>
                   </label>
 
                   <label class="cat-badge-label">
                     <input type="radio" name="businessCategory" value="Haircare & Body">
-                    <div class="cat-badge-card">Haircare & Body</div>
+                    <div class="cat-badge-card" data-i18n="apply.optHair">Haircare & Scalp Health</div>
                   </label>
 
                   <label class="cat-badge-label">
                     <input type="radio" name="businessCategory" value="Cosmetic Manufacturer / OEM">
-                    <div class="cat-badge-card">OEM / Formulation Lab</div>
+                    <div class="cat-badge-card" data-i18n="apply.optFragrance">Fragrance & Body Wellness</div>
                   </label>
                 </div>
               </div>
 
               <div class="field-group" style="margin-top: 20px;">
-                <label class="field-label" for="role">Your Role in the Organization <span class="req">*</span></label>
+                <label class="field-label" for="role"><span data-i18n="apply.role">Your Role at the Brand</span> <span class="req">*</span></label>
                 <select id="role" name="role" class="form-select" required>
                   <option value="" disabled selected>Select leadership position...</option>
-                  <option value="Founder / CEO / Co-Founder">Founder / CEO / Co-Founder</option>
-                  <option value="CMO / VP of Marketing / Head of Growth">CMO / VP of Marketing / Head of Growth</option>
-                  <option value="Cosmetic Chemist / Formulation & R&D Lead">Cosmetic Chemist / Formulation & R&D Lead</option>
-                  <option value="Managing Director / Partner">Managing Director / Partner</option>
-                  <option value="Other Executive">Other Executive</option>
+                  <option value="Founder / CEO / Co-Founder" data-i18n="apply.optFounder">Founder / CEO / Co-Founder</option>
+                  <option value="CMO / VP of Marketing / Head of Growth" data-i18n="apply.optMarketing">CMO / Head of Marketing</option>
+                  <option value="Cosmetic Chemist / Formulation & R&D Lead" data-i18n="apply.optEcommerce">E-Commerce Director / Growth Lead</option>
+                  <option value="Managing Director / Partner" data-i18n="apply.optAgency">Agency / Consultant / Representative</option>
                 </select>
               </div>
             </div>
 
             <!-- STEP 3: Current Growth Setup -->
             <div class="form-step-pane" data-step="3">
-              <h3 class="step-lead-title">Current Growth Setup</h3>
+              <h3 class="step-lead-title" data-i18n="apply.step2Title">Current Growth Setup</h3>
               <p class="step-lead-desc">How are you currently acquiring customers and testing creative?</p>
 
               <div class="field-group">
-                <label class="field-label" for="marketingHistory">Current Marketing & Distribution Stage <span class="req">*</span></label>
+                <label class="field-label" for="marketingHistory"><span data-i18n="apply.marketingHistory">Current Marketing Status</span> <span class="req">*</span></label>
                 <select id="marketingHistory" name="marketingHistory" class="form-select" required>
                   <option value="" disabled selected>Select current marketing setup...</option>
-                  <option value="We manage marketing in-house and are looking to scale profitably.">We manage marketing in-house and are looking to scale profitably.</option>
-                  <option value="We have worked with generic agencies before (seeking beauty specialists).">We have worked with generic agencies before (seeking beauty specialists).</option>
-                  <option value="We are preparing for an upcoming product launch or new SKU drop.">We are preparing for an upcoming product launch or new SKU drop.</option>
-                  <option value="We are a cosmetic lab/manufacturer launching a direct-to-consumer brand.">We are a cosmetic lab/manufacturer launching a direct-to-consumer brand.</option>
+                  <option value="We manage marketing in-house and are looking to scale profitably." data-i18n="apply.optHistInHouse">We manage marketing in-house and are looking to scale profitably.</option>
+                  <option value="We currently do not run paid ads (organic/influencer only)" data-i18n="apply.optHistNone">We currently do not run paid ads (organic/influencer only)</option>
+                  <option value="We currently work with an agency and seek better creative & ROAS" data-i18n="apply.optHistAgency">We currently work with an agency and seek better creative & ROAS</option>
+                  <option value="Pre-launch or newly launched brand seeking full growth setup" data-i18n="apply.optHistStarting">Pre-launch or newly launched brand seeking full growth setup</option>
                 </select>
               </div>
             </div>
@@ -293,12 +293,12 @@
             <!-- Wizard Step Navigation Controls -->
             <div class="step-nav-footer">
               <button type="button" id="wizardBtnBack" class="btn-back-step" disabled>
-                ← Back
+                <span data-i18n="apply.btnBack">← Back</span>
               </button>
 
               <div>
                 <button type="button" id="wizardBtnNext" class="btn-cta">
-                  Continue
+                  <span data-i18n="apply.btnNext">Proceed to Objectives</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -306,7 +306,7 @@
                 </button>
 
                 <button type="submit" id="wizardBtnSubmit" class="btn-cta" style="display: none;">
-                  Submit Application
+                  <span data-i18n="apply.btnSubmit">Submit Partnership Brief</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -317,8 +317,8 @@
 
             <!-- Guarantee Note (Clean Luxury Typography) -->
             <div style="margin-top: 24px; font-size: 12.5px; color: var(--text-dim); text-align: center; line-height: 1.6;">
-              <div><strong>100% Confidentiality:</strong> All brand formulations, ad data, and metrics are strictly protected.</div>
-              <div><strong>24h Direct Review:</strong> Our senior growth directors review all submissions and respond within 24 hours.</div>
+              <div data-i18n="apply.trustNda"><strong>100% Confidentiality:</strong> All brand details protected under mutual NDA protocol.</div>
+              <div data-i18n="apply.trustReview"><strong>24h Direct Review:</strong> Senior growth directors evaluate your application personally.</div>
             </div>
           </form>
         </div>
@@ -330,13 +330,13 @@
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h2 class="section-h2" style="font-size: 26px; margin-bottom: 10px;">Application Received</h2>
+          <h2 class="section-h2" style="font-size: 26px; margin-bottom: 10px;" data-i18n="apply.successTitle">Application Received</h2>
           <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 20px;">
             Your brand application reference:
           </p>
           <div class="ref-badge" id="successLeadRef">POLISH-CONFIRMED</div>
-          <p style="color: var(--text-dim); font-size: 14px; line-height: 1.6; max-width: 480px; margin: 20px auto 28px;">
-            Our growth directors are reviewing your brand assets. To fast-track your strategy session, connect with us directly on WhatsApp.
+          <p style="color: var(--text-dim); font-size: 14px; line-height: 1.6; max-width: 480px; margin: 20px auto 28px;" data-i18n="apply.successP">
+            Your brand partnership dossier has been logged under priority review. A senior partner will review your brand within 24 hours.
           </p>
           
           <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
@@ -344,10 +344,10 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
               </svg>
-              Fast-Track on WhatsApp
+              <span data-i18n="apply.successCta">Fast-Track on WhatsApp</span>
             </a>
             <a href="/" class="btn-cta" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: #fff;">
-              Return Home
+              <span data-i18n="apply.btnBack">Return Home</span>
             </a>
           </div>
         </div>
@@ -358,7 +358,7 @@
   <!-- Smoked Glass Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-copy">
+      <p class="footer-copy" data-i18n="footer.copy">
         &copy; 2026 POLISH Media Co. All Rights Reserved.
       </p>
       <div class="footer-nav">
@@ -383,21 +383,24 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
           </svg>
-          WhatsApp Direct
+          <span data-i18n="footer.whatsapp">WhatsApp Direct</span>
         </a>
         <span>•</span>
         <a href="/" class="footer-link-item">
           Home
         </a>
         <span>•</span>
-        <a href="/creators" class="footer-link-item">
+        <a href="/creators" class="footer-link-item" data-i18n="footer.creators">
           Creator & UGC Network
         </a>
+        <span>•</span>
+        <div class="lang-toggle-slot"></div>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
+  <script src="/js/i18n.js?v=1.0"></script>
   <script src="/js/app.js?v=7.0"></script>
   <script src="/js/luxury-effects.js?v=8.0" defer></script>
   <script src="/js/whatsapp.js?v=7.0" defer></script>

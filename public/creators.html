@@ -154,13 +154,14 @@
           </a>
         </div>
 
-        <div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="lang-toggle-slot"></div>
           <a href="/" class="btn-ghost">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 19"></polyline>
             </svg>
-            Return Home
+            <span data-i18n="nav.returnHome">Return Home</span>
           </a>
         </div>
       </div>
@@ -172,11 +173,11 @@
     <div class="container">
       
       <div class="section-head" style="margin-bottom: 38px;">
-        <div class="eyebrow-tag" data-cms="creators-eyebrow">CREATOR & UGC PARTNERSHIP</div>
+        <div class="eyebrow-tag" data-i18n="creators.eyebrow" data-cms="creators-eyebrow">CREATOR & UGC PARTNERSHIP</div>
         <h1 class="section-h2" style="font-size: clamp(28px, 4vw, 42px); margin: 12px 0;">
-          <span data-cms="creators-headline">Create for Leading Beauty Brands.<br><span class="gradient-accent">Join the POLISH Creator Network.</span></span>
+          <span data-i18n="creators.h1" data-cms="creators-headline">Create for Leading Beauty Brands.<br><span class="gradient-accent">Join the POLISH Creator Network.</span></span>
         </h1>
-        <p class="section-p" style="max-width: 620px; margin: 0 auto;" data-cms="creators-description">
+        <p class="section-p" style="max-width: 620px; margin: 0 auto;" data-i18n="creators.p" data-cms="creators-description">
           We connect aesthetic beauty creators, skincare specialists, and UGC experts directly with high-growth cosmetic brands for paid campaigns, product seeding, and monthly creator retainers.
         </p>
       </div>
@@ -191,31 +192,31 @@
         <form id="creatorForm" novalidate>
           
           <div class="field-group">
-            <label class="field-label" for="cName">Full Name <span class="req">*</span></label>
+            <label class="field-label" for="cName"><span data-i18n="creators.fullName">Full Name</span> <span class="req">*</span></label>
             <input type="text" id="cName" name="name" class="form-input" placeholder="e.g. Maya Lin" required>
           </div>
 
           <div class="field-group">
-            <label class="field-label" for="cSocial">Primary Social Handle or Profile Link <span class="req">*</span></label>
+            <label class="field-label" for="cSocial"><span data-i18n="creators.socialHandle">Primary Social Handle or Profile Link</span> <span class="req">*</span></label>
             <input type="text" id="cSocial" name="socialLink" class="form-input" placeholder="e.g. instagram.com/mayabeauty or @mayaskin on TikTok" required>
-            <span class="field-hint">Where our creative directors can review your on-camera presence and content quality.</span>
+            <span class="field-hint" data-i18n="creators.socialHint">Where our creative directors can review your on-camera presence and content quality.</span>
           </div>
 
           <div class="field-group">
-            <label class="field-label" for="cPortfolio">Portfolio or Showreel Link <span style="color: var(--text-dim); font-size: 11px; font-weight: 500;">(Optional / If Available)</span></label>
+            <label class="field-label" for="cPortfolio"><span data-i18n="creators.portfolio">Portfolio or Showreel Link</span> <span style="color: var(--text-dim); font-size: 11px; font-weight: 500;">(Optional / If Available)</span></label>
             <input type="url" id="cPortfolio" name="portfolio" class="form-input" placeholder="e.g. linktr.ee/maya, Google Drive, Canva, or website URL">
-            <span class="field-hint">Share past UGC assets, unboxings, texture closeups, or testimonial clips.</span>
+            <span class="field-hint" data-i18n="creators.portfolioHint">Share past UGC assets, unboxings, texture closeups, or testimonial clips.</span>
           </div>
 
           <div class="field-group">
-            <label class="field-label" for="cPhone">WhatsApp or Phone Number <span class="req">*</span></label>
+            <label class="field-label" for="cPhone"><span data-i18n="creators.phone">WhatsApp or Phone Number</span> <span class="req">*</span></label>
             <input type="tel" id="cPhone" name="phone" class="form-input" placeholder="e.g. +1 555-019-2834 or +213 662 41 77 61" required>
-            <span class="field-hint">Used by our casting team for direct campaign bookings and fast communication.</span>
+            <span class="field-hint" data-i18n="creators.phoneHint">Used by our casting team for direct campaign bookings and fast communication.</span>
           </div>
 
           <div style="margin-top: 28px;">
             <button type="submit" id="btnSubmitCreator" class="btn-cta btn-cta-lg" style="width: 100%; justify-content: center;">
-              Submit Creator Application
+              <span data-i18n="creators.btnSubmit">Submit Creator Application</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -235,15 +236,15 @@
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h2 class="section-h2" style="font-size: 26px; margin-bottom: 10px;">Application Successfully Logged</h2>
-          <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 20px;">
+          <h2 class="section-h2" style="font-size: 26px; margin-bottom: 10px;" data-i18n="creators.successTitle">Application Successfully Logged</h2>
+          <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 20px;" data-i18n="creators.successP">
             Your creator profile has been added to our active casting database under Reference ID:
           </p>
           <div class="reference-code-badge" id="creatorRefBadge">CREATOR-2026</div>
 
           <div style="margin-top: 28px;">
             <a id="creatorWaLink" href="https://wa.me/213662417761" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-lg" style="width: 100%; justify-content: center;">
-              Direct WhatsApp Check-In &rarr;
+              <span data-i18n="creators.successCta">Direct WhatsApp Check-In &rarr;</span>
             </a>
           </div>
         </div>
@@ -255,7 +256,7 @@
   <!-- Smoked Glass Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-copy">
+      <p class="footer-copy" data-i18n="footer.copy">
         &copy; 2026 POLISH Media Co. All Rights Reserved.
       </p>
       <div class="footer-nav">
@@ -280,17 +281,20 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
           </svg>
-          WhatsApp Direct
+          <span data-i18n="footer.whatsapp">WhatsApp Direct</span>
         </a>
         <span>•</span>
         <a href="/" class="footer-link-item">
           Home
         </a>
+        <span>•</span>
+        <div class="lang-toggle-slot"></div>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
+  <script src="/js/i18n.js?v=1.0"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const creatorForm = document.getElementById('creatorForm');
@@ -357,6 +361,7 @@
           showAlert('Network connection error. Please try again or message directly on WhatsApp.');
           submitBtn.disabled = false;
           submitBtn.textContent = 'Submit Creator Application';
+        }
       });
     });
   </script>

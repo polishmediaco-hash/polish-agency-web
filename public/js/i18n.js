@@ -15,7 +15,7 @@ const POLISH_TRANSLATIONS = {
     "header.cta": "Explore Partnership",
 
     // Hero Section
-    "hero.windowTag": "BRAND ACCELERATOR",
+    "hero.windowTag": "BEAUTY ACCELERATOR & GROWTH STUDIO",
     "hero.eyebrow": "BEAUTY ACCELERATOR & GROWTH STUDIO",
     "hero.headlineLine1": "From Breakthrough Formulation",
     "hero.headlineLine2": "To Household Beauty Brand.",
@@ -132,7 +132,7 @@ const POLISH_TRANSLATIONS = {
     "header.cta": "Découvrir le Partenariat",
 
     // Hero Section
-    "hero.windowTag": "ACCÉLÉRATEUR DE MARQUE",
+    "hero.windowTag": "ACCÉLÉRATEUR & STUDIO DE CROISSANCE BEAUTÉ",
     "hero.eyebrow": "ACCÉLÉRATEUR & STUDIO DE CROISSANCE BEAUTÉ",
     "hero.headlineLine1": "De la Formulation de Rupture",
     "hero.headlineLine2": "À la Marque de Cosmétique Incontournable.",
@@ -249,7 +249,7 @@ const POLISH_TRANSLATIONS = {
     "header.cta": "استكشف الشراكة",
 
     // Hero Section
-    "hero.windowTag": "مسرّع العلامات التجارية",
+    "hero.windowTag": "استوديو ومسرّع نمو علامات التجميل",
     "hero.eyebrow": "استوديو ومسرّع نمو علامات التجميل",
     "hero.headlineLine1": "من تركيبة مبتكرة ومتميزة",
     "hero.headlineLine2": "إلى علامة رائدة في عالم الجمال.",

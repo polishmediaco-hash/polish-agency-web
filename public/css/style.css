@@ -1597,34 +1597,42 @@ a {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.mac-dots {
-  display: flex;
-  gap: 8px;
+.luxury-status-badge {
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.28);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 16px rgba(0, 229, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  flex-shrink: 0;
 }
 
-.dot-red {
-  width: 12px;
-  height: 12px;
+.status-pulse-dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #FF5F56;
-  box-shadow: 0 0 8px rgba(255, 95, 86, 0.6);
+  background: #00E5FF;
+  box-shadow: 0 0 10px #00E5FF, 0 0 18px rgba(0, 229, 255, 0.8);
+  animation: pulseLive 2.2s infinite ease-in-out;
 }
 
-.dot-yellow {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #FFBD2E;
-  box-shadow: 0 0 8px rgba(255, 189, 46, 0.6);
+.status-cohort-text {
+  font-family: var(--font-heading);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-cyan);
 }
 
-.dot-green {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #27C93F;
-  box-shadow: 0 0 8px rgba(39, 201, 63, 0.6);
+@keyframes pulseLive {
+  0% { transform: scale(0.92); opacity: 0.75; }
+  50% { transform: scale(1.18); opacity: 1; box-shadow: 0 0 14px #00E5FF, 0 0 24px rgba(0, 229, 255, 0.95); }
+  100% { transform: scale(0.92); opacity: 0.75; }
 }
 
 .glass-card-domain {
@@ -1726,13 +1734,18 @@ a {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     min-width: 0;
   }
-  .mac-dots {
+  .luxury-status-badge {
     flex-shrink: 0;
-    gap: 5px;
+    padding: 3px 8px;
+    gap: 6px;
   }
-  .mac-dots span {
-    width: 9px;
-    height: 9px;
+  .status-cohort-text {
+    font-size: 9px;
+    letter-spacing: 0.05em;
+  }
+  .status-pulse-dot {
+    width: 6px;
+    height: 6px;
   }
   .glass-card-domain {
     display: none;

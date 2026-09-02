@@ -15,6 +15,7 @@ const POLISH_TRANSLATIONS = {
     "header.cta": "Explore Partnership",
 
     // Hero Section
+    "hero.cohort": "Q1/Q2 COHORT • ACTIVE INTAKE",
     "hero.windowTag": "BEAUTY ACCELERATOR & GROWTH STUDIO",
     "hero.eyebrow": "BEAUTY ACCELERATOR & GROWTH STUDIO",
     "hero.headlineLine1": "From Breakthrough Formulation",
@@ -132,6 +133,7 @@ const POLISH_TRANSLATIONS = {
     "header.cta": "Découvrir le Partenariat",
 
     // Hero Section
+    "hero.cohort": "COHORTE Q1/Q2 • ADMISSIONS OUVERTES",
     "hero.windowTag": "ACCÉLÉRATEUR & STUDIO DE CROISSANCE BEAUTÉ",
     "hero.eyebrow": "ACCÉLÉRATEUR & STUDIO DE CROISSANCE BEAUTÉ",
     "hero.headlineLine1": "De la Formulation d'Exception",
@@ -249,6 +251,7 @@ const POLISH_TRANSLATIONS = {
     "header.cta": "استكشف الشراكة",
 
     // Hero Section
+    "hero.cohort": "دفعة Q1/Q2 • استقبال الشراكات",
     "hero.windowTag": "استوديو ومسرّع نمو علامات التجميل",
     "hero.eyebrow": "استوديو ومسرّع نمو علامات التجميل",
     "hero.headlineLine1": "من تركيبة مبتكرة واستثنائية",

@@ -1,0 +1,5450 @@
+[
+  {
+    "page": "home",
+    "viewport": "desktop_1440",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "From Breakthrough Formulation\nTo Household Beauty ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "54px",
+          "fontWeight": "800",
+          "lineHeight": "61.56px",
+          "letterSpacing": "-1.512px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 942,
+          "height": 123,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Great Formulas Don't Sell Themselves.\nWhere Beauty",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "800",
+          "lineHeight": "48px",
+          "letterSpacing": "-1.2px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 800,
+          "height": 96,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Ads Burn Out in 14 Days",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 295,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Aesthetic Views Don't Drive Sales",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 295,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "One-Time Buyers Drain Margins",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 295,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Engineered Specifically\nFor Cosmetic & Skincare Sc",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "800",
+          "lineHeight": "48px",
+          "letterSpacing": "-1.2px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 800,
+          "height": 96,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "High-Velocity UGC Studio",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 199,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Profit-First Paid Media",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 199,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Conversion & Routine Bundling",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 199,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Automated Replenishment Loops",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 199,
+          "height": 53,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "17.5px",
+          "lineHeight": "29.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_desktop_1440_en.png"
+  },
+  {
+    "page": "home",
+    "viewport": "desktop_1440",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "De la Formulation d'Exception\nÀ la Marque de Cosmé",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "54px",
+          "fontWeight": "800",
+          "lineHeight": "61.56px",
+          "letterSpacing": "-1.512px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 942,
+          "height": 185,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Une Formule d'Exception Ne Se Vend Pas Seule.\nLà o",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "800",
+          "lineHeight": "48px",
+          "letterSpacing": "-1.2px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 800,
+          "height": 192,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Vos Publicités S'essoufflent en 14 Jours",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 295,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "L'Esthétique Pure Ne Génère Pas de Ventes",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 295,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Les Acheteurs Uniques Érodent Vos Marges",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 295,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Conçu Spécifiquement\nPour l'Échelle des Marques de",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "800",
+          "lineHeight": "48px",
+          "letterSpacing": "-1.2px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 800,
+          "height": 144,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Studio Créateurs & UGC Haute Vélocité",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 199,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Acquisition Payante Axée sur la Rentabilité",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 199,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Optimisation du Taux de Conversion & Offres Bundle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 199,
+          "height": 79,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Boucles de Réassort & Rétention Automatisées",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 199,
+          "height": 79,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "17.5px",
+          "lineHeight": "29.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_desktop_1440_fr.png"
+  },
+  {
+    "page": "home",
+    "viewport": "desktop_1440",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "من تركيبة مبتكرة واستثنائية\nإلى علامة رائدة ومطلوب",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "54px",
+          "fontWeight": "800",
+          "lineHeight": "75.6px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 942,
+          "height": 151,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "أفضل التركيبات لا تبيع نفسها وحدها.\nأين يتوقف نمو ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "800",
+          "lineHeight": "56px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 800,
+          "height": 112,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "الإعلانات تفقد بريقها خلال 14 يوماً",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 295,
+          "height": 28,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "المشاهدات الجمالية لا تعني بالضرورة مبيعات",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 295,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "المشترون لمرة واحدة يستنزفون هوامش الربح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 295,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "مصمم خصيصاً\nلمضاعفة مبيعات علامات التجميل والعناية",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "800",
+          "lineHeight": "56px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 800,
+          "height": 112,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "استوديو إنتاج UGC عالي الكثافة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 199,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "إعلانات مدفوعة موجهة للربحية",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 199,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "تحسين صفحات الهبوط وباقات الروتين التجميلي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 199,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "دورات إعادة شراء وولاء مؤتمتة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 199,
+          "height": 56,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "17.5px",
+          "lineHeight": "29.75px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_desktop_1440_ar.png"
+  },
+  {
+    "page": "home",
+    "viewport": "tablet_768",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "From Breakthrough Formulation\nTo Household Beauty ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30px",
+          "fontWeight": "800",
+          "lineHeight": "36px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 690,
+          "height": 72,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Great Formulas Don't Sell Themselves.\nWhere Beauty",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "27px",
+          "fontWeight": "800",
+          "lineHeight": "32.94px",
+          "letterSpacing": "-0.81px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 732,
+          "height": 66,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Ads Burn Out in 14 Days",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Aesthetic Views Don't Drive Sales",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "One-Time Buyers Drain Margins",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Engineered Specifically\nFor Cosmetic & Skincare Sc",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "27px",
+          "fontWeight": "800",
+          "lineHeight": "32.94px",
+          "letterSpacing": "-0.81px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 732,
+          "height": 66,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "High-Velocity UGC Studio",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Profit-First Paid Media",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Conversion & Routine Bundling",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Automated Replenishment Loops",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "22.68px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_tablet_768_en.png"
+  },
+  {
+    "page": "home",
+    "viewport": "tablet_768",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "De la Formulation d'Exception\nÀ la Marque de Cosmé",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30px",
+          "fontWeight": "800",
+          "lineHeight": "36px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 690,
+          "height": 72,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Une Formule d'Exception Ne Se Vend Pas Seule.\nLà o",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "27px",
+          "fontWeight": "800",
+          "lineHeight": "32.94px",
+          "letterSpacing": "-0.81px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 732,
+          "height": 66,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Vos Publicités S'essoufflent en 14 Jours",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "L'Esthétique Pure Ne Génère Pas de Ventes",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Les Acheteurs Uniques Érodent Vos Marges",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Conçu Spécifiquement\nPour l'Échelle des Marques de",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "27px",
+          "fontWeight": "800",
+          "lineHeight": "32.94px",
+          "letterSpacing": "-0.81px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 732,
+          "height": 66,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Studio Créateurs & UGC Haute Vélocité",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Acquisition Payante Axée sur la Rentabilité",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Optimisation du Taux de Conversion & Offres Bundle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Boucles de Réassort & Rétention Automatisées",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 288,
+          "height": 53,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "22.68px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_tablet_768_fr.png"
+  },
+  {
+    "page": "home",
+    "viewport": "tablet_768",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "من تركيبة مبتكرة واستثنائية\nإلى علامة رائدة ومطلوب",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30px",
+          "fontWeight": "800",
+          "lineHeight": "42px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 690,
+          "height": 84,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "أفضل التركيبات لا تبيع نفسها وحدها.\nأين يتوقف نمو ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "27px",
+          "fontWeight": "800",
+          "lineHeight": "37.8px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 732,
+          "height": 76,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "الإعلانات تفقد بريقها خلال 14 يوماً",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 288,
+          "height": 28,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "المشاهدات الجمالية لا تعني بالضرورة مبيعات",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 288,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "المشترون لمرة واحدة يستنزفون هوامش الربح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 288,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "مصمم خصيصاً\nلمضاعفة مبيعات علامات التجميل والعناية",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "27px",
+          "fontWeight": "800",
+          "lineHeight": "37.8px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 732,
+          "height": 76,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "استوديو إنتاج UGC عالي الكثافة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 288,
+          "height": 28,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "إعلانات مدفوعة موجهة للربحية",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 288,
+          "height": 28,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "تحسين صفحات الهبوط وباقات الروتين التجميلي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 288,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "دورات إعادة شراء وولاء مؤتمتة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 288,
+          "height": 28,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "23.8px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_tablet_768_ar.png"
+  },
+  {
+    "page": "home",
+    "viewport": "mobile_393",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "From Breakthrough Formulation\nTo Household Beauty ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26.724px",
+          "fontWeight": "800",
+          "lineHeight": "32.0688px",
+          "letterSpacing": "-0.53448px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 315,
+          "height": 128,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Great Formulas Don't Sell Themselves.\nWhere Beauty",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "25.152px",
+          "fontWeight": "800",
+          "lineHeight": "30.6854px",
+          "letterSpacing": "-0.75456px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 357,
+          "height": 123,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Ads Burn Out in 14 Days",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Aesthetic Views Don't Drive Sales",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "One-Time Buyers Drain Margins",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Engineered Specifically\nFor Cosmetic & Skincare Sc",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "25.152px",
+          "fontWeight": "800",
+          "lineHeight": "30.6854px",
+          "letterSpacing": "-0.75456px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 357,
+          "height": 92,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "High-Velocity UGC Studio",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Profit-First Paid Media",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Conversion & Routine Bundling",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Automated Replenishment Loops",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "22.68px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_mobile_393_en.png"
+  },
+  {
+    "page": "home",
+    "viewport": "mobile_393",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "De la Formulation d'Exception\nÀ la Marque de Cosmé",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26.724px",
+          "fontWeight": "800",
+          "lineHeight": "32.0688px",
+          "letterSpacing": "-0.53448px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 315,
+          "height": 160,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Une Formule d'Exception Ne Se Vend Pas Seule.\nLà o",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "25.152px",
+          "fontWeight": "800",
+          "lineHeight": "30.6854px",
+          "letterSpacing": "-0.75456px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 357,
+          "height": 123,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Vos Publicités S'essoufflent en 14 Jours",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "L'Esthétique Pure Ne Génère Pas de Ventes",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Les Acheteurs Uniques Érodent Vos Marges",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Conçu Spécifiquement\nPour l'Échelle des Marques de",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "25.152px",
+          "fontWeight": "800",
+          "lineHeight": "30.6854px",
+          "letterSpacing": "-0.75456px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 357,
+          "height": 92,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Studio Créateurs & UGC Haute Vélocité",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Acquisition Payante Axée sur la Rentabilité",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Optimisation du Taux de Conversion & Offres Bundle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Boucles de Réassort & Rétention Automatisées",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 291,
+          "height": 53,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "22.68px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_mobile_393_fr.png"
+  },
+  {
+    "page": "home",
+    "viewport": "mobile_393",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "من تركيبة مبتكرة واستثنائية\nإلى علامة رائدة ومطلوب",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26.724px",
+          "fontWeight": "800",
+          "lineHeight": "37.4136px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 315,
+          "height": 112,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "أفضل التركيبات لا تبيع نفسها وحدها.\nأين يتوقف نمو ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "25.152px",
+          "fontWeight": "800",
+          "lineHeight": "35.2128px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 357,
+          "height": 141,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "الإعلانات تفقد بريقها خلال 14 يوماً",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 291,
+          "height": 28,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "المشاهدات الجمالية لا تعني بالضرورة مبيعات",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 291,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "المشترون لمرة واحدة يستنزفون هوامش الربح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 291,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "مصمم خصيصاً\nلمضاعفة مبيعات علامات التجميل والعناية",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "25.152px",
+          "fontWeight": "800",
+          "lineHeight": "35.2128px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 357,
+          "height": 106,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "استوديو إنتاج UGC عالي الكثافة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 291,
+          "height": 28,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "إعلانات مدفوعة موجهة للربحية",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 291,
+          "height": 28,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "تحسين صفحات الهبوط وباقات الروتين التجميلي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 291,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "دورات إعادة شراء وولاء مؤتمتة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 291,
+          "height": 28,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "23.8px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_mobile_393_ar.png"
+  },
+  {
+    "page": "home",
+    "viewport": "micro_320",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "From Breakthrough Formulation\nTo Household Beauty ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "24px",
+          "fontWeight": "800",
+          "lineHeight": "28.8px",
+          "letterSpacing": "-0.48px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 258,
+          "height": 115,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Great Formulas Don't Sell Themselves.\nWhere Beauty",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "28.06px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 284,
+          "height": 112,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Ads Burn Out in 14 Days",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 234,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Aesthetic Views Don't Drive Sales",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 234,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "One-Time Buyers Drain Margins",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 234,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Engineered Specifically\nFor Cosmetic & Skincare Sc",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "28.06px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 284,
+          "height": 84,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "High-Velocity UGC Studio",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 218,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Profit-First Paid Media",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 218,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Conversion & Routine Bundling",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 218,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Automated Replenishment Loops",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 218,
+          "height": 53,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "22.68px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_micro_320_en.png"
+  },
+  {
+    "page": "home",
+    "viewport": "micro_320",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "De la Formulation d'Exception\nÀ la Marque de Cosmé",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "24px",
+          "fontWeight": "800",
+          "lineHeight": "28.8px",
+          "letterSpacing": "-0.48px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 258,
+          "height": 144,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Une Formule d'Exception Ne Se Vend Pas Seule.\nLà o",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "28.06px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 284,
+          "height": 140,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Vos Publicités S'essoufflent en 14 Jours",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 234,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "L'Esthétique Pure Ne Génère Pas de Ventes",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 234,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Les Acheteurs Uniques Érodent Vos Marges",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 234,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Conçu Spécifiquement\nPour l'Échelle des Marques de",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "28.06px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 284,
+          "height": 84,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Studio Créateurs & UGC Haute Vélocité",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 218,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Acquisition Payante Axée sur la Rentabilité",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 218,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Optimisation du Taux de Conversion & Offres Bundle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 218,
+          "height": 79,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Boucles de Réassort & Rétention Automatisées",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "26.4px",
+          "letterSpacing": "-0.6px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "ltr",
+          "width": 218,
+          "height": 79,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "22.68px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_micro_320_fr.png"
+  },
+  {
+    "page": "home",
+    "viewport": "micro_320",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "من تركيبة مبتكرة واستثنائية\nإلى علامة رائدة ومطلوب",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "24px",
+          "fontWeight": "800",
+          "lineHeight": "33.6px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 258,
+          "height": 134,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "أفضل التركيبات لا تبيع نفسها وحدها.\nأين يتوقف نمو ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 284,
+          "height": 129,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "الإعلانات تفقد بريقها خلال 14 يوماً",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 234,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "المشاهدات الجمالية لا تعني بالضرورة مبيعات",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 234,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "المشترون لمرة واحدة يستنزفون هوامش الربح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 234,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "مصمم خصيصاً\nلمضاعفة مبيعات علامات التجميل والعناية",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 284,
+          "height": 97,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "استوديو إنتاج UGC عالي الكثافة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 218,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "إعلانات مدفوعة موجهة للربحية",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 218,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "تحسين صفحات الهبوط وباقات الروتين التجميلي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 218,
+          "height": 56,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "دورات إعادة شراء وولاء مؤتمتة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "start",
+          "direction": "rtl",
+          "width": 218,
+          "height": 56,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "hero-desc",
+          "fontSize": "14px",
+          "lineHeight": "23.8px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "div",
+          "className": "micro-trust",
+          "fontSize": "13px",
+          "lineHeight": "19.5px",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "card-p",
+          "fontSize": "14.5px",
+          "lineHeight": "24.36px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_home_micro_320_ar.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "desktop_1440",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Scale Your Beauty Brand.\nApply for Studio Partners",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "42px",
+          "fontWeight": "800",
+          "lineHeight": "50.4px",
+          "letterSpacing": "-1.26px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 800,
+          "height": 101,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Brand & Contact Profile",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 618,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Category & Your Role",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Current Marketing Setup",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Application Received",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.2px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_desktop_1440_en.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "desktop_1440",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Développez Votre Marque de Beauté.\nPostulez au Par",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "42px",
+          "fontWeight": "800",
+          "lineHeight": "50.4px",
+          "letterSpacing": "-1.26px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 800,
+          "height": 101,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Profil de la Marque & Contact",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 618,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Catégorie & Votre Rôle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Organisation Marketing Actuelle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Dossier Enregistré avec Succès",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.2px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_desktop_1440_fr.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "desktop_1440",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "ضاعف نمو علامتك التجميلية.\nقدّم للانضمام إلى شراكة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "42px",
+          "fontWeight": "800",
+          "lineHeight": "58.8px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 800,
+          "height": 118,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "ملف العلامة وبيانات التواصل",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 618,
+          "height": 32,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "فئة المنتجات ودورك القيادي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "الوضع التسويقي الحالي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "تم استلام ملف طلب الشراكة بنجاح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "36.4px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_desktop_1440_ar.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "tablet_768",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Scale Your Beauty Brand.\nApply for Studio Partners",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30.72px",
+          "fontWeight": "800",
+          "lineHeight": "37.4784px",
+          "letterSpacing": "-0.9216px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 732,
+          "height": 75,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Brand & Contact Profile",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 666,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Category & Your Role",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Current Marketing Setup",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Application Received",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_tablet_768_en.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "tablet_768",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Développez Votre Marque de Beauté.\nPostulez au Par",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30.72px",
+          "fontWeight": "800",
+          "lineHeight": "37.4784px",
+          "letterSpacing": "-0.9216px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 732,
+          "height": 75,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Profil de la Marque & Contact",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 666,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Catégorie & Votre Rôle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Organisation Marketing Actuelle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Dossier Enregistré avec Succès",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_tablet_768_fr.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "tablet_768",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "ضاعف نمو علامتك التجميلية.\nقدّم للانضمام إلى شراكة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30.72px",
+          "fontWeight": "800",
+          "lineHeight": "43.008px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 732,
+          "height": 86,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "ملف العلامة وبيانات التواصل",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 666,
+          "height": 32,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "فئة المنتجات ودورك القيادي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "الوضع التسويقي الحالي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "تم استلام ملف طلب الشراكة بنجاح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "36.4px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_tablet_768_ar.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "mobile_393",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Scale Your Beauty Brand.\nApply for Studio Partners",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "34.16px",
+          "letterSpacing": "-0.84px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 357,
+          "height": 102,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Brand & Contact Profile",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 323,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Category & Your Role",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Current Marketing Setup",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Application Received",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_mobile_393_en.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "mobile_393",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Développez Votre Marque de Beauté.\nPostulez au Par",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "34.16px",
+          "letterSpacing": "-0.84px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 357,
+          "height": 137,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Profil de la Marque & Contact",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 323,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Catégorie & Votre Rôle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Organisation Marketing Actuelle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Dossier Enregistré avec Succès",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_mobile_393_fr.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "mobile_393",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "ضاعف نمو علامتك التجميلية.\nقدّم للانضمام إلى شراكة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "39.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 357,
+          "height": 118,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "ملف العلامة وبيانات التواصل",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 323,
+          "height": 32,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "فئة المنتجات ودورك القيادي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "الوضع التسويقي الحالي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "تم استلام ملف طلب الشراكة بنجاح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "36.4px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_mobile_393_ar.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "micro_320",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Scale Your Beauty Brand.\nApply for Studio Partners",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "34.16px",
+          "letterSpacing": "-0.84px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 284,
+          "height": 137,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Brand & Contact Profile",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 250,
+          "height": 26,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Category & Your Role",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Current Marketing Setup",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Application Received",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_micro_320_en.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "micro_320",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Développez Votre Marque de Beauté.\nPostulez au Par",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "34.16px",
+          "letterSpacing": "-0.84px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 284,
+          "height": 137,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Profil de la Marque & Contact",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 250,
+          "height": 53,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Catégorie & Votre Rôle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "Organisation Marketing Actuelle",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "26.45px",
+          "letterSpacing": "-0.69px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Dossier Enregistré avec Succès",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_micro_320_fr.png"
+  },
+  {
+    "page": "apply",
+    "viewport": "micro_320",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "ضاعف نمو علامتك التجميلية.\nقدّم للانضمام إلى شراكة",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "39.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 284,
+          "height": 157,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "ملف العلامة وبيانات التواصل",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 250,
+          "height": 64,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "فئة المنتجات ودورك القيادي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h3",
+          "text": "الوضع التسويقي الحالي",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "23px",
+          "fontWeight": "800",
+          "lineHeight": "32.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "تم استلام ملف طلب الشراكة بنجاح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "36.4px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "step-lead-desc",
+          "fontSize": "14.5px",
+          "lineHeight": "23.2px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "14px",
+          "lineHeight": "22.4px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_apply_micro_320_ar.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "desktop_1440",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Create for Leading Beauty Brands.\nJoin the POLISH ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "42px",
+          "fontWeight": "800",
+          "lineHeight": "50.4px",
+          "letterSpacing": "-1.26px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 800,
+          "height": 101,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Profile Received",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.2px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_desktop_1440_en.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "desktop_1440",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Créez pour les Plus Belles Marques de Beauté.\nRejo",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "42px",
+          "fontWeight": "800",
+          "lineHeight": "50.4px",
+          "letterSpacing": "-1.26px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 800,
+          "height": 151,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Candidature Bien Reçue",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.2px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_desktop_1440_fr.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "desktop_1440",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "اصنع المحتوى لأرقى علامات التجميل العالمية.\nانضم إ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "42px",
+          "fontWeight": "800",
+          "lineHeight": "58.8px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 800,
+          "height": 176,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "تم استلام ملفك بنجاح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "36.4px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_desktop_1440_ar.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "tablet_768",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Create for Leading Beauty Brands.\nJoin the POLISH ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30.72px",
+          "fontWeight": "800",
+          "lineHeight": "37.4784px",
+          "letterSpacing": "-0.9216px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 732,
+          "height": 75,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Profile Received",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_tablet_768_en.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "tablet_768",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Créez pour les Plus Belles Marques de Beauté.\nRejo",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30.72px",
+          "fontWeight": "800",
+          "lineHeight": "37.4784px",
+          "letterSpacing": "-0.9216px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 732,
+          "height": 75,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Candidature Bien Reçue",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_tablet_768_fr.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "tablet_768",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "اصنع المحتوى لأرقى علامات التجميل العالمية.\nانضم إ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "30.72px",
+          "fontWeight": "800",
+          "lineHeight": "43.008px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 732,
+          "height": 86,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "تم استلام ملفك بنجاح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "36.4px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_tablet_768_ar.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "mobile_393",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Create for Leading Beauty Brands.\nJoin the POLISH ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "34.16px",
+          "letterSpacing": "-0.84px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 357,
+          "height": 137,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Profile Received",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_mobile_393_en.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "mobile_393",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Créez pour les Plus Belles Marques de Beauté.\nRejo",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "34.16px",
+          "letterSpacing": "-0.84px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 357,
+          "height": 137,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Candidature Bien Reçue",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_mobile_393_fr.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "mobile_393",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "اصنع المحتوى لأرقى علامات التجميل العالمية.\nانضم إ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "39.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 357,
+          "height": 157,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "تم استلام ملفك بنجاح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "36.4px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_mobile_393_ar.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "micro_320",
+    "lang": "en",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Create for Leading Beauty Brands.\nJoin the POLISH ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "34.16px",
+          "letterSpacing": "-0.84px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 284,
+          "height": 137,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Profile Received",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_micro_320_en.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "micro_320",
+    "lang": "fr",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Créez pour les Plus Belles Marques de Beauté.\nRejo",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "34.16px",
+          "letterSpacing": "-0.84px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 284,
+          "height": 171,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "Candidature Bien Reçue",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "31.72px",
+          "letterSpacing": "-0.78px",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "ltr",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_micro_320_fr.png"
+  },
+  {
+    "page": "creators",
+    "viewport": "micro_320",
+    "lang": "ar",
+    "metrics": {
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "اصنع المحتوى لأرقى علامات التجميل العالمية.\nانضم إ",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "39.2px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 284,
+          "height": 196,
+          "hasOverflow": false
+        },
+        {
+          "tag": "h2",
+          "text": "تم استلام ملفك بنجاح",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "800",
+          "lineHeight": "36.4px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "textAlign": "center",
+          "direction": "rtl",
+          "width": 0,
+          "height": 0,
+          "hasOverflow": false
+        }
+      ],
+      "bodyTexts": [
+        {
+          "tag": "p",
+          "className": "section-p",
+          "fontSize": "16px",
+          "lineHeight": "26.4px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "",
+          "fontSize": "15px",
+          "lineHeight": "24px",
+          "color": "rgb(148, 163, 184)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        },
+        {
+          "tag": "p",
+          "className": "footer-copy",
+          "fontSize": "13.5px",
+          "lineHeight": "21.6px",
+          "color": "rgb(100, 116, 139)",
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, \"system-ui\", sans-serif"
+        }
+      ],
+      "overflowCount": 0
+    },
+    "shotPath": "/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web/scratch/audit_creators_micro_320_ar.png"
+  }
+]

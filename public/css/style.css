@@ -245,7 +245,8 @@ body {
   animation: bokehDrift2 42s ease-in-out infinite alternate-reverse;
 }
 
-.bokeh-cream {
+.bokeh-cream,
+.bokeh-powder {
   top: 56%;
   left: 12%;
   width: clamp(220px, 24vw, 350px);
@@ -332,14 +333,16 @@ body {
   animation: beautyHarmonic2 29s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate-reverse;
 }
 
-.float-lipglaze-right {
+.float-lipglaze-right,
+.float-lipstick-right {
   top: 55%;
   right: clamp(12px, 3.8vw, 68px);
   width: clamp(66px, 6.8vw, 102px);
   animation: beautyHarmonic3 24s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
 }
 
-.float-cream-left {
+.float-cream-left,
+.float-powder-left {
   top: 65%;
   left: clamp(12px, 4vw, 72px);
   width: clamp(82px, 8.5vw, 132px);

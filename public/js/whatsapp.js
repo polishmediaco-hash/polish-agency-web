@@ -84,9 +84,10 @@ function initWhatsAppWidget() {
     <!-- Quick Chat Drawer -->
     <div class="whatsapp-chat-box" id="waChatDrawer"></div>
 
-    <!-- Floating Trigger Bubble with Attention Shake -->
+    <!-- Floating Trigger Bubble with Dual Concentric Sonar Pulse Waves -->
     <div class="whatsapp-trigger-wrap">
       <div class="whatsapp-radar-ring"></div>
+      <div class="whatsapp-radar-ring-2"></div>
       <button class="whatsapp-trigger-btn" id="waTriggerBtn" aria-label="Chat with POLISH on WhatsApp (+213 662 41 77 61)">
         <span class="whatsapp-online-dot"></span>
         <svg viewBox="0 0 24 24">

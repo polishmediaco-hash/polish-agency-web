@@ -147,4 +147,45 @@
     }
     requestAnimationFrame(animateParticles);
   }
+
+  // 4. Smart Sticky Glowing CTA Dock (Auto-Blends and Hides when static CTA is in view)
+  const stickyDock = document.getElementById('stickyCtaDock');
+  if (stickyDock) {
+    const onPageCtas = Array.from(document.querySelectorAll('.hero-actions .btn-cta, .creator-cta-box .btn-cta, .apply-actions .btn-cta, #btnSubmitCreator, .site-footer'));
+    const visibleElements = new Set();
+
+    function updateStickyVisibility() {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      // Show only when scrolled past the hero top (>220px) AND no conflicting on-page CTA or footer is intersecting
+      if (scrollY > 220 && visibleElements.size === 0) {
+        stickyDock.classList.add('is-visible');
+        stickyDock.setAttribute('aria-hidden', 'false');
+      } else {
+        stickyDock.classList.remove('is-visible');
+        stickyDock.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if ('IntersectionObserver' in window && onPageCtas.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            visibleElements.add(entry.target);
+          } else {
+            visibleElements.delete(entry.target);
+          }
+        });
+        updateStickyVisibility();
+      }, {
+        root: null,
+        rootMargin: '0px 0px -30px 0px',
+        threshold: 0.05
+      });
+
+      onPageCtas.forEach(el => observer.observe(el));
+    }
+
+    window.addEventListener('scroll', updateStickyVisibility, { passive: true });
+    updateStickyVisibility();
+  }
 })();

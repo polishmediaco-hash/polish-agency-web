@@ -594,15 +594,106 @@ a {
   white-space: nowrap;
 }
 
-/* Stabilized Header CTA to eliminate layout jump across EN / FR / AR */
-.site-header .btn-cta {
-  min-width: 190px;
-  text-align: center;
-}
-
+/* Stabilized Hero CTA */
 .hero-actions .btn-cta-lg {
   min-width: 250px;
   text-align: center;
+}
+
+/* ==========================================================================
+   STICKY GLOWING HOVERING FLOATING CTA DOCK (SMART AUTO-BLEND)
+   ========================================================================== */
+
+.sticky-cta-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(35px) scale(0.92);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+  will-change: transform, opacity;
+  filter: blur(4px);
+}
+
+.sticky-cta-dock.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+  filter: blur(0px);
+}
+
+.sticky-glowing-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--grad-brand);
+  color: #06080A;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 13px 30px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 35px rgba(0, 229, 255, 0.45), 0 0 24px rgba(0, 229, 255, 0.3), inset 0 2px 2px rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.sticky-glowing-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: rotate(25deg);
+  animation: shineLoop 4s infinite ease-in-out;
+}
+
+@keyframes shineLoop {
+  0% { left: -60%; }
+  35% { left: 120%; }
+  100% { left: 120%; }
+}
+
+.sticky-glowing-btn:hover {
+  background: var(--grad-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 45px rgba(0, 229, 255, 0.7), 0 0 35px rgba(0, 229, 255, 0.5), inset 0 2.5px 2.5px rgba(255, 255, 255, 0.85);
+}
+
+/* RTL Arrow Support */
+[dir="rtl"] .sticky-glowing-btn svg {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 768px) {
+  .sticky-cta-dock {
+    bottom: 18px;
+  }
+  .sticky-glowing-btn {
+    padding: 11px 22px;
+    font-size: 12.5px;
+    box-shadow: 0 6px 26px rgba(0, 229, 255, 0.5), 0 0 18px rgba(0, 229, 255, 0.25), inset 0 1.5px 1.5px rgba(255, 255, 255, 0.65);
+  }
+}
+
+@media (max-width: 359px) {
+  .sticky-glowing-btn {
+    padding: 9px 18px;
+    font-size: 11.5px;
+  }
 }
 
 .btn-cta::after {

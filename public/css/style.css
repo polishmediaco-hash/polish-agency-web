@@ -92,241 +92,91 @@ body {
   background: radial-gradient(circle at 50% 25%, #0B0D14 0%, #050608 100%);
 }
 
-/* Dynamic Multi-Point Cyan/Sapphire Ambient Caustics */
+/* Dynamic Atmospheric Luxury Studio Aurora & Caustic Engine */
+.ambient-glow-top {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(500px, 60vw, 850px);
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.18) 0%, rgba(0, 136, 255, 0.08) 45%, transparent 75%);
+  filter: blur(90px);
+  pointer-events: none;
+  animation: auroraPulse 12s ease-in-out infinite alternate;
+}
+
 .ambient-glow-cyan {
   position: absolute;
-  top: 10%;
-  left: 20%;
-  width: 620px;
-  height: 620px;
+  top: 18%;
+  left: 12%;
+  width: clamp(450px, 45vw, 680px);
+  height: clamp(450px, 45vw, 680px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.16) 0%, rgba(0, 136, 255, 0.06) 45%, transparent 70%);
-  filter: blur(110px);
-  animation: causticBreath 14s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, rgba(0, 136, 255, 0.04) 50%, transparent 70%);
+  filter: blur(120px);
+  pointer-events: none;
+  animation: causticDrift1 20s ease-in-out infinite alternate;
 }
 
 .ambient-glow-blue {
   position: absolute;
-  bottom: 8%;
-  right: 18%;
-  width: 680px;
-  height: 680px;
+  bottom: 12%;
+  right: 10%;
+  width: clamp(500px, 50vw, 750px);
+  height: clamp(500px, 50vw, 750px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 136, 255, 0.14) 0%, rgba(0, 229, 255, 0.05) 50%, transparent 70%);
-  filter: blur(120px);
-  animation: causticBreath 18s ease-in-out infinite alternate-reverse;
+  background: radial-gradient(circle, rgba(0, 136, 255, 0.14) 0%, rgba(0, 229, 255, 0.04) 50%, transparent 70%);
+  filter: blur(130px);
+  pointer-events: none;
+  animation: causticDrift2 24s ease-in-out infinite alternate-reverse;
 }
 
 .ambient-glow-center {
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 800px;
-  height: 500px;
+  width: clamp(600px, 70vw, 1000px);
+  height: 550px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(0, 229, 255, 0.08) 0%, transparent 75%);
-  filter: blur(130px);
+  background: radial-gradient(ellipse, rgba(0, 229, 255, 0.06) 0%, rgba(0, 100, 220, 0.03) 40%, transparent 75%);
+  filter: blur(140px);
   pointer-events: none;
 }
 
-@keyframes causticBreath {
-  0% { opacity: 0.5; transform: scale(0.92); }
-  100% { opacity: 0.95; transform: scale(1.18); }
-}
-
-/* ==========================================================================
-   ORGANIC 3D LUXURY COSMETIC ELEMENTS (VOLUMETRIC SHADERS & PARALLAX)
-   ========================================================================== */
-
-.floating-beauty-product {
+.ambient-aurora-prism {
   position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-8deg);
+  width: clamp(700px, 80vw, 1200px);
+  height: 320px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.05) 0%, rgba(0, 136, 255, 0.08) 50%, rgba(0, 229, 255, 0.04) 100%);
+  filter: blur(80px);
   pointer-events: none;
-  z-index: 1;
-  will-change: transform;
-  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 24px rgba(0, 229, 255, 0.25));
-  transition: opacity 0.4s ease;
+  animation: prismWave 18s ease-in-out infinite alternate;
 }
 
-.beauty-3d-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  filter: saturate(112%) contrast(104%);
-  user-select: none;
-  -webkit-user-drag: none;
+@keyframes auroraPulse {
+  0% { opacity: 0.6; transform: translateX(-50%) scale(0.95); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1.08); }
 }
 
-/* 1. 3D Volumetric Peptide Serum Dropper Bottle (Left Upper) */
-.beauty-item-serum {
-  top: 9%;
-  left: clamp(24px, 5.5vw, 95px);
-  width: clamp(76px, 7.5vw, 118px);
-  height: auto;
-  opacity: 0.88;
-  animation: floatOrganic1 24s ease-in-out infinite alternate;
+@keyframes causticDrift1 {
+  0% { transform: translate3d(0, 0, 0) scale(0.95); }
+  100% { transform: translate3d(40px, -30px, 0) scale(1.1); }
 }
 
-/* 2. 3D Beveled Crystal Perfume Flacon (Right Upper) */
-.beauty-item-perfume {
-  top: 11%;
-  right: clamp(24px, 5.8vw, 102px);
-  width: clamp(82px, 8.2vw, 126px);
-  height: auto;
-  opacity: 0.9;
-  animation: floatOrganic2 27s ease-in-out infinite alternate;
-}
-
-/* 3. 3D Liquid Lip Glaze Wand (Right Mid-Lower) */
-.beauty-item-lipglaze {
-  top: 55%;
-  right: clamp(20px, 6vw, 110px);
-  width: clamp(64px, 6.4vw, 98px);
-  height: auto;
-  opacity: 0.86;
-  animation: floatOrganic3 22s ease-in-out infinite alternate;
-}
-
-/* 4. 3D Frosted Smoked Cream Pot (Left Lower) */
-.beauty-item-creampot {
-  top: 64%;
-  left: clamp(20px, 6.2vw, 112px);
-  width: clamp(82px, 8.2vw, 128px);
-  height: auto;
-  opacity: 0.86;
-  animation: floatOrganic4 26s ease-in-out infinite alternate;
-}
-
-/* 3D Liquid Essence Pearls & Refractive Beads */
-.cosmetic-pearl {
-  position: absolute;
-  pointer-events: none;
-  z-index: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #E2E8F0 25%, #475569 50%, #0F172A 75%, #00E5FF 100%);
-  box-shadow: inset -4px -4px 12px rgba(0, 229, 255, 0.6), 0 10px 24px rgba(0, 0, 0, 0.85), 0 0 16px rgba(0, 229, 255, 0.35);
-  will-change: transform;
-}
-
-.pearl-1 {
-  top: 36%;
-  left: clamp(10px, 2.8vw, 45px);
-  width: 24px;
-  height: 24px;
-  opacity: 0.85;
-  animation: pearlDrift1 16s ease-in-out infinite alternate;
-}
-
-.pearl-2 {
-  top: 42%;
-  right: clamp(10px, 2.8vw, 48px);
-  width: 28px;
-  height: 28px;
-  opacity: 0.82;
-  animation: pearlDrift2 18s ease-in-out infinite alternate;
-}
-
-.pearl-3-blur {
-  top: 86%;
-  right: 28%;
-  width: 18px;
-  height: 18px;
-  opacity: 0.5;
-  filter: blur(1.5px);
-  animation: pearlDrift3 22s ease-in-out infinite alternate;
-}
-
-.pearl-4-blur {
-  top: 14%;
-  left: 20%;
-  width: 16px;
-  height: 16px;
-  opacity: 0.45;
-  filter: blur(2px);
-  animation: pearlDrift4 20s ease-in-out infinite alternate;
-}
-
-.pearl-5 {
-  top: 80%;
-  left: 3%;
-  width: 20px;
-  height: 20px;
-  opacity: 0.75;
-  animation: pearlDrift2 24s ease-in-out infinite alternate-reverse;
-}
-
-.pearl-6-blur {
-  top: 18%;
-  right: 22%;
-  width: 14px;
-  height: 14px;
-  opacity: 0.4;
-  filter: blur(2.5px);
-  animation: pearlDrift1 21s ease-in-out infinite alternate-reverse;
-}
-
-/* Organic Asynchronous Harmonic Keyframes (Completely Autonomous, Free-Floating) */
-@keyframes floatOrganic1 {
-  0% { transform: translate3d(0, 0, 0) rotate(-10deg) scale(1); }
-  50% { transform: translate3d(14px, -24px, 0) rotate(-2deg) scale(1.02); }
-  100% { transform: translate3d(-10px, -44px, 0) rotate(4deg) scale(0.99); }
-}
-
-@keyframes floatOrganic2 {
-  0% { transform: translate3d(0, 0, 0) rotate(12deg) scale(1); }
-  50% { transform: translate3d(-16px, 20px, 0) rotate(4deg) scale(1.03); }
-  100% { transform: translate3d(12px, -30px, 0) rotate(-4deg) scale(0.98); }
-}
-
-@keyframes floatOrganic3 {
-  0% { transform: translate3d(0, 0, 0) rotate(-14deg); }
-  50% { transform: translate3d(12px, 22px, 0) rotate(-4deg); }
-  100% { transform: translate3d(-14px, 38px, 0) rotate(-20deg); }
-}
-
-@keyframes floatOrganic4 {
-  0% { transform: translate3d(0, 0, 0) rotate(8deg); }
-  50% { transform: translate3d(-16px, -20px, 0) rotate(-2deg); }
-  100% { transform: translate3d(10px, 24px, 0) rotate(14deg); }
-}
-
-@keyframes floatOrganic5 {
-  0% { transform: translate3d(0, 0, 0) rotate(36deg); }
-  50% { transform: translate3d(-14px, 18px, 0) rotate(48deg); }
-  100% { transform: translate3d(18px, -22px, 0) rotate(26deg); }
-}
-
-@keyframes floatOrganic6 {
-  0% { transform: translate3d(0, 0, 0) rotate(-28deg); }
-  50% { transform: translate3d(20px, -18px, 0) rotate(-12deg); }
-  100% { transform: translate3d(-12px, 24px, 0) rotate(-38deg); }
-}
-
-@keyframes floatOrganic7 {
-  0% { transform: translate3d(0, 0, 0) rotate(22deg) scale(1); }
-  50% { transform: translate3d(24px, 20px, 0) rotate(35deg) scale(1.05); }
-  100% { transform: translate3d(-18px, -16px, 0) rotate(10deg) scale(0.96); }
-}
-
-@keyframes pearlDrift1 {
+@keyframes causticDrift2 {
   0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(16px, -30px, 0) scale(1.12); }
+  100% { transform: translate3d(-35px, 25px, 0) scale(1.12); }
 }
 
-@keyframes pearlDrift2 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(-20px, 32px, 0) scale(1.08); }
-}
-
-@keyframes pearlDrift3 {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(28px, -24px, 0); }
-}
-
-@keyframes pearlDrift4 {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-24px, 26px, 0); }
+@keyframes prismWave {
+  0% { transform: translateX(-50%) rotate(-8deg) scale(0.96); opacity: 0.5; }
+  100% { transform: translateX(-50%) rotate(4deg) scale(1.06); opacity: 0.9; }
 }
 
 /* Mouse-Tracking Caustic Orb (GPU Composited) */
@@ -1784,35 +1634,6 @@ a {
     height: 52px;
   }
 
-  /* Mobile 3D Background Contrast & Non-Interference */
-  .floating-beauty-product {
-    opacity: 0.65 !important;
-    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(0, 229, 255, 0.22));
-  }
-  .beauty-item-serum {
-    left: 4px;
-    top: 4%;
-    width: 58px;
-  }
-  .beauty-item-perfume {
-    right: 4px;
-    top: 6%;
-    width: 62px;
-  }
-  .beauty-item-lipglaze {
-    right: 6px;
-    top: 58%;
-    width: 48px;
-  }
-  .beauty-item-creampot {
-    left: 4px;
-    top: 66%;
-    width: 64px;
-  }
-  .pearl-4-blur,
-  .pearl-6-blur {
-    display: none;
-  }
 }
 
 /* ==========================================================================

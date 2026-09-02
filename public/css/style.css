@@ -179,6 +179,207 @@ body {
   100% { transform: translateX(-50%) rotate(4deg) scale(1.06); opacity: 0.9; }
 }
 
+/* ==========================================================================
+   CINEMATIC MULTI-PLANE LUXURY BEAUTY DEPTH ENGINE (GPU ACCELERATED)
+   ========================================================================== */
+
+.beauty-depth-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Layer 1: Far Volumetric Bokeh Beauty Atmosphere (Deep Field Depth) */
+.beauty-depth-far {
+  z-index: 1;
+  filter: blur(20px) saturate(135%);
+  opacity: 0.28;
+  mix-blend-mode: screen;
+}
+
+.beauty-bokeh-item {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.beauty-bokeh-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.bokeh-serum {
+  top: 12%;
+  left: 8%;
+  width: clamp(200px, 22vw, 320px);
+  animation: bokehDrift1 36s ease-in-out infinite alternate;
+}
+
+.bokeh-perfume {
+  top: 15%;
+  right: 6%;
+  width: clamp(220px, 24vw, 340px);
+  animation: bokehDrift2 42s ease-in-out infinite alternate-reverse;
+}
+
+.bokeh-cream {
+  top: 58%;
+  left: 14%;
+  width: clamp(210px, 23vw, 330px);
+  animation: bokehDrift3 38s ease-in-out infinite alternate;
+}
+
+/* Layer 2: Mid-Ground Luminous Crystal Beauty Products (Atmospheric Focus) */
+.beauty-depth-mid {
+  z-index: 2;
+  opacity: 0.42;
+  mix-blend-mode: screen;
+}
+
+.beauty-floating-item {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+  filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.35)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.95));
+}
+
+.beauty-floating-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: saturate(110%) contrast(105%);
+}
+
+.float-serum-left {
+  top: 14%;
+  left: clamp(16px, 4.5vw, 75px);
+  width: clamp(75px, 8vw, 125px);
+  animation: beautyHarmonic1 26s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+.float-perfume-right {
+  top: 16%;
+  right: clamp(16px, 4.8vw, 82px);
+  width: clamp(80px, 8.5vw, 132px);
+  animation: beautyHarmonic2 29s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate-reverse;
+}
+
+.float-lipglaze-right {
+  top: 56%;
+  right: clamp(14px, 4.2vw, 72px);
+  width: clamp(62px, 6.5vw, 98px);
+  animation: beautyHarmonic3 24s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+.float-cream-left {
+  top: 66%;
+  left: clamp(14px, 4.4vw, 76px);
+  width: clamp(78px, 8.2vw, 128px);
+  animation: beautyHarmonic4 28s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate-reverse;
+}
+
+/* Layer 3: Subtle Refractive Liquid Essence Droplets */
+.beauty-depth-near {
+  z-index: 3;
+}
+
+.liquid-glint {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #00E5FF 60%, rgba(0, 136, 255, 0.2) 100%);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.7), inset -2px -2px 6px rgba(255, 255, 255, 0.8);
+  will-change: transform;
+}
+
+.glint-1 {
+  top: 32%;
+  left: clamp(20px, 6vw, 95px);
+  width: 10px;
+  height: 10px;
+  opacity: 0.85;
+  animation: glintDrift1 18s ease-in-out infinite alternate;
+}
+
+.glint-2 {
+  top: 48%;
+  right: clamp(20px, 6.5vw, 100px);
+  width: 12px;
+  height: 12px;
+  opacity: 0.8;
+  animation: glintDrift2 22s ease-in-out infinite alternate-reverse;
+}
+
+.glint-3 {
+  top: 78%;
+  left: 22%;
+  width: 8px;
+  height: 8px;
+  opacity: 0.6;
+  filter: blur(1px);
+  animation: glintDrift1 26s ease-in-out infinite alternate;
+}
+
+/* Physics-based Easing Keyframes (100% GPU Composited) */
+@keyframes bokehDrift1 {
+  0% { transform: translate3d(0, 0, 0) scale(0.96) rotate(-4deg); }
+  100% { transform: translate3d(30px, -40px, 0) scale(1.08) rotate(4deg); }
+}
+
+@keyframes bokehDrift2 {
+  0% { transform: translate3d(0, 0, 0) scale(1.04) rotate(6deg); }
+  100% { transform: translate3d(-35px, 45px, 0) scale(0.95) rotate(-3deg); }
+}
+
+@keyframes bokehDrift3 {
+  0% { transform: translate3d(0, 0, 0) scale(0.98); }
+  100% { transform: translate3d(25px, 35px, 0) scale(1.06); }
+}
+
+@keyframes beautyHarmonic1 {
+  0% { transform: translate3d(0, 0, 0) rotate(-6deg) scale(1); }
+  50% { transform: translate3d(10px, -18px, 0) rotate(-1deg) scale(1.02); }
+  100% { transform: translate3d(-8px, -32px, 0) rotate(3deg) scale(0.98); }
+}
+
+@keyframes beautyHarmonic2 {
+  0% { transform: translate3d(0, 0, 0) rotate(8deg) scale(1); }
+  50% { transform: translate3d(-12px, 16px, 0) rotate(2deg) scale(1.03); }
+  100% { transform: translate3d(10px, -22px, 0) rotate(-4deg) scale(0.98); }
+}
+
+@keyframes beautyHarmonic3 {
+  0% { transform: translate3d(0, 0, 0) rotate(-8deg); }
+  50% { transform: translate3d(8px, 16px, 0) rotate(-2deg); }
+  100% { transform: translate3d(-10px, 26px, 0) rotate(-12deg); }
+}
+
+@keyframes beautyHarmonic4 {
+  0% { transform: translate3d(0, 0, 0) rotate(6deg); }
+  50% { transform: translate3d(-10px, -14px, 0) rotate(-1deg); }
+  100% { transform: translate3d(8px, 18px, 0) rotate(10deg); }
+}
+
+@keyframes glintDrift1 {
+  0% { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0.5; }
+  50% { transform: translate3d(14px, -20px, 0) scale(1.2); opacity: 0.95; }
+  100% { transform: translate3d(-10px, -36px, 0) scale(0.85); opacity: 0.4; }
+}
+
+@keyframes glintDrift2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.7; }
+  50% { transform: translate3d(-16px, 22px, 0) scale(1.25); opacity: 1; }
+  100% { transform: translate3d(12px, 38px, 0) scale(0.9); opacity: 0.5; }
+}
+
 /* Mouse-Tracking Caustic Orb (GPU Composited) */
 .mouse-caustic-light {
   position: fixed;

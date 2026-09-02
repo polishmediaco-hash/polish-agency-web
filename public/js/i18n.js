@@ -9,6 +9,7 @@
 const POLISH_TRANSLATIONS = {
   en: {
     // Header & Nav
+    "nav.brandTagline": "BEAUTY ACCELERATOR",
     "nav.creators": "Creator Network",
     "nav.partnership": "Explore Partnership",
     "nav.returnHome": "Return Home",
@@ -127,6 +128,7 @@ const POLISH_TRANSLATIONS = {
 
   fr: {
     // Header & Nav
+    "nav.brandTagline": "ACCÉLÉRATEUR BEAUTÉ",
     "nav.creators": "Réseau Créateurs",
     "nav.partnership": "Découvrir le Partenariat",
     "nav.returnHome": "Retour à l'Accueil",
@@ -245,6 +247,7 @@ const POLISH_TRANSLATIONS = {
 
   ar: {
     // Header & Nav
+    "nav.brandTagline": "مسرّع نمو الجمال",
     "nav.creators": "شبكة المبدعين",
     "nav.partnership": "استكشف الشراكة",
     "nav.returnHome": "العودة للرئيسية",

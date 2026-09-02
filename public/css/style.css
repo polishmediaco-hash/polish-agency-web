@@ -458,30 +458,30 @@ a {
   transform: translateY(-2px);
 }
 
-/* Grand Prominent Smoked Glass Logo Bubble (Continuance of Header, but Bigger) */
+/* Grand Prominent Smoked Glass Logo Bubble */
 .header-logo-bubble {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 72px;
-  padding: 8px 24px;
-  margin: -8px 0 -8px -4px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(0, 229, 255, 0.08) 45%, rgba(7, 11, 20, 0.92) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.32);
+  height: 52px;
+  padding: 4px 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(0, 229, 255, 0.08) 45%, rgba(7, 11, 20, 0.92) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
   border-radius: var(--radius-pill);
-  box-shadow: inset 0 2px 2.5px rgba(255, 255, 255, 0.45), inset 0 -2px 2.5px rgba(0, 0, 0, 0.75), 0 14px 35px rgba(0, 0, 0, 0.85), 0 0 32px rgba(0, 229, 255, 0.35);
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.4), 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 24px rgba(0, 229, 255, 0.28);
   backdrop-filter: blur(36px) saturate(220%);
   -webkit-backdrop-filter: blur(36px) saturate(220%);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2;
   position: relative;
+  flex-shrink: 0;
 }
 
 .header-logo-bubble:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(0, 229, 255, 0.14) 45%, rgba(9, 14, 26, 0.95) 100%);
-  border-color: rgba(0, 229, 255, 0.6);
-  box-shadow: inset 0 2.5px 3px rgba(255, 255, 255, 0.6), 0 0 45px rgba(0, 229, 255, 0.55), 0 18px 45px rgba(0, 0, 0, 0.9);
-  transform: scale(1.04);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 229, 255, 0.14) 45%, rgba(9, 14, 26, 0.95) 100%);
+  border-color: rgba(0, 229, 255, 0.55);
+  box-shadow: inset 0 2px 2.5px rgba(255, 255, 255, 0.55), 0 0 35px rgba(0, 229, 255, 0.5), 0 14px 40px rgba(0, 0, 0, 0.85);
+  transform: scale(1.03);
 }
 
 .logo-wrap {
@@ -492,21 +492,21 @@ a {
 }
 
 .header-logo-img {
-  height: 48px;
+  height: 38px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.45));
+  filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.45));
   will-change: transform, filter;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
 
 .header-logo-bubble:hover .header-logo-img {
-  transform: scale(1.06);
-  filter: drop-shadow(0 0 24px rgba(0, 229, 255, 0.85)) drop-shadow(0 0 40px rgba(0, 136, 255, 0.5));
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.8)) drop-shadow(0 0 32px rgba(0, 136, 255, 0.45));
 }
 
 /* ==========================================================================
-   LANGUAGE SELECTOR SWITCHER CAPSULE (EN / FR)
+   LANGUAGE SELECTOR SWITCHER CAPSULE (EN / FR / AR)
    ========================================================================== */
 
 .lang-toggle {
@@ -521,6 +521,7 @@ a {
   -webkit-backdrop-filter: blur(16px);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
   transition: all 0.25s ease;
+  flex-shrink: 0;
 }
 
 .lang-toggle:hover {
@@ -561,7 +562,7 @@ a {
 }
 
 /* ==========================================================================
-   BUTTONS & SMOKED GLASS CAPSULES
+   BUTTONS & SMOKED GLASS CAPSULES (STABILIZED ACROSS LANGUAGES)
    ========================================================================== */
 
 .btn-cta {
@@ -572,8 +573,8 @@ a {
   background: var(--grad-brand);
   color: #06080A;
   font-weight: 800;
-  font-size: 14px;
-  padding: 13px 28px;
+  font-size: 13.5px;
+  padding: 12px 24px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
@@ -581,6 +582,19 @@ a {
   box-shadow: 0 4px 22px rgba(0, 229, 255, 0.35), inset 0 1.5px 1.5px rgba(255, 255, 255, 0.6);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Stabilized Header CTA to eliminate layout jump across EN / FR / AR */
+.site-header .btn-cta {
+  min-width: 190px;
+  text-align: center;
+}
+
+.hero-actions .btn-cta-lg {
+  min-width: 250px;
+  text-align: center;
 }
 
 .btn-cta::after {
@@ -607,8 +621,8 @@ a {
 }
 
 .btn-cta-lg {
-  padding: 18px 40px;
-  font-size: 16px;
+  padding: 16px 36px;
+  font-size: 15.5px;
   border-radius: var(--radius-md);
 }
 
@@ -1423,36 +1437,38 @@ a {
     padding: 0 14px;
   }
   .floating-header-glass {
-    min-height: 48px;
-    padding: 3px 10px 3px 4px;
+    min-height: 44px;
+    padding: 3px 8px 3px 4px;
     border-radius: var(--radius-pill);
-    gap: 10px;
+    gap: 8px;
     box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 229, 255, 0.1);
     overflow: visible;
   }
   .header-logo-bubble {
-    min-height: 58px;
-    padding: 6px 16px;
-    margin: -6px 0 -6px -2px;
+    height: 42px;
+    min-height: 42px;
+    padding: 2px 12px;
+    margin: 0;
     border-radius: var(--radius-pill);
-    box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.4), 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 255, 0.28);
+    box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.4), 0 6px 18px rgba(0, 0, 0, 0.8), 0 0 18px rgba(0, 229, 255, 0.25);
   }
   .header-logo-img {
-    height: 36px;
+    height: 28px;
     width: auto;
   }
   .site-header .btn-cta {
-    padding: 8px 14px;
-    font-size: 12px;
+    padding: 7px 12px;
+    font-size: 11.5px;
     font-weight: 700;
     border-radius: 9px;
-    min-height: 36px;
+    min-height: 34px;
+    min-width: 130px;
   }
   .site-header .btn-ghost {
-    padding: 7px 12px;
-    font-size: 12px;
+    padding: 6px 10px;
+    font-size: 11.5px;
     border-radius: 9px;
-    min-height: 36px;
+    min-height: 34px;
   }
 
   /* Section Spacing & Visual Rhythm */

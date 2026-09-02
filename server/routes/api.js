@@ -239,6 +239,80 @@ function getDefaultContent() {
       whatsappNumber: process.env.WHATSAPP_NUMBER || "213662417761",
       instagramUrl: process.env.INSTAGRAM_URL || "https://www.instagram.com/polishmedia.co/",
       email: process.env.CONTACT_EMAIL || "contact@polishmediaco.com"
+    },
+    whatsapp: {
+      en_default: "Hi POLISH Media team, I'm reaching out regarding scaling my cosmetics & beauty brand. Let's discuss a growth partnership.",
+      fr_default: "Bonjour l'équipe POLISH, je vous contacte au sujet du développement de ma marque cosmétique. Échangeons sur un partenariat de croissance.",
+      en_brand: "Hi POLISH team! I just submitted my Growth Partnership application (Ref: {ref}). Brand: {brand} — I'm {name}. Looking forward to connecting!",
+      fr_brand: "Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Partenariat Croissance (Réf: {ref}). Marque : {brand} — Je suis {name}. Au plaisir d'échanger !",
+      en_creator: "Hi POLISH team! I just submitted my UGC Creator application (Ref: {ref}). I'm {name}. Looking forward to connecting!",
+      fr_creator: "Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Créateur UGC (Réf: {ref}). Je suis {name}. Au plaisir d'échanger !"
+    },
+    fr: {
+      hero: {
+        windowTag: "ACCÉLÉRATEUR DE MARQUES",
+        eyebrow: "ACCÉLÉRATEUR & STUDIO DE CROISSANCE BEAUTÉ",
+        headlineLine1: "De la Formulation Innovante",
+        headlineLine2: "À la Marque Beauté Incontournable.",
+        description: "Nous accompagnons les fondateurs d'exception pour accélérer l'acquisition payante, orchestrer des créateurs UGC à haute conversion et fidéliser chaque cliente.",
+        ctaText: "Découvrir le Partenariat",
+        microTrust: "Partenaire de croissance exclusif pour marques cosmétiques et soins à fort potentiel."
+      },
+      agitation: {
+        eyebrow: "LES FREINS",
+        headlineLine1: "Une Excellente Formule Ne Suffit Plus.",
+        headlineLine2: "Pourquoi les Marques Beauté Plafonnent.",
+        description: "La majorité des marques cosmétiques ne stagnent pas à cause de leurs formules, mais par manque de créatifs percutants et face à l'envolée des coûts publicitaires.",
+        cards: [
+          {
+            tag: "01 • SATURATION CRÉATIVE",
+            title: "Les Publicités S'Épuisent en 14 Jours",
+            desc: "Sans flux continu de nouveaux angles et d'accroches vidéos, la fatigue publicitaire fait exploser vos coûts d'acquisition client."
+          },
+          {
+            tag: "02 • ZÉRO CONVERSION",
+            title: "L'Esthétique Pure Ne Fait Pas Vendre",
+            desc: "Un joli feed ne garantit aucun chiffre d'affaires. Convertir exige des structures d'accroches testées et des démonstrations de textures concrètes."
+          },
+          {
+            tag: "03 • RETENTION FAIBLE",
+            title: "Les Achats Uniques Érodent Vos Marges",
+            desc: "Sans réachat dans les 60 jours, l'acquisition grignote vos marges. Nous transformons une première commande en rituels de soin réguliers."
+          }
+        ]
+      },
+      pillars: {
+        eyebrow: "LE MOTEUR DE CROISSANCE",
+        headlineLine1: "Pensé Spécifiquement",
+        headlineLine2: "Pour le Scalage Cosmétique & Soin.",
+        items: [
+          {
+            digit: "01",
+            title: "Studio UGC Haute Fréquence",
+            desc: "Créateurs beauté sélectionnés et briefés avec des accroches performantes, plans de texture et démonstrations de routine de soin."
+          },
+          {
+            digit: "02",
+            title: "Acquisition Payante Axée Rentabilité",
+            desc: "Campagnes Meta et TikTok optimisées pour générer un retour sur investissement maximal et développer votre volume sereinement."
+          },
+          {
+            digit: "03",
+            title: "Pages de Vente & Bundles Rituels",
+            desc: "Pages produits optimisées, rituels complets et suggestions au panier intelligentes pour augmenter votre panier moyen."
+          },
+          {
+            digit: "04",
+            title: "Boucles de Réapprovisionnement Automatisées",
+            desc: "Relances prédictives et parcours de fidélisation VIP pour maximiser la valeur à vie de chaque cliente."
+          }
+        ]
+      },
+      creators: {
+        eyebrow: "RÉSEAU CRÉATEURS & UGC",
+        headline: "Créez pour les Plus Belles Marques Beauté. Rejoignez le Réseau POLISH.",
+        description: "Accédez à des campagnes rémunérées, des dotations produits exclusives et des partenariats réguliers."
+      }
     }
   };
 }

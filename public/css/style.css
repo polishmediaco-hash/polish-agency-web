@@ -1660,3 +1660,67 @@ a {
     opacity: 0.22 !important;
   }
 }
+
+/* ==========================================================================
+   RTL & MULTI-LANGUAGE SPACING / TYPOGRAPHY OPTIMIZATION (ARABIC / EN / FR)
+   ========================================================================== */
+
+[dir="rtl"], body.is-rtl {
+  letter-spacing: normal !important;
+}
+
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
+[dir="rtl"] .hero-title, [dir="rtl"] .section-title,
+[dir="rtl"] .step-title, [dir="rtl"] .creator-heading {
+  letter-spacing: 0 !important;
+  line-height: 1.4;
+}
+
+[dir="rtl"] .hero-desc,
+[dir="rtl"] .section-desc,
+[dir="rtl"] .wizard-subtitle,
+[dir="rtl"] .creator-subheading {
+  line-height: 1.7;
+}
+
+/* RTL Arrow Flips */
+[dir="rtl"] .btn-cta svg,
+[dir="rtl"] .btn-wizard-next svg {
+  transform: scaleX(-1);
+}
+
+/* RTL Card & Layout Alignments */
+[dir="rtl"] .pillar-item {
+  text-align: right;
+}
+
+[dir="rtl"] .diagnostic-card,
+[dir="rtl"] .wizard-step {
+  text-align: right;
+}
+
+[dir="rtl"] .trust-seal-strip {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .floating-header-glass {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .whatsapp-float-container {
+  left: 24px;
+  right: auto;
+}
+
+[dir="rtl"] .whatsapp-chat-box {
+  left: 0;
+  right: auto;
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .whatsapp-float-container {
+    left: 16px;
+    right: auto;
+  }
+}
+

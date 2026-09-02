@@ -1,4 +1,4 @@
-// POLISH Dynamic CMS Content Hydration Engine
+// POLISH Dynamic CMS Content Hydration Engine (EN / FR / AR)
 (function() {
   async function loadDynamicContent() {
     try {
@@ -9,7 +9,7 @@
       
       const c = data.content;
       
-      // Update the English translation dictionary with CMS edits
+      // 1. Update English Dictionary
       if (window.POLISH_TRANSLATIONS && window.POLISH_TRANSLATIONS.en) {
         const dictEN = window.POLISH_TRANSLATIONS.en;
         
@@ -56,7 +56,7 @@
         }
       }
 
-      // Update the French translation dictionary with CMS edits
+      // 2. Update French Dictionary
       if (window.POLISH_TRANSLATIONS && window.POLISH_TRANSLATIONS.fr && c.fr) {
         const dictFR = window.POLISH_TRANSLATIONS.fr;
         const fr = c.fr;
@@ -104,10 +104,59 @@
         }
       }
 
-      // Sync WhatsApp messages
+      // 3. Update Arabic Dictionary
+      if (window.POLISH_TRANSLATIONS && window.POLISH_TRANSLATIONS.ar && c.ar) {
+        const dictAR = window.POLISH_TRANSLATIONS.ar;
+        const ar = c.ar;
+
+        if (ar.hero) {
+          if (ar.hero.windowTag) dictAR["hero.windowTag"] = ar.hero.windowTag;
+          if (ar.hero.eyebrow) dictAR["hero.eyebrow"] = ar.hero.eyebrow;
+          if (ar.hero.headlineLine1) dictAR["hero.headlineLine1"] = ar.hero.headlineLine1;
+          if (ar.hero.headlineLine2) dictAR["hero.headlineLine2"] = ar.hero.headlineLine2;
+          if (ar.hero.description) dictAR["hero.description"] = ar.hero.description;
+          if (ar.hero.ctaText) { dictAR["hero.cta"] = ar.hero.ctaText; dictAR["header.cta"] = ar.hero.ctaText; }
+          if (ar.hero.microTrust) dictAR["hero.microTrust"] = ar.hero.microTrust;
+        }
+
+        if (ar.agitation) {
+          if (ar.agitation.eyebrow) dictAR["agit.eyebrow"] = ar.agitation.eyebrow;
+          if (ar.agitation.headlineLine1) dictAR["agit.headlineLine1"] = ar.agitation.headlineLine1;
+          if (ar.agitation.headlineLine2) dictAR["agit.headlineLine2"] = ar.agitation.headlineLine2;
+          if (ar.agitation.description) dictAR["agit.description"] = ar.agitation.description;
+          if (ar.agitation.cards) {
+            ar.agitation.cards.forEach((card, idx) => {
+              if (card.tag) dictAR[`agit.card${idx}.tag`] = card.tag;
+              if (card.title) dictAR[`agit.card${idx}.title`] = card.title;
+              if (card.desc) dictAR[`agit.card${idx}.desc`] = card.desc;
+            });
+          }
+        }
+
+        if (ar.pillars) {
+          if (ar.pillars.eyebrow) dictAR["pillars.eyebrow"] = ar.pillars.eyebrow;
+          if (ar.pillars.headlineLine1) dictAR["pillars.headlineLine1"] = ar.pillars.headlineLine1;
+          if (ar.pillars.headlineLine2) dictAR["pillars.headlineLine2"] = ar.pillars.headlineLine2;
+          if (ar.pillars.items) {
+            ar.pillars.items.forEach((item, idx) => {
+              if (item.title) dictAR[`pillars.item${idx}.title`] = item.title;
+              if (item.desc) dictAR[`pillars.item${idx}.desc`] = item.desc;
+            });
+          }
+        }
+
+        if (ar.creators) {
+          if (ar.creators.eyebrow) dictAR["creators.eyebrow"] = ar.creators.eyebrow;
+          if (ar.creators.headline) dictAR["creators.h1"] = ar.creators.headline;
+          if (ar.creators.description) dictAR["creators.p"] = ar.creators.description;
+        }
+      }
+
+      // 4. Sync WhatsApp Configuration
       if (c.whatsapp && window.POLISH_WHATSAPP_CONFIG) {
         if (c.whatsapp.en_default) window.POLISH_WHATSAPP_CONFIG.en.defaultMessage = c.whatsapp.en_default;
         if (c.whatsapp.fr_default) window.POLISH_WHATSAPP_CONFIG.fr.defaultMessage = c.whatsapp.fr_default;
+        if (c.whatsapp.ar_default && window.POLISH_WHATSAPP_CONFIG.ar) window.POLISH_WHATSAPP_CONFIG.ar.defaultMessage = c.whatsapp.ar_default;
         if (typeof renderWhatsAppContent === "function") {
           renderWhatsAppContent();
         }

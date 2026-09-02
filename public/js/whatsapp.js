@@ -20,11 +20,20 @@ const POLISH_WHATSAPP_CONFIG = {
     headline: "Bienvenue chez POLISH.",
     body: "Vous souhaitez développer votre marque cosmétique, structurer vos créateurs UGC ou lancer un nouveau soin ? Échangez directement avec notre direction sur WhatsApp.",
     btn: "Discuter sur WhatsApp"
+  },
+  ar: {
+    defaultMessage: "مرحباً فريق POLISH، أتواصل معكم بخصوص تسريع ونمو علامتي التجارية في مجال التجميل والعناية. يسعدني مناقشة شراكة نمو معكم.",
+    title: "فريق نمو POLISH",
+    status: "● متصل الآن | واتساب مباشر",
+    headline: "أهلاً بك في POLISH.",
+    body: "هل تبحث عن مضاعفة مبيعات علامتك التجميلية، أو تطوير محتوى UGC من المبدعين، أو إطلاق مستحضر جديد؟ تواصل مباشرة مع إدارة الاستراتيجية لدينا عبر واتساب.",
+    btn: "تحدث معنا عبر واتساب"
   }
 };
 
 function renderWhatsAppContent() {
-  const lang = (window.polishI18n && window.polishI18n.currentLang === 'fr') ? 'fr' : 'en';
+  const currentLang = (window.polishI18n && window.polishI18n.currentLang) || 'en';
+  const lang = POLISH_WHATSAPP_CONFIG[currentLang] ? currentLang : 'en';
   const c = POLISH_WHATSAPP_CONFIG[lang];
   const encodedMsg = encodeURIComponent(c.defaultMessage);
   const waUrl = `https://wa.me/${POLISH_WHATSAPP_CONFIG.number}?text=${encodedMsg}`;
@@ -95,13 +104,14 @@ function initWhatsAppWidget() {
   const chatDrawer = document.getElementById('waChatDrawer');
 
   triggerBtn.addEventListener('click', () => {
-    const lang = (window.polishI18n && window.polishI18n.currentLang === 'fr') ? 'fr' : 'en';
+    const currentLang = (window.polishI18n && window.polishI18n.currentLang) || 'en';
+    const lang = POLISH_WHATSAPP_CONFIG[currentLang] ? currentLang : 'en';
     const c = POLISH_WHATSAPP_CONFIG[lang];
     const encodedMsg = encodeURIComponent(c.defaultMessage);
     const waUrl = `https://wa.me/${POLISH_WHATSAPP_CONFIG.number}?text=${encodedMsg}`;
 
-    if (window.innerWidth <= 640) {
-      window.open(waUrl, '_blank');
+    if (window.innerWidth <= 768) {
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
     } else {
       chatDrawer.classList.toggle('open');
     }

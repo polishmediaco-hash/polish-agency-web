@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="/assets/logo.png?v=7.6">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,7 +39,6 @@
       overflow-x: hidden;
     }
 
-    /* Ambient Background Glow */
     .bg-glow {
       position: fixed;
       inset: 0;
@@ -50,7 +49,6 @@
         radial-gradient(circle at 85% 90%, rgba(0, 136, 255, 0.05) 0%, transparent 45%);
     }
 
-    /* Toast Notification */
     #toast {
       position: fixed;
       top: 16px;
@@ -206,7 +204,7 @@
     .admin-main {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 32px 20px 100px;
+      padding: 32px 20px 120px;
       position: relative;
       z-index: 1;
     }
@@ -223,11 +221,10 @@
       border-bottom: 1px solid var(--card-border);
     }
     .page-header h1 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #FFFFFF;
-      font-family: var(--font-display);
     }
     .page-header p {
       color: var(--dim);
@@ -235,7 +232,7 @@
       margin-top: 4px;
     }
 
-    /* Language Switcher Capsule */
+    /* Language Switcher Capsule (EN / FR / AR) */
     .lang-switcher-wrap {
       display: inline-flex;
       align-items: center;
@@ -246,7 +243,7 @@
       gap: 4px;
     }
     .lang-btn {
-      padding: 6px 16px;
+      padding: 6px 14px;
       font-size: 12px;
       font-weight: 700;
       border: none;
@@ -345,7 +342,7 @@
       line-height: 1.5;
     }
 
-    /* Sub-Cards (Bottlenecks / Pillars) */
+    /* Sub-Cards */
     .sub-box {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
@@ -443,6 +440,23 @@
       border-color: var(--cyan);
       color: var(--cyan);
     }
+    .btn-danger {
+      padding: 6px 12px;
+      font-size: 11.5px;
+      font-weight: 700;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #EF4444;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.25);
+    }
 
     /* Auth Gate Screen */
     .auth-overlay {
@@ -483,7 +497,6 @@
       font-size: 22px;
       font-weight: 800;
       color: #FFFFFF;
-      font-family: var(--font-display);
       margin-bottom: 8px;
     }
     .auth-box p {
@@ -511,7 +524,6 @@
       font-size: 32px;
       font-weight: 800;
       color: var(--cyan);
-      font-family: var(--font-display);
       letter-spacing: -0.02em;
     }
     .stat-lbl {
@@ -555,7 +567,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       font-size: 13px;
       color: var(--muted);
-      vertical-align: top;
+      vertical-align: middle;
     }
     table.leads-table tbody tr:hover td {
       background: rgba(255, 255, 255, 0.015);
@@ -608,9 +620,7 @@
     .cms-lang-pane { display: none; }
     .cms-lang-pane.active { display: block; }
 
-    /* ==========================================================================
-       MOBILE & TABLET RESPONSIVENESS (< 768px)
-       ========================================================================== */
+    /* ================= MOBILE RESPONSIVENESS (< 768px) ================= */
     @media (max-width: 768px) {
       .admin-nav {
         padding: 10px 14px;
@@ -667,11 +677,9 @@
         font-size: 9px;
         letter-spacing: 0.04em;
       }
-      /* Prevent iOS Safari auto-zoom by ensuring 16px on mobile inputs */
       .form-input, .form-textarea {
         font-size: 16px;
       }
-      /* Switch Leads Table to Mobile Card List on phones */
       .leads-table-card { display: none; }
       .leads-mobile-list { display: flex; }
       
@@ -705,7 +713,6 @@
 <header class="admin-nav">
   <div class="admin-nav-inner">
     
-    <!-- Top Row: Official Brand Logo & Nav Actions -->
     <div class="admin-nav-top-row">
       <a href="/" class="brand-wrap" title="POLISH Agency Home">
         <img src="/assets/logo.png?v=7.6" alt="POLISH" class="admin-logo-img">
@@ -725,7 +732,6 @@
       </div>
     </div>
 
-    <!-- Second Row: Dynamic Scrollable Tabs (Visible when logged in) -->
     <div class="nav-tabs" id="mainNavTabs" style="display: none;">
       <button class="nav-tab active" onclick="switchMainTab('cmsTabPane')">
         ✏️ Website Text
@@ -735,6 +741,9 @@
       </button>
       <button class="nav-tab" onclick="switchMainTab('leadsTabPane')">
         📋 Leads <span class="tab-badge" id="leadsNavCount">0</span>
+      </button>
+      <button class="nav-tab" onclick="switchMainTab('notifTabPane')">
+        🔔 Notifications
       </button>
     </div>
 
@@ -749,7 +758,7 @@
         <img src="/assets/logo.png?v=7.6" alt="POLISH">
       </div>
       <h2>Executive Admin Portal</h2>
-      <p>Enter your administrative security key to edit live bilingual copy and review partnership dossiers.</p>
+      <p>Enter your administrative security key to edit trilingual live copy, manage WhatsApp templates, and review inbound dossiers.</p>
 
       <div class="form-group" style="text-align: left;">
         <label class="form-label">Security Key</label>
@@ -768,17 +777,18 @@
 <div id="dashboardAppView" style="display: none;">
   <main class="admin-main">
 
-    <!-- ================= TAB 1: WEBSITE TEXT CMS ================= -->
+    <!-- ================= TAB 1: WEBSITE TEXT CMS (EN / FR / AR) ================= -->
     <section id="cmsTabPane" class="tab-pane active">
       <div class="page-header">
         <div>
           <h1>Website Text Editor</h1>
-          <p>Live editorial studio for English and French copy. Edits publish instantly without redeployment.</p>
+          <p>Live editorial studio for English, French, and Arabic copy across all pages.</p>
         </div>
         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
           <div class="lang-switcher-wrap">
             <button id="cmsLangBtnEN" class="lang-btn active" onclick="switchCmsLanguage('en')">🇬🇧 English</button>
             <button id="cmsLangBtnFR" class="lang-btn" onclick="switchCmsLanguage('fr')">🇫🇷 Français</button>
+            <button id="cmsLangBtnAR" class="lang-btn" onclick="switchCmsLanguage('ar')">🇸🇦 العربية</button>
           </div>
           <button class="btn-ghost" style="font-size: 12px; padding: 7px 16px;" onclick="resetDefaults()">Reset Factory Defaults</button>
         </div>
@@ -796,38 +806,17 @@
               <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Above the Fold</span>
             </div>
             <div class="grid-2">
-              <div class="form-group">
-                <label class="form-label">Window Mockup Tag</label>
-                <input type="text" id="en_hero_windowTag" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Hero Eyebrow Tag</label>
-                <input type="text" id="en_hero_eyebrow" class="form-input" required>
-              </div>
+              <div class="form-group"><label class="form-label">Window Mockup Tag</label><input type="text" id="en_hero_windowTag" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Hero Eyebrow Tag</label><input type="text" id="en_hero_eyebrow" class="form-input" required></div>
             </div>
             <div class="grid-2">
-              <div class="form-group">
-                <label class="form-label">Headline Line 1 (White)</label>
-                <input type="text" id="en_hero_hl1" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Headline Line 2 (Blue Accent)</label>
-                <input type="text" id="en_hero_hl2" class="form-input" required>
-              </div>
+              <div class="form-group"><label class="form-label">Headline Line 1 (White)</label><input type="text" id="en_hero_hl1" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Headline Line 2 (Blue Accent)</label><input type="text" id="en_hero_hl2" class="form-input" required></div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Hero Description</label>
-              <textarea id="en_hero_desc" class="form-textarea" required></textarea>
-            </div>
+            <div class="form-group"><label class="form-label">Hero Description</label><textarea id="en_hero_desc" class="form-textarea" required></textarea></div>
             <div class="grid-2">
-              <div class="form-group">
-                <label class="form-label">CTA Button Text</label>
-                <input type="text" id="en_hero_cta" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Micro-Trust Subtext</label>
-                <input type="text" id="en_hero_micro" class="form-input" required>
-              </div>
+              <div class="form-group"><label class="form-label">CTA Button Text</label><input type="text" id="en_hero_cta" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Micro-Trust Subtext</label><input type="text" id="en_hero_micro" class="form-input" required></div>
             </div>
           </div>
 
@@ -837,54 +826,18 @@
               <div class="card-title">2. Agitation / Bottlenecks Section</div>
               <span class="badge-pill" style="background: rgba(96, 165, 250, 0.12); color: #60A5FA;">Conversion Engine</span>
             </div>
-            <div class="form-group">
-              <label class="form-label">Section Eyebrow</label>
-              <input type="text" id="en_agit_eyebrow" class="form-input" required>
-            </div>
+            <div class="form-group"><label class="form-label">Section Eyebrow</label><input type="text" id="en_agit_eyebrow" class="form-input" required></div>
             <div class="grid-2">
-              <div class="form-group">
-                <label class="form-label">Headline Line 1</label>
-                <input type="text" id="en_agit_hl1" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Headline Line 2 (Accent)</label>
-                <input type="text" id="en_agit_hl2" class="form-input" required>
-              </div>
+              <div class="form-group"><label class="form-label">Headline Line 1</label><input type="text" id="en_agit_hl1" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Headline Line 2 (Accent)</label><input type="text" id="en_agit_hl2" class="form-input" required></div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Section Subtitle</label>
-              <textarea id="en_agit_desc" class="form-textarea" required></textarea>
-            </div>
+            <div class="form-group"><label class="form-label">Section Subtitle</label><textarea id="en_agit_desc" class="form-textarea" required></textarea></div>
 
             <div style="margin-top: 18px;">
               <label class="form-label" style="margin-bottom: 12px;">3 Bottleneck Pain Cards</label>
-              
-              <div class="sub-box">
-                <span class="sub-tag">Problem 01</span>
-                <div class="grid-2">
-                  <div class="form-group"><label class="form-label">Tag</label><input type="text" id="en_agit_c0_tag" class="form-input" required></div>
-                  <div class="form-group"><label class="form-label">Title</label><input type="text" id="en_agit_c0_title" class="form-input" required></div>
-                </div>
-                <div class="form-group" style="margin-bottom: 0;"><label class="form-label">Description</label><textarea id="en_agit_c0_desc" class="form-textarea" required></textarea></div>
-              </div>
-
-              <div class="sub-box">
-                <span class="sub-tag">Problem 02</span>
-                <div class="grid-2">
-                  <div class="form-group"><label class="form-label">Tag</label><input type="text" id="en_agit_c1_tag" class="form-input" required></div>
-                  <div class="form-group"><label class="form-label">Title</label><input type="text" id="en_agit_c1_title" class="form-input" required></div>
-                </div>
-                <div class="form-group" style="margin-bottom: 0;"><label class="form-label">Description</label><textarea id="en_agit_c1_desc" class="form-textarea" required></textarea></div>
-              </div>
-
-              <div class="sub-box">
-                <span class="sub-tag">Problem 03</span>
-                <div class="grid-2">
-                  <div class="form-group"><label class="form-label">Tag</label><input type="text" id="en_agit_c2_tag" class="form-input" required></div>
-                  <div class="form-group"><label class="form-label">Title</label><input type="text" id="en_agit_c2_title" class="form-input" required></div>
-                </div>
-                <div class="form-group" style="margin-bottom: 0;"><label class="form-label">Description</label><textarea id="en_agit_c2_desc" class="form-textarea" required></textarea></div>
-              </div>
+              <div class="sub-box"><span class="sub-tag">Problem 01</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag</label><input type="text" id="en_agit_c0_tag" class="form-input" required></div><div class="form-group"><label class="form-label">Title</label><input type="text" id="en_agit_c0_title" class="form-input" required></div></div><div class="form-group" style="margin-bottom: 0;"><label class="form-label">Description</label><textarea id="en_agit_c0_desc" class="form-textarea" required></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Problem 02</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag</label><input type="text" id="en_agit_c1_tag" class="form-input" required></div><div class="form-group"><label class="form-label">Title</label><input type="text" id="en_agit_c1_title" class="form-input" required></div></div><div class="form-group" style="margin-bottom: 0;"><label class="form-label">Description</label><textarea id="en_agit_c1_desc" class="form-textarea" required></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Problem 03</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag</label><input type="text" id="en_agit_c2_tag" class="form-input" required></div><div class="form-group"><label class="form-label">Title</label><input type="text" id="en_agit_c2_title" class="form-input" required></div></div><div class="form-group" style="margin-bottom: 0;"><label class="form-label">Description</label><textarea id="en_agit_c2_desc" class="form-textarea" required></textarea></div></div>
             </div>
           </div>
 
@@ -894,19 +847,10 @@
               <div class="card-title">3. The 4 Growth Pillars Section</div>
               <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Core Offer</span>
             </div>
-            <div class="form-group">
-              <label class="form-label">Section Eyebrow</label>
-              <input type="text" id="en_pill_eyebrow" class="form-input" required>
-            </div>
+            <div class="form-group"><label class="form-label">Section Eyebrow</label><input type="text" id="en_pill_eyebrow" class="form-input" required></div>
             <div class="grid-2">
-              <div class="form-group">
-                <label class="form-label">Title Line 1</label>
-                <input type="text" id="en_pill_hl1" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Title Line 2 (Accent)</label>
-                <input type="text" id="en_pill_hl2" class="form-input" required>
-              </div>
+              <div class="form-group"><label class="form-label">Title Line 1</label><input type="text" id="en_pill_hl1" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Title Line 2 (Accent)</label><input type="text" id="en_pill_hl2" class="form-input" required></div>
             </div>
 
             <div style="margin-top: 18px;">
@@ -946,82 +890,141 @@
 
         <!-- ================= FRENCH CMS PANE ================= -->
         <div id="cmsLangPaneFR" class="cms-lang-pane">
-
           <div class="admin-card" style="border-color: rgba(0, 229, 255, 0.2); background: rgba(0, 229, 255, 0.02);">
-            <div style="font-size: 13px; color: var(--cyan); font-weight: 700; display: flex; align-items: center; gap: 8px;">
-              <span>🇫🇷</span> Édition des textes en Français — Vos modifications remplacent les valeurs par défaut du site.
-            </div>
+            <div style="font-size: 13px; color: var(--cyan); font-weight: 700;">🇫🇷 Textes en Français — Modifiez les contenus français diffusés sur le site.</div>
           </div>
 
-          <!-- Hero FR -->
           <div class="admin-card">
             <div class="card-head"><div class="card-title">1. Hero Section — Français</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">FR</span></div>
             <div class="grid-2">
-              <div class="form-group"><label class="form-label">Badge de la fenêtre (FR)</label><input type="text" id="fr_hero_windowTag" class="form-input"></div>
-              <div class="form-group"><label class="form-label">Surtitre Eyebrow (FR)</label><input type="text" id="fr_hero_eyebrow" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Badge de la fenêtre</label><input type="text" id="fr_hero_windowTag" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Surtitre Eyebrow</label><input type="text" id="fr_hero_eyebrow" class="form-input"></div>
             </div>
             <div class="grid-2">
-              <div class="form-group"><label class="form-label">Titre Ligne 1 (FR)</label><input type="text" id="fr_hero_hl1" class="form-input"></div>
-              <div class="form-group"><label class="form-label">Titre Ligne 2 Accent (FR)</label><input type="text" id="fr_hero_hl2" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Titre Ligne 1</label><input type="text" id="fr_hero_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Titre Ligne 2 Accent</label><input type="text" id="fr_hero_hl2" class="form-input"></div>
             </div>
-            <div class="form-group"><label class="form-label">Description (FR)</label><textarea id="fr_hero_desc" class="form-textarea"></textarea></div>
+            <div class="form-group"><label class="form-label">Description</label><textarea id="fr_hero_desc" class="form-textarea"></textarea></div>
             <div class="grid-2">
-              <div class="form-group"><label class="form-label">Bouton CTA (FR)</label><input type="text" id="fr_hero_cta" class="form-input"></div>
-              <div class="form-group"><label class="form-label">Micro-confiance (FR)</label><input type="text" id="fr_hero_micro" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Bouton CTA</label><input type="text" id="fr_hero_cta" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Micro-confiance</label><input type="text" id="fr_hero_micro" class="form-input"></div>
             </div>
           </div>
 
-          <!-- Agitation FR -->
           <div class="admin-card">
             <div class="card-head"><div class="card-title">2. Freins &amp; Goulots — Français</div><span class="badge-pill" style="background: rgba(96, 165, 250, 0.12); color: #60A5FA;">FR</span></div>
-            <div class="form-group"><label class="form-label">Surtitre de section (FR)</label><input type="text" id="fr_agit_eyebrow" class="form-input"></div>
+            <div class="form-group"><label class="form-label">Surtitre de section</label><input type="text" id="fr_agit_eyebrow" class="form-input"></div>
             <div class="grid-2">
-              <div class="form-group"><label class="form-label">Titre Ligne 1 (FR)</label><input type="text" id="fr_agit_hl1" class="form-input"></div>
-              <div class="form-group"><label class="form-label">Titre Ligne 2 Accent (FR)</label><input type="text" id="fr_agit_hl2" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Titre Ligne 1</label><input type="text" id="fr_agit_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Titre Ligne 2 Accent</label><input type="text" id="fr_agit_hl2" class="form-input"></div>
             </div>
-            <div class="form-group"><label class="form-label">Sous-titre (FR)</label><textarea id="fr_agit_desc" class="form-textarea"></textarea></div>
-
+            <div class="form-group"><label class="form-label">Sous-titre</label><textarea id="fr_agit_desc" class="form-textarea"></textarea></div>
             <div style="margin-top: 18px;">
               <label class="form-label" style="margin-bottom: 12px;">3 Cartes de Freins (FR)</label>
-              <div class="sub-box"><span class="sub-tag">Problème 01</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag (FR)</label><input type="text" id="fr_agit_c0_tag" class="form-input"></div><div class="form-group"><label class="form-label">Titre (FR)</label><input type="text" id="fr_agit_c0_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description (FR)</label><textarea id="fr_agit_c0_desc" class="form-textarea"></textarea></div></div>
-              <div class="sub-box"><span class="sub-tag">Problème 02</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag (FR)</label><input type="text" id="fr_agit_c1_tag" class="form-input"></div><div class="form-group"><label class="form-label">Titre (FR)</label><input type="text" id="fr_agit_c1_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description (FR)</label><textarea id="fr_agit_c1_desc" class="form-textarea"></textarea></div></div>
-              <div class="sub-box"><span class="sub-tag">Problème 03</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag (FR)</label><input type="text" id="fr_agit_c2_tag" class="form-input"></div><div class="form-group"><label class="form-label">Titre (FR)</label><input type="text" id="fr_agit_c2_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description (FR)</label><textarea id="fr_agit_c2_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Problème 01</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag</label><input type="text" id="fr_agit_c0_tag" class="form-input"></div><div class="form-group"><label class="form-label">Titre</label><input type="text" id="fr_agit_c0_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description</label><textarea id="fr_agit_c0_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Problème 02</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag</label><input type="text" id="fr_agit_c1_tag" class="form-input"></div><div class="form-group"><label class="form-label">Titre</label><input type="text" id="fr_agit_c1_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description</label><textarea id="fr_agit_c1_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Problème 03</span><div class="grid-2"><div class="form-group"><label class="form-label">Tag</label><input type="text" id="fr_agit_c2_tag" class="form-input"></div><div class="form-group"><label class="form-label">Titre</label><input type="text" id="fr_agit_c2_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description</label><textarea id="fr_agit_c2_desc" class="form-textarea"></textarea></div></div>
             </div>
           </div>
 
-          <!-- Pillars FR -->
           <div class="admin-card">
-            <div class="card-head"><div class="card-title">3. Les 4 Piliers de Croissance — Français</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">FR</span></div>
-            <div class="form-group"><label class="form-label">Surtitre (FR)</label><input type="text" id="fr_pill_eyebrow" class="form-input"></div>
+            <div class="card-head"><div class="card-title">3. Piliers de Croissance — Français</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">FR</span></div>
+            <div class="form-group"><label class="form-label">Surtitre</label><input type="text" id="fr_pill_eyebrow" class="form-input"></div>
             <div class="grid-2">
-              <div class="form-group"><label class="form-label">Titre Ligne 1 (FR)</label><input type="text" id="fr_pill_hl1" class="form-input"></div>
-              <div class="form-group"><label class="form-label">Titre Ligne 2 Accent (FR)</label><input type="text" id="fr_pill_hl2" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Titre Ligne 1</label><input type="text" id="fr_pill_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Titre Ligne 2 Accent</label><input type="text" id="fr_pill_hl2" class="form-input"></div>
             </div>
             <div style="margin-top: 18px;">
               <label class="form-label" style="margin-bottom: 12px;">4 Piliers (FR)</label>
-              <div class="sub-box"><span class="sub-tag">Pilier 01</span><div class="form-group"><label class="form-label">Titre (FR)</label><input type="text" id="fr_pill_i0_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description (FR)</label><textarea id="fr_pill_i0_desc" class="form-textarea"></textarea></div></div>
-              <div class="sub-box"><span class="sub-tag">Pilier 02</span><div class="form-group"><label class="form-label">Titre (FR)</label><input type="text" id="fr_pill_i1_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description (FR)</label><textarea id="fr_pill_i1_desc" class="form-textarea"></textarea></div></div>
-              <div class="sub-box"><span class="sub-tag">Pilier 03</span><div class="form-group"><label class="form-label">Titre (FR)</label><input type="text" id="fr_pill_i2_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description (FR)</label><textarea id="fr_pill_i2_desc" class="form-textarea"></textarea></div></div>
-              <div class="sub-box"><span class="sub-tag">Pilier 04</span><div class="form-group"><label class="form-label">Titre (FR)</label><input type="text" id="fr_pill_i3_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description (FR)</label><textarea id="fr_pill_i3_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Pilier 01</span><div class="form-group"><label class="form-label">Titre</label><input type="text" id="fr_pill_i0_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description</label><textarea id="fr_pill_i0_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Pilier 02</span><div class="form-group"><label class="form-label">Titre</label><input type="text" id="fr_pill_i1_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description</label><textarea id="fr_pill_i1_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Pilier 03</span><div class="form-group"><label class="form-label">Titre</label><input type="text" id="fr_pill_i2_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description</label><textarea id="fr_pill_i2_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">Pilier 04</span><div class="form-group"><label class="form-label">Titre</label><input type="text" id="fr_pill_i3_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">Description</label><textarea id="fr_pill_i3_desc" class="form-textarea"></textarea></div></div>
             </div>
           </div>
 
-          <!-- Creator FR -->
           <div class="admin-card">
             <div class="card-head"><div class="card-title">4. Page Créateurs &amp; UGC — Français</div><span class="badge-pill" style="background: rgba(168, 85, 247, 0.12); color: #C084FC;">FR</span></div>
-            <div class="form-group"><label class="form-label">Surtitre (FR)</label><input type="text" id="fr_creat_eyebrow" class="form-input"></div>
-            <div class="form-group"><label class="form-label">Titre Principal (FR)</label><input type="text" id="fr_creat_headline" class="form-input"></div>
-            <div class="form-group"><label class="form-label">Description (FR)</label><textarea id="fr_creat_desc" class="form-textarea"></textarea></div>
+            <div class="form-group"><label class="form-label">Surtitre</label><input type="text" id="fr_creat_eyebrow" class="form-input"></div>
+            <div class="form-group"><label class="form-label">Titre Principal</label><input type="text" id="fr_creat_headline" class="form-input"></div>
+            <div class="form-group"><label class="form-label">Description</label><textarea id="fr_creat_desc" class="form-textarea"></textarea></div>
+          </div>
+        </div><!-- /cmsLangPaneFR -->
+
+        <!-- ================= ARABIC CMS PANE ================= -->
+        <div id="cmsLangPaneAR" class="cms-lang-pane" dir="rtl">
+          <div class="admin-card" style="border-color: rgba(0, 229, 255, 0.2); background: rgba(0, 229, 255, 0.02); text-align: right;">
+            <div style="font-size: 13px; color: var(--cyan); font-weight: 700;">🇸🇦 النصوص باللغة العربية — قم بتعديل وتحسين نصوص الموقع بالعربية بكل سهولة.</div>
           </div>
 
-        </div><!-- /cmsLangPaneFR -->
+          <!-- Hero AR -->
+          <div class="admin-card" style="text-align: right;">
+            <div class="card-head"><div class="card-title">1. قسم الواجهة الرئيسي (Hero) — عربي</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">AR</span></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">شارة النافذة (AR)</label><input type="text" id="ar_hero_windowTag" class="form-input"></div>
+              <div class="form-group"><label class="form-label">الشارة الترويجية (Eyebrow)</label><input type="text" id="ar_hero_eyebrow" class="form-input"></div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">العنوان الرئيسي السطر الأول (AR)</label><input type="text" id="ar_hero_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">العنوان الرئيسي السطر الثاني (AR)</label><input type="text" id="ar_hero_hl2" class="form-input"></div>
+            </div>
+            <div class="form-group"><label class="form-label">الوصف الترويجي (AR)</label><textarea id="ar_hero_desc" class="form-textarea"></textarea></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">نص زر التحويل (CTA)</label><input type="text" id="ar_hero_cta" class="form-input"></div>
+              <div class="form-group"><label class="form-label">عبارة بناء الثقة (Micro-Trust)</label><input type="text" id="ar_hero_micro" class="form-input"></div>
+            </div>
+          </div>
+
+          <!-- Agitation AR -->
+          <div class="admin-card" style="text-align: right;">
+            <div class="card-head"><div class="card-title">2. قسم العقبات ونقاط الاختناق — عربي</div><span class="badge-pill" style="background: rgba(96, 165, 250, 0.12); color: #60A5FA;">AR</span></div>
+            <div class="form-group"><label class="form-label">شارة القسم (AR)</label><input type="text" id="ar_agit_eyebrow" class="form-input"></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">العنوان السطر الأول (AR)</label><input type="text" id="ar_agit_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">العنوان السطر الثاني (AR)</label><input type="text" id="ar_agit_hl2" class="form-input"></div>
+            </div>
+            <div class="form-group"><label class="form-label">الوصف الفرعي (AR)</label><textarea id="ar_agit_desc" class="form-textarea"></textarea></div>
+
+            <div style="margin-top: 18px;">
+              <label class="form-label" style="margin-bottom: 12px;">3 بطاقات العقبات (AR)</label>
+              <div class="sub-box"><span class="sub-tag">المشكلة 01</span><div class="grid-2"><div class="form-group"><label class="form-label">العنوان الفرعي</label><input type="text" id="ar_agit_c0_tag" class="form-input"></div><div class="form-group"><label class="form-label">العنوان</label><input type="text" id="ar_agit_c0_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">الشرح</label><textarea id="ar_agit_c0_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">المشكلة 02</span><div class="grid-2"><div class="form-group"><label class="form-label">العنوان الفرعي</label><input type="text" id="ar_agit_c1_tag" class="form-input"></div><div class="form-group"><label class="form-label">العنوان</label><input type="text" id="ar_agit_c1_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">الشرح</label><textarea id="ar_agit_c1_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">المشكلة 03</span><div class="grid-2"><div class="form-group"><label class="form-label">العنوان الفرعي</label><input type="text" id="ar_agit_c2_tag" class="form-input"></div><div class="form-group"><label class="form-label">العنوان</label><input type="text" id="ar_agit_c2_title" class="form-input"></div></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">الشرح</label><textarea id="ar_agit_c2_desc" class="form-textarea"></textarea></div></div>
+            </div>
+          </div>
+
+          <!-- Pillars AR -->
+          <div class="admin-card" style="text-align: right;">
+            <div class="card-head"><div class="card-title">3. ركائز النمو الأربعة — عربي</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">AR</span></div>
+            <div class="form-group"><label class="form-label">شارة القسم</label><input type="text" id="ar_pill_eyebrow" class="form-input"></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">العنوان السطر الأول (AR)</label><input type="text" id="ar_pill_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">العنوان السطر الثاني (AR)</label><input type="text" id="ar_pill_hl2" class="form-input"></div>
+            </div>
+            <div style="margin-top: 18px;">
+              <label class="form-label" style="margin-bottom: 12px;">4 ركائز نمو (AR)</label>
+              <div class="sub-box"><span class="sub-tag">الركيزة 01</span><div class="form-group"><label class="form-label">العنوان</label><input type="text" id="ar_pill_i0_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">الوصف</label><textarea id="ar_pill_i0_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">الركيزة 02</span><div class="form-group"><label class="form-label">العنوان</label><input type="text" id="ar_pill_i1_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">الوصف</label><textarea id="ar_pill_i1_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">الركيزة 03</span><div class="form-group"><label class="form-label">العنوان</label><input type="text" id="ar_pill_i2_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">الوصف</label><textarea id="ar_pill_i2_desc" class="form-textarea"></textarea></div></div>
+              <div class="sub-box"><span class="sub-tag">الركيزة 04</span><div class="form-group"><label class="form-label">العنوان</label><input type="text" id="ar_pill_i3_title" class="form-input"></div><div class="form-group" style="margin-bottom:0;"><label class="form-label">الوصف</label><textarea id="ar_pill_i3_desc" class="form-textarea"></textarea></div></div>
+            </div>
+          </div>
+
+          <!-- Creator AR -->
+          <div class="admin-card" style="text-align: right;">
+            <div class="card-head"><div class="card-title">4. صفحة المبدعين وصناع المحتوى — عربي</div><span class="badge-pill" style="background: rgba(168, 85, 247, 0.12); color: #C084FC;">AR</span></div>
+            <div class="form-group"><label class="form-label">شارة الصفحة</label><input type="text" id="ar_creat_eyebrow" class="form-input"></div>
+            <div class="form-group"><label class="form-label">العنوان الرئيسي</label><input type="text" id="ar_creat_headline" class="form-input"></div>
+            <div class="form-group"><label class="form-label">الوصف</label><textarea id="ar_creat_desc" class="form-textarea"></textarea></div>
+          </div>
+        </div><!-- /cmsLangPaneAR -->
 
         <!-- Sticky Publish Action Bar -->
         <div class="publish-bar-wrap">
           <div class="publish-bar">
             <div class="publish-info">
               <strong>Live Website Synchronization</strong>
-              <span>Edits will immediately update the live website.</span>
+              <span>Edits in EN, FR, and AR will immediately update the live website.</span>
             </div>
             <div class="publish-btns">
               <button type="button" class="btn-ghost" onclick="loadCmsData()">Discard</button>
@@ -1038,7 +1041,7 @@
       <div class="page-header">
         <div>
           <h1>WhatsApp Pre-filled Messages</h1>
-          <p>Customize the pre-filled messages sent by prospective brand partners and creators across the site.</p>
+          <p>Customize the messages sent by prospective brand partners and creators across English, French, and Arabic.</p>
         </div>
       </div>
 
@@ -1048,43 +1051,52 @@
           <span class="badge-pill" style="background: rgba(37, 211, 102, 0.12); color: #25D366;">Live Widget</span>
         </div>
         <div class="form-group">
-          <label class="form-label">🇬🇧 English Default Message (Floating Chat Bubble)</label>
+          <label class="form-label">🇬🇧 English Default Message</label>
           <textarea id="wa_en_default" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">🇫🇷 French Default Message (Bulle WhatsApp Flottante)</label>
+          <label class="form-label">🇫🇷 French Default Message</label>
           <textarea id="wa_fr_default" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">🇸🇦 Arabic Default Message</label>
+          <textarea id="wa_ar_default" class="form-textarea" style="font-family: monospace; font-size: 13px; direction: rtl;"></textarea>
         </div>
       </div>
 
       <div class="admin-card">
         <div class="card-head">
-          <div class="card-title">📄 Form Post-Submission WhatsApp Fast-Track Messages</div>
+          <div class="card-title">📄 Form Post-Submission WhatsApp Messages</div>
           <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Fast-Track</span>
         </div>
         <div class="form-group">
-          <label class="form-label">🇬🇧 Brand Application Confirmation WhatsApp Message</label>
+          <label class="form-label">🇬🇧 Brand Application WhatsApp Message</label>
           <textarea id="wa_en_brand" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
           <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">Placeholders: <code style="color:var(--cyan);">{name}</code>, <code style="color:var(--cyan);">{brand}</code>, <code style="color:var(--cyan);">{ref}</code></div>
         </div>
         <div class="form-group">
-          <label class="form-label">🇫🇷 Message WhatsApp après candidature Marque</label>
+          <label class="form-label">🇫🇷 Message Candidature Marque</label>
           <textarea id="wa_fr_brand" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
-          <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">Variables: <code style="color:var(--cyan);">{name}</code>, <code style="color:var(--cyan);">{brand}</code>, <code style="color:var(--cyan);">{ref}</code></div>
         </div>
         <div class="form-group">
-          <label class="form-label">🇬🇧 Creator Application Confirmation WhatsApp Message</label>
+          <label class="form-label">🇸🇦 رسالة واتساب بعد تقديم طلب الشراكة للعلامات التجارية</label>
+          <textarea id="wa_ar_brand" class="form-textarea" style="font-family: monospace; font-size: 13px; direction: rtl;"></textarea>
+          <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">المتغيرات: <code style="color:var(--cyan);">{name}</code>, <code style="color:var(--cyan);">{brand}</code>, <code style="color:var(--cyan);">{ref}</code></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">🇬🇧 Creator Application WhatsApp Message</label>
           <textarea id="wa_en_creator" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
-          <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">Placeholders: <code style="color:var(--cyan);">{name}</code>, <code style="color:var(--cyan);">{ref}</code></div>
         </div>
         <div class="form-group">
-          <label class="form-label">🇫🇷 Message WhatsApp après candidature Créateur</label>
+          <label class="form-label">🇫🇷 Message Candidature Créateur UGC</label>
           <textarea id="wa_fr_creator" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
-          <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">Variables: <code style="color:var(--cyan);">{name}</code>, <code style="color:var(--cyan);">{ref}</code></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">🇸🇦 رسالة واتساب بعد تقديم طلب صناع المحتوى</label>
+          <textarea id="wa_ar_creator" class="form-textarea" style="font-family: monospace; font-size: 13px; direction: rtl;"></textarea>
         </div>
       </div>
 
-      <!-- Sticky Publish Bar -->
       <div class="publish-bar-wrap">
         <div class="publish-bar">
           <div class="publish-info">
@@ -1099,7 +1111,7 @@
       </div>
     </section>
 
-    <!-- ================= TAB 3: LEADS DOSSIERS ================= -->
+    <!-- ================= TAB 3: LEADS DOSSIERS (WITH DELETE) ================= -->
     <section id="leadsTabPane" class="tab-pane">
       <div class="page-header">
         <div>
@@ -1125,7 +1137,7 @@
         </div>
       </div>
 
-      <!-- Desktop View: Full Table -->
+      <!-- Desktop View: Full Table with Delete Action -->
       <div class="leads-table-card">
         <div class="table-container">
           <table class="leads-table">
@@ -1135,7 +1147,7 @@
                 <th>Applicant / Brand</th>
                 <th>Category &amp; Role</th>
                 <th>Diagnostic &amp; Goals</th>
-                <th>Direct Action</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="desktopLeadsTbody"></tbody>
@@ -1143,9 +1155,58 @@
         </div>
       </div>
 
-      <!-- Mobile View: Responsive Luxury Cards -->
+      <!-- Mobile View: Responsive Luxury Cards with Delete Action -->
       <div class="leads-mobile-list" id="mobileLeadsList"></div>
 
+    </section>
+
+    <!-- ================= TAB 4: INSTANT NOTIFICATIONS ================= -->
+    <section id="notifTabPane" class="tab-pane">
+      <div class="page-header">
+        <div>
+          <h1>Application Notifications</h1>
+          <p>Get instant push alerts to your phone or team chat whenever a new brand or creator dossier is submitted.</p>
+        </div>
+        <button class="btn-cta" onclick="sendTestNotification()">🔔 Send Test Alert</button>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-head">
+          <div class="card-title">📱 1. Instant Telegram Bot Alerts (Recommended — 100% Free)</div>
+          <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Instant Push</span>
+        </div>
+        <p style="color: var(--muted); margin-bottom: 16px; font-size: 13.5px;">
+          Receive an instant Telegram notification on your iPhone/Android with applicant name, brand category, website, and 1-tap WhatsApp reply button as soon as they submit.
+        </p>
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--card-border); border-radius: 12px; padding: 18px; font-size: 13px; line-height: 1.7;">
+          <strong style="color: #FFFFFF;">How to set up in 2 minutes:</strong>
+          <ol style="margin-left: 20px; margin-top: 8px; color: var(--dim);">
+            <li>Open Telegram and message <code style="color: var(--cyan);">@BotFather</code> to create a new bot and copy your <code style="color: var(--cyan);">TELEGRAM_BOT_TOKEN</code>.</li>
+            <li>Message <code style="color: var(--cyan);">@userinfobot</code> in Telegram to get your numeric <code style="color: var(--cyan);">TELEGRAM_CHAT_ID</code>.</li>
+            <li>Add both to your environment variables (or Vercel project settings).</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-head">
+          <div class="card-title">💬 2. Discord or Slack Webhooks</div>
+          <span class="badge-pill" style="background: rgba(96, 165, 250, 0.12); color: #60A5FA;">Team Channel</span>
+        </div>
+        <p style="color: var(--muted); margin-bottom: 16px; font-size: 13.5px;">
+          Directly streams leads into your private Discord or Slack channel in real-time. Set <code style="color: var(--cyan);">WEBHOOK_URL</code> in your environment to activate.
+        </p>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-head">
+          <div class="card-title">⚡ 3. Direct WhatsApp Fast-Track (Built-in)</div>
+          <span class="badge-pill" style="background: rgba(37, 211, 102, 0.12); color: #25D366;">Active</span>
+        </div>
+        <p style="color: var(--muted); font-size: 13.5px;">
+          When an applicant submits their brand brief or creator profile, the success page prompts them with a 1-tap WhatsApp button to message you directly with their reference ID.
+        </p>
+      </div>
     </section>
 
   </main>
@@ -1212,7 +1273,7 @@
     const targetPane = document.getElementById(paneId);
     if (targetPane) targetPane.classList.add('active');
 
-    const tabsMap = { cmsTabPane: 0, waTabPane: 1, leadsTabPane: 2 };
+    const tabsMap = { cmsTabPane: 0, waTabPane: 1, leadsTabPane: 2, notifTabPane: 3 };
     const tabIndex = tabsMap[paneId] ?? 0;
     document.querySelectorAll('.nav-tab')[tabIndex]?.classList.add('active');
 
@@ -1221,14 +1282,22 @@
     }
   }
 
-  // ── CMS Language Switcher (EN / FR) ───────────────────────
+  // ── CMS Language Switcher (EN / FR / AR) ───────────────────
   function switchCmsLanguage(lang) {
     activeCmsLang = lang;
     document.querySelectorAll('.cms-lang-pane').forEach(p => p.classList.remove('active'));
-    document.getElementById(lang === 'fr' ? 'cmsLangPaneFR' : 'cmsLangPaneEN')?.classList.add('active');
+    
+    if (lang === 'ar') {
+      document.getElementById('cmsLangPaneAR')?.classList.add('active');
+    } else if (lang === 'fr') {
+      document.getElementById('cmsLangPaneFR')?.classList.add('active');
+    } else {
+      document.getElementById('cmsLangPaneEN')?.classList.add('active');
+    }
 
     document.getElementById('cmsLangBtnEN')?.classList.toggle('active', lang === 'en');
     document.getElementById('cmsLangBtnFR')?.classList.toggle('active', lang === 'fr');
+    document.getElementById('cmsLangBtnAR')?.classList.toggle('active', lang === 'ar');
   }
 
   // ── CMS Data Fetching ─────────────────────────────────────
@@ -1310,14 +1379,49 @@
       fillVal('fr_creat_headline', fr.creators?.headline);
       fillVal('fr_creat_desc', fr.creators?.description);
 
+      // AR Overrides
+      const ar = c.ar || {};
+      fillVal('ar_hero_windowTag', ar.hero?.windowTag);
+      fillVal('ar_hero_eyebrow', ar.hero?.eyebrow);
+      fillVal('ar_hero_hl1', ar.hero?.headlineLine1);
+      fillVal('ar_hero_hl2', ar.hero?.headlineLine2);
+      fillVal('ar_hero_desc', ar.hero?.description);
+      fillVal('ar_hero_cta', ar.hero?.ctaText);
+      fillVal('ar_hero_micro', ar.hero?.microTrust);
+
+      fillVal('ar_agit_eyebrow', ar.agitation?.eyebrow);
+      fillVal('ar_agit_hl1', ar.agitation?.headlineLine1);
+      fillVal('ar_agit_hl2', ar.agitation?.headlineLine2);
+      fillVal('ar_agit_desc', ar.agitation?.description);
+      (ar.agitation?.cards || []).forEach((cd, i) => {
+        fillVal(`ar_agit_c${i}_tag`, cd.tag);
+        fillVal(`ar_agit_c${i}_title`, cd.title);
+        fillVal(`ar_agit_c${i}_desc`, cd.desc);
+      });
+
+      fillVal('ar_pill_eyebrow', ar.pillars?.eyebrow);
+      fillVal('ar_pill_hl1', ar.pillars?.headlineLine1);
+      fillVal('ar_pill_hl2', ar.pillars?.headlineLine2);
+      (ar.pillars?.items || []).forEach((it, i) => {
+        fillVal(`ar_pill_i${i}_title`, it.title);
+        fillVal(`ar_pill_i${i}_desc`, it.desc);
+      });
+
+      fillVal('ar_creat_eyebrow', ar.creators?.eyebrow);
+      fillVal('ar_creat_headline', ar.creators?.headline);
+      fillVal('ar_creat_desc', ar.creators?.description);
+
       // WhatsApp sync
       if (c.whatsapp) {
         fillVal('wa_en_default', c.whatsapp.en_default);
         fillVal('wa_fr_default', c.whatsapp.fr_default);
+        fillVal('wa_ar_default', c.whatsapp.ar_default);
         fillVal('wa_en_brand', c.whatsapp.en_brand);
         fillVal('wa_fr_brand', c.whatsapp.fr_brand);
+        fillVal('wa_ar_brand', c.whatsapp.ar_brand);
         fillVal('wa_en_creator', c.whatsapp.en_creator);
         fillVal('wa_fr_creator', c.whatsapp.fr_creator);
+        fillVal('wa_ar_creator', c.whatsapp.ar_creator);
       }
     } catch (err) {
       console.error('Error fetching CMS data:', err);
@@ -1394,6 +1498,35 @@
           headline: g('fr_creat_headline'),
           description: g('fr_creat_desc')
         }
+      },
+      ar: {
+        hero: {
+          windowTag: g('ar_hero_windowTag'),
+          eyebrow: g('ar_hero_eyebrow'),
+          headlineLine1: g('ar_hero_hl1'),
+          headlineLine2: g('ar_hero_hl2'),
+          description: g('ar_hero_desc'),
+          ctaText: g('ar_hero_cta'),
+          microTrust: g('ar_hero_micro')
+        },
+        agitation: {
+          eyebrow: g('ar_agit_eyebrow'),
+          headlineLine1: g('ar_agit_hl1'),
+          headlineLine2: g('ar_agit_hl2'),
+          description: g('ar_agit_desc'),
+          cards: [0, 1, 2].map(i => ({ tag: g(`ar_agit_c${i}_tag`), title: g(`ar_agit_c${i}_title`), desc: g(`ar_agit_c${i}_desc`) }))
+        },
+        pillars: {
+          eyebrow: g('ar_pill_eyebrow'),
+          headlineLine1: g('ar_pill_hl1'),
+          headlineLine2: g('ar_pill_hl2'),
+          items: [0, 1, 2, 3].map(i => ({ digit: `0${i+1}`, title: g(`ar_pill_i${i}_title`), desc: g(`ar_pill_i${i}_desc`) }))
+        },
+        creators: {
+          eyebrow: g('ar_creat_eyebrow'),
+          headline: g('ar_creat_headline'),
+          description: g('ar_creat_desc')
+        }
       }
     };
 
@@ -1405,7 +1538,7 @@
       });
       const data = await res.json();
       if (res.ok && data.success) {
-        notifyToast('✓ Live website copy updated and published!');
+        notifyToast('✓ Trilingual website copy updated & published live!');
       } else {
         notifyToast('Error: ' + (data.error || 'Failed to save'), true);
       }
@@ -1440,10 +1573,13 @@
   const DEFAULT_WA_MSGS = {
     en_default: "Hi POLISH Media team, I'm reaching out regarding scaling my cosmetics & beauty brand. Let's discuss a growth partnership.",
     fr_default: "Bonjour l'équipe POLISH, je vous contacte au sujet du développement de ma marque cosmétique. Échangeons sur un partenariat de croissance.",
+    ar_default: "مرحباً فريق POLISH، أتواصل معكم بخصوص تسريع ونمو علامتي التجارية في مجال التجميل والعناية. يسعدني مناقشة شراكة نمو معكم.",
     en_brand: "Hi POLISH team! I just submitted my Growth Partnership application (Ref: {ref}). Brand: {brand} — I'm {name}. Looking forward to connecting!",
     fr_brand: "Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Partenariat Croissance (Réf: {ref}). Marque : {brand} — Je suis {name}. Au plaisir d'échanger !",
+    ar_brand: "مرحباً فريق POLISH! قمت للتو بتقديم طلب شراكة النمو (المرجع: {ref}). العلامة: {brand} — أنا {name}. أتطلع للتواصل معكم!",
     en_creator: "Hi POLISH team! I just submitted my UGC Creator application (Ref: {ref}). I'm {name}. Looking forward to connecting!",
-    fr_creator: "Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Créateur UGC (Réf: {ref}). Je suis {name}. Au plaisir d'échanger !"
+    fr_creator: "Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Créateur UGC (Réf: {ref}). Je suis {name}. Au plaisir d'échanger !",
+    ar_creator: "مرحباً فريق POLISH! قمت للتو بتقديم طلب الانضمام كصانع محتوى UGC (المرجع: {ref}). أنا {name}. أتطلع للتواصل معكم!"
   };
 
   function loadWaConfig() {
@@ -1462,7 +1598,6 @@
     });
     localStorage.setItem('polish_wa_messages', JSON.stringify(msgs));
 
-    // Save to API content payload as well
     try {
       const res = await fetch('/api/content', { cache: 'no-store' });
       const currentData = await res.json();
@@ -1479,11 +1614,12 @@
     if (window.POLISH_WHATSAPP_CONFIG) {
       window.POLISH_WHATSAPP_CONFIG.en.defaultMessage = msgs.en_default;
       window.POLISH_WHATSAPP_CONFIG.fr.defaultMessage = msgs.fr_default;
+      if (window.POLISH_WHATSAPP_CONFIG.ar) window.POLISH_WHATSAPP_CONFIG.ar.defaultMessage = msgs.ar_default;
     }
-    notifyToast('✓ WhatsApp messages updated live!');
+    notifyToast('✓ WhatsApp messages updated live across all languages!');
   }
 
-  // ── Leads Management ──────────────────────────────────────
+  // ── Leads Management & Delete Action ──────────────────────
   async function refreshLeads() {
     try {
       const res = await fetch(`/api/leads?key=${encodeURIComponent(activeAdminKey)}`);
@@ -1495,6 +1631,27 @@
       renderLeadsUI(data.leads || []);
     } catch (err) {
       notifyToast('Leads error: ' + err.message, true);
+    }
+  }
+
+  async function deleteLead(leadId) {
+    if (!confirm(`Are you sure you want to delete application ${leadId}? This action cannot be undone.`)) return;
+
+    try {
+      const res = await fetch(`/api/leads/${encodeURIComponent(leadId)}?key=${encodeURIComponent(activeAdminKey)}`, {
+        method: 'DELETE',
+        headers: { 'x-api-key': activeAdminKey }
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        notifyToast(`✓ Application ${leadId} deleted.`);
+        refreshLeads();
+      } else {
+        notifyToast('Delete error: ' + (data.error || 'Failed'), true);
+      }
+    } catch (err) {
+      notifyToast('Network error: ' + err.message, true);
     }
   }
 
@@ -1521,7 +1678,7 @@
     document.getElementById('statBrandCount').textContent = brandsCount;
     document.getElementById('statCreatorCount').textContent = creatorsCount;
 
-    // Desktop Table Rows
+    // Desktop Table Rows with Delete
     tbody.innerHTML = leads.map(lead => {
       const d = new Date(lead.submittedAt);
       const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -1546,10 +1703,10 @@
               ${lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color:#60A5FA; font-size:12px;">📎 Showreel / Portfolio</a>` : '<span style="color:var(--dim); font-size:12px;">No portfolio provided</span>'}
             </td>
             <td>
-              ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                WhatsApp Direct
-              </a>` : '—'}
+              <div style="display: flex; align-items: center; gap: 8px;">
+                ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg> WhatsApp</a>` : ''}
+                <button class="btn-danger" onclick="deleteLead('${esc(lead.id)}')">🗑️</button>
+              </div>
             </td>
           </tr>
         `;
@@ -1575,13 +1732,16 @@
             ${lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? `<div style="color:var(--dim); font-size:11.5px; margin-top:2px;">Goal: ${esc(lead.primaryGoal)}</div>` : ''}
           </td>
           <td>
-            ${lead.socialLink ? `<a href="${esc(lead.socialLink)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 5px 12px; font-size: 11.5px; display:inline-flex; align-items:center; gap:5px;">📱 View Social</a>` : '—'}
+            <div style="display: flex; align-items: center; gap: 8px;">
+              ${lead.socialLink ? `<a href="${esc(lead.socialLink)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 5px 12px; font-size: 11.5px;">📱 Social</a>` : ''}
+              <button class="btn-danger" onclick="deleteLead('${esc(lead.id)}')">🗑️</button>
+            </div>
           </td>
         </tr>
       `;
     }).join('');
 
-    // Mobile Responsive Card List
+    // Mobile Responsive Card List with Delete
     mobileList.innerHTML = leads.map(lead => {
       const d = new Date(lead.submittedAt);
       const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
@@ -1592,7 +1752,10 @@
         <div class="lead-mobile-card">
           <div class="lead-mobile-head">
             <span class="badge-pill" style="${isCreator ? 'background: rgba(168, 85, 247, 0.15); color: #C084FC;' : 'background: var(--cyan-dim); color: var(--cyan);'}">${esc(lead.id)}</span>
-            <span style="font-size:11.5px; color:var(--dim);">${dateStr}</span>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:11.5px; color:var(--dim);">${dateStr}</span>
+              <button class="btn-danger" style="padding: 3px 8px; font-size: 10.5px;" onclick="deleteLead('${esc(lead.id)}')">🗑️</button>
+            </div>
           </div>
           
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 8px;">
@@ -1614,6 +1777,26 @@
         </div>
       `;
     }).join('');
+  }
+
+  // ── Notification Test ─────────────────────────────────────
+  async function sendTestNotification() {
+    try {
+      notifyToast('Sending test notification...');
+      const res = await fetch('/api/notifications/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': activeAdminKey },
+        body: JSON.stringify({ key: activeAdminKey })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        notifyToast('✓ Test notification dispatched!');
+      } else {
+        notifyToast('Notification error: ' + (data.error || 'Failed'), true);
+      }
+    } catch (err) {
+      notifyToast('Network error: ' + err.message, true);
+    }
   }
 
   // ── Utilities ─────────────────────────────────────────────

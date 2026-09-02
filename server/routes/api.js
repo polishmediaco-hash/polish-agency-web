@@ -166,6 +166,65 @@ router.get('/leads', (req, res) => {
   });
 });
 
+// DELETE /api/leads/:id (Delete application from Admin Dashboard)
+router.delete('/leads/:id', (req, res) => {
+  const authKey = req.headers['x-api-key'] || req.query.key;
+  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
+
+  if (authKey !== expectedKey) {
+    return res.status(401).json({ success: false, error: 'Unauthorized access.' });
+  }
+
+  const { id } = req.params;
+  const leads = readLeads();
+  const initialLength = leads.length;
+  const filtered = leads.filter(l => l.id !== id);
+
+  if (filtered.length === initialLength) {
+    return res.status(404).json({ success: false, error: 'Application not found.' });
+  }
+
+  writeLeads(filtered);
+  res.json({
+    success: true,
+    message: `Application ${id} deleted successfully.`,
+    total: filtered.length
+  });
+});
+
+// POST /api/notifications/test (Test Notification Service)
+router.post('/notifications/test', async (req, res) => {
+  const authKey = req.headers['x-api-key'] || req.query.key;
+  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
+
+  if (authKey !== expectedKey) {
+    return res.status(401).json({ success: false, error: 'Unauthorized access.' });
+  }
+
+  const testLead = {
+    id: `TEST-${Date.now().toString(36).toUpperCase()}`,
+    fullName: 'Test Executive Applicant',
+    brandName: 'Luxury Skincare Lab',
+    businessCategory: 'Skincare & Clinical',
+    role: 'Founder / CEO',
+    websiteUrl: 'https://polishmediaco.com',
+    socialLink: 'https://instagram.com/polishmedia.co',
+    marketingHistory: 'Managing in-house, ready to scale profitably',
+    primaryGoal: 'Scale monthly revenue from $50k to $250k',
+    submittedAt: new Date().toISOString()
+  };
+
+  try {
+    await notifyNewLead(testLead);
+    res.json({
+      success: true,
+      message: 'Test notification triggered. Check your configured Telegram or Webhook channel.'
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // CONTENT CMS DATABASE
 const CONTENT_FILE = path.join(__dirname, '../db/content.json');
 
@@ -243,10 +302,13 @@ function getDefaultContent() {
     whatsapp: {
       en_default: "Hi POLISH Media team, I'm reaching out regarding scaling my cosmetics & beauty brand. Let's discuss a growth partnership.",
       fr_default: "Bonjour l'équipe POLISH, je vous contacte au sujet du développement de ma marque cosmétique. Échangeons sur un partenariat de croissance.",
+      ar_default: "مرحباً فريق POLISH، أتواصل معكم بخصوص تسريع ونمو علامتي التجارية في مجال التجميل والعناية. يسعدني مناقشة شراكة نمو معكم.",
       en_brand: "Hi POLISH team! I just submitted my Growth Partnership application (Ref: {ref}). Brand: {brand} — I'm {name}. Looking forward to connecting!",
       fr_brand: "Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Partenariat Croissance (Réf: {ref}). Marque : {brand} — Je suis {name}. Au plaisir d'échanger !",
+      ar_brand: "مرحباً فريق POLISH! قمت للتو بتقديم طلب شراكة النمو (المرجع: {ref}). العلامة: {brand} — أنا {name}. أتطلع للتواصل معكم!",
       en_creator: "Hi POLISH team! I just submitted my UGC Creator application (Ref: {ref}). I'm {name}. Looking forward to connecting!",
-      fr_creator: "Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Créateur UGC (Réf: {ref}). Je suis {name}. Au plaisir d'échanger !"
+      fr_creator: "Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Créateur UGC (Réf: {ref}). Je suis {name}. Au plaisir d'échanger !",
+      ar_creator: "مرحباً فريق POLISH! قمت للتو بتقديم طلب الانضمام كصانع محتوى UGC (المرجع: {ref}). أنا {name}. أتطلع للتواصل معكم!"
     },
     fr: {
       hero: {
@@ -312,6 +374,72 @@ function getDefaultContent() {
         eyebrow: "RÉSEAU CRÉATEURS & UGC",
         headline: "Créez pour les Plus Belles Marques Beauté. Rejoignez le Réseau POLISH.",
         description: "Accédez à des campagnes rémunérées, des dotations produits exclusives et des partenariats réguliers."
+      }
+    },
+    ar: {
+      hero: {
+        windowTag: "مسرّع العلامات التجارية",
+        eyebrow: "استوديو ومسرّع نمو علامات التجميل",
+        headlineLine1: "من تركيبة مبتكرة ومتميزة",
+        headlineLine2: "إلى علامة تجارية رائدة في عالم الجمال.",
+        description: "نتشارك مع مؤسسي علامات التجميل والعناية بالبشرة الطموحين لتوسيع الإعلانات المدفوعة، وإنتاج محتوى UGC عالي التحويل، وبناء دورات ولاء وإعادة شراء مؤتمتة.",
+        ctaText: "استكشف الشراكة",
+        microTrust: "شريك نمو حصري لعلامات التجميل والعناية بالبشرة ذات الإمكانات العالية."
+      },
+      agitation: {
+        eyebrow: "العقبات ونقاط الاختناق",
+        headlineLine1: "التركيبات الرائعة لا تبيع نفسها وحدها.",
+        headlineLine2: "أين تتوقف علامات التجميل عن النمو.",
+        description: "معظم علامات التجميل تتعثر ليس بسبب ضعف منتجاتها، بل بسبب استنزاف الإعلانات والارتفاع المستمر في تكلفة اكتساب العملاء.",
+        cards: [
+          {
+            tag: "01 • استنزاف الإعلانات",
+            title: "الإعلانات تفقد فعاليتها خلال 14 يوماً",
+            desc: "بدون تدفق مستمر لزوايا تصوير وأفكار فيديو جديدة، يتراجع تفاعل الجمهور وترتفع تكلفة الاستحواذ على العملاء بشكل حاد."
+          },
+          {
+            tag: "02 • غياب التحويل الفعلي",
+            title: "المشاهدات الجمالية لا تعني مبيعات",
+            desc: "المحتوى الجذاب وحده لا يكفي. تحقيق المبيعات يتطلب خطافات بصرية مدروسة، وشرحاً للتركيبة، وإثباتاً ملموساً لنتائج المنتج على البشرة."
+          },
+          {
+            tag: "03 • ضعف إعادة الشراء",
+            title: "المشترون لمرة واحدة يستنزفون هوامش الربح",
+            desc: "إذا لم يكرر العميل الشراء خلال 60 يوماً، فإن تكلفة الإعلانات تلتهم أرباحك. نحن نحول المشترين الجدد إلى عملاء دائمين يطلبون بانتظام."
+          }
+        ]
+      },
+      pillars: {
+        eyebrow: "محرك النمو",
+        headlineLine1: "مصمم خصيصاً",
+        headlineLine2: "لتوسيع ومضاعفة مبيعات منتجات التجميل والعناية.",
+        items: [
+          {
+            digit: "01",
+            title: "استوديو محتوى UGC عالي الكثافة",
+            desc: "صناع محتوى تجميل معتمدون وموجّهون بأفضل زوايا التصوير، واستعراض قوام المنتجات، وخطوات العناية بالبشرة عالية التأثير."
+          },
+          {
+            digit: "02",
+            title: "إعلانات مدفوعة تركز على الربحية",
+            desc: "حملات موجهة عبر Meta وTikTok مدروسة بعناية لتحقيق أعلى عائد على الإنفاق الإعلاني (ROAS) ونمو مستدام."
+          },
+          {
+            digit: "03",
+            title: "تحسين التحويل وباقات الروتين التجميلي",
+            desc: "صفحات هبوط عالية الإقناع، وباقات روتين متكاملة، وخيارات ترقية ذكية ترفع متوسط قيمة الطلب (AOV)."
+          },
+          {
+            digit: "04",
+            title: "دورات إعادة طلب مؤتمتة",
+            desc: "تذكيرات ذكية لإعادة تعبئة المنتجات وسلاسل ولاء لكبار العملاء لتعظيم القيمة الدائمة لكل مشترية."
+          }
+        ]
+      },
+      creators: {
+        eyebrow: "شبكة المبدعين & UGC",
+        headline: "اصنع المحتوى لأرقى علامات التجميل. انضم إلى شبكة POLISH.",
+        description: "احصل على فرص للمشاركة في حملات مدفوعة، وتجارب منتجات حصرية، وعقود شهرية مستمرة."
       }
     }
   };

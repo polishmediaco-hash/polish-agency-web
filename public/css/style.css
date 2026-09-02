@@ -144,78 +144,58 @@ body {
   pointer-events: none;
   z-index: 1;
   will-change: transform;
-  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 22px rgba(0, 229, 255, 0.28));
-  transition: opacity 0.3s ease;
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 28px rgba(0, 229, 255, 0.3));
+  transition: opacity 0.4s ease;
+}
+
+.beauty-3d-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: saturate(115%) contrast(106%) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* 1. 3D Volumetric Peptide Serum Dropper Bottle (Left Upper) */
 .beauty-item-serum {
-  top: 12%;
-  left: clamp(20px, 5.5vw, 95px);
-  width: clamp(60px, 5.2vw, 76px);
+  top: 10%;
+  left: clamp(24px, 5.8vw, 100px);
+  width: clamp(82px, 8.2vw, 128px);
   height: auto;
-  opacity: 0.88;
+  opacity: 0.92;
   animation: floatOrganic1 22s ease-in-out infinite alternate;
 }
 
 /* 2. 3D Beveled Crystal Perfume Flacon (Right Upper) */
 .beauty-item-perfume {
-  top: 14%;
-  right: clamp(20px, 5.8vw, 100px);
-  width: clamp(66px, 5.8vw, 84px);
+  top: 12%;
+  right: clamp(24px, 6vw, 108px);
+  width: clamp(88px, 8.8vw, 134px);
   height: auto;
-  opacity: 0.9;
+  opacity: 0.94;
   animation: floatOrganic2 25s ease-in-out infinite alternate;
 }
 
 /* 3. 3D Liquid Lip Glaze Wand (Right Mid-Lower) */
 .beauty-item-lipglaze {
-  top: 58%;
-  right: clamp(16px, 6.2vw, 110px);
-  width: clamp(40px, 3.8vw, 52px);
+  top: 56%;
+  right: clamp(20px, 6.2vw, 115px);
+  width: clamp(68px, 6.8vw, 105px);
   height: auto;
-  opacity: 0.88;
+  opacity: 0.9;
   animation: floatOrganic3 20s ease-in-out infinite alternate;
 }
 
 /* 4. 3D Frosted Smoked Cream Pot (Left Lower) */
 .beauty-item-creampot {
-  top: 66%;
-  left: clamp(16px, 6vw, 105px);
-  width: clamp(74px, 6.5vw, 96px);
+  top: 65%;
+  left: clamp(20px, 6.4vw, 118px);
+  width: clamp(88px, 8.8vw, 138px);
   height: auto;
-  opacity: 0.85;
+  opacity: 0.9;
   animation: floatOrganic4 24s ease-in-out infinite alternate;
-}
-
-/* 5. 3D Floating Pipette with Cyan Micro-Droplet (Top-Right Gutter) */
-.beauty-item-pipette {
-  top: 9%;
-  right: clamp(110px, 11vw, 200px);
-  width: clamp(32px, 2.6vw, 40px);
-  height: auto;
-  opacity: 0.82;
-  animation: floatOrganic5 19s ease-in-out infinite alternate;
-}
-
-/* 6. 3D Sculpted Serum Ampoule (Bottom-Left Open Zone) */
-.beauty-item-ampoule {
-  bottom: 8%;
-  left: clamp(100px, 10vw, 190px);
-  width: clamp(38px, 3.2vw, 48px);
-  height: auto;
-  opacity: 0.8;
-  animation: floatOrganic6 23s ease-in-out infinite alternate;
-}
-
-/* 7. 3D Chrome Mirror Compact (Bottom-Right Open Zone) */
-.beauty-item-compact {
-  bottom: 7%;
-  right: clamp(110px, 11vw, 210px);
-  width: clamp(48px, 3.8vw, 58px);
-  height: auto;
-  opacity: 0.82;
-  animation: floatOrganic7 26s ease-in-out infinite alternate;
 }
 
 /* 3D Liquid Essence Pearls & Refractive Beads */
@@ -288,27 +268,27 @@ body {
 
 /* Organic Asynchronous Harmonic Keyframes */
 @keyframes floatOrganic1 {
-  0% { transform: translate3d(0, 0, 0) rotate(-14deg) scale(1); }
-  50% { transform: translate3d(18px, -28px, 0) rotate(-4deg) scale(1.03); }
-  100% { transform: translate3d(-14px, -52px, 0) rotate(6deg) scale(0.98); }
+  0% { transform: translate3d(var(--px, 0px), 0, 0) rotate(-10deg) scale(1); }
+  50% { transform: translate3d(calc(var(--px, 0px) + 14px), -24px, 0) rotate(-2deg) scale(1.02); }
+  100% { transform: translate3d(calc(var(--px, 0px) - 10px), -44px, 0) rotate(4deg) scale(0.99); }
 }
 
 @keyframes floatOrganic2 {
-  0% { transform: translate3d(0, 0, 0) rotate(16deg) scale(1); }
-  50% { transform: translate3d(-22px, 24px, 0) rotate(4deg) scale(1.04); }
-  100% { transform: translate3d(16px, -38px, 0) rotate(-8deg) scale(0.97); }
+  0% { transform: translate3d(var(--px, 0px), 0, 0) rotate(12deg) scale(1); }
+  50% { transform: translate3d(calc(var(--px, 0px) - 16px), 20px, 0) rotate(4deg) scale(1.03); }
+  100% { transform: translate3d(calc(var(--px, 0px) + 12px), -30px, 0) rotate(-4deg) scale(0.98); }
 }
 
 @keyframes floatOrganic3 {
-  0% { transform: translate3d(0, 0, 0) rotate(-20deg); }
-  50% { transform: translate3d(16px, 26px, 0) rotate(-6deg); }
-  100% { transform: translate3d(-18px, 46px, 0) rotate(-28deg); }
+  0% { transform: translate3d(var(--px, 0px), 0, 0) rotate(-14deg); }
+  50% { transform: translate3d(calc(var(--px, 0px) + 12px), 22px, 0) rotate(-4deg); }
+  100% { transform: translate3d(calc(var(--px, 0px) - 14px), 38px, 0) rotate(-20deg); }
 }
 
 @keyframes floatOrganic4 {
-  0% { transform: translate3d(0, 0, 0) rotate(12deg); }
-  50% { transform: translate3d(-20px, -24px, 0) rotate(-2deg); }
-  100% { transform: translate3d(14px, 30px, 0) rotate(18deg); }
+  0% { transform: translate3d(var(--px, 0px), 0, 0) rotate(8deg); }
+  50% { transform: translate3d(calc(var(--px, 0px) - 16px), -20px, 0) rotate(-2deg); }
+  100% { transform: translate3d(calc(var(--px, 0px) + 10px), 24px, 0) rotate(14deg); }
 }
 
 @keyframes floatOrganic5 {
@@ -1806,45 +1786,32 @@ a {
 
   /* Mobile 3D Background Contrast & Non-Interference */
   .floating-beauty-product {
-    opacity: 0.32 !important;
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.95));
+    opacity: 0.65 !important;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(0, 229, 255, 0.22));
   }
   .beauty-item-serum {
-    left: -12px;
-    top: 5%;
-    width: 44px;
+    left: 4px;
+    top: 4%;
+    width: 58px;
   }
   .beauty-item-perfume {
-    right: -12px;
-    top: 7%;
-    width: 48px;
+    right: 4px;
+    top: 6%;
+    width: 62px;
   }
   .beauty-item-lipglaze {
-    right: -8px;
-    top: 60%;
-    width: 30px;
+    right: 6px;
+    top: 58%;
+    width: 48px;
   }
   .beauty-item-creampot {
-    left: -12px;
-    top: 68%;
-    width: 56px;
+    left: 4px;
+    top: 66%;
+    width: 64px;
   }
-  .beauty-item-pipette,
   .pearl-4-blur,
   .pearl-6-blur {
     display: none;
-  }
-  .beauty-item-ampoule {
-    bottom: 2%;
-    left: 16px;
-    width: 28px;
-    opacity: 0.22 !important;
-  }
-  .beauty-item-compact {
-    bottom: 2%;
-    right: 16px;
-    width: 32px;
-    opacity: 0.22 !important;
   }
 }
 

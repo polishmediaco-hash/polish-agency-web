@@ -58,6 +58,20 @@
         idleFrames = 0;
       }
 
+      // Parallax on 3D beauty items
+      const serum = document.querySelector('.beauty-item-serum');
+      const perfume = document.querySelector('.beauty-item-perfume');
+      const lipglaze = document.querySelector('.beauty-item-lipglaze');
+      const creampot = document.querySelector('.beauty-item-creampot');
+
+      const nx = (currentX / window.innerWidth - 0.5) * 2;
+      const ny = (currentY / window.innerHeight - 0.5) * 2;
+
+      if (serum) serum.style.setProperty('--px', `${(nx * 18).toFixed(1)}px`);
+      if (perfume) perfume.style.setProperty('--px', `${(nx * -16).toFixed(1)}px`);
+      if (lipglaze) lipglaze.style.setProperty('--px', `${(nx * -14).toFixed(1)}px`);
+      if (creampot) creampot.style.setProperty('--px', `${(nx * 16).toFixed(1)}px`);
+
       requestAnimationFrame(renderCaustic);
     }
 

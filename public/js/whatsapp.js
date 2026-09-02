@@ -3,46 +3,77 @@
  * Direct Number: +213 662 41 77 61 -> 213662417761
  */
 
-const POLISH_WHATSAPP = {
+const POLISH_WHATSAPP_CONFIG = {
   number: '213662417761',
-  defaultMessage: "Hi POLISH Media team, I'm reaching out regarding scaling my cosmetics & beauty brand. Let's discuss a growth partnership."
+  en: {
+    defaultMessage: "Hi POLISH Media team, I'm reaching out regarding scaling my cosmetics & beauty brand. Let's discuss a growth partnership.",
+    title: "POLISH Growth Team",
+    status: "● Online | Direct WhatsApp",
+    headline: "Welcome to POLISH.",
+    body: "Looking to scale your cosmetic line, overhaul creator UGC, or launch a breakthrough SKU? Connect directly with our lead growth strategist on WhatsApp.",
+    btn: "Chat on WhatsApp"
+  },
+  fr: {
+    defaultMessage: "Bonjour l'équipe POLISH, je vous contacte au sujet du développement de ma marque cosmétique. Échangeons sur un partenariat de croissance.",
+    title: "Équipe de Croissance POLISH",
+    status: "● En ligne | WhatsApp Direct",
+    headline: "Bienvenue chez POLISH.",
+    body: "Vous souhaitez développer votre marque cosmétique, structurer vos créateurs UGC ou lancer un nouveau soin ? Échangez directement avec notre direction sur WhatsApp.",
+    btn: "Discuter sur WhatsApp"
+  }
 };
 
+function renderWhatsAppContent() {
+  const lang = (window.polishI18n && window.polishI18n.currentLang === 'fr') ? 'fr' : 'en';
+  const c = POLISH_WHATSAPP_CONFIG[lang];
+  const encodedMsg = encodeURIComponent(c.defaultMessage);
+  const waUrl = `https://wa.me/${POLISH_WHATSAPP_CONFIG.number}?text=${encodedMsg}`;
+
+  const drawer = document.getElementById('waChatDrawer');
+  if (!drawer) return;
+
+  drawer.innerHTML = `
+    <div class="wa-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <div class="wa-avatar">P</div>
+        <div>
+          <div class="wa-title">${c.title}</div>
+          <div class="wa-status">${c.status}</div>
+        </div>
+      </div>
+      <button class="wa-close-btn" id="waCloseBtn" title="Close" aria-label="Close Chat">×</button>
+    </div>
+    <div class="wa-message-bubble">
+      <strong>${c.headline}</strong><br>
+      ${c.body}
+    </div>
+    <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="wa-btn-send" id="waDirectChatLink">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+      </svg>
+      ${c.btn}
+    </a>
+  `;
+
+  const closeBtn = document.getElementById('waCloseBtn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      drawer.classList.remove('open');
+    });
+  }
+}
+
 function initWhatsAppWidget() {
-  // Prevent duplicate insertion
   if (document.getElementById('polishWhatsAppWidget')) return;
 
   const container = document.createElement('div');
   container.className = 'whatsapp-float-container';
   container.id = 'polishWhatsAppWidget';
 
-  const encodedMsg = encodeURIComponent(POLISH_WHATSAPP.defaultMessage);
-  const waUrl = `https://wa.me/${POLISH_WHATSAPP.number}?text=${encodedMsg}`;
-
   container.innerHTML = `
     <!-- Quick Chat Drawer -->
-    <div class="whatsapp-chat-box" id="waChatDrawer">
-      <div class="wa-header">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <div class="wa-avatar">P</div>
-          <div>
-            <div class="wa-title">POLISH Growth Team</div>
-            <div class="wa-status">● Online | Direct WhatsApp</div>
-          </div>
-        </div>
-        <button class="wa-close-btn" id="waCloseBtn" title="Close" aria-label="Close Chat">×</button>
-      </div>
-      <div class="wa-message-bubble">
-        <strong>Welcome to POLISH.</strong><br>
-        Looking to scale your cosmetic line, overhaul creator UGC, or launch a breakthrough SKU? Connect directly with our lead growth strategist on WhatsApp.
-      </div>
-      <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="wa-btn-send" id="waDirectChatLink">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
-        </svg>
-        Chat on WhatsApp
-      </a>
-    </div>
+    <div class="whatsapp-chat-box" id="waChatDrawer"></div>
 
     <!-- Floating Trigger Bubble with Attention Shake -->
     <div class="whatsapp-trigger-wrap">
@@ -58,12 +89,17 @@ function initWhatsAppWidget() {
 
   document.body.appendChild(container);
 
+  renderWhatsAppContent();
+
   const triggerBtn = document.getElementById('waTriggerBtn');
   const chatDrawer = document.getElementById('waChatDrawer');
-  const closeBtn = document.getElementById('waCloseBtn');
 
-  // Direct open on mobile, toggle drawer on desktop
   triggerBtn.addEventListener('click', () => {
+    const lang = (window.polishI18n && window.polishI18n.currentLang === 'fr') ? 'fr' : 'en';
+    const c = POLISH_WHATSAPP_CONFIG[lang];
+    const encodedMsg = encodeURIComponent(c.defaultMessage);
+    const waUrl = `https://wa.me/${POLISH_WHATSAPP_CONFIG.number}?text=${encodedMsg}`;
+
     if (window.innerWidth <= 640) {
       window.open(waUrl, '_blank');
     } else {
@@ -71,9 +107,8 @@ function initWhatsAppWidget() {
     }
   });
 
-  closeBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    chatDrawer.classList.remove('open');
+  window.addEventListener('polishLanguageChanged', () => {
+    renderWhatsAppContent();
   });
 }
 

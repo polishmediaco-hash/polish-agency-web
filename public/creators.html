@@ -175,7 +175,8 @@
       <div class="section-head" style="margin-bottom: 38px;">
         <div class="eyebrow-tag" data-i18n="creators.eyebrow" data-cms="creators-eyebrow">CREATOR & UGC NETWORK</div>
         <h1 class="section-h2" style="font-size: clamp(28px, 4vw, 42px); margin: 12px 0;">
-          <span data-i18n="creators.h1" data-cms="creators-headline">Create for Leading Beauty Brands.<br><span class="gradient-accent">Join the POLISH Creator Network.</span></span>
+          <span data-i18n="creators.h1Line1" data-cms="creators-headlineLine1">Create for Leading Beauty Brands.</span><br>
+          <span class="gradient-accent" data-i18n="creators.h1Line2" data-cms="creators-headlineLine2">Join the POLISH Creator Network.</span>
         </h1>
         <p class="section-p" style="max-width: 620px; margin: 0 auto;" data-i18n="creators.p" data-cms="creators-description">
           Get cast for paid brand campaigns, product gifting, and monthly creator retainers.
@@ -320,13 +321,21 @@
         const portfolio = document.getElementById('cPortfolio').value.trim();
         const phone = document.getElementById('cPhone').value.trim();
 
+        const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
+
         if (!name || !socialLink || !phone) {
-          showAlert('Please complete your full name, social handle/link, and phone number.');
+          showAlert(isFr ? 'Veuillez renseigner votre nom complet, votre profil social et votre numéro de téléphone / WhatsApp.' : 'Please complete your full name, social handle/link, and phone number.');
           return;
         }
 
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Registering Profile...';
+        submitBtn.innerHTML = `
+          <svg style="animation: spin 1s linear infinite; width:16px; height:16px; margin-right:8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+          </svg>
+          <span>${isFr ? 'Enregistrement du Profil...' : 'Registering Profile...'}</span>
+        `;
 
         try {
           const res = await fetch('/api/creators/apply', {
@@ -338,9 +347,16 @@
           const data = await res.json();
 
           if (!res.ok || !data.success) {
-            showAlert(data.error || 'Failed to submit application. Please reach out on WhatsApp.');
+            showAlert(data.error || (isFr ? 'Échec de la soumission. Veuillez nous écrire directement sur WhatsApp.' : 'Failed to submit application. Please reach out on WhatsApp.'));
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit Creator Application';
+            const btnText = (window.polishI18n ? window.polishI18n.t('creators.btnSubmit') : null) || (isFr ? 'Soumettre mon Profil Créateur' : 'Submit Creator Profile');
+            submitBtn.innerHTML = `
+              <span>${btnText}</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            `;
             return;
           }
 
@@ -348,9 +364,11 @@
           creatorForm.style.display = 'none';
           refBadge.textContent = data.applicationId;
           
-          const waMsg = encodeURIComponent(
-            `Hi POLISH team! I just submitted my UGC Creator application (Ref: ${data.applicationId}). Name: ${name}. Looking forward to connecting!`
-          );
+          const defaultWaText = isFr
+            ? `Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Créateur UGC (Réf: ${data.applicationId}). Nom: ${name}. Au plaisir d'échanger !`
+            : `Hi POLISH team! I just submitted my UGC Creator application (Ref: ${data.applicationId}). Name: ${name}. Looking forward to connecting!`;
+          
+          const waMsg = encodeURIComponent(defaultWaText);
           waLink.href = `https://wa.me/213662417761?text=${waMsg}`;
 
           successScreen.style.display = 'block';
@@ -358,9 +376,16 @@
 
         } catch (err) {
           console.error(err);
-          showAlert('Network connection error. Please try again or message directly on WhatsApp.');
+          showAlert(isFr ? 'Erreur de connexion. Veuillez réessayer ou nous contacter sur WhatsApp.' : 'Network connection error. Please try again or message directly on WhatsApp.');
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Creator Application';
+          const btnText = (window.polishI18n ? window.polishI18n.t('creators.btnSubmit') : null) || (isFr ? 'Soumettre mon Profil Créateur' : 'Submit Creator Profile');
+          submitBtn.innerHTML = `
+            <span>${btnText}</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          `;
         }
       });
     });

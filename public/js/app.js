@@ -48,7 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressPercent = (currentStep / totalSteps) * 100;
     if (progressFill) progressFill.style.width = `${progressPercent}%`;
     if (stepCounterText) {
-      stepCounterText.innerText = `Step 0${currentStep} / 0${totalSteps}`;
+      const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
+      const stepWord = isFr ? 'Étape' : 'Step';
+      stepCounterText.innerText = `${stepWord} 0${currentStep} / 0${totalSteps}`;
     }
     if (stepPhaseText) {
       const key = `apply.step${currentStep}Title`;
@@ -87,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   function validateCurrentStep() {
     hideAlert();
+    const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
 
     if (currentStep === 1) {
       const nameInput = document.getElementById('fullName');
@@ -98,15 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const social = socialInput ? socialInput.value.trim() : '';
 
       if (!name) {
-        showAlert('Please enter your full name.', nameInput);
+        showAlert(isFr ? 'Veuillez renseigner votre nom et prénom.' : 'Please enter your full name.', nameInput);
         return false;
       }
       if (!brand) {
-        showAlert('Please enter your company or brand name.', brandInput);
+        showAlert(isFr ? 'Veuillez indiquer le nom de votre marque.' : 'Please enter your company or brand name.', brandInput);
         return false;
       }
       if (!social) {
-        showAlert('Please enter your Instagram, TikTok, or brand social handle.', socialInput);
+        showAlert(isFr ? 'Veuillez indiquer le lien vers votre réseau social (Instagram / TikTok).' : 'Please enter your Instagram, TikTok, or brand social handle.', socialInput);
         return false;
       }
     } else if (currentStep === 2) {
@@ -115,11 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const role = roleSelect ? roleSelect.value.trim() : '';
 
       if (!category) {
-        showAlert('Please select your business vertical.');
+        showAlert(isFr ? 'Veuillez sélectionner votre catégorie produit.' : 'Please select your business vertical.');
         return false;
       }
       if (!role) {
-        showAlert('Please choose your leadership position in the organization.', roleSelect);
+        showAlert(isFr ? 'Veuillez choisir votre fonction dans la marque.' : 'Please choose your leadership position in the organization.', roleSelect);
         return false;
       }
     } else if (currentStep === 3) {
@@ -127,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const history = historySelect ? historySelect.value.trim() : '';
 
       if (!history) {
-        showAlert('Please select your past marketing or agency experience.', historySelect);
+        showAlert(isFr ? 'Veuillez sélectionner votre statut marketing actuel.' : 'Please select your past marketing or agency experience.', historySelect);
         return false;
       }
     }
@@ -196,6 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Button Spinner UI
+    const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
+    const loadingText = isFr ? 'Enregistrement du Dossier...' : 'Registering Dossier...';
+    const submitText = (window.polishI18n ? window.polishI18n.t('apply.btnSubmit') : null) || (isFr ? 'Envoyer le Dossier de Partenariat' : 'Submit Partnership Brief');
+
     if (btnSubmit) {
       btnSubmit.disabled = true;
       btnSubmit.innerHTML = `
@@ -203,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
           <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
         </svg>
-        Registering Dossier...
+        ${loadingText}
       `;
     }
 
@@ -217,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json();
 
       if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to submit application.');
+        throw new Error(result.error || (isFr ? "Échec de l'envoi. Veuillez nous contacter directement sur WhatsApp." : 'Failed to submit application.'));
       }
 
       // Show Success Box
@@ -237,11 +244,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (err) {
       console.error('Submission error:', err);
-      showAlert(err.message || 'Error transmitting dossier. Please contact us directly on WhatsApp.');
+      showAlert(err.message || (isFr ? "Erreur de transmission. Veuillez nous contacter directement sur WhatsApp." : 'Error transmitting dossier. Please contact us directly on WhatsApp.'));
       if (btnSubmit) {
         btnSubmit.disabled = false;
         btnSubmit.innerHTML = `
-          Submit Application
+          <span>${submitText}</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>

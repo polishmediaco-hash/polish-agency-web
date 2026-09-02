@@ -1,0 +1,734 @@
+[
+  {
+    "viewport": "Narrow Mobile (Galaxy Fold / SE 1st)",
+    "width": 320,
+    "height": 640,
+    "routes": [
+      {
+        "route": "Landing-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 292,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 157,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 250,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 284,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_320_landing-en.png"
+      },
+      {
+        "route": "Landing-FR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 292,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 179,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 250,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 284,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_320_landing-fr.png"
+      },
+      {
+        "route": "Landing-AR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 292,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 130,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 250,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 284,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_320_landing-ar.png"
+      },
+      {
+        "route": "Apply-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 292,
+          "height": 59,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 81,
+          "ctaHeight": 51
+        },
+        "heroCtaMetrics": {
+          "width": 0,
+          "height": 0
+        },
+        "cardMetrics": {
+          "width": 284,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_320_apply-en.png"
+      },
+      {
+        "route": "Creators-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 292,
+          "height": 59,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 81,
+          "ctaHeight": 51
+        },
+        "heroCtaMetrics": {
+          "width": 250,
+          "height": 52
+        },
+        "cardMetrics": {
+          "width": 284,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_320_creators-en.png"
+      }
+    ]
+  },
+  {
+    "viewport": "Android Popular (Samsung Galaxy S22/S23/S24)",
+    "width": 360,
+    "height": 800,
+    "routes": [
+      {
+        "route": "Landing-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 332,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 157,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 290,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 324,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_360_landing-en.png"
+      },
+      {
+        "route": "Landing-FR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 332,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 179,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 290,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 324,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_360_landing-fr.png"
+      },
+      {
+        "route": "Landing-AR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 332,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 130,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 290,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 324,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_360_landing-ar.png"
+      },
+      {
+        "route": "Apply-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 332,
+          "height": 59,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 112,
+          "ctaHeight": 51
+        },
+        "heroCtaMetrics": {
+          "width": 0,
+          "height": 0
+        },
+        "cardMetrics": {
+          "width": 324,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_360_apply-en.png"
+      },
+      {
+        "route": "Creators-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 332,
+          "height": 59,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 112,
+          "ctaHeight": 51
+        },
+        "heroCtaMetrics": {
+          "width": 290,
+          "height": 52
+        },
+        "cardMetrics": {
+          "width": 324,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_360_creators-en.png"
+      }
+    ]
+  },
+  {
+    "viewport": "iPhone Small (iPhone SE / 8 / 13 Mini)",
+    "width": 375,
+    "height": 667,
+    "routes": [
+      {
+        "route": "Landing-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 347,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 157,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 305,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 339,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_375_landing-en.png"
+      },
+      {
+        "route": "Landing-FR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 347,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 179,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 305,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 339,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_375_landing-fr.png"
+      },
+      {
+        "route": "Landing-AR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 347,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 130,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 305,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 339,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_375_landing-ar.png"
+      },
+      {
+        "route": "Apply-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 347,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 117,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 0,
+          "height": 0
+        },
+        "cardMetrics": {
+          "width": 339,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_375_apply-en.png"
+      },
+      {
+        "route": "Creators-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 347,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 117,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 305,
+          "height": 52
+        },
+        "cardMetrics": {
+          "width": 339,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_375_creators-en.png"
+      }
+    ]
+  },
+  {
+    "viewport": "iPhone Standard (iPhone 13/14/15/16)",
+    "width": 393,
+    "height": 852,
+    "routes": [
+      {
+        "route": "Landing-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 365,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 157,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 323,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 357,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_393_landing-en.png"
+      },
+      {
+        "route": "Landing-FR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 365,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 179,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 323,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 357,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_393_landing-fr.png"
+      },
+      {
+        "route": "Landing-AR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 365,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 130,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 323,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 357,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_393_landing-ar.png"
+      },
+      {
+        "route": "Apply-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 365,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 117,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 0,
+          "height": 0
+        },
+        "cardMetrics": {
+          "width": 357,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_393_apply-en.png"
+      },
+      {
+        "route": "Creators-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 365,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 117,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 323,
+          "height": 52
+        },
+        "cardMetrics": {
+          "width": 357,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_393_creators-en.png"
+      }
+    ]
+  },
+  {
+    "viewport": "Android Large (Google Pixel 8 / OnePlus)",
+    "width": 412,
+    "height": 915,
+    "routes": [
+      {
+        "route": "Landing-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 384,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 157,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 342,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 376,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_412_landing-en.png"
+      },
+      {
+        "route": "Landing-FR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 384,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 179,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 342,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 376,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_412_landing-fr.png"
+      },
+      {
+        "route": "Landing-AR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 384,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 130,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 342,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 376,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_412_landing-ar.png"
+      },
+      {
+        "route": "Apply-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 384,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 117,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 0,
+          "height": 0
+        },
+        "cardMetrics": {
+          "width": 376,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_412_apply-en.png"
+      },
+      {
+        "route": "Creators-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 384,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 117,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 342,
+          "height": 52
+        },
+        "cardMetrics": {
+          "width": 376,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_412_creators-en.png"
+      }
+    ]
+  },
+  {
+    "viewport": "iPhone Pro Max (iPhone 14/15/16 Pro Max)",
+    "width": 430,
+    "height": 932,
+    "routes": [
+      {
+        "route": "Landing-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 402,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 157,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 360,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 394,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_430_landing-en.png"
+      },
+      {
+        "route": "Landing-FR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 402,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 179,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 360,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 394,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_430_landing-fr.png"
+      },
+      {
+        "route": "Landing-AR",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 402,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 130,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 360,
+          "height": 58
+        },
+        "cardMetrics": {
+          "width": 394,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_430_landing-ar.png"
+      },
+      {
+        "route": "Apply-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 402,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 117,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 0,
+          "height": 0
+        },
+        "cardMetrics": {
+          "width": 394,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_430_apply-en.png"
+      },
+      {
+        "route": "Creators-EN",
+        "overflow": "PASS (0px overflow)",
+        "headerMetrics": {
+          "width": 402,
+          "height": 50,
+          "logoWidth": 59,
+          "langWidth": 129,
+          "ctaWidth": 117,
+          "ctaHeight": 34
+        },
+        "heroCtaMetrics": {
+          "width": 360,
+          "height": 52
+        },
+        "cardMetrics": {
+          "width": 394,
+          "border": "1px solid rgba(255, 255, 255, 0.22)",
+          "borderRadius": "20px",
+          "boxShadow": "Active Specular Glow"
+        },
+        "screenshot": "device_430_creators-en.png"
+      }
+    ]
+  }
+]

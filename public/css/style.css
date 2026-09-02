@@ -144,7 +144,7 @@ body {
   pointer-events: none;
   z-index: 1;
   will-change: transform;
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 28px rgba(0, 229, 255, 0.3));
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 24px rgba(0, 229, 255, 0.25));
   transition: opacity 0.4s ease;
 }
 
@@ -153,49 +153,49 @@ body {
   width: 100%;
   height: auto;
   object-fit: contain;
-  filter: saturate(115%) contrast(106%) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+  filter: saturate(112%) contrast(104%);
   user-select: none;
   -webkit-user-drag: none;
 }
 
 /* 1. 3D Volumetric Peptide Serum Dropper Bottle (Left Upper) */
 .beauty-item-serum {
-  top: 10%;
-  left: clamp(24px, 5.8vw, 100px);
-  width: clamp(82px, 8.2vw, 128px);
+  top: 9%;
+  left: clamp(24px, 5.5vw, 95px);
+  width: clamp(76px, 7.5vw, 118px);
   height: auto;
-  opacity: 0.92;
-  animation: floatOrganic1 22s ease-in-out infinite alternate;
+  opacity: 0.88;
+  animation: floatOrganic1 24s ease-in-out infinite alternate;
 }
 
 /* 2. 3D Beveled Crystal Perfume Flacon (Right Upper) */
 .beauty-item-perfume {
-  top: 12%;
-  right: clamp(24px, 6vw, 108px);
-  width: clamp(88px, 8.8vw, 134px);
+  top: 11%;
+  right: clamp(24px, 5.8vw, 102px);
+  width: clamp(82px, 8.2vw, 126px);
   height: auto;
-  opacity: 0.94;
-  animation: floatOrganic2 25s ease-in-out infinite alternate;
+  opacity: 0.9;
+  animation: floatOrganic2 27s ease-in-out infinite alternate;
 }
 
 /* 3. 3D Liquid Lip Glaze Wand (Right Mid-Lower) */
 .beauty-item-lipglaze {
-  top: 56%;
-  right: clamp(20px, 6.2vw, 115px);
-  width: clamp(68px, 6.8vw, 105px);
+  top: 55%;
+  right: clamp(20px, 6vw, 110px);
+  width: clamp(64px, 6.4vw, 98px);
   height: auto;
-  opacity: 0.9;
-  animation: floatOrganic3 20s ease-in-out infinite alternate;
+  opacity: 0.86;
+  animation: floatOrganic3 22s ease-in-out infinite alternate;
 }
 
 /* 4. 3D Frosted Smoked Cream Pot (Left Lower) */
 .beauty-item-creampot {
-  top: 65%;
-  left: clamp(20px, 6.4vw, 118px);
-  width: clamp(88px, 8.8vw, 138px);
+  top: 64%;
+  left: clamp(20px, 6.2vw, 112px);
+  width: clamp(82px, 8.2vw, 128px);
   height: auto;
-  opacity: 0.9;
-  animation: floatOrganic4 24s ease-in-out infinite alternate;
+  opacity: 0.86;
+  animation: floatOrganic4 26s ease-in-out infinite alternate;
 }
 
 /* 3D Liquid Essence Pearls & Refractive Beads */
@@ -266,29 +266,29 @@ body {
   animation: pearlDrift1 21s ease-in-out infinite alternate-reverse;
 }
 
-/* Organic Asynchronous Harmonic Keyframes */
+/* Organic Asynchronous Harmonic Keyframes (Completely Autonomous, Free-Floating) */
 @keyframes floatOrganic1 {
-  0% { transform: translate3d(var(--px, 0px), 0, 0) rotate(-10deg) scale(1); }
-  50% { transform: translate3d(calc(var(--px, 0px) + 14px), -24px, 0) rotate(-2deg) scale(1.02); }
-  100% { transform: translate3d(calc(var(--px, 0px) - 10px), -44px, 0) rotate(4deg) scale(0.99); }
+  0% { transform: translate3d(0, 0, 0) rotate(-10deg) scale(1); }
+  50% { transform: translate3d(14px, -24px, 0) rotate(-2deg) scale(1.02); }
+  100% { transform: translate3d(-10px, -44px, 0) rotate(4deg) scale(0.99); }
 }
 
 @keyframes floatOrganic2 {
-  0% { transform: translate3d(var(--px, 0px), 0, 0) rotate(12deg) scale(1); }
-  50% { transform: translate3d(calc(var(--px, 0px) - 16px), 20px, 0) rotate(4deg) scale(1.03); }
-  100% { transform: translate3d(calc(var(--px, 0px) + 12px), -30px, 0) rotate(-4deg) scale(0.98); }
+  0% { transform: translate3d(0, 0, 0) rotate(12deg) scale(1); }
+  50% { transform: translate3d(-16px, 20px, 0) rotate(4deg) scale(1.03); }
+  100% { transform: translate3d(12px, -30px, 0) rotate(-4deg) scale(0.98); }
 }
 
 @keyframes floatOrganic3 {
-  0% { transform: translate3d(var(--px, 0px), 0, 0) rotate(-14deg); }
-  50% { transform: translate3d(calc(var(--px, 0px) + 12px), 22px, 0) rotate(-4deg); }
-  100% { transform: translate3d(calc(var(--px, 0px) - 14px), 38px, 0) rotate(-20deg); }
+  0% { transform: translate3d(0, 0, 0) rotate(-14deg); }
+  50% { transform: translate3d(12px, 22px, 0) rotate(-4deg); }
+  100% { transform: translate3d(-14px, 38px, 0) rotate(-20deg); }
 }
 
 @keyframes floatOrganic4 {
-  0% { transform: translate3d(var(--px, 0px), 0, 0) rotate(8deg); }
-  50% { transform: translate3d(calc(var(--px, 0px) - 16px), -20px, 0) rotate(-2deg); }
-  100% { transform: translate3d(calc(var(--px, 0px) + 10px), 24px, 0) rotate(14deg); }
+  0% { transform: translate3d(0, 0, 0) rotate(8deg); }
+  50% { transform: translate3d(-16px, -20px, 0) rotate(-2deg); }
+  100% { transform: translate3d(10px, 24px, 0) rotate(14deg); }
 }
 
 @keyframes floatOrganic5 {

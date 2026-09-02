@@ -109,14 +109,20 @@
       }, 150);
     }, { passive: true });
 
-    const particleCount = isTouch ? 12 : 24;
+    const particleCount = isTouch ? 12 : 26;
+    const holoColors = [
+      'rgba(0, 229, 255, 0.45)',
+      'rgba(235, 0, 255, 0.38)',
+      'rgba(138, 43, 226, 0.35)',
+      'rgba(255, 255, 255, 0.55)'
+    ];
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 1.5 + 0.6,
-      speedX: (Math.random() - 0.5) * 0.25,
-      speedY: (Math.random() - 0.5) * 0.25,
-      color: `rgba(0, 229, 255, ${(Math.random() * 0.35 + 0.15).toFixed(2)})`
+      size: Math.random() * 1.6 + 0.6,
+      speedX: (Math.random() - 0.5) * 0.22,
+      speedY: (Math.random() - 0.5) * 0.22,
+      color: holoColors[Math.floor(Math.random() * holoColors.length)]
     }));
 
     function animateParticles() {

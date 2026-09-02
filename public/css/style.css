@@ -420,11 +420,12 @@ a {
 
 .site-header {
   position: sticky;
-  top: 18px;
+  top: 20px;
   width: 100%;
   z-index: 1000;
   pointer-events: none;
   transition: all 0.3s ease;
+  margin-bottom: 24px;
 }
 
 .header-container {
@@ -773,33 +774,33 @@ a {
    ========================================================================== */
 
 .hero-section {
-  padding: 68px 0 54px;
+  padding: 36px 0 60px;
   text-align: center;
   position: relative;
 }
 
 .hero-h1 {
-  font-size: clamp(34px, 5vw, 58px);
+  font-size: clamp(38px, 4.4vw, 54px);
   max-width: 960px;
-  margin: 0 auto 20px;
+  margin: 0 auto 22px;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.028em;
   line-height: 1.14;
 }
 
 .hero-desc {
-  font-size: clamp(15px, 1.7vw, 18.5px);
+  font-size: clamp(15.5px, 1.6vw, 17.5px);
   color: var(--text-muted);
-  max-width: 720px;
-  margin: 0 auto 32px;
-  line-height: 1.65;
+  max-width: 680px;
+  margin: 0 auto 34px;
+  line-height: 1.68;
 }
 
 .hero-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .micro-trust {
@@ -812,6 +813,7 @@ a {
   letter-spacing: 0.015em;
   line-height: 1.5;
   text-align: center;
+  margin-top: 4px;
 }
 
 /* ==========================================================================
@@ -819,7 +821,7 @@ a {
    ========================================================================== */
 
 .section-wrap {
-  padding: 64px 0 54px;
+  padding: 80px 0 60px;
   position: relative;
   scroll-margin-top: 90px;
 }
@@ -827,25 +829,28 @@ a {
 .section-head {
   text-align: center;
   max-width: 800px;
-  margin: 0 auto 42px;
+  margin: 0 auto 48px;
   scroll-margin-top: 90px;
 }
 
 .section-h2 {
-  font-size: clamp(26px, 3.4vw, 38px);
-  margin-bottom: 12px;
+  font-size: clamp(28px, 3.4vw, 40px);
+  margin-bottom: 14px;
+  line-height: 1.2;
 }
 
 .section-p {
-  font-size: 15.5px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.65;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .grid-cards-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 24px;
 }
 
 /* Authentic Frosted Acrylic Smoked Glass Card */
@@ -854,8 +859,8 @@ a {
   backdrop-filter: blur(40px) saturate(190%);
   -webkit-backdrop-filter: blur(40px) saturate(190%);
   border: 1px solid var(--border-specular);
-  border-radius: var(--radius-lg);
-  padding: 34px 28px;
+  border-radius: 24px;
+  padding: 38px 32px;
   position: relative;
   box-shadow: var(--glass-shadow);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1484,8 +1489,8 @@ a {
   backdrop-filter: blur(48px) saturate(200%);
   -webkit-backdrop-filter: blur(48px) saturate(200%);
   border: 1px solid var(--border-specular);
-  border-radius: var(--radius-lg);
-  padding: 36px 42px 52px;
+  border-radius: 28px;
+  padding: 42px 48px 54px;
   box-shadow: var(--glass-shadow);
   max-width: 1040px;
   margin: 0 auto;
@@ -1502,8 +1507,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 22px;
-  margin-bottom: 24px;
+  padding-bottom: 20px;
+  margin-bottom: 34px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -1601,40 +1606,38 @@ a {
     height: 30px;
     width: auto;
   }
-    min-height: 32px;
-    gap: 4px;
-  }
-  .site-header .btn-ghost svg {
-    display: none;
+  .site-header {
+    top: 12px;
+    margin-bottom: 18px;
   }
 
   /* Section Spacing & Visual Rhythm */
   .hero-section {
-    padding: 24px 0 65px;
+    padding: 16px 0 52px;
   }
   .apply-main-wrapper {
     padding: 16px 0 85px;
   }
   .section-wrap {
-    padding: 46px 0 38px;
+    padding: 52px 0 40px;
     scroll-margin-top: 75px;
   }
   .section-head {
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     scroll-margin-top: 75px;
   }
   .hero-glass-card {
-    padding: 20px 16px 26px;
-    border-radius: 20px;
-    margin-bottom: 16px;
+    padding: 26px 20px 32px;
+    border-radius: 22px;
+    margin-bottom: 20px;
   }
   .glass-card-topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    padding-bottom: 12px;
-    margin-bottom: 14px;
+    gap: 10px;
+    padding-bottom: 14px;
+    margin-bottom: 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     min-width: 0;
   }
@@ -1650,12 +1653,12 @@ a {
     display: none;
   }
   .glass-pill-tag {
-    font-size: 9.5px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.03em;
-    padding: 3px 8px;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
     border-radius: var(--radius-pill);
-    max-width: 78%;
+    max-width: 80%;
     white-space: normal;
     text-align: right;
     line-height: 1.25;
@@ -1667,25 +1670,27 @@ a {
 
   /* Typography Sizing */
   .hero-h1 {
-    font-size: clamp(27px, 7.6vw, 34px);
+    font-size: clamp(25px, 6.8vw, 30px);
     margin-bottom: 16px;
-    line-height: 1.16;
-    letter-spacing: -0.025em;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 800;
   }
   .hero-desc {
-    font-size: 14.5px;
-    line-height: 1.6;
-    margin-bottom: 26px;
+    font-size: 14px;
+    line-height: 1.62;
+    margin-bottom: 24px;
+    max-width: 96%;
   }
   .section-h2 {
-    font-size: clamp(23px, 6.4vw, 28px);
-    line-height: 1.2;
+    font-size: clamp(23px, 6.4vw, 27px);
+    line-height: 1.22;
     margin-bottom: 12px;
   }
   .section-desc {
-    font-size: 14px;
-    line-height: 1.55;
-    margin-bottom: 28px;
+    font-size: 13.5px;
+    line-height: 1.58;
+    margin-bottom: 24px;
   }
 
   /* Form & Interactive Elements (Apple HIG 48px+ Touch Target Compliance) */

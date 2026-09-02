@@ -47,8 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update Progress Indicator
     const progressPercent = (currentStep / totalSteps) * 100;
     if (progressFill) progressFill.style.width = `${progressPercent}%`;
-    if (stepCounterText) stepCounterText.innerText = `Step 0${currentStep} / 0${totalSteps}`;
-    if (stepPhaseText) stepPhaseText.innerText = stepPhases[currentStep - 1];
+    if (stepCounterText) {
+      stepCounterText.innerText = `Step 0${currentStep} / 0${totalSteps}`;
+    }
+    if (stepPhaseText) {
+      const key = `apply.step${currentStep}Title`;
+      const title = (window.polishI18n ? window.polishI18n.t(key) : null) || stepPhases[currentStep - 1];
+      stepPhaseText.innerText = title;
+    }
 
     // Update Navigation Buttons
     if (btnBack) {
@@ -269,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     alertBox.style.display = 'none';
   }
 
-  // Initialize
+  // Initialize and listen to language switches
+  window.addEventListener('polishLanguageChanged', updateStepUI);
   updateStepUI();
 });

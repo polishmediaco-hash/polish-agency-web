@@ -13,6 +13,7 @@ const POLISH_TRANSLATIONS = {
     "nav.creators": "Creator Network",
     "nav.partnership": "Explore Partnership",
     "nav.returnHome": "Return Home",
+    "nav.homeOneWord": "Home",
     "header.cta": "Explore Partnership",
 
     // Hero Section
@@ -132,6 +133,7 @@ const POLISH_TRANSLATIONS = {
     "nav.creators": "Réseau Créateurs",
     "nav.partnership": "Découvrir le Partenariat",
     "nav.returnHome": "Retour à l'Accueil",
+    "nav.homeOneWord": "Accueil",
     "header.cta": "Découvrir le Partenariat",
 
     // Hero Section
@@ -251,6 +253,7 @@ const POLISH_TRANSLATIONS = {
     "nav.creators": "شبكة المبدعين",
     "nav.partnership": "استكشف الشراكة",
     "nav.returnHome": "العودة للرئيسية",
+    "nav.homeOneWord": "الرئيسية",
     "header.cta": "استكشف الشراكة",
 
     // Hero Section

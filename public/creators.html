@@ -75,26 +75,26 @@
     </div>
   </div>
 
-  <!-- Decoupled Luxury Header: Logo Pod & Language Switcher -->
+  <!-- Decoupled Luxury Header: Logo (Left) | Home (Center) | Language Switcher (Right) -->
   <header class="site-header" id="siteHeader">
     <div class="header-container decoupled-header-layout">
-      <!-- Element 1: Spacious Single Luxury Logo Pod -->
+      <!-- Left: Spacious Single Luxury Logo Pod -->
       <div class="decoupled-logo-dock">
         <a href="/" class="brand-logo-pod" aria-label="POLISH Home">
           <img src="/assets/logo.png?v=10.0" alt="POLISH Logo" class="brand-logo-img" width="34" height="30">
         </a>
       </div>
 
-      <!-- Element 2: Independent Floating Action & Language Switcher -->
+      <!-- Center: Minimal Single-Word Return Home Button -->
+      <div class="decoupled-center-dock">
+        <a href="/" class="header-home-btn" aria-label="Home">
+          <span data-i18n="nav.homeOneWord">Home</span>
+        </a>
+      </div>
+
+      <!-- Right: Independent Floating Language Switcher -->
       <div class="decoupled-lang-dock">
         <div class="lang-toggle-slot"></div>
-        <a href="/" class="btn-ghost decoupled-back-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 19"></polyline>
-          </svg>
-          <span data-i18n="nav.returnHome">Return Home</span>
-        </a>
       </div>
     </div>
   </header>
@@ -185,42 +185,33 @@
     </div>
   </main>
 
-  <!-- Smoked Glass Footer -->
+  <!-- Minimal Luxury Footer -->
   <footer class="site-footer">
-    <div class="container">
-      <p class="footer-copy" data-i18n="footer.copy">
+    <div class="container footer-clean-row">
+      <p class="footer-copy">
         &copy; 2026 POLISH Media Co. All Rights Reserved.
       </p>
-      <div class="footer-nav">
-        <a href="mailto:contact@polishmediaco.com" class="footer-link-item" title="Email Us">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="footer-links-group">
+        <a href="mailto:contact@polishmediaco.com" class="footer-link-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
           contact@polishmediaco.com
         </a>
-        <span>•</span>
-        <a href="https://www.instagram.com/polishmedia.co/" target="_blank" rel="noopener noreferrer" class="footer-link-item" title="Instagram">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <span class="footer-dot">•</span>
+        <a href="https://www.instagram.com/polishmedia.co/" target="_blank" rel="noopener noreferrer" class="footer-link-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
           </svg>
           @polishmedia.co
         </a>
-        <span>•</span>
-        <a href="https://wa.me/213662417761" target="_blank" rel="noopener noreferrer" class="footer-link-item" title="WhatsApp">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
-          </svg>
-          <span data-i18n="footer.whatsapp">WhatsApp Direct</span>
+        <span class="footer-dot">•</span>
+        <a href="/creators" class="footer-link-item">
+          Creators
         </a>
-        <span>•</span>
-        <a href="/" class="footer-link-item">
-          Home
-        </a>
-        <span>•</span>
-        <div class="lang-toggle-slot"></div>
       </div>
     </div>
   </footer>

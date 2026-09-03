@@ -597,6 +597,46 @@ a {
 }
 
 /* ==========================================================================
+/* ==========================================================================
+   DECOUPLED CENTER DOCK: SLEEK SINGLE-WORD HOME BUTTON
+   ========================================================================== */
+
+.decoupled-center-dock {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.header-home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  line-height: 1;
+}
+
+.header-home-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 229, 255, 0.4);
+  color: var(--brand-cyan);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
    DECOUPLED ELEMENT 2: INDEPENDENT FLOATING LANGUAGE DOCK
    ========================================================================== */
 
@@ -1311,18 +1351,31 @@ a {
    SMOKED GLASS WHATSAPP WIDGET
    ========================================================================== */
 
-/* ==========================================================================
-   SMOKED GLASS WHATSAPP WIDGET
-   ========================================================================== */
-
 .whatsapp-float-container {
   position: fixed;
-  bottom: 95px;
-  right: 28px;
+  bottom: 28px;
+  right: 24px !important;
+  left: auto !important;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.92);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whatsapp-float-container.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+[dir="rtl"] .whatsapp-float-container,
+body.is-rtl .whatsapp-float-container {
+  right: 24px !important;
+  left: auto !important;
 }
 
 .whatsapp-chat-box {
@@ -1534,46 +1587,65 @@ a {
 }
 
 /* Smoked Glass Footer */
+/* Minimal Luxury Footer */
 .site-footer {
   background: rgba(6, 7, 10, 0.7);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border-top: 1px solid var(--border-specular);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  padding: 44px 0;
-  text-align: center;
+  padding: 30px 0;
   position: relative;
   z-index: 1;
+  direction: ltr !important; /* Never switch sides or rearrange in RTL */
+}
+
+.footer-clean-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  direction: ltr !important;
 }
 
 .footer-copy {
   color: var(--text-dim);
-  font-size: 13.5px;
-  margin-bottom: 16px;
+  font-size: 13px;
+  margin: 0;
   letter-spacing: 0.02em;
+  direction: ltr !important;
+  text-align: left;
 }
 
-.footer-nav {
+.footer-links-group {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 22px;
+  gap: 14px;
   font-size: 13px;
   color: var(--text-muted);
   flex-wrap: wrap;
+  direction: ltr !important;
 }
 
 .footer-link-item {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   color: var(--text-muted);
   transition: all 0.2s ease;
   text-decoration: none;
+  font-weight: 500;
+  direction: ltr !important;
 }
 
 .footer-link-item:hover {
   color: var(--brand-cyan);
+}
+
+.footer-dot {
+  color: rgba(255, 255, 255, 0.2);
+  user-select: none;
 }
 
 .footer-link-item svg {
@@ -2007,15 +2079,46 @@ a {
     justify-content: center;
   }
 
-  /* Floating WhatsApp Widget */
+  /* Mobile Single-Word Home Button */
+  .header-home-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: var(--radius-pill);
+  }
+
+  /* Mobile Minimal Footer */
+  .site-footer {
+    padding: 22px 0 32px;
+  }
+  .footer-clean-row {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 8px;
+    direction: ltr !important;
+  }
+  .footer-copy {
+    text-align: center;
+    font-size: 11.5px;
+    direction: ltr !important;
+  }
+  .footer-links-group {
+    justify-content: center;
+    font-size: 12px;
+    gap: 10px;
+    direction: ltr !important;
+  }
+
+  /* Floating WhatsApp Widget Mobile */
   .whatsapp-float-container {
-    bottom: 24px;
-    right: 16px;
+    bottom: 20px;
+    right: 16px !important;
+    left: auto !important;
     z-index: 999;
   }
   .whatsapp-trigger-btn {
-    width: 46px;
-    height: 46px;
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -2065,15 +2168,29 @@ a {
   flex-direction: row-reverse;
 }
 
-[dir="rtl"] .whatsapp-float-container {
-  bottom: 95px;
-  left: 28px;
-  right: auto;
+/* WhatsApp Stays Fixed on Bottom Right across ALL Languages */
+[dir="rtl"] .whatsapp-float-container,
+body.is-rtl .whatsapp-float-container {
+  right: 24px !important;
+  left: auto !important;
 }
 
-[dir="rtl"] .whatsapp-chat-box {
-  left: 0;
-  right: auto;
+@media (max-width: 768px) {
+  [dir="rtl"] .whatsapp-float-container,
+  body.is-rtl .whatsapp-float-container {
+    right: 16px !important;
+    left: auto !important;
+  }
+}
+
+/* Footer Stays Consistent Across All Languages */
+[dir="rtl"] .site-footer,
+[dir="rtl"] .footer-clean-row,
+[dir="rtl"] .footer-links-group,
+body.is-rtl .site-footer,
+body.is-rtl .footer-clean-row,
+body.is-rtl .footer-links-group {
+  direction: ltr !important;
 }
 
 @media (max-width: 768px) {

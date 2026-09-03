@@ -101,6 +101,11 @@ function initWhatsAppWidget() {
 
   renderWhatsAppContent();
 
+  // Graceful time buffer delay so the widget doesn't jump in immediately on page load
+  setTimeout(() => {
+    container.classList.add('is-visible');
+  }, 2200);
+
   const triggerBtn = document.getElementById('waTriggerBtn');
   const chatDrawer = document.getElementById('waChatDrawer');
 

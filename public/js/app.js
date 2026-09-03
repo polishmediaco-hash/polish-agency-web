@@ -287,22 +287,19 @@ document.addEventListener('DOMContentLoaded', () => {
   updateStepUI();
 });
 
-// Liquid Crystal Pod interactive light refraction & gyro tilt
-(function initLiquidCrystalRefraction() {
-  let isMoving = false;
-  window.addEventListener('mousemove', (e) => {
-    if (isMoving) return;
-    isMoving = true;
-    requestAnimationFrame(() => {
-      const pods = document.querySelectorAll('.liquid-crystal-pod');
-      if (pods.length) {
-        const x = (e.clientX / window.innerWidth - 0.5) * 16;
-        const y = (e.clientY / window.innerHeight - 0.5) * 16;
-        pods.forEach(pod => {
-          pod.style.transform = `perspective(500px) rotateY(${x * 0.6}deg) rotateX(${-y * 0.6}deg)`;
-        });
-      }
-      isMoving = false;
-    });
-  }, { passive: true });
+// Dynamic Header Scroll Mist Controller (Concept 3 Ghost to Frosted Mist)
+(function initHeaderScrollMist() {
+  const header = document.getElementById('siteHeader') || document.querySelector('.site-header');
+  if (!header) return;
+
+  function updateScrollState() {
+    if (window.scrollY > 20) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+  updateScrollState();
 })();

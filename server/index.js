@@ -71,6 +71,10 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/admin.html'));
 });
 
+app.get('/palette-preview', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/palette-preview.html'));
+});
+
 // 404 Fallback
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, '../public/index.html'));

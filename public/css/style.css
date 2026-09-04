@@ -6,8 +6,6 @@
    - Ultra-Deep Refraction & Micro-Frosted Texture
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
 :root {
   /* Matte Obsidian Black Void */
   --bg-deep: #07080B;
@@ -103,6 +101,8 @@ main,
   z-index: 0;
   overflow: hidden;
   background: radial-gradient(circle at 50% 25%, #0B0D14 0%, #050608 100%);
+  contain: strict;
+  transform: translateZ(0);
 }
 
 /* Dynamic Atmospheric Luxury Studio Aurora & Caustic Engine */

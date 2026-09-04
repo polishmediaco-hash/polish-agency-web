@@ -16,35 +16,11 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // =========================================================================
-  // 1. VELVETY SMOOTH INERTIA SCROLLING (LENIS ENGINE)
+  // 1. PURE 120FPS NATIVE HARDWARE SCROLLING (ZERO INERTIA LAG)
   // =========================================================================
-  let lenisInstance = null;
-  if (typeof Lenis !== 'undefined' && !isTouch && !prefersReducedMotion) {
-    try {
-      lenisInstance = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Luxury exponential out curve
-        smoothWheel: true,
-        smoothTouch: false, // Preserve 100% native mobile touch response
-        wheelMultiplier: 0.95,
-        touchMultiplier: 1.5,
-        infinite: false
-      });
-      window.polishLenis = lenisInstance;
-
-      lenisInstance.on('scroll', () => {
-        window.dispatchEvent(new CustomEvent('polishLenisScroll'));
-      });
-
-      function lenisRaf(time) {
-        lenisInstance.raf(time);
-        requestAnimationFrame(lenisRaf);
-      }
-      requestAnimationFrame(lenisRaf);
-    } catch (err) {
-      console.warn('[POLISH Engine] Lenis initialization skipped:', err);
-    }
-  }
+  // Lenis virtual scroll interceptor removed to ensure 0ms input latency
+  // and 100% native trackpad/mouse wheel responsiveness across all devices.
+  const lenisInstance = null;
 
   // =========================================================================
   // 2. SCROLL VELOCITY-REACTIVE FLOATING 3D PRODUCTS PHYSICS
@@ -259,8 +235,18 @@
       color: holoColors[Math.floor(Math.random() * holoColors.length)]
     }));
 
+    let isScrolling = false;
+    let scrollPauseTimer = null;
+    window.addEventListener('scroll', () => {
+      isScrolling = true;
+      clearTimeout(scrollPauseTimer);
+      scrollPauseTimer = setTimeout(() => {
+        isScrolling = false;
+      }, 100);
+    }, { passive: true });
+
     function animateParticles() {
-      if (document.hidden) {
+      if (document.hidden || isScrolling) {
         requestAnimationFrame(animateParticles);
         return;
       }

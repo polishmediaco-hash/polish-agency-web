@@ -513,7 +513,7 @@ a {
 }
 
 /* ==========================================================================
-   DECOUPLED LUXURY HEADER ARCHITECTURE & DYNAMIC SCROLL MIST (CONCEPT 2 + 3)
+   DECOUPLED LUXURY HEADER ARCHITECTURE & GPU DYNAMIC ISLAND
    ========================================================================== */
 
 .site-header {
@@ -522,18 +522,34 @@ a {
   width: 100%;
   z-index: 1000;
   pointer-events: none;
-  padding: 16px 0;
-  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
   background: transparent !important;
   border-bottom: none !important;
   box-shadow: none !important;
 }
 
-.site-header.is-scrolled {
-  padding: 12px 0;
-  background: transparent !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
+/* Tier 1: Static Top Brand Bar (Visible at top of page) */
+.header-top-bar {
+  width: 100%;
+  padding: 16px 0;
+  pointer-events: auto;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.site-header.is-scrolled .header-top-bar {
+  opacity: 0;
+  transform: translate3d(0, -10px, 0);
+  pointer-events: none;
+}
+
+.top-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  direction: ltr !important;
 }
 
 .header-container {
@@ -547,64 +563,56 @@ a {
   direction: ltr !important;
 }
 
-/* ==========================================================================
-   AWARD-WINNING MORPHING DYNAMIC ISLAND CAPSULE (GPU ACCELERATED)
-   ========================================================================== */
-
+/* Tier 2: Floating Dynamic Island Capsule (GPU Composited, Fixed Geometry) */
 .dynamic-island-shell {
-  position: relative;
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translate3d(-50%, -65px, 0) scale(0.92);
+  opacity: 0;
+  pointer-events: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid transparent;
-  box-shadow: none;
-  direction: ltr !important; /* Strictly lock LTR across English, French, and Arabic RTL */
-  will-change: transform, max-width;
-  transform: translateZ(0);
-  transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              gap 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.35s ease,
-              border-color 0.35s ease,
-              box-shadow 0.35s ease,
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Scrolled Morph State: Velvety smooth glide into centered floating glass capsule */
-.site-header.is-scrolled .dynamic-island-shell {
-  max-width: 320px;
-  padding: 7px 18px;
   gap: 14px;
-  background: linear-gradient(135deg, rgba(16, 22, 36, 0.92) 0%, rgba(6, 10, 18, 0.96) 100%);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  border-color: rgba(0, 229, 255, 0.28);
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.82), 0 0 30px rgba(0, 229, 255, 0.14), inset 0 1px 1.5px rgba(255, 255, 255, 0.22);
-  pointer-events: auto;
-  transform: translateZ(0);
+  width: 330px;
+  max-width: calc(100vw - 32px);
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(16, 22, 36, 0.94) 0%, rgba(6, 10, 18, 0.98) 100%);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.85), 0 0 26px rgba(0, 229, 255, 0.16), inset 0 1px 1.5px rgba(255, 255, 255, 0.25);
+  direction: ltr !important;
+  will-change: transform, opacity;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* On subpages with the Home button, allow comfortable breathing room */
-.site-header.is-scrolled .dynamic-island-shell.has-center-home {
-  max-width: 395px;
+/* Subpages with Home button */
+.dynamic-island-shell.has-center-home {
+  width: 395px;
 }
 
-.site-header.is-scrolled .dynamic-island-shell:hover {
-  border-color: rgba(0, 229, 255, 0.45);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.88), 0 0 38px rgba(0, 229, 255, 0.24), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+/* Scrolled State: Drop down smoothly onto GPU compositor */
+.site-header.is-scrolled .dynamic-island-shell {
+  transform: translate3d(-50%, 0, 0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
 }
 
-/* Backward compatibility alias */
+.dynamic-island-shell:hover {
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.9), 0 0 36px rgba(0, 229, 255, 0.26), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
 .decoupled-header-layout {
-  /* Inherits from .dynamic-island-shell */
+  /* Backward compatibility alias */
 }
 
 /* ==========================================================================
@@ -639,22 +647,22 @@ a {
 
 .brand-logo-img {
   width: auto;
-  height: 40px; /* Prominent, crisp, uncompressed brand mark */
+  height: 40px;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   filter: none !important;
-  transition: transform 0.3s ease, height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s ease;
+}
+
+.brand-logo-img.island-capsule-logo {
+  height: 25px !important;
 }
 
 .brand-logo-link:hover .brand-logo-img,
 .brand-logo-pod:hover .brand-logo-img {
   transform: scale(1.08);
   filter: none !important;
-}
-
-.site-header.is-scrolled .brand-logo-img {
-  height: 28px; /* Clean, perfectly proportioned inside the island capsule */
 }
 
 /* ==========================================================================
@@ -2067,10 +2075,10 @@ body.is-rtl .whatsapp-float-container {
 
   /* Decoupled Header Mobile Tuning */
   .site-header {
-    padding: 8px 0;
+    padding: 0;
   }
-  .site-header.is-scrolled {
-    padding: 8px 0;
+  .header-top-bar {
+    padding: 10px 0;
   }
   .header-container {
     padding: 0 max(14px, env(safe-area-inset-right)) 0 max(14px, env(safe-area-inset-left));
@@ -2079,42 +2087,36 @@ body.is-rtl .whatsapp-float-container {
   .brand-logo-link {
     padding: 2px 4px;
   }
-  .brand-logo-img {
-    height: 30px;
+  .brand-logo-img.top-bar-logo {
+    height: 32px;
   }
 
-  /* Scrolled Dynamic Island on Mobile — High-FPS GPU-Accelerated Glide */
+  /* GPU-Accelerated Dynamic Island on Mobile */
   .dynamic-island-shell {
-    width: 100%;
-    max-width: 100%;
-    will-change: transform, max-width;
-    transform: translateZ(0);
-    transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                gap 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                background 0.35s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease,
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .site-header.is-scrolled .dynamic-island-shell {
-    width: 100%;
-    max-width: 245px;
+    top: 8px;
+    width: 255px;
+    max-width: calc(100vw - 20px);
     padding: 6px 14px;
     gap: 10px;
-    border-radius: 999px;
+    background: rgba(8, 12, 20, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transform: translate3d(-50%, -60px, 0) scale(0.92);
   }
-  .site-header.is-scrolled .dynamic-island-shell.has-center-home {
-    max-width: 295px;
+  .dynamic-island-shell.has-center-home {
+    width: 295px;
   }
-  .site-header.is-scrolled .brand-logo-img {
-    height: 24px;
+  .site-header.is-scrolled .dynamic-island-shell {
+    transform: translate3d(-50%, 0, 0) scale(1);
   }
-  .site-header.is-scrolled .header-home-btn {
+  .brand-logo-img.island-capsule-logo {
+    height: 21px !important;
+  }
+  .dynamic-island-shell .header-home-btn {
     padding: 4px 10px;
     font-size: 11px;
   }
-  .site-header.is-scrolled .dynamic-island-progress-track {
+  .dynamic-island-progress-track {
     left: 14px;
     right: 14px;
   }

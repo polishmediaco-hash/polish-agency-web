@@ -23,64 +23,11 @@
   const lenisInstance = null;
 
   // =========================================================================
-  // 2. SCROLL VELOCITY-REACTIVE FLOATING 3D PRODUCTS PHYSICS
+  // 2. NATIVE GPU FLOATING 3D BEAUTY PRODUCTS (ZERO JAVASCRIPT SCROLL LAG)
   // =========================================================================
-  const depthLayers = document.querySelectorAll('.beauty-depth-layer');
-  if (depthLayers.length > 0 && !prefersReducedMotion) {
-    let currentVelocity = 0;
-    let targetVelocity = 0;
-    let velocityRAF = null;
-
-    function applyVelocityTransform() {
-      // Smooth lerp decay for natural aerodynamic weight
-      currentVelocity += (targetVelocity - currentVelocity) * 0.12;
-      targetVelocity *= 0.88;
-
-      const tiltZ = Math.max(-10, Math.min(10, currentVelocity * 0.14));
-      const scaleY = 1 - Math.min(0.08, Math.abs(currentVelocity) * 0.0025);
-      const yLagFar = currentVelocity * 0.7;
-      const yLagMid = currentVelocity * 0.42;
-
-      depthLayers.forEach(layer => {
-        if (layer.classList.contains('beauty-depth-far')) {
-          layer.style.transform = `translate3d(0, ${yLagFar.toFixed(2)}px, 0) rotateZ(${tiltZ.toFixed(2)}deg) scaleY(${scaleY.toFixed(3)})`;
-        } else if (layer.classList.contains('beauty-depth-mid')) {
-          layer.style.transform = `translate3d(0, ${yLagMid.toFixed(2)}px, 0) rotateZ(${(tiltZ * 0.75).toFixed(2)}deg) scaleY(${scaleY.toFixed(3)})`;
-        } else {
-          layer.style.transform = `rotateZ(${(tiltZ * 0.4).toFixed(2)}deg)`;
-        }
-      });
-
-      if (Math.abs(currentVelocity) > 0.04 || Math.abs(targetVelocity) > 0.04) {
-        velocityRAF = requestAnimationFrame(applyVelocityTransform);
-      } else {
-        velocityRAF = null;
-        currentVelocity = 0;
-        depthLayers.forEach(layer => {
-          layer.style.transform = '';
-        });
-      }
-    }
-
-    if (lenisInstance) {
-      lenisInstance.on('scroll', (e) => {
-        targetVelocity = e.velocity || 0;
-        if (!velocityRAF) velocityRAF = requestAnimationFrame(applyVelocityTransform);
-      });
-    } else {
-      let lastY = window.scrollY;
-      let lastTime = performance.now();
-      window.addEventListener('scroll', () => {
-        const now = performance.now();
-        const dt = Math.max(1, now - lastTime);
-        const dy = window.scrollY - lastY;
-        targetVelocity = (dy / dt) * 14;
-        lastY = window.scrollY;
-        lastTime = now;
-        if (!velocityRAF) velocityRAF = requestAnimationFrame(applyVelocityTransform);
-      }, { passive: true });
-    }
-  }
+  // Background holographic 3D products are animated strictly via native GPU
+  // CSS keyframes (roamFarPerfume, roamFarSerum, roamMidLipstick, etc.),
+  // offloading 100% of motion from the main thread and scroll listeners.
 
   // =========================================================================
   // 3. TACTILE MAGNETIC ATTRACTION (DESKTOP ONLY)
@@ -198,10 +145,10 @@
   }
 
   // =========================================================================
-  // 6. AMBIENT PARTICLES ENGINE
+  // 6. AMBIENT PARTICLES ENGINE (DESKTOP ONLY — 0MS OVERHEAD)
   // =========================================================================
   const bgContainer = document.querySelector('.bg-canvas-wrap');
-  if (bgContainer && !prefersReducedMotion) {
+  if (bgContainer && !prefersReducedMotion && !isTouch) {
     const canvas = document.createElement('canvas');
     canvas.className = 'ambient-particles-canvas';
     bgContainer.appendChild(canvas);
@@ -216,10 +163,10 @@
       resizeTimeout = setTimeout(() => {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
-      }, 150);
+      }, 200);
     }, { passive: true });
 
-    const particleCount = isTouch ? 12 : 26;
+    const particleCount = 14;
     const holoColors = [
       'rgba(0, 229, 255, 0.45)',
       'rgba(235, 0, 255, 0.38)',
@@ -229,9 +176,9 @@
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 1.6 + 0.6,
-      speedX: (Math.random() - 0.5) * 0.22,
-      speedY: (Math.random() - 0.5) * 0.22,
+      size: Math.random() * 1.5 + 0.5,
+      speedX: (Math.random() - 0.5) * 0.18,
+      speedY: (Math.random() - 0.5) * 0.18,
       color: holoColors[Math.floor(Math.random() * holoColors.length)]
     }));
 
@@ -242,7 +189,7 @@
       clearTimeout(scrollPauseTimer);
       scrollPauseTimer = setTimeout(() => {
         isScrolling = false;
-      }, 100);
+      }, 120);
     }, { passive: true });
 
     function animateParticles() {
@@ -317,7 +264,7 @@
   }
 
   // =========================================================================
-  // 8. AWARD-WINNING MORPHING DYNAMIC ISLAND CONTROLLER (GPU COMPOSITED)
+  // 8. AWARD-WINNING MORPHING DYNAMIC ISLAND CONTROLLER (ZERO-REFLOW GPU ENGINE)
   // =========================================================================
   const siteHeader = document.getElementById('siteHeader') || document.querySelector('.site-header');
   const progressBar = document.querySelector('.dynamic-island-progress-bar');
@@ -325,21 +272,30 @@
   if (siteHeader) {
     let islandRAF = null;
     let isScrolled = false;
+    let cachedDocHeight = 1000;
+
+    function measureScrollMetrics() {
+      cachedDocHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    }
+    measureScrollMetrics();
+    window.addEventListener('resize', measureScrollMetrics, { passive: true });
+    window.addEventListener('load', measureScrollMetrics, { passive: true });
 
     function updateIslandState() {
       const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
       
-      // Clean responsive morph trigger
-      const shouldScroll = scrollY > 60;
-      if (shouldScroll !== isScrolled) {
-        isScrolled = shouldScroll;
-        siteHeader.classList.toggle('is-scrolled', isScrolled);
+      // Clean hysteresis threshold: drop down at 80px, return to top bar at 35px
+      if (!isScrolled && scrollY > 80) {
+        isScrolled = true;
+        siteHeader.classList.add('is-scrolled');
+      } else if (isScrolled && scrollY < 35) {
+        isScrolled = false;
+        siteHeader.classList.remove('is-scrolled');
       }
 
-      // GPU-accelerated progress update without parent style invalidation
+      // GPU-accelerated progress update without reflow
       if (progressBar && isScrolled) {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollY / docHeight)) : 0;
+        const progress = Math.min(1, Math.max(0, scrollY / cachedDocHeight));
         progressBar.style.transform = `scaleX(${progress.toFixed(3)})`;
       }
     }
@@ -420,7 +376,7 @@
     const introCaption = document.getElementById('introCaption');
     const introGlow = introOverlay.querySelector('.intro-glow-core');
     const introBackdrop = introOverlay.querySelector('.intro-backdrop');
-    const targetLogoImg = document.querySelector('.island-logo-zone .brand-logo-img');
+    const targetLogoImg = document.querySelector('.top-bar-logo') || document.querySelector('.island-logo-zone .brand-logo-img') || document.querySelector('.brand-logo-img');
     const islandShell = document.getElementById('dynamicIslandShell');
 
     // Temporarily hide the destination header logo so there's no visual clone

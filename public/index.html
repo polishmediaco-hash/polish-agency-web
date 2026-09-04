@@ -104,33 +104,41 @@
     </div>
   </div>
 
-  <!-- Decoupled to Morphing Dynamic Island Luxury Header -->
+  <!-- Top Luxury Header Architecture: Static Top Bar + Floating GPU Dynamic Island -->
   <header class="site-header" id="siteHeader">
-    <div class="header-container">
-      <div class="dynamic-island-shell decoupled-header-layout" id="dynamicIslandShell">
-        <!-- Element 1: Pure Borderless Luxury Brand Logo -->
-        <div class="island-logo-zone decoupled-logo-dock">
-          <a href="/" class="brand-logo-link brand-logo-pod" aria-label="POLISH Home" data-magnetic>
-            <img src="/assets/logo.png?v=12.0" alt="POLISH Logo" class="brand-logo-img" width="44" height="40" fetchpriority="high">
-          </a>
-        </div>
-
-        <!-- Center: Dynamic Island Micro-Status Dot (Visible on Scroll) -->
-        <div class="island-center-zone decoupled-center-dock">
-          <div class="island-scroll-indicator" aria-hidden="true">
-            <span class="island-pulse-dot"></span>
+    <!-- Tier 1: Static Top Brand Bar (Natural Unboxed Luxury Header) -->
+    <div class="header-top-bar">
+      <div class="header-container">
+        <div class="top-bar-inner">
+          <div class="island-logo-zone decoupled-logo-dock">
+            <a href="/" class="brand-logo-link brand-logo-pod" aria-label="POLISH Home" data-magnetic>
+              <img src="/assets/logo.png?v=12.0" alt="POLISH Logo" class="brand-logo-img top-bar-logo" width="44" height="40" fetchpriority="high">
+            </a>
+          </div>
+          <div class="island-lang-zone decoupled-lang-dock">
+            <div class="lang-toggle-slot"></div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Element 2: Independent Floating Language Switcher -->
-        <div class="island-lang-zone decoupled-lang-dock">
-          <div class="lang-toggle-slot"></div>
+    <!-- Tier 2: Floating Dynamic Island Capsule (GPU Composited, Fixed Geometry) -->
+    <div class="dynamic-island-shell" id="dynamicIslandShell">
+      <div class="island-logo-zone">
+        <a href="/" class="brand-logo-link" aria-label="POLISH Home" data-magnetic>
+          <img src="/assets/logo.png?v=12.0" alt="POLISH Logo" class="brand-logo-img island-capsule-logo" width="28" height="25">
+        </a>
+      </div>
+      <div class="island-center-zone">
+        <div class="island-scroll-indicator" aria-hidden="true">
+          <span class="island-pulse-dot"></span>
         </div>
-
-        <!-- Laser Scroll Depth Progress Hairline -->
-        <div class="dynamic-island-progress-track" aria-hidden="true">
-          <div class="dynamic-island-progress-bar"></div>
-        </div>
+      </div>
+      <div class="island-lang-zone">
+        <div class="lang-toggle-slot"></div>
+      </div>
+      <div class="dynamic-island-progress-track" aria-hidden="true">
+        <div class="dynamic-island-progress-bar"></div>
       </div>
     </div>
   </header>

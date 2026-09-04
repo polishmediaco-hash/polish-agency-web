@@ -2195,9 +2195,9 @@ body.is-rtl .footer-links-group {
 
 @media (max-width: 768px) {
   [dir="rtl"] .whatsapp-float-container {
-    bottom: 85px;
-    left: 18px;
-    right: auto;
+    bottom: 20px;
+    right: 16px !important;
+    left: auto !important;
   }
 }
 
@@ -2236,5 +2236,171 @@ body.is-rtl .footer-links-group {
     max-width: 74%;
   }
 }
+
+/* ==========================================================================
+   LENIS SMOOTH INERTIA SCROLL SUPPORT
+   ========================================================================== */
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   MAGNETIC LUXURY CURSOR (DESKTOP ONLY)
+   ========================================================================== */
+
+.luxury-cursor-dot,
+.luxury-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 99999;
+  will-change: transform, width, height, opacity;
+  transform: translate3d(-100px, -100px, 0);
+}
+
+.luxury-cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--brand-cyan);
+  box-shadow: 0 0 10px var(--brand-cyan), 0 0 20px rgba(0, 229, 255, 0.7);
+  margin-top: -3px;
+  margin-left: -3px;
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(0, 229, 255, 0.45);
+  background: rgba(0, 229, 255, 0.03);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.2), inset 0 0 10px rgba(0, 229, 255, 0.08);
+  margin-top: -18px;
+  margin-left: -18px;
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              height 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.25s ease,
+              opacity 0.25s ease;
+}
+
+/* Hovering interactive / magnetic elements */
+body.has-cursor-hover .luxury-cursor-ring {
+  width: 54px;
+  height: 54px;
+  margin-top: -27px;
+  margin-left: -27px;
+  border-color: rgba(0, 229, 255, 0.85);
+  background: rgba(0, 229, 255, 0.08);
+  box-shadow: 0 0 26px rgba(0, 229, 255, 0.5), inset 0 0 14px rgba(0, 229, 255, 0.22);
+}
+
+body.has-cursor-hover .luxury-cursor-dot {
+  transform: scale(0.65);
+  opacity: 0.6;
+}
+
+/* Clicking / Press state */
+body.is-cursor-clicking .luxury-cursor-ring {
+  transform: scale(0.82);
+  border-color: #FFFFFF;
+}
+
+/* Strictly hide on touch devices or small screens */
+@media (pointer: coarse), (max-width: 768px) {
+  .luxury-cursor-dot,
+  .luxury-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Magnetic Element Transitions */
+.brand-logo-pod,
+.header-home-btn,
+.lang-btn,
+.btn-cta,
+.cat-badge-card,
+[data-magnetic] {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   EDITORIAL KINETIC TYPOGRAPHY MASK REVEALS
+   ========================================================================== */
+
+.kinetic-title {
+  display: block;
+}
+
+.kinetic-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 4px;
+}
+
+.kinetic-text {
+  display: inline-block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  will-change: transform, opacity;
+}
+
+.kinetic-title.is-revealed .kinetic-line:nth-child(1) .kinetic-text {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.06s;
+}
+
+.kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.18s;
+}
+
+.kinetic-title.is-revealed .kinetic-line:nth-child(3) .kinetic-text {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.3s;
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-text {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   SCROLL VELOCITY-REACTIVE 3D PRODUCTS PHYSICS
+   ========================================================================== */
+
+.beauty-depth-layer {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
 
 

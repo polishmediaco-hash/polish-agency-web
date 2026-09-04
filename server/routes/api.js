@@ -166,6 +166,37 @@ router.get('/leads', (req, res) => {
   });
 });
 
+// PATCH /api/leads/:id (Update CRM stage, founder notes, priority)
+router.patch('/leads/:id', (req, res) => {
+  const authKey = req.headers['x-api-key'] || req.query.key;
+  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
+
+  if (authKey !== expectedKey) {
+    return res.status(401).json({ success: false, error: 'Unauthorized access.' });
+  }
+
+  const { id } = req.params;
+  const { status, notes, priority } = req.body || {};
+  const leads = readLeads();
+  const index = leads.findIndex(l => l.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ success: false, error: 'Application not found.' });
+  }
+
+  if (status !== undefined) leads[index].status = status;
+  if (notes !== undefined) leads[index].notes = notes;
+  if (priority !== undefined) leads[index].priority = priority;
+  leads[index].updatedAt = new Date().toISOString();
+
+  writeLeads(leads);
+  res.json({
+    success: true,
+    message: `Application ${id} updated successfully.`,
+    lead: leads[index]
+  });
+});
+
 // DELETE /api/leads/:id (Delete application from Admin Dashboard)
 router.delete('/leads/:id', (req, res) => {
   const authKey = req.headers['x-api-key'] || req.query.key;

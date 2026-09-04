@@ -564,26 +564,32 @@
       margin-bottom: 28px;
     }
 
-    /* Stats Row (Leads) */
+    /* ================= EXECUTIVE CRM PIPELINE & DOSSIER STYLES ================= */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
     }
     .stat-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 20px;
-      text-align: center;
+      padding: 16px 18px;
+      text-align: left;
       backdrop-filter: blur(20px);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .stat-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-1px);
     }
     .stat-val {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 800;
-      color: var(--cyan);
+      color: #FFFFFF;
       letter-spacing: -0.02em;
+      line-height: 1.1;
     }
     .stat-lbl {
       font-size: 11px;
@@ -591,25 +597,30 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--dim);
-      margin-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* Leads Filter Bar */
+    /* Leads Filter & CRM Controls Toolbar */
     .leads-controls-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
       margin-bottom: 18px;
       padding: 12px 18px;
       background: rgba(255, 255, 255, 0.025);
       border: 1px solid var(--card-border);
-      border-radius: 14px;
+      border-radius: 16px;
+      backdrop-filter: blur(20px);
     }
     .leads-filter-pills {
       display: flex;
       gap: 6px;
+      flex-wrap: wrap;
     }
     .filter-pill {
       padding: 6px 14px;
@@ -620,39 +631,125 @@
       color: var(--muted);
       border-radius: 20px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-pill:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
     }
     .filter-pill.active {
       background: var(--cyan-dim);
       color: var(--cyan);
-      border-color: rgba(0, 229, 255, 0.35);
+      border-color: rgba(0, 229, 255, 0.4);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.15);
+    }
+    .leads-action-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .search-input-wrap {
       position: relative;
-      flex: 1;
-      max-width: 320px;
-      min-width: 200px;
+      width: 290px;
+      min-width: 210px;
     }
     .search-input-wrap input {
       width: 100%;
-      padding: 7px 12px 7px 32px;
+      padding: 7px 12px 7px 34px;
       font-size: 12.5px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(0, 0, 0, 0.35);
       border: 1px solid var(--card-border);
       border-radius: 20px;
       color: #FFFFFF;
       outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
     .search-input-wrap input:focus {
       border-color: var(--cyan);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.18);
     }
     .search-input-wrap svg {
       position: absolute;
-      left: 10px;
+      left: 11px;
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none;
       color: var(--dim);
+    }
+
+    /* CRM Stage Dropdowns with Specific Tints */
+    .crm-stage-select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 5px 24px 5px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-radius: 20px;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s;
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 9px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    }
+    .stage-NEW, .stage-NEW_APPLICATION {
+      background-color: rgba(0, 229, 255, 0.1);
+      color: #00E5FF;
+      border: 1px solid rgba(0, 229, 255, 0.35);
+    }
+    .stage-IN_REVIEW {
+      background-color: rgba(96, 165, 250, 0.12);
+      color: #60A5FA;
+      border: 1px solid rgba(96, 165, 250, 0.35);
+    }
+    .stage-QUALIFIED {
+      background-color: rgba(16, 185, 129, 0.12);
+      color: #10B981;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .stage-CALL_SCHEDULED {
+      background-color: rgba(192, 132, 252, 0.12);
+      color: #C084FC;
+      border: 1px solid rgba(192, 132, 252, 0.4);
+    }
+    .stage-ONBOARDED {
+      background-color: rgba(245, 158, 11, 0.12);
+      color: #F59E0B;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    .stage-ARCHIVED {
+      background-color: rgba(148, 163, 184, 0.1);
+      color: #94A3B8;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+    .crm-stage-select option {
+      background: #090D14;
+      color: #FFFFFF;
+    }
+
+    /* Founder Note Logged Badge */
+    .note-logged-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #F59E0B;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-top: 5px;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Desktop Leads Table */
@@ -670,30 +767,45 @@
     table.leads-table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed;
     }
     table.leads-table thead th {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 14px 18px;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 14px 16px;
       font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--cyan);
       text-align: left;
+      border-bottom: 1px solid var(--card-border);
       white-space: nowrap;
     }
+    table.leads-table thead th:nth-child(1) { width: 25%; min-width: 220px; }
+    table.leads-table thead th:nth-child(2) { width: 14%; min-width: 120px; }
+    table.leads-table thead th:nth-child(3) { width: 16%; min-width: 150px; }
+    table.leads-table thead th:nth-child(4) { width: 23%; min-width: 210px; }
+    table.leads-table thead th:nth-child(5) { width: 10%; min-width: 100px; }
+    table.leads-table thead th:nth-child(6) { width: 12%; min-width: 110px; text-align: right; }
+
     table.leads-table tbody td {
-      padding: 16px 18px;
+      padding: 15px 16px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       font-size: 13px;
       color: var(--muted);
       vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    table.leads-table tbody tr {
+      cursor: pointer;
+      transition: background 0.15s ease;
     }
     table.leads-table tbody tr:hover td {
-      background: rgba(255, 255, 255, 0.015);
+      background: rgba(0, 229, 255, 0.025);
     }
 
-    /* Mobile Leads Cards View (Hidden on Desktop) */
+    /* Mobile Leads Cards View */
     .leads-mobile-list {
       display: none;
       flex-direction: column;
@@ -732,6 +844,137 @@
     }
     .wa-link-btn:hover {
       background: rgba(37, 211, 102, 0.2);
+    }
+
+    /* Executive Prospect Dossier Modal Overlay & Dialog */
+    .prospect-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(4, 6, 10, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .prospect-modal-overlay.active {
+      display: flex;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .prospect-dialog {
+      background: #090D14;
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 880px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 229, 255, 0.12);
+    }
+    .prospect-dialog-header {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .prospect-dialog-body {
+      padding: 26px 28px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+    .prospect-section-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .prospect-section-card:last-child {
+      margin-bottom: 0;
+    }
+    .prospect-section-title {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .prospect-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+    .prospect-info-row:last-child {
+      margin-bottom: 0;
+    }
+    .prospect-info-label {
+      color: var(--dim);
+      font-weight: 600;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .prospect-info-val {
+      color: #FFFFFF;
+      font-weight: 700;
+      text-align: right;
+      word-break: break-word;
+    }
+    .prospect-notes-area {
+      width: 100%;
+      min-height: 130px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #FFFFFF;
+      font-size: 13px;
+      line-height: 1.6;
+      resize: vertical;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .prospect-notes-area:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
+    }
+    .modal-close-btn {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover {
+      border-color: var(--cyan);
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.05);
     }
 
     /* Tab Panes */
@@ -784,18 +1027,41 @@
         padding: 18px 16px;
       }
       .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
       }
       .stat-card {
-        padding: 12px 6px;
+        padding: 14px 12px;
       }
       .stat-val {
-        font-size: 22px;
+        font-size: 24px;
       }
       .stat-lbl {
-        font-size: 9px;
-        letter-spacing: 0.04em;
+        font-size: 10px;
+        letter-spacing: 0.05em;
+      }
+      .leads-controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .leads-filter-pills {
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .leads-filter-pills::-webkit-scrollbar { display: none; }
+      .search-input-wrap {
+        width: 100%;
+        max-width: none;
+      }
+      .prospect-dialog-body {
+        grid-template-columns: 1fr;
+        padding: 18px;
+        gap: 16px;
+      }
+      .prospect-dialog-header {
+        padding: 16px 18px;
       }
       .form-input, .form-textarea {
         font-size: 16px;
@@ -1312,59 +1578,95 @@
       </div>
     </section>
 
-    <!-- ================= TAB 3: LEADS DOSSIERS (WITH FILTERS & DELETE) ================= -->
+    <!-- ================= TAB 3: PROSPECTS CRM & INBOUND DOSSIERS ================= -->
     <section id="leadsTabPane" class="tab-pane">
       <div class="page-header">
         <div>
-          <h1>Inbound Growth Applications</h1>
-          <p>Real-time dossiers from prospective beauty brands and creator network applicants.</p>
+          <h1>Executive Prospects CRM</h1>
+          <p>Real-time intake dossiers, deal pipeline stages, and strategic founder diagnostics.</p>
         </div>
-        <button class="btn-ghost" onclick="refreshLeads()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-          Refresh Dossiers
-        </button>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-ghost" onclick="exportLeadsCsv()" title="Export filtered prospects to CSV">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export CSV
+          </button>
+          <button class="btn-ghost" onclick="refreshLeads()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Refresh Pipeline
+          </button>
+        </div>
       </div>
 
-      <!-- Stats Metric Cards -->
+      <!-- Pipeline Metric KPI Cards -->
       <div class="stats-grid" id="leadsMetrics" style="display: none;">
         <div class="stat-card">
           <div class="stat-val" id="statTotalCount">0</div>
-          <div class="stat-lbl">Total Submissions</div>
+          <div class="stat-lbl">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Total Prospects
+          </div>
         </div>
         <div class="stat-card">
-          <div class="stat-val" id="statBrandCount" style="color: #60A5FA;">0</div>
-          <div class="stat-lbl">Brand Applications</div>
+          <div class="stat-val" id="statQualifiedCount" style="color: #10B981;">0</div>
+          <div class="stat-lbl" style="color: #10B981;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Qualified Deals
+          </div>
         </div>
         <div class="stat-card">
-          <div class="stat-val" id="statCreatorCount" style="color: #C084FC;">0</div>
-          <div class="stat-lbl">Creator Applications</div>
+          <div class="stat-val" id="statCallsCount" style="color: #C084FC;">0</div>
+          <div class="stat-lbl" style="color: #C084FC;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Calls Scheduled
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="statBrandCount" style="color: #00E5FF;">0</div>
+          <div class="stat-lbl" style="color: #00E5FF;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Brand Partners
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="statCreatorCount" style="color: #F43F5E;">0</div>
+          <div class="stat-lbl" style="color: #F43F5E;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            Creator Network
+          </div>
         </div>
       </div>
 
-      <!-- Filter and Search Bar -->
+      <!-- CRM Controls & Filter Toolbar -->
       <div class="leads-controls-bar" id="leadsControlsBar" style="display: none;">
         <div class="leads-filter-pills">
-          <button class="filter-pill active" id="filterBtnAll" onclick="setLeadsFilter('ALL')">All Dossiers</button>
-          <button class="filter-pill" id="filterBtnBrands" onclick="setLeadsFilter('BRANDS')">Brands Only</button>
-          <button class="filter-pill" id="filterBtnCreators" onclick="setLeadsFilter('CREATORS')">Creators Only</button>
+          <button class="filter-pill active" id="filterBtnAll" onclick="setLeadsFilter('ALL')">All Pipeline</button>
+          <button class="filter-pill" id="filterBtnNew" onclick="setLeadsFilter('NEW')">New</button>
+          <button class="filter-pill" id="filterBtnReview" onclick="setLeadsFilter('IN_REVIEW')">Under Review</button>
+          <button class="filter-pill" id="filterBtnQualified" onclick="setLeadsFilter('QUALIFIED')">Qualified</button>
+          <button class="filter-pill" id="filterBtnCalls" onclick="setLeadsFilter('CALL_SCHEDULED')">Calls</button>
+          <button class="filter-pill" id="filterBtnBrands" onclick="setLeadsFilter('BRANDS')">Brands</button>
+          <button class="filter-pill" id="filterBtnCreators" onclick="setLeadsFilter('CREATORS')">Creators</button>
         </div>
-        <div class="search-input-wrap">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="leadsSearchInput" placeholder="Filter by applicant, brand, or ID..." oninput="handleLeadsSearch(this.value)">
+        <div class="leads-action-tools">
+          <div class="search-input-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="leadsSearchInput" placeholder="Search applicant, brand, goal, notes..." oninput="handleLeadsSearch(this.value)">
+          </div>
         </div>
       </div>
 
-      <!-- Desktop View: Full Table with Delete Action -->
+      <!-- Desktop View: Modern High-Ticket CRM Table -->
       <div class="leads-table-card">
         <div class="table-container">
           <table class="leads-table">
             <thead>
               <tr>
-                <th>Date &amp; ID</th>
-                <th>Applicant / Brand</th>
-                <th>Category &amp; Role</th>
-                <th>Diagnostic &amp; Goals</th>
-                <th>Actions</th>
+                <th>Prospect &amp; Brand</th>
+                <th>Category</th>
+                <th>CRM Stage</th>
+                <th>Growth Diagnostic &amp; Notes</th>
+                <th>Submitted</th>
+                <th style="text-align: right;">Actions</th>
               </tr>
             </thead>
             <tbody id="desktopLeadsTbody"></tbody>
@@ -1372,10 +1674,138 @@
         </div>
       </div>
 
-      <!-- Mobile View: Responsive Luxury Cards with Delete Action -->
+      <!-- Mobile View: Responsive Luxury Cards -->
       <div class="leads-mobile-list" id="mobileLeadsList"></div>
 
     </section>
+
+    <!-- ================= EXECUTIVE PROSPECT DETAIL DOSSIER MODAL ================= -->
+    <div id="prospectModal" class="prospect-modal-overlay" onclick="handleModalOverlayClick(event)">
+      <div class="prospect-dialog" role="dialog" aria-modal="true" aria-labelledby="modalProspectTitle">
+        
+        <!-- Modal Sticky Header -->
+        <div class="prospect-dialog-header">
+          <div>
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); display: flex; align-items: center; gap: 8px;">
+              <span>EXECUTIVE DOSSIER</span>
+              <span style="color: var(--dim);">•</span>
+              <span id="modalProspectId" style="color: var(--muted); font-family: monospace;"></span>
+            </div>
+            <h2 id="modalProspectTitle" style="font-size: 20px; font-weight: 800; color: #FFFFFF; margin-top: 4px; letter-spacing: -0.01em;"></h2>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div id="modalStageWrapper"></div>
+            <button class="modal-close-btn" onclick="closeProspectModal()" title="Close Dossier (Esc)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal 2-Column Body -->
+        <div class="prospect-dialog-body">
+          
+          <!-- Column 1: Commercial DNA & Intake Diagnostic -->
+          <div>
+            <!-- Identity & Links Card -->
+            <div class="prospect-section-card">
+              <div class="prospect-section-title">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Commercial DNA &amp; Contact
+              </div>
+              <div class="prospect-info-row">
+                <span class="prospect-info-label">Applicant Name</span>
+                <span class="prospect-info-val" id="modalFullName"></span>
+              </div>
+              <div class="prospect-info-row">
+                <span class="prospect-info-label">Brand / Project</span>
+                <span class="prospect-info-val" id="modalBrandName" style="color: var(--cyan);"></span>
+              </div>
+              <div class="prospect-info-row">
+                <span class="prospect-info-label">Title / Role</span>
+                <span class="prospect-info-val" id="modalRole"></span>
+              </div>
+              <div class="prospect-info-row">
+                <span class="prospect-info-label">Category</span>
+                <span class="prospect-info-val" id="modalCategory"></span>
+              </div>
+              <div class="prospect-info-row">
+                <span class="prospect-info-label">Official Website</span>
+                <span class="prospect-info-val" id="modalWebsite"></span>
+              </div>
+              <div class="prospect-info-row">
+                <span class="prospect-info-label">Social Channel</span>
+                <span class="prospect-info-val" id="modalSocial"></span>
+              </div>
+              <div class="prospect-info-row">
+                <span class="prospect-info-label">Direct Phone / WA</span>
+                <span class="prospect-info-val" id="modalPhone"></span>
+              </div>
+              <div class="prospect-info-row">
+                <span class="prospect-info-label">Logged At</span>
+                <span class="prospect-info-val" id="modalSubmittedAt" style="color: var(--dim); font-size: 12px;"></span>
+              </div>
+            </div>
+
+            <!-- Application Diagnostic Card -->
+            <div class="prospect-section-card">
+              <div class="prospect-section-title">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Intake Growth Diagnostic
+              </div>
+              <div style="margin-bottom: 14px;">
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">Current Marketing History &amp; Baseline</div>
+                <div id="modalMarketingHistory" style="font-size: 13.5px; color: #E2E8F0; line-height: 1.6; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);"></div>
+              </div>
+              <div>
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">90-Day Revenue &amp; Growth Objective</div>
+                <div id="modalPrimaryGoal" style="font-size: 13.5px; color: #E2E8F0; line-height: 1.6; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Founder Strategic Notes & Direct Action Center -->
+          <div>
+            <!-- Founder Private Strategy Notes -->
+            <div class="prospect-section-card">
+              <div class="prospect-section-title" style="color: #F59E0B;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Founder Private Strategy Notes
+              </div>
+              <p style="font-size: 12px; color: var(--dim); margin-bottom: 10px;">
+                Record confidential call insights, audit findings, retainer quotes, or next steps. Saved permanently to the database.
+              </p>
+              <textarea id="modalNotesInput" class="prospect-notes-area" placeholder="e.g., Call completed. Retainer proposal sent for $4,500/mo. Target launch Nov 1st..."></textarea>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span id="modalNotesSaveStatus" style="font-size: 11.5px; color: var(--dim);"></span>
+                <button class="btn-ghost" style="padding: 6px 14px; font-size: 12px; color: #F59E0B; border-color: rgba(245, 158, 11, 0.35);" onclick="saveModalFounderNotes()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                  Save Notes
+                </button>
+              </div>
+            </div>
+
+            <!-- Direct Outreach Action Center -->
+            <div class="prospect-section-card">
+              <div class="prospect-section-title">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Founder Action Center
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <a id="modalWhatsAppBtn" href="#" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 10px 16px; font-size: 13px; justify-content: center;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                  <span>Launch WhatsApp Outreach</span>
+                </a>
+                <button class="btn-danger" style="padding: 9px 16px; font-size: 12.5px; justify-content: center; width: 100%; border-radius: 20px;" onclick="deleteModalProspect()">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                  <span>Delete Application from CRM</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- ================= TAB 4: INSTANT NOTIFICATIONS ================= -->
     <section id="notifTabPane" class="tab-pane">
@@ -1457,8 +1887,10 @@
   }
 
   // ── Authentication ─────────────────────────────────────────
-  async function verifyAndUnlock() {
-    const key = document.getElementById('adminSecurityKey').value.trim();
+  // ── Authentication with Session Persistence ─────────────────
+  async function verifyAndUnlock(providedKey) {
+    const inputEl = document.getElementById('adminSecurityKey');
+    const key = providedKey || (inputEl ? inputEl.value.trim() : '');
     if (!key) {
       notifyToast('Please enter your security key.', true);
       return;
@@ -1470,10 +1902,12 @@
 
       if (!res.ok || !data.success) {
         notifyToast('Invalid administrative key.', true);
+        sessionStorage.removeItem('polish_admin_key');
         return;
       }
 
       activeAdminKey = key;
+      sessionStorage.setItem('polish_admin_key', key);
       document.getElementById('authGateView').style.display = 'none';
       document.getElementById('dashboardAppView').style.display = 'block';
       document.getElementById('mainNavTabs').style.display = 'flex';
@@ -1491,12 +1925,18 @@
 
   function logoutAdmin() {
     activeAdminKey = '';
+    sessionStorage.removeItem('polish_admin_key');
     document.getElementById('authGateView').style.display = 'block';
     document.getElementById('dashboardAppView').style.display = 'none';
     document.getElementById('mainNavTabs').style.display = 'none';
     document.getElementById('navActions').style.display = 'none';
     document.getElementById('adminSecurityKey').value = '';
   }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = sessionStorage.getItem('polish_admin_key');
+    if (saved) verifyAndUnlock(saved);
+  });
 
   // ── Main Tab Switching ────────────────────────────────────
   function switchMainTab(paneId) {
@@ -1877,7 +2317,77 @@
     notifyToast('WhatsApp messages updated live across all languages!');
   }
 
-  // ── Leads Management, Search, Filters & Delete ────────────
+  // ── CRM Pipeline Stages, Leads Management, Search, Filters & Detail Modal ────────────
+  let activeModalLeadId = null;
+
+  function normalizeStage(raw) {
+    if (!raw) return 'NEW';
+    const s = String(raw).toUpperCase().trim();
+    if (s === 'IN_REVIEW' || s === 'UNDER_REVIEW') return 'IN_REVIEW';
+    if (s === 'QUALIFIED' || s === 'QUALIFIED_DEAL') return 'QUALIFIED';
+    if (s === 'CALL_SCHEDULED' || s === 'CALL' || s === 'MEETING') return 'CALL_SCHEDULED';
+    if (s === 'ONBOARDED' || s === 'PARTNER_ONBOARDED') return 'ONBOARDED';
+    if (s === 'ARCHIVED') return 'ARCHIVED';
+    return 'NEW';
+  }
+
+  function getStageLabel(stage) {
+    switch (stage) {
+      case 'IN_REVIEW': return 'Under Review';
+      case 'QUALIFIED': return 'Qualified Deal';
+      case 'CALL_SCHEDULED': return 'Call Scheduled';
+      case 'ONBOARDED': return 'Partner Onboarded';
+      case 'ARCHIVED': return 'Archived';
+      default: return 'New Inbound';
+    }
+  }
+
+  function renderStageSelect(leadId, rawStage, isModal = false) {
+    const stage = normalizeStage(rawStage);
+    return `
+      <select class="crm-stage-select stage-${stage}" data-lead-id="${esc(leadId)}" onchange="updateLeadStage('${esc(leadId)}', this.value, ${isModal})" onclick="event.stopPropagation()">
+        <option value="NEW" ${stage === 'NEW' ? 'selected' : ''}>New Inbound</option>
+        <option value="IN_REVIEW" ${stage === 'IN_REVIEW' ? 'selected' : ''}>Under Review</option>
+        <option value="QUALIFIED" ${stage === 'QUALIFIED' ? 'selected' : ''}>Qualified Deal</option>
+        <option value="CALL_SCHEDULED" ${stage === 'CALL_SCHEDULED' ? 'selected' : ''}>Call Scheduled</option>
+        <option value="ONBOARDED" ${stage === 'ONBOARDED' ? 'selected' : ''}>Partner Onboarded</option>
+        <option value="ARCHIVED" ${stage === 'ARCHIVED' ? 'selected' : ''}>Archived</option>
+      </select>
+    `;
+  }
+
+  async function updateLeadStage(leadId, newStage, fromModal = false) {
+    try {
+      const stage = normalizeStage(newStage);
+      const targetLead = rawLeadsData.find(l => l.id === leadId);
+      if (targetLead) {
+        targetLead.status = stage;
+        targetLead.updatedAt = new Date().toISOString();
+      }
+
+      const res = await fetch(`/api/leads/${encodeURIComponent(leadId)}?key=${encodeURIComponent(activeAdminKey)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': activeAdminKey },
+        body: JSON.stringify({ status: stage })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        notifyToast('Error saving stage: ' + (data.error || 'Failed'), true);
+        return;
+      }
+
+      notifyToast(`Stage updated: ${getStageLabel(stage)}`);
+      renderLeadsUI();
+
+      if (fromModal && activeModalLeadId === leadId) {
+        const modalStageWrap = document.getElementById('modalStageWrapper');
+        if (modalStageWrap) modalStageWrap.innerHTML = renderStageSelect(leadId, stage, true);
+      }
+    } catch (err) {
+      notifyToast('Network error: ' + err.message, true);
+    }
+  }
+
   async function refreshLeads() {
     try {
       const res = await fetch(`/api/leads?key=${encodeURIComponent(activeAdminKey)}`);
@@ -1888,6 +2398,7 @@
       }
       rawLeadsData = data.leads || [];
       renderLeadsUI();
+      notifyToast('Pipeline refreshed.');
     } catch (err) {
       notifyToast('Leads error: ' + err.message, true);
     }
@@ -1895,9 +2406,19 @@
 
   function setLeadsFilter(filterType) {
     currentFilter = filterType;
-    document.getElementById('filterBtnAll')?.classList.toggle('active', filterType === 'ALL');
-    document.getElementById('filterBtnBrands')?.classList.toggle('active', filterType === 'BRANDS');
-    document.getElementById('filterBtnCreators')?.classList.toggle('active', filterType === 'CREATORS');
+    document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+    const map = {
+      'ALL': 'filterBtnAll',
+      'NEW': 'filterBtnNew',
+      'IN_REVIEW': 'filterBtnReview',
+      'QUALIFIED': 'filterBtnQualified',
+      'CALL_SCHEDULED': 'filterBtnCalls',
+      'BRANDS': 'filterBtnBrands',
+      'CREATORS': 'filterBtnCreators'
+    };
+    if (map[filterType]) {
+      document.getElementById(map[filterType])?.classList.add('active');
+    }
     renderLeadsUI();
   }
 
@@ -1918,7 +2439,9 @@
 
       if (res.ok && data.success) {
         notifyToast(`Application ${leadId} deleted.`);
-        refreshLeads();
+        rawLeadsData = rawLeadsData.filter(l => l.id !== leadId);
+        if (activeModalLeadId === leadId) closeProspectModal();
+        renderLeadsUI();
       } else {
         notifyToast('Delete error: ' + (data.error || 'Failed'), true);
       }
@@ -1936,6 +2459,230 @@
     return 'https://instagram.com/' + encodeURIComponent(val);
   }
 
+  function openProspectModal(leadId) {
+    const lead = rawLeadsData.find(l => l.id === leadId);
+    if (!lead) return;
+
+    activeModalLeadId = leadId;
+    const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
+    const stage = normalizeStage(lead.status);
+
+    document.getElementById('modalProspectId').textContent = lead.id;
+    document.getElementById('modalProspectTitle').textContent = isCreator ? lead.name : (lead.brandName || lead.fullName || 'Confidential Brand');
+    document.getElementById('modalFullName').textContent = lead.fullName || lead.name || '—';
+    document.getElementById('modalBrandName').textContent = lead.brandName || (isCreator ? 'Creator Network' : '—');
+    document.getElementById('modalRole').textContent = lead.role || (isCreator ? 'UGC Creator / Partner' : 'Founder / CEO');
+    document.getElementById('modalCategory').textContent = lead.businessCategory || (isCreator ? 'Creator & UGC' : 'Cosmetics Brand');
+
+    // Website
+    const siteWrap = document.getElementById('modalWebsite');
+    if (lead.websiteUrl && lead.websiteUrl !== 'Not provided') {
+      let url = lead.websiteUrl.startsWith('http') ? lead.websiteUrl : 'https://' + lead.websiteUrl;
+      siteWrap.innerHTML = `<a href="${esc(url)}" target="_blank" rel="noopener" style="color:var(--cyan); text-decoration:underline; display:inline-flex; align-items:center; gap:4px;">${esc(lead.websiteUrl)} <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>`;
+    } else {
+      siteWrap.innerHTML = `<span style="color:var(--dim);">Not provided</span>`;
+    }
+
+    // Social
+    const socialWrap = document.getElementById('modalSocial');
+    const cleanSocial = formatSocialUrl(lead.socialLink);
+    if (cleanSocial) {
+      socialWrap.innerHTML = `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" style="color:#60A5FA; text-decoration:underline; display:inline-flex; align-items:center; gap:4px;">${esc(lead.socialLink)} <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>`;
+    } else {
+      socialWrap.innerHTML = `<span style="color:var(--dim);">—</span>`;
+    }
+
+    // Phone / WhatsApp
+    const phoneWrap = document.getElementById('modalPhone');
+    const rawPhone = lead.phone || '';
+    const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+    if (cleanPhone) {
+      phoneWrap.innerHTML = `<a href="https://wa.me/${cleanPhone}" target="_blank" rel="noopener" style="color:#25D366; text-decoration:underline;">+${cleanPhone}</a>`;
+    } else {
+      phoneWrap.innerHTML = `<span style="color:var(--dim);">${esc(rawPhone || 'Not provided')}</span>`;
+    }
+
+    // Date
+    const d = new Date(lead.submittedAt);
+    document.getElementById('modalSubmittedAt').textContent = d.toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+    // Answers / Diagnostic
+    document.getElementById('modalMarketingHistory').textContent = isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `Portfolio / Showreel: ${lead.portfolio}` : 'Creator Network UGC Applicant') : (lead.marketingHistory || 'No baseline specified.');
+    document.getElementById('modalPrimaryGoal').textContent = isCreator ? (lead.portfolio || 'Creator Network Partnership') : (lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? lead.primaryGoal : 'Scale profitable acquisition & UGC volume.');
+
+    // Stage Selector in Modal
+    document.getElementById('modalStageWrapper').innerHTML = renderStageSelect(leadId, stage, true);
+
+    // Notes
+    document.getElementById('modalNotesInput').value = lead.notes || '';
+    document.getElementById('modalNotesSaveStatus').textContent = lead.updatedAt ? `Last saved: ${new Date(lead.updatedAt).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}` : '';
+
+    // WhatsApp outreach link
+    const waBtn = document.getElementById('modalWhatsAppBtn');
+    let outreachMsg = '';
+    if (isCreator) {
+      outreachMsg = `Hi ${lead.name}, this is POLISH Media Co. We reviewed your UGC creator dossier (Ref: ${lead.id}) and would love to discuss casting for our upcoming beauty and cosmetics partner campaigns.`;
+    } else {
+      const bName = lead.brandName || 'your brand';
+      outreachMsg = `Hi ${lead.fullName || 'there'}, this is POLISH Media Co. I reviewed your ${bName} growth dossier (Ref: ${lead.id}) and would love to discuss accelerating your acquisition loops. When are you available for a brief call?`;
+    }
+    const targetPhone = cleanPhone || '213662417761';
+    waBtn.href = `https://wa.me/${targetPhone}?text=${encodeURIComponent(outreachMsg)}`;
+
+    document.getElementById('prospectModal').classList.add('active');
+  }
+
+  function closeProspectModal() {
+    document.getElementById('prospectModal')?.classList.remove('active');
+    activeModalLeadId = null;
+  }
+
+  function handleModalOverlayClick(e) {
+    if (e.target.id === 'prospectModal') {
+      closeProspectModal();
+    }
+  }
+
+  // Keyboard shortcut: Esc to close modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.getElementById('prospectModal')?.classList.contains('active')) {
+      closeProspectModal();
+    }
+  });
+
+  async function saveModalFounderNotes() {
+    if (!activeModalLeadId) return;
+    const lead = rawLeadsData.find(l => l.id === activeModalLeadId);
+    const notes = document.getElementById('modalNotesInput').value.trim();
+    const statusLabel = document.getElementById('modalNotesSaveStatus');
+
+    try {
+      statusLabel.textContent = 'Saving notes...';
+      const res = await fetch(`/api/leads/${encodeURIComponent(activeModalLeadId)}?key=${encodeURIComponent(activeAdminKey)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': activeAdminKey },
+        body: JSON.stringify({ notes })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        if (lead) {
+          lead.notes = notes;
+          lead.updatedAt = new Date().toISOString();
+        }
+        statusLabel.textContent = 'Notes saved permanently.';
+        notifyToast('Founder notes saved.');
+        renderLeadsUI();
+      } else {
+        statusLabel.textContent = 'Error saving notes.';
+        notifyToast('Save error: ' + (data.error || 'Failed'), true);
+      }
+    } catch (err) {
+      statusLabel.textContent = 'Save error.';
+      notifyToast('Network error: ' + err.message, true);
+    }
+  }
+
+  function deleteModalProspect() {
+    if (!activeModalLeadId) return;
+    deleteLead(activeModalLeadId);
+  }
+
+  function exportLeadsCsv() {
+    if (!rawLeadsData.length) {
+      notifyToast('No prospects available to export.', true);
+      return;
+    }
+
+    const filtered = getFilteredLeads();
+    if (!filtered.length) {
+      notifyToast('No prospects match current filter.', true);
+      return;
+    }
+
+    const headers = [
+      'Lead ID',
+      'Submitted Date',
+      'Type',
+      'Applicant Name',
+      'Brand Name',
+      'Category',
+      'Role / Title',
+      'CRM Stage',
+      'Official Website',
+      'Social Profile',
+      'Phone Number',
+      'Marketing History',
+      'Primary Goal',
+      'Founder Notes',
+      'Last Updated'
+    ];
+
+    const rows = filtered.map(l => {
+      const isCreator = l.type === 'CREATOR_PARTNERSHIP';
+      return [
+        l.id,
+        l.submittedAt || '',
+        isCreator ? 'Creator Network' : 'Brand Growth Partnership',
+        isCreator ? (l.name || '') : (l.fullName || ''),
+        l.brandName || (isCreator ? 'Creator Network' : ''),
+        l.businessCategory || (isCreator ? 'Creator / UGC' : 'Brand'),
+        l.role || (isCreator ? 'UGC Creator' : 'Founder / CEO'),
+        normalizeStage(l.status),
+        l.websiteUrl || '',
+        l.socialLink || '',
+        l.phone || '',
+        l.marketingHistory || l.portfolio || '',
+        l.primaryGoal || '',
+        l.notes || '',
+        l.updatedAt || ''
+      ].map(val => `"${String(val || '').replace(/"/g, '""')}"`);
+    });
+
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(r => r.join(','))].join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const today = new Date().toISOString().split('T')[0];
+    link.href = url;
+    link.setAttribute('download', `polish_crm_prospects_${today}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    notifyToast(`Exported ${filtered.length} prospects to CSV.`);
+  }
+
+  function getFilteredLeads() {
+    return rawLeadsData.filter(lead => {
+      const stage = normalizeStage(lead.status);
+      if (currentFilter === 'NEW' && stage !== 'NEW') return false;
+      if (currentFilter === 'IN_REVIEW' && stage !== 'IN_REVIEW') return false;
+      if (currentFilter === 'QUALIFIED' && stage !== 'QUALIFIED') return false;
+      if (currentFilter === 'CALL_SCHEDULED' && stage !== 'CALL_SCHEDULED') return false;
+      if (currentFilter === 'BRANDS' && lead.type === 'CREATOR_PARTNERSHIP') return false;
+      if (currentFilter === 'CREATORS' && lead.type !== 'CREATOR_PARTNERSHIP') return false;
+
+      if (currentSearch) {
+        const text = [
+          lead.id,
+          lead.fullName,
+          lead.name,
+          lead.brandName,
+          lead.socialLink,
+          lead.websiteUrl,
+          lead.businessCategory,
+          lead.role,
+          lead.marketingHistory,
+          lead.primaryGoal,
+          lead.notes,
+          lead.status
+        ].filter(Boolean).join(' ').toLowerCase();
+        if (!text.includes(currentSearch)) return false;
+      }
+      return true;
+    });
+  }
+
   function renderLeadsUI() {
     const tbody = document.getElementById('desktopLeadsTbody');
     const mobileList = document.getElementById('mobileLeadsList');
@@ -1946,15 +2693,15 @@
     navBadge.textContent = rawLeadsData.length;
 
     if (!rawLeadsData.length) {
-      const emptyHtml = `<tr><td colspan="5" style="text-align:center; padding: 60px 20px; color: var(--dim);">
+      const emptyHtml = `<tr><td colspan="6" style="text-align:center; padding: 60px 20px; color: var(--dim);">
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom:12px; opacity:0.8;"><path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7z"/><path d="M5.45 5.11L2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-        <div style="font-weight:700; color:#FFFFFF; font-size:15px;">No applications logged yet</div>
-        <div style="font-size:12.5px; margin-top:4px;">New brand and creator dossiers will appear here instantly.</div>
+        <div style="font-weight:700; color:#FFFFFF; font-size:15px;">No prospects logged yet</div>
+        <div style="font-size:12.5px; margin-top:4px;">New brand and creator dossiers will appear here in real-time.</div>
       </td></tr>`;
       tbody.innerHTML = emptyHtml;
       mobileList.innerHTML = `<div style="text-align:center; padding: 50px 20px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom:8px; opacity:0.8;"><path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7z"/><path d="M5.45 5.11L2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-        <div style="font-weight:700; color:#FFFFFF;">No applications logged yet</div>
+        <div style="font-weight:700; color:#FFFFFF;">No prospects logged yet</div>
       </div>`;
       metricsRow.style.display = 'none';
       controlsBar.style.display = 'none';
@@ -1964,63 +2711,69 @@
     metricsRow.style.display = 'grid';
     controlsBar.style.display = 'flex';
 
+    // Compute pipeline counts
+    const totalCount = rawLeadsData.length;
+    const qualifiedCount = rawLeadsData.filter(l => normalizeStage(l.status) === 'QUALIFIED').length;
+    const callsCount = rawLeadsData.filter(l => normalizeStage(l.status) === 'CALL_SCHEDULED').length;
     const brandsCount = rawLeadsData.filter(l => l.type !== 'CREATOR_PARTNERSHIP').length;
     const creatorsCount = rawLeadsData.filter(l => l.type === 'CREATOR_PARTNERSHIP').length;
-    document.getElementById('statTotalCount').textContent = rawLeadsData.length;
+
+    document.getElementById('statTotalCount').textContent = totalCount;
+    document.getElementById('statQualifiedCount').textContent = qualifiedCount;
+    document.getElementById('statCallsCount').textContent = callsCount;
     document.getElementById('statBrandCount').textContent = brandsCount;
     document.getElementById('statCreatorCount').textContent = creatorsCount;
 
-    // Filter by type
-    let filtered = rawLeadsData.filter(lead => {
-      if (currentFilter === 'BRANDS' && lead.type === 'CREATOR_PARTNERSHIP') return false;
-      if (currentFilter === 'CREATORS' && lead.type !== 'CREATOR_PARTNERSHIP') return false;
-      return true;
-    });
-
-    // Filter by search query
-    if (currentSearch) {
-      filtered = filtered.filter(l => {
-        const text = [l.id, l.fullName, l.name, l.brandName, l.socialLink, l.businessCategory, l.role, l.marketingHistory].filter(Boolean).join(' ').toLowerCase();
-        return text.includes(currentSearch);
-      });
-    }
+    const filtered = getFilteredLeads();
 
     if (!filtered.length) {
-      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 40px 20px; color: var(--dim);">No applications match your filter criteria.</td></tr>`;
-      mobileList.innerHTML = `<div style="text-align:center; padding: 30px 20px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);">No applications match your filter.</div>`;
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 40px 20px; color: var(--dim);">No prospects match your current search or filter criteria.</td></tr>`;
+      mobileList.innerHTML = `<div style="text-align:center; padding: 30px 20px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);">No prospects match your filter.</div>`;
       return;
     }
 
-    // Desktop Table Rows with Delete
+    // Desktop Table Rows
     tbody.innerHTML = filtered.map(lead => {
       const d = new Date(lead.submittedAt);
-      const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
       const timeStr = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
+      const cleanSocial = formatSocialUrl(lead.socialLink);
+      const phone = (lead.phone || '').replace(/[^0-9]/g, '');
 
-      if (lead.type === 'CREATOR_PARTNERSHIP') {
-        const phone = (lead.phone || '').replace(/[^0-9]/g, '');
-        const cleanSocial = formatSocialUrl(lead.socialLink);
+      if (isCreator) {
         return `
-          <tr>
+          <tr onclick="openProspectModal('${esc(lead.id)}')">
             <td>
-              <span class="badge-pill" style="background: rgba(168, 85, 247, 0.15); color: #C084FC;">${esc(lead.id)}</span>
-              <div style="font-size:11px; color:var(--dim); margin-top:4px;">${dateStr}<br>${timeStr}</div>
+              <div style="font-weight: 800; color: #FFFFFF; font-size: 14px;">${esc(lead.name)}</div>
+              <div style="color: #C084FC; font-size: 12px; font-weight: 700; margin-top: 2px;">Creator Network</div>
+              <div style="font-size: 11px; color: var(--dim); margin-top: 2px;">${esc(lead.phone || 'No phone')}</div>
             </td>
             <td>
-              <strong style="color:#FFFFFF; font-size:14px;">${esc(lead.name)}</strong>
-              <div style="margin-top:4px;"><span class="badge-pill" style="background: rgba(168, 85, 247, 0.1); color: #E879F9;">Creator Network</span></div>
+              <span class="badge-pill" style="background: rgba(192, 132, 252, 0.15); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.3);">UGC Creator</span>
+            </td>
+            <td onclick="event.stopPropagation()">
+              ${renderStageSelect(lead.id, lead.status)}
             </td>
             <td>
-              ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" style="color:var(--cyan); font-size:12px; text-decoration:underline;">${esc(lead.socialLink)}</a>` : '<span style="color:var(--dim);">—</span>'}
+              <div style="font-size: 12px; color: #E2E8F0; line-height: 1.4;">
+                ${lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color: #60A5FA; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg> Showreel Portfolio</a>` : '<span style="color:var(--dim);">No portfolio link</span>'}
+              </div>
+              ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
             </td>
             <td>
-              ${lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color:#60A5FA; font-size:12px; display:inline-flex; align-items:center; gap:4px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg> Showreel / Portfolio</a>` : '<span style="color:var(--dim); font-size:12px;">No portfolio provided</span>'}
+              <span class="badge-pill" style="background: rgba(255,255,255,0.06); color: var(--muted); font-size: 9.5px;">${esc(lead.id.slice(0, 14))}</span>
+              <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">${dateStr}<br>${timeStr}</div>
             </td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg> WhatsApp</a>` : ''}
-                <button class="btn-danger" title="Delete application" onclick="deleteLead('${esc(lead.id)}')">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            <td onclick="event.stopPropagation()" style="text-align: right;">
+              <div style="display: inline-flex; align-items: center; gap: 6px;">
+                <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  Dossier
+                </button>
+                ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 5px 10px; font-size: 11px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
+                <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                 </button>
               </div>
             </td>
@@ -2028,31 +2781,38 @@
         `;
       }
 
-      const cleanSocial = formatSocialUrl(lead.socialLink);
       return `
-        <tr>
+        <tr onclick="openProspectModal('${esc(lead.id)}')">
           <td>
-            <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">${esc(lead.id)}</span>
-            <div style="font-size:11px; color:var(--dim); margin-top:4px;">${dateStr}<br>${timeStr}</div>
+            <div style="font-weight: 800; color: #FFFFFF; font-size: 14.5px;">${esc(lead.brandName || lead.fullName)}</div>
+            <div style="color: var(--cyan); font-weight: 700; font-size: 12px; margin-top: 1px;">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">${esc(lead.role || 'Founder')}</span></div>
+            ${lead.websiteUrl && lead.websiteUrl !== 'Not provided' ? `<a href="${esc(lead.websiteUrl.startsWith('http') ? lead.websiteUrl : 'https://' + lead.websiteUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size: 11px; color: var(--dim); text-decoration: underline; display: inline-flex; align-items: center; gap: 3px; margin-top: 2px;">${esc(lead.websiteUrl)} <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>` : ''}
           </td>
           <td>
-            <strong style="color:#FFFFFF; font-size:14px;">${esc(lead.fullName)}</strong>
-            <div style="color:var(--cyan); font-weight:700; font-size:12px; margin-top:2px;">${esc(lead.brandName)}</div>
-            ${lead.websiteUrl && lead.websiteUrl !== 'Not provided' ? `<a href="${esc(lead.websiteUrl)}" target="_blank" rel="noopener" style="font-size:11px; color:var(--dim); text-decoration:underline;">${esc(lead.websiteUrl)}</a>` : ''}
+            <span class="badge-pill" style="background: rgba(0, 229, 255, 0.1); color: var(--cyan); border: 1px solid rgba(0, 229, 255, 0.25);">${esc(lead.businessCategory || 'Skincare')}</span>
+          </td>
+          <td onclick="event.stopPropagation()">
+            ${renderStageSelect(lead.id, lead.status)}
           </td>
           <td>
-            <span class="badge-pill" style="background: rgba(96, 165, 250, 0.12); color: #60A5FA;">${esc(lead.businessCategory || 'Brand')}</span>
-            <div style="font-size:11.5px; color:var(--dim); margin-top:4px;">${esc(lead.role || '—')}</div>
+            <div style="font-size: 12.5px; color: #E2E8F0; font-weight: 600; line-height: 1.35; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(lead.primaryGoal || lead.marketingHistory || '')}">
+              ${esc(lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? lead.primaryGoal : (lead.marketingHistory || 'Inbound prospect'))}
+            </div>
+            ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
           </td>
           <td>
-            <div style="font-weight:600; color:#F1F5F9; font-size:12.5px;">${esc(lead.marketingHistory || '—')}</div>
-            ${lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? `<div style="color:var(--dim); font-size:11.5px; margin-top:2px;">Goal: ${esc(lead.primaryGoal)}</div>` : ''}
+            <span class="badge-pill" style="background: rgba(255,255,255,0.06); color: var(--muted); font-size: 9.5px;">${esc(lead.id.slice(0, 14))}</span>
+            <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">${dateStr}<br>${timeStr}</div>
           </td>
-          <td>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 5px 12px; font-size: 11.5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Social</a>` : ''}
-              <button class="btn-danger" title="Delete application" onclick="deleteLead('${esc(lead.id)}')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          <td onclick="event.stopPropagation()" style="text-align: right;">
+            <div style="display: inline-flex; align-items: center; gap: 6px;">
+              <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Dossier
+              </button>
+              ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 5px 8px;" title="Social profile"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>` : ''}
+              <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
               </button>
             </div>
           </td>
@@ -2060,41 +2820,49 @@
       `;
     }).join('');
 
-    // Mobile Responsive Card List with Delete
+    // Mobile Responsive Card List
     mobileList.innerHTML = filtered.map(lead => {
       const d = new Date(lead.submittedAt);
       const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
       const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
-      const phone = (lead.phone || '').replace(/[^0-9]/g, '');
       const cleanSocial = formatSocialUrl(lead.socialLink);
+      const phone = (lead.phone || '').replace(/[^0-9]/g, '');
 
       return `
         <div class="lead-mobile-card">
           <div class="lead-mobile-head">
-            <span class="badge-pill" style="${isCreator ? 'background: rgba(168, 85, 247, 0.15); color: #C084FC;' : 'background: var(--cyan-dim); color: var(--cyan);'}">${esc(lead.id)}</span>
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:11.5px; color:var(--dim);">${dateStr}</span>
-              <button class="btn-danger" style="padding: 3px 8px; font-size: 10.5px;" onclick="deleteLead('${esc(lead.id)}')">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-              </button>
+            <div>
+              <span class="badge-pill" style="background: rgba(255,255,255,0.06); color: var(--muted); font-size: 10px;">${esc(lead.id)}</span>
+              <span style="font-size: 11px; color: var(--dim); margin-left: 6px;">${dateStr}</span>
+            </div>
+            <div>
+              ${renderStageSelect(lead.id, lead.status)}
             </div>
           </div>
           
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div>
-              <div style="font-size:15px; font-weight:800; color:#FFFFFF;">${esc(isCreator ? lead.name : lead.fullName)}</div>
-              ${!isCreator ? `<div style="font-size:13px; font-weight:700; color:var(--cyan); margin-top:2px;">${esc(lead.brandName)}</div>` : `<span class="badge-pill" style="background: rgba(168, 85, 247, 0.1); color: #E879F9; margin-top:4px; display:inline-block;">Creator Network</span>`}
+              <div style="font-size: 16px; font-weight: 800; color: #FFFFFF;">${esc(isCreator ? lead.name : (lead.brandName || lead.fullName))}</div>
+              ${!isCreator ? `<div style="font-size: 12.5px; font-weight: 700; color: var(--cyan); margin-top: 2px;">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">${esc(lead.role || 'Founder')}</span></div>` : `<span class="badge-pill" style="background: rgba(192, 132, 252, 0.15); color: #C084FC; margin-top: 4px; display: inline-block;">Creator Network</span>`}
             </div>
-            ${!isCreator ? `<span class="badge-pill" style="background: rgba(96, 165, 250, 0.12); color: #60A5FA;">${esc(lead.businessCategory || 'Brand')}</span>` : ''}
+            ${!isCreator ? `<span class="badge-pill" style="background: rgba(0, 229, 255, 0.1); color: var(--cyan);">${esc(lead.businessCategory || 'Brand')}</span>` : ''}
           </div>
 
-          <div style="font-size:12.5px; color:var(--muted); margin: 8px 0;">
-            ${isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color:#60A5FA; text-decoration:underline;">Showreel Portfolio</a>` : 'No portfolio') : `<div><strong>Status:</strong> ${esc(lead.marketingHistory || '—')}</div>${lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? `<div style="margin-top:2px; color:var(--dim);">Goal: ${esc(lead.primaryGoal)}</div>` : ''}`}
+          <div style="font-size: 12.5px; color: var(--muted); margin: 8px 0; line-height: 1.4;">
+            ${isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color: #60A5FA; text-decoration: underline;">Showreel Portfolio</a>` : 'No portfolio') : `<div><strong>Objective:</strong> ${esc(lead.primaryGoal || lead.marketingHistory || '—')}</div>`}
           </div>
 
-          <div style="display:flex; gap:8px; margin-top: 12px; flex-wrap:wrap;">
-            ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 7px 14px; font-size: 11.5px; flex: 1; text-align: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Social</a>` : ''}
-            ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 7px 16px; flex: 1; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg> WhatsApp</a>` : ''}
+          ${lead.notes ? `<div class="note-logged-badge" style="margin-bottom: 10px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 35))}${lead.notes.length > 35 ? '...' : ''}</div>` : ''}
+
+          <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+            <button class="btn-ghost" style="padding: 7px 14px; font-size: 12px; flex: 1; text-align: center; justify-content: center;" onclick="openProspectModal('${esc(lead.id)}')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              View Dossier
+            </button>
+            ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 7px 14px; font-size: 12px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
+            <button class="btn-danger" style="padding: 7px 12px;" onclick="deleteLead('${esc(lead.id)}')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
           </div>
         </div>
       `;

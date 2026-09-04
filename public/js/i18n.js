@@ -96,14 +96,14 @@ const POLISH_TRANSLATIONS = {
     "apply.optHistAgency": "Working with an agency, looking for better creative & ROAS",
     "apply.optHistInHouse": "Managing in-house, ready to scale profitably",
     "apply.optHistStarting": "Pre-launch or newly launched brand",
-    "apply.btnNext": "Continue →",
-    "apply.btnBack": "← Back",
+    "apply.btnNext": "Continue",
+    "apply.btnBack": "Back",
     "apply.btnSubmit": "Submit Partnership Brief",
     "apply.trustNda": "100% Confidential: Protected under strict NDA.",
     "apply.trustReview": "Direct Review: Evaluated personally within 24 hours.",
     "apply.successTitle": "Application Received",
     "apply.successP": "Your brand brief has been logged. A senior partner will review your brand within 24 hours.",
-    "apply.successCta": "Open Direct Founder WhatsApp Line →",
+    "apply.successCta": "Open Direct Founder WhatsApp Line",
 
     // Creators Page
     "creators.title": "Creator Network | POLISH Media Co",
@@ -124,7 +124,7 @@ const POLISH_TRANSLATIONS = {
     "creators.trustReview": "Fast Casting: Selected creators are contacted on WhatsApp for paid shoots.",
     "creators.successTitle": "Profile Received",
     "creators.successP": "Your creator profile has been added to our casting database under Reference ID:",
-    "creators.successCta": "Direct WhatsApp Check-In →"
+    "creators.successCta": "Direct WhatsApp Check-In"
   },
 
   fr: {
@@ -216,14 +216,14 @@ const POLISH_TRANSLATIONS = {
     "apply.optHistAgency": "En agence actuellement, à la recherche de meilleures créas et d'un ROAS supérieur",
     "apply.optHistInHouse": "Gestion interne, prêt à accélérer la rentabilité à grande échelle",
     "apply.optHistStarting": "Marque en cours de lancement ou récente sur le marché",
-    "apply.btnNext": "Continuer →",
-    "apply.btnBack": "← Retour",
+    "apply.btnNext": "Continuer",
+    "apply.btnBack": "Retour",
     "apply.btnSubmit": "Soumettre le Dossier de Partenariat",
     "apply.trustNda": "Confidentialité Absolue 100% : Protégé par un accord de non-divulgation strict (NDA).",
     "apply.trustReview": "Examen Personnalisé : Analysé directement par la direction sous 24h ouvrées.",
     "apply.successTitle": "Dossier Enregistré avec Succès",
     "apply.successP": "Votre dossier a été transmis à notre comité de direction. Un associé analysera votre marque et vous contactera sous 24 heures.",
-    "apply.successCta": "Contacter la Direction sur WhatsApp →",
+    "apply.successCta": "Contacter la Direction sur WhatsApp",
 
     // Creators Page
     "creators.title": "Réseau Créateurs & UGC | POLISH Media Co",
@@ -244,7 +244,7 @@ const POLISH_TRANSLATIONS = {
     "creators.trustReview": "Sélection Rapide : Les créateurs retenus sont contactés sur WhatsApp sous 48h.",
     "creators.successTitle": "Candidature Bien Reçue",
     "creators.successP": "Votre profil a été intégré à notre base de casting créateurs sous la référence :",
-    "creators.successCta": "Échanger avec l'Équipe Casting sur WhatsApp →"
+    "creators.successCta": "Échanger avec l'Équipe Casting sur WhatsApp"
   },
 
   ar: {
@@ -336,14 +336,14 @@ const POLISH_TRANSLATIONS = {
     "apply.optHistAgency": "نتعامل مع وكالة، ونبحث عن محتوى إبداعي أقوى وعائد إعلاني أعلى (ROAS)",
     "apply.optHistInHouse": "ندير التسويق داخلياً، ومستعدون لمضاعفة المبيعات بربحية عالية",
     "apply.optHistStarting": "علامة جديدة في مرحلة الإطلاق أو التأسيس الحديث",
-    "apply.btnNext": "متابعة ←",
-    "apply.btnBack": "→ السابق",
+    "apply.btnNext": "متابعة",
+    "apply.btnBack": "السابق",
     "apply.btnSubmit": "إرسال ملف الشراكة",
     "apply.trustNda": "سرية تامة 100%: جميع البيانات محمية باتفاقية عدم إفصاح قانونية صارمة (NDA).",
     "apply.trustReview": "تقييم مباشر: تتم دراسة ملف علامتك شخصياً من قِبل الشركاء خلال 24 ساعة.",
     "apply.successTitle": "تم استلام ملف طلب الشراكة بنجاح",
     "apply.successP": "تم تسجيل بيانات علامتك بنجاح. سيقوم أحد الشركاء بدراسة ملفك والتواصل معك خلال 24 ساعة.",
-    "apply.successCta": "التواصل المباشر مع الإدارة عبر واتساب ←",
+    "apply.successCta": "التواصل المباشر مع الإدارة عبر واتساب",
 
     // Creators Page
     "creators.title": "شبكة المبدعين & UGC | POLISH Media Co",
@@ -364,7 +364,7 @@ const POLISH_TRANSLATIONS = {
     "creators.trustReview": "ترشيح واختيار سريع: يتم التواصل مع صناع المحتوى المختارين عبر واتساب لجلسات التصوير المدفوعة.",
     "creators.successTitle": "تم استلام ملفك بنجاح",
     "creators.successP": "تمت إضافة ملفك إلى قاعدة بيانات المبدعين لدينا تحت الرقم المرجعي:",
-    "creators.successCta": "تأكيد التسجيل مع فريق الكاستينغ عبر واتساب ←"
+    "creators.successCta": "تأكيد التسجيل مع فريق الكاستينغ عبر واتساب"
   }
 };
 

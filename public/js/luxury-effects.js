@@ -367,6 +367,8 @@
   const islandShell = document.getElementById('dynamicIslandShell') || document.querySelector('.dynamic-island-shell');
 
   if (siteHeader) {
+    let islandRAF = null;
+
     function updateIslandState() {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -384,9 +386,17 @@
       }
     }
 
-    window.addEventListener('scroll', updateIslandState, { passive: true });
+    function scheduleIslandUpdate() {
+      if (islandRAF) return;
+      islandRAF = requestAnimationFrame(() => {
+        updateIslandState();
+        islandRAF = null;
+      });
+    }
+
+    window.addEventListener('scroll', scheduleIslandUpdate, { passive: true });
     if (lenisInstance) {
-      lenisInstance.on('scroll', updateIslandState);
+      lenisInstance.on('scroll', scheduleIslandUpdate);
     }
     updateIslandState();
   }

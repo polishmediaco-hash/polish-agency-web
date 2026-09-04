@@ -2522,155 +2522,66 @@ html.lenis, html.lenis body {
    Awwwards-Grade 3D Perspective, Lens Defocus Blur & Continuous Aurora Sheen
    ========================================================================== */
 
+/* ==========================================================================
+   EDITORIAL MASK REVEAL KINETIC TYPOGRAPHY
+   Ultra-Crisp GPU-Accelerated Text Mask Reveal (Zero Lag, Zero Shimmer Smudge)
+   ========================================================================== */
+
 .kinetic-title {
   display: block;
-  perspective: 1200px;
-  transform-style: preserve-3d;
 }
 
 .kinetic-line {
   display: block;
   overflow: hidden;
   position: relative;
-  padding-bottom: 6px;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  /* Crisp mask clipping */
-  clip-path: inset(0 0 -2px 0);
+  padding-bottom: 4px;
 }
 
 .kinetic-text {
   display: inline-block;
   position: relative;
-  will-change: transform, opacity, filter;
-}
-
-/* Pre-reveal initial hidden state */
-.kinetic-title:not(.is-revealed) .kinetic-text {
+  transform: translateY(108%);
   opacity: 0;
-  transform: translate3d(0, 118%, -24px) rotateX(-24deg) skewY(2.2deg) scale(0.95);
-  filter: blur(14px);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
-html[dir="rtl"] .kinetic-title:not(.is-revealed) .kinetic-text {
-  transform: translate3d(0, 118%, -24px) rotateX(-24deg) skewY(-2.2deg) scale(0.95);
-}
-
-/* Optical Rack-Focus Reveal Animation */
+/* Crisp Staggered Emergence */
 .kinetic-title.is-revealed .kinetic-line:nth-child(1) .kinetic-text {
-  animation: kineticOpticalRackFocus 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.04s;
 }
 
 .kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text {
-  animation: kineticOpticalRackFocus 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.16s;
 }
 
 .kinetic-title.is-revealed .kinetic-line:nth-child(3) .kinetic-text {
-  animation: kineticOpticalRackFocus 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.28s;
 }
 
-@keyframes kineticOpticalRackFocus {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 118%, -24px) rotateX(-24deg) skewY(2.2deg) scale(0.95);
-    filter: blur(14px);
-    letter-spacing: 0.02em;
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotateX(0deg) skewY(0deg) scale(1);
-    filter: blur(0px);
-    letter-spacing: normal;
-  }
-}
-
-html[dir="rtl"] .kinetic-title.is-revealed .kinetic-line:nth-child(1) .kinetic-text,
-html[dir="rtl"] .kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text,
-html[dir="rtl"] .kinetic-title.is-revealed .kinetic-line:nth-child(3) .kinetic-text {
-  animation-name: kineticOpticalRackFocusRtl;
-}
-
-@keyframes kineticOpticalRackFocusRtl {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 118%, -24px) rotateX(-24deg) skewY(-2.2deg) scale(0.95);
-    filter: blur(14px);
-    letter-spacing: 0.02em;
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotateX(0deg) skewY(0deg) scale(1);
-    filter: blur(0px);
-    letter-spacing: normal;
-  }
-}
-
-/* Continuous Liquid Aurora Refraction on Revealed Gradient Headlines */
-.kinetic-title.is-revealed .gradient-accent,
-.kinetic-title.is-revealed .gradient-text {
-  background-size: 240% auto;
-  animation: textAuroraGleam 7s ease infinite alternate;
-}
-
-@keyframes textAuroraGleam {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Specular Ray Shimmer Gliding across the Accent Line */
-.kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -40%;
-  width: 50%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transform: skewX(-25deg);
-  pointer-events: none;
-  animation: textRaySweep 5.5s cubic-bezier(0.16, 1, 0.3, 1) infinite 1.8s;
-}
-
-@keyframes textRaySweep {
-  0% {
-    left: -40%;
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  40% {
-    left: 140%;
-    opacity: 0;
-  }
-  100% {
-    left: 140%;
-    opacity: 0;
-  }
+/* Razor-Sharp Static Specular Glow on Gradient Headlines */
+.gradient-accent,
+.gradient-text {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.32));
 }
 
 /* Accessibility: Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  .kinetic-title:not(.is-revealed) .kinetic-text,
   .kinetic-text {
     transform: none !important;
     opacity: 1 !important;
-    filter: none !important;
-    animation: none !important;
-  }
-  .kinetic-title.is-revealed .gradient-accent,
-  .kinetic-title.is-revealed .gradient-text {
-    animation: none !important;
-  }
-  .kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text::after {
-    display: none !important;
+    transition: none !important;
   }
 }
 

@@ -11,9 +11,25 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    @property --beam-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @keyframes rotateBorderBeam {
+      0% { --beam-angle: 0deg; }
+      100% { --beam-angle: 360deg; }
+    }
+
+    @keyframes shineLoop {
+      0% { transform: translateX(-150%) skewX(-20deg); }
+      50%, 100% { transform: translateX(250%) skewX(-20deg); }
+    }
+
     :root {
       --bg: #06080D;
-      --card-bg: rgba(11, 15, 23, 0.9);
+      --card-bg: rgba(11, 15, 23, 0.92);
       --card-border: rgba(255, 255, 255, 0.08);
       --card-border-hover: rgba(0, 229, 255, 0.35);
       --cyan: #00E5FF;
@@ -87,7 +103,7 @@
       padding: 10px 24px;
     }
     .admin-nav-inner {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -108,18 +124,18 @@
       text-decoration: none;
     }
     .admin-logo-img {
-      height: 42px;
+      height: 38px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.5));
+      filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.45));
       transition: transform 0.25s ease, filter 0.25s ease;
     }
     .brand-wrap:hover .admin-logo-img {
       transform: scale(1.04);
-      filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.8));
+      filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.75));
     }
     .admin-badge {
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -134,14 +150,14 @@
     .nav-tabs {
       display: flex;
       gap: 4px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.035);
       border: 1px solid var(--card-border);
       padding: 4px;
       border-radius: 40px;
     }
     .nav-tab {
-      padding: 8px 18px;
-      font-size: 13px;
+      padding: 8px 16px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--muted);
       background: transparent;
@@ -151,21 +167,30 @@
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       white-space: nowrap;
     }
+    .nav-tab svg {
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
     .nav-tab:hover { color: #FFFFFF; }
+    .nav-tab:hover svg { opacity: 1; }
     .nav-tab.active {
       background: linear-gradient(135deg, #00E5FF, #0088FF);
       color: #06080A;
       box-shadow: 0 2px 14px rgba(0, 229, 255, 0.35);
+    }
+    .nav-tab.active svg {
+      opacity: 1;
+      stroke: #06080A;
     }
     .tab-badge {
       background: rgba(0, 0, 0, 0.35);
       color: inherit;
       padding: 1px 7px;
       border-radius: 12px;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 800;
     }
     .nav-tab.active .tab-badge {
@@ -180,7 +205,7 @@
       gap: 10px;
     }
     .btn-nav {
-      padding: 7px 16px;
+      padding: 7px 15px;
       font-size: 12px;
       font-weight: 700;
       border-radius: 30px;
@@ -202,7 +227,7 @@
 
     /* Main Container */
     .admin-main {
-      max-width: 1040px;
+      max-width: 1060px;
       margin: 0 auto;
       padding: 32px 20px 120px;
       position: relative;
@@ -238,14 +263,15 @@
       align-items: center;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--card-border);
-      padding: 4px;
+      padding: 3px;
       border-radius: 30px;
-      gap: 4px;
+      gap: 3px;
     }
     .lang-btn {
       padding: 6px 14px;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
       border: none;
       border-radius: 20px;
       cursor: pointer;
@@ -254,7 +280,7 @@
       transition: all 0.2s;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
     }
     .lang-btn.active {
       background: linear-gradient(135deg, #00E5FF, #0088FF);
@@ -291,7 +317,7 @@
       color: #FFFFFF;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
     .badge-pill {
       font-size: 10px;
@@ -337,7 +363,7 @@
       box-shadow: 0 0 16px rgba(0, 229, 255, 0.15);
     }
     .form-textarea {
-      min-height: 88px;
+      min-height: 84px;
       resize: vertical;
       line-height: 1.5;
     }
@@ -400,8 +426,10 @@
       gap: 12px;
     }
 
-    /* Buttons */
+    /* Luxury Buttons */
     .btn-cta {
+      position: relative;
+      overflow: hidden;
       padding: 12px 28px;
       font-size: 13.5px;
       font-weight: 800;
@@ -410,21 +438,48 @@
       border: none;
       border-radius: 40px;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       letter-spacing: -0.01em;
+      box-shadow: 0 4px 20px rgba(0, 229, 255, 0.35);
+    }
+    .btn-cta::before {
+      content: '';
+      position: absolute;
+      inset: -1.5px;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--beam-angle), transparent 25%, #00E5FF 50%, #818CF8 65%, transparent 80%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      animation: rotateBorderBeam 4s linear infinite;
+    }
+    .btn-cta::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      pointer-events: none;
+      animation: shineLoop 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
     .btn-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 229, 255, 0.45);
+      box-shadow: 0 8px 30px rgba(0, 229, 255, 0.55);
     }
     .btn-cta:disabled {
       opacity: 0.5;
       cursor: not-allowed;
       transform: none;
     }
+
     .btn-ghost {
       padding: 10px 20px;
       font-size: 13px;
@@ -435,11 +490,15 @@
       border-radius: 40px;
       cursor: pointer;
       transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .btn-ghost:hover {
       border-color: var(--cyan);
       color: var(--cyan);
     }
+
     .btn-danger {
       padding: 6px 12px;
       font-size: 11.5px;
@@ -510,7 +569,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .stat-card {
       background: var(--card-bg);
@@ -533,6 +592,67 @@
       letter-spacing: 0.08em;
       color: var(--dim);
       margin-top: 4px;
+    }
+
+    /* Leads Filter Bar */
+    .leads-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding: 12px 18px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+    }
+    .leads-filter-pills {
+      display: flex;
+      gap: 6px;
+    }
+    .filter-pill {
+      padding: 6px 14px;
+      font-size: 11.5px;
+      font-weight: 700;
+      border: 1px solid var(--card-border);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-pill.active {
+      background: var(--cyan-dim);
+      color: var(--cyan);
+      border-color: rgba(0, 229, 255, 0.35);
+    }
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+      max-width: 320px;
+      min-width: 200px;
+    }
+    .search-input-wrap input {
+      width: 100%;
+      padding: 7px 12px 7px 32px;
+      font-size: 12.5px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      color: #FFFFFF;
+      outline: none;
+    }
+    .search-input-wrap input:focus {
+      border-color: var(--cyan);
+    }
+    .search-input-wrap svg {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--dim);
     }
 
     /* Desktop Leads Table */
@@ -646,7 +766,7 @@
       .nav-tabs::-webkit-scrollbar { display: none; }
       .nav-tab {
         flex: 1 0 auto;
-        padding: 8px 14px;
+        padding: 8px 13px;
         font-size: 12px;
         justify-content: center;
       }
@@ -716,34 +836,46 @@
     <div class="admin-nav-top-row">
       <a href="/" class="brand-wrap" title="POLISH Agency Home">
         <img src="/assets/logo.png?v=7.6" alt="POLISH" class="admin-logo-img">
-        <span class="admin-badge">ADMIN</span>
+        <span class="admin-badge">EXECUTIVE HUB</span>
       </a>
 
       <div class="nav-actions" id="navActions" style="display: none;">
         <a href="/" target="_blank" class="btn-nav">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
             <polyline points="15 3 21 3 21 9"></polyline>
             <line x1="10" y1="14" x2="21" y2="3"></line>
           </svg>
           Live Site
         </a>
-        <button class="btn-nav" onclick="logoutAdmin()">Log Out</button>
+        <button class="btn-nav" onclick="logoutAdmin()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          Log Out
+        </button>
       </div>
     </div>
 
     <div class="nav-tabs" id="mainNavTabs" style="display: none;">
       <button class="nav-tab active" onclick="switchMainTab('cmsTabPane')">
-        ✏️ Website Text
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <span>Website Text</span>
       </button>
       <button class="nav-tab" onclick="switchMainTab('waTabPane')">
-        💬 WhatsApp Messages
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span>WhatsApp Flows</span>
       </button>
       <button class="nav-tab" onclick="switchMainTab('leadsTabPane')">
-        📋 Leads <span class="tab-badge" id="leadsNavCount">0</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10"/><path d="M7 12h10"/><path d="M7 16h6"/></svg>
+        <span>Inbound Dossiers</span>
+        <span class="tab-badge" id="leadsNavCount">0</span>
       </button>
       <button class="nav-tab" onclick="switchMainTab('notifTabPane')">
-        🔔 Notifications
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span>Alert Channels</span>
       </button>
     </div>
 
@@ -758,16 +890,17 @@
         <img src="/assets/logo.png?v=7.6" alt="POLISH">
       </div>
       <h2>Executive Admin Portal</h2>
-      <p>Enter your administrative security key to edit trilingual live copy, manage WhatsApp templates, and review inbound dossiers.</p>
+      <p>Enter your administrative security key to access trilingual live copy, manage WhatsApp templates, and review inbound dossiers.</p>
 
       <div class="form-group" style="text-align: left;">
-        <label class="form-label">Security Key</label>
-        <input type="password" id="adminSecurityKey" class="form-input" placeholder="Enter administrative key" autocomplete="off"
+        <label class="form-label">Administrative Security Key</label>
+        <input type="password" id="adminSecurityKey" class="form-input" placeholder="Enter security key" autocomplete="off"
           onkeydown="if(event.key==='Enter') verifyAndUnlock()">
       </div>
 
-      <button class="btn-cta" style="width: 100%; justify-content: center; margin-top: 8px;" onclick="verifyAndUnlock()">
-        Unlock Executive Hub
+      <button class="btn-cta" style="width: 100%; justify-content: center; margin-top: 10px;" onclick="verifyAndUnlock()">
+        <span>Unlock Executive Hub</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
       </button>
     </div>
   </div>
@@ -782,15 +915,18 @@
       <div class="page-header">
         <div>
           <h1>Website Text Editor</h1>
-          <p>Live editorial studio for English, French, and Arabic copy across all pages.</p>
+          <p>Live editorial studio for English, French, and Arabic copy across all production pages.</p>
         </div>
         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
           <div class="lang-switcher-wrap">
-            <button id="cmsLangBtnEN" class="lang-btn active" onclick="switchCmsLanguage('en')">🇬🇧 English</button>
-            <button id="cmsLangBtnFR" class="lang-btn" onclick="switchCmsLanguage('fr')">🇫🇷 Français</button>
-            <button id="cmsLangBtnAR" class="lang-btn" onclick="switchCmsLanguage('ar')">🇸🇦 العربية</button>
+            <button id="cmsLangBtnEN" class="lang-btn active" onclick="switchCmsLanguage('en')">EN</button>
+            <button id="cmsLangBtnFR" class="lang-btn" onclick="switchCmsLanguage('fr')">FR</button>
+            <button id="cmsLangBtnAR" class="lang-btn" onclick="switchCmsLanguage('ar')">AR</button>
           </div>
-          <button class="btn-ghost" style="font-size: 12px; padding: 7px 16px;" onclick="resetDefaults()">Reset Factory Defaults</button>
+          <button class="btn-ghost" style="font-size: 12px; padding: 7px 16px;" onclick="resetDefaults()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+            Reset Factory Defaults
+          </button>
         </div>
       </div>
 
@@ -802,16 +938,15 @@
           <!-- 1. Hero -->
           <div class="admin-card">
             <div class="card-head">
-              <div class="card-title">1. Hero Section &amp; Main Headline</div>
+              <div class="card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                1. Hero Section &amp; Main Headline
+              </div>
               <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Above the Fold</span>
             </div>
             <div class="grid-2">
-              <div class="form-group"><label class="form-label">Window Mockup Tag</label><input type="text" id="en_hero_windowTag" class="form-input" required></div>
-              <div class="form-group"><label class="form-label">Hero Eyebrow Tag</label><input type="text" id="en_hero_eyebrow" class="form-input" required></div>
-            </div>
-            <div class="grid-2">
               <div class="form-group"><label class="form-label">Headline Line 1 (White)</label><input type="text" id="en_hero_hl1" class="form-input" required></div>
-              <div class="form-group"><label class="form-label">Headline Line 2 (Blue Accent)</label><input type="text" id="en_hero_hl2" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Headline Line 2 (Accent)</label><input type="text" id="en_hero_hl2" class="form-input" required></div>
             </div>
             <div class="form-group"><label class="form-label">Hero Description</label><textarea id="en_hero_desc" class="form-textarea" required></textarea></div>
             <div class="grid-2">
@@ -823,7 +958,10 @@
           <!-- 2. Agitation -->
           <div class="admin-card">
             <div class="card-head">
-              <div class="card-title">2. Agitation / Bottlenecks Section</div>
+              <div class="card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                2. Agitation / Bottlenecks Section
+              </div>
               <span class="badge-pill" style="background: rgba(96, 165, 250, 0.12); color: #60A5FA;">Conversion Engine</span>
             </div>
             <div class="form-group"><label class="form-label">Section Eyebrow</label><input type="text" id="en_agit_eyebrow" class="form-input" required></div>
@@ -844,7 +982,10 @@
           <!-- 3. Pillars -->
           <div class="admin-card">
             <div class="card-head">
-              <div class="card-title">3. The 4 Growth Pillars Section</div>
+              <div class="card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                3. The 4 Growth Pillars Section
+              </div>
               <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Core Offer</span>
             </div>
             <div class="form-group"><label class="form-label">Section Eyebrow</label><input type="text" id="en_pill_eyebrow" class="form-input" required></div>
@@ -865,18 +1006,45 @@
           <!-- 4. Creators Page -->
           <div class="admin-card">
             <div class="card-head">
-              <div class="card-title">4. Creator Network Page (/creators)</div>
+              <div class="card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2.2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                4. Creator Network Page (/creators)
+              </div>
               <span class="badge-pill" style="background: rgba(168, 85, 247, 0.12); color: #C084FC;">UGC Portal</span>
             </div>
-            <div class="form-group"><label class="form-label">Eyebrow Tag</label><input type="text" id="en_creat_eyebrow" class="form-input" required></div>
-            <div class="form-group"><label class="form-label">Main Headline</label><input type="text" id="en_creat_headline" class="form-input" required></div>
-            <div class="form-group"><label class="form-label">Description</label><textarea id="en_creat_desc" class="form-textarea" required></textarea></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Headline Line 1</label><input type="text" id="en_creat_hl1" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Headline Line 2 (Accent)</label><input type="text" id="en_creat_hl2" class="form-input" required></div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Submit Button Text</label><input type="text" id="en_creat_cta" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Trust Guarantee Subtext</label><input type="text" id="en_creat_trust" class="form-input" required></div>
+            </div>
           </div>
 
-          <!-- 5. Contact & Socials -->
+          <!-- 5. Brand Partnership Page -->
           <div class="admin-card">
             <div class="card-head">
-              <div class="card-title">5. Contact Channels &amp; Social Links</div>
+              <div class="card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                5. Brand Partnership Application (/apply)
+              </div>
+              <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Intake Dossier</span>
+            </div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Headline Line 1</label><input type="text" id="en_apply_hl1" class="form-input" required></div>
+              <div class="form-group"><label class="form-label">Headline Line 2 (Accent)</label><input type="text" id="en_apply_hl2" class="form-input" required></div>
+            </div>
+            <div class="form-group"><label class="form-label">Final Submit Button Text</label><input type="text" id="en_apply_cta" class="form-input" required></div>
+          </div>
+
+          <!-- 6. Contact & Socials -->
+          <div class="admin-card">
+            <div class="card-head">
+              <div class="card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                6. Contact Channels &amp; Social Links
+              </div>
               <span class="badge-pill" style="background: rgba(34, 197, 94, 0.12); color: #4ADE80;">Global Links</span>
             </div>
             <div class="grid-2">
@@ -891,15 +1059,11 @@
         <!-- ================= FRENCH CMS PANE ================= -->
         <div id="cmsLangPaneFR" class="cms-lang-pane">
           <div class="admin-card" style="border-color: rgba(0, 229, 255, 0.2); background: rgba(0, 229, 255, 0.02);">
-            <div style="font-size: 13px; color: var(--cyan); font-weight: 700;">🇫🇷 Textes en Français — Modifiez les contenus français diffusés sur le site.</div>
+            <div style="font-size: 13px; color: var(--cyan); font-weight: 700;">Textes en Français — Modifiez les contenus français diffusés sur le site.</div>
           </div>
 
           <div class="admin-card">
             <div class="card-head"><div class="card-title">1. Hero Section — Français</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">FR</span></div>
-            <div class="grid-2">
-              <div class="form-group"><label class="form-label">Badge de la fenêtre</label><input type="text" id="fr_hero_windowTag" class="form-input"></div>
-              <div class="form-group"><label class="form-label">Surtitre Eyebrow</label><input type="text" id="fr_hero_eyebrow" class="form-input"></div>
-            </div>
             <div class="grid-2">
               <div class="form-group"><label class="form-label">Titre Ligne 1</label><input type="text" id="fr_hero_hl1" class="form-input"></div>
               <div class="form-group"><label class="form-label">Titre Ligne 2 Accent</label><input type="text" id="fr_hero_hl2" class="form-input"></div>
@@ -945,25 +1109,35 @@
 
           <div class="admin-card">
             <div class="card-head"><div class="card-title">4. Page Créateurs &amp; UGC — Français</div><span class="badge-pill" style="background: rgba(168, 85, 247, 0.12); color: #C084FC;">FR</span></div>
-            <div class="form-group"><label class="form-label">Surtitre</label><input type="text" id="fr_creat_eyebrow" class="form-input"></div>
-            <div class="form-group"><label class="form-label">Titre Principal</label><input type="text" id="fr_creat_headline" class="form-input"></div>
-            <div class="form-group"><label class="form-label">Description</label><textarea id="fr_creat_desc" class="form-textarea"></textarea></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Titre Ligne 1</label><input type="text" id="fr_creat_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Titre Ligne 2 Accent</label><input type="text" id="fr_creat_hl2" class="form-input"></div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Bouton de Soumission</label><input type="text" id="fr_creat_cta" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Sous-titre Confiance</label><input type="text" id="fr_creat_trust" class="form-input"></div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="card-head"><div class="card-title">5. Page Candidature Partenariat — Français</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">FR</span></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Titre Ligne 1</label><input type="text" id="fr_apply_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">Titre Ligne 2 Accent</label><input type="text" id="fr_apply_hl2" class="form-input"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Bouton de Soumission</label><input type="text" id="fr_apply_cta" class="form-input"></div>
           </div>
         </div><!-- /cmsLangPaneFR -->
 
         <!-- ================= ARABIC CMS PANE ================= -->
         <div id="cmsLangPaneAR" class="cms-lang-pane" dir="rtl">
           <div class="admin-card" style="border-color: rgba(0, 229, 255, 0.2); background: rgba(0, 229, 255, 0.02); text-align: right;">
-            <div style="font-size: 13px; color: var(--cyan); font-weight: 700;">🇸🇦 النصوص باللغة العربية — قم بتعديل وتحسين نصوص الموقع بالعربية بكل سهولة.</div>
+            <div style="font-size: 13px; color: var(--cyan); font-weight: 700;">النصوص باللغة العربية — قم بتعديل وتحسين نصوص الموقع بالعربية بكل سهولة.</div>
           </div>
 
           <!-- Hero AR -->
           <div class="admin-card" style="text-align: right;">
             <div class="card-head"><div class="card-title">1. قسم الواجهة الرئيسي (Hero) — عربي</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">AR</span></div>
-            <div class="grid-2">
-              <div class="form-group"><label class="form-label">شارة النافذة (AR)</label><input type="text" id="ar_hero_windowTag" class="form-input"></div>
-              <div class="form-group"><label class="form-label">الشارة الترويجية (Eyebrow)</label><input type="text" id="ar_hero_eyebrow" class="form-input"></div>
-            </div>
             <div class="grid-2">
               <div class="form-group"><label class="form-label">العنوان الرئيسي السطر الأول (AR)</label><input type="text" id="ar_hero_hl1" class="form-input"></div>
               <div class="form-group"><label class="form-label">العنوان الرئيسي السطر الثاني (AR)</label><input type="text" id="ar_hero_hl2" class="form-input"></div>
@@ -1013,9 +1187,24 @@
           <!-- Creator AR -->
           <div class="admin-card" style="text-align: right;">
             <div class="card-head"><div class="card-title">4. صفحة المبدعين وصناع المحتوى — عربي</div><span class="badge-pill" style="background: rgba(168, 85, 247, 0.12); color: #C084FC;">AR</span></div>
-            <div class="form-group"><label class="form-label">شارة الصفحة</label><input type="text" id="ar_creat_eyebrow" class="form-input"></div>
-            <div class="form-group"><label class="form-label">العنوان الرئيسي</label><input type="text" id="ar_creat_headline" class="form-input"></div>
-            <div class="form-group"><label class="form-label">الوصف</label><textarea id="ar_creat_desc" class="form-textarea"></textarea></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">العنوان السطر الأول (AR)</label><input type="text" id="ar_creat_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">العنوان السطر الثاني (AR)</label><input type="text" id="ar_creat_hl2" class="form-input"></div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">نص زر التقديم</label><input type="text" id="ar_creat_cta" class="form-input"></div>
+              <div class="form-group"><label class="form-label">عبارة المراجعة والثقة</label><input type="text" id="ar_creat_trust" class="form-input"></div>
+            </div>
+          </div>
+
+          <!-- Apply AR -->
+          <div class="admin-card" style="text-align: right;">
+            <div class="card-head"><div class="card-title">5. صفحة التقديم للشراكة — عربي</div><span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">AR</span></div>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">العنوان السطر الأول (AR)</label><input type="text" id="ar_apply_hl1" class="form-input"></div>
+              <div class="form-group"><label class="form-label">العنوان السطر الثاني (AR)</label><input type="text" id="ar_apply_hl2" class="form-input"></div>
+            </div>
+            <div class="form-group"><label class="form-label">نص زر الإرسال</label><input type="text" id="ar_apply_cta" class="form-input"></div>
           </div>
         </div><!-- /cmsLangPaneAR -->
 
@@ -1028,7 +1217,10 @@
             </div>
             <div class="publish-btns">
               <button type="button" class="btn-ghost" onclick="loadCmsData()">Discard</button>
-              <button type="submit" id="btnPublishCms" class="btn-cta">Save &amp; Publish Live</button>
+              <button type="submit" id="btnPublishCms" class="btn-cta">
+                <span>Save &amp; Publish Live</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+              </button>
             </div>
           </div>
         </div>
@@ -1047,52 +1239,58 @@
 
       <div class="admin-card">
         <div class="card-head">
-          <div class="card-title">💬 Floating WhatsApp Widget Messages</div>
+          <div class="card-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Floating WhatsApp Widget Messages
+          </div>
           <span class="badge-pill" style="background: rgba(37, 211, 102, 0.12); color: #25D366;">Live Widget</span>
         </div>
         <div class="form-group">
-          <label class="form-label">🇬🇧 English Default Message</label>
+          <label class="form-label">English Default Message</label>
           <textarea id="wa_en_default" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">🇫🇷 French Default Message</label>
+          <label class="form-label">French Default Message</label>
           <textarea id="wa_fr_default" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">🇸🇦 Arabic Default Message</label>
+          <label class="form-label">Arabic Default Message</label>
           <textarea id="wa_ar_default" class="form-textarea" style="font-family: monospace; font-size: 13px; direction: rtl;"></textarea>
         </div>
       </div>
 
       <div class="admin-card">
         <div class="card-head">
-          <div class="card-title">📄 Form Post-Submission WhatsApp Messages</div>
+          <div class="card-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Form Post-Submission WhatsApp Messages
+          </div>
           <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Fast-Track</span>
         </div>
         <div class="form-group">
-          <label class="form-label">🇬🇧 Brand Application WhatsApp Message</label>
+          <label class="form-label">Brand Application WhatsApp Message (English)</label>
           <textarea id="wa_en_brand" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
           <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">Placeholders: <code style="color:var(--cyan);">{name}</code>, <code style="color:var(--cyan);">{brand}</code>, <code style="color:var(--cyan);">{ref}</code></div>
         </div>
         <div class="form-group">
-          <label class="form-label">🇫🇷 Message Candidature Marque</label>
+          <label class="form-label">Message Candidature Marque (Français)</label>
           <textarea id="wa_fr_brand" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">🇸🇦 رسالة واتساب بعد تقديم طلب الشراكة للعلامات التجارية</label>
+          <label class="form-label">رسالة واتساب بعد تقديم طلب الشراكة للعلامات التجارية (عربي)</label>
           <textarea id="wa_ar_brand" class="form-textarea" style="font-family: monospace; font-size: 13px; direction: rtl;"></textarea>
           <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">المتغيرات: <code style="color:var(--cyan);">{name}</code>, <code style="color:var(--cyan);">{brand}</code>, <code style="color:var(--cyan);">{ref}</code></div>
         </div>
         <div class="form-group">
-          <label class="form-label">🇬🇧 Creator Application WhatsApp Message</label>
+          <label class="form-label">Creator Application WhatsApp Message (English)</label>
           <textarea id="wa_en_creator" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">🇫🇷 Message Candidature Créateur UGC</label>
+          <label class="form-label">Message Candidature Créateur UGC (Français)</label>
           <textarea id="wa_fr_creator" class="form-textarea" style="font-family: monospace; font-size: 13px;"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">🇸🇦 رسالة واتساب بعد تقديم طلب صناع المحتوى</label>
+          <label class="form-label">رسالة واتساب بعد تقديم طلب صناع المحتوى (عربي)</label>
           <textarea id="wa_ar_creator" class="form-textarea" style="font-family: monospace; font-size: 13px; direction: rtl;"></textarea>
         </div>
       </div>
@@ -1105,20 +1303,26 @@
           </div>
           <div class="publish-btns">
             <button type="button" class="btn-ghost" onclick="loadWaConfig()">Discard</button>
-            <button type="button" class="btn-cta" onclick="saveWaConfig()">Save Messages</button>
+            <button type="button" class="btn-cta" onclick="saveWaConfig()">
+              <span>Save Messages</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB 3: LEADS DOSSIERS (WITH DELETE) ================= -->
+    <!-- ================= TAB 3: LEADS DOSSIERS (WITH FILTERS & DELETE) ================= -->
     <section id="leadsTabPane" class="tab-pane">
       <div class="page-header">
         <div>
           <h1>Inbound Growth Applications</h1>
           <p>Real-time dossiers from prospective beauty brands and creator network applicants.</p>
         </div>
-        <button class="btn-ghost" onclick="refreshLeads()">↻ Refresh Dossiers</button>
+        <button class="btn-ghost" onclick="refreshLeads()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          Refresh Dossiers
+        </button>
       </div>
 
       <!-- Stats Metric Cards -->
@@ -1134,6 +1338,19 @@
         <div class="stat-card">
           <div class="stat-val" id="statCreatorCount" style="color: #C084FC;">0</div>
           <div class="stat-lbl">Creator Applications</div>
+        </div>
+      </div>
+
+      <!-- Filter and Search Bar -->
+      <div class="leads-controls-bar" id="leadsControlsBar" style="display: none;">
+        <div class="leads-filter-pills">
+          <button class="filter-pill active" id="filterBtnAll" onclick="setLeadsFilter('ALL')">All Dossiers</button>
+          <button class="filter-pill" id="filterBtnBrands" onclick="setLeadsFilter('BRANDS')">Brands Only</button>
+          <button class="filter-pill" id="filterBtnCreators" onclick="setLeadsFilter('CREATORS')">Creators Only</button>
+        </div>
+        <div class="search-input-wrap">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="leadsSearchInput" placeholder="Filter by applicant, brand, or ID..." oninput="handleLeadsSearch(this.value)">
         </div>
       </div>
 
@@ -1165,14 +1382,20 @@
       <div class="page-header">
         <div>
           <h1>Application Notifications</h1>
-          <p>Get instant push alerts to your phone or team chat whenever a new brand or creator dossier is submitted.</p>
+          <p>Instant push alerts to your phone or team chat whenever a new brand or creator dossier is submitted.</p>
         </div>
-        <button class="btn-cta" onclick="sendTestNotification()">🔔 Send Test Alert</button>
+        <button class="btn-cta" onclick="sendTestNotification()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span>Send Test Alert</span>
+        </button>
       </div>
 
       <div class="admin-card">
         <div class="card-head">
-          <div class="card-title">📱 1. Instant Telegram Bot Alerts (Recommended — 100% Free)</div>
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            1. Instant Telegram Bot Alerts (Recommended — 100% Free)
+          </div>
           <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Instant Push</span>
         </div>
         <p style="color: var(--muted); margin-bottom: 16px; font-size: 13.5px;">
@@ -1190,7 +1413,10 @@
 
       <div class="admin-card">
         <div class="card-head">
-          <div class="card-title">💬 2. Discord or Slack Webhooks</div>
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            2. Discord or Slack Webhooks
+          </div>
           <span class="badge-pill" style="background: rgba(96, 165, 250, 0.12); color: #60A5FA;">Team Channel</span>
         </div>
         <p style="color: var(--muted); margin-bottom: 16px; font-size: 13.5px;">
@@ -1200,7 +1426,10 @@
 
       <div class="admin-card">
         <div class="card-head">
-          <div class="card-title">⚡ 3. Direct WhatsApp Fast-Track (Built-in)</div>
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            3. Direct WhatsApp Fast-Track (Built-in)
+          </div>
           <span class="badge-pill" style="background: rgba(37, 211, 102, 0.12); color: #25D366;">Active</span>
         </div>
         <p style="color: var(--muted); font-size: 13.5px;">
@@ -1215,6 +1444,9 @@
 <script>
   let activeAdminKey = '';
   let activeCmsLang = 'en';
+  let rawLeadsData = [];
+  let currentFilter = 'ALL';
+  let currentSearch = '';
 
   // ── Toast Notification ────────────────────────────────────
   function notifyToast(message, isError = false) {
@@ -1249,8 +1481,9 @@
 
       await loadCmsData();
       loadWaConfig();
-      renderLeadsUI(data.leads || []);
-      notifyToast('Admin Dashboard Unlocked.');
+      rawLeadsData = data.leads || [];
+      renderLeadsUI();
+      notifyToast('Executive Hub Unlocked.');
     } catch (err) {
       notifyToast('Connection error: ' + err.message, true);
     }
@@ -1309,8 +1542,6 @@
       const c = data.content;
 
       // EN Hero
-      fillVal('en_hero_windowTag', c.hero?.windowTag);
-      fillVal('en_hero_eyebrow', c.hero?.eyebrow);
       fillVal('en_hero_hl1', c.hero?.headlineLine1);
       fillVal('en_hero_hl2', c.hero?.headlineLine2);
       fillVal('en_hero_desc', c.hero?.description);
@@ -1338,9 +1569,15 @@
       });
 
       // EN Creators
-      fillVal('en_creat_eyebrow', c.creators?.eyebrow);
-      fillVal('en_creat_headline', c.creators?.headline);
-      fillVal('en_creat_desc', c.creators?.description);
+      fillVal('en_creat_hl1', c.creators?.h1Line1 || c.creators?.headline);
+      fillVal('en_creat_hl2', c.creators?.h1Line2);
+      fillVal('en_creat_cta', c.creators?.ctaText || 'Submit Creator Profile');
+      fillVal('en_creat_trust', c.creators?.trustReview || 'Fast Casting: Selected creators are contacted on WhatsApp for paid shoots.');
+
+      // EN Apply
+      fillVal('en_apply_hl1', c.apply?.h1Line1 || 'Scale Your Beauty Brand.');
+      fillVal('en_apply_hl2', c.apply?.h1Line2 || 'Apply for Studio Partnership.');
+      fillVal('en_apply_cta', c.apply?.ctaText || 'Submit Partnership Brief');
 
       // Global Contact
       fillVal('cont_whatsapp', c.contact?.whatsappNumber);
@@ -1349,8 +1586,6 @@
 
       // FR Overrides
       const fr = c.fr || {};
-      fillVal('fr_hero_windowTag', fr.hero?.windowTag);
-      fillVal('fr_hero_eyebrow', fr.hero?.eyebrow);
       fillVal('fr_hero_hl1', fr.hero?.headlineLine1);
       fillVal('fr_hero_hl2', fr.hero?.headlineLine2);
       fillVal('fr_hero_desc', fr.hero?.description);
@@ -1375,14 +1610,17 @@
         fillVal(`fr_pill_i${i}_desc`, it.desc);
       });
 
-      fillVal('fr_creat_eyebrow', fr.creators?.eyebrow);
-      fillVal('fr_creat_headline', fr.creators?.headline);
-      fillVal('fr_creat_desc', fr.creators?.description);
+      fillVal('fr_creat_hl1', fr.creators?.h1Line1 || fr.creators?.headline);
+      fillVal('fr_creat_hl2', fr.creators?.h1Line2);
+      fillVal('fr_creat_cta', fr.creators?.ctaText || 'Soumettre ma Candidature Créateur');
+      fillVal('fr_creat_trust', fr.creators?.trustReview || 'Sélection Rapide : Les créateurs retenus sont contactés sur WhatsApp sous 48h.');
+
+      fillVal('fr_apply_hl1', fr.apply?.h1Line1 || 'Propulsez Votre Marque Beauté.');
+      fillVal('fr_apply_hl2', fr.apply?.h1Line2 || 'Rejoignez le Studio Partenaire.');
+      fillVal('fr_apply_cta', fr.apply?.ctaText || 'Soumettre le Dossier de Partenariat');
 
       // AR Overrides
       const ar = c.ar || {};
-      fillVal('ar_hero_windowTag', ar.hero?.windowTag);
-      fillVal('ar_hero_eyebrow', ar.hero?.eyebrow);
       fillVal('ar_hero_hl1', ar.hero?.headlineLine1);
       fillVal('ar_hero_hl2', ar.hero?.headlineLine2);
       fillVal('ar_hero_desc', ar.hero?.description);
@@ -1407,9 +1645,14 @@
         fillVal(`ar_pill_i${i}_desc`, it.desc);
       });
 
-      fillVal('ar_creat_eyebrow', ar.creators?.eyebrow);
-      fillVal('ar_creat_headline', ar.creators?.headline);
-      fillVal('ar_creat_desc', ar.creators?.description);
+      fillVal('ar_creat_hl1', ar.creators?.h1Line1 || ar.creators?.headline);
+      fillVal('ar_creat_hl2', ar.creators?.h1Line2);
+      fillVal('ar_creat_cta', ar.creators?.ctaText || 'إرسال ملف صانع المحتوى');
+      fillVal('ar_creat_trust', ar.creators?.trustReview || 'اختيار سريع: يتم التواصل مع صناع المحتوى المختارين عبر واتساب لجلسات التصوير المدفوعة.');
+
+      fillVal('ar_apply_hl1', ar.apply?.h1Line1 || 'طور ووسّع مبيعات علامتك التجميلية.');
+      fillVal('ar_apply_hl2', ar.apply?.h1Line2 || 'قدّم طلب الشراكة مع الاستوديو.');
+      fillVal('ar_apply_cta', ar.apply?.ctaText || 'إرسال ملخص الشراكة');
 
       // WhatsApp sync
       if (c.whatsapp) {
@@ -1433,14 +1676,12 @@
     e.preventDefault();
     const btn = document.getElementById('btnPublishCms');
     btn.disabled = true;
-    btn.textContent = 'Publishing Live...';
+    btn.querySelector('span').textContent = 'Publishing Live...';
 
     const g = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
 
     const payload = {
       hero: {
-        windowTag: g('en_hero_windowTag'),
-        eyebrow: g('en_hero_eyebrow'),
         headlineLine1: g('en_hero_hl1'),
         headlineLine2: g('en_hero_hl2'),
         description: g('en_hero_desc'),
@@ -1461,9 +1702,16 @@
         items: [0, 1, 2, 3].map(i => ({ digit: `0${i+1}`, title: g(`en_pill_i${i}_title`), desc: g(`en_pill_i${i}_desc`) }))
       },
       creators: {
-        eyebrow: g('en_creat_eyebrow'),
-        headline: g('en_creat_headline'),
-        description: g('en_creat_desc')
+        h1Line1: g('en_creat_hl1'),
+        h1Line2: g('en_creat_hl2'),
+        headline: g('en_creat_hl1') + ' ' + g('en_creat_hl2'),
+        ctaText: g('en_creat_cta'),
+        trustReview: g('en_creat_trust')
+      },
+      apply: {
+        h1Line1: g('en_apply_hl1'),
+        h1Line2: g('en_apply_hl2'),
+        ctaText: g('en_apply_cta')
       },
       contact: {
         whatsappNumber: g('cont_whatsapp'),
@@ -1472,8 +1720,6 @@
       },
       fr: {
         hero: {
-          windowTag: g('fr_hero_windowTag'),
-          eyebrow: g('fr_hero_eyebrow'),
           headlineLine1: g('fr_hero_hl1'),
           headlineLine2: g('fr_hero_hl2'),
           description: g('fr_hero_desc'),
@@ -1494,15 +1740,20 @@
           items: [0, 1, 2, 3].map(i => ({ digit: `0${i+1}`, title: g(`fr_pill_i${i}_title`), desc: g(`fr_pill_i${i}_desc`) }))
         },
         creators: {
-          eyebrow: g('fr_creat_eyebrow'),
-          headline: g('fr_creat_headline'),
-          description: g('fr_creat_desc')
+          h1Line1: g('fr_creat_hl1'),
+          h1Line2: g('fr_creat_hl2'),
+          headline: g('fr_creat_hl1') + ' ' + g('fr_creat_hl2'),
+          ctaText: g('fr_creat_cta'),
+          trustReview: g('fr_creat_trust')
+        },
+        apply: {
+          h1Line1: g('fr_apply_hl1'),
+          h1Line2: g('fr_apply_hl2'),
+          ctaText: g('fr_apply_cta')
         }
       },
       ar: {
         hero: {
-          windowTag: g('ar_hero_windowTag'),
-          eyebrow: g('ar_hero_eyebrow'),
           headlineLine1: g('ar_hero_hl1'),
           headlineLine2: g('ar_hero_hl2'),
           description: g('ar_hero_desc'),
@@ -1523,9 +1774,16 @@
           items: [0, 1, 2, 3].map(i => ({ digit: `0${i+1}`, title: g(`ar_pill_i${i}_title`), desc: g(`ar_pill_i${i}_desc`) }))
         },
         creators: {
-          eyebrow: g('ar_creat_eyebrow'),
-          headline: g('ar_creat_headline'),
-          description: g('ar_creat_desc')
+          h1Line1: g('ar_creat_hl1'),
+          h1Line2: g('ar_creat_hl2'),
+          headline: g('ar_creat_hl1') + ' ' + g('ar_creat_hl2'),
+          ctaText: g('ar_creat_cta'),
+          trustReview: g('ar_creat_trust')
+        },
+        apply: {
+          h1Line1: g('ar_apply_hl1'),
+          h1Line2: g('ar_apply_hl2'),
+          ctaText: g('ar_apply_cta')
         }
       }
     };
@@ -1538,7 +1796,7 @@
       });
       const data = await res.json();
       if (res.ok && data.success) {
-        notifyToast('✓ Trilingual website copy updated & published live!');
+        notifyToast('Trilingual website copy updated & published live!');
       } else {
         notifyToast('Error: ' + (data.error || 'Failed to save'), true);
       }
@@ -1546,7 +1804,7 @@
       notifyToast('Save error: ' + err.message, true);
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Save & Publish Live \u2192';
+      btn.querySelector('span').textContent = 'Save & Publish Live';
     }
   }
 
@@ -1616,10 +1874,10 @@
       window.POLISH_WHATSAPP_CONFIG.fr.defaultMessage = msgs.fr_default;
       if (window.POLISH_WHATSAPP_CONFIG.ar) window.POLISH_WHATSAPP_CONFIG.ar.defaultMessage = msgs.ar_default;
     }
-    notifyToast('✓ WhatsApp messages updated live across all languages!');
+    notifyToast('WhatsApp messages updated live across all languages!');
   }
 
-  // ── Leads Management & Delete Action ──────────────────────
+  // ── Leads Management, Search, Filters & Delete ────────────
   async function refreshLeads() {
     try {
       const res = await fetch(`/api/leads?key=${encodeURIComponent(activeAdminKey)}`);
@@ -1628,10 +1886,24 @@
         notifyToast('Error loading leads.', true);
         return;
       }
-      renderLeadsUI(data.leads || []);
+      rawLeadsData = data.leads || [];
+      renderLeadsUI();
     } catch (err) {
       notifyToast('Leads error: ' + err.message, true);
     }
+  }
+
+  function setLeadsFilter(filterType) {
+    currentFilter = filterType;
+    document.getElementById('filterBtnAll')?.classList.toggle('active', filterType === 'ALL');
+    document.getElementById('filterBtnBrands')?.classList.toggle('active', filterType === 'BRANDS');
+    document.getElementById('filterBtnCreators')?.classList.toggle('active', filterType === 'CREATORS');
+    renderLeadsUI();
+  }
+
+  function handleLeadsSearch(val) {
+    currentSearch = (val || '').toLowerCase().trim();
+    renderLeadsUI();
   }
 
   async function deleteLead(leadId) {
@@ -1645,7 +1917,7 @@
       const data = await res.json();
 
       if (res.ok && data.success) {
-        notifyToast(`✓ Application ${leadId} deleted.`);
+        notifyToast(`Application ${leadId} deleted.`);
         refreshLeads();
       } else {
         notifyToast('Delete error: ' + (data.error || 'Failed'), true);
@@ -1655,37 +1927,79 @@
     }
   }
 
-  function renderLeadsUI(leads) {
+  function formatSocialUrl(raw) {
+    if (!raw) return '';
+    let val = raw.trim();
+    if (val.startsWith('http://') || val.startsWith('https://')) return val;
+    if (val.startsWith('@')) return 'https://instagram.com/' + encodeURIComponent(val.slice(1));
+    if (val.includes('tiktok.com') || val.includes('instagram.com')) return 'https://' + val;
+    return 'https://instagram.com/' + encodeURIComponent(val);
+  }
+
+  function renderLeadsUI() {
     const tbody = document.getElementById('desktopLeadsTbody');
     const mobileList = document.getElementById('mobileLeadsList');
     const metricsRow = document.getElementById('leadsMetrics');
+    const controlsBar = document.getElementById('leadsControlsBar');
     const navBadge = document.getElementById('leadsNavCount');
 
-    navBadge.textContent = leads.length;
+    navBadge.textContent = rawLeadsData.length;
 
-    if (!leads.length) {
-      const emptyHtml = `<tr><td colspan="5" style="text-align:center; padding: 60px 20px; color: var(--dim);"><div style="font-size:36px; margin-bottom:12px;">📭</div><strong>No applications logged yet.</strong><div style="font-size:12px; margin-top:4px;">New brand and creator submissions will appear here instantly.</div></td></tr>`;
+    if (!rawLeadsData.length) {
+      const emptyHtml = `<tr><td colspan="5" style="text-align:center; padding: 60px 20px; color: var(--dim);">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom:12px; opacity:0.8;"><path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7z"/><path d="M5.45 5.11L2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+        <div style="font-weight:700; color:#FFFFFF; font-size:15px;">No applications logged yet</div>
+        <div style="font-size:12.5px; margin-top:4px;">New brand and creator dossiers will appear here instantly.</div>
+      </td></tr>`;
       tbody.innerHTML = emptyHtml;
-      mobileList.innerHTML = `<div style="text-align:center; padding: 50px 20px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);"><div style="font-size:32px; margin-bottom:8px;">📭</div><strong>No applications logged yet.</strong></div>`;
+      mobileList.innerHTML = `<div style="text-align:center; padding: 50px 20px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom:8px; opacity:0.8;"><path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7z"/><path d="M5.45 5.11L2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+        <div style="font-weight:700; color:#FFFFFF;">No applications logged yet</div>
+      </div>`;
       metricsRow.style.display = 'none';
+      controlsBar.style.display = 'none';
       return;
     }
 
     metricsRow.style.display = 'grid';
-    const brandsCount = leads.filter(l => l.type !== 'CREATOR_PARTNERSHIP').length;
-    const creatorsCount = leads.filter(l => l.type === 'CREATOR_PARTNERSHIP').length;
-    document.getElementById('statTotalCount').textContent = leads.length;
+    controlsBar.style.display = 'flex';
+
+    const brandsCount = rawLeadsData.filter(l => l.type !== 'CREATOR_PARTNERSHIP').length;
+    const creatorsCount = rawLeadsData.filter(l => l.type === 'CREATOR_PARTNERSHIP').length;
+    document.getElementById('statTotalCount').textContent = rawLeadsData.length;
     document.getElementById('statBrandCount').textContent = brandsCount;
     document.getElementById('statCreatorCount').textContent = creatorsCount;
 
+    // Filter by type
+    let filtered = rawLeadsData.filter(lead => {
+      if (currentFilter === 'BRANDS' && lead.type === 'CREATOR_PARTNERSHIP') return false;
+      if (currentFilter === 'CREATORS' && lead.type !== 'CREATOR_PARTNERSHIP') return false;
+      return true;
+    });
+
+    // Filter by search query
+    if (currentSearch) {
+      filtered = filtered.filter(l => {
+        const text = [l.id, l.fullName, l.name, l.brandName, l.socialLink, l.businessCategory, l.role, l.marketingHistory].filter(Boolean).join(' ').toLowerCase();
+        return text.includes(currentSearch);
+      });
+    }
+
+    if (!filtered.length) {
+      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 40px 20px; color: var(--dim);">No applications match your filter criteria.</td></tr>`;
+      mobileList.innerHTML = `<div style="text-align:center; padding: 30px 20px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);">No applications match your filter.</div>`;
+      return;
+    }
+
     // Desktop Table Rows with Delete
-    tbody.innerHTML = leads.map(lead => {
+    tbody.innerHTML = filtered.map(lead => {
       const d = new Date(lead.submittedAt);
       const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
       const timeStr = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 
       if (lead.type === 'CREATOR_PARTNERSHIP') {
         const phone = (lead.phone || '').replace(/[^0-9]/g, '');
+        const cleanSocial = formatSocialUrl(lead.socialLink);
         return `
           <tr>
             <td>
@@ -1697,21 +2011,24 @@
               <div style="margin-top:4px;"><span class="badge-pill" style="background: rgba(168, 85, 247, 0.1); color: #E879F9;">Creator Network</span></div>
             </td>
             <td>
-              <a href="${esc(lead.socialLink)}" target="_blank" rel="noopener" style="color:var(--cyan); font-size:12px; text-decoration:underline;">${esc(lead.socialLink)}</a>
+              ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" style="color:var(--cyan); font-size:12px; text-decoration:underline;">${esc(lead.socialLink)}</a>` : '<span style="color:var(--dim);">—</span>'}
             </td>
             <td>
-              ${lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color:#60A5FA; font-size:12px;">📎 Showreel / Portfolio</a>` : '<span style="color:var(--dim); font-size:12px;">No portfolio provided</span>'}
+              ${lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color:#60A5FA; font-size:12px; display:inline-flex; align-items:center; gap:4px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg> Showreel / Portfolio</a>` : '<span style="color:var(--dim); font-size:12px;">No portfolio provided</span>'}
             </td>
             <td>
               <div style="display: flex; align-items: center; gap: 8px;">
                 ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg> WhatsApp</a>` : ''}
-                <button class="btn-danger" onclick="deleteLead('${esc(lead.id)}')">🗑️</button>
+                <button class="btn-danger" title="Delete application" onclick="deleteLead('${esc(lead.id)}')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
               </div>
             </td>
           </tr>
         `;
       }
 
+      const cleanSocial = formatSocialUrl(lead.socialLink);
       return `
         <tr>
           <td>
@@ -1733,8 +2050,10 @@
           </td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              ${lead.socialLink ? `<a href="${esc(lead.socialLink)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 5px 12px; font-size: 11.5px;">📱 Social</a>` : ''}
-              <button class="btn-danger" onclick="deleteLead('${esc(lead.id)}')">🗑️</button>
+              ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 5px 12px; font-size: 11.5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Social</a>` : ''}
+              <button class="btn-danger" title="Delete application" onclick="deleteLead('${esc(lead.id)}')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
             </div>
           </td>
         </tr>
@@ -1742,11 +2061,12 @@
     }).join('');
 
     // Mobile Responsive Card List with Delete
-    mobileList.innerHTML = leads.map(lead => {
+    mobileList.innerHTML = filtered.map(lead => {
       const d = new Date(lead.submittedAt);
       const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
       const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
       const phone = (lead.phone || '').replace(/[^0-9]/g, '');
+      const cleanSocial = formatSocialUrl(lead.socialLink);
 
       return `
         <div class="lead-mobile-card">
@@ -1754,7 +2074,9 @@
             <span class="badge-pill" style="${isCreator ? 'background: rgba(168, 85, 247, 0.15); color: #C084FC;' : 'background: var(--cyan-dim); color: var(--cyan);'}">${esc(lead.id)}</span>
             <div style="display:flex; align-items:center; gap:8px;">
               <span style="font-size:11.5px; color:var(--dim);">${dateStr}</span>
-              <button class="btn-danger" style="padding: 3px 8px; font-size: 10.5px;" onclick="deleteLead('${esc(lead.id)}')">🗑️</button>
+              <button class="btn-danger" style="padding: 3px 8px; font-size: 10.5px;" onclick="deleteLead('${esc(lead.id)}')">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
             </div>
           </div>
           
@@ -1767,12 +2089,12 @@
           </div>
 
           <div style="font-size:12.5px; color:var(--muted); margin: 8px 0;">
-            ${isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color:#60A5FA; text-decoration:underline;">📎 View Portfolio</a>` : 'No portfolio') : `<div><strong>Status:</strong> ${esc(lead.marketingHistory || '—')}</div>${lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? `<div style="margin-top:2px; color:var(--dim);">Goal: ${esc(lead.primaryGoal)}</div>` : ''}`}
+            ${isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color:#60A5FA; text-decoration:underline;">Showreel Portfolio</a>` : 'No portfolio') : `<div><strong>Status:</strong> ${esc(lead.marketingHistory || '—')}</div>${lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? `<div style="margin-top:2px; color:var(--dim);">Goal: ${esc(lead.primaryGoal)}</div>` : ''}`}
           </div>
 
           <div style="display:flex; gap:8px; margin-top: 12px; flex-wrap:wrap;">
-            ${lead.socialLink ? `<a href="${esc(lead.socialLink)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 7px 14px; font-size: 11.5px; flex: 1; text-align: center;">📱 Social</a>` : ''}
-            ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 7px 16px; flex: 1; justify-content: center;">💬 WhatsApp</a>` : ''}
+            ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 7px 14px; font-size: 11.5px; flex: 1; text-align: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Social</a>` : ''}
+            ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 7px 16px; flex: 1; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg> WhatsApp</a>` : ''}
           </div>
         </div>
       `;
@@ -1790,7 +2112,7 @@
       });
       const data = await res.json();
       if (res.ok && data.success) {
-        notifyToast('✓ Test notification dispatched!');
+        notifyToast('Test notification dispatched!');
       } else {
         notifyToast('Notification error: ' + (data.error || 'Failed'), true);
       }

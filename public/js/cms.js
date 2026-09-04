@@ -14,8 +14,6 @@
         const dictEN = window.POLISH_TRANSLATIONS.en;
         
         if (c.hero) {
-          if (c.hero.windowTag) dictEN["hero.windowTag"] = c.hero.windowTag;
-          if (c.hero.eyebrow) dictEN["hero.eyebrow"] = c.hero.eyebrow;
           if (c.hero.headlineLine1) dictEN["hero.headlineLine1"] = c.hero.headlineLine1;
           if (c.hero.headlineLine2) dictEN["hero.headlineLine2"] = c.hero.headlineLine2;
           if (c.hero.description) dictEN["hero.description"] = c.hero.description;
@@ -50,9 +48,17 @@
         }
 
         if (c.creators) {
-          if (c.creators.eyebrow) dictEN["creators.eyebrow"] = c.creators.eyebrow;
           if (c.creators.headline) dictEN["creators.h1"] = c.creators.headline;
-          if (c.creators.description) dictEN["creators.p"] = c.creators.description;
+          if (c.creators.h1Line1) dictEN["creators.h1Line1"] = c.creators.h1Line1;
+          if (c.creators.h1Line2) { dictEN["creators.h1Line2"] = c.creators.h1Line2; dictEN["creators.h1Accent"] = c.creators.h1Line2; }
+          if (c.creators.ctaText) dictEN["creators.btnSubmit"] = c.creators.ctaText;
+          if (c.creators.trustReview) dictEN["creators.trustReview"] = c.creators.trustReview;
+        }
+
+        if (c.apply) {
+          if (c.apply.h1Line1) dictEN["apply.h1Line1"] = c.apply.h1Line1;
+          if (c.apply.h1Line2) dictEN["apply.h1Line2"] = c.apply.h1Line2;
+          if (c.apply.ctaText) dictEN["apply.btnSubmit"] = c.apply.ctaText;
         }
       }
 
@@ -62,8 +68,6 @@
         const fr = c.fr;
 
         if (fr.hero) {
-          if (fr.hero.windowTag) dictFR["hero.windowTag"] = fr.hero.windowTag;
-          if (fr.hero.eyebrow) dictFR["hero.eyebrow"] = fr.hero.eyebrow;
           if (fr.hero.headlineLine1) dictFR["hero.headlineLine1"] = fr.hero.headlineLine1;
           if (fr.hero.headlineLine2) dictFR["hero.headlineLine2"] = fr.hero.headlineLine2;
           if (fr.hero.description) dictFR["hero.description"] = fr.hero.description;
@@ -98,9 +102,17 @@
         }
 
         if (fr.creators) {
-          if (fr.creators.eyebrow) dictFR["creators.eyebrow"] = fr.creators.eyebrow;
           if (fr.creators.headline) dictFR["creators.h1"] = fr.creators.headline;
-          if (fr.creators.description) dictFR["creators.p"] = fr.creators.description;
+          if (fr.creators.h1Line1) dictFR["creators.h1Line1"] = fr.creators.h1Line1;
+          if (fr.creators.h1Line2) { dictFR["creators.h1Line2"] = fr.creators.h1Line2; dictFR["creators.h1Accent"] = fr.creators.h1Line2; }
+          if (fr.creators.ctaText) dictFR["creators.btnSubmit"] = fr.creators.ctaText;
+          if (fr.creators.trustReview) dictFR["creators.trustReview"] = fr.creators.trustReview;
+        }
+
+        if (fr.apply) {
+          if (fr.apply.h1Line1) dictFR["apply.h1Line1"] = fr.apply.h1Line1;
+          if (fr.apply.h1Line2) dictFR["apply.h1Line2"] = fr.apply.h1Line2;
+          if (fr.apply.ctaText) dictFR["apply.btnSubmit"] = fr.apply.ctaText;
         }
       }
 
@@ -110,8 +122,6 @@
         const ar = c.ar;
 
         if (ar.hero) {
-          if (ar.hero.windowTag) dictAR["hero.windowTag"] = ar.hero.windowTag;
-          if (ar.hero.eyebrow) dictAR["hero.eyebrow"] = ar.hero.eyebrow;
           if (ar.hero.headlineLine1) dictAR["hero.headlineLine1"] = ar.hero.headlineLine1;
           if (ar.hero.headlineLine2) dictAR["hero.headlineLine2"] = ar.hero.headlineLine2;
           if (ar.hero.description) dictAR["hero.description"] = ar.hero.description;
@@ -146,9 +156,17 @@
         }
 
         if (ar.creators) {
-          if (ar.creators.eyebrow) dictAR["creators.eyebrow"] = ar.creators.eyebrow;
           if (ar.creators.headline) dictAR["creators.h1"] = ar.creators.headline;
-          if (ar.creators.description) dictAR["creators.p"] = ar.creators.description;
+          if (ar.creators.h1Line1) dictAR["creators.h1Line1"] = ar.creators.h1Line1;
+          if (ar.creators.h1Line2) { dictAR["creators.h1Line2"] = ar.creators.h1Line2; dictAR["creators.h1Accent"] = ar.creators.h1Line2; }
+          if (ar.creators.ctaText) dictAR["creators.btnSubmit"] = ar.creators.ctaText;
+          if (ar.creators.trustReview) dictAR["creators.trustReview"] = ar.creators.trustReview;
+        }
+
+        if (ar.apply) {
+          if (ar.apply.h1Line1) dictAR["apply.h1Line1"] = ar.apply.h1Line1;
+          if (ar.apply.h1Line2) dictAR["apply.h1Line2"] = ar.apply.h1Line2;
+          if (ar.apply.ctaText) dictAR["apply.btnSubmit"] = ar.apply.ctaText;
         }
       }
 

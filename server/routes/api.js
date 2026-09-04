@@ -229,10 +229,13 @@ router.post('/notifications/test', async (req, res) => {
 const CONTENT_FILE = path.join(__dirname, '../db/content.json');
 
 function getDefaultContent() {
+  try {
+    if (fs.existsSync(CONTENT_FILE)) {
+      return JSON.parse(fs.readFileSync(CONTENT_FILE, "utf8"));
+    }
+  } catch (e) {}
   return {
     hero: {
-      windowTag: "BRAND ACCELERATOR",
-      eyebrow: "BEAUTY ACCELERATOR & GROWTH STUDIO",
       headlineLine1: "From Breakthrough Formulation",
       headlineLine2: "To Household Beauty Brand.",
       description: "We partner with visionary cosmetic founders to scale paid acquisition, high-converting UGC creator campaigns, and automated retention loops.",
@@ -290,9 +293,16 @@ function getDefaultContent() {
       ]
     },
     creators: {
-      eyebrow: "CREATOR & UGC NETWORK",
+      h1Line1: "Create for Leading Beauty Brands.",
+      h1Line2: "Join the POLISH Creator Network.",
       headline: "Create for Leading Beauty Brands. Join the POLISH Creator Network.",
-      description: "Get cast for paid brand campaigns, product gifting, and monthly creator retainers."
+      ctaText: "Submit Creator Profile",
+      trustReview: "Fast Casting: Selected creators are contacted on WhatsApp for paid shoots."
+    },
+    apply: {
+      h1Line1: "Scale Your Beauty Brand.",
+      h1Line2: "Apply for Studio Partnership.",
+      ctaText: "Submit Partnership Brief"
     },
     contact: {
       whatsappNumber: process.env.WHATSAPP_NUMBER || "213662417761",
@@ -312,8 +322,6 @@ function getDefaultContent() {
     },
     fr: {
       hero: {
-        windowTag: "ACCÉLÉRATEUR DE MARQUES",
-        eyebrow: "ACCÉLÉRATEUR & STUDIO DE CROISSANCE BEAUTÉ",
         headlineLine1: "De la Formulation Innovante",
         headlineLine2: "À la Marque Beauté Incontournable.",
         description: "Nous accompagnons les fondateurs d'exception pour accélérer l'acquisition payante, orchestrer des créateurs UGC à haute conversion et fidéliser chaque cliente.",
@@ -371,15 +379,20 @@ function getDefaultContent() {
         ]
       },
       creators: {
-        eyebrow: "RÉSEAU CRÉATEURS & UGC",
-        headline: "Créez pour les Plus Belles Marques Beauté. Rejoignez le Réseau POLISH.",
-        description: "Accédez à des campagnes rémunérées, des dotations produits exclusives et des partenariats réguliers."
+        h1Line1: "Créez pour les Plus Belles Marques de Beauté.",
+        h1Line2: "Rejoignez le Réseau Exclusif POLISH.",
+        headline: "Créez pour les Plus Belles Marques de Beauté. Rejoignez le Réseau Exclusif POLISH.",
+        ctaText: "Soumettre ma Candidature Créateur",
+        trustReview: "Sélection Rapide : Les créateurs retenus sont contactés sur WhatsApp sous 48h."
+      },
+      apply: {
+        h1Line1: "Propulsez Votre Marque Beauté.",
+        h1Line2: "Rejoignez le Studio Partenaire.",
+        ctaText: "Soumettre le Dossier de Partenariat"
       }
     },
     ar: {
       hero: {
-        windowTag: "مسرّع العلامات التجارية",
-        eyebrow: "استوديو ومسرّع نمو علامات التجميل",
         headlineLine1: "من تركيبة مبتكرة ومتميزة",
         headlineLine2: "إلى علامة تجارية رائدة في عالم الجمال.",
         description: "نتشارك مع مؤسسي علامات التجميل والعناية بالبشرة الطموحين لتوسيع الإعلانات المدفوعة، وإنتاج محتوى UGC عالي التحويل، وبناء دورات ولاء وإعادة شراء مؤتمتة.",
@@ -437,9 +450,16 @@ function getDefaultContent() {
         ]
       },
       creators: {
-        eyebrow: "شبكة المبدعين & UGC",
-        headline: "اصنع المحتوى لأرقى علامات التجميل. انضم إلى شبكة POLISH.",
-        description: "احصل على فرص للمشاركة في حملات مدفوعة، وتجارب منتجات حصرية، وعقود شهرية مستمرة."
+        h1Line1: "اصنع المحتوى لأرقى علامات التجميل العالمية.",
+        h1Line2: "انضم إلى شبكة POLISH الحصرية لصناع المحتوى.",
+        headline: "اصنع المحتوى لأرقى علامات التجميل العالمية. انضم إلى شبكة POLISH الحصرية لصناع المحتوى.",
+        ctaText: "إرسال ملف صانع المحتوى",
+        trustReview: "اختيار سريع: يتم التواصل مع صناع المحتوى المختارين عبر واتساب لجلسات التصوير المدفوعة."
+      },
+      apply: {
+        h1Line1: "طور ووسّع مبيعات علامتك التجميلية.",
+        h1Line2: "قدّم طلب الشراكة مع الاستوديو.",
+        ctaText: "إرسال ملخص الشراكة"
       }
     }
   };

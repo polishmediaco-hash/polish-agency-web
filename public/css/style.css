@@ -38,10 +38,11 @@
   --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif-luxury: 'Cormorant Garamond', Georgia, serif;
+  --font-arabic: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
   --text-white: #FFFFFF;
   --text-lead: #E2E8F0;
   --text-muted: #94A3B8;
-  --text-dim: #64748B;
+  --text-dim: #8E9EB5;
 
   /* Large Smooth Curves */
   --radius-sm: 12px;
@@ -55,6 +56,25 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Accessibility: Universal High-Contrast Focus Ring (WCAG 2.2 AA) */
+:focus-visible {
+  outline: 2px solid var(--brand-cyan) !important;
+  outline-offset: 3px !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.btn-cta:focus-visible,
+.lang-btn:focus-visible,
+.header-home-btn:focus-visible,
+.cat-badge-label:focus-within .cat-badge-card {
+  outline: 2px solid var(--brand-cyan) !important;
+  outline-offset: 3px !important;
 }
 
 html {
@@ -820,7 +840,12 @@ a {
   font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.05em;
-  padding: 4px 8px;
+  padding: 6px 10px;
+  min-width: 36px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -867,6 +892,16 @@ a {
   overflow: hidden;
   text-decoration: none;
   white-space: nowrap;
+}
+
+/* Tactile Mobile & Desktop Pressed State (Instant 0ms Feedback) */
+.btn-cta:active,
+.btn-cta-lg:active,
+.sticky-glowing-btn:active,
+.cat-badge-label:active .cat-badge-card,
+.pro-card:active {
+  transform: scale(0.975) translateZ(0) !important;
+  transition: transform 0.08s ease !important;
 }
 
 /* Hero Primary CTA with Continuous Luxury Gleam & Shine */
@@ -938,19 +973,22 @@ a {
 
 .sticky-cta-dock {
   position: fixed;
-  bottom: 24px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translate3d(-50%, 35px, 0) scale(0.92);
   z-index: 998;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s ease;
   will-change: transform, opacity;
 }
 
 .sticky-cta-dock.is-visible {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
   transform: translate3d(-50%, 0, 0) scale(1);
 }
@@ -1176,6 +1214,12 @@ body.has-sticky-cta .whatsapp-float-container {
   gap: 24px;
 }
 
+.grid-pillars-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
 /* ==========================================================================
    CONCEPT 1: 120FPS HARDWARE-ACCELERATED GLASS CARDS (ZERO-REFLOW)
    ========================================================================== */
@@ -1215,13 +1259,13 @@ body.has-sticky-cta .whatsapp-float-container {
 
 /* Staggered Scroll-Reveal Cascade Timing */
 .grid-cards-3 .pro-card:nth-child(1),
-.grid-bento-pillars .pro-card:nth-child(1) { transition-delay: 0.02s; }
-
-/* Staggered Scroll-Reveal Cascade Timing */
-.grid-cards-3 .pro-card:nth-child(1) { transition-delay: 0.02s; }
-.grid-cards-3 .pro-card:nth-child(2) { transition-delay: 0.10s; }
-.grid-cards-3 .pro-card:nth-child(3) { transition-delay: 0.18s; }
-.grid-cards-3 .pro-card:nth-child(4) { transition-delay: 0.26s; }
+.grid-pillars-4 .pro-card:nth-child(1) { transition-delay: 0.02s; }
+.grid-cards-3 .pro-card:nth-child(2),
+.grid-pillars-4 .pro-card:nth-child(2) { transition-delay: 0.08s; }
+.grid-cards-3 .pro-card:nth-child(3),
+.grid-pillars-4 .pro-card:nth-child(3) { transition-delay: 0.16s; }
+.grid-cards-3 .pro-card:nth-child(4),
+.grid-pillars-4 .pro-card:nth-child(4) { transition-delay: 0.24s; }
 
 @media (prefers-reduced-motion: reduce) {
   .pro-card {
@@ -1530,6 +1574,12 @@ body.has-sticky-cta .whatsapp-float-container {
   border-color: rgba(0, 229, 255, 0.6);
   background: rgba(14, 20, 32, 0.65);
   box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.18);
+}
+
+.form-input.input-error, .form-select.input-error {
+  border-color: rgba(239, 68, 68, 0.8) !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.28), inset 0 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
 
 .form-select option {
@@ -2256,10 +2306,10 @@ body.is-rtl .whatsapp-float-container {
     line-height: 1.15;
   }
   .hero-desc {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 14.5px;
+    line-height: 1.55;
     margin-bottom: 18px;
-    max-width: 320px;
+    max-width: 340px;
     margin-left: auto;
     margin-right: auto;
     color: rgba(255, 255, 255, 0.72);
@@ -2536,20 +2586,29 @@ body.is-rtl .whatsapp-float-container {
    ========================================================================== */
 
 [dir="rtl"], body.is-rtl {
+  font-family: var(--font-arabic) !important;
   letter-spacing: normal !important;
 }
 
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
+[dir="rtl"] .hero-h1, [dir="rtl"] .section-h2, [dir="rtl"] .card-h3,
 [dir="rtl"] .hero-title, [dir="rtl"] .section-title,
-[dir="rtl"] .step-title, [dir="rtl"] .creator-heading {
+[dir="rtl"] .step-title, [dir="rtl"] .creator-heading,
+[dir="rtl"] .btn-cta, [dir="rtl"] .sticky-glowing-btn,
+[dir="rtl"] .step-lead-title, [dir="rtl"] .field-label,
+[dir="rtl"] .form-input, [dir="rtl"] .form-select {
+  font-family: var(--font-arabic) !important;
   letter-spacing: 0 !important;
   line-height: 1.4;
 }
 
 [dir="rtl"] .hero-desc,
+[dir="rtl"] .section-p,
 [dir="rtl"] .section-desc,
+[dir="rtl"] .card-p,
 [dir="rtl"] .wizard-subtitle,
 [dir="rtl"] .creator-subheading {
+  font-family: var(--font-arabic) !important;
   line-height: 1.7;
 }
 
@@ -2621,12 +2680,14 @@ body.is-rtl .footer-links-group {
     height: 26px;
   }
   .lang-toggle {
-    padding: 2px 4px;
-    gap: 2px;
+    padding: 3px 6px;
+    gap: 3px;
   }
   .lang-btn {
-    font-size: 10px;
-    padding: 2px 4px;
+    font-size: 11px;
+    padding: 6px 10px;
+    min-height: 36px;
+    min-width: 32px;
   }
   .hero-glass-card {
     padding: 26px 16px 28px;
@@ -2638,10 +2699,10 @@ body.is-rtl .footer-links-group {
     margin-bottom: 10px;
   }
   .hero-desc {
-    font-size: 12px;
-    line-height: 1.46;
-    margin-bottom: 16px;
-    max-width: 290px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    max-width: 320px;
   }
   .glass-pill-tag {
     font-size: 8.5px;
@@ -2736,12 +2797,39 @@ html.lenis, html.lenis body {
   filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.32));
 }
 
-/* Accessibility: Respect prefers-reduced-motion */
+/* Accessibility: Comprehensive prefers-reduced-motion Coverage (WCAG 2.2 AAA) */
 @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
   .kinetic-text {
     transform: none !important;
     opacity: 1 !important;
     transition: none !important;
+  }
+  .pro-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .btn-cta::after,
+  .hero-actions .btn-cta-lg::after,
+  .sticky-glowing-btn::after {
+    animation: none !important;
+    opacity: 0.4 !important;
+  }
+  .ambient-glow-top,
+  .ambient-particles-canvas,
+  .beauty-depth-layer,
+  .beauty-floating-item,
+  .beauty-bokeh-item,
+  .beauty-micro-item,
+  .liquid-glint,
+  .island-pulse-dot {
+    animation: none !important;
+    transform: none !important;
   }
 }
 

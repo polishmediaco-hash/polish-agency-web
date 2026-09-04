@@ -19,10 +19,10 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/logo.png?v=7.0">
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans, Cormorant Garamond & Tajawal (Arabic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/css/style.css?v=23.0">
@@ -113,13 +113,13 @@
       <div class="section-head" style="margin-bottom: 24px;">
         <h1 class="section-h2 kinetic-title" style="font-size: clamp(28px, 4vw, 42px); margin: 0;">
           <span class="kinetic-line"><span class="kinetic-text" data-i18n="apply.h1Line1">Scale Your Beauty Brand.</span></span>
-          <span class="kinetic-line"><span class="kinetic-text gradient-accent" data-i18n="apply.h1Line2">Apply for Studio Partnership.</span></span>
+          <span class="kinetic-line"><span class="kinetic-text gradient-accent hero-serif-accent" data-i18n="apply.h1Line2">Apply for Studio Partnership.</span></span>
         </h1>
       </div>
 
       <!-- Crystalline Glass Multi-Step Form Shell Card -->
       <div class="form-container-shell">
-        <div id="wizardAlertBox" style="display: none;"></div>
+        <div id="wizardAlertBox" class="alert-box" role="alert" aria-live="assertive" style="display: none;"></div>
 
         <div id="wizardFormShell">
           <!-- Step Progress Line -->
@@ -139,17 +139,17 @@
               <div class="input-grid-2">
                 <div class="field-group">
                   <label class="field-label" for="fullName"><span data-i18n="apply.fullName">Full Name</span> <span class="req">*</span></label>
-                  <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Elena Vance" required>
+                  <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Elena Vance" autocomplete="name" required>
                 </div>
                 <div class="field-group">
                   <label class="field-label" for="brandName"><span data-i18n="apply.brandName">Brand Name</span> <span class="req">*</span></label>
-                  <input type="text" id="brandName" name="brandName" class="form-input" placeholder="Aurora Cosmetics" required>
+                  <input type="text" id="brandName" name="brandName" class="form-input" placeholder="Aurora Cosmetics" autocomplete="organization" required>
                 </div>
               </div>
 
               <div class="field-group">
                 <label class="field-label" for="socialLink"><span data-i18n="apply.socialLink">Primary Social Link (Instagram / TikTok)</span> <span class="req">*</span></label>
-                <input type="text" id="socialLink" name="socialLink" class="form-input" placeholder="@auroracosmetics or URL" required>
+                <input type="text" id="socialLink" name="socialLink" class="form-input" placeholder="@auroracosmetics or URL" autocapitalize="none" autocorrect="off" spellcheck="false" required>
               </div>
             </div>
 
@@ -266,7 +266,7 @@
       </p>
       <div class="footer-links-group">
         <a href="mailto:contact@polishmediaco.com" class="footer-link-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
@@ -274,7 +274,7 @@
         </a>
         <span class="footer-dot">•</span>
         <a href="https://www.instagram.com/polishmedia.co/" target="_blank" rel="noopener noreferrer" class="footer-link-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>

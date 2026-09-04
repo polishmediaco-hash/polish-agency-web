@@ -92,6 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
+   * Highlights input with error styling and attaches auto-clear listeners
+   */
+  function markFieldError(el) {
+    if (!el) return;
+    el.classList.add('input-error');
+    el.setAttribute('aria-invalid', 'true');
+    const clear = () => {
+      el.classList.remove('input-error');
+      el.removeAttribute('aria-invalid');
+      hideAlert();
+    };
+    el.addEventListener('input', clear, { once: true });
+    el.addEventListener('change', clear, { once: true });
+  }
+
+  /**
    * Validates inputs for the active step
    */
   function validateCurrentStep() {
@@ -108,14 +124,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const social = socialInput ? socialInput.value.trim() : '';
 
       if (!name) {
+        markFieldError(nameInput);
         showAlert(isFr ? 'Veuillez renseigner votre nom et prénom.' : 'Please enter your full name.', nameInput);
         return false;
       }
       if (!brand) {
+        markFieldError(brandInput);
         showAlert(isFr ? 'Veuillez indiquer le nom de votre marque.' : 'Please enter your company or brand name.', brandInput);
         return false;
       }
       if (!social) {
+        markFieldError(socialInput);
         showAlert(isFr ? 'Veuillez indiquer le lien vers votre réseau social (Instagram / TikTok).' : 'Please enter your Instagram, TikTok, or brand social handle.', socialInput);
         return false;
       }
@@ -129,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
       }
       if (!role) {
+        markFieldError(roleSelect);
         showAlert(isFr ? 'Veuillez choisir votre fonction dans la marque.' : 'Please choose your leadership position in the organization.', roleSelect);
         return false;
       }
@@ -137,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const history = historySelect ? historySelect.value.trim() : '';
 
       if (!history) {
+        markFieldError(historySelect);
         showAlert(isFr ? 'Veuillez sélectionner votre statut marketing actuel.' : 'Please select your past marketing or agency experience.', historySelect);
         return false;
       }

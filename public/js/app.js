@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const wizardShell = document.getElementById('wizardFormShell') || document.getElementById('wizardContentShell');
   const successBox = document.getElementById('wizardSuccessScreen');
 
+  let isMovingBackward = false;
+
   /**
    * Updates all visual UI elements for the active step
    */
@@ -33,13 +35,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide all step panes (supports both class variants)
     const stepPanes = document.querySelectorAll('.form-step-pane, .wizard-step');
     stepPanes.forEach(pane => {
-      pane.classList.remove('active');
+      pane.classList.remove('active', 'step-backward');
       pane.style.display = 'none';
     });
 
-    // Show current step pane
+    // Show current step pane with directional spring class
     const activePane = document.querySelector(`.form-step-pane[data-step="${currentStep}"], .wizard-step[data-step="${currentStep}"]`);
     if (activePane) {
+      if (isMovingBackward) {
+        activePane.classList.add('step-backward');
+      } else {
+        activePane.classList.remove('step-backward');
+      }
       activePane.classList.add('active');
       activePane.style.display = 'block';
     }
@@ -144,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       if (!validateCurrentStep()) return;
       if (currentStep < totalSteps) {
+        isMovingBackward = false;
         currentStep++;
         updateStepUI();
       }
@@ -155,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnBack.addEventListener('click', (e) => {
       e.preventDefault();
       if (currentStep > 1) {
+        isMovingBackward = true;
         currentStep--;
         updateStepUI();
       }

@@ -79,10 +79,33 @@
   });
 
   // =========================================================================
-  // 5. 120FPS GPU CARD MOTION (ZERO JAVASCRIPT OVERHEAD)
+  // 5. STAGGERED SCROLL-REVEAL CASCADE (CARDS & BENTO)
   // =========================================================================
-  // Card hover elevation and ambient sheen are handled entirely via GPU
-  // CSS compositor transforms, ensuring 120FPS fluid scrolling and zero lag.
+  function initCardReveal() {
+    const cards = document.querySelectorAll('.pro-card');
+    if (cards.length === 0) return;
+
+    if ('IntersectionObserver' in window && !prefersReducedMotion) {
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      cards.forEach(card => cardObserver.observe(card));
+    } else {
+      cards.forEach(card => card.classList.add('is-revealed'));
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCardReveal);
+  } else {
+    initCardReveal();
+  }
 
   // =========================================================================
   // 6. AMBIENT PARTICLES ENGINE (DESKTOP ONLY — 0MS OVERHEAD)
@@ -206,6 +229,77 @@
 
   window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
   updateScrollState();
+
+  // =========================================================================
+  // 8. SMART STICKY GLOWING CTA DOCK (AUTO-BLEND & COLLISION-SAFE)
+  // =========================================================================
+  const stickyDock = document.getElementById('stickyCtaDock');
+  if (stickyDock) {
+    const heroCta = document.querySelector('.hero-actions .btn-cta');
+    const footer = document.querySelector('.site-footer');
+    let heroCtaInView = true;
+    let footerInView = false;
+
+    function updateStickyVisibility() {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      let heroPast = !heroCtaInView;
+      let footerNear = footerInView;
+
+      if (heroCta) {
+        const heroRect = heroCta.getBoundingClientRect();
+        if (heroRect.bottom < 80) {
+          heroPast = true;
+        } else if (heroRect.top > 0) {
+          heroPast = false;
+        }
+      }
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        if (footerRect.top < window.innerHeight + 50) {
+          footerNear = true;
+        } else {
+          footerNear = false;
+        }
+      }
+
+      if (scrollY > 160 && heroPast && !footerNear) {
+        stickyDock.classList.add('is-visible');
+        stickyDock.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('has-sticky-cta');
+      } else {
+        stickyDock.classList.remove('is-visible');
+        stickyDock.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('has-sticky-cta');
+      }
+    }
+
+    if ('IntersectionObserver' in window) {
+      if (heroCta) {
+        const heroObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            heroCtaInView = entry.isIntersecting;
+            updateStickyVisibility();
+          });
+        }, { threshold: 0.1 });
+        heroObserver.observe(heroCta);
+      }
+
+      if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            footerInView = entry.isIntersecting;
+            updateStickyVisibility();
+          });
+        }, { threshold: 0.05 });
+        footerObserver.observe(footer);
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(updateStickyVisibility);
+    }, { passive: true });
+    updateStickyVisibility();
+  }
 
   // =========================================================================
   // 10. LUXURY OPENING SCREEN (SHARED-ELEMENT FLIP TRANSITION)

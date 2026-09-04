@@ -107,30 +107,10 @@
   }
 
   // =========================================================================
-  // 3. MAGNETIC LUXURY CURSOR (DESKTOP ONLY)
+  // 3. TACTILE MAGNETIC ATTRACTION (DESKTOP ONLY)
   // =========================================================================
   if (!isTouch && window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion) {
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'luxury-cursor-dot';
-    const cursorRing = document.createElement('div');
-    cursorRing.className = 'luxury-cursor-ring';
-    document.body.appendChild(cursorDot);
-    document.body.appendChild(cursorRing);
-
-    let mouseX = -100;
-    let mouseY = -100;
-    let ringX = -100;
-    let ringY = -100;
     let activeMagneticEl = null;
-
-    window.addEventListener('pointermove', function (e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-    }, { passive: true });
-
-    window.addEventListener('pointerdown', () => document.body.classList.add('is-cursor-clicking'), { passive: true });
-    window.addEventListener('pointerup', () => document.body.classList.remove('is-cursor-clicking'), { passive: true });
 
     // Interactive magnetic attraction binding
     function initMagneticElements() {
@@ -144,12 +124,10 @@
 
         el.addEventListener('pointerenter', () => {
           activeMagneticEl = el;
-          document.body.classList.add('has-cursor-hover');
         });
 
         el.addEventListener('pointerleave', () => {
           if (activeMagneticEl === el) activeMagneticEl = null;
-          document.body.classList.remove('has-cursor-hover');
           el.style.transform = '';
         });
 
@@ -167,25 +145,6 @@
 
     initMagneticElements();
     window.addEventListener('polishLanguageChanged', () => setTimeout(initMagneticElements, 100));
-
-    // Smooth ring lerp tracking
-    function renderCursorRing() {
-      let targetRingX = mouseX;
-      let targetRingY = mouseY;
-
-      if (activeMagneticEl) {
-        const rect = activeMagneticEl.getBoundingClientRect();
-        targetRingX = rect.left + rect.width / 2;
-        targetRingY = rect.top + rect.height / 2;
-      }
-
-      ringX += (targetRingX - ringX) * 0.18;
-      ringY += (targetRingY - ringY) * 0.18;
-
-      cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
-      requestAnimationFrame(renderCursorRing);
-    }
-    requestAnimationFrame(renderCursorRing);
   }
 
   // =========================================================================
@@ -194,6 +153,12 @@
   function initKineticTypography() {
     const titles = document.querySelectorAll('.kinetic-title');
     if (titles.length === 0) return;
+
+    // Immediately reveal top hero title for crisp above-the-fold entrance
+    const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+    if (heroTitle) {
+      heroTitle.classList.add('is-revealed');
+    }
 
     if ('IntersectionObserver' in window && !prefersReducedMotion) {
       const observer = new IntersectionObserver((entries) => {
@@ -205,7 +170,9 @@
         });
       }, { threshold: 0.12 });
 
-      titles.forEach(t => observer.observe(t));
+      titles.forEach(t => {
+        if (t !== heroTitle) observer.observe(t);
+      });
     } else {
       titles.forEach(t => t.classList.add('is-revealed'));
     }

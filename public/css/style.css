@@ -73,6 +73,17 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main,
+.hero-section {
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  margin-top: auto;
 }
 
 /* ==========================================================================
@@ -869,10 +880,40 @@ a {
   white-space: nowrap;
 }
 
-/* Stabilized Hero CTA */
+/* Hero Primary CTA with Continuous Luxury Gleam & Shine */
 .hero-actions .btn-cta-lg {
   min-width: 250px;
   text-align: center;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 35px rgba(0, 229, 255, 0.45), 0 0 24px rgba(0, 229, 255, 0.3), inset 0 2px 2px rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  padding: 14px 34px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-actions .btn-cta-lg::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transform: rotate(25deg);
+  animation: shineLoop 4s infinite ease-in-out;
+}
+
+.hero-actions .btn-cta-lg:hover {
+  background: var(--grad-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 45px rgba(0, 229, 255, 0.75), 0 0 35px rgba(0, 229, 255, 0.5), inset 0 2.5px 2.5px rgba(255, 255, 255, 0.85);
 }
 
 /* ==========================================================================
@@ -2461,76 +2502,8 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   MAGNETIC LUXURY CURSOR (DESKTOP ONLY)
+   TACTILE MAGNETIC ATTRACTION TRANSITIONS (DESKTOP)
    ========================================================================== */
-
-.luxury-cursor-dot,
-.luxury-cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  border-radius: 50%;
-  z-index: 99999;
-  will-change: transform, width, height, opacity;
-  transform: translate3d(-100px, -100px, 0);
-}
-
-.luxury-cursor-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--brand-cyan);
-  box-shadow: 0 0 10px var(--brand-cyan), 0 0 20px rgba(0, 229, 255, 0.7);
-  margin-top: -3px;
-  margin-left: -3px;
-  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.luxury-cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(0, 229, 255, 0.45);
-  background: rgba(0, 229, 255, 0.03);
-  box-shadow: 0 0 18px rgba(0, 229, 255, 0.2), inset 0 0 10px rgba(0, 229, 255, 0.08);
-  margin-top: -18px;
-  margin-left: -18px;
-  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-              height 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.25s ease,
-              background 0.25s ease,
-              box-shadow 0.25s ease,
-              opacity 0.25s ease;
-}
-
-/* Hovering interactive / magnetic elements */
-body.has-cursor-hover .luxury-cursor-ring {
-  width: 54px;
-  height: 54px;
-  margin-top: -27px;
-  margin-left: -27px;
-  border-color: rgba(0, 229, 255, 0.85);
-  background: rgba(0, 229, 255, 0.08);
-  box-shadow: 0 0 26px rgba(0, 229, 255, 0.5), inset 0 0 14px rgba(0, 229, 255, 0.22);
-}
-
-body.has-cursor-hover .luxury-cursor-dot {
-  transform: scale(0.65);
-  opacity: 0.6;
-}
-
-/* Clicking / Press state */
-body.is-cursor-clicking .luxury-cursor-ring {
-  transform: scale(0.82);
-  border-color: #FFFFFF;
-}
-
-/* Strictly hide on touch devices or small screens */
-@media (pointer: coarse), (max-width: 768px) {
-  .luxury-cursor-dot,
-  .luxury-cursor-ring {
-    display: none !important;
-  }
-}
 
 /* Magnetic Element Transitions */
 .brand-logo-pod,
@@ -2538,57 +2511,166 @@ body.is-cursor-clicking .luxury-cursor-ring {
 .lang-btn,
 .btn-cta,
 .cat-badge-card,
+.footer-link-item,
 [data-magnetic] {
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
   will-change: transform;
 }
 
 /* ==========================================================================
-   EDITORIAL KINETIC TYPOGRAPHY MASK REVEALS
+   CINEMATIC OPTICAL RACK-FOCUS KINETIC TYPOGRAPHY
+   Awwwards-Grade 3D Perspective, Lens Defocus Blur & Continuous Aurora Sheen
    ========================================================================== */
 
 .kinetic-title {
   display: block;
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 .kinetic-line {
   display: block;
   overflow: hidden;
-  padding-bottom: 4px;
+  position: relative;
+  padding-bottom: 6px;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  /* Crisp mask clipping */
+  clip-path: inset(0 0 -2px 0);
 }
 
 .kinetic-text {
   display: inline-block;
-  transform: translateY(115%);
-  opacity: 0;
-  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
-  will-change: transform, opacity;
+  position: relative;
+  will-change: transform, opacity, filter;
 }
 
+/* Pre-reveal initial hidden state */
+.kinetic-title:not(.is-revealed) .kinetic-text {
+  opacity: 0;
+  transform: translate3d(0, 118%, -24px) rotateX(-24deg) skewY(2.2deg) scale(0.95);
+  filter: blur(14px);
+}
+
+html[dir="rtl"] .kinetic-title:not(.is-revealed) .kinetic-text {
+  transform: translate3d(0, 118%, -24px) rotateX(-24deg) skewY(-2.2deg) scale(0.95);
+}
+
+/* Optical Rack-Focus Reveal Animation */
 .kinetic-title.is-revealed .kinetic-line:nth-child(1) .kinetic-text {
-  transform: translateY(0);
-  opacity: 1;
-  transition-delay: 0.06s;
+  animation: kineticOpticalRackFocus 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
 }
 
 .kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text {
-  transform: translateY(0);
-  opacity: 1;
-  transition-delay: 0.18s;
+  animation: kineticOpticalRackFocus 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
 }
 
 .kinetic-title.is-revealed .kinetic-line:nth-child(3) .kinetic-text {
-  transform: translateY(0);
-  opacity: 1;
-  transition-delay: 0.3s;
+  animation: kineticOpticalRackFocus 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+@keyframes kineticOpticalRackFocus {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 118%, -24px) rotateX(-24deg) skewY(2.2deg) scale(0.95);
+    filter: blur(14px);
+    letter-spacing: 0.02em;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateX(0deg) skewY(0deg) scale(1);
+    filter: blur(0px);
+    letter-spacing: normal;
+  }
+}
+
+html[dir="rtl"] .kinetic-title.is-revealed .kinetic-line:nth-child(1) .kinetic-text,
+html[dir="rtl"] .kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text,
+html[dir="rtl"] .kinetic-title.is-revealed .kinetic-line:nth-child(3) .kinetic-text {
+  animation-name: kineticOpticalRackFocusRtl;
+}
+
+@keyframes kineticOpticalRackFocusRtl {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 118%, -24px) rotateX(-24deg) skewY(-2.2deg) scale(0.95);
+    filter: blur(14px);
+    letter-spacing: 0.02em;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateX(0deg) skewY(0deg) scale(1);
+    filter: blur(0px);
+    letter-spacing: normal;
+  }
+}
+
+/* Continuous Liquid Aurora Refraction on Revealed Gradient Headlines */
+.kinetic-title.is-revealed .gradient-accent,
+.kinetic-title.is-revealed .gradient-text {
+  background-size: 240% auto;
+  animation: textAuroraGleam 7s ease infinite alternate;
+}
+
+@keyframes textAuroraGleam {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Specular Ray Shimmer Gliding across the Accent Line */
+.kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40%;
+  width: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-25deg);
+  pointer-events: none;
+  animation: textRaySweep 5.5s cubic-bezier(0.16, 1, 0.3, 1) infinite 1.8s;
+}
+
+@keyframes textRaySweep {
+  0% {
+    left: -40%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  40% {
+    left: 140%;
+    opacity: 0;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
 }
 
 /* Accessibility: Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
+  .kinetic-title:not(.is-revealed) .kinetic-text,
   .kinetic-text {
     transform: none !important;
     opacity: 1 !important;
-    transition: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+  .kinetic-title.is-revealed .gradient-accent,
+  .kinetic-title.is-revealed .gradient-text {
+    animation: none !important;
+  }
+  .kinetic-title.is-revealed .kinetic-line:nth-child(2) .kinetic-text::after {
+    display: none !important;
   }
 }
 

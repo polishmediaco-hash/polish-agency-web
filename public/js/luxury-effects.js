@@ -390,4 +390,46 @@
     }
     updateIslandState();
   }
+
+  // =========================================================================
+  // 9. CONCEPT 1: RADIAL SPOTLIGHT GLASS CARDS (DESKTOP INTERACTION)
+  // =========================================================================
+  function initRadialSpotlightCards() {
+    if (isTouch || !window.matchMedia('(pointer: fine)').matches) return;
+
+    const cards = document.querySelectorAll(
+      '.pro-card, .hero-glass-card, .case-banner, .form-container-shell'
+    );
+
+    cards.forEach(card => {
+      if (card.dataset.spotlightInit) return;
+      card.dataset.spotlightInit = 'true';
+
+      let spotlightRAF = null;
+
+      card.addEventListener('pointermove', function (e) {
+        if (spotlightRAF) cancelAnimationFrame(spotlightRAF);
+        spotlightRAF = requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
+          card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
+        });
+      }, { passive: true });
+
+      card.addEventListener('pointerleave', function () {
+        if (spotlightRAF) cancelAnimationFrame(spotlightRAF);
+      }, { passive: true });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRadialSpotlightCards);
+  } else {
+    initRadialSpotlightCards();
+  }
+  window.addEventListener('polishLanguageChanged', () => {
+    setTimeout(initRadialSpotlightCards, 120);
+  });
 })();

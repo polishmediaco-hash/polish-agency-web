@@ -12,9 +12,9 @@
   /* Matte Obsidian Black Void */
   --bg-deep: #07080B;
   
-  /* Smoked Acrylic Glass Surfaces */
-  --glass-panel: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(20, 25, 35, 0.42) 28%, rgba(8, 10, 16, 0.68) 100%);
-  --glass-panel-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(26, 32, 46, 0.52) 30%, rgba(10, 13, 20, 0.78) 100%);
+  /* Crystalline Translucent Glass Surfaces (Reveals Floating 3D Depth Products Behind Cards) */
+  --glass-panel: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(16, 22, 34, 0.26) 32%, rgba(6, 9, 16, 0.44) 100%);
+  --glass-panel-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(20, 28, 44, 0.36) 32%, rgba(8, 12, 22, 0.52) 100%);
   --glass-input: rgba(8, 10, 15, 0.65);
   --glass-header: rgba(7, 8, 12, 0.6);
 
@@ -1127,24 +1127,67 @@ a {
   gap: 24px;
 }
 
-/* Authentic Frosted Acrylic Smoked Glass Card */
+/* ==========================================================================
+   CONCEPT 1: THE RADIAL SPOTLIGHT GLASS CARDS
+   ========================================================================== */
+
+/* Authentic Frosted Crystalline Glass Card */
 .pro-card {
   background: var(--glass-panel);
-  backdrop-filter: blur(40px) saturate(190%);
-  -webkit-backdrop-filter: blur(40px) saturate(190%);
-  border: 1px solid var(--border-specular);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 24px;
   padding: 38px 32px;
   position: relative;
-  box-shadow: var(--glass-shadow);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1.5px rgba(255, 255, 255, 0.22);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              background 0.35s ease;
+}
+
+/* Interactive Cursor Radial Spotlight Cone */
+.pro-card::before,
+.hero-glass-card::before,
+.case-banner::before,
+.form-container-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(0, 229, 255, 0.15),
+    transparent 75%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+.pro-card:hover::before,
+.hero-glass-card:hover::before,
+.case-banner:hover::before,
+.form-container-shell:hover::before {
+  opacity: 1;
+}
+
+.pro-card > *,
+.hero-glass-card > *,
+.case-banner > *,
+.form-container-shell > * {
+  position: relative;
+  z-index: 2;
 }
 
 .pro-card:hover {
-  transform: translateY(-6px) scale(1.008);
+  transform: translateY(-5px) scale(1.008);
   background: var(--glass-panel-hover);
-  border-color: var(--border-specular-hover);
-  box-shadow: var(--glass-shadow-hover);
+  border-color: rgba(0, 229, 255, 0.42);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.62), 0 0 32px rgba(0, 229, 255, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.32);
 }
 
 .card-tag {
@@ -1186,17 +1229,25 @@ a {
   filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.3));
 }
 
-/* Smoked Glass Case Study Banner */
+/* Crystalline Glass Case Study Banner */
 .case-banner {
   margin-top: 52px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(22, 28, 42, 0.5) 30%, rgba(8, 11, 18, 0.75) 100%);
-  backdrop-filter: blur(45px) saturate(200%);
-  -webkit-backdrop-filter: blur(45px) saturate(200%);
-  border: 1px solid rgba(0, 229, 255, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(18, 24, 38, 0.3) 30%, rgba(6, 9, 16, 0.48) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(0, 229, 255, 0.35);
   border-radius: var(--radius-lg);
   padding: 60px 42px;
   text-align: center;
-  box-shadow: var(--glass-shadow), 0 0 45px rgba(0, 229, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), inset 0 1px 1.5px rgba(255, 255, 255, 0.22), 0 0 35px rgba(0, 229, 255, 0.12);
+  transition: all 0.35s ease;
+}
+
+.case-banner:hover {
+  border-color: rgba(0, 229, 255, 0.55);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.65), 0 0 45px rgba(0, 229, 255, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.35);
 }
 
 .metrics-strip {
@@ -1215,17 +1266,16 @@ a {
   background: var(--grad-brand);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1;
-  margin-bottom: 6px;
-  filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.35));
+  line-height: 1.1;
+  margin-bottom: 8px;
 }
 
 .metric-label {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-dim);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 .case-quote {
@@ -1238,20 +1288,27 @@ a {
 }
 
 /* ==========================================================================
-   PAGE 2: SMOKED ACRYLIC MULTI-STEP FORM
+   PARTNERSHIP INTAKE DOSSIER WIZARD FORM (APPLY.HTML)
    ========================================================================== */
 
 .form-container-shell {
   max-width: 700px;
   margin: 0 auto 80px;
   background: var(--glass-panel);
-  backdrop-filter: blur(48px) saturate(200%);
-  -webkit-backdrop-filter: blur(48px) saturate(200%);
-  border: 1px solid var(--border-specular);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: var(--radius-lg);
   padding: 48px 40px;
-  box-shadow: var(--glass-shadow);
   position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), inset 0 1px 1.5px rgba(255, 255, 255, 0.22);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.form-container-shell:hover {
+  border-color: rgba(0, 229, 255, 0.42);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.65), 0 0 35px rgba(0, 229, 255, 0.16), inset 0 1px 2px rgba(255, 255, 255, 0.35);
 }
 
 .step-progress-wrap {
@@ -1792,21 +1849,22 @@ body.is-rtl .whatsapp-float-container {
 
 .hero-glass-card {
   background: var(--glass-panel);
-  backdrop-filter: blur(48px) saturate(200%);
-  -webkit-backdrop-filter: blur(48px) saturate(200%);
-  border: 1px solid var(--border-specular);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 28px;
   padding: 42px 48px 54px;
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), inset 0 1px 1.5px rgba(255, 255, 255, 0.25);
   max-width: 1040px;
   margin: 0 auto;
   position: relative;
+  overflow: hidden;
   transition: all 0.35s ease;
 }
 
 .hero-glass-card:hover {
-  border-color: var(--border-specular-hover);
-  box-shadow: var(--glass-shadow-hover);
+  border-color: rgba(0, 229, 255, 0.42);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.65), 0 0 35px rgba(0, 229, 255, 0.16), inset 0 1px 2px rgba(255, 255, 255, 0.35);
 }
 
 .glass-card-topbar {
@@ -2037,63 +2095,53 @@ body.is-rtl .whatsapp-float-container {
     margin-bottom: 14px;
   }
 
-  /* Bottleneck & Feature Cards */
-  .bottlenecks-grid {
-    gap: 10px;
-  }
-  .bottleneck-card,
-  .feature-card {
-    padding: 14px 12px;
-    border-radius: 14px;
-    margin-bottom: 10px;
-    background: rgba(10, 14, 24, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-  }
-  .card-tag-badge,
-  .bottleneck-tag {
-    font-size: 8.5px;
-    padding: 2px 6px;
-    margin-bottom: 6px;
-    border-radius: var(--radius-pill);
-  }
-  .card-title,
-  .feature-title {
-    font-size: 15px;
-    line-height: 1.25;
-    margin-bottom: 4px;
-  }
-  .card-desc,
-  .feature-desc {
-    font-size: 12px;
-    line-height: 1.45;
-  }
-
-  /* Pillars & Growth Engine */
-  .pillars-grid {
+  /* ==========================================================================
+     PHONE-NATIVE LUXURY CARDS (BOTTLENECKS & GROWTH ENGINE)
+     ========================================================================== */
+  .grid-cards-3 {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
   }
-  .pillar-card {
-    padding: 14px 12px;
-    border-radius: 14px;
-    background: rgba(10, 14, 24, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+  .pro-card {
+    padding: 16px 14px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    background: var(--glass-panel);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.18);
   }
-  .pillar-num {
-    font-size: 19px;
-    margin-bottom: 4px;
-    font-weight: 800;
+  .pro-card:hover {
+    transform: none; /* Avoid touch hover jank on mobile */
   }
-  .pillar-title {
-    font-size: 14.5px;
-    margin-bottom: 3px;
+  .card-tag {
+    font-size: 9.5px;
+    padding: 3px 8px;
+    margin-bottom: 8px;
+    letter-spacing: 0.08em;
   }
-  .pillar-text {
-    font-size: 12px;
-    line-height: 1.45;
+  .card-h3 {
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .card-p {
+    font-size: 12.5px;
+    line-height: 1.48;
+  }
+  .pillar-digit {
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+  .hero-glass-card {
+    padding: 22px 16px 26px;
+    border-radius: 20px;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
   }
   .case-banner {
-    padding: 20px 14px;
+    padding: 18px 14px;
     border-radius: 16px;
   }
 

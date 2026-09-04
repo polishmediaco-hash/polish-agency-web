@@ -545,41 +545,41 @@ a {
   align-items: center;
   gap: 20px;
   width: 100%;
-  max-width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
   padding: 0;
-  border-radius: 20px;
+  border-radius: 999px;
   background: transparent;
   border: 1px solid transparent;
   box-shadow: none;
   direction: ltr !important; /* Strictly lock LTR across English, French, and Arabic RTL */
-  transition: width 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-              max-width 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-              padding 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-              gap 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-              border-radius 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: max-width 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              gap 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.55s ease,
+              border-color 0.55s ease,
+              box-shadow 0.65s ease,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Scrolled Morph State: Converges into floating centered glass capsule */
+/* Scrolled Morph State: Velvety smooth glide into centered floating glass capsule */
 .site-header.is-scrolled .dynamic-island-shell {
-  width: auto;
-  max-width: fit-content;
-  min-width: 260px;
-  margin: 0 auto;
-  padding: 6px 14px;
+  max-width: 320px;
+  padding: 7px 18px;
   gap: 14px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(16, 22, 36, 0.88) 0%, rgba(6, 10, 18, 0.94) 100%);
+  background: linear-gradient(135deg, rgba(16, 22, 36, 0.9) 0%, rgba(6, 10, 18, 0.95) 100%);
   backdrop-filter: blur(30px) saturate(190%);
   -webkit-backdrop-filter: blur(30px) saturate(190%);
-  border: 1px solid rgba(0, 229, 255, 0.28);
+  border-color: rgba(0, 229, 255, 0.28);
   box-shadow: 0 16px 42px rgba(0, 0, 0, 0.82), 0 0 30px rgba(0, 229, 255, 0.14), inset 0 1px 1.5px rgba(255, 255, 255, 0.22);
   pointer-events: auto;
   transform: translateY(0);
   overflow: hidden;
+}
+
+/* On subpages with the Home button, allow comfortable breathing room */
+.site-header.is-scrolled .dynamic-island-shell.has-center-home {
+  max-width: 395px;
 }
 
 .site-header.is-scrolled .dynamic-island-shell:hover {
@@ -593,7 +593,7 @@ a {
 }
 
 /* ==========================================================================
-   DYNAMIC ISLAND ZONE 1: SPACIOUS LUXURY LOGO POD
+   DYNAMIC ISLAND ZONE 1: PURE BORDERLESS BRAND LOGO (NO BOX POD)
    ========================================================================== */
 
 .island-logo-zone,
@@ -605,58 +605,41 @@ a {
   order: 1; /* Pinned to Left across all languages */
 }
 
+/* Pure Borderless Logo Link — Free Floating, No Box, Full Breathing Room */
+.brand-logo-link,
 .brand-logo-pod {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 50px;
-  padding: 10px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 229, 255, 0.04) 40%, rgba(8, 12, 20, 0.85) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.25), 0 8px 24px rgba(0, 0, 0, 0.45);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 2px 4px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   text-decoration: none;
   cursor: pointer;
-}
-
-.site-header.is-scrolled .brand-logo-pod {
-  width: 40px;
-  height: 38px;
-  padding: 6px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 229, 255, 0.22);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
-}
-
-.brand-logo-pod:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(0, 229, 255, 0.1) 40%, rgba(10, 16, 28, 0.92) 100%);
-  border-color: rgba(0, 229, 255, 0.45);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35), 0 0 24px rgba(0, 229, 255, 0.35), 0 10px 30px rgba(0, 0, 0, 0.6);
-  transform: translateY(-1px) scale(1.04);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .brand-logo-img {
   width: auto;
-  height: 28px;
+  height: 40px; /* Prominent, crisp, uncompressed brand mark */
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
-  transition: transform 0.3s ease, filter 0.3s ease, height 0.35s ease;
+  filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.7));
+  transition: transform 0.3s ease, filter 0.3s ease, height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-logo-link:hover .brand-logo-img,
+.brand-logo-pod:hover .brand-logo-img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 18px rgba(0, 229, 255, 1));
 }
 
 .site-header.is-scrolled .brand-logo-img {
-  height: 21px;
-}
-
-.brand-logo-pod:hover .brand-logo-img {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.95));
+  height: 28px; /* Clean, perfectly proportioned inside the island capsule */
 }
 
 /* ==========================================================================
@@ -1934,14 +1917,11 @@ body.is-rtl .whatsapp-float-container {
     gap: 8px;
     border-radius: 999px;
   }
-  .site-header.is-scrolled .brand-logo-pod {
-    width: 34px;
-    height: 32px;
-    padding: 5px;
-    border-radius: 8px;
+  .brand-logo-img {
+    height: 30px;
   }
   .site-header.is-scrolled .brand-logo-img {
-    height: 18px;
+    height: 22px;
   }
   .site-header.is-scrolled .header-home-btn {
     padding: 4px 8px;

@@ -298,9 +298,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
 
-    if (scrollY > 35) {
+    if (scrollY > 110) {
       header.classList.add('is-scrolled');
-    } else if (scrollY < 20) {
+    } else if (scrollY < 45) {
       header.classList.remove('is-scrolled');
     }
 

@@ -135,7 +135,7 @@
     // Interactive magnetic attraction binding
     function initMagneticElements() {
       const magneticTargets = document.querySelectorAll(
-        '.brand-logo-pod, .header-home-btn, .lang-btn, .btn-cta, .cat-badge-card, .footer-link-item, [data-magnetic]'
+        '.brand-logo-link, .brand-logo-pod, .header-home-btn, .lang-btn, .btn-cta, .cat-badge-card, .footer-link-item, [data-magnetic]'
       );
 
       magneticTargets.forEach(el => {
@@ -372,10 +372,10 @@
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
 
-      // Hysteresis threshold to eliminate jitter at transition point
-      if (scrollY > 35) {
+      // Deliberate luxury threshold: allows hero breathing room, morphs smoothly past 110px
+      if (scrollY > 110) {
         siteHeader.classList.add('is-scrolled');
-      } else if (scrollY < 20) {
+      } else if (scrollY < 45) {
         siteHeader.classList.remove('is-scrolled');
       }
 

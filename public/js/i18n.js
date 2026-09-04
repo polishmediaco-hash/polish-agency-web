@@ -15,6 +15,7 @@ const POLISH_TRANSLATIONS = {
     "nav.returnHome": "Return Home",
     "nav.homeOneWord": "Home",
     "header.cta": "Explore Partnership",
+    "intro.tagline": "THE BEAUTY ACCELERATOR",
 
     // Hero Section
     "hero.cohort": "Q1/Q2 COHORT • ACTIVE INTAKE",
@@ -135,6 +136,7 @@ const POLISH_TRANSLATIONS = {
     "nav.returnHome": "Retour à l'Accueil",
     "nav.homeOneWord": "Accueil",
     "header.cta": "Découvrir le Partenariat",
+    "intro.tagline": "L'ACCÉLÉRATEUR BEAUTÉ",
 
     // Hero Section
     "hero.cohort": "COHORTE Q1/Q2 • ADMISSIONS OUVERTES",
@@ -255,6 +257,7 @@ const POLISH_TRANSLATIONS = {
     "nav.returnHome": "العودة للرئيسية",
     "nav.homeOneWord": "الرئيسية",
     "header.cta": "استكشف الشراكة",
+    "intro.tagline": "مسرّع نمو علامات التجميل",
 
     // Hero Section
     "hero.cohort": "دفعة Q1/Q2 • استقبال الشراكات",

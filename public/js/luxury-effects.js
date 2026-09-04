@@ -154,9 +154,12 @@
     const titles = document.querySelectorAll('.kinetic-title');
     if (titles.length === 0) return;
 
-    // Immediately reveal top hero title for crisp above-the-fold entrance
+    // Immediately reveal top hero title for crisp above-the-fold entrance (or wait for intro if active)
     const heroTitle = document.querySelector('.hero-h1.kinetic-title');
-    if (heroTitle) {
+    const introOverlay = document.getElementById('luxuryIntro');
+    const hasSeenIntro = sessionStorage.getItem('polish_intro_seen') === 'true';
+
+    if (heroTitle && (!introOverlay || hasSeenIntro)) {
       heroTitle.classList.add('is-revealed');
     }
 
@@ -409,4 +412,124 @@
   window.addEventListener('polishLanguageChanged', () => {
     setTimeout(initRadialSpotlightCards, 120);
   });
+
+  // =========================================================================
+  // 10. LUXURY OPENING SCREEN (SHARED-ELEMENT FLIP TRANSITION)
+  // =========================================================================
+  function initLuxuryOpeningAnimation() {
+    const introOverlay = document.getElementById('luxuryIntro');
+    if (!introOverlay) return;
+
+    const hasSeen = sessionStorage.getItem('polish_intro_seen') === 'true';
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceReplay = urlParams.get('replay_intro') === '1';
+
+    if (hasSeen && !forceReplay) {
+      introOverlay.remove();
+      const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+      if (heroTitle) heroTitle.classList.add('is-revealed');
+      return;
+    }
+
+    const introLogoPod = document.getElementById('introLogoPod');
+    const introCaption = document.getElementById('introCaption');
+    const introGlow = introOverlay.querySelector('.intro-glow-core');
+    const introBackdrop = introOverlay.querySelector('.intro-backdrop');
+    const targetLogoImg = document.querySelector('.island-logo-zone .brand-logo-img');
+    const islandShell = document.getElementById('dynamicIslandShell');
+
+    // Temporarily hide the destination header logo so there's no visual clone
+    if (targetLogoImg) {
+      targetLogoImg.style.opacity = '0';
+      targetLogoImg.style.transition = 'opacity 0.2s ease';
+    }
+
+    // Trigger stage entrance
+    requestAnimationFrame(() => {
+      introOverlay.classList.add('is-active');
+    });
+
+    let isFinished = false;
+
+    function finishIntro(instant = false) {
+      if (isFinished) return;
+      isFinished = true;
+      sessionStorage.setItem('polish_intro_seen', 'true');
+
+      if (instant || !targetLogoImg || !introLogoPod) {
+        if (targetLogoImg) targetLogoImg.style.opacity = '1';
+        introOverlay.remove();
+        const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+        if (heroTitle) heroTitle.classList.add('is-revealed');
+        return;
+      }
+
+      // 1. Softly dissolve subtitle & ambient glow
+      if (introCaption) {
+        introCaption.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        introCaption.style.opacity = '0';
+        introCaption.style.transform = 'translateY(-10px)';
+      }
+      if (introGlow) {
+        introGlow.style.transition = 'opacity 0.5s ease';
+        introGlow.style.opacity = '0';
+      }
+
+      // 2. Measure coordinates for shared-element FLIP transition
+      const firstRect = introLogoPod.getBoundingClientRect();
+      const lastRect = targetLogoImg.getBoundingClientRect();
+
+      const deltaX = (lastRect.left + lastRect.width / 2) - (firstRect.left + firstRect.width / 2);
+      const deltaY = (lastRect.top + lastRect.height / 2) - (firstRect.top + firstRect.height / 2);
+      const scale = (lastRect.width / firstRect.width);
+
+      // 3. Dissolve backdrop in parallel
+      if (introBackdrop) {
+        introBackdrop.style.transition = 'opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1)';
+        introBackdrop.style.opacity = '0';
+      }
+
+      // 4. FLIP flight of the logo into the Dynamic Island dock
+      introLogoPod.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+      introLogoPod.style.transform = `translate3d(${deltaX.toFixed(2)}px, ${deltaY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+
+      // Reveal hero text 200ms into flight as the curtain clears
+      setTimeout(() => {
+        const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+        if (heroTitle) heroTitle.classList.add('is-revealed');
+      }, 200);
+
+      // 5. Landing settle & Dynamic Island pulse
+      setTimeout(() => {
+        if (targetLogoImg) targetLogoImg.style.opacity = '1';
+        if (islandShell) {
+          islandShell.classList.add('island-dock-settled');
+          setTimeout(() => islandShell.classList.remove('island-dock-settled'), 1000);
+        }
+        introOverlay.remove();
+      }, 820);
+    }
+
+    // Time to appreciate branding before flight (1.15s)
+    const timer = setTimeout(() => {
+      finishIntro(false);
+    }, 1150);
+
+    // Fast-track user bypass (click, tap, or keypress)
+    introOverlay.addEventListener('pointerdown', () => {
+      clearTimeout(timer);
+      finishIntro(false);
+    }, { once: true });
+
+    window.addEventListener('keydown', () => {
+      clearTimeout(timer);
+      finishIntro(true);
+    }, { once: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLuxuryOpeningAnimation);
+  } else {
+    initLuxuryOpeningAnimation();
+  }
 })();

@@ -38,6 +38,7 @@
 
   /* Typography */
   --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --text-white: #FFFFFF;
   --text-lead: #E2E8F0;
   --text-muted: #94A3B8;
@@ -2244,12 +2245,12 @@ body.is-rtl .whatsapp-float-container {
     margin-bottom: 8px;
   }
   .field-label {
-    font-size: 10.5px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     display: block;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
   }
   .field-hint {
     font-size: 10px;
@@ -2592,6 +2593,141 @@ html.lenis, html.lenis body {
 .beauty-depth-layer {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
+}
+
+/* ==========================================================================
+   LUXURY OPENING SCREEN (SHARED-ELEMENT FLIP TRANSITION)
+   ========================================================================== */
+
+html.intro-skipped .luxury-intro-overlay {
+  display: none !important;
+}
+
+.luxury-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.intro-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-deep);
+  opacity: 1;
+  transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.intro-glow-core {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.2) 0%, rgba(0, 136, 255, 0.08) 42%, transparent 70%);
+  filter: blur(45px);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.luxury-intro-overlay.is-active .intro-glow-core {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.intro-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 22px;
+}
+
+.intro-logo-pod {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-intro-overlay.is-active .intro-logo-pod {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.intro-logo-img {
+  width: 78px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 24px rgba(0, 229, 255, 0.42));
+}
+
+@media (max-width: 768px) {
+  .intro-logo-img {
+    width: 62px;
+  }
+}
+
+.intro-caption {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+}
+
+.luxury-intro-overlay.is-active .intro-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-caption-text {
+  font-family: var(--font-heading);
+  font-size: clamp(10.5px, 1.3vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 0 18px rgba(0, 229, 255, 0.32);
+}
+
+[dir="rtl"] .intro-caption-text {
+  letter-spacing: 0.04em;
+  font-size: clamp(12px, 1.5vw, 14.5px);
+}
+
+/* Dynamic island dock pulse when flight lands */
+@keyframes islandDockPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+  }
+  45% {
+    box-shadow: 0 0 35px 2px rgba(0, 229, 255, 0.48);
+    border-color: rgba(0, 229, 255, 0.65);
+  }
+  100% {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.island-dock-settled {
+  animation: islandDockPulse 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 

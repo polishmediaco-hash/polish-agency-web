@@ -165,35 +165,47 @@
   // =========================================================================
   // 7. SINGLE UNIFIED DYNAMIC ISLAND CONTROLLER (100% GPU COMPOSITED)
   // =========================================================================
+  const siteHeader = document.getElementById('siteHeader') || document.querySelector('.site-header');
   const progressBar = document.querySelector('.dynamic-island-progress-bar');
-  if (progressBar) {
-    let islandRAF = null;
-    let cachedDocHeight = 1000;
+  let isScrolled = false;
+  let cachedDocHeight = 1000;
 
-    function measureScrollMetrics() {
-      cachedDocHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  function measureScrollMetrics() {
+    cachedDocHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  }
+  measureScrollMetrics();
+  window.addEventListener('resize', measureScrollMetrics, { passive: true });
+  window.addEventListener('load', measureScrollMetrics, { passive: true });
+
+  function updateScrollState() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    
+    // Hysteresis threshold to prevent layout flutter near scroll boundary
+    if (!isScrolled && scrollY > 45) {
+      isScrolled = true;
+      if (siteHeader) siteHeader.classList.add('is-scrolled');
+    } else if (isScrolled && scrollY < 20) {
+      isScrolled = false;
+      if (siteHeader) siteHeader.classList.remove('is-scrolled');
     }
-    measureScrollMetrics();
-    window.addEventListener('resize', measureScrollMetrics, { passive: true });
-    window.addEventListener('load', measureScrollMetrics, { passive: true });
 
-    function updateProgressBar() {
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (progressBar) {
       const progress = Math.min(1, Math.max(0, scrollY / cachedDocHeight));
       progressBar.style.transform = `scaleX(${progress.toFixed(3)})`;
     }
-
-    function scheduleProgressUpdate() {
-      if (islandRAF) return;
-      islandRAF = requestAnimationFrame(() => {
-        updateProgressBar();
-        islandRAF = null;
-      });
-    }
-
-    window.addEventListener('scroll', scheduleProgressUpdate, { passive: true });
-    updateProgressBar();
   }
+
+  let islandRAF = null;
+  function scheduleScrollUpdate() {
+    if (islandRAF) return;
+    islandRAF = requestAnimationFrame(() => {
+      updateScrollState();
+      islandRAF = null;
+    });
+  }
+
+  window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
+  updateScrollState();
 
   // =========================================================================
   // 10. LUXURY OPENING SCREEN (SHARED-ELEMENT FLIP TRANSITION)
@@ -292,16 +304,26 @@
       }, 820);
     }
 
-    // Time to appreciate branding before flight (1.15s)
+    // Fast, crisp branding appreciation before flight (600ms)
     const timer = setTimeout(() => {
       finishIntro(false);
-    }, 1150);
+    }, 600);
 
-    // Fast-track user bypass (click, tap, or keypress)
+    // Fast-track user bypass (click, tap, scroll, or keypress)
     introOverlay.addEventListener('pointerdown', () => {
       clearTimeout(timer);
       finishIntro(false);
     }, { once: true });
+
+    window.addEventListener('wheel', () => {
+      clearTimeout(timer);
+      finishIntro(true);
+    }, { once: true, passive: true });
+
+    window.addEventListener('touchmove', () => {
+      clearTimeout(timer);
+      finishIntro(true);
+    }, { once: true, passive: true });
 
     window.addEventListener('keydown', () => {
       clearTimeout(timer);

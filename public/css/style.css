@@ -220,7 +220,7 @@ main,
   pointer-events: none;
   will-change: transform;
   background: transparent;
-  filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.45));
+  filter: none !important;
 }
 
 .beauty-floating-item img {
@@ -273,7 +273,7 @@ main,
   pointer-events: none;
   will-change: transform;
   background: transparent;
-  filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.35));
+  filter: none !important;
 }
 
 .beauty-micro-item img {
@@ -289,7 +289,6 @@ main,
   top: 76%;
   right: 26%;
   width: clamp(48px, 4.8vw, 68px);
-  filter: blur(1.2px);
   animation: microDrift1 24s ease-in-out infinite alternate;
 }
 
@@ -297,7 +296,6 @@ main,
   top: 32%;
   left: 18%;
   width: clamp(52px, 5.2vw, 74px);
-  filter: blur(1.5px);
   animation: microDrift2 27s ease-in-out infinite alternate-reverse;
 }
 
@@ -312,7 +310,6 @@ main,
   top: 26%;
   right: 24%;
   width: clamp(50px, 5vw, 70px);
-  filter: blur(0.8px);
   animation: microDrift4 25s ease-in-out infinite alternate-reverse;
 }
 
@@ -348,7 +345,6 @@ main,
   width: 8px;
   height: 8px;
   opacity: 0.55;
-  filter: blur(1px);
   animation: glintDrift1 26s ease-in-out infinite alternate;
 }
 
@@ -455,8 +451,8 @@ main,
   width: 700px;
   height: 700px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.14) 0%, rgba(0, 136, 255, 0.06) 40%, transparent 70%);
-  filter: blur(80px);
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.10) 0%, rgba(0, 136, 255, 0.04) 35%, rgba(0, 229, 255, 0.01) 55%, transparent 70%);
+  filter: none !important;
   pointer-events: none;
   z-index: 1;
   will-change: transform;
@@ -513,7 +509,7 @@ a {
 }
 
 /* ==========================================================================
-   UNIFIED LUXURY DYNAMIC ISLAND HEADER (SINGLE CAPSULE ARCHITECTURE)
+   AWARD-WINNING MORPHING DYNAMIC ISLAND (100% HARDWARE ACCELERATED)
    ========================================================================== */
 
 .site-header {
@@ -523,49 +519,67 @@ a {
   width: 100%;
   z-index: 1000;
   pointer-events: none;
-  padding: 0;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  padding: 16px 0;
+  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* The Signature Dynamic Island Floating Capsule (100% GPU Composited) */
+.site-header.is-scrolled {
+  padding: 10px 0;
+}
+
+/* State 1: Natural Luxury Unboxed Header (Top of Page) */
 .dynamic-island-shell {
-  position: fixed;
-  top: 14px;
-  left: 50%;
-  transform: translate3d(-50%, 0, 0);
-  opacity: 1;
-  pointer-events: auto;
+  margin: 0 auto;
+  width: calc(100% - 48px);
+  max-width: var(--container-max);
+  padding: 10px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  width: 340px;
-  max-width: calc(100vw - 28px);
-  padding: 7px 18px;
   border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  pointer-events: auto;
+  direction: ltr !important;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  will-change: max-width, padding, background, border-color, box-shadow;
+  transition: max-width 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.35s ease,
+              backdrop-filter 0.3s ease;
+}
+
+/* State 2: Floating Dynamic Island Capsule (On Scroll) */
+.site-header.is-scrolled .dynamic-island-shell {
+  max-width: 340px;
+  padding: 7px 18px;
   background: linear-gradient(135deg, rgba(14, 20, 32, 0.94) 0%, rgba(6, 10, 18, 0.98) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.85), 0 0 24px rgba(0, 229, 255, 0.14), inset 0 1px 1.5px rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 229, 255, 0.28);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), 0 0 22px rgba(0, 229, 255, 0.12), inset 0 1px 1.5px rgba(255, 255, 255, 0.2);
-  direction: ltr !important;
-  will-change: transform;
-  transition: border-color 0.25s ease,
-              box-shadow 0.25s ease;
-  overflow: hidden;
-  box-sizing: border-box;
 }
 
 /* Subpages with Home button */
 .dynamic-island-shell.has-center-home {
-  width: 395px;
+  max-width: var(--container-max);
 }
 
-.dynamic-island-shell:hover {
+.site-header.is-scrolled .dynamic-island-shell.has-center-home {
+  max-width: 395px;
+}
+
+.site-header.is-scrolled .dynamic-island-shell:hover {
   border-color: rgba(0, 229, 255, 0.5);
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.85), 0 0 32px rgba(0, 229, 255, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.9), 0 0 32px rgba(0, 229, 255, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.25);
 }
 
 /* ==========================================================================
@@ -600,15 +614,19 @@ a {
 
 .brand-logo-img {
   width: auto;
-  height: 40px;
+  height: 38px;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   filter: none !important;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .brand-logo-img.island-capsule-logo {
+  height: 34px;
+}
+
+.site-header.is-scrolled .brand-logo-img.island-capsule-logo {
   height: 25px !important;
 }
 
@@ -1936,43 +1954,72 @@ body.is-rtl .whatsapp-float-container {
     padding: 0 14px;
   }
 
-  /* Decoupled Header Mobile Tuning */
+  /* Mobile Header & Dynamic Island Morph */
   .site-header {
-    padding: 0;
+    padding: 12px 0;
+    transition: padding 0.35s ease;
   }
-  /* GPU-Accelerated Dynamic Island on Mobile (Single Unified Capsule) */
+  .site-header.is-scrolled {
+    padding: 6px 0;
+  }
+
   .dynamic-island-shell {
-    top: 8px;
-    width: 275px;
+    width: calc(100% - 20px);
     max-width: calc(100vw - 20px);
-    padding: 6px 14px;
+    padding: 8px 14px;
     gap: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+
+  .site-header.is-scrolled .dynamic-island-shell {
+    max-width: 275px;
+    padding: 6px 14px;
     background: rgba(8, 12, 20, 0.96);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transform: translate3d(-50%, 0, 0);
-    opacity: 1;
-    pointer-events: auto;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.85);
   }
-  .dynamic-island-shell.has-center-home {
-    width: 315px;
+
+  .site-header.is-scrolled .dynamic-island-shell.has-center-home {
+    max-width: 315px;
   }
+
   .brand-logo-img.island-capsule-logo {
+    height: 28px;
+  }
+
+  .site-header.is-scrolled .brand-logo-img.island-capsule-logo {
     height: 21px !important;
   }
+
   .dynamic-island-shell .header-home-btn {
     padding: 4px 10px;
     font-size: 11px;
   }
+
   .dynamic-island-progress-track {
     left: 14px;
     right: 14px;
   }
 
-  /* Phone-Native Section Spacing */
-  .hero-section {
-    padding: 8px 0 32px;
+  /* Disable heavy background graphics on mobile to guarantee solid 60/120 FPS */
+  .beauty-depth-mid,
+  .beauty-depth-micro,
+  .mouse-caustic-light,
+  .ambient-particles-canvas {
+    display: none !important;
   }
+
+  /* Phone-Native Section Spacing with Full Header Clearance */
+  .hero-section {
+    padding: 24px 0 32px;
+  }
+
   .hero-section.hero-home-section {
     min-height: 100vh;
     min-height: 100dvh;
@@ -1980,32 +2027,40 @@ body.is-rtl .whatsapp-float-container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 76px 0 32px;
+    padding: 85px 0 32px;
     box-sizing: border-box;
   }
+
   .apply-main-wrapper {
-    padding: 4px 0 32px;
+    padding: 78px 0 32px !important;
   }
+
+  main.hero-section {
+    padding-top: 78px !important;
+  }
+
   .section-wrap {
     padding: 32px 0 20px;
     scroll-margin-top: 60px;
   }
+
   .section-head {
     margin-bottom: 12px;
     scroll-margin-top: 60px;
   }
 
-  /* Section Head on Form Pages (Dedicated Viewport-Fitted Forms) */
+  /* Section Head and Form Clearance on Form Pages */
   .apply-main-wrapper .section-head,
   main.hero-section .section-head {
-    display: none; /* Dedicated mobile form experience: hide redundant outer header so form card fits 100% in viewport without scrolling */
+    display: block;
+    margin-bottom: 18px;
+    padding: 0 4px;
   }
 
-  .apply-main-wrapper {
-    padding: 8px 0 24px !important;
-  }
-  main.hero-section {
-    padding-top: 8px !important;
+  .apply-main-wrapper .section-h2,
+  main.hero-section .section-h2 {
+    font-size: clamp(24px, 6.5vw, 32px) !important;
+    line-height: 1.22;
   }
 
   /* ==========================================================================

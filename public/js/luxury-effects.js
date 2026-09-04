@@ -32,6 +32,10 @@
       });
       window.polishLenis = lenisInstance;
 
+      lenisInstance.on('scroll', () => {
+        window.dispatchEvent(new CustomEvent('polishLenisScroll'));
+      });
+
       function lenisRaf(time) {
         lenisInstance.raf(time);
         requestAnimationFrame(lenisRaf);
@@ -354,5 +358,36 @@
 
     window.addEventListener('scroll', updateStickyVisibility, { passive: true });
     updateStickyVisibility();
+  }
+
+  // =========================================================================
+  // 8. AWARD-WINNING MORPHING DYNAMIC ISLAND CONTROLLER
+  // =========================================================================
+  const siteHeader = document.getElementById('siteHeader') || document.querySelector('.site-header');
+  const islandShell = document.getElementById('dynamicIslandShell') || document.querySelector('.dynamic-island-shell');
+
+  if (siteHeader) {
+    function updateIslandState() {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
+
+      // Hysteresis threshold to eliminate jitter at transition point
+      if (scrollY > 35) {
+        siteHeader.classList.add('is-scrolled');
+      } else if (scrollY < 20) {
+        siteHeader.classList.remove('is-scrolled');
+      }
+
+      if (islandShell) {
+        islandShell.style.setProperty('--island-progress', `${progress.toFixed(1)}%`);
+      }
+    }
+
+    window.addEventListener('scroll', updateIslandState, { passive: true });
+    if (lenisInstance) {
+      lenisInstance.on('scroll', updateIslandState);
+    }
+    updateIslandState();
   }
 })();

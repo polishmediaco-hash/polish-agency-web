@@ -509,51 +509,100 @@ a {
   width: 100%;
   z-index: 1000;
   pointer-events: none;
-  padding: 18px 0;
-  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              backdrop-filter 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              -webkit-backdrop-filter 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.35s ease,
-              box-shadow 0.35s ease,
-              padding 0.3s ease;
-  background: transparent;
-  border-bottom: 1px solid transparent;
+  padding: 16px 0;
+  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
-/* Concept 3 Scroll Mist State */
 .site-header.is-scrolled {
-  background: rgba(6, 8, 14, 0.78);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 40px rgba(0, 229, 255, 0.05);
-  padding: 10px 0;
+  padding: 12px 0;
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 .header-container {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  direction: ltr !important;
 }
 
-.decoupled-header-layout {
+/* ==========================================================================
+   AWARD-WINNING MORPHING DYNAMIC ISLAND CAPSULE
+   ========================================================================== */
+
+.dynamic-island-shell {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   width: 100%;
-  direction: ltr !important; /* Keep Logo strictly on Left and Language Switcher on Right across all languages */
+  max-width: 100%;
+  padding: 0;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+  direction: ltr !important; /* Strictly lock LTR across English, French, and Arabic RTL */
+  transition: width 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              max-width 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              gap 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scrolled Morph State: Converges into floating centered glass capsule */
+.site-header.is-scrolled .dynamic-island-shell {
+  width: auto;
+  max-width: fit-content;
+  min-width: 260px;
+  margin: 0 auto;
+  padding: 6px 14px;
+  gap: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(16, 22, 36, 0.88) 0%, rgba(6, 10, 18, 0.94) 100%);
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  border: 1px solid rgba(0, 229, 255, 0.28);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.82), 0 0 30px rgba(0, 229, 255, 0.14), inset 0 1px 1.5px rgba(255, 255, 255, 0.22);
+  pointer-events: auto;
+  transform: translateY(0);
+  overflow: hidden;
+}
+
+.site-header.is-scrolled .dynamic-island-shell:hover {
+  border-color: rgba(0, 229, 255, 0.45);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.88), 0 0 38px rgba(0, 229, 255, 0.24), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Backward compatibility alias */
+.decoupled-header-layout {
+  /* Inherits from .dynamic-island-shell */
 }
 
 /* ==========================================================================
-   DECOUPLED ELEMENT 1: SPACIOUS SINGLE LUXURY LOGO POD
+   DYNAMIC ISLAND ZONE 1: SPACIOUS LUXURY LOGO POD
    ========================================================================== */
 
+.island-logo-zone,
 .decoupled-logo-dock {
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
+  order: 1; /* Pinned to Left across all languages */
 }
 
 .brand-logo-pod {
@@ -569,9 +618,19 @@ a {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.25), 0 8px 24px rgba(0, 0, 0, 0.45);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   cursor: pointer;
+}
+
+.site-header.is-scrolled .brand-logo-pod {
+  width: 40px;
+  height: 38px;
+  padding: 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 229, 255, 0.22);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 .brand-logo-pod:hover {
@@ -588,7 +647,11 @@ a {
   max-height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease, height 0.35s ease;
+}
+
+.site-header.is-scrolled .brand-logo-img {
+  height: 21px;
 }
 
 .brand-logo-pod:hover .brand-logo-img {
@@ -597,18 +660,26 @@ a {
 }
 
 /* ==========================================================================
-/* ==========================================================================
-   DECOUPLED CENTER DOCK: SLEEK SINGLE-WORD HOME BUTTON
+   DYNAMIC ISLAND ZONE 2: CENTER ADAPTIVE DOCK
    ========================================================================== */
 
+.island-center-zone,
 .decoupled-center-dock {
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: 1;
+  order: 2; /* Pinned to Center across all languages */
+  transition: all 0.35s ease;
 }
 
+.site-header.is-scrolled .island-center-zone,
+.site-header.is-scrolled .decoupled-center-dock {
+  flex: 0 0 auto;
+}
+
+/* Subpage Home Button */
 .header-home-btn {
   display: inline-flex;
   align-items: center;
@@ -628,6 +699,13 @@ a {
   line-height: 1;
 }
 
+.site-header.is-scrolled .header-home-btn {
+  padding: 5px 12px;
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
 .header-home-btn:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(0, 229, 255, 0.4);
@@ -636,16 +714,89 @@ a {
   transform: translateY(-1px);
 }
 
+/* Homepage Dynamic Island Micro-Pulse Status Dot (Visible on Scroll) */
+.island-scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.site-header.is-scrolled .island-scroll-indicator {
+  width: 14px;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.island-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #00e5ff;
+  box-shadow: 0 0 10px #00e5ff;
+  animation: islandPulse 2.4s infinite ease-in-out;
+}
+
+@keyframes islandPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 14px #00e5ff, 0 0 4px #fff;
+  }
+}
+
 /* ==========================================================================
-   DECOUPLED ELEMENT 2: INDEPENDENT FLOATING LANGUAGE DOCK
+   DYNAMIC ISLAND ZONE 3: FLOATING LANGUAGE DOCK
    ========================================================================== */
 
+.island-lang-zone,
 .decoupled-lang-dock {
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  order: 3; /* Pinned to Right across all languages */
+}
+
+/* ==========================================================================
+   LASER SCROLL DEPTH PROGRESS HAIRLINE
+   ========================================================================== */
+
+.dynamic-island-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1.5px;
+  border-radius: 999px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: scaleX(0.7);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.site-header.is-scrolled .dynamic-island-progress-track {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.dynamic-island-progress-bar {
+  width: var(--island-progress, 0%);
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.6) 0%, #00e5ff 100%);
+  box-shadow: 0 0 8px #00e5ff;
+  border-radius: 999px;
+  transition: width 0.08s ease-out;
 }
 
 .decoupled-back-btn {
@@ -1773,6 +1924,32 @@ body.is-rtl .whatsapp-float-container {
   }
   .brand-logo-img {
     height: 22px;
+  }
+
+  /* Scrolled Dynamic Island on Mobile */
+  .site-header.is-scrolled .dynamic-island-shell {
+    width: auto;
+    max-width: calc(100vw - 24px);
+    padding: 5px 10px;
+    gap: 8px;
+    border-radius: 999px;
+  }
+  .site-header.is-scrolled .brand-logo-pod {
+    width: 34px;
+    height: 32px;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  .site-header.is-scrolled .brand-logo-img {
+    height: 18px;
+  }
+  .site-header.is-scrolled .header-home-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  .site-header.is-scrolled .dynamic-island-progress-track {
+    left: 14px;
+    right: 14px;
   }
 
   /* Phone-Native Section Spacing */

@@ -287,19 +287,29 @@ document.addEventListener('DOMContentLoaded', () => {
   updateStepUI();
 });
 
-// Dynamic Header Scroll Mist Controller (Concept 3 Ghost to Frosted Mist)
-(function initHeaderScrollMist() {
+// Dynamic Header & Morphing Dynamic Island Controller
+(function initDynamicIslandScroll() {
   const header = document.getElementById('siteHeader') || document.querySelector('.site-header');
+  const island = document.getElementById('dynamicIslandShell') || document.querySelector('.dynamic-island-shell');
   if (!header) return;
 
   function updateScrollState() {
-    if (window.scrollY > 20) {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
+
+    if (scrollY > 35) {
       header.classList.add('is-scrolled');
-    } else {
+    } else if (scrollY < 20) {
       header.classList.remove('is-scrolled');
+    }
+
+    if (island) {
+      island.style.setProperty('--island-progress', `${progress.toFixed(1)}%`);
     }
   }
 
   window.addEventListener('scroll', updateScrollState, { passive: true });
+  window.addEventListener('polishLenisScroll', updateScrollState);
   updateScrollState();
 })();

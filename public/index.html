@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css?v=21.0">
+  <link rel="stylesheet" href="/css/style.css?v=22.0">
   <script>
     if (sessionStorage.getItem('polish_intro_seen') === 'true' && !window.location.search.includes('replay_intro=1')) {
       document.documentElement.classList.add('intro-skipped');
@@ -204,62 +204,33 @@
         </h2>
       </div>
 
-      <div class="grid-bento-pillars">
-        <!-- Pillar 1: Flagship Bento Hero Card (Spans 2 columns on desktop) -->
-        <div class="pro-card bento-card-wide bento-featured">
-          <div class="bento-card-header">
-            <div class="pillar-digit">01</div>
-            <div class="bento-badge-group">
-              <span class="bento-badge-pill">100+ Vetted Creators</span>
-              <span class="bento-badge-pill accent">14-Day Velocity</span>
-            </div>
-          </div>
+      <div class="grid-cards-3" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="pro-card">
+          <div class="pillar-digit">01</div>
           <h3 class="card-h3" data-i18n="pillars.item0.title" data-cms="pillars-item0-title">High-Velocity UGC Studio</h3>
           <p class="card-p" data-i18n="pillars.item0.desc" data-cms="pillars-item0-desc">
             Vetted beauty creators briefed with high-converting hooks, texture shots, and skin-routine demonstrations.
           </p>
-          <div class="bento-proof-row">
-            <div class="bento-metric-chip">
-              <span class="metric-num">3.8x</span>
-              <span class="metric-lbl">Avg Hook Rate</span>
-            </div>
-            <div class="bento-metric-chip">
-              <span class="metric-num">+140%</span>
-              <span class="metric-lbl">Creative Volume</span>
-            </div>
-          </div>
         </div>
 
-        <!-- Pillar 2: Profit-First Paid Media -->
-        <div class="pro-card bento-card-standard">
-          <div class="bento-card-header">
-            <div class="pillar-digit">02</div>
-            <span class="bento-badge-pill">ROAS Scale</span>
-          </div>
+        <div class="pro-card">
+          <div class="pillar-digit">02</div>
           <h3 class="card-h3" data-i18n="pillars.item1.title" data-cms="pillars-item1-title">Profit-First Paid Media</h3>
           <p class="card-p" data-i18n="pillars.item1.desc" data-cms="pillars-item1-desc">
             Data-driven Meta and TikTok campaigns structured for maximum return on ad spend (ROAS) and scale.
           </p>
         </div>
 
-        <!-- Pillar 3: Conversion & Routine Bundling -->
-        <div class="pro-card bento-card-standard">
-          <div class="bento-card-header">
-            <div class="pillar-digit">03</div>
-            <span class="bento-badge-pill">AOV Expansion</span>
-          </div>
+        <div class="pro-card">
+          <div class="pillar-digit">03</div>
           <h3 class="card-h3" data-i18n="pillars.item2.title" data-cms="pillars-item2-title">Conversion & Routine Bundling</h3>
           <p class="card-p" data-i18n="pillars.item2.desc" data-cms="pillars-item2-desc">
             High-converting product landing pages, multi-step routines, and smart cart upsells that increase Average Order Value.
           </p>
         </div>
 
-        <!-- Pillar 4: Automated Replenishment Loops -->
-        <div class="pro-card bento-card-standard">
-          <div class="bento-card-header">
-            <div class="pillar-digit">04</div>
-            <span class="bento-badge-pill">LTV Retention</span>
-          </div>
+        <div class="pro-card">
+          <div class="pillar-digit">04</div>
           <h3 class="card-h3" data-i18n="pillars.item3.title" data-cms="pillars-item3-title">Automated Replenishment Loops</h3>
           <p class="card-p" data-i18n="pillars.item3.desc" data-cms="pillars-item3-desc">
             Predictive replenishment reminders and VIP retention flows that maximize customer lifetime value.
@@ -314,7 +285,7 @@
   <!-- Scripts -->
   <script src="/js/i18n.js?v=1.0"></script>
   <script src="/js/cms.js?v=1.0" defer></script>
-  <script src="/js/luxury-effects.js?v=21.0" defer></script>
+  <script src="/js/luxury-effects.js?v=22.0" defer></script>
   <script src="/js/whatsapp.js?v=7.2" defer></script>
 </body>
 </html>

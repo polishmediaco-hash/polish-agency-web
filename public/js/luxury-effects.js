@@ -317,28 +317,30 @@
   }
 
   // =========================================================================
-  // 8. AWARD-WINNING MORPHING DYNAMIC ISLAND CONTROLLER
+  // 8. AWARD-WINNING MORPHING DYNAMIC ISLAND CONTROLLER (GPU COMPOSITED)
   // =========================================================================
   const siteHeader = document.getElementById('siteHeader') || document.querySelector('.site-header');
-  const islandShell = document.getElementById('dynamicIslandShell') || document.querySelector('.dynamic-island-shell');
+  const progressBar = document.querySelector('.dynamic-island-progress-bar');
 
   if (siteHeader) {
     let islandRAF = null;
+    let isScrolled = false;
 
     function updateIslandState() {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
-
-      // Deliberate luxury threshold: allows hero breathing room, morphs smoothly past 110px
-      if (scrollY > 110) {
-        siteHeader.classList.add('is-scrolled');
-      } else if (scrollY < 45) {
-        siteHeader.classList.remove('is-scrolled');
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      
+      // Clean responsive morph trigger
+      const shouldScroll = scrollY > 60;
+      if (shouldScroll !== isScrolled) {
+        isScrolled = shouldScroll;
+        siteHeader.classList.toggle('is-scrolled', isScrolled);
       }
 
-      if (islandShell) {
-        islandShell.style.setProperty('--island-progress', `${progress.toFixed(1)}%`);
+      // GPU-accelerated progress update without parent style invalidation
+      if (progressBar && isScrolled) {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollY / docHeight)) : 0;
+        progressBar.style.transform = `scaleX(${progress.toFixed(3)})`;
       }
     }
 
@@ -351,9 +353,6 @@
     }
 
     window.addEventListener('scroll', scheduleIslandUpdate, { passive: true });
-    if (lenisInstance) {
-      lenisInstance.on('scroll', scheduleIslandUpdate);
-    }
     updateIslandState();
   }
 

@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POLISH Media Co. — Official Brand Pack & Asset Vault</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css?v=24.0">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  
+  <style>
+    /* Haute Atelier Brand Vault Custom Styles */
+    :root {
+      --vault-gold: #E2C799;
+      --vault-platinum: #F5E6D3;
+      --vault-bronze: #C5A880;
+      --vault-noir: #080706;
+      --vault-charcoal: #161412;
+      --vault-card: rgba(22, 20, 18, 0.72);
+      --vault-border: rgba(226, 199, 153, 0.16);
+      --vault-border-hover: rgba(226, 199, 153, 0.45);
+    }
+
+    body {
+      background: var(--vault-noir);
+      color: #FFF;
+      font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Sticky Brand Vault Top Bar */
+    .vault-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+      background: rgba(8, 7, 6, 0.88);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--vault-border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .vault-logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .vault-logo-img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .vault-brand-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vault-brand-name {
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      color: var(--vault-gold);
+    }
+
+    .vault-brand-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--vault-bronze);
+      text-transform: uppercase;
+    }
+
+    .vault-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .vault-nav-links a {
+      color: rgba(245, 230, 211, 0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: color 0.2s ease;
+    }
+
+    .vault-nav-links a:hover {
+      color: var(--vault-gold);
+    }
+
+    .vault-topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-download-master {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #E2C799 0%, #C5A880 100%);
+      color: #080706;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      padding: 10px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(226, 199, 153, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-download-master:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(226, 199, 153, 0.4);
+    }
+
+    .btn-site-link {
+      color: rgba(245, 230, 211, 0.8);
+      border: 1px solid var(--vault-border);
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-site-link:hover {
+      border-color: var(--vault-gold);
+      color: #FFF;
+    }
+
+    /* Container */
+    .vault-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 60px 24px 120px;
+    }
+
+    /* Hero Section */
+    .vault-hero {
+      text-align: center;
+      padding: 40px 20px 70px;
+      position: relative;
+    }
+
+    .vault-hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(226, 199, 153, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .vault-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--vault-gold);
+      background: rgba(226, 199, 153, 0.08);
+      border: 1px solid var(--vault-border);
+      padding: 6px 18px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .vault-title {
+      font-size: clamp(38px, 4.5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0 0 16px;
+      color: #FFF;
+      position: relative;
+    }
+
+    .vault-title .serif-accent {
+      font-family: var(--font-serif-luxury, 'Cormorant Garamond', serif);
+      font-style: italic;
+      font-weight: 600;
+      background: linear-gradient(135deg, #F5E6D3 20%, #E2C799 60%, #C5A880 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .vault-desc {
+      max-width: 680px;
+      margin: 0 auto 36px;
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(245, 230, 211, 0.7);
+      position: relative;
+    }
+
+    /* Master Download Hub Card */
+    .master-download-card {
+      background: var(--vault-card);
+      border: 1px solid var(--vault-border);
+      border-radius: 20px;
+      padding: 32px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 80px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .master-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+    }
+
+    .master-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .master-stat-val {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--vault-gold);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .master-stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: rgba(245, 230, 211, 0.6);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Section Headers */
+    .vault-section {
+      margin-bottom: 90px;
+      scroll-margin-top: 90px;
+    }
+
+    .section-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--vault-border);
+      padding-bottom: 16px;
+    }
+
+    .section-heading-group h2 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin: 0 0 6px;
+      color: #FFF;
+    }
+
+    .section-heading-group h2 .serif-sub {
+      font-family: var(--font-serif-luxury, 'Cormorant Garamond', serif);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--vault-gold);
+    }
+
+    .section-heading-group p {
+      margin: 0;
+      font-size: 14px;
+      color: rgba(245, 230, 211, 0.65);
+    }
+
+    /* Background Inspector Bar */
+    .bg-inspector-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 5px;
+      border-radius: 999px;
+      border: 1px solid var(--vault-border);
+    }
+
+    .bg-inspector-btn {
+      background: transparent;
+      border: none;
+      color: rgba(245, 230, 211, 0.6);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .bg-inspector-btn.active,
+    .bg-inspector-btn:hover {
+      background: rgba(226, 199, 153, 0.16);
+      color: var(--vault-gold);
+    }
+
+    /* Cards Grid */
+    .assets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .asset-card {
+      background: var(--vault-card);
+      border: 1px solid var(--vault-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .asset-card:hover {
+      border-color: var(--vault-border-hover);
+      transform: translateY(-3px);
+    }
+
+    /* Preview Canvas Area */
+    .asset-preview-box {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+      background: #080706;
+      transition: background 0.25s ease;
+    }
+
+    .asset-preview-box.theme-light {
+      background: #FAF7F2;
+    }
+
+    .asset-preview-box.theme-grid {
+      background: repeating-conic-gradient(#151413 0% 25%, #0D0C0B 0% 50%) 50% / 20px 20px;
+    }
+
+    .asset-preview-img {
+      max-width: 85%;
+      max-height: 85%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+
+    .asset-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      border-top: 1px solid var(--vault-border);
+      background: rgba(14, 13, 11, 0.6);
+    }
+
+    .asset-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFF;
+      margin: 0 0 4px;
+    }
+
+    .asset-meta {
+      font-size: 12px;
+      color: rgba(245, 230, 211, 0.55);
+      margin-bottom: 16px;
+    }
+
+    .asset-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn-asset-action {
+      flex: 1;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-asset-action.primary {
+      background: rgba(226, 199, 153, 0.12);
+      border: 1px solid var(--vault-border);
+      color: var(--vault-gold);
+    }
+
+    .btn-asset-action.primary:hover {
+      background: var(--vault-gold);
+      color: #080706;
+    }
+
+    .btn-asset-action.secondary {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(245, 230, 211, 0.8);
+    }
+
+    .btn-asset-action.secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFF;
+    }
+
+    /* Color Swatches Grid */
+    .color-swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .swatch-card {
+      background: var(--vault-card);
+      border: 1px solid var(--vault-border);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--vault-gold);
+    }
+
+    .swatch-color-pill {
+      height: 120px;
+      width: 100%;
+      position: relative;
+    }
+
+    .swatch-copy-hint {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #FFF;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-details {
+      padding: 16px;
+    }
+
+    .swatch-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFF;
+      margin: 0 0 4px;
+    }
+
+    .swatch-role {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--vault-bronze);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .swatch-codes {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-family: monospace;
+      font-size: 12px;
+      color: rgba(245, 230, 211, 0.7);
+    }
+
+    .swatch-hex {
+      font-weight: 700;
+      color: var(--vault-gold);
+    }
+
+    /* Typography Interactive Lab */
+    .typo-specimen-card {
+      background: var(--vault-card);
+      border: 1px solid var(--vault-border);
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    .typo-input-box {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--vault-border);
+      border-radius: 12px;
+      color: #FFF;
+      padding: 14px 20px;
+      font-size: 16px;
+      margin-bottom: 30px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .typo-input-box:focus {
+      border-color: var(--vault-gold);
+    }
+
+    .typo-specimen-row {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .typo-specimen-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .typo-specimen-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--vault-bronze);
+      margin-bottom: 8px;
+    }
+
+    .typo-display-serif {
+      font-family: var(--font-serif-luxury, 'Cormorant Garamond', serif);
+      font-style: italic;
+      font-size: clamp(32px, 3.8vw, 48px);
+      font-weight: 600;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #F5E6D3, #E2C799);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .typo-display-sans {
+      font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #FFF;
+    }
+
+    .typo-arabic-specimen {
+      font-family: var(--font-arabic, 'Tajawal', sans-serif);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 700;
+      direction: rtl;
+      line-height: 1.4;
+      color: var(--vault-gold);
+    }
+
+    /* Social Assets Grid */
+    .social-banner-card {
+      background: var(--vault-card);
+      border: 1px solid var(--vault-border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .social-banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid var(--vault-border);
+    }
+
+    .social-banner-footer {
+      padding: 16px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(14, 13, 11, 0.6);
+    }
+
+    /* Clear Space Rules Diagram Card */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .rule-card {
+      background: var(--vault-card);
+      border: 1px solid var(--vault-border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .rule-card.violation {
+      border-color: rgba(255, 99, 99, 0.35);
+    }
+
+    .rule-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .rule-badge.success {
+      background: rgba(226, 199, 153, 0.15);
+      color: var(--vault-gold);
+    }
+
+    .rule-badge.danger {
+      background: rgba(255, 99, 99, 0.15);
+      color: #FF7B7B;
+    }
+
+    .rule-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFF;
+    }
+
+    .rule-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(245, 230, 211, 0.7);
+    }
+
+    /* Toast Notification */
+    .vault-toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99999;
+      background: rgba(18, 16, 14, 0.95);
+      border: 1px solid var(--vault-gold);
+      color: var(--vault-gold);
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .vault-toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .vault-nav-links { display: none; }
+      .master-download-card { flex-direction: column; text-align: center; }
+      .master-stats { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Brand Vault Top Bar -->
+  <header class="vault-topbar">
+    <a href="/" class="vault-logo-lockup">
+      <img src="/assets/favicon.svg" alt="POLISH Mark" class="vault-logo-img">
+      <div class="vault-brand-meta">
+        <span class="vault-brand-name">POLISH MEDIA CO.</span>
+        <span class="vault-brand-tag">Brand Asset Vault v2.0</span>
+      </div>
+    </a>
+
+    <nav class="vault-nav-links">
+      <a href="#logos">Logos &amp; Marks</a>
+      <a href="#colors">Color Tokens</a>
+      <a href="#typography">Typography</a>
+      <a href="#social">Social Assets</a>
+      <a href="#guidelines">Guidelines</a>
+    </nav>
+
+    <div class="vault-topbar-actions">
+      <a href="/brand-pack/POLISH_Media_Co_Brand_Pack.zip" download class="btn-download-master">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Download .ZIP (712 KB)
+      </a>
+      <a href="/" class="btn-site-link">Agency Site &rarr;</a>
+    </div>
+  </header>
+
+  <main class="vault-container">
+
+    <!-- Hero Section -->
+    <section class="vault-hero">
+      <div class="vault-badge">HAUTE ATELIER IDENTITY SYSTEM</div>
+      <h1 class="vault-title">Official Brand Asset Vault &amp; <span class="serif-accent">Design Standards.</span></h1>
+      <p class="vault-desc">
+        Complete vector lockups, ultra-high-resolution retina exports, social canvases, color matrix tokens, and editorial typographic standards for POLISH Media Co.
+      </p>
+    </section>
+
+    <!-- Master Download Hub Card -->
+    <div class="master-download-card">
+      <div class="master-stats">
+        <div class="master-stat-item">
+          <span class="master-stat-val">53</span>
+          <span class="master-stat-label">Vector &amp; Raster Logos</span>
+        </div>
+        <div class="master-stat-item">
+          <span class="master-stat-val">10</span>
+          <span class="master-stat-label">Favicons &amp; App Icons</span>
+        </div>
+        <div class="master-stat-item">
+          <span class="master-stat-val">8</span>
+          <span class="master-stat-label">Social Banners &amp; OG</span>
+        </div>
+        <div class="master-stat-item">
+          <span class="master-stat-val">712 KB</span>
+          <span class="master-stat-label">Master Archive (.ZIP)</span>
+        </div>
+      </div>
+
+      <a href="/brand-pack/POLISH_Media_Co_Brand_Pack.zip" download class="btn-download-master" style="padding: 14px 28px; font-size: 14px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Download Full Brand Pack (.ZIP)
+      </a>
+    </div>
+
+    <!-- Section 1: Logos & Marks -->
+    <section id="logos" class="vault-section">
+      <div class="section-header-row">
+        <div class="section-heading-group">
+          <h2>Logo System &amp; <span class="serif-sub">Architectural Marks</span></h2>
+          <p>Mathematical bezier geometry, 45° upward growth arrow, and faceted cosmetic droplet.</p>
+        </div>
+
+        <!-- Background Toggle Switcher -->
+        <div class="bg-inspector-controls">
+          <button class="bg-inspector-btn active" onclick="setPreviewBg('theme-dark')">Obsidian Noir</button>
+          <button class="bg-inspector-btn" onclick="setPreviewBg('theme-light')">Warm Alabaster</button>
+          <button class="bg-inspector-btn" onclick="setPreviewBg('theme-grid')">Transparent Grid</button>
+        </div>
+      </div>
+
+      <div class="assets-grid">
+        <!-- 1. Horizontal Gold Logo -->
+        <div class="asset-card">
+          <div class="asset-preview-box" id="pbox-1">
+            <img src="/brand-pack/01_logos/polish-logo-horizontal-gold.svg" alt="POLISH Horizontal Gold Logo" class="asset-preview-img">
+          </div>
+          <div class="asset-info">
+            <h3 class="asset-title">Horizontal Primary Logo — Champagne Gold</h3>
+            <span class="asset-meta">Primary digital lockup for dark surfaces, web headers &amp; decks</span>
+            <div class="asset-actions">
+              <a href="/brand-pack/01_logos/polish-logo-horizontal-gold.svg" download class="btn-asset-action primary">SVG (Vector)</a>
+              <a href="/brand-pack/01_logos/polish-logo-horizontal-gold-4000px.png" download class="btn-asset-action secondary">PNG (4000px)</a>
+              <a href="/brand-pack/01_logos/polish-logo-horizontal-gold-2000px.png" download class="btn-asset-action secondary">PNG (2000px)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Horizontal Dark Logo -->
+        <div class="asset-card">
+          <div class="asset-preview-box theme-light" id="pbox-2">
+            <img src="/brand-pack/01_logos/polish-logo-horizontal-dark.svg" alt="POLISH Horizontal Dark Logo" class="asset-preview-img">
+          </div>
+          <div class="asset-info">
+            <h3 class="asset-title">Horizontal Primary Logo — Obsidian Dark</h3>
+            <span class="asset-meta">For light backgrounds, official stationery, contracts &amp; invoices</span>
+            <div class="asset-actions">
+              <a href="/brand-pack/01_logos/polish-logo-horizontal-dark.svg" download class="btn-asset-action primary">SVG (Vector)</a>
+              <a href="/brand-pack/01_logos/polish-logo-horizontal-dark-4000px.png" download class="btn-asset-action secondary">PNG (4000px)</a>
+              <a href="/brand-pack/01_logos/polish-logo-horizontal-dark-2000px.png" download class="btn-asset-action secondary">PNG (2000px)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Horizontal Monochrome White -->
+        <div class="asset-card">
+          <div class="asset-preview-box" id="pbox-3">
+            <img src="/brand-pack/01_logos/polish-logo-horizontal-white.svg" alt="POLISH Horizontal White Logo" class="asset-preview-img">
+          </div>
+          <div class="asset-info">
+            <h3 class="asset-title">Horizontal Logo — Pure White Monochrome</h3>
+            <span class="asset-meta">High-contrast overlay for campaign photography &amp; video reels</span>
+            <div class="asset-actions">
+              <a href="/brand-pack/01_logos/polish-logo-horizontal-white.svg" download class="btn-asset-action primary">SVG (Vector)</a>
+              <a href="/brand-pack/01_logos/polish-logo-horizontal-white-4000px.png" download class="btn-asset-action secondary">PNG (4000px)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Vertical Stacked Gold Logo -->
+        <div class="asset-card">
+          <div class="asset-preview-box" id="pbox-4">
+            <img src="/brand-pack/01_logos/polish-logo-vertical-gold.svg" alt="POLISH Vertical Gold Logo" class="asset-preview-img">
+          </div>
+          <div class="asset-info">
+            <h3 class="asset-title">Vertical Stacked Logo — Champagne Gold</h3>
+            <span class="asset-meta">Architectural lockup for packaging, posters, covers &amp; square cards</span>
+            <div class="asset-actions">
+              <a href="/brand-pack/01_logos/polish-logo-vertical-gold.svg" download class="btn-asset-action primary">SVG (Vector)</a>
+              <a href="/brand-pack/01_logos/polish-logo-vertical-gold-4000px.png" download class="btn-asset-action secondary">PNG (4000px)</a>
+              <a href="/brand-pack/01_logos/polish-logo-vertical-gold-2000px.png" download class="btn-asset-action secondary">PNG (2000px)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Vertical Stacked Dark Logo -->
+        <div class="asset-card">
+          <div class="asset-preview-box theme-light" id="pbox-5">
+            <img src="/brand-pack/01_logos/polish-logo-vertical-dark.svg" alt="POLISH Vertical Dark Logo" class="asset-preview-img">
+          </div>
+          <div class="asset-info">
+            <h3 class="asset-title">Vertical Stacked Logo — Obsidian Dark</h3>
+            <span class="asset-meta">For light print media, cosmetic laboratory reports &amp; white dossiers</span>
+            <div class="asset-actions">
+              <a href="/brand-pack/01_logos/polish-logo-vertical-dark.svg" download class="btn-asset-action primary">SVG (Vector)</a>
+              <a href="/brand-pack/01_logos/polish-logo-vertical-dark-4000px.png" download class="btn-asset-action secondary">PNG (4000px)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Standalone Signature Mark -->
+        <div class="asset-card">
+          <div class="asset-preview-box" id="pbox-6">
+            <img src="/brand-pack/01_logos/polish-mark-gold.svg" alt="POLISH Mark Gold" class="asset-preview-img" style="max-height: 120px;">
+          </div>
+          <div class="asset-info">
+            <h3 class="asset-title">Signature Monogram Emblem — Champagne Gold</h3>
+            <span class="asset-meta">Isolated growth arrow &amp; cosmetic facet mark</span>
+            <div class="asset-actions">
+              <a href="/brand-pack/01_logos/polish-mark-gold.svg" download class="btn-asset-action primary">SVG (Vector)</a>
+              <a href="/brand-pack/01_logos/polish-mark-gold-2048px.png" download class="btn-asset-action secondary">PNG (2048px)</a>
+              <a href="/brand-pack/01_logos/polish-mark-gold-512px.png" download class="btn-asset-action secondary">PNG (512px)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Squircle App & Avatar Icon -->
+        <div class="asset-card">
+          <div class="asset-preview-box" id="pbox-7">
+            <img src="/brand-pack/01_logos/polish-mark-squircle-gold.svg" alt="POLISH Squircle Icon" class="asset-preview-img" style="max-height: 130px;">
+          </div>
+          <div class="asset-info">
+            <h3 class="asset-title">Frosted Obsidian Squircle Mark</h3>
+            <span class="asset-meta">Platform app icons, profile avatars, touch icons &amp; badges</span>
+            <div class="asset-actions">
+              <a href="/brand-pack/01_logos/polish-mark-squircle-gold.svg" download class="btn-asset-action primary">SVG (Vector)</a>
+              <a href="/brand-pack/01_logos/polish-mark-squircle-gold-1024px.png" download class="btn-asset-action secondary">PNG (1024px)</a>
+              <a href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png" download class="btn-asset-action secondary">Apple Touch (180px)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Standalone Mark White & Black -->
+        <div class="asset-card">
+          <div class="asset-preview-box" id="pbox-8">
+            <img src="/brand-pack/01_logos/polish-mark-white.svg" alt="POLISH Mark White" class="asset-preview-img" style="max-height: 120px;">
+          </div>
+          <div class="asset-info">
+            <h3 class="asset-title">Signature Monogram — Monochrome Suite</h3>
+            <span class="asset-meta">Pure white &amp; pure black for foil stamping, embossing &amp; seals</span>
+            <div class="asset-actions">
+              <a href="/brand-pack/01_logos/polish-mark-white.svg" download class="btn-asset-action primary">White SVG</a>
+              <a href="/brand-pack/01_logos/polish-mark-white-2048px.png" download class="btn-asset-action secondary">White PNG</a>
+              <a href="/brand-pack/01_logos/polish-mark-black.svg" download class="btn-asset-action secondary">Black SVG</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Color Palette -->
+    <section id="colors" class="vault-section">
+      <div class="section-header-row">
+        <div class="section-heading-group">
+          <h2>Color Matrix &amp; <span class="serif-sub">Design Tokens</span></h2>
+          <p>Haute Atelier Champagne Gold, Cashmere Platinum, and Deep Obsidian Noir.</p>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+          <a href="/brand-pack/04_color_palette/polish-colors.json" download class="btn-site-link">Download .JSON</a>
+          <a href="/brand-pack/04_color_palette/polish-colors.css" download class="btn-site-link">Download .CSS</a>
+          <a href="/brand-pack/04_color_palette/polish-palette-swatches.png" download class="btn-site-link">Download Swatches PNG</a>
+        </div>
+      </div>
+
+      <div class="color-swatches-grid">
+        <!-- 1. Champagne Gold -->
+        <div class="swatch-card" onclick="copyColor('#E2C799', 'Champagne Gold')">
+          <div class="swatch-color-pill" style="background: #E2C799;">
+            <span class="swatch-copy-hint">CLICK TO COPY</span>
+          </div>
+          <div class="swatch-details">
+            <h4 class="swatch-name">Champagne Gold</h4>
+            <span class="swatch-role">Primary Luxury Metal</span>
+            <div class="swatch-codes">
+              <span class="swatch-hex">#E2C799</span>
+              <span>RGB(226, 199, 153)</span>
+              <span>Pantone 467 C</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Cashmere Platinum -->
+        <div class="swatch-card" onclick="copyColor('#F5E6D3', 'Cashmere Platinum')">
+          <div class="swatch-color-pill" style="background: #F5E6D3;">
+            <span class="swatch-copy-hint">CLICK TO COPY</span>
+          </div>
+          <div class="swatch-details">
+            <h4 class="swatch-name">Cashmere Platinum</h4>
+            <span class="swatch-role">Editorial Highlights</span>
+            <div class="swatch-codes">
+              <span class="swatch-hex">#F5E6D3</span>
+              <span>RGB(245, 230, 211)</span>
+              <span>Pantone 7527 C</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Atelier Bronze -->
+        <div class="swatch-card" onclick="copyColor('#C5A880', 'Atelier Bronze')">
+          <div class="swatch-color-pill" style="background: #C5A880;">
+            <span class="swatch-copy-hint">CLICK TO COPY</span>
+          </div>
+          <div class="swatch-details">
+            <h4 class="swatch-name">Atelier Bronze</h4>
+            <span class="swatch-role">Gradient Anchor</span>
+            <div class="swatch-codes">
+              <span class="swatch-hex">#C5A880</span>
+              <span>RGB(197, 168, 128)</span>
+              <span>Pantone 465 C</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Deep Obsidian Noir -->
+        <div class="swatch-card" onclick="copyColor('#080706', 'Deep Obsidian Noir')">
+          <div class="swatch-color-pill" style="background: #080706; border: 1px solid rgba(226, 199, 153, 0.2);">
+            <span class="swatch-copy-hint">CLICK TO COPY</span>
+          </div>
+          <div class="swatch-details">
+            <h4 class="swatch-name">Obsidian Noir</h4>
+            <span class="swatch-role">Signature Void Ground</span>
+            <div class="swatch-codes">
+              <span class="swatch-hex">#080706</span>
+              <span>RGB(8, 7, 6)</span>
+              <span>Process Black</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Satin Charcoal -->
+        <div class="swatch-card" onclick="copyColor('#161412', 'Satin Charcoal')">
+          <div class="swatch-color-pill" style="background: #161412; border: 1px solid rgba(226, 199, 153, 0.15);">
+            <span class="swatch-copy-hint">CLICK TO COPY</span>
+          </div>
+          <div class="swatch-details">
+            <h4 class="swatch-name">Satin Charcoal</h4>
+            <span class="swatch-role">Frosted Glass Surface</span>
+            <div class="swatch-codes">
+              <span class="swatch-hex">#161412</span>
+              <span>RGB(22, 20, 18)</span>
+              <span>Pantone Black 7 C</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Warm Alabaster -->
+        <div class="swatch-card" onclick="copyColor('#FAF7F2', 'Warm Alabaster')">
+          <div class="swatch-color-pill" style="background: #FAF7F2;">
+            <span class="swatch-copy-hint">CLICK TO COPY</span>
+          </div>
+          <div class="swatch-details">
+            <h4 class="swatch-name">Warm Alabaster</h4>
+            <span class="swatch-role">Light Editorial Mode</span>
+            <div class="swatch-codes">
+              <span class="swatch-hex">#FAF7F2</span>
+              <span>RGB(250, 247, 242)</span>
+              <span>Pantone 11-0601</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Typography Interactive Lab -->
+    <section id="typography" class="vault-section">
+      <div class="section-header-row">
+        <div class="section-heading-group">
+          <h2>Typography &amp; <span class="serif-sub">Editorial Specimen</span></h2>
+          <p>Pairing structural Plus Jakarta Sans with Cormorant Garamond luxury serif accents and Tajawal.</p>
+        </div>
+
+        <a href="/brand-pack/05_typography/TYPOGRAPHY_SPECIFICATIONS.md" download class="btn-site-link">Download Typography Specs (.MD)</a>
+      </div>
+
+      <div class="typo-specimen-card">
+        <label for="live-typo-input" style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vault-bronze); display: block; margin-bottom: 8px;">Interactive Specimen Tester — Type Any Copy Below:</label>
+        <input type="text" id="live-typo-input" class="typo-input-box" value="Haute Parfumerie & Algorithmic Scale for Clinical Formulations" oninput="updateLiveSpecimen(this.value)">
+
+        <!-- Specimen 1: Cormorant Garamond -->
+        <div class="typo-specimen-row">
+          <div class="typo-specimen-label">Cormorant Garamond (SemiBold 600 Italic) — Editorial Luxury Accent</div>
+          <div class="typo-display-serif" id="specimen-serif">Haute Parfumerie &amp; Algorithmic Scale for Clinical Formulations</div>
+        </div>
+
+        <!-- Specimen 2: Plus Jakarta Sans -->
+        <div class="typo-specimen-row">
+          <div class="typo-specimen-label">Plus Jakarta Sans (ExtraBold 800) — Primary Structural Headline</div>
+          <div class="typo-display-sans" id="specimen-sans">HAUTE PARFUMERIE &amp; ALGORITHMIC SCALE FOR CLINICAL FORMULATIONS</div>
+        </div>
+
+        <!-- Specimen 3: Arabic Tajawal -->
+        <div class="typo-specimen-row">
+          <div class="typo-specimen-label">Tajawal (Bold 700) — Arabic Script Harmony (RTL)</div>
+          <div class="typo-arabic-specimen">صياغة التميز التجميلي وأرقى شراكات النمو الاستراتيجي</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Social & Digital Banners -->
+    <section id="social" class="vault-section">
+      <div class="section-header-row">
+        <div class="section-heading-group">
+          <h2>Social Canvases &amp; <span class="serif-sub">Digital Media Assets</span></h2>
+          <p>High-resolution ready-to-upload banners, headers, avatars, and OpenGraph share cards.</p>
+        </div>
+      </div>
+
+      <!-- 1. Twitter / X Header -->
+      <div class="social-banner-card">
+        <img src="/brand-pack/03_social_assets/twitter-x-header-1500x500.png" alt="Twitter/X Header Banner" class="social-banner-img">
+        <div class="social-banner-footer">
+          <div>
+            <h4 style="margin: 0 0 2px; font-size: 15px; color: #FFF;">Twitter / X Profile Header Banner</h4>
+            <span style="font-size: 12px; color: rgba(245, 230, 211, 0.6);">Dimensions: 1500 × 500 px • Format: High-Res PNG</span>
+          </div>
+          <a href="/brand-pack/03_social_assets/twitter-x-header-1500x500.png" download class="btn-download-master" style="padding: 8px 18px; font-size: 12px;">Download Header (1500×500)</a>
+        </div>
+      </div>
+
+      <!-- 2. LinkedIn Banner -->
+      <div class="social-banner-card">
+        <img src="/brand-pack/03_social_assets/linkedin-banner-1584x396.png" alt="LinkedIn Company Header Banner" class="social-banner-img">
+        <div class="social-banner-footer">
+          <div>
+            <h4 style="margin: 0 0 2px; font-size: 15px; color: #FFF;">LinkedIn Company &amp; Executive Banner</h4>
+            <span style="font-size: 12px; color: rgba(245, 230, 211, 0.6);">Dimensions: 1584 × 396 px • Format: High-Res PNG</span>
+          </div>
+          <a href="/brand-pack/03_social_assets/linkedin-banner-1584x396.png" download class="btn-download-master" style="padding: 8px 18px; font-size: 12px;">Download Banner (1584×396)</a>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px;">
+        <!-- 3. Instagram Avatar -->
+        <div class="social-banner-card">
+          <img src="/brand-pack/03_social_assets/instagram-profile-1080x1080.png" alt="Instagram Profile Avatar" class="social-banner-img">
+          <div class="social-banner-footer">
+            <div>
+              <h4 style="margin: 0 0 2px; font-size: 15px; color: #FFF;">Instagram &amp; App Avatar</h4>
+              <span style="font-size: 12px; color: rgba(245, 230, 211, 0.6);">1080 × 1080 px</span>
+            </div>
+            <a href="/brand-pack/03_social_assets/instagram-profile-1080x1080.png" download class="btn-asset-action primary">Download</a>
+          </div>
+        </div>
+
+        <!-- 4. OpenGraph Share Card -->
+        <div class="social-banner-card">
+          <img src="/brand-pack/03_social_assets/og-social-card-1200x630.png" alt="OpenGraph Social Share Card" class="social-banner-img">
+          <div class="social-banner-footer">
+            <div>
+              <h4 style="margin: 0 0 2px; font-size: 15px; color: #FFF;">OpenGraph Link Preview Card</h4>
+              <span style="font-size: 12px; color: rgba(245, 230, 211, 0.6);">1200 × 630 px</span>
+            </div>
+            <a href="/brand-pack/03_social_assets/og-social-card-1200x630.png" download class="btn-asset-action primary">Download</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Brand Standards & Logo Rules -->
+    <section id="guidelines" class="vault-section">
+      <div class="section-header-row">
+        <div class="section-heading-group">
+          <h2>Brand Standards &amp; <span class="serif-sub">Integrity Rules</span></h2>
+          <p>Preserving visual prestige, optical clear space, and architectural consistency.</p>
+        </div>
+
+        <a href="/brand-pack/06_guidelines/POLISH_BRAND_GUIDELINES.md" download class="btn-site-link">Download Brand Book (.MD)</a>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-card">
+          <span class="rule-badge success">Approved Standard</span>
+          <h3>1X Diamond Clear Space Rule</h3>
+          <p>Maintain an isolation zone around the logo equal to at least <strong>1X</strong>, where $X$ is the height of the diamond droplet facet. No text, graphic strokes, or background borders may breach this perimeter.</p>
+        </div>
+
+        <div class="rule-card">
+          <span class="rule-badge success">Approved Standard</span>
+          <h3>Minimum Reproducible Sizing</h3>
+          <p>On digital screens, horizontal lockups must not scale below <strong>120px</strong> width; standalone marks not below <strong>24px</strong>. In print, horizontal lockups require at least <strong>35mm</strong> width.</p>
+        </div>
+
+        <div class="rule-card violation">
+          <span class="rule-badge danger">Strictly Prohibited</span>
+          <h3>No Stretching or Distortion</h3>
+          <p>Never alter the aspect ratio of the arrow stem, droplet facet, or typography. All scaling must remain strictly constrained to 1:1 proportional transforms.</p>
+        </div>
+
+        <div class="rule-card violation">
+          <span class="rule-badge danger">Strictly Prohibited</span>
+          <h3>No Unapproved Color Tinting</h3>
+          <p>Never render the logo in legacy cyan, bright magenta, or neon colors. The approved metallic spectrum is Champagne Gold (<code>#E2C799</code>) and Obsidian Noir (<code>#080706</code>).</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="vaultToast" class="vault-toast">Copied to clipboard!</div>
+
+  <script>
+    // Background Switcher for Logo Cards
+    function setPreviewBg(themeClass) {
+      document.querySelectorAll('.bg-inspector-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const boxes = document.querySelectorAll('.asset-preview-box');
+      boxes.forEach(box => {
+        box.classList.remove('theme-light', 'theme-grid');
+        if (themeClass === 'theme-light') box.classList.add('theme-light');
+        if (themeClass === 'theme-grid') box.classList.add('theme-grid');
+      });
+    }
+
+    // Color Swatch Click-to-Copy
+    function copyColor(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast('Copied ' + name + ' (' + hex + ') to clipboard!');
+      }).catch(() => {
+        showToast('Copied: ' + hex);
+      });
+    }
+
+    // Live Typography Specimen Updater
+    function updateLiveSpecimen(val) {
+      const displayVal = val.trim() || 'Haute Parfumerie & Algorithmic Scale';
+      document.getElementById('specimen-serif').textContent = displayVal;
+      document.getElementById('specimen-sans').textContent = displayVal.toUpperCase();
+    }
+
+    // Toast Notification Trigger
+    function showToast(msg) {
+      const toast = document.getElementById('vaultToast');
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 2600);
+    }
+  </script>
+</body>
+</html>

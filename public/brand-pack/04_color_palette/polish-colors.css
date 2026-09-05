@@ -1,0 +1,17 @@
+:root {
+  /* POLISH Media Co. — Haute Atelier Color Tokens v2.0 */
+  --brand-gold: #E2C799;
+  --brand-platinum: #F5E6D3;
+  --brand-bronze: #C5A880;
+  
+  --bg-noir: #080706;
+  --surface-charcoal: #161412;
+  --surface-alabaster: #FAF7F2;
+  --text-ink: #1A1715;
+
+  /* Specular Borders & Glass */
+  --border-specular: 1px solid rgba(226, 199, 153, 0.16);
+  --border-specular-active: 1px solid rgba(226, 199, 153, 0.42);
+  --glass-card: rgba(22, 20, 18, 0.65);
+  --glass-blur: blur(20px);
+}

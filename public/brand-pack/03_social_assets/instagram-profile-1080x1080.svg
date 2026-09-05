@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
   
   <defs>
     <linearGradient id="champagneGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -28,8 +28,20 @@
     </style>
   </defs>
 
-  <rect width="100" height="100" rx="22" fill="#0A0908" stroke="rgba(226, 199, 153, 0.25)" stroke-width="1.5"/>
-  <g transform="translate(50, 50) scale(0.9) translate(-50, -50)">
+  <!-- Dark Obsidian Background -->
+  <rect width="1080" height="1080" fill="#080706"/>
+  
+  <!-- Radial Glow Behind Squircle -->
+  <circle cx="540" cy="540" r="400" fill="#E2C799" opacity="0.08" filter="blur(60px)"/>
+
+  <!-- Luxury Frosted Squircle Container -->
+  <rect x="140" y="140" width="800" height="800" rx="220" fill="url(#obsidianSurface)" stroke="rgba(226, 199, 153, 0.35)" stroke-width="4"/>
+  
+  <!-- Inner Subtle Accent Ring -->
+  <rect x="160" y="160" width="760" height="760" rx="200" fill="none" stroke="rgba(245, 230, 211, 0.08)" stroke-width="2"/>
+
+  <!-- Centered Signature Mark -->
+  <g transform="translate(540, 540) scale(5.4) translate(-50, -50)">
     
     <g transform="translate(3.83, -5.83)">
       <!-- Growth Arrow Stem & Head (45deg upward velocity) -->

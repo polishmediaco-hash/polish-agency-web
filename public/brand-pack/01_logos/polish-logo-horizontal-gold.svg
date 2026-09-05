@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" width="760" height="180">
   
   <defs>
     <linearGradient id="champagneGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -28,8 +28,9 @@
     </style>
   </defs>
 
-  <rect width="100" height="100" rx="22" fill="#0A0908" stroke="rgba(226, 199, 153, 0.25)" stroke-width="1.5"/>
-  <g transform="translate(50, 50) scale(0.9) translate(-50, -50)">
+  
+  <!-- Left Aligned Mark -->
+  <g transform="translate(75, 90) scale(1.6) translate(-50, -50)">
     
     <g transform="translate(3.83, -5.83)">
       <!-- Growth Arrow Stem & Head (45deg upward velocity) -->
@@ -39,4 +40,16 @@
     </g>
   
   </g>
+  <!-- Architectural Wordmark POLISH -->
+  <text x="175" y="105" 
+        class="font-brand-title"
+        font-size="64" 
+        letter-spacing="9" 
+        fill="url(#champagneGoldGrad)">POLISH</text>
+  <!-- Subtitle MEDIA CO -->
+  <text x="178" y="142" 
+        class="font-brand-sub"
+        font-size="14" 
+        letter-spacing="8.5" 
+        fill="#C5A880">MEDIA CO</text>
 </svg>

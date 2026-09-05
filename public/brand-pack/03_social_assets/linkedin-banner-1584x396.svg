@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" width="1584" height="396">
   
   <defs>
     <linearGradient id="champagneGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -28,8 +28,16 @@
     </style>
   </defs>
 
-  <rect width="100" height="100" rx="22" fill="#0A0908" stroke="rgba(226, 199, 153, 0.25)" stroke-width="1.5"/>
-  <g transform="translate(50, 50) scale(0.9) translate(-50, -50)">
+  <rect width="1584" height="396" fill="#080706"/>
+  <circle cx="200" cy="200" r="280" fill="#E2C799" opacity="0.04" filter="blur(50px)"/>
+  <circle cx="1400" cy="200" r="300" fill="#C5A880" opacity="0.03" filter="blur(60px)"/>
+  
+  <!-- Subtle Border Lines -->
+  <line x1="60" y1="0" x2="60" y2="396" stroke="rgba(226, 199, 153, 0.08)" stroke-width="1"/>
+  <line x1="1524" y1="0" x2="1524" y2="396" stroke="rgba(226, 199, 153, 0.08)" stroke-width="1"/>
+
+  <!-- Logo Mark Lockup -->
+  <g transform="translate(140, 198) scale(1.4) translate(-50, -50)">
     
     <g transform="translate(3.83, -5.83)">
       <!-- Growth Arrow Stem & Head (45deg upward velocity) -->
@@ -38,5 +46,17 @@
       <rect x="22" y="74" width="8" height="8" rx="2" transform="rotate(45 26 78)" fill="url(#champagneGoldGrad)"/>
     </g>
   
+  </g>
+
+  <!-- Typography -->
+  <text x="240" y="165" class="font-brand-sub" font-size="12" letter-spacing="6" fill="#C5A880">PRESTIGE COSMETIC ACCELERATOR</text>
+  <text x="240" y="220" class="font-brand-title" font-size="46" letter-spacing="6" fill="url(#champagneGoldGrad)">POLISH <tspan font-size="24" letter-spacing="8" fill="#F5E6D3">MEDIA CO</tspan></text>
+  <text x="240" y="265" class="font-serif-luxury" font-size="21" fill="#F5E6D3">Precision-Engineered Growth for Fragrance, Clinical Skincare &amp; Luxury Aesthetics</text>
+  
+  <!-- Metrics Badge -->
+  <g transform="translate(1220, 150)">
+    <rect x="0" y="0" width="240" height="96" rx="16" fill="rgba(22, 20, 18, 0.7)" stroke="rgba(226, 199, 153, 0.2)" stroke-width="1"/>
+    <text x="120" y="42" class="font-brand-title" font-size="24" text-anchor="middle" fill="#E2C799">3.4x — 5.8x</text>
+    <text x="120" y="70" class="font-brand-sub" font-size="10" letter-spacing="3" text-anchor="middle" fill="rgba(245, 230, 211, 0.7)">AVERAGE MER VELOCITY</text>
   </g>
 </svg>

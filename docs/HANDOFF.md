@@ -65,6 +65,17 @@ The application has successfully completed a luxury atelier rebranding and typog
 * `public/palette-preview.html` (`/palette-preview`): Interactive palette switcher and live visual preview.
 * `public/font-preview.html` (`/font-preview`): Live interactive Haute Atelier Typography Studio featuring 5 typography archetypes, real-time live preview of all sections, side-by-side comparison matrix, and trilingual toggling (EN/FR/AR).
 
+### F. Brand Asset Vault & Guidelines (`public/brand-pack.html` / `/brand-pack`)
+* **Live Interactive Brand Portal**: Direct web interface for previewing, inspecting, and downloading all vector and raster assets.
+* **Master Brand Pack Archive**: `/brand-pack/POLISH_Media_Co_Brand_Pack.zip` (712 KB) containing 75 curated production-ready files:
+  * `01_logos/`: 32 logo assets (Horizontal, Vertical, Standalone Marks, Squircles in Gold, Dark, White, Black in SVG and 1000px, 2000px, 4000px retina PNGs).
+  * `02_favicons_and_icons/`: Universal SVG favicon, 16/32/48px favicons, 180px Apple Touch Icon, 192/512px Android Chrome icons, and `site.webmanifest`.
+  * `03_social_assets/`: Twitter/X header (1500x500), LinkedIn company banner (1584x396), Instagram avatar (1080x1080), OpenGraph social card (1200x630).
+  * `04_color_palette/`: `polish-colors.json`, `polish-colors.css`, and vector/raster swatch palettes.
+  * `05_typography/`: `TYPOGRAPHY_SPECIFICATIONS.md` (Font pairings, optical scales, tabular numbers).
+  * `06_guidelines/`: `POLISH_BRAND_GUIDELINES.md` (Full 10-chapter Brand Standards Bible).
+* **Routes Registered**: `GET /brand-pack`, `GET /brand-guidelines`.
+
 ---
 
 ## 3. Backend Architecture (`server/index.js`)

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 640" width="1680" height="640">
+  
+  <defs>
+    <linearGradient id="champagneGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C5A880"/>
+      <stop offset="45%" stop-color="#E2C799"/>
+      <stop offset="70%" stop-color="#F5E6D3"/>
+      <stop offset="100%" stop-color="#E2C799"/>
+    </linearGradient>
+    <linearGradient id="champagneGoldSubtle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E6D3" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#C5A880" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="obsidianSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181614"/>
+      <stop offset="100%" stop-color="#080706"/>
+    </linearGradient>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Cormorant+Garamond:ital,wght@1,600&amp;display=swap');
+      .font-brand-title { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; }
+      .font-brand-sub { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; }
+      .font-serif-luxury { font-family: 'Cormorant Garamond', Didot, 'Playfair Display', Georgia, serif; font-style: italic; }
+    </style>
+  </defs>
+
+  <rect width="1680" height="640" fill="#080706"/>
+  <rect x="24" y="24" width="1632" height="592" rx="20" fill="none" stroke="rgba(226, 199, 153, 0.2)" stroke-width="1.5"/>
+  
+  <!-- Header Section -->
+  <g transform="translate(60, 90)">
+    <text x="0" y="0" class="font-brand-sub" font-size="13" letter-spacing="6" fill="#C5A880">POLISH MEDIA CO.  •  COLOR MATRIX SPECIFICATION</text>
+    <text x="0" y="38" class="font-brand-title" font-size="38" letter-spacing="2" fill="url(#champagneGoldGrad)">Haute Atelier Champagne Gold &amp; Obsidian Palette</text>
+  </g>
+
+  <!-- Swatches Row -->
+  
+      <g transform="translate(60, 180)">
+        <!-- Color Block -->
+        <rect width="230" height="240" rx="16" fill="#E2C799" stroke="rgba(0, 0, 0, 0.15)" stroke-width="1"/>
+        <!-- Label Area Below -->
+        <text x="0" y="275" class="font-brand-title" font-size="17" fill="#F5E6D3">Champagne Gold</text>
+        <text x="0" y="295" class="font-brand-sub" font-size="12" fill="#C5A880">Primary Atelier Metal</text>
+        <text x="0" y="320" class="font-brand-title" font-size="14" fill="#E2C799">#E2C799</text>
+        <text x="0" y="340" class="font-brand-sub" font-size="11" fill="rgba(245, 230, 211, 0.5)">RGB(226, 199, 153)</text>
+      </g>
+    
+      <g transform="translate(320, 180)">
+        <!-- Color Block -->
+        <rect width="230" height="240" rx="16" fill="#F5E6D3" stroke="rgba(0, 0, 0, 0.15)" stroke-width="1"/>
+        <!-- Label Area Below -->
+        <text x="0" y="275" class="font-brand-title" font-size="17" fill="#F5E6D3">Cashmere Platinum</text>
+        <text x="0" y="295" class="font-brand-sub" font-size="12" fill="#C5A880">Editorial Highlights</text>
+        <text x="0" y="320" class="font-brand-title" font-size="14" fill="#E2C799">#F5E6D3</text>
+        <text x="0" y="340" class="font-brand-sub" font-size="11" fill="rgba(245, 230, 211, 0.5)">RGB(245, 230, 211)</text>
+      </g>
+    
+      <g transform="translate(580, 180)">
+        <!-- Color Block -->
+        <rect width="230" height="240" rx="16" fill="#C5A880" stroke="rgba(0, 0, 0, 0.15)" stroke-width="1"/>
+        <!-- Label Area Below -->
+        <text x="0" y="275" class="font-brand-title" font-size="17" fill="#F5E6D3">Atelier Bronze</text>
+        <text x="0" y="295" class="font-brand-sub" font-size="12" fill="#C5A880">Shading &amp; Deep Gradient</text>
+        <text x="0" y="320" class="font-brand-title" font-size="14" fill="#E2C799">#C5A880</text>
+        <text x="0" y="340" class="font-brand-sub" font-size="11" fill="rgba(245, 230, 211, 0.5)">RGB(197, 168, 128)</text>
+      </g>
+    
+      <g transform="translate(840, 180)">
+        <!-- Color Block -->
+        <rect width="230" height="240" rx="16" fill="#080706" stroke="rgba(226, 199, 153, 0.25)" stroke-width="1"/>
+        <!-- Label Area Below -->
+        <text x="0" y="275" class="font-brand-title" font-size="17" fill="#F5E6D3">Deep Obsidian Noir</text>
+        <text x="0" y="295" class="font-brand-sub" font-size="12" fill="#C5A880">Signature Void Ground</text>
+        <text x="0" y="320" class="font-brand-title" font-size="14" fill="#E2C799">#080706</text>
+        <text x="0" y="340" class="font-brand-sub" font-size="11" fill="rgba(245, 230, 211, 0.5)">RGB(8, 7, 6)</text>
+      </g>
+    
+      <g transform="translate(1100, 180)">
+        <!-- Color Block -->
+        <rect width="230" height="240" rx="16" fill="#161412" stroke="rgba(0, 0, 0, 0.15)" stroke-width="1"/>
+        <!-- Label Area Below -->
+        <text x="0" y="275" class="font-brand-title" font-size="17" fill="#F5E6D3">Satin Charcoal</text>
+        <text x="0" y="295" class="font-brand-sub" font-size="12" fill="#C5A880">Frosted Glass Surface</text>
+        <text x="0" y="320" class="font-brand-title" font-size="14" fill="#E2C799">#161412</text>
+        <text x="0" y="340" class="font-brand-sub" font-size="11" fill="rgba(245, 230, 211, 0.5)">RGB(22, 20, 18)</text>
+      </g>
+    
+      <g transform="translate(1360, 180)">
+        <!-- Color Block -->
+        <rect width="230" height="240" rx="16" fill="#FAF7F2" stroke="rgba(0, 0, 0, 0.15)" stroke-width="1"/>
+        <!-- Label Area Below -->
+        <text x="0" y="275" class="font-brand-title" font-size="17" fill="#F5E6D3">Warm Alabaster</text>
+        <text x="0" y="295" class="font-brand-sub" font-size="12" fill="#C5A880">Light Mode Editorial Ground</text>
+        <text x="0" y="320" class="font-brand-title" font-size="14" fill="#E2C799">#FAF7F2</text>
+        <text x="0" y="340" class="font-brand-sub" font-size="11" fill="rgba(245, 230, 211, 0.5)">RGB(250, 247, 242)</text>
+      </g>
+    
+</svg>

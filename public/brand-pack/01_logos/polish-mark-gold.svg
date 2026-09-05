@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
   
   <defs>
     <linearGradient id="champagneGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -28,8 +28,7 @@
     </style>
   </defs>
 
-  <rect width="100" height="100" rx="22" fill="#0A0908" stroke="rgba(226, 199, 153, 0.25)" stroke-width="1.5"/>
-  <g transform="translate(50, 50) scale(0.9) translate(-50, -50)">
+  <g transform="translate(250, 250) scale(4.4) translate(-50, -50)">
     
     <g transform="translate(3.83, -5.83)">
       <!-- Growth Arrow Stem & Head (45deg upward velocity) -->

@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "brand": "POLISH Media Co.",
+    "version": "2.0.0",
+    "aesthetic": "Haute Atelier Champagne Gold & Obsidian Noir",
+    "created": "2026-09-05"
+  },
+  "primary": {
+    "champagne_gold": {
+      "hex": "#E2C799",
+      "rgb": "rgb(226, 199, 153)",
+      "cmyk": "cmyk(0, 12, 32, 11)",
+      "pantone": "Pantone 467 C (Approximate)",
+      "role": "Primary luxury brand metal, CTAs, key accent highlights, primary logo"
+    },
+    "cashmere_platinum": {
+      "hex": "#F5E6D3",
+      "rgb": "rgb(245, 230, 211)",
+      "cmyk": "cmyk(0, 6, 14, 4)",
+      "pantone": "Pantone 7527 C (Approximate)",
+      "role": "Primary high-contrast text, specular sheen, refined badges"
+    },
+    "atelier_bronze": {
+      "hex": "#C5A880",
+      "rgb": "rgb(197, 168, 128)",
+      "cmyk": "cmyk(0, 15, 35, 23)",
+      "pantone": "Pantone 465 C (Approximate)",
+      "role": "Shading, tertiary typography, gradient anchor depth"
+    }
+  },
+  "neutrals": {
+    "deep_obsidian_noir": {
+      "hex": "#080706",
+      "rgb": "rgb(8, 7, 6)",
+      "role": "Primary background ground, deep luxury obsidian void"
+    },
+    "satin_charcoal": {
+      "hex": "#161412",
+      "rgb": "rgb(22, 20, 18)",
+      "role": "Frosted glass container surface, elevated card backgrounds"
+    },
+    "warm_alabaster": {
+      "hex": "#FAF7F2",
+      "rgb": "rgb(250, 247, 242)",
+      "role": "Light editorial mode, stationery, invoices, print paper stock"
+    },
+    "obsidian_ink": {
+      "hex": "#1A1715",
+      "rgb": "rgb(26, 23, 21)",
+      "role": "Typography on light backgrounds"
+    }
+  },
+  "ui_tokens": {
+    "border_subtle": "rgba(226, 199, 153, 0.16)",
+    "border_hover": "rgba(226, 199, 153, 0.42)",
+    "glass_bg": "rgba(22, 20, 18, 0.65)",
+    "glow_radial": "radial-gradient(ellipse at top, rgba(226, 199, 153, 0.12) 0%, transparent 70%)"
+  }
+}

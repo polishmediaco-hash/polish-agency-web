@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 // High-performance intelligent caching policy
 app.use((req, res, next) => {
   // HTML documents: validate on each request so updates appear immediately
-  if (req.path === '/' || req.path === '/apply' || req.path === '/creators' || req.path.endsWith('.html')) {
+  if (req.path === '/' || req.path === '/apply' || req.path === '/creators' || req.path === '/brand-pack' || req.path === '/brand-guidelines' || req.path === '/font-preview' || req.path === '/palette-preview' || req.path.endsWith('.html')) {
     res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
   } else {
     // Static assets (CSS, JS, WebP, PNG, SVG): cache on edge CDN and browser with stale-while-revalidate
@@ -77,6 +77,14 @@ app.get('/palette-preview', (req, res) => {
 
 app.get('/font-preview', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/font-preview.html'));
+});
+
+app.get('/brand-pack', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/brand-pack.html'));
+});
+
+app.get('/brand-guidelines', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/brand-pack.html'));
 });
 
 // 404 Fallback

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   
   <defs>
     <linearGradient id="champagneGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -28,8 +28,9 @@
     </style>
   </defs>
 
-  <rect width="100" height="100" rx="22" fill="#0A0908" stroke="rgba(226, 199, 153, 0.25)" stroke-width="1.5"/>
-  <g transform="translate(50, 50) scale(0.9) translate(-50, -50)">
+  <!-- Squircle Obsidian Base -->
+  <rect x="16" y="16" width="480" height="480" rx="120" fill="url(#obsidianSurface)" stroke="rgba(226, 199, 153, 0.28)" stroke-width="3"/>
+  <g transform="translate(256, 256) scale(3.2) translate(-50, -50)">
     
     <g transform="translate(3.83, -5.83)">
       <!-- Growth Arrow Stem & Head (45deg upward velocity) -->

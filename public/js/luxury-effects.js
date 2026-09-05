@@ -305,9 +305,9 @@
     }
 
     // Dolly-Zoom Depth Inversion & Flacon Space Travel (Hero 0px -> 450px)
+    // 100% GPU COMPOSITOR PROPERTIES ONLY (translate3d, scale, opacity)
+    // ZERO dynamic filter blur = ZERO texture layer clipping / ZERO box shade cut out / 120FPS smooth on phone
     const bottleWrap = document.getElementById('heroBottleWrap');
-    const bottleHalo = document.getElementById('heroBottleHalo');
-    const bottlePedestal = document.getElementById('heroBottlePedestal');
     const bgDepthFar = document.querySelector('.beauty-depth-far');
     const bgDepthMid = document.querySelector('.beauty-depth-mid');
 
@@ -320,25 +320,19 @@
       const isRTL = document.documentElement.dir === 'rtl';
       const shiftX = (isRTL ? -1 : 1) * (progress * 110);
       const shiftY = progress * -25;
-      const blur = progress * 4.0;
-      const opacity = 1 - (progress * 0.60); // 1.0 -> 0.40
+      const opacity = 1 - (progress * 0.65); // 1.0 -> 0.35
 
       bottleWrap.style.transform = `translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
-      bottleWrap.style.filter = `blur(${blur.toFixed(1)}px)`;
       bottleWrap.style.opacity = opacity.toFixed(2);
 
-      if (bottleHalo) bottleHalo.style.opacity = (1 - progress).toFixed(2);
-      if (bottlePedestal) bottlePedestal.style.opacity = (1 - progress).toFixed(2);
-
-      // 2. Background Products start far & small, then expand closer as user scrolls
-      const bgScale = 0.65 + (progress * 0.35); // 0.65 -> 1.0
+      // 2. Background Products gently come into focus via compositor opacity
       const bgOpacity = 0.30 + (progress * 0.35); // 0.30 -> 0.65
-
       if (bgDepthFar) {
-        bgDepthFar.style.transform = `scale(${bgScale.toFixed(3)})`;
         bgDepthFar.style.opacity = bgOpacity.toFixed(2);
       }
-      if (bgDepthMid) {
+      // On desktop only, apply subtle scale to mid layer; skip on mobile for maximum 120FPS fluidity
+      if (bgDepthMid && window.innerWidth > 768) {
+        const bgScale = 0.80 + (progress * 0.20);
         bgDepthMid.style.transform = `scale(${bgScale.toFixed(3)})`;
       }
     }

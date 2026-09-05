@@ -122,11 +122,30 @@ The application has successfully completed a luxury atelier rebranding and typog
 
 ---
 
+### I. Logo Optical Sizing & Multi-Format Vector Lockups (Resolved September 2026)
+* **Root Cause Rectified**: Previous SVGs contained >45% transparent margin padding inside large canvas boxes, causing the drawn artwork to scale down to an illegible ~10px inside navbar containers.
+* **Tight Zero-Padding SVG Geometries**:
+  * **Primary Horizontal Web Lockup** (`public/assets/logo-gold.svg` / `logo-gold.png`): Precision `viewBox="0 0 286 86"` (aspect ratio 3.33:1, 96% fill factor).
+  * **Standalone Emblem Mark** (`public/assets/logo-gold-mark.svg` / `logo-gold-mark.png`): Tight `viewBox="0 0 100 100"` (1:1 square ratio, 90% fill factor).
+  * **Vertical Architectural Crest** (`public/assets/logo-gold-vertical.svg` / `logo-gold-vertical.png`): Tight `viewBox="0 0 260 226"` (aspect ratio 1.15:1, 95% fill factor).
+* **Dynamic Island Header Logo Sizing**:
+  * Desktop unscrolled: increased from `34px` to `46px` (`width="153" height="46"`), yielding ~3x visual impact with zero wasted whitespace.
+  * Desktop scrolled: increased from `25px` to `32px`; capsule max-width widened from `340px` to `380px` (`420px` on subpages).
+  * Mobile: unscrolled increased from `28px` to `38px`; scrolled increased from `21px` to `28px`.
+* **Cinematic Intro Screen**: Scaled from `78px` (effective 44px) to `220px` width with champagne luminescence glow and identical horizontal aspect ratio for distortion-free FLIP flight into navbar.
+* **Footer Brand Row**: Added `.footer-logo-img` (`/assets/logo-gold.svg`, `height: 36px`) anchoring the copyright bar.
+* **Admin CRM Portal**: Upgraded header logo to `44px` height and login bubble mark to `52px`.
+* **Brand Pack Updated**: Rebuilt `scripts/generate-brand-pack.js` to render all 53 multi-resolution assets with tight bounds; master zip refreshed (`public/brand-pack/POLISH_Media_Co_Brand_Pack.zip`).
+
+---
+
 ## 4. Git & Repository Status
 
 * **Branch**: `main`
-* **Working Directory**: Clean (Latest commit: `feat(ui): implement dynamic cursor spotlight tracking, obsidian noir cards, and magnetic button physics`).
-* **Assets**: All vector and raster gold logos are committed and synchronized with backup workspace.
+* **Latest Milestones**:
+  * `fix(brand): optimize logo viewBoxes, enlarge header/intro/footer logos across site, and sync brand pack`
+  * `feat(ui): implement dynamic cursor spotlight tracking, obsidian noir cards, and magnetic button physics`
+* **Assets**: All horizontal, vertical, and standalone vector marks committed and synced across backup repositories.
 
 ---
 

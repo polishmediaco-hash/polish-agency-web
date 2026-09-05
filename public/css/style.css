@@ -598,8 +598,8 @@ a {
 
 /* State 2: Floating Dynamic Island Capsule (On Scroll) */
 .site-header.is-scrolled .dynamic-island-shell {
-  max-width: 340px;
-  padding: 7px 18px;
+  max-width: 380px;
+  padding: 8px 20px;
   background: linear-gradient(135deg, rgba(20, 17, 14, 0.94) 0%, rgba(10, 9, 8, 0.98) 100%);
   border: 1px solid rgba(226, 199, 153, 0.3);
   box-shadow: 0 16px 42px rgba(0, 0, 0, 0.85), 0 0 24px rgba(226, 199, 153, 0.14), inset 0 1px 1.5px rgba(255, 255, 255, 0.22);
@@ -613,7 +613,7 @@ a {
 }
 
 .site-header.is-scrolled .dynamic-island-shell.has-center-home {
-  max-width: 395px;
+  max-width: 420px;
 }
 
 .site-header.is-scrolled .dynamic-island-shell:hover {
@@ -653,26 +653,26 @@ a {
 
 .brand-logo-img {
   width: auto;
-  height: 38px;
+  height: 46px;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   filter: none !important;
-  transition: transform 0.3s ease, height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s ease, height 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
 
 .brand-logo-img.island-capsule-logo {
-  height: 34px;
+  height: 46px;
 }
 
 .site-header.is-scrolled .brand-logo-img.island-capsule-logo {
-  height: 25px !important;
+  height: 32px !important;
 }
 
 .brand-logo-link:hover .brand-logo-img,
 .brand-logo-pod:hover .brand-logo-img {
-  transform: scale(1.08);
-  filter: none !important;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 14px rgba(226, 199, 153, 0.5)) !important;
 }
 
 /* ==========================================================================
@@ -2071,6 +2071,32 @@ body.is-rtl .whatsapp-float-container {
   direction: ltr !important;
 }
 
+.footer-brand-col {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.footer-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.footer-logo-link:hover .footer-logo-img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
 .footer-copy {
   color: var(--text-dim);
   font-size: 13px;
@@ -2278,15 +2304,15 @@ body.is-rtl .whatsapp-float-container {
   }
 
   .site-header.is-scrolled .dynamic-island-shell.has-center-home {
-    max-width: 315px;
+    max-width: 345px;
   }
 
   .brand-logo-img.island-capsule-logo {
-    height: 28px;
+    height: 38px;
   }
 
   .site-header.is-scrolled .brand-logo-img.island-capsule-logo {
-    height: 21px !important;
+    height: 28px !important;
   }
 
   .dynamic-island-shell .header-home-btn {
@@ -3038,15 +3064,15 @@ html.intro-skipped .luxury-intro-overlay {
 }
 
 .intro-logo-img {
-  width: 78px;
+  width: 220px;
   height: auto;
   display: block;
-  filter: none !important;
+  filter: drop-shadow(0 0 28px rgba(226, 199, 153, 0.45));
 }
 
 @media (max-width: 768px) {
   .intro-logo-img {
-    width: 62px;
+    width: 165px;
   }
 }
 

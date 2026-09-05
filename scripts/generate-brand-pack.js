@@ -124,64 +124,64 @@ function createMarkSvg(fill, isSquircle = false) {
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
   ${SVG_DEFS}
-  <g transform="translate(250, 250) scale(4.4) translate(-50, -50)">
+  <g transform="translate(50, 50) scale(1.35) translate(-50, -50)">
     ${getMarkSnippet(fill)}
   </g>
 </svg>`;
 }
 
-// Horizontal Logo Lockup SVG template
+// Horizontal Logo Lockup SVG template (Optimized 0-Padding ViewBox)
 function createHorizontalLogoSvg({ fillTitle, fillSub, fillMark, hasDarkBg = false }) {
   const bg = hasDarkBg ? `<rect width="100%" height="100%" fill="${COLORS.noir}"/>` : '';
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" width="760" height="180">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 86" width="286" height="86">
   ${SVG_DEFS}
   ${bg}
   <!-- Left Aligned Mark -->
-  <g transform="translate(75, 90) scale(1.6) translate(-50, -50)">
+  <g transform="translate(44, 44) scale(1.15) translate(-50, -50)">
     ${getMarkSnippet(fillMark)}
   </g>
   <!-- Architectural Wordmark POLISH -->
-  <text x="175" y="105" 
+  <text x="102" y="52" 
         class="font-brand-title"
-        font-size="64" 
-        letter-spacing="9" 
+        font-size="42" 
+        letter-spacing="5" 
         fill="${fillTitle}">POLISH</text>
   <!-- Subtitle MEDIA CO -->
-  <text x="178" y="142" 
+  <text x="104" y="72" 
         class="font-brand-sub"
-        font-size="14" 
-        letter-spacing="8.5" 
+        font-size="10.5" 
+        letter-spacing="6.5" 
         fill="${fillSub}">MEDIA CO</text>
 </svg>`;
 }
 
-// Vertical / Stacked Logo Lockup SVG template
+// Vertical / Stacked Logo Lockup SVG template (Optimized 0-Padding ViewBox)
 function createVerticalLogoSvg({ fillTitle, fillSub, fillMark, hasDarkBg = false }) {
   const bg = hasDarkBg ? `<rect width="100%" height="100%" fill="${COLORS.noir}"/>` : '';
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 520" width="600" height="520">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 226" width="260" height="226">
   ${SVG_DEFS}
   ${bg}
   <!-- Centered Mark -->
-  <g transform="translate(300, 150) scale(2.3) translate(-50, -50)">
+  <g transform="translate(130, 75) scale(1.9) translate(-50, -50)">
     ${getMarkSnippet(fillMark)}
   </g>
   <!-- Architectural Wordmark POLISH -->
-  <text x="300" y="375" 
+  <text x="130" y="185" 
         class="font-brand-title"
-        font-size="78" 
-        letter-spacing="12" 
-        text-anchor="middle"
+        font-size="54" 
+        letter-spacing="9" 
+        text-anchor="middle" 
         fill="${fillTitle}">POLISH</text>
   <!-- Subtitle MEDIA CO -->
-  <text x="300" y="435" 
+  <text x="130" y="215" 
         class="font-brand-sub"
-        font-size="16" 
-        letter-spacing="12" 
-        text-anchor="middle"
+        font-size="13" 
+        letter-spacing="9" 
+        text-anchor="middle" 
         fill="${fillSub}">MEDIA CO</text>
 </svg>`;
 }
@@ -488,14 +488,32 @@ async function buildBrandPack() {
     }
   }
 
-  // Also sync primary official logo to public/assets/
-  const officialLogoSvg = createVerticalLogoSvg({ fillTitle: 'url(#champagneGoldGrad)', fillSub: '#C5A880', fillMark: 'url(#champagneGoldGrad)' });
+  // Also sync primary official logos to public/assets/
+  // 1. Primary official web logo (Horizontal lockup with tight zero-padding viewBox)
+  const officialLogoSvg = createHorizontalLogoSvg({ fillTitle: 'url(#champagneGoldGrad)', fillSub: '#C5A880', fillMark: 'url(#champagneGoldGrad)' });
   fs.writeFileSync(path.join(BASE_DIR, 'public', 'assets', 'logo-gold.svg'), officialLogoSvg, 'utf8');
   await sharp(Buffer.from(officialLogoSvg))
-    .resize(1200, null)
+    .resize(2000, null)
     .png({ quality: 100 })
     .toFile(path.join(BASE_DIR, 'public', 'assets', 'logo-gold.png'));
-  console.log('  ✓ Synced official Golden Ratio Pipette logo to public/assets/logo-gold.svg and png');
+
+  // 2. Standalone emblem mark (1:1 Golden Ratio Pipette with tight zero-padding viewBox)
+  const officialMarkSvg = createMarkSvg('url(#champagneGoldGrad)');
+  fs.writeFileSync(path.join(BASE_DIR, 'public', 'assets', 'logo-gold-mark.svg'), officialMarkSvg, 'utf8');
+  await sharp(Buffer.from(officialMarkSvg))
+    .resize(1024, 1024)
+    .png({ quality: 100 })
+    .toFile(path.join(BASE_DIR, 'public', 'assets', 'logo-gold-mark.png'));
+
+  // 3. Vertical stacked crest (for packaging and architectural documents)
+  const officialVerticalSvg = createVerticalLogoSvg({ fillTitle: 'url(#champagneGoldGrad)', fillSub: '#C5A880', fillMark: 'url(#champagneGoldGrad)' });
+  fs.writeFileSync(path.join(BASE_DIR, 'public', 'assets', 'logo-gold-vertical.svg'), officialVerticalSvg, 'utf8');
+  await sharp(Buffer.from(officialVerticalSvg))
+    .resize(2000, null)
+    .png({ quality: 100 })
+    .toFile(path.join(BASE_DIR, 'public', 'assets', 'logo-gold-vertical.png'));
+
+  console.log('  ✓ Synced official Golden Ratio Pipette horizontal, mark, and vertical assets to public/assets/');
 
   // B. Favicons & App Icons
   console.log('✨ [Brand Pack] Generating Favicons & Platform App Icons...');

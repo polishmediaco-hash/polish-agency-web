@@ -2097,6 +2097,12 @@ body.is-rtl .whatsapp-float-container {
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
+.footer-logo-mark {
+  height: 32px;
+  width: 32px;
+  opacity: 0.85;
+}
+
 .footer-logo-link {
   display: inline-flex;
   align-items: center;

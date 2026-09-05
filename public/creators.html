@@ -120,22 +120,22 @@
           
           <div class="field-group">
             <label class="field-label" for="cName"><span data-i18n="creators.fullName">Full Name</span> <span class="req">*</span></label>
-            <input type="text" id="cName" name="name" class="form-input" placeholder="Maya Lin" autocomplete="name" required>
+            <input type="text" id="cName" name="name" class="form-input" placeholder="Maya Lin" autocomplete="name" autocapitalize="words" inputmode="text" enterkeyhint="next" required>
           </div>
 
           <div class="field-group">
             <label class="field-label" for="cSocial"><span data-i18n="creators.socialHandle">Primary Social Profile Link</span> <span class="req">*</span></label>
-            <input type="text" id="cSocial" name="socialLink" class="form-input" placeholder="@mayaskin or profile URL" autocapitalize="none" autocorrect="off" spellcheck="false" required>
+            <input type="url" id="cSocial" name="socialLink" class="form-input" placeholder="@mayaskin or profile URL" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="url" enterkeyhint="next" required>
           </div>
 
           <div class="field-group">
             <label class="field-label" for="cPortfolio"><span data-i18n="creators.portfolio">Portfolio / Showreel Link</span> <span style="color: var(--text-dim); font-size: 11px; font-weight: 500;">(Optional)</span></label>
-            <input type="url" id="cPortfolio" name="portfolio" class="form-input" placeholder="Portfolio or video link" autocomplete="url">
+            <input type="url" id="cPortfolio" name="portfolio" class="form-input" placeholder="Portfolio or video link" autocomplete="url" inputmode="url" enterkeyhint="next">
           </div>
 
           <div class="field-group">
             <label class="field-label" for="cPhone"><span data-i18n="creators.phone">WhatsApp or Phone Number</span> <span class="req">*</span></label>
-            <input type="tel" id="cPhone" name="phone" class="form-input" placeholder="+1 555-019-2834" autocomplete="tel" required>
+            <input type="tel" id="cPhone" name="phone" class="form-input" placeholder="+1 555-019-2834" autocomplete="tel" inputmode="tel" enterkeyhint="send" required>
           </div>
 
           <div style="margin-top: 24px;">

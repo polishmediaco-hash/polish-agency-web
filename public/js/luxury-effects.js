@@ -429,6 +429,8 @@
     function finishIntro(instant = false) {
       if (isFinished) return;
       isFinished = true;
+      // Always snap back to top so a mid-swipe touch doesn't leave the page scrolled
+      window.scrollTo(0, 0);
       if (introOverlay) {
         introOverlay.style.pointerEvents = 'none';
       }

@@ -1294,7 +1294,7 @@ main.hero-section.page-wizard-main {
 }
 
 /* ============================================================
-   MARQUEE CATEGORY STRIP
+   MARQUEE CATEGORY STRIP — 100% Seamless Continuous Conveyor
    ============================================================ */
 .marquee-strip {
   width: 100%;
@@ -1308,13 +1308,18 @@ main.hero-section.page-wizard-main {
     rgba(8, 7, 6, 0) 100%
   );
   position: relative;
+  direction: ltr !important; /* CRITICAL: Enforce linear LTR conveyor axis across all languages (EN/FR/AR) */
+  user-select: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
 }
 
 .marquee-track {
   display: flex;
   gap: 0;
   width: max-content;
-  animation: marqueeScroll 28s linear infinite;
+  animation: marqueeScroll 56s linear infinite;
+  will-change: transform;
 }
 
 .marquee-strip:hover .marquee-track {
@@ -1335,6 +1340,10 @@ main.hero-section.page-wizard-main {
   white-space: nowrap;
 }
 
+.marquee-item .marquee-text {
+  display: inline-block;
+}
+
 .marquee-item .marquee-dot {
   width: 3px;
   height: 3px;
@@ -1346,6 +1355,39 @@ main.hero-section.page-wizard-main {
 @keyframes marqueeScroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* Arabic RTL Typography Adaptation for Marquee */
+[dir="rtl"] .marquee-item,
+body.is-rtl .marquee-item {
+  font-family: var(--font-arabic) !important;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em !important;
+  color: rgba(226, 199, 153, 0.45);
+}
+
+[dir="rtl"] .marquee-item .marquee-text,
+body.is-rtl .marquee-item .marquee-text {
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+@media (max-width: 768px) {
+  .marquee-strip {
+    padding: 16px 0;
+  }
+  .marquee-item {
+    font-size: 10px;
+    padding: 0 14px;
+    gap: 14px;
+    letter-spacing: 0.18em;
+  }
+  [dir="rtl"] .marquee-item,
+  body.is-rtl .marquee-item {
+    font-size: 12px;
+    letter-spacing: 0.02em !important;
+  }
 }
 
 /* ============================================================

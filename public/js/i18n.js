@@ -27,6 +27,22 @@ const POLISH_TRANSLATIONS = {
     "hero.cta": "Explore Partnership",
     "hero.microTrust": "Exclusive growth partner for high-potential cosmetic & skincare brands.",
 
+    // Marquee Category Strip
+    "marquee.item0": "Skincare",
+    "marquee.item1": "Color Cosmetics",
+    "marquee.item2": "Haircare",
+    "marquee.item3": "Fragrance",
+    "marquee.item4": "Clinical Beauty",
+    "marquee.item5": "UGC Creator Campaigns",
+    "marquee.item6": "Paid Acquisition",
+    "marquee.item7": "Cosmeceuticals",
+    "marquee.item8": "Body &amp; Wellness",
+    "marquee.item9": "Retention Engineering",
+    "marquee.item10": "DTC Growth",
+    "marquee.item11": "Brand Launches",
+    "marquee.item12": "Luxury Makeup",
+    "marquee.item13": "Serum &amp; Actives",
+
     // Agitation Section
     "agit.eyebrow": "THE BOTTLENECKS",
     "agit.headlineLine1": "Great Formulas Don't Sell Themselves.",
@@ -170,6 +186,22 @@ const POLISH_TRANSLATIONS = {
     "hero.cta": "Demander un Partenariat",
     "hero.microTrust": "Partenaire de croissance exclusif des marques de beauté et cosmétique haut de gamme.",
 
+    // Marquee Category Strip
+    "marquee.item0": "Soin de la Peau",
+    "marquee.item1": "Cosmétique Couleur",
+    "marquee.item2": "Soins Capillaires",
+    "marquee.item3": "Haute Parfumerie",
+    "marquee.item4": "Beauté Clinique",
+    "marquee.item5": "Campagnes Créateurs UGC",
+    "marquee.item6": "Acquisition Payante",
+    "marquee.item7": "Cosméceutiques",
+    "marquee.item8": "Corps &amp; Bien-Être",
+    "marquee.item9": "Ingénierie de Rétention",
+    "marquee.item10": "Croissance D2C",
+    "marquee.item11": "Lancements de Marques",
+    "marquee.item12": "Maquillage Haute Gamme",
+    "marquee.item13": "Sérums &amp; Actifs",
+
     // Agitation Section
     "agit.eyebrow": "LES FREINS DU DTC BEAUTÉ",
     "agit.headlineLine1": "Une Formule d'Exception Ne Se Vend Pas Seule.",
@@ -312,6 +344,22 @@ const POLISH_TRANSLATIONS = {
     "hero.description": "المسرّع الإبداعي والإعلاني المتخصص لمؤسسي <strong>مستحضرات التجميل الراقية</strong> لمضاعفة العائد الإعلاني، وصناعة <strong>محتوى UGC عالي التحويل</strong>، وهندسة دورات ولاء متكررة.",
     "hero.cta": "استكشف الشراكة",
     "hero.microTrust": "شريك نمو استراتيجي وحصري لأبرز علامات التجميل والعناية بالبشرة الواعدة.",
+
+    // Marquee Category Strip
+    "marquee.item0": "العناية بالبشرة",
+    "marquee.item1": "مستحضرات التجميل",
+    "marquee.item2": "العناية بالشعر",
+    "marquee.item3": "العطور الفاخرة",
+    "marquee.item4": "الجمال الطبي",
+    "marquee.item5": "حملات صناع المحتوى",
+    "marquee.item6": "الإعلانات الممولة",
+    "marquee.item7": "مستحضرات علاجية",
+    "marquee.item8": "العناية بالجسم والعافية",
+    "marquee.item9": "هندسة ولاء العملاء",
+    "marquee.item10": "نمو المتاجر المباشرة",
+    "marquee.item11": "إطلاق العلامات التجارية",
+    "marquee.item12": "مكياج فاخر",
+    "marquee.item13": "الأمصال والمكونات الفعالة",
 
     // Agitation Section
     "agit.eyebrow": "العقبات ونقاط الاختناق",

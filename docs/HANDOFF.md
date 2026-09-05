@@ -41,7 +41,17 @@ The application has successfully completed a luxury atelier rebranding and typog
 ### A. Main Experience (`public/index.html`)
 * **Dynamic Island Navigation Capsule**: Pinned top header with live scroll-depth hairline progress bar in gold, trilingual language switcher, and responsive brand logo.
 * **Intro Cinematic**: Luxury reveal with updated gold crest and luxury tagline *"CREATIVE & MARKETING FOR BEAUTY BRANDS"*.
-* **Floating 3D Holographic Beauty World**: Roaming cosmetics formulas (serums, perfume flasks, compacts) layered behind crystalline beveled glass cards.
+* **Interactive 3D Luxury Flacon Stage (WebGL / Three.js — `three-cosmetics.js`)**:
+  * Procedural luxury cosmetic pipette bottle with Concept 1 Golden Ratio geometry.
+  * Specular Champagne Gold cap and collar (`metalness: 0.94, roughness: 0.14`) with live cursor-tracking key light glint.
+  * Frosted obsidian cosmetic glass with physical transmission, inner amber elixir serum with meniscus, and signature suspended faceted diamond droplet.
+  * Sinusoidal levitation, inertia-damped parallax tilt, and drag-to-rotate touch/mouse physics.
+  * Auto-paused when scrolled offscreen or when tab is hidden (zero battery/GPU waste).
+* **Interactive DTC Revenue Velocity Calculator (`calculator.js`)**:
+  * Mathematical scaling engine simulating real-time revenue, spend, and AOV dynamics.
+  * Calculates projected CAC reduction (-34%), routine bundling AOV lift (+$22), 60-day replenishment reorder rate (+64%), and 90-day trajectory.
+  * Smooth animated tabular numerals and champagne gold slider tracks.
+  * Direct "Lock In Your Scaling Blueprint →" conversion button routing pre-filled metrics to `/apply`.
 * **Editorial Headline Accents**: Key headline lines styled with sensual italic serif gradients (*"To Household Beauty Brand."*, *"Where Beauty Brands Hit a Wall."*, *"For Cosmetic & Skincare Scaling."*).
 * **Trilingual Localization (EN / FR / AR)**: Instant DOM switching without page reload; full RTL layout inversion for Arabic with Tajawal font.
 * **Pulsing WhatsApp Conversion Engine**: Floating button linking to `+213 662 41 77 61` with localized pre-filled copy.
@@ -143,6 +153,7 @@ The application has successfully completed a luxury atelier rebranding and typog
 
 * **Branch**: `main`
 * **Latest Milestones**:
+  * `feat(3d-calc): implement interactive WebGL 3D flacon stage and DTC revenue velocity calculator`
   * `fix(brand): optimize logo viewBoxes, enlarge header/intro/footer logos across site, and sync brand pack`
   * `feat(ui): implement dynamic cursor spotlight tracking, obsidian noir cards, and magnetic button physics`
 * **Assets**: All horizontal, vertical, and standalone vector marks committed and synced across backup repositories.

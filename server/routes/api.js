@@ -76,6 +76,7 @@ router.post('/apply', async (req, res) => {
       businessCategory: businessCategory.trim(),
       marketingHistory: marketingHistory.trim(),
       primaryGoal: primaryGoal ? primaryGoal.trim() : 'Not provided',
+      calculatorData: req.body.calculatorData || null,
       ipAddress: req.ip || req.headers['x-forwarded-for'] || 'unknown',
       userAgent: req.headers['user-agent'] || 'unknown',
       submittedAt: new Date().toISOString(),

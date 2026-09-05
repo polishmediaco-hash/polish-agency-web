@@ -28,6 +28,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let isMovingBackward = false;
 
+  // Handle Pre-filled Calculator Parameters from /#dtcCalculator
+  const urlParams = new URLSearchParams(window.location.search);
+  const revParam = urlParams.get('rev');
+  const targetParam = urlParams.get('target');
+  const spendParam = urlParams.get('spend');
+  const aovParam = urlParams.get('aov');
+  const focusParam = urlParams.get('focus');
+
+  if (revParam || targetParam) {
+    const revNum = parseInt(revParam || '0', 10);
+    const targetNum = parseInt(targetParam || '0', 10);
+    const formHeader = document.querySelector('.form-header-zone');
+    if (formHeader && revNum > 0) {
+      const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
+      const isAr = window.polishI18n && window.polishI18n.currentLang === 'ar';
+      
+      let bannerText = `Diagnostic Profile: <strong>$${revNum.toLocaleString()}/mo</strong> → Projected 90-Day Target: <strong>$${targetNum.toLocaleString()}/mo</strong>`;
+      if (isFr) {
+        bannerText = `Profil Diagnostique : <strong>$${revNum.toLocaleString()}/mois</strong> → Objectif à 90 Jours : <strong>$${targetNum.toLocaleString()}/mois</strong>`;
+      } else if (isAr) {
+        bannerText = `ملف التشخيص المالي: <strong>$${revNum.toLocaleString()}/شهرياً</strong> ← الهدف المتوقع (90 يوماً): <strong>$${targetNum.toLocaleString()}/شهرياً</strong>`;
+      }
+
+      const banner = document.createElement('div');
+      banner.className = 'calc-diagnostic-pill';
+      banner.innerHTML = `<span class="pill-dot"></span><span>${bannerText}</span>`;
+      formHeader.appendChild(banner);
+    }
+
+    // Auto-select corresponding marketing status in Step 3
+    if (focusParam === 'scale') {
+      const opt = document.querySelector('select[name="marketingHistory"] option[value*="manage marketing in-house"]');
+      if (opt) opt.selected = true;
+    } else if (focusParam === 'fatigue') {
+      const opt = document.querySelector('select[name="marketingHistory"] option[value*="better creative"]');
+      if (opt) opt.selected = true;
+    }
+  }
+
   /**
    * Updates all visual UI elements for the active step
    */
@@ -225,7 +264,14 @@ document.addEventListener('DOMContentLoaded', () => {
       role: formData.get('role')?.toString().trim() || '',
       businessCategory: formData.get('businessCategory')?.toString().trim() || '',
       marketingHistory: formData.get('marketingHistory')?.toString().trim() || '',
-      primaryGoal: formData.get('primaryGoal')?.toString().trim() || ''
+      primaryGoal: formData.get('primaryGoal')?.toString().trim() || '',
+      calculatorData: (revParam || targetParam) ? {
+        monthlyRevenue: revParam,
+        monthlySpend: spendParam,
+        aov: aovParam,
+        targetRevenue: targetParam,
+        focus: focusParam
+      } : null
     };
 
     // Button Spinner UI

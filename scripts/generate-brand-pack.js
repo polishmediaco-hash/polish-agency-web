@@ -67,16 +67,40 @@ const SVG_DEFS = `
 `;
 
 /**
- * Generates raw mark path (growth arrow stem & head + faceted diamond droplet)
- * Bounding box is centered around (50, 50) when wrapped in <g transform="translate(3.83, -5.83)">
+ * Concept 1: The Golden Ratio Pipette (Official Primary Brand Mark)
+ * Continuous golden-ratio (phi ~ 1.618) fillets, aerodynamic taper, and optically locked diamond droplet.
+ * Centered around (50, 50) when wrapped in <g transform="translate(3.5, -5.5)">
  */
 function getMarkSnippet(fill = 'url(#champagneGoldGrad)') {
+  const innerDiamondColor = (fill.includes('champagne') || fill.includes('gold')) ? '#F5E6D3' : fill;
   return `
-    <g transform="translate(3.83, -5.83)">
-      <!-- Growth Arrow Stem & Head (45deg upward velocity) -->
-      <path d="M 32 72 L 28 68 C 26 66 26 62 28 60 L 52 36 L 46 36 C 44 36 42 34 42 32 C 42 30 44 28 46 28 L 68 28 C 70 28 72 30 72 32 L 72 54 C 72 56 70 58 68 58 C 66 58 64 56 64 54 L 64 48 L 40 72 C 38 74 34 74 32 72 Z" fill="${fill}"/>
-      <!-- Cosmetic Dropper & Diamond Facet -->
-      <rect x="22" y="74" width="8" height="8" rx="2" transform="rotate(45 26 78)" fill="${fill}"/>
+    <g transform="translate(3.5, -5.5)">
+      <!-- Upward Kinetic Chevron with Golden Ratio Taper -->
+      <path d="M 34 68 
+               C 30 64 30 58 34 54 
+               L 56 32 
+               L 48 32 
+               C 45 32 43 30 43 27 
+               C 43 24 45 22 48 22 
+               L 75 22 
+               C 77 22 79 24 79 26 
+               L 79 53 
+               C 79 56 77 58 74 58 
+               C 71 58 69 56 69 53 
+               L 69 45 
+               L 47 68 
+               C 43 72 38 72 34 68 Z" 
+            fill="${fill}"/>
+      
+      <!-- Optically Locked Cosmetic Droplet with Facet Angle -->
+      <path d="M 24 72 
+               C 27 75 29 79 28 83 
+               C 27 87 23 89 19 88 
+               C 15 87 13 83 14 79 
+               C 15 75 21 69 24 72 Z" 
+            fill="${fill}" opacity="0.95"/>
+      <!-- Inner Diamond Droplet Core -->
+      <rect x="18.5" y="77.5" width="5.5" height="5.5" rx="1.2" transform="rotate(45 21.25 80.25)" fill="${innerDiamondColor}"/>
     </g>
   `;
 }
@@ -463,6 +487,15 @@ async function buildBrandPack() {
         .toFile(pngPath);
     }
   }
+
+  // Also sync primary official logo to public/assets/
+  const officialLogoSvg = createVerticalLogoSvg({ fillTitle: 'url(#champagneGoldGrad)', fillSub: '#C5A880', fillMark: 'url(#champagneGoldGrad)' });
+  fs.writeFileSync(path.join(BASE_DIR, 'public', 'assets', 'logo-gold.svg'), officialLogoSvg, 'utf8');
+  await sharp(Buffer.from(officialLogoSvg))
+    .resize(1200, null)
+    .png({ quality: 100 })
+    .toFile(path.join(BASE_DIR, 'public', 'assets', 'logo-gold.png'));
+  console.log('  ✓ Synced official Golden Ratio Pipette logo to public/assets/logo-gold.svg and png');
 
   // B. Favicons & App Icons
   console.log('✨ [Brand Pack] Generating Favicons & Platform App Icons...');

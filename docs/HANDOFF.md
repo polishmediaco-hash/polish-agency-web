@@ -24,10 +24,15 @@ The application has successfully completed a luxury atelier rebranding and typog
   * Brand: `linear-gradient(135deg, #F5E6D3 0%, #E2C799 50%, #C5A880 100%)`
   * Typography: `linear-gradient(135deg, #FFFFFF 25%, #F5E6D3 65%, #E2C799 100%)`
   * Radial Atmospheric Glows: Champagne luminescence replacing cyan aurora
+* **Official Primary Brand Mark**: **The Golden Ratio Pipette (Concept 1)**
+  * Aerodynamic 45° upward velocity vector with continuous golden ratio fillets ($\phi \approx 1.618$) and optically locked diamond droplet.
 * **Brand Assets Updated**:
   * Vector Gold Logo: `/assets/logo-gold.svg`
   * High-Res Gold Raster Logo: `/assets/logo-gold.png`
-  * Universal SVG Favicon: `/assets/favicon.svg` (dual-stop gold gradient on rounded obsidian tile)
+  * Universal SVG Favicon: `/assets/favicon.svg` (Golden Ratio Pipette on rounded obsidian tile)
+  * Master Brand Pack: `/brand-pack/POLISH_Media_Co_Brand_Pack.zip` (834 KB)
+  * Interactive Brand Vault: `/brand-pack`
+  * Logo Exploration Studio: `/logo-preview`
 
 ---
 
@@ -67,7 +72,7 @@ The application has successfully completed a luxury atelier rebranding and typog
 
 ### F. Brand Asset Vault & Guidelines (`public/brand-pack.html` / `/brand-pack`)
 * **Live Interactive Brand Portal**: Direct web interface for previewing, inspecting, and downloading all vector and raster assets.
-* **Master Brand Pack Archive**: `/brand-pack/POLISH_Media_Co_Brand_Pack.zip` (712 KB) containing 75 curated production-ready files:
+* **Master Brand Pack Archive**: `/brand-pack/POLISH_Media_Co_Brand_Pack.zip` (834 KB) containing 75 curated production-ready files:
   * `01_logos/`: 32 logo assets (Horizontal, Vertical, Standalone Marks, Squircles in Gold, Dark, White, Black in SVG and 1000px, 2000px, 4000px retina PNGs).
   * `02_favicons_and_icons/`: Universal SVG favicon, 16/32/48px favicons, 180px Apple Touch Icon, 192/512px Android Chrome icons, and `site.webmanifest`.
   * `03_social_assets/`: Twitter/X header (1500x500), LinkedIn company banner (1584x396), Instagram avatar (1080x1080), OpenGraph social card (1200x630).

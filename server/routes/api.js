@@ -4,7 +4,15 @@ const path = require('path');
 const { notifyNewLead } = require('../services/notification');
 
 const router = express.Router();
-const DB_FILE = path.join(__dirname, '../db/leads.json');
+// On Vercel serverless the project root is read-only; use /tmp which is writable.
+// Locally, use the committed db/ directory for persistence across restarts.
+const IS_VERCEL = process.env.VERCEL === '1' || process.env.VERCEL_ENV !== undefined;
+const DB_FILE = IS_VERCEL
+  ? path.join('/tmp', 'leads.json')
+  : path.join(__dirname, '../db/leads.json');
+const CONTENT_FILE_PATH = IS_VERCEL
+  ? path.join('/tmp', 'content.json')
+  : path.join(__dirname, '../db/content.json');
 
 // Helper to read DB safely
 function readLeads() {
@@ -258,7 +266,7 @@ router.post('/notifications/test', async (req, res) => {
 });
 
 // CONTENT CMS DATABASE
-const CONTENT_FILE = path.join(__dirname, '../db/content.json');
+const CONTENT_FILE = CONTENT_FILE_PATH; // Vercel-safe: /tmp in serverless, db/ locally
 
 function getDefaultContent() {
   try {

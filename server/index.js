@@ -91,6 +91,11 @@ app.get('/logo-preview', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/logo-preview.html'));
 });
 
+// Health Check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', env: process.env.NODE_ENV || 'development', ts: Date.now() });
+});
+
 // 404 Fallback
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, '../public/index.html'));

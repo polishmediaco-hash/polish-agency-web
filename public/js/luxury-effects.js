@@ -429,6 +429,9 @@
     function finishIntro(instant = false) {
       if (isFinished) return;
       isFinished = true;
+      if (introOverlay) {
+        introOverlay.style.pointerEvents = 'none';
+      }
       sessionStorage.setItem('polish_intro_seen', 'true');
 
       if (instant || !targetLogoImg || !introLogoPod) {
@@ -490,13 +493,18 @@
       finishIntro(false);
     }, 600);
 
-    // Fast-track user bypass (click, tap, scroll, or keypress)
+    // Fast-track user bypass (click, tap, scroll, touch, or keypress)
     introOverlay.addEventListener('pointerdown', () => {
       clearTimeout(timer);
       finishIntro(false);
     }, { once: true });
 
     window.addEventListener('wheel', () => {
+      clearTimeout(timer);
+      finishIntro(true);
+    }, { once: true, passive: true });
+
+    window.addEventListener('touchstart', () => {
       clearTimeout(timer);
       finishIntro(true);
     }, { once: true, passive: true });

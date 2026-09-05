@@ -41,16 +41,16 @@ The application has successfully completed a luxury atelier rebranding and typog
 ### A. Main Experience (`public/index.html`)
 * **Dynamic Island Navigation Capsule**: Pinned top header with live scroll-depth hairline progress bar in gold, trilingual language switcher, and responsive brand logo.
 * **Intro Cinematic**: Luxury reveal with updated gold crest and luxury tagline *"CREATIVE & MARKETING FOR BEAUTY BRANDS"*.
-* **Interactive 3D Luxury Flacon Stage (WebGL / Three.js — `three-cosmetics.js`)**:
-  * Procedural luxury cosmetic pipette bottle with Concept 1 Golden Ratio geometry.
-  * Specular Champagne Gold cap and collar (`metalness: 0.94, roughness: 0.14`) with live cursor-tracking key light glint.
-  * Frosted obsidian cosmetic glass with physical transmission, inner amber elixir serum with meniscus, and signature suspended faceted diamond droplet.
-  * Sinusoidal levitation, inertia-damped parallax tilt, and drag-to-rotate touch/mouse physics.
-  * Auto-paused when scrolled offscreen or when tab is hidden (zero battery/GPU waste).
-* **Interactive DTC Revenue Velocity Calculator (`calculator.js`)**:
-  * Mathematical scaling engine simulating real-time revenue, spend, and AOV dynamics.
-  * Calculates projected CAC reduction (-34%), routine bundling AOV lift (+$22), 60-day replenishment reorder rate (+64%), and 90-day trajectory.
-  * Smooth animated tabular numerals and champagne gold slider tracks.
+* **Hero Experience with Floating 3D Flacon Companion (`hero-home-section`)**:
+  * Centered, expansive editorial hero glass card (`.hero-glass-card`, max-width 1140px) with hairline gold specular rim and radial cursor spotlight border.
+  * Preserved full-width typography hierarchy without cramped columns: *"From Breakthrough Formulation To Household Beauty Brand."*
+  * Dedicated interactive companion stage (`#hero3dStage`) featuring the procedural 3D POLISH Flacon with frosted obsidian glass, inner gold pipette, amber elixir serum, suspended faceted diamond droplet, live cursor-reactive glint, and orbiting micro-particles.
+* **Haute Atelier DTC Revenue Velocity Calculator (`calculator.js`)**:
+  * Completely redesigned quiet luxury diagnostic console (`.calc-monolith-card` / `.calc-monolith-display`).
+  * 4 Strategic Growth Tiers (`TIER 01 • EMERGING`, `TIER 02 • BREAKOUT`, `TIER 03 • HIGH-GROWTH`, `TIER 04 • DOMINANCE`).
+  * Fluid precision scrubber (`#calcRevScrubber`, $20k to $1.5M/mo) with custom gold thumb and illuminated halo.
+  * Projected 90-Day Trajectory with pure Haute Champagne Gold velocity pill (`+130% Velocity Lift`, zero green elements).
+  * 3 Architectural Scaling Levers with hairline vertical dividers (`01 • CAC Compression`, `02 • Routine Bundle AOV`, `03 • Replenishment LTV`).
   * Direct "Lock In Your Scaling Blueprint →" conversion button routing pre-filled metrics to `/apply`.
 * **Editorial Headline Accents**: Key headline lines styled with sensual italic serif gradients (*"To Household Beauty Brand."*, *"Where Beauty Brands Hit a Wall."*, *"For Cosmetic & Skincare Scaling."*).
 * **Trilingual Localization (EN / FR / AR)**: Instant DOM switching without page reload; full RTL layout inversion for Arabic with Tajawal font.

@@ -7,31 +7,33 @@
    ========================================================================== */
 
 :root {
-  /* Matte Obsidian Black Void */
-  --bg-deep: #07080B;
+  /* Matte Obsidian Black Void with Warm Charcoal Depth */
+  --bg-deep: #08080A;
   
-  /* Crystalline Translucent Glass Surfaces (Reveals Floating 3D Depth Products Behind Cards) */
-  --glass-panel: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(16, 22, 34, 0.26) 32%, rgba(6, 9, 16, 0.44) 100%);
-  --glass-panel-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(20, 28, 44, 0.36) 32%, rgba(8, 12, 22, 0.52) 100%);
-  --glass-input: rgba(8, 10, 15, 0.65);
-  --glass-header: rgba(7, 8, 12, 0.6);
+  /* Crystalline Translucent Glass Surfaces with Subtle Champagne Specular */
+  --glass-panel: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(26, 22, 18, 0.28) 32%, rgba(12, 10, 8, 0.52) 100%);
+  --glass-panel-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(34, 28, 22, 0.38) 32%, rgba(16, 13, 10, 0.6) 100%);
+  --glass-input: rgba(14, 12, 10, 0.7);
+  --glass-header: rgba(10, 9, 8, 0.65);
 
-  /* Signature Electric Cyan & Blue Gradient */
-  --brand-cyan: #00E5FF;
-  --brand-blue: #0088FF;
-  --grad-brand: linear-gradient(135deg, #00E5FF 0%, #38BDF8 50%, #818CF8 100%);
-  --grad-hover: linear-gradient(135deg, #33EBFF 0%, #60A5FA 50%, #A5B4FC 100%);
-  --grad-text: linear-gradient(135deg, #FFFFFF 25%, #00E5FF 70%, #60A5FA 100%);
+  /* Direction 1: Haute Atelier Champagne Gold & Cashmere Platinum */
+  --brand-cyan: #E2C799;
+  --brand-blue: #C5A880;
+  --brand-gold: #E2C799;
+  --brand-platinum: #F5E6D3;
+  --grad-brand: linear-gradient(135deg, #F5E6D3 0%, #E2C799 50%, #C5A880 100%);
+  --grad-hover: linear-gradient(135deg, #FFF5EA 0%, #F5E6D3 50%, #E2C799 100%);
+  --grad-text: linear-gradient(135deg, #FFFFFF 25%, #F5E6D3 65%, #E2C799 100%);
 
   /* Specular Light Edges & Beveled Glass Highlights */
-  --border-specular: rgba(255, 255, 255, 0.22);
-  --border-specular-hover: rgba(0, 229, 255, 0.55);
+  --border-specular: rgba(255, 255, 255, 0.18);
+  --border-specular-hover: rgba(226, 199, 153, 0.55);
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(0, 229, 255, 0.4);
+  --border-glow: rgba(226, 199, 153, 0.35);
 
   /* Glass Shadow & Inset Illumination */
-  --glass-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.35), inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.6), 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 229, 255, 0.12);
-  --glass-shadow-hover: inset 0 2px 2px 0 rgba(255, 255, 255, 0.5), inset 0 -2px 2px 0 rgba(0, 0, 0, 0.7), 0 35px 90px rgba(0, 0, 0, 0.9), 0 0 45px rgba(0, 229, 255, 0.25);
+  --glass-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.3), inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.6), 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 35px rgba(226, 199, 153, 0.12);
+  --glass-shadow-hover: inset 0 2px 2px 0 rgba(255, 255, 255, 0.45), inset 0 -2px 2px 0 rgba(0, 0, 0, 0.7), 0 35px 90px rgba(0, 0, 0, 0.9), 0 0 45px rgba(226, 199, 153, 0.25);
   --glass-shadow-input: inset 0 2px 5px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
   /* Typography */
@@ -40,9 +42,9 @@
   --font-serif-luxury: 'Cormorant Garamond', Georgia, serif;
   --font-arabic: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
   --text-white: #FFFFFF;
-  --text-lead: #E2E8F0;
-  --text-muted: #94A3B8;
-  --text-dim: #8E9EB5;
+  --text-lead: #F1ECE4;
+  --text-muted: #A39B90;
+  --text-dim: #9E958A;
 
   /* Large Smooth Curves */
   --radius-sm: 12px;
@@ -134,7 +136,7 @@ main,
   width: clamp(500px, 60vw, 850px);
   height: 380px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.18) 0%, rgba(0, 136, 255, 0.08) 45%, transparent 75%);
+  background: radial-gradient(ellipse at center, rgba(226, 199, 153, 0.16) 0%, rgba(197, 168, 128, 0.08) 45%, transparent 75%);
   filter: blur(90px);
   pointer-events: none;
   animation: auroraPulse 12s ease-in-out infinite alternate;
@@ -147,7 +149,7 @@ main,
   width: clamp(450px, 45vw, 680px);
   height: clamp(450px, 45vw, 680px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, rgba(0, 136, 255, 0.04) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(226, 199, 153, 0.12) 0%, rgba(245, 230, 211, 0.04) 50%, transparent 70%);
   filter: blur(120px);
   pointer-events: none;
   animation: causticDrift1 20s ease-in-out infinite alternate;
@@ -336,8 +338,8 @@ main,
 .liquid-glint {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #00E5FF 65%, transparent 100%);
-  box-shadow: 0 0 16px rgba(0, 229, 255, 0.75);
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #E2C799 65%, transparent 100%);
+  box-shadow: 0 0 16px rgba(226, 199, 153, 0.75);
   will-change: transform;
 }
 
@@ -471,7 +473,7 @@ main,
   width: 700px;
   height: 700px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.10) 0%, rgba(0, 136, 255, 0.04) 35%, rgba(0, 229, 255, 0.01) 55%, transparent 70%);
+  background: radial-gradient(circle, rgba(226, 199, 153, 0.09) 0%, rgba(197, 168, 128, 0.04) 35%, rgba(226, 199, 153, 0.01) 55%, transparent 70%);
   filter: none !important;
   pointer-events: none;
   z-index: 1;
@@ -733,8 +735,8 @@ a {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #00e5ff;
-  box-shadow: 0 0 8px #00e5ff;
+  background: var(--brand-gold, #E2C799);
+  box-shadow: 0 0 8px rgba(226, 199, 153, 0.8);
   animation: islandPulse 2.4s infinite ease-in-out;
   will-change: transform, opacity;
 }
@@ -747,6 +749,7 @@ a {
   50% {
     opacity: 1;
     transform: scale(1.15);
+    box-shadow: 0 0 12px rgba(226, 199, 153, 0.95);
   }
 }
 
@@ -761,25 +764,22 @@ a {
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-  order: 3; /* Pinned to Right across all languages */
+  order: 3;
 }
-
-/* ==========================================================================
-   LASER SCROLL DEPTH PROGRESS HAIRLINE (GPU ACCELERATED)
-   ========================================================================== */
 
 .dynamic-island-progress-track {
   position: absolute;
   bottom: 0;
-  left: 20px;
-  right: 20px;
+  left: 18px;
+  right: 18px;
   height: 1.5px;
   border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
   overflow: hidden;
-  pointer-events: none;
   opacity: 0;
-  transform: scaleX(0.7);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: scaleX(0.85);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
 }
 
 .site-header.is-scrolled .dynamic-island-progress-track {
@@ -790,8 +790,8 @@ a {
 .dynamic-island-progress-bar {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(0, 229, 255, 0.6) 0%, #00e5ff 100%);
-  box-shadow: 0 0 8px #00e5ff;
+  background: linear-gradient(90deg, rgba(226, 199, 153, 0.6) 0%, #E2C799 100%);
+  box-shadow: 0 0 8px rgba(226, 199, 153, 0.8);
   border-radius: 999px;
   transform-origin: left center;
   transform: scaleX(0);
@@ -1302,7 +1302,7 @@ body.has-sticky-cta .whatsapp-float-container {
   inset: -1.5px;
   border-radius: inherit;
   padding: 1.5px;
-  background: conic-gradient(from var(--beam-angle), transparent 25%, #00E5FF 50%, #818CF8 65%, transparent 80%);
+  background: conic-gradient(from var(--beam-angle), transparent 25%, #F5E6D3 45%, #E2C799 60%, #C5A880 75%, transparent 85%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -2074,8 +2074,8 @@ body.is-rtl .whatsapp-float-container {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #00E5FF;
-  box-shadow: 0 0 10px #00E5FF, 0 0 18px rgba(0, 229, 255, 0.8);
+  background: var(--brand-gold, #E2C799);
+  box-shadow: 0 0 10px #E2C799, 0 0 18px rgba(226, 199, 153, 0.8);
   animation: pulseLive 2.2s infinite ease-in-out;
 }
 
@@ -2090,7 +2090,7 @@ body.is-rtl .whatsapp-float-container {
 
 @keyframes pulseLive {
   0% { transform: scale(0.92); opacity: 0.75; }
-  50% { transform: scale(1.18); opacity: 1; box-shadow: 0 0 14px #00E5FF, 0 0 24px rgba(0, 229, 255, 0.95); }
+  50% { transform: scale(1.18); opacity: 1; box-shadow: 0 0 14px #E2C799, 0 0 24px rgba(226, 199, 153, 0.95); }
   100% { transform: scale(0.92); opacity: 0.75; }
 }
 

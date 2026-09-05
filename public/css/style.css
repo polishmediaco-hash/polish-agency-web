@@ -3277,207 +3277,310 @@ html.intro-skipped .luxury-intro-overlay {
 /* ==========================================================================
    INTERACTIVE DTC REVENUE VELOCITY CALCULATOR STYLING
    ========================================================================== */
+/* ==========================================================================
+   HERO 3D FLACON COMPANION & STAGE
+   ========================================================================== */
+.hero-container-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-flacon-dock {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  height: 440px;
+  margin: 36px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  z-index: 4;
+}
+
+.hero-flacon-dock:active {
+  cursor: grabbing;
+}
+
+.flacon-pedestal-glow {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 90px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(226, 199, 153, 0.32) 0%, rgba(197, 168, 128, 0.12) 45%, transparent 75%);
+  border-radius: 50%;
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.three-cosmetics-canvas {
+  position: relative;
+  z-index: 2;
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+  border-radius: 20px;
+}
+
+.stage-3d-hint {
+  position: absolute;
+  bottom: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(20, 17, 14, 0.85);
+  border: 1px solid rgba(226, 199, 153, 0.32);
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-platinum);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.hint-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+  box-shadow: 0 0 8px var(--brand-gold);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 12px var(--brand-gold);
+  }
+}
+
+/* ==========================================================================
+   HAUTE ATELIER DTC REVENUE VELOCITY CALCULATOR (QUIET LUXURY CONSOLE)
+   ========================================================================== */
 .calc-section {
   position: relative;
   z-index: 3;
-  padding: 110px 0 70px;
+  padding: 120px 0 80px;
 }
 
-.calc-glass-shell {
-  background: linear-gradient(135deg, rgba(22, 18, 15, 0.92) 0%, rgba(12, 10, 8, 0.96) 100%);
-  border: 1px solid rgba(226, 199, 153, 0.24);
-  border-radius: 24px;
-  padding: 44px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
+.calc-monolith-card {
+  max-width: 920px;
+  margin: 40px auto 0;
+  background: linear-gradient(180deg, rgba(18, 15, 12, 0.88) 0%, rgba(10, 8, 7, 0.96) 100%);
+  border: 1px solid rgba(226, 199, 153, 0.22);
+  border-radius: 28px;
+  padding: 44px 48px;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.75), 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.16), 
+    0 0 60px rgba(226, 199, 153, 0.04);
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
   position: relative;
   overflow: hidden;
-  margin-top: 36px;
+  will-change: transform;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.calc-grid {
+.calc-monolith-card:hover {
+  border-color: rgba(226, 199, 153, 0.38);
+  box-shadow: 
+    0 34px 90px rgba(0, 0, 0, 0.82), 
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.22), 
+    0 0 70px rgba(226, 199, 153, 0.08);
+}
+
+/* 4 Strategic Growth Tiers */
+.calc-tier-selector {
   display: grid;
-  grid-template-columns: 1fr 1.08fr;
-  gap: 44px;
-  align-items: stretch;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 34px;
 }
 
-/* Calculator Sliders Column */
-.calc-controls-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 28px;
+.calc-tier-btn {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
 }
 
-.calc-control-group {
-  display: flex;
-  flex-direction: column;
+.calc-tier-btn:hover {
+  background: rgba(226, 199, 153, 0.06);
+  border-color: rgba(226, 199, 153, 0.3);
+  transform: translateY(-1px);
 }
 
-.calc-control-head {
+.calc-tier-btn .tier-tag {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  transition: color 0.2s ease;
+}
+
+.calc-tier-btn .tier-val {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+
+.calc-tier-btn.is-active {
+  background: linear-gradient(135deg, rgba(226, 199, 153, 0.16) 0%, rgba(197, 168, 128, 0.08) 100%);
+  border-color: rgba(226, 199, 153, 0.6);
+  box-shadow: 0 0 24px rgba(226, 199, 153, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.calc-tier-btn.is-active .tier-tag {
+  color: var(--brand-gold);
+}
+
+.calc-tier-btn.is-active .tier-val {
+  color: var(--brand-platinum);
+  font-weight: 800;
+}
+
+/* Minimalist Precision Scrubber */
+.calc-scrubber-row {
+  margin-bottom: 34px;
+  padding: 0 4px;
+}
+
+.scrubber-label-group {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
-.calc-label {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #E2E8F0;
-  letter-spacing: -0.01em;
+.scrubber-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
 }
 
-.calc-current-badge {
+.scrubber-active-val {
   font-family: var(--font-heading);
-  font-size: 18px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--brand-gold);
   font-variant-numeric: tabular-nums lining-nums;
   letter-spacing: -0.02em;
-  background: rgba(226, 199, 153, 0.09);
-  border: 1px solid rgba(226, 199, 153, 0.25);
-  padding: 3px 12px;
-  border-radius: 8px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.calc-slider {
+.calc-luxury-slider {
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
   height: 6px;
   border-radius: 9999px;
   outline: none;
-  margin: 14px 0 6px;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.08);
+  margin: 10px 0 4px;
+  transition: background 0.2s ease;
 }
 
-.calc-slider::-webkit-slider-thumb {
+.calc-luxury-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #FFF;
-  border: 2.5px solid var(--brand-gold);
-  box-shadow: 0 0 14px rgba(226, 199, 153, 0.75), 0 2px 6px rgba(0, 0, 0, 0.6);
+  background: #FFFFFF;
+  border: 3px solid var(--brand-gold);
+  box-shadow: 0 0 16px rgba(226, 199, 153, 0.85), 0 2px 6px rgba(0, 0, 0, 0.6);
   cursor: pointer;
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
 }
 
-.calc-slider::-webkit-slider-thumb:hover,
-.calc-slider:active::-webkit-slider-thumb {
-  transform: scale(1.22);
-  box-shadow: 0 0 22px rgba(226, 199, 153, 0.95), 0 3px 8px rgba(0, 0, 0, 0.7);
+.calc-luxury-slider::-webkit-slider-thumb:hover,
+.calc-luxury-slider:active::-webkit-slider-thumb {
+  transform: scale(1.24);
+  box-shadow: 0 0 24px rgba(226, 199, 153, 1), 0 3px 8px rgba(0, 0, 0, 0.7);
 }
 
-.calc-slider::-moz-range-thumb {
+.calc-luxury-slider::-moz-range-thumb {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #FFF;
-  border: 2.5px solid var(--brand-gold);
-  box-shadow: 0 0 14px rgba(226, 199, 153, 0.75), 0 2px 6px rgba(0, 0, 0, 0.6);
+  background: #FFFFFF;
+  border: 3px solid var(--brand-gold);
+  box-shadow: 0 0 16px rgba(226, 199, 153, 0.85), 0 2px 6px rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
 
-.calc-slider-scale {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--text-dim);
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  margin-top: 2px;
-}
-
-.calc-focus-wrap {
-  margin-top: 4px;
-}
-
-.calc-focus-title {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-dim);
-  margin-bottom: 10px;
-}
-
-.calc-focus-pills {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.calc-focus-pill {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  padding: 8px 16px;
-  color: var(--text-muted);
-  font-size: 12.5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.calc-focus-pill:hover {
-  color: #FFF;
-  border-color: rgba(226, 199, 153, 0.3);
-  background: rgba(226, 199, 153, 0.08);
-}
-
-.calc-focus-pill.is-active {
-  background: rgba(226, 199, 153, 0.16);
-  border-color: rgba(226, 199, 153, 0.55);
-  color: var(--brand-platinum);
-  box-shadow: 0 0 18px rgba(226, 199, 153, 0.22);
-}
-
-/* Calculator Results Column */
-.calc-results-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: rgba(15, 12, 10, 0.5);
-  border: 1px solid rgba(226, 199, 153, 0.14);
+/* Trajectory Display Monolith */
+.calc-monolith-display {
+  background: linear-gradient(135deg, rgba(22, 18, 14, 0.94) 0%, rgba(12, 10, 8, 0.98) 100%);
+  border: 1px solid rgba(226, 199, 153, 0.26);
   border-radius: 20px;
-  padding: 30px;
+  padding: 38px 42px;
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.18), 0 16px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
 }
 
-.calc-hero-stat-card {
-  background: linear-gradient(135deg, rgba(32, 26, 21, 0.85) 0%, rgba(18, 15, 12, 0.95) 100%);
-  border: 1px solid rgba(226, 199, 153, 0.32);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.15), 0 12px 30px rgba(0, 0, 0, 0.5);
-  margin-bottom: 20px;
+.calc-hero-headline-block {
+  margin-bottom: 28px;
 }
 
-.calc-hero-eyebrow {
-  font-size: 11.5px;
+.calc-headline-eyebrow {
+  font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
   color: var(--brand-gold);
+  margin-bottom: 8px;
 }
 
-.calc-hero-num-row {
+.calc-headline-num-row {
   display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin: 8px 0 2px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   flex-wrap: wrap;
+  margin-bottom: 6px;
 }
 
-.calc-hero-number {
+.calc-big-trajectory-num {
   font-family: var(--font-heading);
-  font-size: clamp(34px, 3.6vw, 44px);
+  font-size: clamp(38px, 4.4vw, 54px);
   font-weight: 800;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums lining-nums;
@@ -3486,180 +3589,183 @@ html.intro-skipped .luxury-intro-overlay {
   -webkit-text-fill-color: transparent;
 }
 
-.calc-velocity-tag {
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.35);
-  color: #4ADE80;
+.calc-gold-velocity-pill {
+  background: rgba(226, 199, 153, 0.14);
+  border: 1px solid rgba(226, 199, 153, 0.45);
+  color: var(--brand-gold);
   font-family: var(--font-heading);
   font-size: 13.5px;
   font-weight: 800;
-  padding: 3px 10px;
+  padding: 4px 14px;
   border-radius: 9999px;
   font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 16px rgba(226, 199, 153, 0.15);
 }
 
-.calc-hero-sub {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.calc-metrics-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.calc-metric-card {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 14px;
-  padding: 14px 16px;
-  transition: border-color 0.25s ease;
-}
-
-.calc-metric-card:hover {
-  border-color: rgba(226, 199, 153, 0.25);
-}
-
-.calc-metric-label {
-  font-size: 11.5px;
+.calc-annual-unlocked {
+  font-size: 13px;
   font-weight: 600;
-  color: var(--text-muted);
-  line-height: 1.35;
-}
-
-.calc-metric-val {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums lining-nums;
-  margin-top: 4px;
-  letter-spacing: -0.02em;
-}
-
-.highlight-gold {
-  color: var(--brand-gold);
-}
-
-.highlight-platinum {
   color: var(--brand-platinum);
+  opacity: 0.85;
+  letter-spacing: 0.02em;
 }
 
-.calc-action-row {
+/* 3 Architectural Scaling Levers (Hairline Dividers) */
+.calc-three-levers-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(226, 199, 153, 0.16);
+  border-bottom: 1px solid rgba(226, 199, 153, 0.16);
+  padding: 24px 0;
+  margin-bottom: 32px;
+}
+
+.calc-lever-col {
+  padding: 0 20px;
+  text-align: center;
+  position: relative;
+}
+
+.calc-lever-col:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: rgba(226, 199, 153, 0.14);
+}
+
+.lever-digit {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(226, 199, 153, 0.5);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.lever-metric {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 800;
+  color: var(--brand-gold);
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+
+.lever-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.lever-desc {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* CTA Row */
+.calc-monolith-cta-row {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.calc-submit-cta {
+.calc-cta-wide {
   width: 100%;
+  max-width: 440px;
   text-align: center;
   justify-content: center;
-  padding: 16px 24px;
+  padding: 16px 32px;
   font-size: 14.5px;
   box-shadow: 0 10px 30px rgba(226, 199, 153, 0.28);
 }
 
-.calc-disclaimer-text {
+.calc-trust-disclaimer {
   font-size: 11px;
   color: var(--text-dim);
   text-align: center;
-  margin-top: 10px;
+  margin-top: 12px;
   line-height: 1.5;
 }
 
-/* Diagnostic Profile Banner on /apply */
-.calc-diagnostic-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(226, 199, 153, 0.1);
-  border: 1px solid rgba(226, 199, 153, 0.32);
-  border-radius: 9999px;
-  padding: 6px 16px;
-  font-size: 12.5px;
-  color: var(--brand-platinum);
-  margin-top: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-}
-
-.calc-diagnostic-pill .pill-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4ADE80;
-  box-shadow: 0 0 8px #4ADE80;
-}
-
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS FOR 3D STAGE & CALCULATOR
+   RESPONSIVE BREAKPOINTS FOR 3D FLACON & CALCULATOR
    ========================================================================== */
 @media (max-width: 991px) {
-  .hero-home-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .hero-3d-stage-shell {
-    height: 400px;
-    max-width: 360px;
+  .calc-tier-selector {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
-  .calc-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .calc-monolith-card {
+    padding: 32px 24px;
   }
 
-  .calc-glass-shell {
-    padding: 30px 22px;
+  .calc-monolith-display {
+    padding: 28px 20px;
+  }
+
+  .hero-flacon-dock {
+    height: 380px;
+    max-width: 320px;
   }
 }
 
 @media (max-width: 640px) {
-  .hero-3d-stage-shell {
-    height: 340px;
-    max-width: 300px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-actions .btn-cta,
-  .hero-actions .btn-secondary-glass {
-    width: 100%;
-    text-align: center;
-  }
-
-  .calc-metrics-grid {
+  .calc-three-levers-row {
     grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 0;
   }
 
-  .calc-hero-stat-card {
-    padding: 18px;
+  .calc-lever-col:not(:last-child)::after {
+    display: none;
   }
 
-  .calc-hero-number {
-    font-size: 32px;
+  .calc-lever-col:not(:last-child) {
+    border-bottom: 1px solid rgba(226, 199, 153, 0.1);
+    padding-bottom: 16px;
+  }
+
+  .calc-big-trajectory-num {
+    font-size: 34px;
+  }
+
+  .hero-flacon-dock {
+    height: 320px;
+    max-width: 280px;
   }
 }
 
-/* Arabic RTL Layout Enhancements */
-[dir="rtl"] .hero-home-grid {
+/* Arabic RTL Layout */
+[dir="rtl"] .calc-tier-selector {
   direction: rtl;
 }
 
-[dir="rtl"] .calc-grid {
+[dir="rtl"] .scrubber-label-group {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .calc-headline-num-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .calc-three-levers-row {
   direction: rtl;
 }
 
-[dir="rtl"] .calc-control-head {
-  flex-direction: row-reverse;
+[dir="rtl"] .calc-lever-col:not(:last-child)::after {
+  right: auto;
+  left: 0;
 }
 
-[dir="rtl"] .calc-hero-num-row {
-  flex-direction: row-reverse;
-}
 

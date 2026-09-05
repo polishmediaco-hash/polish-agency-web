@@ -127,11 +127,11 @@
     </div>
   </header>
 
-  <!-- Hero Section with Smoked Glass Window Panel & Interactive 3D Flacon Stage -->
+  <!-- Hero Section with Smoked Glass Window Panel & Floating 3D Flacon Companion -->
   <section class="hero-section hero-home-section">
-    <div class="container hero-home-grid">
+    <div class="container hero-container-wrap">
       
-      <!-- Left Column: Editorial Hero Glass Card -->
+      <!-- Center Editorial Hero Glass Card -->
       <div class="hero-glass-card">
         <h1 class="hero-h1 kinetic-title">
           <span class="kinetic-line"><span class="kinetic-text" data-i18n="hero.headlineLine1" data-cms="hero-headlineLine1">From Breakthrough Formulation</span></span>
@@ -147,19 +147,17 @@
             <span data-i18n="hero.cta" data-cms="hero-ctaText">Explore Partnership</span>
           </a>
           <a href="#dtcCalculator" class="btn-secondary-glass" data-magnetic>
-            <span data-i18n="calc.eyebrow">ROI Calculator ↓</span>
+            <span data-i18n="calc.eyebrow">ROI Diagnostics ↓</span>
           </a>
         </div>
       </div>
 
-      <!-- Right Column: Interactive 3D Luxury Flacon Stage -->
-      <div class="hero-3d-stage-col">
-        <div class="hero-3d-stage-shell" id="hero3dStage">
-          <div class="stage-pedestal-glow" aria-hidden="true"></div>
-          <div class="stage-3d-hint" aria-hidden="true">
-            <span class="hint-pulse-dot"></span>
-            <span data-i18n="hero.3dHint">Interactive 3D Flacon • Drag to Rotate</span>
-          </div>
+      <!-- Floating Interactive 3D Flacon Companion (Docked Gracefully on Desktop) -->
+      <div class="hero-flacon-dock" id="hero3dStage" aria-label="Interactive 3D POLISH Flacon">
+        <div class="flacon-pedestal-glow" aria-hidden="true"></div>
+        <div class="stage-3d-hint" aria-hidden="true">
+          <span class="hint-pulse-dot"></span>
+          <span data-i18n="hero.3dHint">Interactive 3D Flacon • Drag to Rotate</span>
         </div>
       </div>
 
@@ -238,7 +236,7 @@
 
         <div class="pro-card">
           <div class="pillar-digit">03</div>
-          <h3 class="card-h3" data-i18n="pillars.item2.title" data-cms="pillars-item2-title">Conversion & Routine Bundling</h3>
+          <h3 class="card-h3" data-i18n="pillars.item2.title" data-cms="pillars-item2-title">Conversion &amp; Routine Bundling</h3>
           <p class="card-p" data-i18n="pillars.item2.desc" data-cms="pillars-item2-desc">
             High-converting product landing pages, multi-step routines, and smart cart upsells that increase Average Order Value.
           </p>
@@ -255,114 +253,91 @@
     </div>
   </section>
 
-  <!-- Interactive DTC Revenue Velocity Calculator Section -->
+  <!-- Interactive DTC Revenue Velocity Calculator Section (Haute Atelier Console) -->
   <section class="section-wrap calc-section" id="dtcCalculator">
     <div class="container">
       <div class="section-head text-center">
-        <div class="eyebrow-tag" data-i18n="calc.eyebrow">QUANTITATIVE ROI ENGINE</div>
+        <div class="eyebrow-tag" data-i18n="calc.eyebrow">DIAGNOSTIC ROI MODEL</div>
         <h2 class="section-h2 kinetic-title">
           <span class="kinetic-line"><span class="kinetic-text" data-i18n="calc.headlineLine1">Calculate Your Untapped</span></span>
           <span class="kinetic-line"><span class="kinetic-text gradient-accent section-serif-accent" data-i18n="calc.headlineLine2">Brand Velocity &amp; Trajectory.</span></span>
         </h2>
         <p class="section-p" data-i18n="calc.description">
-          Simulate your cosmetic brand's 90-day trajectory under the POLISH high-velocity creative and automated retention engine.
+          Select your current monthly revenue to preview your 90-day scaling velocity under the POLISH growth engine.
         </p>
       </div>
 
-      <div class="calc-glass-shell pro-card">
-        <div class="calc-grid">
-          <!-- Left: Diagnostic Sliders & Strategic Focus -->
-          <div class="calc-controls-col">
-            <div class="calc-control-group">
-              <div class="calc-control-head">
-                <label for="calcRevSlider" class="calc-label" data-i18n="calc.labelRev">Current Monthly Revenue</label>
-                <span class="calc-current-badge" id="calcRevVal">$85k</span>
-              </div>
-              <input type="range" id="calcRevSlider" class="calc-slider" min="20000" max="1000000" step="5000" value="85000" aria-label="Current Monthly Revenue">
-              <div class="calc-slider-scale">
-                <span>$20k</span>
-                <span>$250k</span>
-                <span>$500k</span>
-                <span>$1M+</span>
-              </div>
-            </div>
+      <div class="calc-monolith-card">
+        <!-- Segmented Stage Selector Pills -->
+        <div class="calc-tier-selector">
+          <button type="button" class="calc-tier-btn" data-val="50000" data-min="20000" data-max="75000">
+            <span class="tier-tag">TIER 01 • EMERGING</span>
+            <span class="tier-val">$30k – $75k/mo</span>
+          </button>
+          <button type="button" class="calc-tier-btn is-active" data-val="150000" data-min="75001" data-max="250000">
+            <span class="tier-tag">TIER 02 • BREAKOUT</span>
+            <span class="tier-val">$75k – $250k/mo</span>
+          </button>
+          <button type="button" class="calc-tier-btn" data-val="400000" data-min="250001" data-max="600000">
+            <span class="tier-tag">TIER 03 • HIGH-GROWTH</span>
+            <span class="tier-val">$250k – $600k/mo</span>
+          </button>
+          <button type="button" class="calc-tier-btn" data-val="900000" data-min="600001" data-max="1500000">
+            <span class="tier-tag">TIER 04 • DOMINANCE</span>
+            <span class="tier-val">$600k – $1.5M+/mo</span>
+          </button>
+        </div>
 
-            <div class="calc-control-group">
-              <div class="calc-control-head">
-                <label for="calcSpendSlider" class="calc-label" data-i18n="calc.labelSpend">Monthly Paid Media Spend</label>
-                <span class="calc-current-badge" id="calcSpendVal">$25k</span>
-              </div>
-              <input type="range" id="calcSpendSlider" class="calc-slider" min="5000" max="350000" step="2500" value="25000" aria-label="Monthly Paid Media Spend">
-              <div class="calc-slider-scale">
-                <span>$5k</span>
-                <span>$100k</span>
-                <span>$200k</span>
-                <span>$350k+</span>
-              </div>
-            </div>
+        <!-- Minimalist Precision Scrubber -->
+        <div class="calc-scrubber-row">
+          <div class="scrubber-label-group">
+            <span class="scrubber-label" data-i18n="calc.labelRev">Current Monthly Revenue</span>
+            <span class="scrubber-active-val" id="calcRevCurrent">$150,000</span>
+          </div>
+          <input type="range" id="calcRevScrubber" class="calc-luxury-slider" min="20000" max="1500000" step="10000" value="150000" aria-label="Current Monthly Revenue Slider">
+        </div>
 
-            <div class="calc-control-group">
-              <div class="calc-control-head">
-                <label for="calcAovSlider" class="calc-label" data-i18n="calc.labelAov">Current Average Order Value (AOV)</label>
-                <span class="calc-current-badge" id="calcAovVal">$58</span>
-              </div>
-              <input type="range" id="calcAovSlider" class="calc-slider" min="30" max="200" step="2" value="58" aria-label="Average Order Value">
-              <div class="calc-slider-scale">
-                <span>$30</span>
-                <span>$85</span>
-                <span>$140</span>
-                <span>$200</span>
-              </div>
+        <!-- Trajectory Display Monolith -->
+        <div class="calc-monolith-display">
+          <div class="calc-hero-headline-block">
+            <div class="calc-headline-eyebrow" data-i18n="calc.resTrajectory">PROJECTED 90-DAY TRAJECTORY</div>
+            <div class="calc-headline-num-row">
+              <span class="calc-big-trajectory-num" id="calcOutTrajectory">$345,000</span>
+              <span class="calc-gold-velocity-pill" id="calcOutVelocityPct">+130% Velocity Lift</span>
             </div>
+            <div class="calc-annual-unlocked" id="calcOutAnnual">+2.3M Unlocked Annualized Value</div>
+          </div>
 
-            <div class="calc-focus-wrap">
-              <div class="calc-focus-title" data-i18n="calc.focusLabel">Primary Acceleration Focus:</div>
-              <div class="calc-focus-pills">
-                <button type="button" class="calc-focus-pill is-active" data-focus="scale" data-i18n="calc.focusScale">Full-Funnel Scale</button>
-                <button type="button" class="calc-focus-pill" data-focus="fatigue" data-i18n="calc.focusFatigue">Creative Fatigue &amp; CAC</button>
-                <button type="button" class="calc-focus-pill" data-focus="retention" data-i18n="calc.focusRetention">Retention &amp; Routine Bundles</button>
-              </div>
+          <!-- 3 Architectural Scaling Levers (Hairline Dividers, Zero Boxes) -->
+          <div class="calc-three-levers-row">
+            <div class="calc-lever-col">
+              <div class="lever-digit">01</div>
+              <div class="lever-metric" id="calcOutCac">-36%</div>
+              <div class="lever-title" data-i18n="calc.resCac">CAC Compression</div>
+              <div class="lever-desc">High-velocity creator hooks &amp; creative testing</div>
+            </div>
+            <div class="calc-lever-col">
+              <div class="lever-digit">02</div>
+              <div class="lever-metric highlight-platinum" id="calcOutAov">+$26</div>
+              <div class="lever-title" data-i18n="calc.resAov">Routine Bundle AOV</div>
+              <div class="lever-desc">Multi-step product rituals &amp; cart upsells</div>
+            </div>
+            <div class="calc-lever-col">
+              <div class="lever-digit">03</div>
+              <div class="lever-metric" id="calcOutRetention">+64%</div>
+              <div class="lever-title" data-i18n="calc.resRetention">Replenishment LTV</div>
+              <div class="lever-desc">Automated 60-day repurchase remesh</div>
             </div>
           </div>
 
-          <!-- Right: Dynamic Trajectory Results Cockpit -->
-          <div class="calc-results-col">
-            <div class="calc-hero-stat-card">
-              <div class="calc-hero-eyebrow" data-i18n="calc.resTrajectory">Projected 90-Day Trajectory</div>
-              <div class="calc-hero-num-row">
-                <span class="calc-hero-number" id="calcOutTrajectory">$248,000</span>
-                <span class="calc-velocity-tag" id="calcOutVelocityPct">+191%</span>
-              </div>
-              <div class="calc-hero-sub" data-i18n="calc.resVelocity">Monthly Net Revenue Velocity</div>
-            </div>
-
-            <div class="calc-metrics-grid">
-              <div class="calc-metric-card">
-                <div class="calc-metric-label" data-i18n="calc.resCac">Projected CAC Reduction</div>
-                <div class="calc-metric-val highlight-gold" id="calcOutCac">-34%</div>
-              </div>
-              <div class="calc-metric-card">
-                <div class="calc-metric-label" data-i18n="calc.resAov">Routine Bundling AOV Lift</div>
-                <div class="calc-metric-val highlight-gold" id="calcOutAov">+$22</div>
-              </div>
-              <div class="calc-metric-card">
-                <div class="calc-metric-label" data-i18n="calc.resRetention">60-Day Replenishment Lift</div>
-                <div class="calc-metric-val highlight-gold" id="calcOutRetention">+64%</div>
-              </div>
-              <div class="calc-metric-card">
-                <div class="calc-metric-label" data-i18n="calc.resAnnual">Unlocked Annual Brand Value</div>
-                <div class="calc-metric-val highlight-platinum" id="calcOutAnnual">+$1.95M/yr</div>
-              </div>
-            </div>
-
-            <div class="calc-action-row">
-              <a href="/apply" class="btn-cta btn-cta-lg calc-submit-cta" id="calcCtaBtn" data-magnetic>
-                <span data-i18n="calc.cta">Lock In Your Scaling Blueprint →</span>
-              </a>
-              <p class="calc-disclaimer-text" data-i18n="calc.disclaimer">
-                Projections derived from median performance metrics of vetted cosmetics &amp; skincare partner brands.
-              </p>
-            </div>
+          <!-- Direct Scaling Conversion Button -->
+          <div class="calc-monolith-cta-row">
+            <a href="/apply" class="btn-cta btn-cta-lg calc-cta-wide" id="calcCtaBtn" data-magnetic>
+              <span data-i18n="calc.cta">Lock In Your Scaling Blueprint →</span>
+            </a>
+            <p class="calc-trust-disclaimer" data-i18n="calc.disclaimer">
+              Median performance metrics from verified cosmetic &amp; skincare brand dossiers.
+            </p>
           </div>
         </div>
       </div>
@@ -423,9 +398,9 @@
   <!-- Scripts -->
   <script src="/js/i18n.js?v=1.0"></script>
   <script src="/js/cms.js?v=1.0" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="/js/three.min.js" defer></script>
   <script src="/js/three-cosmetics.js?v=1.0" defer></script>
-  <script src="/js/calculator.js?v=1.0" defer></script>
+  <script src="/js/calculator.js?v=2.0" defer></script>
   <script src="/js/luxury-effects.js?v=22.0" defer></script>
   <script src="/js/whatsapp.js?v=7.2" defer></script>
 </body>

@@ -18,12 +18,12 @@ const POLISH_TRANSLATIONS = {
     "intro.tagline": "THE BEAUTY ACCELERATOR",
 
     // Hero Section
-    "hero.cohort": "Q1/Q2 COHORT • ACTIVE INTAKE",
-    "hero.windowTag": "BEAUTY ACCELERATOR & GROWTH STUDIO",
-    "hero.eyebrow": "BEAUTY ACCELERATOR & GROWTH STUDIO",
+    "hero.cohort": "Q3 2026 INTAKE • ACTIVE PARTNERSHIPS",
+    "hero.windowTag": "DTC GROWTH MAISON",
+    "hero.eyebrow": "DTC GROWTH MAISON",
     "hero.headlineLine1": "From Breakthrough Formulation",
     "hero.headlineLine2": "To Household Beauty Brand.",
-    "hero.description": "We partner with visionary cosmetic founders to scale paid acquisition, high-converting UGC creator campaigns, and automated retention loops.",
+    "hero.description": "The dedicated creative & media accelerator for visionary <strong>cosmetics founders</strong> scaling paid acquisition, high-converting <strong>UGC creator campaigns</strong>, and compounding customer retention.",
     "hero.cta": "Explore Partnership",
     "hero.microTrust": "Exclusive growth partner for high-potential cosmetic & skincare brands.",
 
@@ -121,7 +121,7 @@ const POLISH_TRANSLATIONS = {
     "apply.optHistStarting": "Pre-launch or newly launched brand",
     "apply.btnNext": "Continue",
     "apply.btnBack": "Back",
-    "apply.btnSubmit": "Submit Partnership Brief",
+    "apply.btnSubmit": "Submit Partnership Dossier",
     "apply.trustNda": "100% Confidential: Protected under strict NDA.",
     "apply.trustReview": "Direct Review: Evaluated personally within 24 hours.",
     "apply.successTitle": "Application Received",
@@ -161,13 +161,13 @@ const POLISH_TRANSLATIONS = {
     "intro.tagline": "L'ACCÉLÉRATEUR BEAUTÉ",
 
     // Hero Section
-    "hero.cohort": "COHORTE Q1/Q2 • ADMISSIONS OUVERTES",
-    "hero.windowTag": "ACCÉLÉRATEUR & STUDIO DE CROISSANCE BEAUTÉ",
-    "hero.eyebrow": "ACCÉLÉRATEUR & STUDIO DE CROISSANCE BEAUTÉ",
-    "hero.headlineLine1": "De la Formulation d'Exception",
-    "hero.headlineLine2": "À la Marque de Cosmétique Incontournable.",
-    "hero.description": "Nous nous associons aux fondateurs de marques de cosmétiques visionnaires pour accélérer l'acquisition payante, orchestrer des campagnes UGC créateurs à forte conversion et automatiser la fidélisation.",
-    "hero.cta": "Découvrir le Partenariat",
+    "hero.cohort": "COHORTE T3 2026 • ADMISSIONS OUVERTES",
+    "hero.windowTag": "MAISON DE CROISSANCE DTC",
+    "hero.eyebrow": "MAISON DE CROISSANCE DTC",
+    "hero.headlineLine1": "De la Formulation Innovante",
+    "hero.headlineLine2": "À la Marque Incontournable.",
+    "hero.description": "L'accélérateur média et créatif dédié aux marques de <strong>cosmétiques d'exception</strong> pour propulser l'acquisition payante, orchestrer des <strong>créateurs UGC viraux</strong> et pérenniser la fidélité client.",
+    "hero.cta": "Demander un Partenariat",
     "hero.microTrust": "Partenaire de croissance exclusif des marques de beauté et cosmétique haut de gamme.",
 
     // Agitation Section
@@ -264,7 +264,7 @@ const POLISH_TRANSLATIONS = {
     "apply.optHistStarting": "Marque en cours de lancement ou récente sur le marché",
     "apply.btnNext": "Continuer",
     "apply.btnBack": "Retour",
-    "apply.btnSubmit": "Soumettre le Dossier de Partenariat",
+    "apply.btnSubmit": "Envoyer le Dossier",
     "apply.trustNda": "Confidentialité Absolue 100% : Protégé par un accord de non-divulgation strict (NDA).",
     "apply.trustReview": "Examen Personnalisé : Analysé directement par la direction sous 24h ouvrées.",
     "apply.successTitle": "Dossier Enregistré avec Succès",
@@ -304,12 +304,12 @@ const POLISH_TRANSLATIONS = {
     "intro.tagline": "مسرّع نمو علامات التجميل",
 
     // Hero Section
-    "hero.cohort": "دفعة Q1/Q2 • استقبال الشراكات",
-    "hero.windowTag": "استوديو ومسرّع نمو علامات التجميل",
-    "hero.eyebrow": "استوديو ومسرّع نمو علامات التجميل",
+    "hero.cohort": "دفعة الربع الثالث 2026 • استقبال الشراكات",
+    "hero.windowTag": "بيت نمو علامات التجميل الفاخرة",
+    "hero.eyebrow": "بيت نمو علامات التجميل الفاخرة",
     "hero.headlineLine1": "من تركيبة مبتكرة واستثنائية",
-    "hero.headlineLine2": "إلى علامة رائدة ومطلوبة في عالم الجمال.",
-    "hero.description": "نتشارك مع مؤسسي علامات التجميل والعناية بالبشرة لتوسيع الإعلانات المدفوعة، وإنتاج محتوى UGC إبداعي عالي التحويل، وبناء دورات ولاء وإعادة شراء مؤتمتة ومربحة.",
+    "hero.headlineLine2": "إلى علامة رائدة ومطلوبة.",
+    "hero.description": "المسرّع الإبداعي والإعلاني المتخصص لمؤسسي <strong>مستحضرات التجميل الراقية</strong> لمضاعفة العائد الإعلاني، وصناعة <strong>محتوى UGC عالي التحويل</strong>، وهندسة دورات ولاء متكررة.",
     "hero.cta": "استكشف الشراكة",
     "hero.microTrust": "شريك نمو استراتيجي وحصري لأبرز علامات التجميل والعناية بالبشرة الواعدة.",
 

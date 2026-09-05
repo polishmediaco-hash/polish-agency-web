@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Updates all visual UI elements for the active step
    */
-  function updateStepUI() {
+  function updateStepUI(options = {}) {
     // Hide all step panes (supports both class variants)
     const stepPanes = document.querySelectorAll('.form-step-pane, .wizard-step');
     stepPanes.forEach(pane => {
@@ -95,7 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (progressFill) progressFill.style.width = `${progressPercent}%`;
     if (stepCounterText) {
       const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
-      const stepWord = isFr ? 'Étape' : 'Step';
+      const isAr = window.polishI18n && window.polishI18n.currentLang === 'ar';
+      let stepWord = 'Step';
+      if (isFr) stepWord = 'Étape';
+      if (isAr) stepWord = 'الخطوة';
       stepCounterText.innerText = `${stepWord} 0${currentStep} / 0${totalSteps}`;
     }
     if (stepPhaseText) {
@@ -104,27 +107,37 @@ document.addEventListener('DOMContentLoaded', () => {
       stepPhaseText.innerText = title;
     }
 
-    // Update Navigation Buttons
+    // Update Navigation Buttons — on Step 1, hide back button for clean full-width continue
+    const stepNavFooter = document.querySelector('.step-nav-footer');
     if (btnBack) {
-      btnBack.disabled = (currentStep === 1);
+      if (currentStep === 1) {
+        btnBack.style.display = 'none';
+        if (stepNavFooter) stepNavFooter.classList.add('is-first-step');
+      } else {
+        btnBack.style.display = 'inline-flex';
+        btnBack.disabled = false;
+        if (stepNavFooter) stepNavFooter.classList.remove('is-first-step');
+      }
     }
 
     if (currentStep === totalSteps) {
       if (btnNext) btnNext.style.display = 'none';
       if (btnSubmit) btnSubmit.style.display = 'inline-flex';
+      if (stepNavFooter) stepNavFooter.classList.add('is-last-step');
     } else {
       if (btnNext) btnNext.style.display = 'inline-flex';
       if (btnSubmit) btnSubmit.style.display = 'none';
+      if (stepNavFooter) stepNavFooter.classList.remove('is-last-step');
     }
 
     // Clear alerts on valid step transition
     hideAlert();
 
-    // Smoothly keep form step header in view on mobile
-    if (window.innerWidth <= 768) {
+    // Smoothly keep form step header in view on mobile ONLY when user explicitly navigates
+    if (options.scroll && window.innerWidth <= 768) {
       const formShell = document.querySelector('.form-container-shell') || document.getElementById('wizardFormShell');
       if (formShell) {
-        const topY = formShell.getBoundingClientRect().top + window.pageYOffset - 65;
+        const topY = formShell.getBoundingClientRect().top + window.pageYOffset - 75;
         window.scrollTo({ top: topY, behavior: 'smooth' });
       }
     }
@@ -213,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentStep < totalSteps) {
         isMovingBackward = false;
         currentStep++;
-        updateStepUI();
+        updateStepUI({ scroll: true });
       }
     });
   }
@@ -225,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentStep > 1) {
         isMovingBackward = true;
         currentStep--;
-        updateStepUI();
+        updateStepUI({ scroll: true });
       }
     });
   }
@@ -358,8 +371,9 @@ document.addEventListener('DOMContentLoaded', () => {
     alertBox.style.display = 'none';
   }
 
-  // Initialize and listen to language switches
-  window.addEventListener('polishLanguageChanged', updateStepUI);
-  updateStepUI();
+  // Initialize without scrolling and ensure page opens at top
+  window.addEventListener('polishLanguageChanged', () => updateStepUI({ scroll: false }));
+  updateStepUI({ scroll: false });
+  window.scrollTo(0, 0);
 });
 

@@ -88,10 +88,9 @@ function initWhatsAppWidget() {
     <div class="whatsapp-trigger-wrap">
       <div class="whatsapp-radar-ring"></div>
       <div class="whatsapp-radar-ring-2"></div>
-      <!-- Micro-label: appears on first load, auto-collapses after 3.5s -->
+      <!-- Micro-label: compact luxury pill "(Question?)" -->
       <div class="wa-micro-label" id="waMicroLabel">
-        <span class="wa-micro-text"></span>
-        <svg class="wa-micro-arrow" width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4h6M4 1l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="wa-micro-text">Question?</span>
       </div>
       <button class="whatsapp-trigger-btn" id="waTriggerBtn" aria-label="Chat with POLISH on WhatsApp (+213 662 41 77 61)">
         <span class="whatsapp-online-dot"></span>
@@ -106,28 +105,40 @@ function initWhatsAppWidget() {
 
   renderWhatsAppContent();
 
-  // Populate micro-label text (trilingual)
-  const microLabelEl = document.getElementById('waMicroLabel');
-  const microTextEl = microLabelEl ? microLabelEl.querySelector('.wa-micro-text') : null;
-  if (microTextEl) {
-    const lang = (window.polishI18n && window.polishI18n.currentLang) || 'en';
-    const labels = { en: 'Questions? Chat now', fr: 'Une question ? Écrivez-nous', ar: 'سؤال؟ تحدث معنا' };
-    microTextEl.textContent = labels[lang] || labels.en;
+  // Populate micro-label text: strictly one word "(Question?)" per language
+  const WA_MICRO_LABELS = {
+    en: 'Question?',
+    fr: 'Question ?',
+    ar: 'سؤال؟'
+  };
+
+  function updateMicroLabelText(lang) {
+    const microTextEl = document.querySelector('.wa-micro-text');
+    if (!microTextEl) return;
+    const current = lang || (window.polishI18n && window.polishI18n.currentLang) || 'en';
+    microTextEl.textContent = WA_MICRO_LABELS[current] || WA_MICRO_LABELS.en;
   }
 
-  // Show widget + micro-label after delay (once per session)
+  updateMicroLabelText();
+
+  window.addEventListener('polishLanguageChanged', (e) => {
+    updateMicroLabelText(e.detail && e.detail.lang);
+    renderWhatsAppContent();
+  });
+
+  const microLabelEl = document.getElementById('waMicroLabel');
+
+  // Show widget + micro-label after delay
   setTimeout(() => {
     container.classList.add('is-visible');
-    // Show micro-label only on first visit per session
-    if (microLabelEl && !sessionStorage.getItem('polish_wa_label_seen')) {
+    if (microLabelEl) {
       setTimeout(() => {
         microLabelEl.classList.add('is-visible');
-        // Auto-dismiss after 3.5s
+        // Auto-dismiss after 4s
         setTimeout(() => {
           microLabelEl.classList.remove('is-visible');
-          sessionStorage.setItem('polish_wa_label_seen', 'true');
-        }, 3500);
-      }, 400);
+        }, 4000);
+      }, 500);
     }
   }, 2200);
 

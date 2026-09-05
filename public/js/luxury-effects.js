@@ -315,29 +315,36 @@
       const maxScroll = 450;
       const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
 
-      // 1. Centerpiece Serum Bottle recedes into distant background constellation
-      const scale = 1 - (progress * 0.65); // 1.0 -> 0.35
-      const isRTL = document.documentElement.dir === 'rtl';
-      const shiftX = (isRTL ? -1 : 1) * (progress * 110);
-      const shiftY = progress * -25;
-      const opacity = 1 - (progress * 0.65); // 1.0 -> 0.35
+      if (Math.abs(progress - lastBottleProgress) > 0.003 || (progress === 1 && lastBottleProgress !== 1) || (progress === 0 && lastBottleProgress !== 0)) {
+        lastBottleProgress = progress;
 
-      bottleWrap.style.transform = `translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
-      bottleWrap.style.opacity = opacity.toFixed(2);
+        // 1. Centerpiece Serum Bottle recedes into distant background constellation
+        const scale = 1 - (progress * 0.65); // 1.0 -> 0.35
+        const isRTL = document.documentElement.dir === 'rtl';
+        const shiftX = (isRTL ? -1 : 1) * (progress * 110);
+        const shiftY = progress * -25;
+        const opacity = 1 - (progress * 0.65); // 1.0 -> 0.35
 
-      // 2. Background Products gently come into focus via compositor opacity
-      const bgOpacity = 0.30 + (progress * 0.35); // 0.30 -> 0.65
-      if (bgDepthFar) {
-        bgDepthFar.style.opacity = bgOpacity.toFixed(2);
-      }
-      // On desktop only, apply subtle scale to mid layer; skip on mobile for maximum 120FPS fluidity
-      if (bgDepthMid && window.innerWidth > 768) {
-        const bgScale = 0.80 + (progress * 0.20);
-        bgDepthMid.style.transform = `scale(${bgScale.toFixed(3)})`;
+        bottleWrap.style.transform = `translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+        bottleWrap.style.opacity = opacity.toFixed(2);
+
+    // 2. Background Products gently come into focus via compositor opacity
+        const bgOpacity = 0.30 + (progress * 0.35); // 0.30 -> 0.65
+        if (bgDepthFar && window.innerWidth > 768) {
+          bgDepthFar.style.opacity = bgOpacity.toFixed(2);
+        }
+        // On desktop only, apply subtle scale to mid layer; skip on mobile for maximum 120FPS fluidity
+        if (bgDepthMid && window.innerWidth > 768) {
+          const bgScale = 0.80 + (progress * 0.20);
+          bgDepthMid.style.transform = `scale(${bgScale.toFixed(3)})`;
+        }
       }
     }
+
+    updateStickyVisibility();
   }
 
+  let lastBottleProgress = -1;
   let islandRAF = null;
   function scheduleScrollUpdate() {
     if (islandRAF) return;
@@ -347,95 +354,70 @@
     });
   }
 
+  // =========================================================================
+  // 8. SMART STICKY GLOWING CTA DOCK (100% REFLOW-FREE INTERSECTION OBSERVER)
+  // =========================================================================
+  const stickyDock = document.getElementById('stickyCtaDock');
+  const heroCta = document.querySelector('.hero-actions .btn-cta') || document.querySelector('.btn-jewel-couture');
+  const footer = document.querySelector('.site-footer');
+  let heroCtaInView = true;
+  let footerInView = false;
+
+  function updateStickyVisibility() {
+    if (!stickyDock) return;
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    // 100% Layout-reflow-free: strictly uses off-thread IntersectionObserver states
+    const heroPast = !heroCtaInView;
+    const footerNear = footerInView;
+
+    if (scrollY > 160 && heroPast && !footerNear) {
+      stickyDock.classList.add('is-visible');
+      stickyDock.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('has-sticky-cta');
+    } else {
+      stickyDock.classList.remove('is-visible');
+      stickyDock.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('has-sticky-cta');
+    }
+  }
+
+  if (stickyDock && 'IntersectionObserver' in window) {
+    if (heroCta) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          heroCtaInView = entry.isIntersecting;
+          updateStickyVisibility();
+        });
+      }, { threshold: 0.05 });
+      heroObserver.observe(heroCta);
+    }
+
+    if (footer) {
+      const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          footerInView = entry.isIntersecting;
+          updateStickyVisibility();
+        });
+      }, { threshold: 0.02 });
+      footerObserver.observe(footer);
+    }
+  }
+
   window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
   updateScrollState();
 
   // =========================================================================
-  // 8. SMART STICKY GLOWING CTA DOCK (AUTO-BLEND & COLLISION-SAFE)
-  // =========================================================================
-  const stickyDock = document.getElementById('stickyCtaDock');
-  if (stickyDock) {
-    const heroCta = document.querySelector('.hero-actions .btn-cta') || document.querySelector('.btn-jewel-couture');
-    const footer = document.querySelector('.site-footer');
-    let heroCtaInView = true;
-    let footerInView = false;
-
-    function updateStickyVisibility() {
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      let heroPast = !heroCtaInView;
-      let footerNear = footerInView;
-
-      if (heroCta) {
-        const heroRect = heroCta.getBoundingClientRect();
-        if (heroRect.bottom < 80) {
-          heroPast = true;
-        } else if (heroRect.top > 0) {
-          heroPast = false;
-        }
-      }
-      if (footer) {
-        const footerRect = footer.getBoundingClientRect();
-        if (footerRect.top < window.innerHeight + 50) {
-          footerNear = true;
-        } else {
-          footerNear = false;
-        }
-      }
-
-      if (scrollY > 160 && heroPast && !footerNear) {
-        stickyDock.classList.add('is-visible');
-        stickyDock.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('has-sticky-cta');
-      } else {
-        stickyDock.classList.remove('is-visible');
-        stickyDock.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('has-sticky-cta');
-      }
-    }
-
-    if ('IntersectionObserver' in window) {
-      if (heroCta) {
-        const heroObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            heroCtaInView = entry.isIntersecting;
-            updateStickyVisibility();
-          });
-        }, { threshold: 0.1 });
-        heroObserver.observe(heroCta);
-      }
-
-      if (footer) {
-        const footerObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            footerInView = entry.isIntersecting;
-            updateStickyVisibility();
-          });
-        }, { threshold: 0.05 });
-        footerObserver.observe(footer);
-      }
-    }
-
-    window.addEventListener('scroll', () => {
-      requestAnimationFrame(updateStickyVisibility);
-    }, { passive: true });
-    updateStickyVisibility();
-  }
-
-  // =========================================================================
-  // 10. THE LABORATORY DROP — Opening Cinematic
-  //     Anime.js timeline: white lab → gold droplet falls → impact ripple →
-  //     ink flood → logo emerges → FLIP to Dynamic Island
-  // =========================================================================
-  // =========================================================================
-  // 10. THE LABORATORY DROP — Opening Cinematic
-  //     Anime.js timeline: white lab → gold droplet falls → impact ripple →
-  //     ink flood → logo emerges → FLIP to Dynamic Island
+  // 10. CONCEPT 2: THE FORMULA SYNTHESIS — Opening Cinematic
+  //     Anime.js timeline:
+  //     3 converging golden emulsion beads (120° angles) → collision & coalescence →
+  //     luminous micro-shockwave & sparks → POLISH logo relief synthesis & gleam →
+  //     shared-element FLIP into Dynamic Island header
   // =========================================================================
   function initLuxuryOpeningAnimation() {
     const introOverlay = document.getElementById('luxuryIntro');
     if (!introOverlay) return;
 
-    const hasSeen = sessionStorage.getItem('polish_lab_intro_seen_v2') === 'true';
+    const hasSeen = sessionStorage.getItem('polish_formula_intro_seen') === 'true';
     const urlParams = new URLSearchParams(window.location.search);
     const forceReplay = urlParams.get('replay_intro') === '1';
 
@@ -448,7 +430,7 @@
 
     // Reduced motion — skip entire animation
     if (prefersReducedMotion) {
-      sessionStorage.setItem('polish_lab_intro_seen_v2', 'true');
+      sessionStorage.setItem('polish_formula_intro_seen', 'true');
       introOverlay.remove();
       const heroTitle = document.querySelector('.hero-h1.kinetic-title');
       if (heroTitle) heroTitle.classList.add('is-revealed');
@@ -456,25 +438,29 @@
     }
 
     // Elements
-    const labCanvas     = document.getElementById('labCanvas');
-    const labInkFlood   = document.getElementById('labInkFlood');
-    const dropletSvg    = document.getElementById('labDropletSvg');
-    const ripple1       = document.getElementById('labRipple1');
-    const ripple2       = document.getElementById('labRipple2');
-    const ripple3       = document.getElementById('labRipple3');
-    const splashEls     = document.querySelectorAll('.lab-splash');
-    const introLogoPod  = document.getElementById('introLogoPod');
-    const introCaption  = document.getElementById('introCaption');
-    const islandShell   = document.getElementById('dynamicIslandShell');
-    const targetLogoImg = document.querySelector('.island-logo-zone .brand-logo-img') || document.querySelector('.brand-logo-img');
+    const formulaBackdrop   = document.getElementById('formulaBackdrop');
+    const formulaOrbit      = document.getElementById('formulaOrbit');
+    const bead1             = document.getElementById('beadWrap1');
+    const bead2             = document.getElementById('beadWrap2');
+    const bead3             = document.getElementById('beadWrap3');
+    const coreBloom         = document.getElementById('formulaCoreBloom');
+    const shockwave1        = document.getElementById('formulaShockwave1');
+    const shockwave2        = document.getElementById('formulaShockwave2');
+    const sparks            = document.querySelectorAll('.formula-spark');
+    const formulaLogoPod    = document.getElementById('formulaLogoPod');
+    const formulaGleam      = document.getElementById('formulaGleam');
+    const formulaCaption    = document.getElementById('formulaCaption');
+    const skipHint          = document.getElementById('introSkipHint');
+    const islandShell       = document.getElementById('dynamicIslandShell');
+    const targetLogoImg     = document.querySelector('.island-logo-zone .brand-logo-img') || document.querySelector('.brand-logo-img');
 
     if (targetLogoImg) {
       targetLogoImg.style.opacity = '0';
     }
 
-    // Anime.js check
+    // Fallback if anime.js is not loaded
     if (typeof anime === 'undefined') {
-      sessionStorage.setItem('polish_lab_intro_seen_v2', 'true');
+      sessionStorage.setItem('polish_formula_intro_seen', 'true');
       if (targetLogoImg) targetLogoImg.style.opacity = '1';
       introOverlay.remove();
       const heroTitle = document.querySelector('.hero-h1.kinetic-title');
@@ -484,9 +470,28 @@
 
     let timelineComplete = false;
 
+    // Radius calculation for 120° orbital convergence (responsive)
+    const isMobile = window.innerWidth <= 768;
+    const radius = isMobile ? 100 : 140;
+    const b1Y = -radius, b1X = 0;
+    const b2X = Math.round(radius * 0.866), b2Y = Math.round(radius * 0.5);
+    const b3X = -Math.round(radius * 0.866), b3Y = Math.round(radius * 0.5);
+
+    // Explicitly initialize all animated targets with anime.set() to avoid style conflicts
+    anime.set(bead1, { translateX: `${b1X}px`, translateY: `${b1Y}px`, scale: 0.5, opacity: 0 });
+    anime.set(bead2, { translateX: `${b2X}px`, translateY: `${b2Y}px`, scale: 0.5, opacity: 0 });
+    anime.set(bead3, { translateX: `${b3X}px`, translateY: `${b3Y}px`, scale: 0.5, opacity: 0 });
+    anime.set(formulaOrbit, { opacity: 0, scale: 0.75, rotate: '-18deg' });
+    anime.set(coreBloom, { opacity: 0, scale: 0.1 });
+    anime.set(shockwave1, { opacity: 0, scale: 0.1 });
+    anime.set(shockwave2, { opacity: 0, scale: 0.1 });
+    anime.set(formulaLogoPod, { opacity: 0, scale: 0.85, translateX: '0px', translateY: '0px' });
+    anime.set(formulaGleam, { translateX: '-120%' });
+    anime.set(formulaCaption, { opacity: 0, translateY: '8px' });
+
     // ─── FLIP EXIT (shared-element FLIP into Dynamic Island) ─────────────────
     function doFlipExit() {
-      if (!targetLogoImg || !introLogoPod) {
+      if (!targetLogoImg || !formulaLogoPod) {
         if (targetLogoImg) targetLogoImg.style.opacity = '1';
         introOverlay.remove();
         const heroTitle = document.querySelector('.hero-h1.kinetic-title');
@@ -494,26 +499,36 @@
         return;
       }
 
-      // Fade caption smoothly
-      anime({ targets: introCaption, opacity: 0, translateY: -10, duration: 250, easing: 'easeInQuad' });
+      // Fade caption and skip hint
+      if (formulaCaption) anime({ targets: formulaCaption, opacity: 0, translateY: -10, duration: 240, easing: 'easeInQuad' });
+      if (skipHint) anime({ targets: skipHint, opacity: 0, duration: 200, easing: 'easeInQuad' });
 
-      const firstRect = introLogoPod.getBoundingClientRect();
+      const firstRect = formulaLogoPod.getBoundingClientRect();
       const lastRect  = targetLogoImg.getBoundingClientRect();
-      const deltaX    = (lastRect.left + lastRect.width / 2) - (firstRect.left + firstRect.width / 2);
-      const deltaY    = (lastRect.top + lastRect.height / 2) - (firstRect.top + firstRect.height / 2);
-      const scale     = lastRect.width / firstRect.width;
 
-      // Dissolve ink flood background during flight
-      anime({ targets: labInkFlood, opacity: 0, duration: 600, easing: 'easeOutQuad', delay: 80 });
-      anime({ targets: labCanvas,   opacity: 0, duration: 600, easing: 'easeOutQuad', delay: 80 });
+      if (!firstRect.width || !lastRect.width) {
+        if (targetLogoImg) targetLogoImg.style.opacity = '1';
+        introOverlay.remove();
+        const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+        if (heroTitle) heroTitle.classList.add('is-revealed');
+        return;
+      }
 
-      // FLIP flight of the logo into the Dynamic Island dock
+      const deltaX = (lastRect.left + lastRect.width / 2) - (firstRect.left + firstRect.width / 2);
+      const deltaY = (lastRect.top + lastRect.height / 2) - (firstRect.top + firstRect.height / 2);
+      const scale  = lastRect.width / firstRect.width;
+
+      // Dissolve velvet backdrop during flight
+      anime({ targets: formulaBackdrop, opacity: 0, duration: 500, easing: 'easeOutQuad', delay: 40 });
+      anime({ targets: introOverlay,    opacity: 0, duration: 550, easing: 'easeOutQuad', delay: 100 });
+
+      // FLIP flight of the synthesized logo into the Dynamic Island dock
       anime({
-        targets: introLogoPod,
-        translateX: deltaX,
-        translateY: deltaY,
+        targets: formulaLogoPod,
+        translateX: `${deltaX}px`,
+        translateY: `${deltaY}px`,
         scale: scale,
-        duration: 780,
+        duration: 700,
         easing: 'cubicBezier(0.16, 1, 0.3, 1)',
         complete: () => {
           if (targetLogoImg) targetLogoImg.style.opacity = '1';
@@ -525,174 +540,178 @@
         }
       });
 
-      // Hero text reveal 200ms into flight
+      // Bulletproof fail-safe: ensures overlay is removed even if animation is interrupted
+      setTimeout(() => {
+        if (document.body.contains(introOverlay)) {
+          if (targetLogoImg) targetLogoImg.style.opacity = '1';
+          introOverlay.remove();
+        }
+      }, 950);
+
+      // Hero text reveal 180ms into flight
       setTimeout(() => {
         const heroTitle = document.querySelector('.hero-h1.kinetic-title');
         if (heroTitle) heroTitle.classList.add('is-revealed');
-      }, 200);
+      }, 180);
     }
 
-    // ─── SKIP — user intentionally tapped or scrolled ───────────────────────
+    // ─── SKIP HANDLER ───────────────────────────────────────────────────────
     function skipIntro() {
       if (timelineComplete) return;
       timelineComplete = true;
-      sessionStorage.setItem('polish_lab_intro_seen_v2', 'true');
+      sessionStorage.setItem('polish_formula_intro_seen', 'true');
       introOverlay.style.pointerEvents = 'none';
       if (targetLogoImg) targetLogoImg.style.opacity = '1';
       window.scrollTo(0, 0);
       try {
-        anime.remove([dropletSvg, labInkFlood, labCanvas,
-                      ripple1, ripple2, ripple3, introLogoPod, introCaption, ...Array.from(splashEls)]);
+        anime.remove([formulaBackdrop, formulaOrbit, bead1, bead2, bead3,
+                      coreBloom, shockwave1, shockwave2, formulaLogoPod, formulaGleam, formulaCaption, ...Array.from(sparks)]);
       } catch (e) {}
       introOverlay.remove();
       const heroTitle = document.querySelector('.hero-h1.kinetic-title');
       if (heroTitle) heroTitle.classList.add('is-revealed');
     }
 
-    // ─── MASTER LABORATORY DROP TIMELINE ────────────────────────────────────
+    // ─── MASTER FORMULA SYNTHESIS TIMELINE ─────────────────────────────────
     const tl = anime.timeline({
       autoplay: true,
       complete: () => {
         if (timelineComplete) return;
         timelineComplete = true;
-        sessionStorage.setItem('polish_lab_intro_seen_v2', 'true');
+        sessionStorage.setItem('polish_formula_intro_seen', 'true');
         window.scrollTo(0, 0);
         introOverlay.style.pointerEvents = 'none';
         doFlipExit();
       }
     });
 
-    // ─ Phase 1: Droplet appears above screen (0–60ms) ──────────────────────
+    // Phase 1: Hairline orbit track awakens (0–460ms)
     tl.add({
-      targets: dropletSvg,
-      opacity: [0, 1],
-      duration: 60,
-      easing: 'linear'
+      targets: formulaOrbit,
+      opacity: [0, 0.35],
+      scale: [0.75, 1],
+      rotate: ['-18deg', '0deg'],
+      duration: 460,
+      easing: 'easeOutCubic'
     }, 0);
 
-    // ─ Phase 2: Droplet falls — gravitational acceleration (60–660ms) ──────
-    // Starts high (-55vh), falls to exact center (0px)
+    // Phase 2: 3 Golden Emulsion Beads converge toward center (60–640ms)
     tl.add({
-      targets: dropletSvg,
-      translateY: ['-55vh', '0px'],
-      duration: 600,
-      easing: 'cubicBezier(0.4, 0, 0.9, 1)'
-    }, 60);
-
-    // Aerodynamic vertical stretch during descent
-    tl.add({
-      targets: dropletSvg,
-      scaleY: [1, 1.18],
-      scaleX: [1, 0.88],
-      duration: 560,
-      easing: 'easeInQuad'
-    }, 60);
-
-    // ─ Phase 3: IMPACT at 660ms — squash on liquid surface ─────────────────
-    tl.add({
-      targets: dropletSvg,
-      scaleY: [1.18, 0.28],
-      scaleX: [0.88, 1.65],
-      opacity: [1, 0],
-      duration: 120,
-      easing: 'easeOutQuad'
-    }, 660);
-
-    // ─ Phase 4: Concentric gold ripple rings expand outward from 660ms ─────
-    tl.add({
-      targets: ripple1,
-      opacity: [0.95, 0],
-      scale: [0, 6],
-      duration: 600,
-      easing: 'easeOutExpo'
-    }, 660);
-
-    tl.add({
-      targets: ripple2,
-      opacity: [0.75, 0],
-      scale: [0, 11],
-      duration: 700,
-      easing: 'easeOutExpo'
-    }, 720);
-
-    tl.add({
-      targets: ripple3,
-      opacity: [0.45, 0],
-      scale: [0, 16],
-      duration: 800,
-      easing: 'easeOutExpo'
-    }, 780);
-
-    // ─ Phase 5: Splash micro-droplets burst radially outward (670ms) ────────
-    tl.add({
-      targets: Array.from(splashEls),
-      opacity: [
-        { value: [0, 1], duration: 50, easing: 'linear' },
-        { value: [1, 0], duration: 340, easing: 'easeOutQuad', delay: 80 }
-      ],
-      translateY: (el, i) => {
-        const dist = -32 - (i % 3) * 14;
-        return [0, `${dist}px`];
-      },
-      translateX: (el, i) => {
-        const angle = (360 / splashEls.length) * i * (Math.PI / 180);
-        return [0, `${Math.sin(angle) * 32}px`];
-      },
-      scale: [0.5, 1.3],
-      duration: 460,
-      delay: anime.stagger(25, { from: 'center' }),
-      easing: 'easeOutQuart'
-    }, 670);
-
-    // ─ Phase 6: Obsidian ink floods outward from impact point (720ms) ───────
-    tl.add({
-      targets: labInkFlood,
-      clipPath: ['circle(0% at 50% 50%)', 'circle(150% at 50% 50%)'],
-      duration: 860,
-      easing: 'cubicBezier(0.25, 1, 0.35, 1)'
-    }, 720);
-
-    // White canvas fades as ink fully expands
-    tl.add({
-      targets: labCanvas,
-      opacity: [1, 0],
-      duration: 300,
-      easing: 'easeInQuad'
-    }, 1000);
-
-    // ─ Phase 7: POLISH logo rises smoothly out of the obsidian ink (1100ms) ──
-    tl.add({
-      targets: introLogoPod,
+      targets: [bead1, bead2, bead3],
+      translateX: '0px',
+      translateY: '0px',
+      scale: [0.5, 1.15],
       opacity: [0, 1],
-      translateY: ['20px', '0px'],
+      duration: 580,
+      easing: 'cubicBezier(0.4, 0, 0.2, 1)'
+    }, 60);
+
+    // Phase 3: COLLISION AT 640ms — Fusion of beads & orbit fade
+    tl.add({
+      targets: [bead1, bead2, bead3],
+      scale: [1.15, 0.1],
+      opacity: [1, 0],
+      duration: 80,
+      easing: 'easeOutQuad'
+    }, 640);
+
+    tl.add({
+      targets: formulaOrbit,
+      opacity: [0.35, 0],
+      scale: [1, 1.25],
+      duration: 200,
+      easing: 'easeOutQuad'
+    }, 640);
+
+    // Phase 4: Coalescence Core Bloom Flash (650–980ms)
+    tl.add({
+      targets: coreBloom,
+      scale: [0.2, 2.6],
+      opacity: [
+        { value: 1, duration: 60, easing: 'linear' },
+        { value: 0, duration: 270, easing: 'easeOutQuad' }
+      ],
+      duration: 330,
+      easing: 'easeOutQuad'
+    }, 650);
+
+    // Phase 5: High-Velocity Specular Shockwaves & Radial Micro-Sparks (660–1240ms)
+    tl.add({
+      targets: shockwave1,
+      scale: [0.1, 4.8],
+      opacity: [
+        { value: 0.95, duration: 50, easing: 'linear' },
+        { value: 0, duration: 530, easing: 'easeOutQuad' }
+      ],
+      duration: 580,
+      easing: 'easeOutExpo'
+    }, 660);
+
+    tl.add({
+      targets: shockwave2,
+      scale: [0.1, 4.0],
+      opacity: [
+        { value: 0.75, duration: 50, easing: 'linear' },
+        { value: 0, duration: 500, easing: 'easeOutQuad' }
+      ],
+      duration: 550,
+      easing: 'easeOutExpo'
+    }, 700);
+
+    tl.add({
+      targets: Array.from(sparks),
+      opacity: [
+        { value: 1, duration: 40, easing: 'linear' },
+        { value: 0, duration: 320, delay: 60, easing: 'easeOutQuad' }
+      ],
+      translateX: (el) => {
+        const dist = parseFloat(el.style.getPropertyValue('--spark-dist')) || 70;
+        return `${dist}px`;
+      },
+      duration: 420,
+      delay: anime.stagger(16, { from: 'center' }),
+      easing: 'easeOutQuart'
+    }, 660);
+
+    // Phase 6: Synthesized POLISH Logo Relief Pod emerges (800–1320ms)
+    tl.add({
+      targets: formulaLogoPod,
+      opacity: [0, 1],
+      scale: [0.85, 1],
       duration: 520,
       easing: 'cubicBezier(0.16, 1, 0.3, 1)'
-    }, 1100);
+    }, 800);
 
-    // Caption subtitle fades in
+    // Phase 7: Specular Gleam Sheen sweeps across the synthesized gold logo
     tl.add({
-      targets: introCaption,
+      targets: formulaGleam,
+      translateX: ['-120%', '160%'],
+      duration: 640,
+      easing: 'easeInOutCubic'
+    }, 920);
+
+    // Phase 8: Editorial Caption tracking reveal
+    tl.add({
+      targets: formulaCaption,
       opacity: [0, 1],
-      translateY: ['12px', '0px'],
+      translateY: ['8px', '0px'],
       duration: 420,
       easing: 'easeOutQuad'
-    }, 1280);
+    }, 1060);
 
-    // Brand appreciation hold before FLIP trigger
+    // Phase 9: Brand Appreciation Hold before FLIP exit
     tl.add({
       targets: {},
-      duration: 550
-    }, 1500);
+      duration: 500
+    }, 1480);
 
-    // ─── Skip listeners (with 350ms protection against accidental wheel/touch) ──
-    setTimeout(() => {
-      introOverlay.addEventListener('pointerdown', skipIntro, { once: true });
-      window.addEventListener('wheel', (e) => {
-        if (Math.abs(e.deltaY) > 6 || Math.abs(e.deltaX) > 6) skipIntro();
-      }, { once: true, passive: true });
-      window.addEventListener('keydown', skipIntro, { once: true });
-      window.addEventListener('touchstart', skipIntro, { once: true, passive: true });
-    }, 350);
+    // ─── Instant Skip listeners (no delay, responsive immediately) ──────────
+    introOverlay.addEventListener('pointerdown', skipIntro, { once: true });
+    introOverlay.addEventListener('touchstart', skipIntro, { once: true, passive: true });
+    window.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > 6 || Math.abs(e.deltaX) > 6) skipIntro();
+    }, { once: true, passive: true });
+    window.addEventListener('keydown', skipIntro, { once: true });
   }
 
   if (document.readyState === 'loading') {

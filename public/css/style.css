@@ -647,16 +647,26 @@ a {
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Subpages with Home button */
+/* Subpages with Home button (Unified Haute Atelier Dynamic Capsule) */
 .dynamic-island-shell.has-center-home {
-  max-width: var(--container-max);
+  max-width: 580px;
+  padding: 8px 22px;
+  background: linear-gradient(135deg, rgba(20, 16, 13, 0.92) 0%, rgba(10, 9, 8, 0.96) 100%);
+  border: 1px solid rgba(226, 199, 153, 0.24);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.8), 0 0 20px rgba(226, 199, 153, 0.08), inset 0 1px 1.5px rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .site-header.is-scrolled .dynamic-island-shell.has-center-home {
-  max-width: 420px;
+  max-width: 440px;
+  padding: 6px 18px;
+  background: linear-gradient(135deg, rgba(18, 14, 11, 0.96) 0%, rgba(9, 8, 7, 0.99) 100%);
+  border-color: rgba(226, 199, 153, 0.35);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.92), 0 0 28px rgba(226, 199, 153, 0.16), inset 0 1px 2px rgba(255, 255, 255, 0.22);
 }
 
-.site-header.is-scrolled .dynamic-island-shell:hover {
+.dynamic-island-shell.has-center-home:hover {
   border-color: rgba(226, 199, 153, 0.5);
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.9), 0 0 32px rgba(226, 199, 153, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.25);
 }
@@ -740,34 +750,53 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   padding: 6px 14px;
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--brand-platinum);
+  background: rgba(226, 199, 153, 0.08);
+  border: 1px solid rgba(226, 199, 153, 0.26);
   border-radius: var(--radius-pill);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   line-height: 1;
+}
+
+.header-home-btn .home-btn-arrow {
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[dir="rtl"] .header-home-btn .home-btn-arrow {
+  transform: rotate(180deg);
 }
 
 .site-header.is-scrolled .header-home-btn {
   padding: 5px 12px;
   font-size: 11px;
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(226, 199, 153, 0.10);
+  border-color: rgba(226, 199, 153, 0.32);
 }
 
 .header-home-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(226, 199, 153, 0.4);
-  color: var(--brand-gold);
-  box-shadow: 0 0 16px rgba(226, 199, 153, 0.25);
+  background: rgba(226, 199, 153, 0.18);
+  border-color: rgba(226, 199, 153, 0.6);
+  color: #FFFFFF;
+  box-shadow: 0 0 18px rgba(226, 199, 153, 0.35);
   transform: translateY(-1px);
+}
+
+.header-home-btn:hover .home-btn-arrow {
+  transform: translateX(-3px);
+}
+
+[dir="rtl"] .header-home-btn:hover .home-btn-arrow {
+  transform: rotate(180deg) translateX(-3px);
 }
 
 /* Homepage Dynamic Island Micro-Pulse Status Dot (Visible on Scroll) */
@@ -1153,6 +1182,13 @@ body.has-sticky-cta .whatsapp-float-container {
   padding: 36px 0 60px;
   text-align: center;
   position: relative;
+}
+
+/* Subpage Form & Wizard Clearance (Haute Editorial Breathing Room) */
+body.page-apply main.hero-section,
+body.page-creators main.hero-section,
+main.hero-section.page-wizard-main {
+  padding-top: clamp(125px, 15vh, 160px) !important;
 }
 
 .hero-section.hero-home-section {
@@ -2919,11 +2955,27 @@ body.is-rtl .wa-micro-label.is-visible {
     opacity: 0.3;
   }
 
-  /* Disable non-critical ambient canvas & micro-satellites on mobile */
+  /* Disable non-critical ambient canvas, heavy 18px Gaussian blur layer & micro-satellites on mobile (120FPS Fluidity) */
+  .beauty-depth-far,
   .beauty-depth-micro,
   .mouse-caustic-light,
   .ambient-particles-canvas {
     display: none !important;
+  }
+
+  .ambient-glow-top {
+    filter: blur(28px) !important;
+    animation: none !important;
+    opacity: 0.45;
+  }
+
+  /* Modern CSS content-visibility for ultra-smooth 120FPS mobile scrolling */
+  .method-section,
+  .bento-section,
+  .faq-section,
+  .calculator-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 600px;
   }
 
   /* 100% GPU-Composited Floating 3D Products on Mobile (Scaled & Peripheral) */
@@ -2972,8 +3024,10 @@ body.is-rtl .wa-micro-label.is-visible {
     padding: 78px 0 32px !important;
   }
 
+  body.page-apply main.hero-section,
+  body.page-creators main.hero-section,
   main.hero-section {
-    padding-top: 78px !important;
+    padding-top: 100px !important;
   }
 
   .section-wrap {
@@ -3653,71 +3707,109 @@ html.intro-skipped .luxury-intro-overlay {
   pointer-events: auto;
 }
 
-/* White lab canvas — the pristine starting surface */
-.lab-canvas {
-  position: absolute;
-  inset: 0;
-  background: #FAF8F5;
-  z-index: 1;
+/* Concept 2: The Formula Synthesis — Velvet Noir Backdrop */
+.formula-intro {
+  background: #080706;
 }
 
-/* Obsidian ink flood — clips outward from center using clip-path circle */
-.lab-ink-flood {
+.formula-backdrop {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, #14110E 0%, #080706 70%);
-  z-index: 2;
-  -webkit-clip-path: circle(0% at 50% 50%);
-  clip-path: circle(0% at 50% 50%);
-  will-change: clip-path, -webkit-clip-path;
+  background: radial-gradient(circle at 50% 50%, rgba(226, 199, 153, 0.08) 0%, rgba(18, 15, 12, 0.4) 40%, #080706 80%);
+  pointer-events: none;
 }
 
-/* Drop stage — full viewport overlay, z above flood */
-.lab-drop-stage {
+.formula-stage {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
-  overflow: hidden;
 }
 
-/* SVG droplet — centered horizontally, falling to center */
-.lab-droplet-svg {
-  width: 52px;
-  height: 72px;
+/* Hairline Molecular Alignment Track */
+.formula-orbit-track {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -72px;
-  margin-left: -26px;
-  transform: translateY(-60vh);
-  will-change: transform, opacity;
-  filter: drop-shadow(0 8px 22px rgba(226, 199, 153, 0.65));
-  opacity: 0;
-}
-
-/* Impact ripple rings — concentric gold circles expanding from exact center */
-.lab-ripple-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  margin-top: -12px;
-  margin-left: -12px;
+  width: 280px;
+  height: 280px;
+  margin-top: -140px;
+  margin-left: -140px;
   border-radius: 50%;
-  border: 1.5px solid rgba(226, 199, 153, 0.9);
-  box-shadow: 0 0 16px rgba(226, 199, 153, 0.45), inset 0 0 10px rgba(226, 199, 153, 0.25);
-  transform: scale(0);
+  border: 1px dashed rgba(226, 199, 153, 0.16);
+  pointer-events: none;
   opacity: 0;
+  transform: scale(0.6) rotate(0deg);
+  will-change: transform, opacity;
+}
+
+/* Converging Golden Emulsion Beads */
+.formula-bead-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  margin-left: -18px;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.formula-bead-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 14px rgba(226, 199, 153, 0.75));
+}
+
+/* Collision Bloom Core */
+.formula-core-bloom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 0%, #F5E6D3 35%, #E2C799 70%, transparent 100%);
+  box-shadow: 0 0 50px rgba(226, 199, 153, 0.95), 0 0 100px rgba(245, 230, 211, 0.8);
+  opacity: 0;
+  transform: scale(0);
   pointer-events: none;
   will-change: transform, opacity;
 }
 
-/* Splash micro-droplets */
-.lab-splash-wrap {
+/* Shockwave Specular Rings */
+.formula-shockwave-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(245, 230, 211, 0.95);
+  box-shadow: 0 0 24px rgba(226, 199, 153, 0.6), inset 0 0 14px rgba(226, 199, 153, 0.3);
+  opacity: 0;
+  transform: scale(0.1);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.formula-shockwave-ring.ring-secondary {
+  border-color: rgba(226, 199, 153, 0.75);
+}
+
+/* Radial Micro-Sparks */
+.formula-sparks-chamber {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3726,76 +3818,119 @@ html.intro-skipped .luxury-intro-overlay {
   pointer-events: none;
 }
 
-.lab-splash {
+.formula-spark {
   position: absolute;
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  margin-left: -2px;
   border-radius: 50%;
-  background: var(--brand-gold);
-  box-shadow: 0 0 8px rgba(226, 199, 153, 0.9);
-  top: -2.5px;
-  left: -2.5px;
-  transform: rotate(var(--a)) translateY(0px);
+  background: #FFFFFF;
+  box-shadow: 0 0 10px rgba(245, 230, 211, 0.95), 0 0 18px rgba(226, 199, 153, 0.8);
   opacity: 0;
+  transform: rotate(var(--spark-angle)) translateX(0);
   will-change: transform, opacity;
 }
 
-/* Logo stage — sits centered inside the ink, starts invisible */
-.lab-logo-stage {
+/* Synthesized POLISH Logo Relief Pod */
+.formula-logo-pod {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 6;
+  width: 260px;
+  margin-left: -130px;
+  margin-top: -65px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 22px;
+  gap: 18px;
   pointer-events: none;
-}
-
-.lab-logo-pod {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transform-origin: center center;
   will-change: transform, opacity;
   opacity: 0;
 }
 
-/* Ambient glow — emerges behind logo inside dark ink */
-.lab-logo-pod::before {
-  content: '';
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(226, 199, 153, 0.16) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-}
-
-/* Intro caption — same as before */
-.intro-logo-pod {
+.formula-logo-inner {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform-origin: center center;
-  will-change: transform, opacity;
+  overflow: hidden;
+  padding: 8px 16px;
+  border-radius: 12px;
 }
 
-.intro-logo-img {
+.formula-logo-img {
   width: 220px;
   height: auto;
   display: block;
-  filter: drop-shadow(0 0 28px rgba(226, 199, 153, 0.45));
+  filter: drop-shadow(0 0 28px rgba(226, 199, 153, 0.5));
+}
+
+.formula-gleam-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.65) 50%, transparent 80%);
+  transform: translateX(-120%);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.formula-caption {
+  opacity: 0;
+  transform: translateY(8px);
+  will-change: transform, opacity;
+}
+
+.formula-caption-text {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--brand-gold);
+  text-transform: uppercase;
+  text-shadow: 0 0 16px rgba(226, 199, 153, 0.4);
+}
+
+.intro-skip-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(226, 199, 153, 0.45);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 @media (max-width: 768px) {
-  .intro-logo-img {
+  .formula-logo-pod {
+    width: 200px;
+    margin-left: -100px;
+    margin-top: -50px;
+  }
+  .formula-logo-img {
     width: 165px;
+  }
+  .formula-orbit-track {
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+  }
+  .formula-bead-wrap {
+    width: 28px;
+    height: 28px;
+    margin-top: -14px;
+    margin-left: -14px;
   }
 }
 

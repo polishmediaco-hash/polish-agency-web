@@ -91,65 +91,103 @@
     </div>
   </div>
 
-  <!-- The Laboratory Drop — Opening Cinematic -->
-  <div class="luxury-intro-overlay lab-drop-intro" id="luxuryIntro" aria-hidden="true">
-    <!-- White lab canvas — starts pure white, floods to obsidian -->
-    <div class="lab-canvas" id="labCanvas"></div>
+  <!-- Concept 2: The Formula Synthesis — Molecular Precision to Golden Emulsion -->
+  <div class="luxury-intro-overlay formula-intro" id="luxuryIntro" aria-hidden="true">
+    <!-- Velvet Noir Backdrop with Subtle Champagne Radial Vignette -->
+    <div class="formula-backdrop" id="formulaBackdrop"></div>
 
-    <!-- Obsidian ink flood layer — clips outward from impact point -->
-    <div class="lab-ink-flood" id="labInkFlood"></div>
+    <!-- Molecular Synthesis Chamber Stage -->
+    <div class="formula-stage" id="formulaStage">
+      <!-- Fine Molecular Alignment Orbit Track (Hairline Arc) -->
+      <div class="formula-orbit-track" id="formulaOrbit"></div>
 
-    <!-- SVG Droplet + Ripple stage — centered, above everything -->
-    <div class="lab-drop-stage" id="labDropStage">
-      <!-- The falling droplet -->
-      <svg class="lab-droplet-svg" id="labDropletSvg" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="dropGrad" x1="20%" y1="0%" x2="80%" y2="100%">
-            <stop offset="0%" stop-color="#FFFFFF"/>
-            <stop offset="30%" stop-color="#F5E6D3"/>
-            <stop offset="70%" stop-color="#E2C799"/>
-            <stop offset="100%" stop-color="#B89768"/>
-          </linearGradient>
-          <filter id="dropGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.5" result="blur"/>
-            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-          </filter>
-        </defs>
-        <!-- Droplet body — teardrop shape -->
-        <path id="dropPath"
-          d="M30 4 C30 4 8 34 8 50 C8 63 18 73 30 73 C42 73 52 63 52 50 C52 34 30 4 30 4 Z"
-          fill="url(#dropGrad)"
-          filter="url(#dropGlow)"/>
-        <!-- Specular highlight -->
-        <ellipse cx="22" cy="38" rx="4.5" ry="9" fill="rgba(255,255,255,0.7)" transform="rotate(-15 22 38)"/>
-      </svg>
+      <!-- 3 Converging Golden Emulsion Beads (120° Radial Inward Trajectory) -->
+      <div class="formula-bead-wrap bead-wrap-1" id="beadWrap1">
+        <svg class="formula-bead-svg" viewBox="0 0 36 36" width="36" height="36" aria-hidden="true">
+          <defs>
+            <radialGradient id="beadGrad1" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="25%" stop-color="#F5E6D3"/>
+              <stop offset="60%" stop-color="#E2C799"/>
+              <stop offset="100%" stop-color="#A58352"/>
+            </radialGradient>
+            <filter id="beadGlow1" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <circle cx="18" cy="18" r="14" fill="url(#beadGrad1)" filter="url(#beadGlow1)"/>
+          <ellipse cx="14" cy="12" rx="3.5" ry="2" fill="rgba(255,255,255,0.85)" transform="rotate(-25 14 12)"/>
+        </svg>
+      </div>
 
-      <!-- Ripple rings from impact -->
-      <div class="lab-ripple-ring" id="labRipple1"></div>
-      <div class="lab-ripple-ring" id="labRipple2"></div>
-      <div class="lab-ripple-ring" id="labRipple3"></div>
+      <div class="formula-bead-wrap bead-wrap-2" id="beadWrap2">
+        <svg class="formula-bead-svg" viewBox="0 0 36 36" width="36" height="36" aria-hidden="true">
+          <defs>
+            <radialGradient id="beadGrad2" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="25%" stop-color="#F5E6D3"/>
+              <stop offset="60%" stop-color="#E2C799"/>
+              <stop offset="100%" stop-color="#A58352"/>
+            </radialGradient>
+          </defs>
+          <circle cx="18" cy="18" r="14" fill="url(#beadGrad2)" filter="url(#beadGlow1)"/>
+          <ellipse cx="14" cy="12" rx="3.5" ry="2" fill="rgba(255,255,255,0.85)" transform="rotate(-25 14 12)"/>
+        </svg>
+      </div>
 
-      <!-- Splash micro-droplets -->
-      <div class="lab-splash-wrap" id="labSplashWrap">
-        <div class="lab-splash" style="--a:0deg"></div>
-        <div class="lab-splash" style="--a:45deg"></div>
-        <div class="lab-splash" style="--a:90deg"></div>
-        <div class="lab-splash" style="--a:135deg"></div>
-        <div class="lab-splash" style="--a:180deg"></div>
-        <div class="lab-splash" style="--a:225deg"></div>
-        <div class="lab-splash" style="--a:270deg"></div>
-        <div class="lab-splash" style="--a:315deg"></div>
+      <div class="formula-bead-wrap bead-wrap-3" id="beadWrap3">
+        <svg class="formula-bead-svg" viewBox="0 0 36 36" width="36" height="36" aria-hidden="true">
+          <defs>
+            <radialGradient id="beadGrad3" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="25%" stop-color="#F5E6D3"/>
+              <stop offset="60%" stop-color="#E2C799"/>
+              <stop offset="100%" stop-color="#A58352"/>
+            </radialGradient>
+          </defs>
+          <circle cx="18" cy="18" r="14" fill="url(#beadGrad3)" filter="url(#beadGlow1)"/>
+          <ellipse cx="14" cy="12" rx="3.5" ry="2" fill="rgba(255,255,255,0.85)" transform="rotate(-25 14 12)"/>
+        </svg>
+      </div>
+
+      <!-- Central Collision Coalescence Bloom Core -->
+      <div class="formula-core-bloom" id="formulaCoreBloom"></div>
+
+      <!-- High-Velocity Micro-Shockwave Specular Rings -->
+      <div class="formula-shockwave-ring ring-primary" id="formulaShockwave1"></div>
+      <div class="formula-shockwave-ring ring-secondary" id="formulaShockwave2"></div>
+
+      <!-- Radial Micro-Spark Embers (Scatter upon collision) -->
+      <div class="formula-sparks-chamber" id="formulaSparksWrap">
+        <div class="formula-spark" style="--spark-angle:0deg; --spark-dist:72px;"></div>
+        <div class="formula-spark" style="--spark-angle:45deg; --spark-dist:88px;"></div>
+        <div class="formula-spark" style="--spark-angle:90deg; --spark-dist:68px;"></div>
+        <div class="formula-spark" style="--spark-angle:135deg; --spark-dist:84px;"></div>
+        <div class="formula-spark" style="--spark-angle:180deg; --spark-dist:74px;"></div>
+        <div class="formula-spark" style="--spark-angle:225deg; --spark-dist:90px;"></div>
+        <div class="formula-spark" style="--spark-angle:270deg; --spark-dist:66px;"></div>
+        <div class="formula-spark" style="--spark-angle:315deg; --spark-dist:86px;"></div>
+      </div>
+
+      <!-- Synthesized POLISH Logo Relief Pod (Reveals at shockwave center) -->
+      <div class="formula-logo-pod" id="formulaLogoPod">
+        <div class="formula-logo-inner">
+          <img src="/assets/logo-gold.svg?v=22.0" alt="POLISH Media Co." class="formula-logo-img" width="220" height="66" fetchpriority="high">
+          <div class="formula-gleam-sheen" id="formulaGleam"></div>
+        </div>
+        <div class="formula-caption" id="formulaCaption">
+          <span class="formula-caption-text" data-i18n="intro.tagline">HAUTE CROISSANCE &amp; ACCÉLÉRATEUR COSMÉTIQUE</span>
+        </div>
       </div>
     </div>
 
-    <!-- Logo — fades in from the ink, then FLIPs to island -->
-    <div class="intro-stage lab-logo-stage" id="introStage">
-      <div class="intro-logo-pod lab-logo-pod" id="introLogoPod">
-        <img src="/assets/logo-gold.svg?v=22.0" alt="POLISH Logo" class="intro-logo-img" width="220" height="66" fetchpriority="high">
-      </div>
-      <div class="intro-caption" id="introCaption">
-        <span class="intro-caption-text">CREATIVE &amp; MARKETING FOR BEAUTY BRANDS</span>
-      </div>
+    <!-- Micro Skip Cue Indicator -->
+    <div class="intro-skip-hint" id="introSkipHint" aria-hidden="true">
+      <span>Click / Tap to Skip</span>
     </div>
   </div>
 

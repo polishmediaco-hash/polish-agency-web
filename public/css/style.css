@@ -3253,21 +3253,23 @@ html.lenis, html.lenis body {
    LUXURY OPENING SCREEN (SHARED-ELEMENT FLIP TRANSITION)
    ========================================================================== */
 
+/* ==========================================================================
+   THE LABORATORY DROP — Opening Cinematic
+   ========================================================================== */
+
 html.intro-skipped .luxury-intro-overlay {
   display: none !important;
 }
 
+/* Base overlay — always full screen, always on top */
 .luxury-intro-overlay {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto;
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
+  pointer-events: auto;
 }
 
 @media (max-width: 768px) {
@@ -3276,59 +3278,134 @@ html.intro-skipped .luxury-intro-overlay {
   }
 }
 
-.intro-backdrop {
+/* White lab canvas — the pristine starting surface */
+.lab-canvas {
   position: absolute;
   inset: 0;
-  background-color: var(--bg-deep);
-  opacity: 1;
-  transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity;
+  background: #F8F6F3;
+  z-index: 1;
 }
 
-.intro-glow-core {
+/* Obsidian ink flood — clips outward from center using clip-path circle */
+.lab-ink-flood {
   position: absolute;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(226, 199, 153, 0.18) 0%, rgba(197, 168, 128, 0.08) 42%, transparent 70%);
-  filter: blur(45px);
-  pointer-events: none;
-  opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.75s ease, transform 0.75s ease;
-}
-
-.luxury-intro-overlay.is-active .intro-glow-core {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.intro-stage {
-  position: relative;
+  inset: 0;
+  background: radial-gradient(ellipse at center, #0F0C0A 0%, #080706 60%);
   z-index: 2;
+  clip-path: circle(0% at 50% 52%);
+  will-change: clip-path;
+}
+
+/* Drop stage — centered, z above flood */
+.lab-drop-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 200px;
+  pointer-events: none;
+}
+
+/* SVG droplet — sits at top of stage, animated downward */
+.lab-droplet-svg {
+  width: 60px;
+  height: 80px;
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  will-change: transform, opacity;
+  filter: drop-shadow(0 8px 20px rgba(226, 199, 153, 0.6));
+}
+
+/* Impact ripple rings — concentric gold circles expanding from center */
+.lab-ripple-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(226, 199, 153, 0.9);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Splash micro-droplets */
+.lab-splash-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.lab-splash {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%) rotate(var(--a)) translateY(0px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Logo stage — sits centered inside the ink, starts invisible */
+.lab-logo-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 22px;
+  pointer-events: none;
 }
 
-.intro-logo-pod {
+.lab-logo-pod {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transform-origin: center center;
   will-change: transform, opacity;
   opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.luxury-intro-overlay.is-active .intro-logo-pod {
-  opacity: 1;
-  transform: scale(1);
+/* Ambient glow — emerges behind logo inside dark ink */
+.lab-logo-pod::before {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(226, 199, 153, 0.16) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* Intro caption — same as before */
+.intro-logo-pod {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  will-change: transform, opacity;
 }
 
 .intro-logo-img {
@@ -3347,13 +3424,7 @@ html.intro-skipped .luxury-intro-overlay {
 .intro-caption {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
-}
-
-.luxury-intro-overlay.is-active .intro-caption {
-  opacity: 1;
-  transform: translateY(0);
+  will-change: opacity, transform;
 }
 
 .intro-caption-text {
@@ -3373,25 +3444,14 @@ html.intro-skipped .luxury-intro-overlay {
 
 /* Dynamic island dock pulse when flight lands */
 @keyframes islandDockPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(226, 199, 153, 0);
-  }
-  45% {
-    box-shadow: 0 0 28px 2px rgba(226, 199, 153, 0.45);
-    border-color: rgba(226, 199, 153, 0.6);
-  }
-  100% {
-    box-shadow: none;
-    border-color: transparent;
-  }
+  0% { box-shadow: 0 0 0 0 rgba(226, 199, 153, 0); }
+  45% { box-shadow: 0 0 28px 2px rgba(226, 199, 153, 0.45); border-color: rgba(226, 199, 153, 0.6); }
+  100% { box-shadow: none; border-color: transparent; }
 }
 
 .island-dock-settled {
   animation: islandDockPulse 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-
-/* ==========================================================================
-   INTERACTIVE SPOTLIGHT & TOUCH ACCESSIBILITY OPTIMIZATIONS
    ========================================================================== */
 @media (pointer: coarse), (prefers-reduced-motion: reduce) {
   .pro-card::before,

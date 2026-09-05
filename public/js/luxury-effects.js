@@ -389,7 +389,9 @@
   }
 
   // =========================================================================
-  // 10. LUXURY OPENING SCREEN (SHARED-ELEMENT FLIP TRANSITION)
+  // 10. THE LABORATORY DROP — Opening Cinematic
+  //     Anime.js timeline: white lab → gold droplet falls → impact ripple →
+  //     ink flood → logo emerges → FLIP to Dynamic Island
   // =========================================================================
   function initLuxuryOpeningAnimation() {
     const introOverlay = document.getElementById('luxuryIntro');
@@ -406,37 +408,49 @@
       return;
     }
 
-    const introLogoPod = document.getElementById('introLogoPod');
-    const introCaption = document.getElementById('introCaption');
-    const introGlow = introOverlay.querySelector('.intro-glow-core');
-    const introBackdrop = introOverlay.querySelector('.intro-backdrop');
-    const targetLogoImg = document.querySelector('.top-bar-logo') || document.querySelector('.island-logo-zone .brand-logo-img') || document.querySelector('.brand-logo-img');
-    const islandShell = document.getElementById('dynamicIslandShell');
-
-    // Temporarily hide the destination header logo so there's no visual clone
-    if (targetLogoImg) {
-      targetLogoImg.style.opacity = '0';
-      targetLogoImg.style.transition = 'opacity 0.2s ease';
+    // Reduced motion — skip entire animation
+    if (prefersReducedMotion) {
+      sessionStorage.setItem('polish_intro_seen', 'true');
+      introOverlay.remove();
+      const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+      if (heroTitle) heroTitle.classList.add('is-revealed');
+      return;
     }
 
-    // Trigger stage entrance
-    requestAnimationFrame(() => {
-      introOverlay.classList.add('is-active');
-    });
+    // Elements
+    const labCanvas     = document.getElementById('labCanvas');
+    const labInkFlood   = document.getElementById('labInkFlood');
+    const dropletSvg    = document.getElementById('labDropletSvg');
+    const dropPath      = document.getElementById('dropPath');
+    const dropHighlight = dropletSvg ? dropletSvg.querySelector('ellipse') : null;
+    const ripple1       = document.getElementById('labRipple1');
+    const ripple2       = document.getElementById('labRipple2');
+    const ripple3       = document.getElementById('labRipple3');
+    const splashEls     = document.querySelectorAll('.lab-splash');
+    const introLogoPod  = document.getElementById('introLogoPod');
+    const introCaption  = document.getElementById('introCaption');
+    const islandShell   = document.getElementById('dynamicIslandShell');
+    const targetLogoImg = document.querySelector('.island-logo-zone .brand-logo-img') || document.querySelector('.brand-logo-img');
 
-    let isFinished = false;
+    if (targetLogoImg) {
+      targetLogoImg.style.opacity = '0';
+    }
 
-    function finishIntro(instant = false) {
-      if (isFinished) return;
-      isFinished = true;
-      // Always snap back to top so a mid-swipe touch doesn't leave the page scrolled
-      window.scrollTo(0, 0);
-      if (introOverlay) {
-        introOverlay.style.pointerEvents = 'none';
-      }
+    // Anime.js is loaded from CDN; fall back to instant if not available
+    if (typeof anime === 'undefined') {
       sessionStorage.setItem('polish_intro_seen', 'true');
+      if (targetLogoImg) targetLogoImg.style.opacity = '1';
+      introOverlay.remove();
+      const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+      if (heroTitle) heroTitle.classList.add('is-revealed');
+      return;
+    }
 
-      if (instant || !targetLogoImg || !introLogoPod) {
+    let timelineComplete = false;
+
+    // ─── FLIP EXIT (shared with old code, called after logo appear) ───────────
+    function doFlipExit() {
+      if (!targetLogoImg || !introLogoPod) {
         if (targetLogoImg) targetLogoImg.style.opacity = '1';
         introOverlay.remove();
         const heroTitle = document.querySelector('.hero-h1.kinetic-title');
@@ -444,82 +458,203 @@
         return;
       }
 
-      // 1. Softly dissolve subtitle & ambient glow
-      if (introCaption) {
-        introCaption.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-        introCaption.style.opacity = '0';
-        introCaption.style.transform = 'translateY(-10px)';
-      }
-      if (introGlow) {
-        introGlow.style.transition = 'opacity 0.5s ease';
-        introGlow.style.opacity = '0';
-      }
+      // Fade caption
+      anime({ targets: introCaption, opacity: 0, translateY: -10, duration: 280, easing: 'easeInQuad' });
 
-      // 2. Measure coordinates for shared-element FLIP transition
       const firstRect = introLogoPod.getBoundingClientRect();
-      const lastRect = targetLogoImg.getBoundingClientRect();
+      const lastRect  = targetLogoImg.getBoundingClientRect();
+      const deltaX    = (lastRect.left + lastRect.width / 2) - (firstRect.left + firstRect.width / 2);
+      const deltaY    = (lastRect.top + lastRect.height / 2) - (firstRect.top + firstRect.height / 2);
+      const scale     = lastRect.width / firstRect.width;
 
-      const deltaX = (lastRect.left + lastRect.width / 2) - (firstRect.left + firstRect.width / 2);
-      const deltaY = (lastRect.top + lastRect.height / 2) - (firstRect.top + firstRect.height / 2);
-      const scale = (lastRect.width / firstRect.width);
+      // Fade the ink flood canvas out as logo flies away
+      anime({ targets: labInkFlood, opacity: 0, duration: 640, easing: 'easeOutQuad', delay: 80 });
+      anime({ targets: labCanvas,   opacity: 0, duration: 640, easing: 'easeOutQuad', delay: 80 });
 
-      // 3. Dissolve backdrop in parallel
-      if (introBackdrop) {
-        introBackdrop.style.transition = 'opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1)';
-        introBackdrop.style.opacity = '0';
-      }
+      // FLIP the logo to the island
+      anime({
+        targets: introLogoPod,
+        translateX: deltaX,
+        translateY: deltaY,
+        scale: scale,
+        duration: 780,
+        easing: 'cubicBezier(0.16, 1, 0.3, 1)',
+        complete: () => {
+          if (targetLogoImg) targetLogoImg.style.opacity = '1';
+          if (islandShell) {
+            islandShell.classList.add('island-dock-settled');
+            setTimeout(() => islandShell.classList.remove('island-dock-settled'), 1000);
+          }
+          introOverlay.remove();
+        }
+      });
 
-      // 4. FLIP flight of the logo into the Dynamic Island dock
-      introLogoPod.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-      introLogoPod.style.transform = `translate3d(${deltaX.toFixed(2)}px, ${deltaY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
-
-      // Reveal hero text 200ms into flight as the curtain clears
+      // Hero text reveal 200ms into flight
       setTimeout(() => {
         const heroTitle = document.querySelector('.hero-h1.kinetic-title');
         if (heroTitle) heroTitle.classList.add('is-revealed');
       }, 200);
-
-      // 5. Landing settle & Dynamic Island pulse
-      setTimeout(() => {
-        if (targetLogoImg) targetLogoImg.style.opacity = '1';
-        if (islandShell) {
-          islandShell.classList.add('island-dock-settled');
-          setTimeout(() => islandShell.classList.remove('island-dock-settled'), 1000);
-        }
-        introOverlay.remove();
-      }, 820);
     }
 
-    // Fast, crisp branding appreciation before flight (600ms)
-    const timer = setTimeout(() => {
-      finishIntro(false);
-    }, 600);
+    // ─── SKIP — user tapped / scrolled ─────────────────────────────────────
+    function skipIntro() {
+      if (timelineComplete) return;
+      timelineComplete = true;
+      sessionStorage.setItem('polish_intro_seen', 'true');
+      introOverlay.style.pointerEvents = 'none';
+      if (targetLogoImg) targetLogoImg.style.opacity = '1';
+      window.scrollTo(0, 0);
+      anime.remove([dropletSvg, dropPath, dropHighlight, labInkFlood, labCanvas,
+                    ripple1, ripple2, ripple3, introLogoPod, introCaption, ...Array.from(splashEls)]);
+      introOverlay.remove();
+      const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+      if (heroTitle) heroTitle.classList.add('is-revealed');
+    }
 
-    // Fast-track user bypass (click, tap, scroll, touch, or keypress)
-    introOverlay.addEventListener('pointerdown', () => {
-      clearTimeout(timer);
-      finishIntro(false);
-    }, { once: true });
+    // ─── MASTER TIMELINE ────────────────────────────────────────────────────
+    const tl = anime.timeline({
+      autoplay: true,
+      complete: () => {
+        if (timelineComplete) return;
+        timelineComplete = true;
+        sessionStorage.setItem('polish_intro_seen', 'true');
+        window.scrollTo(0, 0);
+        introOverlay.style.pointerEvents = 'none';
+        doFlipExit();
+      }
+    });
 
-    window.addEventListener('wheel', () => {
-      clearTimeout(timer);
-      finishIntro(true);
-    }, { once: true, passive: true });
+    // ─ Phase 1: Droplet appears at top, sharp and focused (0–80ms) ──────────
+    tl.add({
+      targets: [dropPath, dropHighlight],
+      opacity: [0, 1],
+      duration: 80,
+      easing: 'linear',
+      delay: anime.stagger(30)
+    }, 0);
 
-    window.addEventListener('touchstart', () => {
-      clearTimeout(timer);
-      finishIntro(true);
-    }, { once: true, passive: true });
+    // ─ Phase 2: Droplet falls — accelerates with a natural squash/stretch ───
+    // The SVG itself translates downward, while the path internally squishes on impact
+    tl.add({
+      targets: dropletSvg,
+      translateY: ['0px', '155px'],   // falls from -120px top into center-screen
+      duration: 620,
+      easing: 'cubicBezier(0.2, 0, 1, 1)',  // ease-in gravity
+    }, 80);
 
-    window.addEventListener('touchmove', () => {
-      clearTimeout(timer);
-      finishIntro(true);
-    }, { once: true, passive: true });
+    // Subtle vertical stretch during fall (aerodynamics)
+    tl.add({
+      targets: dropletSvg,
+      scaleY: [1, 1.14],
+      scaleX: [1, 0.88],
+      duration: 600,
+      easing: 'easeInQuad',
+    }, 80);
 
-    window.addEventListener('keydown', () => {
-      clearTimeout(timer);
-      finishIntro(true);
-    }, { once: true });
+    // ─ Phase 3: IMPACT — squash on landing ─────────────────────────────────
+    tl.add({
+      targets: dropletSvg,
+      scaleY: [1.14, 0.45],
+      scaleX: [0.88, 1.55],
+      opacity: [1, 0],
+      duration: 120,
+      easing: 'easeOutQuad',
+    }, 700);
+
+    // ─ Phase 4: Ripple rings expand from impact point ───────────────────────
+    tl.add({
+      targets: ripple1,
+      opacity: [0.95, 0],
+      scale: [0, 5],
+      duration: 560,
+      easing: 'easeOutExpo',
+    }, 700);
+
+    tl.add({
+      targets: ripple2,
+      opacity: [0.7, 0],
+      scale: [0, 9],
+      duration: 640,
+      easing: 'easeOutExpo',
+    }, 760);
+
+    tl.add({
+      targets: ripple3,
+      opacity: [0.4, 0],
+      scale: [0, 14],
+      duration: 720,
+      easing: 'easeOutExpo',
+    }, 830);
+
+    // ─ Phase 5: Splash micro-droplets burst outward ──────────────────────────
+    tl.add({
+      targets: Array.from(splashEls),
+      opacity: [
+        { value: [0, 1], duration: 60, easing: 'linear' },
+        { value: [1, 0], duration: 320, easing: 'easeOutQuad', delay: 80 }
+      ],
+      translateY: (el, i) => {
+        const baseOffset = -30 - (i % 3) * 12;
+        return [0, `${baseOffset}px`];
+      },
+      translateX: (el, i) => {
+        const angle = (360 / splashEls.length) * i * (Math.PI / 180);
+        return [0, `${Math.sin(angle) * 28}px`];
+      },
+      scale: [0.4, 1.2],
+      duration: 440,
+      delay: anime.stagger(30, { from: 'center' }),
+      easing: 'easeOutQuart',
+    }, 710);
+
+    // ─ Phase 6: Ink flood expands outward from impact point ─────────────────
+    // clip-path circle expands from 0% to 150% (covers entire screen)
+    tl.add({
+      targets: labInkFlood,
+      clipPath: ['circle(0% at 50% 52%)', 'circle(150% at 50% 52%)'],
+      duration: 860,
+      easing: 'cubicBezier(0.4, 0, 0.2, 1)',
+    }, 760);
+
+    // White canvas fades out slightly ahead of ink to avoid hard edge
+    tl.add({
+      targets: labCanvas,
+      opacity: [1, 0],
+      duration: 280,
+      easing: 'easeInQuad',
+    }, 1050);
+
+    // ─ Phase 7: Logo emerges from the obsidian ──────────────────────────────
+    tl.add({
+      targets: introLogoPod,
+      opacity: [0, 1],
+      translateY: ['14px', '0px'],
+      duration: 480,
+      easing: 'cubicBezier(0.16, 1, 0.3, 1)',
+    }, 1180);
+
+    // Caption fades in behind logo
+    tl.add({
+      targets: introCaption,
+      opacity: [0, 1],
+      translateY: ['10px', '0px'],
+      duration: 380,
+      easing: 'easeOutQuad',
+    }, 1380);
+
+    // Hold for brand appreciation — then FLIP runs via timeline complete callback
+    // Total hold: ~400ms of logo + 200ms appreciation = FLIP fires at ~1980ms total
+    tl.add({
+      targets: {},  // no-op hold
+      duration: 400,
+    }, 1580);
+
+    // ─── Skip listeners ─────────────────────────────────────────────────────
+    introOverlay.addEventListener('pointerdown', skipIntro, { once: true });
+    window.addEventListener('wheel',      skipIntro, { once: true, passive: true });
+    window.addEventListener('touchstart', skipIntro, { once: true, passive: true });
+    window.addEventListener('touchmove',  skipIntro, { once: true, passive: true });
+    window.addEventListener('keydown',    skipIntro, { once: true });
   }
 
   if (document.readyState === 'loading') {

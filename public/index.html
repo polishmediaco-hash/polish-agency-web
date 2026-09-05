@@ -91,12 +91,60 @@
     </div>
   </div>
 
-  <!-- Opening Cinematic Screen (Shared-Element FLIP Transition) -->
-  <div class="luxury-intro-overlay" id="luxuryIntro" aria-hidden="true">
-    <div class="intro-backdrop"></div>
-    <div class="intro-glow-core"></div>
-    <div class="intro-stage" id="introStage">
-      <div class="intro-logo-pod" id="introLogoPod">
+  <!-- The Laboratory Drop — Opening Cinematic -->
+  <div class="luxury-intro-overlay lab-drop-intro" id="luxuryIntro" aria-hidden="true">
+    <!-- White lab canvas — starts pure white, floods to obsidian -->
+    <div class="lab-canvas" id="labCanvas"></div>
+
+    <!-- Obsidian ink flood layer — clips outward from impact point -->
+    <div class="lab-ink-flood" id="labInkFlood"></div>
+
+    <!-- SVG Droplet + Ripple stage — centered, above everything -->
+    <div class="lab-drop-stage" id="labDropStage">
+      <!-- The falling droplet -->
+      <svg class="lab-droplet-svg" id="labDropletSvg" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="dropGrad" x1="30%" y1="0%" x2="70%" y2="100%">
+            <stop offset="0%" stop-color="#F5E6D3"/>
+            <stop offset="45%" stop-color="#E2C799"/>
+            <stop offset="100%" stop-color="#C5A880"/>
+          </linearGradient>
+          <filter id="dropGlow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+        </defs>
+        <!-- Droplet body — teardrop shape -->
+        <path id="dropPath"
+          d="M30 4 C30 4 8 34 8 50 C8 63 18 73 30 73 C42 73 52 63 52 50 C52 34 30 4 30 4 Z"
+          fill="url(#dropGrad)"
+          filter="url(#dropGlow)"
+          opacity="0"/>
+        <!-- Specular highlight -->
+        <ellipse cx="22" cy="38" rx="5" ry="9" fill="rgba(255,255,255,0.35)" transform="rotate(-15 22 38)" opacity="0"/>
+      </svg>
+
+      <!-- Ripple rings from impact -->
+      <div class="lab-ripple-ring" id="labRipple1"></div>
+      <div class="lab-ripple-ring" id="labRipple2"></div>
+      <div class="lab-ripple-ring" id="labRipple3"></div>
+
+      <!-- Splash micro-droplets -->
+      <div class="lab-splash-wrap" id="labSplashWrap">
+        <div class="lab-splash" style="--a:0deg"></div>
+        <div class="lab-splash" style="--a:45deg"></div>
+        <div class="lab-splash" style="--a:90deg"></div>
+        <div class="lab-splash" style="--a:135deg"></div>
+        <div class="lab-splash" style="--a:180deg"></div>
+        <div class="lab-splash" style="--a:225deg"></div>
+        <div class="lab-splash" style="--a:270deg"></div>
+        <div class="lab-splash" style="--a:315deg"></div>
+      </div>
+    </div>
+
+    <!-- Logo — fades in from the ink, then FLIPs to island -->
+    <div class="intro-stage lab-logo-stage" id="introStage">
+      <div class="intro-logo-pod lab-logo-pod" id="introLogoPod">
         <img src="/assets/logo-gold.svg?v=22.0" alt="POLISH Logo" class="intro-logo-img" width="220" height="66" fetchpriority="high">
       </div>
       <div class="intro-caption" id="introCaption">
@@ -324,9 +372,11 @@
   </div>
 
   <!-- Scripts -->
+  <!-- Anime.js — for Laboratory Drop intro animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34wkoMtdSJ/rYdNMB1D7R3l0Q==" crossorigin="anonymous"></script>
   <script src="/js/i18n.js?v=1.0"></script>
   <script src="/js/cms.js?v=1.0" defer></script>
-  <script src="/js/luxury-effects.js?v=23.0" defer></script>
+  <script src="/js/luxury-effects.js?v=24.0" defer></script>
   <script src="/js/whatsapp.js?v=7.2" defer></script>
 </body>
 </html>

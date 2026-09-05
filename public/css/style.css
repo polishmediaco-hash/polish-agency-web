@@ -219,8 +219,67 @@ main,
   inset: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at 50% 12%, rgba(16, 24, 38, 0.65) 0%, rgba(6, 8, 12, 0.88) 55%, #030406 100%);
+  background: radial-gradient(ellipse at 50% 15%, rgba(28, 22, 17, 0.52) 0%, rgba(10, 9, 8, 0.84) 52%, #080706 100%);
   pointer-events: none;
+}
+
+/* Direction 1: The Liquid Atelier — Ambient Golden Fluid Caustics */
+.liquid-caustics-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.caustic-wave {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.caustic-wave.wave-1 {
+  top: 18%;
+  left: 8%;
+  width: clamp(480px, 52vw, 820px);
+  height: clamp(340px, 38vw, 580px);
+  background: radial-gradient(ellipse at center, rgba(226, 199, 153, 0.13) 0%, rgba(197, 168, 128, 0.05) 45%, transparent 72%);
+  animation: liquidCausticFlow1 24s ease-in-out infinite alternate;
+}
+
+.caustic-wave.wave-2 {
+  top: 54%;
+  right: 5%;
+  width: clamp(440px, 48vw, 760px);
+  height: clamp(320px, 34vw, 540px);
+  background: radial-gradient(ellipse at center, rgba(245, 230, 211, 0.11) 0%, rgba(226, 199, 153, 0.04) 48%, transparent 70%);
+  animation: liquidCausticFlow2 28s ease-in-out infinite alternate;
+}
+
+.caustic-wave.wave-3 {
+  top: 78%;
+  left: 18%;
+  width: clamp(380px, 42vw, 680px);
+  height: clamp(280px, 30vw, 480px);
+  background: radial-gradient(ellipse at center, rgba(226, 199, 153, 0.09) 0%, rgba(184, 151, 104, 0.03) 50%, transparent 70%);
+  animation: liquidCausticFlow1 20s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes liquidCausticFlow1 {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); opacity: 0.75; }
+  50% { transform: translate3d(55px, 35px, 0) scale(1.1) rotate(6deg); opacity: 1; }
+  100% { transform: translate3d(-35px, 60px, 0) scale(0.96) rotate(-5deg); opacity: 0.8; }
+}
+
+@keyframes liquidCausticFlow2 {
+  0% { transform: translate3d(0, 0, 0) scale(0.96) rotate(0deg); opacity: 0.8; }
+  50% { transform: translate3d(-45px, -35px, 0) scale(1.08) rotate(-8deg); opacity: 1; }
+  100% { transform: translate3d(40px, 25px, 0) scale(1.02) rotate(6deg); opacity: 0.75; }
 }
 
 .beauty-depth-layer {
@@ -231,6 +290,8 @@ main,
   pointer-events: none;
   overflow: hidden;
   will-change: transform;
+  transform: translate3d(0, var(--fluid-drag-layer, 0px), 0) rotate(var(--fluid-tilt-layer, 0deg));
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -1122,7 +1183,7 @@ a {
   box-shadow: 0 16px 48px rgba(226, 199, 153, 0.7), 0 0 36px rgba(226, 199, 153, 0.45), inset 0 2px 2px rgba(255, 255, 255, 0.95);
 }
 
-[dir="rtl"] .sticky-glowing-btn svg {
+[dir="rtl"] .sticky-glowing-btn:not(.btn-meniscus-capsule) svg {
   transform: scaleX(-1);
 }
 
@@ -1404,6 +1465,14 @@ body.is-rtl .marquee-item .marquee-text {
   letter-spacing: -0.01em;
   line-height: 1.15;
   display: inline-block;
+  background: linear-gradient(135deg, #FFF6E5 0%, #E2C799 22%, #C5A880 48%, #F5E6D3 74%, #E2C799 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: emulsionGoldFlow 12s ease-in-out infinite alternate;
+  filter: drop-shadow(0 2px 14px rgba(226, 199, 153, 0.28));
 }
 
 [dir="rtl"] .hero-h1 .gradient-accent,
@@ -1413,6 +1482,11 @@ body.is-rtl .marquee-item .marquee-text {
   font-style: normal;
   font-size: 1em;
   letter-spacing: 0;
+  background: linear-gradient(225deg, #FFF6E5 0%, #E2C799 22%, #C5A880 48%, #F5E6D3 74%, #E2C799 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-desc {
@@ -1479,6 +1553,15 @@ body.is-rtl .marquee-item .marquee-text {
   letter-spacing: -0.01em;
 }
 
+[dir="rtl"] .section-h2 .section-serif-accent,
+[dir="rtl"] .section-h2 .gradient-accent {
+  font-family: var(--font-arabic) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 1em !important;
+  letter-spacing: 0 !important;
+}
+
 .section-p {
   font-size: 16px;
   color: var(--text-muted);
@@ -1505,8 +1588,8 @@ body.is-rtl .marquee-item .marquee-text {
 
 /* Authentic Frosted Crystalline Glass Card with Staggered Scroll Reveal */
 .pro-card {
-  --spotlight-color: rgba(226, 199, 153, 0.12);
-  --spotlight-border: rgba(226, 199, 153, 0.4);
+  --spotlight-color: rgba(226, 199, 153, 0.14);
+  --spotlight-border: rgba(226, 199, 153, 0.55);
   background: linear-gradient(135deg, rgba(20, 17, 14, 0.88) 0%, rgba(12, 10, 8, 0.94) 100%);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -1518,14 +1601,15 @@ body.is-rtl .marquee-item .marquee-text {
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), inset 0 1px 1.5px rgba(255, 255, 255, 0.18);
   will-change: transform, opacity;
   opacity: 0;
-  transform: translate3d(0, 26px, 0);
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translate3d(0, 26px, 0);
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.32s ease,
               background 0.32s ease;
 }
 
+/* Internal Liquid Serum Droplet Pool */
 .pro-card::before {
   content: '';
   position: absolute;
@@ -1534,12 +1618,35 @@ body.is-rtl .marquee-item .marquee-text {
   background: radial-gradient(
     480px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
     var(--spotlight-color),
-    transparent 75%
+    transparent 72%
   );
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
   z-index: 1;
+}
+
+/* Liquid Specular Bevel Border Gleam (Awwwards-Grade Edge Caustic) */
+.pro-card::after {
+  content: '';
+  position: absolute;
+  inset: 0px;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: radial-gradient(
+    280px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(226, 199, 153, 0.75) 28%,
+    rgba(197, 168, 128, 0.3) 58%,
+    transparent 78%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
 }
 
 .pro-card > * {
@@ -1549,17 +1656,18 @@ body.is-rtl .marquee-item .marquee-text {
 
 .pro-card.is-revealed {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translate3d(0, 0, 0);
 }
 
 .pro-card.is-revealed:hover {
-  transform: translate3d(0, -6px, 0);
-  background: linear-gradient(135deg, rgba(26, 21, 17, 0.94) 0%, rgba(16, 13, 10, 0.98) 100%);
-  border-color: rgba(226, 199, 153, 0.42);
-  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.72), 0 0 32px rgba(226, 199, 153, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.28);
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translate3d(0, -6px, 0);
+  background: linear-gradient(135deg, rgba(28, 22, 17, 0.94) 0%, rgba(16, 13, 10, 0.98) 100%);
+  border-color: rgba(226, 199, 153, 0.45);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.75), 0 0 32px rgba(226, 199, 153, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.32);
 }
 
-.pro-card:hover::before {
+.pro-card:hover::before,
+.pro-card:hover::after {
   opacity: 1;
 }
 
@@ -2520,6 +2628,19 @@ body.is-rtl .wa-micro-label.is-visible {
 .couture-h1 {
   margin-bottom: 6px;
   max-width: 960px;
+  will-change: transform;
+  transform: skewX(var(--emulsion-skew, 0deg));
+  transition: transform 0.12s ease-out;
+}
+
+@keyframes emulsionPlatinumFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes emulsionGoldFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .couture-line-sans {
@@ -2528,8 +2649,14 @@ body.is-rtl .wa-micro-label.is-visible {
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  color: #FFFFFF;
   text-transform: uppercase;
+  background: linear-gradient(135deg, #FFFFFF 0%, #ECE7E0 22%, #FFFDF9 46%, #D6CFBE 72%, #FFFFFF 100%);
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: emulsionPlatinumFlow 14s ease-in-out infinite alternate;
 }
 
 .couture-line-serif {
@@ -2542,21 +2669,46 @@ body.is-rtl .wa-micro-label.is-visible {
   color: var(--brand-gold);
   margin-top: 6px;
   letter-spacing: 0.01em;
-  text-shadow: 0 4px 28px rgba(226, 199, 153, 0.38);
+  background: linear-gradient(135deg, #FFF6E5 0%, #E2C799 22%, #C5A880 48%, #F5E6D3 74%, #E2C799 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: emulsionGoldFlow 12s ease-in-out infinite alternate;
+  filter: drop-shadow(0 2px 14px rgba(226, 199, 153, 0.28));
 }
 
 [dir="rtl"] .couture-line-sans {
-  font-size: clamp(24px, 5.2vw, 48px);
+  font-family: var(--font-arabic) !important;
+  font-size: clamp(22px, 5.2vw, 48px);
   letter-spacing: 0;
-  line-height: 1.25;
+  line-height: 1.3;
+  padding-right: 4px;
+  padding-left: 4px;
+  box-sizing: border-box;
+  background: linear-gradient(225deg, #FFFFFF 0%, #ECE7E0 22%, #FFFDF9 46%, #D6CFBE 72%, #FFFFFF 100%);
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 [dir="rtl"] .couture-line-serif {
-  font-size: clamp(26px, 6vw, 52px);
-  font-style: normal;
+  font-family: var(--font-arabic) !important;
+  font-size: clamp(24px, 5.8vw, 52px);
+  font-style: normal !important;
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.35;
+  padding-right: 4px;
+  padding-left: 4px;
+  box-sizing: border-box;
+  background: linear-gradient(225deg, #FFF6E5 0%, #E2C799 22%, #C5A880 48%, #F5E6D3 74%, #E2C799 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-bottle-stage {
@@ -2623,35 +2775,47 @@ body.is-rtl .wa-micro-label.is-visible {
   z-index: 10;
 }
 
-.btn-jewel-couture {
+/* ==========================================================================
+   CREATIVE LUXURY CTA: THE VISCOUS MENISCUS DROPLET & LABORATORY CAPSULE
+   ========================================================================== */
+.btn-meniscus-capsule {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 8px 5px 28px;
-  width: 100%;
-  height: 56px;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F8EADA 14%, #E2C799 44%, #C5A880 72%, #E9D2AE 100%);
-  color: #080705;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.035em;
-  text-decoration: none;
-  border: 1.4px solid rgba(255, 255, 255, 0.75);
+  background: linear-gradient(135deg, rgba(28, 22, 17, 0.94) 0%, rgba(14, 11, 8, 0.98) 100%);
+  border: 1.4px solid rgba(226, 199, 153, 0.55);
   box-shadow: 
-    0 14px 38px rgba(226, 199, 153, 0.42),
-    0 4px 12px rgba(0, 0, 0, 0.45),
-    inset 0 2px 2.5px rgba(255, 255, 255, 0.95),
-    inset 0 -2px 4px rgba(184, 151, 104, 0.45);
+    0 18px 46px rgba(0, 0, 0, 0.8),
+    0 0 32px rgba(226, 199, 153, 0.16),
+    inset 0 2px 2.5px rgba(255, 255, 255, 0.75),
+    inset 0 -2px 4px rgba(184, 151, 104, 0.35);
   overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  will-change: transform, box-shadow;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
   z-index: 1;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Ambient Pulsing Aura Behind Jewel CTA */
-.btn-jewel-couture::after {
+.btn-jewel-couture.btn-meniscus-capsule {
+  padding: 6px 8px 6px 22px;
+  width: 100%;
+  height: 58px;
+}
+
+.sticky-glowing-btn.btn-meniscus-capsule {
+  padding: 6px 8px 6px 20px;
+  height: 50px;
+}
+
+/* Ambient Pulsing Aura Behind Meniscus Capsule */
+.btn-meniscus-capsule::after {
   content: '';
   position: absolute;
   inset: -6px;
@@ -2668,87 +2832,153 @@ body.is-rtl .wa-micro-label.is-visible {
   100% { opacity: 1; transform: scale(1.04); }
 }
 
-/* Diagonal Specular Gleam Sweep (3.8s cadence) */
-.btn-jewel-couture::before {
-  content: '';
+/* Specular Edge Caustic (Ray-traced Perimeter Bevel) */
+.cta-specular-edge {
   position: absolute;
-  top: -60%;
-  left: -60%;
-  width: 45%;
-  height: 220%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.85) 50%,
-    transparent 100%
-  );
-  transform: rotate(26deg);
-  animation: jewelGleam 3.8s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(226, 199, 153, 0.65) 35%, rgba(197, 168, 128, 0.12) 65%, rgba(255, 255, 255, 0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+/* Internal Viscous Meniscus Droplet (Tracks Cursor via --drop-x, --drop-y) */
+.cta-meniscus-drop {
+  position: absolute;
+  left: var(--drop-x, 50%);
+  top: var(--drop-y, 50%);
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255, 248, 235, 0.75) 0%, rgba(226, 199, 153, 0.52) 30%, rgba(197, 168, 128, 0.18) 55%, transparent 75%);
+  filter: blur(12px);
   pointer-events: none;
   z-index: 2;
+  opacity: 0.55;
+  transition: width 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease;
+  will-change: left, top, width, height, opacity;
 }
 
-@keyframes jewelGleam {
-  0%, 25% { transform: translateX(-160%) rotate(26deg); }
-  65%, 100% { transform: translateX(460%) rotate(26deg); }
+.btn-meniscus-capsule:hover .cta-meniscus-drop {
+  width: 240px;
+  height: 240px;
+  opacity: 0.95;
 }
 
-.btn-jewel-couture:hover {
+/* Pulsing Status Gem Indicator */
+.cta-pulse-gem {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+  box-shadow: 0 0 8px rgba(226, 199, 153, 0.85);
+  margin-right: 12px;
+  flex-shrink: 0;
+  z-index: 3;
+  animation: gemPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes gemPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 12px rgba(226, 199, 153, 1); }
+}
+
+.btn-meniscus-capsule:hover {
   transform: translateY(-2.5px) scale(1.015);
+  border-color: rgba(255, 255, 255, 0.85);
   box-shadow: 
-    0 18px 46px rgba(226, 199, 153, 0.55),
-    0 6px 16px rgba(0, 0, 0, 0.55),
-    inset 0 2px 2.5px #FFFFFF,
+    0 22px 54px rgba(0, 0, 0, 0.9),
+    0 0 42px rgba(226, 199, 153, 0.38),
+    inset 0 2px 3px #FFFFFF,
     inset 0 -2px 4px rgba(184, 151, 104, 0.55);
 }
 
-.btn-jewel-label {
+.btn-meniscus-capsule .btn-jewel-label {
   position: relative;
   z-index: 3;
   flex: 1;
-  text-align: center;
+  text-align: left;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
-/* Luxury Circular Jewel Disc for Arrow */
-.btn-jewel-coin {
+.btn-meniscus-capsule:hover .btn-jewel-label {
+  color: #FFFDF9;
+  text-shadow: 0 0 14px rgba(226, 199, 153, 0.65);
+}
+
+/* Biomorphic Precision Flacon Coin */
+.btn-meniscus-capsule .btn-jewel-coin {
   position: relative;
   z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: #090706;
-  border: 1.2px solid rgba(226, 199, 153, 0.8);
+  background: radial-gradient(circle at 35% 30%, #2A2118 0%, #0E0B08 100%);
+  border: 1.2px solid rgba(226, 199, 153, 0.75);
   color: var(--brand-gold);
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.4s ease,
+              background 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
-.btn-jewel-svg {
-  display: block;
-}
-
-.btn-jewel-couture:hover .btn-jewel-coin {
-  transform: translateX(3px) scale(1.08);
-  background: #000000;
+.btn-meniscus-capsule:hover .btn-jewel-coin {
+  transform: scale(1.08) translateX(2px);
+  border-radius: 46% 54% 50% 50% / 52% 48% 52% 48%;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F5E6D3 30%, #E2C799 70%, #C5A880 100%);
   border-color: #FFFFFF;
-  color: #FFFFFF;
-  box-shadow: 0 0 14px rgba(226, 199, 153, 0.6);
+  color: #080706;
+  box-shadow: 0 0 18px rgba(226, 199, 153, 0.75), 0 4px 14px rgba(0, 0, 0, 0.8);
 }
 
-[dir="rtl"] .btn-jewel-couture {
-  padding: 5px 28px 5px 8px;
+.btn-meniscus-capsule .btn-jewel-svg {
+  display: block;
+  transition: transform 0.25s ease;
 }
 
-[dir="rtl"] .btn-jewel-coin {
+.btn-meniscus-capsule:hover .btn-jewel-svg {
+  transform: translateX(2px);
+}
+
+/* RTL Symmetry Rules for Meniscus Capsule */
+[dir="rtl"] .btn-meniscus-capsule {
+  padding: 6px 22px 6px 8px;
+}
+[dir="rtl"] .btn-meniscus-capsule .btn-jewel-label {
+  text-align: right;
+}
+[dir="rtl"] .btn-meniscus-capsule .cta-pulse-gem {
+  margin-right: 0;
+  margin-left: 12px;
+}
+[dir="rtl"] .btn-meniscus-capsule .btn-jewel-coin {
   transform: scaleX(-1);
 }
-
-[dir="rtl"] .btn-jewel-couture:hover .btn-jewel-coin {
-  transform: scaleX(-1) translateX(3px) scale(1.08);
+[dir="rtl"] .btn-meniscus-capsule:hover .btn-jewel-coin {
+  transform: scaleX(-1) scale(1.08) translateX(2px);
 }
 
 /* ==========================================================================
@@ -2985,11 +3215,24 @@ body.is-rtl .wa-micro-label.is-visible {
   }
 
   .lang-btn {
+    position: relative;
     min-width: 27px;
     min-height: 27px;
     padding: 3px 5px;
     font-size: 10px;
     letter-spacing: 0.03em;
+  }
+
+  /* Accessible 44x44px Hit Target via Invisible Touch Pseudo-Element (WCAG 2.5.8 / Apple HIG) */
+  .lang-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
   }
 
   .lang-sep {
@@ -3044,6 +3287,19 @@ body.is-rtl .wa-micro-label.is-visible {
     top: 64%;
     left: 2%;
     width: clamp(54px, 15vw, 70px);
+  }
+
+  [dir="rtl"] .roam-perfume-primary {
+    top: 6%;
+    right: 1%;
+    opacity: 0.28;
+    pointer-events: none;
+  }
+  [dir="rtl"] .roam-serum-primary {
+    top: 32%;
+    left: 1%;
+    opacity: 0.28;
+    pointer-events: none;
   }
 
   /* Phone-Native Section Spacing with Full Header Clearance */
@@ -3548,6 +3804,44 @@ body.is-rtl .footer-links-group {
   .site-header.is-scrolled .brand-logo-img.island-capsule-logo {
     height: 25px !important;
   }
+
+  /* Arabic Phone Typography & Right-Edge Breathing Room */
+  [dir="rtl"] .hero-couture-section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  [dir="rtl"] .couture-h1 {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 4px;
+    box-sizing: border-box;
+  }
+  [dir="rtl"] .couture-line-sans {
+    font-size: clamp(20px, 5.2vw, 26px);
+    line-height: 1.3;
+    padding-right: 4px;
+    padding-left: 4px;
+  }
+  [dir="rtl"] .couture-line-serif {
+    font-size: clamp(21px, 5.6vw, 28px);
+    line-height: 1.35;
+    padding-right: 4px;
+    padding-left: 4px;
+  }
+  [dir="rtl"] .section-h2 {
+    font-size: clamp(19px, 5.2vw, 26px) !important;
+    line-height: 1.38 !important;
+    padding: 0 6px;
+    box-sizing: border-box;
+  }
+  [dir="rtl"] .section-head {
+    padding: 0 6px;
+    box-sizing: border-box;
+  }
+  [dir="rtl"] .section-p {
+    padding: 0 6px;
+    box-sizing: border-box;
+  }
 }
 
 /* Micro-screen optimization (Galaxy Fold / 320px - 359px devices) */
@@ -3598,6 +3892,16 @@ body.is-rtl .footer-links-group {
     font-size: 8.5px;
     padding: 2px 6px;
     max-width: 74%;
+  }
+
+  [dir="rtl"] .couture-line-sans {
+    font-size: clamp(18px, 5.4vw, 21px);
+  }
+  [dir="rtl"] .couture-line-serif {
+    font-size: clamp(19px, 5.8vw, 23px);
+  }
+  [dir="rtl"] .section-h2 {
+    font-size: clamp(17px, 5.5vw, 20px) !important;
   }
 }
 
@@ -3664,11 +3968,22 @@ html.lenis, html.lenis body {
 
 .kinetic-text {
   display: inline-block;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: normal;
+  overflow-wrap: break-word;
   position: relative;
   transform: none !important;
   opacity: 1 !important;
   transition: none !important;
   will-change: auto;
+}
+
+[dir="rtl"] .kinetic-text {
+  font-family: var(--font-arabic) !important;
+  font-style: normal !important;
+  letter-spacing: 0 !important;
+  padding-right: 4px;
 }
 
 .kinetic-title.is-revealed .kinetic-line:nth-child(1) .kinetic-text,
@@ -3678,21 +3993,36 @@ html.lenis, html.lenis body {
   opacity: 1 !important;
 }
 
-/* Razor-Sharp Static Specular Glow on Gradient Headlines */
+/* Razor-Sharp Specular Metallic Accents on Gradient Headlines */
 .gradient-accent,
 .gradient-text {
   background: var(--grad-brand);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 16px rgba(226, 199, 153, 0.32));
 }
 
 /* Accessibility: Comprehensive prefers-reduced-motion Coverage (WCAG 2.2 AAA) */
 @media (prefers-reduced-motion: reduce) {
+  /* Stop continuous decorative ambient animations */
   *, *::before, *::after {
-    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+  }
+  .ambient-glow-top,
+  .ambient-glow-cyan,
+  .liquid-caustics-layer,
+  .caustic-wave,
+  .ambient-particles-canvas,
+  .beauty-depth-layer,
+  .beauty-floating-item,
+  .beauty-bokeh-item,
+  .beauty-micro-item,
+  .liquid-glint,
+  .island-pulse-dot,
+  .btn-jewel-couture::after,
+  .whatsapp-radar-ring,
+  .whatsapp-radar-ring-2 {
+    animation: none !important;
+    transform: none !important;
   }
   .kinetic-text {
     transform: none !important;
@@ -3702,7 +4032,6 @@ html.lenis, html.lenis body {
   .pro-card {
     opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
   }
   .btn-cta::after,
   .hero-actions .btn-cta-lg::after,
@@ -3710,26 +4039,6 @@ html.lenis, html.lenis body {
     animation: none !important;
     opacity: 0.4 !important;
   }
-  .ambient-glow-top,
-  .ambient-particles-canvas,
-  .beauty-depth-layer,
-  .beauty-floating-item,
-  .beauty-bokeh-item,
-  .beauty-micro-item,
-  .liquid-glint,
-  .island-pulse-dot {
-    animation: none !important;
-    transform: none !important;
-  }
-}
-
-/* ==========================================================================
-   SCROLL VELOCITY-REACTIVE 3D PRODUCTS PHYSICS
-   ========================================================================== */
-
-.beauty-depth-layer {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
 }
 
 /* ==========================================================================
@@ -3760,14 +4069,16 @@ html.intro-skipped .luxury-intro-overlay {
 
 /* Concept 2: The Formula Synthesis — Velvet Noir Backdrop */
 .formula-intro {
-  background: #080706;
+  background: transparent;
 }
 
 .formula-backdrop {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(226, 199, 153, 0.08) 0%, rgba(18, 15, 12, 0.4) 40%, #080706 80%);
+  background-color: #080706;
+  background-image: radial-gradient(circle at 50% 50%, rgba(226, 199, 153, 0.08) 0%, rgba(18, 15, 12, 0.85) 40%, #080706 80%);
   pointer-events: none;
+  will-change: opacity;
 }
 
 .formula-stage {

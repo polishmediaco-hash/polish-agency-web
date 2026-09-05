@@ -154,8 +154,10 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Branch**: `main`
 * **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
-  * `chore(deploy): trigger Vercel deployment with verified contact@polishmediaco.com author`
-  * `feat(intro): The Laboratory Drop — Anime.js opening cinematic`
+  * `feat(design): Emulsion Mask & Liquid Refraction, Viscous Meniscus Capsule CTA, and FLIP Docking Alignment`
+  * `fix(rtl): resolve Arabic inverted sticky CTA arrow and mobile right-edge headline clipping`
+  * `feat(marquee): 4-cycle seamless infinite loop conveyor with trilingual localization`
+  * `feat(intro): The Laboratory Drop — Anime.js opening cinematic with sub-pixel FLIP docking`
   * `feat(design): execute full priority action list — grain texture, CTA shimmer, tablet hero fix`
 * **Assets**: All horizontal, vertical, and standalone vector marks committed and synced across backup repositories.
 

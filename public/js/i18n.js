@@ -526,11 +526,11 @@ class PolishI18n {
     containers.forEach(slot => {
       slot.innerHTML = `
         <div class="lang-toggle" role="group" aria-label="Language Selector">
-          <button type="button" class="lang-btn ${this.currentLang === 'en' ? 'active' : ''}" onclick="window.polishI18n.setLanguage('en')">EN</button>
+          <button type="button" class="lang-btn ${this.currentLang === 'en' ? 'active' : ''}" aria-pressed="${this.currentLang === 'en' ? 'true' : 'false'}" onclick="window.polishI18n.setLanguage('en')">EN</button>
           <span class="lang-sep">|</span>
-          <button type="button" class="lang-btn ${this.currentLang === 'fr' ? 'active' : ''}" onclick="window.polishI18n.setLanguage('fr')">FR</button>
+          <button type="button" class="lang-btn ${this.currentLang === 'fr' ? 'active' : ''}" aria-pressed="${this.currentLang === 'fr' ? 'true' : 'false'}" onclick="window.polishI18n.setLanguage('fr')">FR</button>
           <span class="lang-sep">|</span>
-          <button type="button" class="lang-btn ${this.currentLang === 'ar' ? 'active' : ''}" onclick="window.polishI18n.setLanguage('ar')">AR</button>
+          <button type="button" class="lang-btn ${this.currentLang === 'ar' ? 'active' : ''}" aria-pressed="${this.currentLang === 'ar' ? 'true' : 'false'}" onclick="window.polishI18n.setLanguage('ar')">AR</button>
         </div>
       `;
     });
@@ -543,11 +543,9 @@ class PolishI18n {
     this.applyLanguage(lang);
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      if (btn.textContent.trim().toUpperCase() === lang.toUpperCase()) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
+      const isActive = btn.textContent.trim().toUpperCase() === lang.toUpperCase();
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
 
     window.dispatchEvent(new CustomEvent('polishLanguageChanged', { detail: { lang } }));

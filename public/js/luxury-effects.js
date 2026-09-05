@@ -43,7 +43,7 @@
     if (titles.length === 0) return;
 
     // Immediately reveal top hero title for crisp above-the-fold entrance (or wait for intro if active)
-    const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+    const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
     const introOverlay = document.getElementById('luxuryIntro');
     const hasSeenIntro = sessionStorage.getItem('polish_intro_seen') === 'true';
 
@@ -125,6 +125,16 @@
           const y = e.clientY - rect.top;
           card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
           card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
+
+          // Direction 1: The Liquid Atelier — Tactile 3D Micro-Tilt (Refined ≤3.2deg)
+          if (card.classList.contains('pro-card')) {
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const tiltY = (((x - centerX) / centerX) * 3.2).toFixed(2);
+            const tiltX = (((y - centerY) / centerY) * -3.2).toFixed(2);
+            card.style.setProperty('--tilt-x', `${tiltX}deg`);
+            card.style.setProperty('--tilt-y', `${tiltY}deg`);
+          }
         });
       }, { passive: true });
 
@@ -132,6 +142,10 @@
         if (raf) cancelAnimationFrame(raf);
         card.style.removeProperty('--mouse-x');
         card.style.removeProperty('--mouse-y');
+        if (card.classList.contains('pro-card')) {
+          card.style.setProperty('--tilt-x', '0deg');
+          card.style.setProperty('--tilt-y', '0deg');
+        }
       });
     });
   }
@@ -170,6 +184,12 @@
           const pullX = Math.max(-8, Math.min(8, (e.clientX - centerX) * 0.28));
           const pullY = Math.max(-8, Math.min(8, (e.clientY - centerY) * 0.28));
           btn.style.transform = `translate3d(${pullX.toFixed(1)}px, ${(pullY - 2).toFixed(1)}px, 0)`;
+
+          // Viscous Meniscus Droplet coordinate tracking
+          const dropX = ((e.clientX - rect.left) / rect.width) * 100;
+          const dropY = ((e.clientY - rect.top) / rect.height) * 100;
+          btn.style.setProperty('--drop-x', `${dropX.toFixed(1)}%`);
+          btn.style.setProperty('--drop-y', `${dropY.toFixed(1)}%`);
         });
       }, { passive: true });
 
@@ -178,6 +198,8 @@
         if (raf) cancelAnimationFrame(raf);
         btn.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
         btn.style.transform = 'translate3d(0, 0, 0)';
+        btn.style.setProperty('--drop-x', '50%');
+        btn.style.setProperty('--drop-y', '50%');
         setTimeout(() => {
           if (!isHovered) {
             btn.style.transition = '';
@@ -232,18 +254,8 @@
       color: holoColors[Math.floor(Math.random() * holoColors.length)]
     }));
 
-    let isScrolling = false;
-    let scrollPauseTimer = null;
-    window.addEventListener('scroll', () => {
-      isScrolling = true;
-      clearTimeout(scrollPauseTimer);
-      scrollPauseTimer = setTimeout(() => {
-        isScrolling = false;
-      }, 120);
-    }, { passive: true });
-
     function animateParticles() {
-      if (document.hidden || isScrolling) {
+      if (document.hidden) {
         requestAnimationFrame(animateParticles);
         return;
       }
@@ -252,8 +264,9 @@
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        p.x += p.speedX;
-        p.y += p.speedY;
+        // Ambient natural motion + smooth liquid current response
+        p.x += p.speedX + (smoothVelocity * 0.04);
+        p.y += p.speedY + (smoothVelocity * 0.35);
 
         if (p.x < 0) p.x = width;
         else if (p.x > width) p.x = 0;
@@ -273,6 +286,64 @@
 
   // =========================================================================
   // =========================================================================
+  // Direction 1: The Liquid Atelier — Scroll Velocity & Fluid Viscosity Physics
+  // =========================================================================
+  let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+  let lastScrollTime = performance.now();
+  let smoothVelocity = 0;
+  let velocityDecayRAF = null;
+  let scrollStopTimer = null;
+
+  function applyFluidViscosity() {
+    const bgDepthFar = document.querySelector('.beauty-depth-far');
+    const bgDepthMid = document.querySelector('.beauty-depth-mid');
+
+    if (bgDepthMid && !prefersReducedMotion) {
+      // Fluid aerodynamic tilt: subtle tilt with scroll velocity (capped at ±3.2deg)
+      const tiltDeg = Math.max(-3.2, Math.min(3.2, -smoothVelocity * 0.14));
+      // Fluid viscous drag: products lag slightly against scroll (capped at ±18px)
+      const dragPx = Math.max(-18, Math.min(18, -smoothVelocity * 0.8));
+      bgDepthMid.style.setProperty('--fluid-drag-layer', `${dragPx.toFixed(1)}px`);
+      bgDepthMid.style.setProperty('--fluid-tilt-layer', `${tiltDeg.toFixed(2)}deg`);
+    }
+
+    if (bgDepthFar && !prefersReducedMotion && window.innerWidth > 768) {
+      const farDragPx = Math.max(-10, Math.min(10, -smoothVelocity * 0.35));
+      bgDepthFar.style.setProperty('--fluid-drag-layer', `${farDragPx.toFixed(1)}px`);
+    }
+
+    // Dynamic Island subtle liquid pulse on scroll momentum
+    const pulseDot = document.querySelector('.island-pulse-dot');
+    if (pulseDot && !prefersReducedMotion) {
+      const energy = Math.min(1, Math.abs(smoothVelocity) / 10);
+      pulseDot.style.opacity = (0.7 + energy * 0.3).toFixed(2);
+      pulseDot.style.transform = `scale(${(1 + energy * 0.35).toFixed(2)})`;
+    }
+
+    // Kinetic Typography: Emulsion optical skew / refraction
+    if (!prefersReducedMotion) {
+      const emulsionSkew = Math.max(-1.4, Math.min(1.4, -smoothVelocity * 0.08));
+      document.documentElement.style.setProperty('--emulsion-skew', `${emulsionSkew.toFixed(2)}deg`);
+    }
+  }
+
+  function startVelocityDecay() {
+    if (velocityDecayRAF) cancelAnimationFrame(velocityDecayRAF);
+    function decay() {
+      if (Math.abs(smoothVelocity) > 0.04) {
+        smoothVelocity *= 0.86;
+        applyFluidViscosity();
+        velocityDecayRAF = requestAnimationFrame(decay);
+      } else {
+        smoothVelocity = 0;
+        applyFluidViscosity();
+        velocityDecayRAF = null;
+      }
+    }
+    velocityDecayRAF = requestAnimationFrame(decay);
+  }
+
+  // =========================================================================
   // 7. SINGLE UNIFIED DYNAMIC ISLAND CONTROLLER (100% GPU COMPOSITED)
   // =========================================================================
   const siteHeader = document.getElementById('siteHeader') || document.querySelector('.site-header');
@@ -289,6 +360,19 @@
 
   function updateScrollState() {
     const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const now = performance.now();
+    const dt = Math.max(16, now - lastScrollTime);
+    lastScrollTime = now;
+
+    // Velocity in px per 16ms frame, clamped to [-24, 24]
+    const rawVelocity = ((scrollY - lastScrollY) / dt) * 16;
+    lastScrollY = scrollY;
+    const clampedVelocity = Math.max(-24, Math.min(24, rawVelocity));
+    smoothVelocity += (clampedVelocity - smoothVelocity) * 0.24;
+    applyFluidViscosity();
+
+    clearTimeout(scrollStopTimer);
+    scrollStopTimer = setTimeout(startVelocityDecay, 90);
     
     // Hysteresis threshold to prevent layout flutter near scroll boundary
     if (!isScrolled && scrollY > 45) {
@@ -423,7 +507,7 @@
 
     if (hasSeen && !forceReplay) {
       introOverlay.remove();
-      const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+      const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
       if (heroTitle) heroTitle.classList.add('is-revealed');
       return;
     }
@@ -432,7 +516,7 @@
     if (prefersReducedMotion) {
       sessionStorage.setItem('polish_formula_intro_seen', 'true');
       introOverlay.remove();
-      const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+      const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
       if (heroTitle) heroTitle.classList.add('is-revealed');
       return;
     }
@@ -448,6 +532,7 @@
     const shockwave2        = document.getElementById('formulaShockwave2');
     const sparks            = document.querySelectorAll('.formula-spark');
     const formulaLogoPod    = document.getElementById('formulaLogoPod');
+    const formulaLogoInner  = document.getElementById('formulaLogoInner');
     const formulaGleam      = document.getElementById('formulaGleam');
     const formulaCaption    = document.getElementById('formulaCaption');
     const skipHint          = document.getElementById('introSkipHint');
@@ -463,7 +548,7 @@
       sessionStorage.setItem('polish_formula_intro_seen', 'true');
       if (targetLogoImg) targetLogoImg.style.opacity = '1';
       introOverlay.remove();
-      const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+      const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
       if (heroTitle) heroTitle.classList.add('is-revealed');
       return;
     }
@@ -485,7 +570,8 @@
     anime.set(coreBloom, { opacity: 0, scale: 0.1 });
     anime.set(shockwave1, { opacity: 0, scale: 0.1 });
     anime.set(shockwave2, { opacity: 0, scale: 0.1 });
-    anime.set(formulaLogoPod, { opacity: 0, scale: 0.85, translateX: '0px', translateY: '0px', transformOrigin: '50% 50%' });
+    anime.set(formulaLogoPod, { opacity: 0, translateX: '0px', translateY: '0px' });
+    if (formulaLogoInner) anime.set(formulaLogoInner, { scale: 0.85, transformOrigin: '50% 50%' });
     anime.set(formulaGleam, { translateX: '-120%' });
     anime.set(formulaCaption, { opacity: 0, translateY: '8px' });
 
@@ -494,7 +580,7 @@
       if (!targetLogoImg || !formulaLogoPod) {
         if (targetLogoImg) targetLogoImg.style.opacity = '1';
         introOverlay.remove();
-        const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+        const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
         if (heroTitle) heroTitle.classList.add('is-revealed');
         return;
       }
@@ -511,7 +597,7 @@
       if (!firstRect.width || !lastRect.width) {
         if (targetLogoImg) targetLogoImg.style.opacity = '1';
         introOverlay.remove();
-        const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+        const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
         if (heroTitle) heroTitle.classList.add('is-revealed');
         return;
       }
@@ -530,27 +616,40 @@
         });
       }
 
-      // 4. Dissolve velvet backdrop during flight
-      anime({ targets: formulaBackdrop, opacity: 0, duration: 500, easing: 'easeOutQuad', delay: 40 });
-      anime({ targets: introOverlay,    opacity: 0, duration: 550, easing: 'easeOutQuad', delay: 100 });
+      // 4. Dissolve velvet backdrop during flight (overlay stays active so logo remains 100% visible throughout flight)
+      anime({ targets: formulaBackdrop, opacity: 0, duration: 580, easing: 'easeOutQuad', delay: 40 });
 
-      // 5. Precision FLIP flight of the synthesized logo into the Dynamic Island dock
+      // 5. Precision FLIP flight: translation on outer pod, scale on inner logo container
+      // This mathematically guarantees 0.00px destination alignment without scale distortion
       anime({
         targets: formulaLogoPod,
         translateX: `${deltaX}px`,
         translateY: `${deltaY}px`,
-        scale: scale,
         duration: 720,
-        easing: 'cubicBezier(0.16, 1, 0.3, 1)',
-        complete: () => {
-          if (targetLogoImg) targetLogoImg.style.opacity = '1';
-          if (islandShell) {
-            islandShell.classList.add('island-dock-settled');
-            setTimeout(() => islandShell.classList.remove('island-dock-settled'), 900);
-          }
-          introOverlay.remove();
-        }
+        easing: 'cubicBezier(0.16, 1, 0.3, 1)'
       });
+
+      if (formulaLogoInner) {
+        anime({
+          targets: formulaLogoInner,
+          scale: scale,
+          duration: 720,
+          easing: 'cubicBezier(0.16, 1, 0.3, 1)',
+          complete: () => {
+            if (targetLogoImg) targetLogoImg.style.opacity = '1';
+            if (islandShell) {
+              islandShell.classList.add('island-dock-settled');
+              setTimeout(() => islandShell.classList.remove('island-dock-settled'), 900);
+            }
+            introOverlay.remove();
+          }
+        });
+      } else {
+        setTimeout(() => {
+          if (targetLogoImg) targetLogoImg.style.opacity = '1';
+          introOverlay.remove();
+        }, 720);
+      }
 
       // Bulletproof fail-safe: ensures overlay is removed even if animation is interrupted
       setTimeout(() => {
@@ -562,10 +661,11 @@
 
       // Hero text reveal 180ms into flight
       setTimeout(() => {
-        const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+        const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
         if (heroTitle) heroTitle.classList.add('is-revealed');
       }, 180);
     }
+
 
     // ─── SKIP HANDLER ───────────────────────────────────────────────────────
     function skipIntro() {
@@ -577,10 +677,10 @@
       window.scrollTo(0, 0);
       try {
         anime.remove([formulaBackdrop, formulaOrbit, bead1, bead2, bead3,
-                      coreBloom, shockwave1, shockwave2, formulaLogoPod, formulaGleam, formulaCaption, ...Array.from(sparks)]);
+                      coreBloom, shockwave1, shockwave2, formulaLogoPod, formulaLogoInner, formulaGleam, formulaCaption, ...Array.from(sparks)]);
       } catch (e) {}
       introOverlay.remove();
-      const heroTitle = document.querySelector('.hero-h1.kinetic-title');
+      const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
       if (heroTitle) heroTitle.classList.add('is-revealed');
     }
 
@@ -689,10 +789,18 @@
     tl.add({
       targets: formulaLogoPod,
       opacity: [0, 1],
-      scale: [0.85, 1],
       duration: 520,
       easing: 'cubicBezier(0.16, 1, 0.3, 1)'
     }, 800);
+
+    if (formulaLogoInner) {
+      tl.add({
+        targets: formulaLogoInner,
+        scale: [0.85, 1],
+        duration: 520,
+        easing: 'cubicBezier(0.16, 1, 0.3, 1)'
+      }, 800);
+    }
 
     // Phase 7: Specular Gleam Sheen sweeps across the synthesized gold logo
     tl.add({

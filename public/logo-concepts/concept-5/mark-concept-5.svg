@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="500" height="500">
+  
+  <defs>
+    <!-- Primary Haute Champagne Gold Gradient -->
+    <linearGradient id="goldGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C5A880"/>
+      <stop offset="35%" stop-color="#E2C799"/>
+      <stop offset="70%" stop-color="#F5E6D3"/>
+      <stop offset="100%" stop-color="#E2C799"/>
+    </linearGradient>
+
+    <!-- Specular Highlight Sheen Gradient -->
+    <linearGradient id="goldGradSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="25%" stop-color="#F5E6D3"/>
+      <stop offset="70%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#A88B60"/>
+    </linearGradient>
+
+    <!-- Deep Atelier Bronze for Shading / Under-ribbon -->
+    <linearGradient id="bronzeShade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A88B60"/>
+      <stop offset="50%" stop-color="#806742"/>
+      <stop offset="100%" stop-color="#544328"/>
+    </linearGradient>
+
+    <!-- Multi-Angle Facet Gradients for Concept 3 -->
+    <linearGradient id="facetTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E2C799"/>
+    </linearGradient>
+    <linearGradient id="facetLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#9C7F56"/>
+    </linearGradient>
+    <linearGradient id="facetRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E6D3"/>
+      <stop offset="100%" stop-color="#C5A880"/>
+    </linearGradient>
+    <linearGradient id="facetCenter" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBF3E8"/>
+      <stop offset="50%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#B89668"/>
+    </linearGradient>
+
+    <!-- Obsidian Surface Gradient -->
+    <linearGradient id="obsidianSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161412"/>
+      <stop offset="100%" stop-color="#080706"/>
+    </linearGradient>
+
+    <!-- Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Cormorant+Garamond:ital,wght@1,600&amp;display=swap');
+      .brand-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
+      .brand-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+    </style>
+  </defs>
+
+  
+  
+    <!-- Concept 5: Celestial Cosmetic Eclipse -->
+    <g id="mark-c5">
+      <!-- Outer Concentric Precision Crescent Blade -->
+      <path d="M 20 76 
+               C 16 66 18 52 26 38 
+               C 36 22 52 14 68 14 
+               C 76 14 82 16 84 20 
+               C 85 23 82 26 78 26 
+               C 64 26 50 34 40 46 
+               C 32 56 28 68 30 76 
+               C 30 80 26 82 23 81 
+               C 21 80 20 78 20 76 Z" 
+            fill="url(#goldGrad1)"/>
+      
+      <!-- Inner Dynamic Crescent Blade -->
+      <path d="M 38 78 
+               C 36 72 38 64 44 54 
+               C 50 44 60 38 72 36 
+               C 76 35 80 37 81 40 
+               C 82 43 79 45 76 46 
+               C 66 48 58 54 52 62 
+               C 48 68 46 74 46 78 
+               C 46 81 43 83 40 82 
+               C 38 81 38 80 38 78 Z" 
+            fill="url(#goldGradSheen)"/>
+
+      <!-- Radiant Diamond Core -->
+      <g transform="translate(64, 52)">
+        <polygon points="0,-10 7,0 0,10 -7,0" fill="url(#goldGradSheen)"/>
+        <circle cx="0" cy="0" r="2.5" fill="#FFFFFF"/>
+      </g>
+    </g>
+  
+</svg>

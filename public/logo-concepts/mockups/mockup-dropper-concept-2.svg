@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  
+  <defs>
+    <!-- Primary Haute Champagne Gold Gradient -->
+    <linearGradient id="goldGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C5A880"/>
+      <stop offset="35%" stop-color="#E2C799"/>
+      <stop offset="70%" stop-color="#F5E6D3"/>
+      <stop offset="100%" stop-color="#E2C799"/>
+    </linearGradient>
+
+    <!-- Specular Highlight Sheen Gradient -->
+    <linearGradient id="goldGradSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="25%" stop-color="#F5E6D3"/>
+      <stop offset="70%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#A88B60"/>
+    </linearGradient>
+
+    <!-- Deep Atelier Bronze for Shading / Under-ribbon -->
+    <linearGradient id="bronzeShade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A88B60"/>
+      <stop offset="50%" stop-color="#806742"/>
+      <stop offset="100%" stop-color="#544328"/>
+    </linearGradient>
+
+    <!-- Multi-Angle Facet Gradients for Concept 3 -->
+    <linearGradient id="facetTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E2C799"/>
+    </linearGradient>
+    <linearGradient id="facetLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#9C7F56"/>
+    </linearGradient>
+    <linearGradient id="facetRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E6D3"/>
+      <stop offset="100%" stop-color="#C5A880"/>
+    </linearGradient>
+    <linearGradient id="facetCenter" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBF3E8"/>
+      <stop offset="50%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#B89668"/>
+    </linearGradient>
+
+    <!-- Obsidian Surface Gradient -->
+    <linearGradient id="obsidianSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161412"/>
+      <stop offset="100%" stop-color="#080706"/>
+    </linearGradient>
+
+    <!-- Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Cormorant+Garamond:ital,wght@1,600&amp;display=swap');
+      .brand-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
+      .brand-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Luxury Noir Atelier Studio Backdrop -->
+  <rect width="800" height="800" fill="#0A0908"/>
+  <circle cx="400" cy="450" r="320" fill="#E2C799" opacity="0.04" filter="blur(60px)"/>
+  
+  <!-- Studio Floor Shadow Reflection -->
+  <ellipse cx="400" cy="710" rx="180" ry="24" fill="#040303" filter="blur(16px)"/>
+
+  <!-- Amber Glass Dropper Bottle Body -->
+  <defs>
+    <linearGradient id="amberGlass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F150A"/>
+      <stop offset="25%" stop-color="#4A2F12"/>
+      <stop offset="50%" stop-color="#2D1A07"/>
+      <stop offset="75%" stop-color="#543615"/>
+      <stop offset="100%" stop-color="#140C04"/>
+    </linearGradient>
+    <linearGradient id="goldCollar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A88B60"/>
+      <stop offset="30%" stop-color="#F5E6D3"/>
+      <stop offset="70%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#806742"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Bottle Shoulder & Cylinder -->
+  <path d="M 280 700 
+           L 280 340 
+           C 280 290 330 265 370 260 
+           L 370 230 
+           L 430 230 
+           L 430 260 
+           C 470 265 520 290 520 340 
+           L 520 700 
+           C 520 715 505 725 400 725 
+           C 295 725 280 715 280 700 Z" 
+        fill="url(#amberGlass)" stroke="rgba(226, 199, 153, 0.2)" stroke-width="1.5"/>
+
+  <!-- Specular Glass Highlights (Vertical Sheen) -->
+  <path d="M 300 350 L 300 680" stroke="rgba(255, 255, 255, 0.12)" stroke-width="6" stroke-linecap="round" filter="blur(2px)"/>
+  <path d="M 500 350 L 500 680" stroke="rgba(255, 255, 255, 0.08)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Metallic Gold Dropper Collar -->
+  <rect x="360" y="195" width="80" height="40" rx="3" fill="url(#goldCollar)"/>
+  <line x1="360" y1="215" x2="440" y2="215" stroke="rgba(0,0,0,0.4)" stroke-width="1"/>
+
+  <!-- Silicone Bulb Pipette -->
+  <path d="M 375 195 C 375 140 425 140 425 195 Z" fill="#141210" stroke="#25211D" stroke-width="2"/>
+
+  <!-- Label Surface: Matte Frosted Obsidian Label -->
+  <rect x="310" y="380" width="180" height="260" rx="8" fill="#12100E" stroke="rgba(226, 199, 153, 0.25)" stroke-width="1"/>
+
+  <!-- Gold Foil Logo Imprint on Label -->
+  <g transform="translate(365, 415) scale(0.7)">
+    
+    <!-- Concept 2: The Maison 'P' Crest -->
+    <g id="mark-c2">
+      <!-- Architectural Monogram 'P' with 45° Velocity Apex -->
+      <path d="M 26 78 
+               L 26 44 
+               C 26 42 27 40 29 38 
+               L 56 16 
+               C 58 14 62 15 63 18 
+               L 64 26 
+               C 66 26 70 27 74 30 
+               C 80 35 83 43 82 51 
+               C 81 59 75 66 66 68 
+               C 62 69 58 69 54 69 
+               L 36 69 
+               L 36 78 
+               C 36 81 33 83 31 83 
+               C 28 83 26 81 26 78 Z 
+               M 36 34 
+               L 36 59 
+               L 54 59 
+               C 60 59 65 57 69 53 
+               C 72 49 72 43 70 39 
+               C 67 35 63 33 58 33 
+               L 42 33 
+               C 39 33 37 33 36 34 Z" 
+            fill="url(#goldGrad1)" fill-rule="evenodd"/>
+      
+      <!-- Suspended Faceted Diamond Droplet in Counter-Space -->
+      <g transform="translate(52, 46)">
+        <polygon points="0,-9 7,0 0,9 -7,0" fill="url(#goldGradSheen)"/>
+        <!-- Inner Specular Core -->
+        <polygon points="0,-4 3,0 0,4 -3,0" fill="#FFFFFF" opacity="0.9"/>
+      </g>
+    </g>
+  
+  </g>
+  <text x="400" y="525" class="brand-title" font-size="20" letter-spacing="4" text-anchor="middle" fill="url(#goldGradSheen)">POLISH</text>
+  <text x="400" y="545" class="brand-sub" font-size="7" letter-spacing="3" text-anchor="middle" fill="#C5A880">MEDIA CO</text>
+
+  <!-- Label Subtext -->
+  <line x1="350" y1="565" x2="450" y2="565" stroke="rgba(226, 199, 153, 0.2)" stroke-width="0.75"/>
+  <text x="400" y="585" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="600" letter-spacing="2" text-anchor="middle" fill="rgba(245, 230, 211, 0.7)">ELIXIR D'ÉCHELLE</text>
+  <text x="400" y="605" font-family="'Cormorant Garamond', serif" font-style="italic" font-size="11" text-anchor="middle" fill="#E2C799">Haute Beauté &amp; Growth</text>
+  <text x="400" y="625" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" letter-spacing="1.5" text-anchor="middle" fill="rgba(245, 230, 211, 0.4)">50 ML  •  1.7 FL. OZ.</text>
+</svg>

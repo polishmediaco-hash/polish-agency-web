@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="500" height="500">
+  
+  <defs>
+    <!-- Primary Haute Champagne Gold Gradient -->
+    <linearGradient id="goldGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C5A880"/>
+      <stop offset="35%" stop-color="#E2C799"/>
+      <stop offset="70%" stop-color="#F5E6D3"/>
+      <stop offset="100%" stop-color="#E2C799"/>
+    </linearGradient>
+
+    <!-- Specular Highlight Sheen Gradient -->
+    <linearGradient id="goldGradSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="25%" stop-color="#F5E6D3"/>
+      <stop offset="70%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#A88B60"/>
+    </linearGradient>
+
+    <!-- Deep Atelier Bronze for Shading / Under-ribbon -->
+    <linearGradient id="bronzeShade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A88B60"/>
+      <stop offset="50%" stop-color="#806742"/>
+      <stop offset="100%" stop-color="#544328"/>
+    </linearGradient>
+
+    <!-- Multi-Angle Facet Gradients for Concept 3 -->
+    <linearGradient id="facetTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E2C799"/>
+    </linearGradient>
+    <linearGradient id="facetLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#9C7F56"/>
+    </linearGradient>
+    <linearGradient id="facetRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E6D3"/>
+      <stop offset="100%" stop-color="#C5A880"/>
+    </linearGradient>
+    <linearGradient id="facetCenter" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBF3E8"/>
+      <stop offset="50%" stop-color="#E2C799"/>
+      <stop offset="100%" stop-color="#B89668"/>
+    </linearGradient>
+
+    <!-- Obsidian Surface Gradient -->
+    <linearGradient id="obsidianSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161412"/>
+      <stop offset="100%" stop-color="#080706"/>
+    </linearGradient>
+
+    <!-- Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Cormorant+Garamond:ital,wght@1,600&amp;display=swap');
+      .brand-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
+      .brand-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+    </style>
+  </defs>
+
+  
+  
+    <!-- Concept 3: Solitaire Facet & Flacon Stopper -->
+    <g id="mark-c3">
+      <!-- Outer Hexagonal / Solitaire Prism Contour -->
+      <!-- Top Apex Triangle -->
+      <polygon points="50,14 74,36 26,36" fill="url(#facetTop)"/>
+      
+      <!-- Left Specular Facet -->
+      <polygon points="26,36 50,54 18,66 18,52" fill="url(#facetLeft)"/>
+      
+      <!-- Right Specular Facet -->
+      <polygon points="74,36 82,52 82,66 50,54" fill="url(#facetRight)"/>
+      
+      <!-- Center Brilliant Table Facet -->
+      <polygon points="50,36 74,36 50,54 26,36" fill="url(#facetCenter)"/>
+      
+      <!-- Lower Ascending Pavilion (Growth Vector) -->
+      <polygon points="50,54 82,66 50,86 18,66" fill="url(#goldGrad1)"/>
+      
+      <!-- Central Floating Diamond Star Sparkle -->
+      <polygon points="50,44 53,52 61,54 53,56 50,64 47,56 39,54 47,52" fill="#FFFFFF" opacity="0.9"/>
+    </g>
+  
+</svg>

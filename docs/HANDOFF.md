@@ -76,6 +76,16 @@ The application has successfully completed a luxury atelier rebranding and typog
   * `06_guidelines/`: `POLISH_BRAND_GUIDELINES.md` (Full 10-chapter Brand Standards Bible).
 * **Routes Registered**: `GET /brand-pack`, `GET /brand-guidelines`.
 
+### G. Logo Exploration & Redesign Studio (`public/logo-preview.html` / `/logo-preview`)
+* **5 Curated Haute Atelier Redesign Concepts**:
+  1. *Concept 1: The Golden Ratio Pipette* (Precision evolution of current mark with golden ratio fillets & locked droplet).
+  2. *Concept 2: The Maison 'P' Crest* (Parisian fashion house monogram fusing 'P' + ascending arrow + suspended drop).
+  3. *Concept 3: The Solitaire Facet & Flacon* (High-jewelry crystalline refraction & French perfume stopper).
+  4. *Concept 4: The Liquid Silk Möbius* (Continuous 3D metallic ribbon capturing sensory cosmetic cream & compounding scale).
+  5. *Concept 5: The Celestial Eclipse* (Concentric crescent blades around diamond core; quiet luxury & clinical cosmeceuticals).
+* **Features**: Live surface toggle (Obsidian, Alabaster, Gold Foil, Grid), scale stress tests (512px to 16px favicon), amber dropper bottle mockups, and live dynamic island navbar simulator.
+* **Routes Registered**: `GET /logo-preview`.
+
 ---
 
 ## 3. Backend Architecture (`server/index.js`)

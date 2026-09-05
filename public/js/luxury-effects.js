@@ -393,11 +393,16 @@
   //     Anime.js timeline: white lab → gold droplet falls → impact ripple →
   //     ink flood → logo emerges → FLIP to Dynamic Island
   // =========================================================================
+  // =========================================================================
+  // 10. THE LABORATORY DROP — Opening Cinematic
+  //     Anime.js timeline: white lab → gold droplet falls → impact ripple →
+  //     ink flood → logo emerges → FLIP to Dynamic Island
+  // =========================================================================
   function initLuxuryOpeningAnimation() {
     const introOverlay = document.getElementById('luxuryIntro');
     if (!introOverlay) return;
 
-    const hasSeen = sessionStorage.getItem('polish_intro_seen') === 'true';
+    const hasSeen = sessionStorage.getItem('polish_lab_intro_seen_v2') === 'true';
     const urlParams = new URLSearchParams(window.location.search);
     const forceReplay = urlParams.get('replay_intro') === '1';
 
@@ -410,7 +415,7 @@
 
     // Reduced motion — skip entire animation
     if (prefersReducedMotion) {
-      sessionStorage.setItem('polish_intro_seen', 'true');
+      sessionStorage.setItem('polish_lab_intro_seen_v2', 'true');
       introOverlay.remove();
       const heroTitle = document.querySelector('.hero-h1.kinetic-title');
       if (heroTitle) heroTitle.classList.add('is-revealed');
@@ -421,8 +426,6 @@
     const labCanvas     = document.getElementById('labCanvas');
     const labInkFlood   = document.getElementById('labInkFlood');
     const dropletSvg    = document.getElementById('labDropletSvg');
-    const dropPath      = document.getElementById('dropPath');
-    const dropHighlight = dropletSvg ? dropletSvg.querySelector('ellipse') : null;
     const ripple1       = document.getElementById('labRipple1');
     const ripple2       = document.getElementById('labRipple2');
     const ripple3       = document.getElementById('labRipple3');
@@ -436,9 +439,9 @@
       targetLogoImg.style.opacity = '0';
     }
 
-    // Anime.js is loaded from CDN; fall back to instant if not available
+    // Anime.js check
     if (typeof anime === 'undefined') {
-      sessionStorage.setItem('polish_intro_seen', 'true');
+      sessionStorage.setItem('polish_lab_intro_seen_v2', 'true');
       if (targetLogoImg) targetLogoImg.style.opacity = '1';
       introOverlay.remove();
       const heroTitle = document.querySelector('.hero-h1.kinetic-title');
@@ -448,7 +451,7 @@
 
     let timelineComplete = false;
 
-    // ─── FLIP EXIT (shared with old code, called after logo appear) ───────────
+    // ─── FLIP EXIT (shared-element FLIP into Dynamic Island) ─────────────────
     function doFlipExit() {
       if (!targetLogoImg || !introLogoPod) {
         if (targetLogoImg) targetLogoImg.style.opacity = '1';
@@ -458,8 +461,8 @@
         return;
       }
 
-      // Fade caption
-      anime({ targets: introCaption, opacity: 0, translateY: -10, duration: 280, easing: 'easeInQuad' });
+      // Fade caption smoothly
+      anime({ targets: introCaption, opacity: 0, translateY: -10, duration: 250, easing: 'easeInQuad' });
 
       const firstRect = introLogoPod.getBoundingClientRect();
       const lastRect  = targetLogoImg.getBoundingClientRect();
@@ -467,11 +470,11 @@
       const deltaY    = (lastRect.top + lastRect.height / 2) - (firstRect.top + firstRect.height / 2);
       const scale     = lastRect.width / firstRect.width;
 
-      // Fade the ink flood canvas out as logo flies away
-      anime({ targets: labInkFlood, opacity: 0, duration: 640, easing: 'easeOutQuad', delay: 80 });
-      anime({ targets: labCanvas,   opacity: 0, duration: 640, easing: 'easeOutQuad', delay: 80 });
+      // Dissolve ink flood background during flight
+      anime({ targets: labInkFlood, opacity: 0, duration: 600, easing: 'easeOutQuad', delay: 80 });
+      anime({ targets: labCanvas,   opacity: 0, duration: 600, easing: 'easeOutQuad', delay: 80 });
 
-      // FLIP the logo to the island
+      // FLIP flight of the logo into the Dynamic Island dock
       anime({
         targets: introLogoPod,
         translateX: deltaX,
@@ -483,7 +486,7 @@
           if (targetLogoImg) targetLogoImg.style.opacity = '1';
           if (islandShell) {
             islandShell.classList.add('island-dock-settled');
-            setTimeout(() => islandShell.classList.remove('island-dock-settled'), 1000);
+            setTimeout(() => islandShell.classList.remove('island-dock-settled'), 900);
           }
           introOverlay.remove();
         }
@@ -496,165 +499,167 @@
       }, 200);
     }
 
-    // ─── SKIP — user tapped / scrolled ─────────────────────────────────────
+    // ─── SKIP — user intentionally tapped or scrolled ───────────────────────
     function skipIntro() {
       if (timelineComplete) return;
       timelineComplete = true;
-      sessionStorage.setItem('polish_intro_seen', 'true');
+      sessionStorage.setItem('polish_lab_intro_seen_v2', 'true');
       introOverlay.style.pointerEvents = 'none';
       if (targetLogoImg) targetLogoImg.style.opacity = '1';
       window.scrollTo(0, 0);
-      anime.remove([dropletSvg, dropPath, dropHighlight, labInkFlood, labCanvas,
-                    ripple1, ripple2, ripple3, introLogoPod, introCaption, ...Array.from(splashEls)]);
+      try {
+        anime.remove([dropletSvg, labInkFlood, labCanvas,
+                      ripple1, ripple2, ripple3, introLogoPod, introCaption, ...Array.from(splashEls)]);
+      } catch (e) {}
       introOverlay.remove();
       const heroTitle = document.querySelector('.hero-h1.kinetic-title');
       if (heroTitle) heroTitle.classList.add('is-revealed');
     }
 
-    // ─── MASTER TIMELINE ────────────────────────────────────────────────────
+    // ─── MASTER LABORATORY DROP TIMELINE ────────────────────────────────────
     const tl = anime.timeline({
       autoplay: true,
       complete: () => {
         if (timelineComplete) return;
         timelineComplete = true;
-        sessionStorage.setItem('polish_intro_seen', 'true');
+        sessionStorage.setItem('polish_lab_intro_seen_v2', 'true');
         window.scrollTo(0, 0);
         introOverlay.style.pointerEvents = 'none';
         doFlipExit();
       }
     });
 
-    // ─ Phase 1: Droplet appears at top, sharp and focused (0–80ms) ──────────
+    // ─ Phase 1: Droplet appears above screen (0–60ms) ──────────────────────
     tl.add({
-      targets: [dropPath, dropHighlight],
+      targets: dropletSvg,
       opacity: [0, 1],
-      duration: 80,
-      easing: 'linear',
-      delay: anime.stagger(30)
+      duration: 60,
+      easing: 'linear'
     }, 0);
 
-    // ─ Phase 2: Droplet falls — accelerates with a natural squash/stretch ───
-    // The SVG itself translates downward, while the path internally squishes on impact
+    // ─ Phase 2: Droplet falls — gravitational acceleration (60–660ms) ──────
+    // Starts high (-55vh), falls to exact center (0px)
     tl.add({
       targets: dropletSvg,
-      translateY: ['0px', '155px'],   // falls from -120px top into center-screen
-      duration: 620,
-      easing: 'cubicBezier(0.2, 0, 1, 1)',  // ease-in gravity
-    }, 80);
-
-    // Subtle vertical stretch during fall (aerodynamics)
-    tl.add({
-      targets: dropletSvg,
-      scaleY: [1, 1.14],
-      scaleX: [1, 0.88],
+      translateY: ['-55vh', '0px'],
       duration: 600,
-      easing: 'easeInQuad',
-    }, 80);
+      easing: 'cubicBezier(0.4, 0, 0.9, 1)'
+    }, 60);
 
-    // ─ Phase 3: IMPACT — squash on landing ─────────────────────────────────
+    // Aerodynamic vertical stretch during descent
     tl.add({
       targets: dropletSvg,
-      scaleY: [1.14, 0.45],
-      scaleX: [0.88, 1.55],
+      scaleY: [1, 1.18],
+      scaleX: [1, 0.88],
+      duration: 560,
+      easing: 'easeInQuad'
+    }, 60);
+
+    // ─ Phase 3: IMPACT at 660ms — squash on liquid surface ─────────────────
+    tl.add({
+      targets: dropletSvg,
+      scaleY: [1.18, 0.28],
+      scaleX: [0.88, 1.65],
       opacity: [1, 0],
       duration: 120,
-      easing: 'easeOutQuad',
-    }, 700);
+      easing: 'easeOutQuad'
+    }, 660);
 
-    // ─ Phase 4: Ripple rings expand from impact point ───────────────────────
+    // ─ Phase 4: Concentric gold ripple rings expand outward from 660ms ─────
     tl.add({
       targets: ripple1,
       opacity: [0.95, 0],
-      scale: [0, 5],
-      duration: 560,
-      easing: 'easeOutExpo',
-    }, 700);
+      scale: [0, 6],
+      duration: 600,
+      easing: 'easeOutExpo'
+    }, 660);
 
     tl.add({
       targets: ripple2,
-      opacity: [0.7, 0],
-      scale: [0, 9],
-      duration: 640,
-      easing: 'easeOutExpo',
-    }, 760);
+      opacity: [0.75, 0],
+      scale: [0, 11],
+      duration: 700,
+      easing: 'easeOutExpo'
+    }, 720);
 
     tl.add({
       targets: ripple3,
-      opacity: [0.4, 0],
-      scale: [0, 14],
-      duration: 720,
-      easing: 'easeOutExpo',
-    }, 830);
+      opacity: [0.45, 0],
+      scale: [0, 16],
+      duration: 800,
+      easing: 'easeOutExpo'
+    }, 780);
 
-    // ─ Phase 5: Splash micro-droplets burst outward ──────────────────────────
+    // ─ Phase 5: Splash micro-droplets burst radially outward (670ms) ────────
     tl.add({
       targets: Array.from(splashEls),
       opacity: [
-        { value: [0, 1], duration: 60, easing: 'linear' },
-        { value: [1, 0], duration: 320, easing: 'easeOutQuad', delay: 80 }
+        { value: [0, 1], duration: 50, easing: 'linear' },
+        { value: [1, 0], duration: 340, easing: 'easeOutQuad', delay: 80 }
       ],
       translateY: (el, i) => {
-        const baseOffset = -30 - (i % 3) * 12;
-        return [0, `${baseOffset}px`];
+        const dist = -32 - (i % 3) * 14;
+        return [0, `${dist}px`];
       },
       translateX: (el, i) => {
         const angle = (360 / splashEls.length) * i * (Math.PI / 180);
-        return [0, `${Math.sin(angle) * 28}px`];
+        return [0, `${Math.sin(angle) * 32}px`];
       },
-      scale: [0.4, 1.2],
-      duration: 440,
-      delay: anime.stagger(30, { from: 'center' }),
-      easing: 'easeOutQuart',
-    }, 710);
+      scale: [0.5, 1.3],
+      duration: 460,
+      delay: anime.stagger(25, { from: 'center' }),
+      easing: 'easeOutQuart'
+    }, 670);
 
-    // ─ Phase 6: Ink flood expands outward from impact point ─────────────────
-    // clip-path circle expands from 0% to 150% (covers entire screen)
+    // ─ Phase 6: Obsidian ink floods outward from impact point (720ms) ───────
     tl.add({
       targets: labInkFlood,
-      clipPath: ['circle(0% at 50% 52%)', 'circle(150% at 50% 52%)'],
+      clipPath: ['circle(0% at 50% 50%)', 'circle(150% at 50% 50%)'],
       duration: 860,
-      easing: 'cubicBezier(0.4, 0, 0.2, 1)',
-    }, 760);
+      easing: 'cubicBezier(0.25, 1, 0.35, 1)'
+    }, 720);
 
-    // White canvas fades out slightly ahead of ink to avoid hard edge
+    // White canvas fades as ink fully expands
     tl.add({
       targets: labCanvas,
       opacity: [1, 0],
-      duration: 280,
-      easing: 'easeInQuad',
-    }, 1050);
+      duration: 300,
+      easing: 'easeInQuad'
+    }, 1000);
 
-    // ─ Phase 7: Logo emerges from the obsidian ──────────────────────────────
+    // ─ Phase 7: POLISH logo rises smoothly out of the obsidian ink (1100ms) ──
     tl.add({
       targets: introLogoPod,
       opacity: [0, 1],
-      translateY: ['14px', '0px'],
-      duration: 480,
-      easing: 'cubicBezier(0.16, 1, 0.3, 1)',
-    }, 1180);
+      translateY: ['20px', '0px'],
+      duration: 520,
+      easing: 'cubicBezier(0.16, 1, 0.3, 1)'
+    }, 1100);
 
-    // Caption fades in behind logo
+    // Caption subtitle fades in
     tl.add({
       targets: introCaption,
       opacity: [0, 1],
-      translateY: ['10px', '0px'],
-      duration: 380,
-      easing: 'easeOutQuad',
-    }, 1380);
+      translateY: ['12px', '0px'],
+      duration: 420,
+      easing: 'easeOutQuad'
+    }, 1280);
 
-    // Hold for brand appreciation — then FLIP runs via timeline complete callback
-    // Total hold: ~400ms of logo + 200ms appreciation = FLIP fires at ~1980ms total
+    // Brand appreciation hold before FLIP trigger
     tl.add({
-      targets: {},  // no-op hold
-      duration: 400,
-    }, 1580);
+      targets: {},
+      duration: 550
+    }, 1500);
 
-    // ─── Skip listeners ─────────────────────────────────────────────────────
-    introOverlay.addEventListener('pointerdown', skipIntro, { once: true });
-    window.addEventListener('wheel',      skipIntro, { once: true, passive: true });
-    window.addEventListener('touchstart', skipIntro, { once: true, passive: true });
-    window.addEventListener('touchmove',  skipIntro, { once: true, passive: true });
-    window.addEventListener('keydown',    skipIntro, { once: true });
+    // ─── Skip listeners (with 350ms protection against accidental wheel/touch) ──
+    setTimeout(() => {
+      introOverlay.addEventListener('pointerdown', skipIntro, { once: true });
+      window.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > 6 || Math.abs(e.deltaX) > 6) skipIntro();
+      }, { once: true, passive: true });
+      window.addEventListener('keydown', skipIntro, { once: true });
+      window.addEventListener('touchstart', skipIntro, { once: true, passive: true });
+    }, 350);
   }
 
   if (document.readyState === 'loading') {

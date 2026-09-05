@@ -26,9 +26,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css?v=24.0">
+  <link rel="stylesheet" href="/css/style.css?v=25.0">
   <script>
-    if (sessionStorage.getItem('polish_intro_seen') === 'true' && !window.location.search.includes('replay_intro=1')) {
+    if (sessionStorage.getItem('polish_lab_intro_seen_v2') === 'true' && !window.location.search.includes('replay_intro=1')) {
       document.documentElement.classList.add('intro-skipped');
     }
   </script>
@@ -104,13 +104,14 @@
       <!-- The falling droplet -->
       <svg class="lab-droplet-svg" id="labDropletSvg" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="dropGrad" x1="30%" y1="0%" x2="70%" y2="100%">
-            <stop offset="0%" stop-color="#F5E6D3"/>
-            <stop offset="45%" stop-color="#E2C799"/>
-            <stop offset="100%" stop-color="#C5A880"/>
+          <linearGradient id="dropGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="30%" stop-color="#F5E6D3"/>
+            <stop offset="70%" stop-color="#E2C799"/>
+            <stop offset="100%" stop-color="#B89768"/>
           </linearGradient>
-          <filter id="dropGlow">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
+          <filter id="dropGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
             <feComposite in="SourceGraphic" in2="blur" operator="over"/>
           </filter>
         </defs>
@@ -118,10 +119,9 @@
         <path id="dropPath"
           d="M30 4 C30 4 8 34 8 50 C8 63 18 73 30 73 C42 73 52 63 52 50 C52 34 30 4 30 4 Z"
           fill="url(#dropGrad)"
-          filter="url(#dropGlow)"
-          opacity="0"/>
+          filter="url(#dropGlow)"/>
         <!-- Specular highlight -->
-        <ellipse cx="22" cy="38" rx="5" ry="9" fill="rgba(255,255,255,0.35)" transform="rotate(-15 22 38)" opacity="0"/>
+        <ellipse cx="22" cy="38" rx="4.5" ry="9" fill="rgba(255,255,255,0.7)" transform="rotate(-15 22 38)"/>
       </svg>
 
       <!-- Ripple rings from impact -->
@@ -372,11 +372,11 @@
   </div>
 
   <!-- Scripts -->
-  <!-- Anime.js — for Laboratory Drop intro animation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34wkoMtdSJ/rYdNMB1D7R3l0Q==" crossorigin="anonymous"></script>
+  <!-- Anime.js — local vendor script, zero CDN reliance, instant FCP -->
+  <script src="/js/vendor/anime.min.js?v=3.2.2"></script>
   <script src="/js/i18n.js?v=1.0"></script>
   <script src="/js/cms.js?v=1.0" defer></script>
-  <script src="/js/luxury-effects.js?v=24.0" defer></script>
+  <script src="/js/luxury-effects.js?v=25.0" defer></script>
   <script src="/js/whatsapp.js?v=7.2" defer></script>
 </body>
 </html>

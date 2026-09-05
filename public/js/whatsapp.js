@@ -88,6 +88,11 @@ function initWhatsAppWidget() {
     <div class="whatsapp-trigger-wrap">
       <div class="whatsapp-radar-ring"></div>
       <div class="whatsapp-radar-ring-2"></div>
+      <!-- Micro-label: appears on first load, auto-collapses after 3.5s -->
+      <div class="wa-micro-label" id="waMicroLabel">
+        <span class="wa-micro-text"></span>
+        <svg class="wa-micro-arrow" width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4h6M4 1l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
       <button class="whatsapp-trigger-btn" id="waTriggerBtn" aria-label="Chat with POLISH on WhatsApp (+213 662 41 77 61)">
         <span class="whatsapp-online-dot"></span>
         <svg viewBox="0 0 24 24">
@@ -101,9 +106,29 @@ function initWhatsAppWidget() {
 
   renderWhatsAppContent();
 
-  // Graceful time buffer delay so the widget doesn't jump in immediately on page load
+  // Populate micro-label text (trilingual)
+  const microLabelEl = document.getElementById('waMicroLabel');
+  const microTextEl = microLabelEl ? microLabelEl.querySelector('.wa-micro-text') : null;
+  if (microTextEl) {
+    const lang = (window.polishI18n && window.polishI18n.currentLang) || 'en';
+    const labels = { en: 'Questions? Chat now', fr: 'Une question ? Écrivez-nous', ar: 'سؤال؟ تحدث معنا' };
+    microTextEl.textContent = labels[lang] || labels.en;
+  }
+
+  // Show widget + micro-label after delay (once per session)
   setTimeout(() => {
     container.classList.add('is-visible');
+    // Show micro-label only on first visit per session
+    if (microLabelEl && !sessionStorage.getItem('polish_wa_label_seen')) {
+      setTimeout(() => {
+        microLabelEl.classList.add('is-visible');
+        // Auto-dismiss after 3.5s
+        setTimeout(() => {
+          microLabelEl.classList.remove('is-visible');
+          sessionStorage.setItem('polish_wa_label_seen', 'true');
+        }, 3500);
+      }, 400);
+    }
   }, 2200);
 
   const triggerBtn = document.getElementById('waTriggerBtn');

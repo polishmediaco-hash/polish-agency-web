@@ -152,9 +152,9 @@ The application has successfully completed a luxury atelier rebranding and typog
 ## 4. Git & Repository Status
 
 * **Branch**: `main`
-* **Commit Author**: `POLISH Media Co <polishmediaco@gmail.com>` (verified with GitHub & Vercel deployment gate)
+* **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
-  * `chore(git): configure verified GitHub author email for Vercel automated deployments`
+  * `chore(deploy): trigger Vercel deployment with verified contact@polishmediaco.com author`
   * `feat(intro): The Laboratory Drop — Anime.js opening cinematic`
   * `feat(design): execute full priority action list — grain texture, CTA shimmer, tablet hero fix`
 * **Assets**: All horizontal, vertical, and standalone vector marks committed and synced across backup repositories.

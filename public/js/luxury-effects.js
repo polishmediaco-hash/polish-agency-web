@@ -485,7 +485,7 @@
     anime.set(coreBloom, { opacity: 0, scale: 0.1 });
     anime.set(shockwave1, { opacity: 0, scale: 0.1 });
     anime.set(shockwave2, { opacity: 0, scale: 0.1 });
-    anime.set(formulaLogoPod, { opacity: 0, scale: 0.85, translateX: '0px', translateY: '0px' });
+    anime.set(formulaLogoPod, { opacity: 0, scale: 0.85, translateX: '0px', translateY: '0px', transformOrigin: '50% 50%' });
     anime.set(formulaGleam, { translateX: '-120%' });
     anime.set(formulaCaption, { opacity: 0, translateY: '8px' });
 
@@ -499,10 +499,12 @@
         return;
       }
 
-      // Fade caption and skip hint
-      if (formulaCaption) anime({ targets: formulaCaption, opacity: 0, translateY: -10, duration: 240, easing: 'easeInQuad' });
-      if (skipHint) anime({ targets: skipHint, opacity: 0, duration: 200, easing: 'easeInQuad' });
+      // 1. Fade caption and skip hint
+      if (formulaCaption) anime({ targets: formulaCaption, opacity: 0, translateY: -8, duration: 180, easing: 'easeInQuad' });
+      if (skipHint) anime({ targets: skipHint, opacity: 0, duration: 160, easing: 'easeInQuad' });
 
+      // 2. Measure exact sub-pixel geometry
+      const introLogoImg = document.getElementById('formulaLogoImg') || formulaLogoPod.querySelector('.formula-logo-img');
       const firstRect = formulaLogoPod.getBoundingClientRect();
       const lastRect  = targetLogoImg.getBoundingClientRect();
 
@@ -518,17 +520,27 @@
       const deltaY = (lastRect.top + lastRect.height / 2) - (firstRect.top + firstRect.height / 2);
       const scale  = lastRect.width / firstRect.width;
 
-      // Dissolve velvet backdrop during flight
+      // 3. Smoothly dissolve ambient aura during flight to seamlessly match flat header logo
+      if (introLogoImg) {
+        anime({
+          targets: introLogoImg,
+          filter: 'drop-shadow(0 0 0px rgba(226, 199, 153, 0))',
+          duration: 620,
+          easing: 'easeOutQuad'
+        });
+      }
+
+      // 4. Dissolve velvet backdrop during flight
       anime({ targets: formulaBackdrop, opacity: 0, duration: 500, easing: 'easeOutQuad', delay: 40 });
       anime({ targets: introOverlay,    opacity: 0, duration: 550, easing: 'easeOutQuad', delay: 100 });
 
-      // FLIP flight of the synthesized logo into the Dynamic Island dock
+      // 5. Precision FLIP flight of the synthesized logo into the Dynamic Island dock
       anime({
         targets: formulaLogoPod,
         translateX: `${deltaX}px`,
         translateY: `${deltaY}px`,
         scale: scale,
-        duration: 700,
+        duration: 720,
         easing: 'cubicBezier(0.16, 1, 0.3, 1)',
         complete: () => {
           if (targetLogoImg) targetLogoImg.style.opacity = '1';

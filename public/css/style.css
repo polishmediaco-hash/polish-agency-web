@@ -2893,8 +2893,8 @@ body.is-rtl .wa-micro-label.is-visible {
 
   .site-header.is-scrolled .dynamic-island-shell {
     width: auto;
-    min-width: min(230px, calc(100vw - 28px));
-    max-width: min(285px, calc(100vw - 24px));
+    min-width: min(240px, calc(100vw - 28px));
+    max-width: min(310px, calc(100vw - 24px));
     padding: 5px 12px;
     gap: 8px;
     background: linear-gradient(135deg, rgba(18, 15, 12, 0.98) 0%, rgba(10, 8, 7, 0.99) 100%);
@@ -2906,16 +2906,16 @@ body.is-rtl .wa-micro-label.is-visible {
   }
 
   .site-header.is-scrolled .dynamic-island-shell.has-center-home {
-    max-width: min(320px, calc(100vw - 20px));
+    max-width: min(340px, calc(100vw - 20px));
   }
 
   .brand-logo-img.island-capsule-logo {
-    height: 26px;
+    height: 36px;
     width: auto;
   }
 
   .site-header.is-scrolled .brand-logo-img.island-capsule-logo {
-    height: 22px !important;
+    height: 28px !important;
     width: auto;
   }
 
@@ -2984,7 +2984,7 @@ body.is-rtl .wa-micro-label.is-visible {
     opacity: 0.65;
   }
   .roam-serum-primary {
-    top: 9%;
+    top: 26%;
     left: 2%;
     width: clamp(54px, 14vw, 70px);
   }
@@ -3499,6 +3499,15 @@ body.is-rtl .footer-links-group {
   direction: ltr !important;
 }
 
+@media (max-width: 480px) {
+  .brand-logo-img.island-capsule-logo {
+    height: 32px;
+  }
+  .site-header.is-scrolled .brand-logo-img.island-capsule-logo {
+    height: 25px !important;
+  }
+}
+
 /* Micro-screen optimization (Galaxy Fold / 320px - 359px devices) */
 @media (max-width: 359px) {
   .dynamic-island-shell {
@@ -3513,10 +3522,10 @@ body.is-rtl .footer-links-group {
     padding: 4px 8px;
   }
   .brand-logo-img.island-capsule-logo {
-    height: 22px;
+    height: 26px;
   }
   .site-header.is-scrolled .brand-logo-img.island-capsule-logo {
-    height: 19px !important;
+    height: 22px !important;
   }
   .lang-toggle {
     padding: 2px 3px;
@@ -3837,18 +3846,18 @@ html.intro-skipped .luxury-intro-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 260px;
-  margin-left: -130px;
-  margin-top: -65px;
+  width: 220px;
+  height: 66px;
+  margin-left: -110px;
+  margin-top: -33px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  gap: 18px;
   pointer-events: none;
   will-change: transform, opacity;
   opacity: 0;
+  transform-origin: 50% 50%;
+  direction: ltr !important;
 }
 
 .formula-logo-inner {
@@ -3856,16 +3865,39 @@ html.intro-skipped .luxury-intro-overlay {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding: 8px 16px;
-  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .formula-logo-img {
-  width: 220px;
+  width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 0 28px rgba(226, 199, 153, 0.5));
+  /* Layered organic champagne gold aura — smooth falloff, zero box clipping */
+  filter: drop-shadow(0 0 16px rgba(226, 199, 153, 0.42)) drop-shadow(0 0 38px rgba(226, 199, 153, 0.18));
+}
+
+.formula-gleam-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  /* STATIC VECTOR MASK: Stays 100% locked to the logo geometry */
+  -webkit-mask-image: url(/assets/logo-gold.svg);
+  mask-image: url(/assets/logo-gold.svg);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
 }
 
 .formula-gleam-sheen {
@@ -3874,13 +3906,19 @@ html.intro-skipped .luxury-intro-overlay {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.65) 50%, transparent 80%);
+  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.85) 50%, transparent 80%);
   transform: translateX(-120%);
   pointer-events: none;
   will-change: transform;
 }
 
 .formula-caption {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -120px;
+  right: -120px;
+  text-align: center;
+  pointer-events: none;
   opacity: 0;
   transform: translateY(8px);
   will-change: transform, opacity;
@@ -3913,12 +3951,10 @@ html.intro-skipped .luxury-intro-overlay {
 
 @media (max-width: 768px) {
   .formula-logo-pod {
-    width: 200px;
-    margin-left: -100px;
-    margin-top: -50px;
-  }
-  .formula-logo-img {
     width: 165px;
+    height: 49.5px;
+    margin-left: -82.5px;
+    margin-top: -24.75px;
   }
   .formula-orbit-track {
     width: 200px;

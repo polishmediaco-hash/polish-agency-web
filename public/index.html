@@ -28,7 +28,7 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/css/style.css?v=29.0">
   <script>
-    if (sessionStorage.getItem('polish_lab_intro_seen_v2') === 'true' && !window.location.search.includes('replay_intro=1')) {
+    if (sessionStorage.getItem('polish_formula_intro_seen') === 'true' && !window.location.search.includes('replay_intro=1')) {
       document.documentElement.classList.add('intro-skipped');
     }
   </script>
@@ -175,9 +175,11 @@
 
       <!-- Synthesized POLISH Logo Relief Pod (Reveals at shockwave center) -->
       <div class="formula-logo-pod" id="formulaLogoPod">
-        <div class="formula-logo-inner">
-          <img src="/assets/logo-gold.svg?v=22.0" alt="POLISH Media Co." class="formula-logo-img" width="220" height="66" fetchpriority="high">
-          <div class="formula-gleam-sheen" id="formulaGleam"></div>
+        <div class="formula-logo-inner" id="formulaLogoInner">
+          <img src="/assets/logo-gold.svg?v=22.0" alt="POLISH Media Co." class="formula-logo-img" id="formulaLogoImg" width="220" height="66" fetchpriority="high">
+          <div class="formula-gleam-mask">
+            <div class="formula-gleam-sheen" id="formulaGleam"></div>
+          </div>
         </div>
         <div class="formula-caption" id="formulaCaption">
           <span class="formula-caption-text" data-i18n="intro.tagline">HAUTE CROISSANCE &amp; ACCÉLÉRATEUR COSMÉTIQUE</span>

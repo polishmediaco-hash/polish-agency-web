@@ -1,18 +1,25 @@
 # POLISH Media Co — Project State & Handoff Document
 **Last Updated**: September 2026  
-**Repository**: `/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web`  
-**Current Active Brand Identity**: **Direction 1 — Haute Atelier Champagne Gold & Cashmere Platinum**
+**Repository**: `/Users/Shared/polishmedia`  
+**Current Active Brand Identity**: **Direction 1 — Haute Atelier Champagne Gold & Cashmere Platinum**  
+**Typography System**: **Editorial Haute Parfumerie (Plus Jakarta Sans + Cormorant Garamond SemiBold Italic + Tajawal)**
 
 ---
 
 ## 1. Executive Summary & Brand Shift
 
-The application has successfully completed a luxury atelier rebranding from high-contrast electric cyan/blue to **Haute Atelier Champagne Gold & Cashmere Platinum**:
+The application has successfully completed a luxury atelier rebranding and typography evolution:
 
 * **Primary Luxury Accent (`--brand-gold`)**: `#E2C799` (Warm, radiant champagne gold)
 * **Secondary Bronze Accent (`--brand-blue`)**: `#C5A880` (Deep antique gold / bronze)
 * **Cashmere Platinum (`--brand-platinum`)**: `#F5E6D3` (Soft specular highlight)
 * **Ultra-Deep Obsidian Noir (`--bg`)**: `#080706` / `#0A0908` (Warm tinted obsidian, replaces cold blue-black)
+* **Typography Hierarchy**:
+  * Primary Sans: *Plus Jakarta Sans* (Weight 400/500/600/700/800)
+  * Luxury Display Accent: *Cormorant Garamond* (SemiBold 600 Italic)
+  * Arabic RTL: *Tajawal* (Weight 400/500/700)
+  * Optical Tracking: `--tracking-tight: -0.022em`, `--tracking-widest: 0.16em`
+  * Tabular Numerals: `font-variant-numeric: tabular-nums lining-nums` for architectural counters
 * **Gradients**:
   * Brand: `linear-gradient(135deg, #F5E6D3 0%, #E2C799 50%, #C5A880 100%)`
   * Typography: `linear-gradient(135deg, #FFFFFF 25%, #F5E6D3 65%, #E2C799 100%)`
@@ -30,6 +37,7 @@ The application has successfully completed a luxury atelier rebranding from high
 * **Dynamic Island Navigation Capsule**: Pinned top header with live scroll-depth hairline progress bar in gold, trilingual language switcher, and responsive brand logo.
 * **Intro Cinematic**: Luxury reveal with updated gold crest and luxury tagline *"CREATIVE & MARKETING FOR BEAUTY BRANDS"*.
 * **Floating 3D Holographic Beauty World**: Roaming cosmetics formulas (serums, perfume flasks, compacts) layered behind crystalline beveled glass cards.
+* **Editorial Headline Accents**: Key headline lines styled with sensual italic serif gradients (*"To Household Beauty Brand."*, *"Where Beauty Brands Hit a Wall."*, *"For Cosmetic & Skincare Scaling."*).
 * **Trilingual Localization (EN / FR / AR)**: Instant DOM switching without page reload; full RTL layout inversion for Arabic with Tajawal font.
 * **Pulsing WhatsApp Conversion Engine**: Floating button linking to `+213 662 41 77 61` with localized pre-filled copy.
 
@@ -38,11 +46,11 @@ The application has successfully completed a luxury atelier rebranding from high
   * Step 1: Brand details, store URL, monthly revenue range.
   * Step 2: Primary growth bottlenecks (creative fatigue, ad scaling, ROAS drop).
   * Step 3: Contact person, WhatsApp number, submission dossier.
-* **Streamlined UI**: Removed redundant title pills, cleaned step labels, champagne gold active indicators.
+* **Streamlined UI**: Removed redundant title pills, cleaned step labels, champagne gold active indicators, refined typography tracking.
 
 ### C. Creator & UGC Portal (`public/creators.html`)
 * Tailored for beauty influencers and cosmetic UGC creators applying to the POLISH talent network.
-* Gold branded header, localized form, and conversion tracking.
+* Gold branded header, localized form, serif accent heading, and conversion tracking.
 
 ### D. Executive Admin Portal & Live CMS (`public/admin.html`)
 * **Security**: Key-gated access (Default: `polish_admin_secure_key_2026`).
@@ -54,8 +62,8 @@ The application has successfully completed a luxury atelier rebranding from high
   4. **Alert Channels**: Notification dispatch settings.
 
 ### E. Theme & Typography Studios
-* `public/palette-preview.html`: Interactive palette switcher and live visual preview.
-* `public/font-preview.html`: Type scale tests for Cormorant Garamond, Plus Jakarta Sans, and Tajawal.
+* `public/palette-preview.html` (`/palette-preview`): Interactive palette switcher and live visual preview.
+* `public/font-preview.html` (`/font-preview`): Live interactive Haute Atelier Typography Studio featuring 5 typography archetypes, real-time live preview of all sections, side-by-side comparison matrix, and trilingual toggling (EN/FR/AR).
 
 ---
 
@@ -93,6 +101,6 @@ The application has successfully completed a luxury atelier rebranding from high
 To maintain maximum speed, crisp model attention, and zero context rot:
 
 1. Click **New Conversation** in the sidebar (or run `/clear`).
-2. Set workspace to: `/Users/Macbook Pro/.gemini/antigravity/scratch/polish-agency-web`
+2. Set workspace to: `/Users/Shared/polishmedia`
 3. Send this starter prompt:
    > *"I am continuing work on POLISH Media Co. Please read `@docs/HANDOFF.md` and `@AGENTS.md` for current context. Let's work on [choose your next task from Section 5]."*

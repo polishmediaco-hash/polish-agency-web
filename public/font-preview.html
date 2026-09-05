@@ -3,264 +3,828 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>POLISH Media Co — Typography & Font Preview Suite</title>
+  <title>POLISH Media Co — Haute Atelier Typography Studio</title>
+
+  <!-- Google Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css?v=8.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="/css/style.css?v=24.0">
+
   <style>
-    .preview-header-bar {
+    /* Studio Header Bar */
+    .studio-header-bar {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(7, 8, 11, 0.88);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 14px 20px;
+      z-index: 10000;
+      background: rgba(10, 9, 8, 0.92);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(226, 199, 153, 0.2);
+      padding: 12px 24px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .studio-brand-left {
+      display: flex;
+      align-items: center;
       gap: 12px;
     }
-    .preview-title {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--brand-cyan);
+
+    .studio-logo-emblem {
+      height: 24px;
+      width: auto;
     }
-    .font-pills {
+
+    .studio-title-badge {
+      font-family: var(--font-heading);
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      color: var(--brand-gold);
+    }
+
+    .studio-font-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      align-items: center;
     }
-    .font-pill-btn {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+
+    .studio-pill-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       color: var(--text-lead);
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-size: 13px;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-heading);
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .font-pill-btn:hover {
-      background: rgba(0, 229, 255, 0.15);
-      border-color: rgba(0, 229, 255, 0.4);
-      color: #fff;
+
+    .studio-pill-btn:hover {
+      background: rgba(226, 199, 153, 0.12);
+      border-color: rgba(226, 199, 153, 0.4);
+      color: #FFFFFF;
+      transform: translateY(-1px);
     }
-    .font-pill-btn.active {
+
+    .studio-pill-btn.active {
       background: var(--grad-brand);
-      color: #000;
+      color: #06080A;
       font-weight: 800;
       border-color: transparent;
-      box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+      box-shadow: 0 0 20px rgba(226, 199, 153, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.7);
     }
-    .preview-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
-    .active-hero-preview {
-      margin-bottom: 70px;
-    }
-    .font-card-meta {
+
+    .studio-actions-right {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      padding: 0 10px;
+      gap: 10px;
     }
-    .font-name-badge {
-      font-size: 20px;
+
+    .studio-lang-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .studio-lang-btn:hover,
+    .studio-lang-btn.active {
+      color: #FFFFFF;
+      border-color: var(--brand-gold);
+      background: rgba(226, 199, 153, 0.18);
+    }
+
+    .studio-return-link {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .studio-return-link:hover {
+      color: #FFF;
+      border-color: var(--border-specular-hover);
+    }
+
+    /* Studio Diagnostic Banner */
+    .studio-meta-panel {
+      max-width: var(--container-max);
+      margin: 32px auto 20px;
+      padding: 24px 30px;
+      background: linear-gradient(135deg, rgba(20, 17, 14, 0.88) 0%, rgba(10, 9, 8, 0.96) 100%);
+      border: 1px solid rgba(226, 199, 153, 0.25);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.65), inset 0 1px 1.5px rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .meta-details-left {
+      max-width: 680px;
+    }
+
+    .meta-font-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .meta-font-desc {
+      font-size: 14.5px;
+      color: var(--text-lead);
+      line-height: 1.55;
+    }
+
+    .meta-specs-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meta-spec-pill {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(226, 199, 153, 0.08);
+      border: 1px solid rgba(226, 199, 153, 0.3);
+      color: var(--brand-gold);
+    }
+
+    /* Archetype Classes dynamically assigned to #previewCanvas */
+    .preview-mode-cormorant .hero-h1,
+    .preview-mode-cormorant .section-h2 {
+      font-family: var(--font-primary);
+    }
+    .preview-mode-cormorant .hero-h1 .gradient-accent,
+    .preview-mode-cormorant .hero-serif-accent,
+    .preview-mode-cormorant .section-serif-accent {
+      font-family: 'Cormorant Garamond', Georgia, serif !important;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.07em;
+    }
+
+    .preview-mode-syne .hero-h1,
+    .preview-mode-syne .section-h2,
+    .preview-mode-syne .card-h3,
+    .preview-mode-syne .step-lead-title {
+      font-family: 'Syne', sans-serif !important;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+    }
+    .preview-mode-syne .hero-h1 .gradient-accent,
+    .preview-mode-syne .hero-serif-accent,
+    .preview-mode-syne .section-serif-accent {
+      font-family: 'Syne', sans-serif !important;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 1em;
+    }
+
+    .preview-mode-playfair .hero-h1,
+    .preview-mode-playfair .section-h2 {
+      font-family: var(--font-primary);
+    }
+    .preview-mode-playfair .hero-h1 .gradient-accent,
+    .preview-mode-playfair .hero-serif-accent,
+    .preview-mode-playfair .section-serif-accent {
+      font-family: 'Playfair Display', Georgia, serif !important;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.04em;
+    }
+
+    .preview-mode-space .hero-h1,
+    .preview-mode-space .section-h2,
+    .preview-mode-space .card-h3 {
+      font-family: 'Space Grotesk', sans-serif !important;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+    .preview-mode-space .hero-h1 .gradient-accent,
+    .preview-mode-space .hero-serif-accent,
+    .preview-mode-space .section-serif-accent {
+      font-family: 'Space Grotesk', sans-serif !important;
+      font-style: normal;
+      font-size: 1em;
+      letter-spacing: -0.03em;
+    }
+
+    .preview-mode-jakarta .hero-h1,
+    .preview-mode-jakarta .section-h2,
+    .preview-mode-jakarta .card-h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+    .preview-mode-jakarta .hero-h1 .gradient-accent,
+    .preview-mode-jakarta .hero-serif-accent,
+    .preview-mode-jakarta .section-serif-accent {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-style: normal;
+      font-size: 1em;
+      font-weight: 800;
+    }
+
+    /* Comparison Stack */
+    .comparison-section-box {
+      max-width: var(--container-max);
+      margin: 60px auto 100px;
+      padding: 0 24px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .compare-card {
+      background: var(--glass-panel);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1.5px rgba(255, 255, 255, 0.15);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .compare-card:hover {
+      border-color: rgba(226, 199, 153, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .compare-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+    }
+
+    .compare-title {
+      font-size: 18px;
       font-weight: 800;
       color: #FFFFFF;
     }
-    .font-tagline-badge {
-      font-size: 12px;
-      color: var(--brand-cyan);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+
+    .compare-tagline {
+      font-size: 11.5px;
       font-weight: 700;
+      color: var(--brand-gold);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
     }
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      margin-top: 40px;
+
+    .compare-h1 {
+      margin-bottom: 14px;
+      line-height: 1.15;
     }
-    .font-card-box {
-      background: var(--glass-panel);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 28px;
-      padding: 44px 36px;
-      position: relative;
-    }
-    .font-cormorant .hero-h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-style: italic; letter-spacing: -0.01em; }
-    .font-syne .hero-h1 { font-family: 'Syne', sans-serif; font-weight: 800; letter-spacing: -0.03em; }
-    .font-playfair .hero-h1 { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: -0.02em; }
-    .font-space .hero-h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.035em; }
-    .font-jakarta .hero-h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; letter-spacing: -0.028em; }
   </style>
 </head>
 <body>
 
-  <!-- Controls Bar -->
-  <div class="preview-header-bar">
-    <div class="preview-title">Typography Selector</div>
-    <div class="font-pills">
-      <button class="font-pill-btn active" onclick="selectFont('cormorant')">Option 1: Cormorant Garamond</button>
-      <button class="font-pill-btn" onclick="selectFont('syne')">Option 2: Syne</button>
-      <button class="font-pill-btn" onclick="selectFont('playfair')">Option 3: Playfair Display</button>
-      <button class="font-pill-btn" onclick="selectFont('space')">Option 4: Space Grotesk</button>
-      <button class="font-pill-btn" onclick="selectFont('jakarta')">Option 5: Plus Jakarta Sans</button>
+  <!-- Sticky Studio Control Bar -->
+  <header class="studio-header-bar">
+    <div class="studio-brand-left">
+      <img src="/assets/logo-gold.svg" alt="POLISH" class="studio-logo-emblem" width="28" height="24">
+      <span class="studio-title-badge">Typography Studio</span>
     </div>
-  </div>
 
-  <div class="preview-container">
-    
-    <!-- Interactive Hero Preview Card -->
-    <div class="active-hero-preview">
-      <div class="font-card-meta">
-        <div class="font-name-badge" id="activeFontName">Option 1: Cormorant Garamond</div>
-        <div class="font-tagline-badge" id="activeFontTag">Editorial Haute Parfumerie (Vogue & Chanel Luxury)</div>
+    <!-- Active Font Selector Pills -->
+    <div class="studio-font-pills">
+      <button class="studio-pill-btn active" onclick="setStudioFont('cormorant')">
+        <span>Option 1: Cormorant Garamond (Haute Editorial)</span>
+      </button>
+      <button class="studio-pill-btn" onclick="setStudioFont('syne')">
+        <span>Option 2: Syne (Architectural Neo-Grotesque)</span>
+      </button>
+      <button class="studio-pill-btn" onclick="setStudioFont('playfair')">
+        <span>Option 3: Playfair (Cosmetic Editorial)</span>
+      </button>
+      <button class="studio-pill-btn" onclick="setStudioFont('space')">
+        <span>Option 4: Space Grotesk (Cyber-Studio)</span>
+      </button>
+      <button class="studio-pill-btn" onclick="setStudioFont('jakarta')">
+        <span>Option 5: Plus Jakarta (Pure Swiss)</span>
+      </button>
+    </div>
+
+    <!-- Right Controls: Language & Return -->
+    <div class="studio-actions-right">
+      <button class="studio-lang-btn active" id="btnLangEn" onclick="setStudioLang('en')">EN</button>
+      <button class="studio-lang-btn" id="btnLangFr" onclick="setStudioLang('fr')">FR</button>
+      <button class="studio-lang-btn" id="btnLangAr" onclick="setStudioLang('ar')">AR</button>
+      <a href="/" class="studio-return-link">← Return to Site</a>
+    </div>
+  </header>
+
+  <!-- Interactive Dynamic Canvas Wrapper -->
+  <div id="previewCanvas" class="preview-mode-cormorant">
+
+    <!-- Active Font Diagnostic Panel -->
+    <div class="container">
+      <div class="studio-meta-panel" id="metaPanel">
+        <div class="meta-details-left">
+          <div class="meta-font-title" id="metaTitle">Option 1: Editorial Haute Parfumerie (Vogue & Chanel Luxury)</div>
+          <div class="meta-font-desc" id="metaDesc">
+            Pairs modern, razor-sharp <em>Plus Jakarta Sans</em> body text with high-contrast sensual display serif accents (<em>Cormorant Garamond</em> Italic) on select headline words. Used by the world's most prestigious perfume houses and luxury beauty ateliers.
+          </div>
+        </div>
+        <div class="meta-specs-right">
+          <span class="meta-spec-pill" id="specHeading">Heading: Jakarta (800) + Cormorant (600 Italic)</span>
+          <span class="meta-spec-pill" id="specBody">Body: Plus Jakarta Sans</span>
+          <span class="meta-spec-pill" id="specTracking">Tracking: -0.022em / +0.16em</span>
+        </div>
       </div>
+    </div>
 
-      <div class="hero-glass-card font-cormorant" id="interactiveCard">
-        <h1 class="hero-h1">
-          <span class="kinetic-line"><span class="kinetic-text">From Breakthrough Formulation</span></span>
-          <span class="kinetic-line"><span class="kinetic-text gradient-accent">To Household Beauty Brand.</span></span>
-        </h1>
-        <p class="hero-desc">
-          We partner with visionary cosmetic founders to scale paid acquisition, high-converting UGC creator campaigns, and automated retention loops.
-        </p>
-        <div class="hero-actions">
-          <a href="#" class="btn-cta btn-cta-lg">
-            <span>Explore Partnership</span>
+    <!-- Live Section 1: Hero Experience Simulation -->
+    <section class="hero-section hero-home-section" style="padding: 24px 0 60px;">
+      <div class="container">
+        <div class="hero-glass-card" style="margin: 0 auto; max-width: 960px;">
+          
+          <div class="glass-card-topbar">
+            <div class="luxury-status-badge">
+              <span class="status-pulse-dot"></span>
+              <span class="status-cohort-text" id="simCohort">Q4 INTAKE COHORT ACTIVE</span>
+            </div>
+            <div class="glass-pill-tag">HAUTE ATELIER</div>
+          </div>
+
+          <h1 class="hero-h1 kinetic-title is-revealed">
+            <span class="kinetic-line"><span class="kinetic-text" id="simHeroL1">From Breakthrough Formulation</span></span>
+            <span class="kinetic-line"><span class="kinetic-text gradient-accent hero-serif-accent" id="simHeroL2">To Household Beauty Brand.</span></span>
+          </h1>
+
+          <p class="hero-desc" id="simHeroDesc">
+            We partner with visionary cosmetic founders to scale paid acquisition, high-converting UGC creator campaigns, and automated retention loops.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/apply" class="btn-cta btn-cta-lg">
+              <span id="simCtaBtn">Explore Partnership</span>
+            </a>
+            <div class="micro-trust">
+              <span>✦ Direct Founder Access</span>
+              <span>•</span>
+              <span>✦ Performance-Driven Retainers</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Section 2: Agitation Bottlenecks Simulation -->
+    <section class="section-wrap" style="padding: 40px 0;">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow-tag" id="simAgitEyebrow">THE BOTTLENECKS</div>
+          <h2 class="section-h2 kinetic-title is-revealed">
+            <span class="kinetic-line"><span class="kinetic-text" id="simAgitL1">Great Formulas Don't Sell Themselves.</span></span>
+            <span class="kinetic-line"><span class="kinetic-text gradient-text section-serif-accent" id="simAgitL2">Where Beauty Brands Hit a Wall.</span></span>
+          </h2>
+          <p class="section-p" id="simAgitDesc">
+            Most beauty brands plateau not from weak products, but from creative burnout and rising ad costs.
+          </p>
+        </div>
+
+        <div class="grid-cards-3">
+          <div class="pro-card is-revealed">
+            <span class="card-tag">01 • CREATIVE FATIGUE</span>
+            <h3 class="card-h3" id="simCard0Title">Ads Burn Out in 14 Days</h3>
+            <p class="card-p" id="simCard0Desc">
+              Without a constant pipeline of fresh video hooks and angles, ad fatigue spikes your customer acquisition cost.
+            </p>
+          </div>
+
+          <div class="pro-card is-revealed">
+            <span class="card-tag">02 • ZERO CONVERSION</span>
+            <h3 class="card-h3" id="simCard1Title">Aesthetic Views Don't Drive Sales</h3>
+            <p class="card-p" id="simCard1Desc">
+              Pretty feeds don't guarantee revenue. Conversions require structured hooks, ingredient breakdowns, and clear texture proof.
+            </p>
+          </div>
+
+          <div class="pro-card is-revealed">
+            <span class="card-tag">03 • NO RETENTION</span>
+            <h3 class="card-h3" id="simCard2Title">One-Time Buyers Drain Margins</h3>
+            <p class="card-p" id="simCard2Desc">
+              If customers don't reorder within 60 days, acquisition costs consume your profit. We turn first orders into recurring replenishment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Section 3: Growth Pillars & Tabular Numerals Simulation -->
+    <section class="section-wrap" style="padding: 40px 0 60px;">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow-tag" id="simPillarsEyebrow">THE GROWTH ENGINE</div>
+          <h2 class="section-h2 kinetic-title is-revealed">
+            <span class="kinetic-line"><span class="kinetic-text" id="simPillarsL1">Engineered Specifically</span></span>
+            <span class="kinetic-line"><span class="kinetic-text gradient-accent section-serif-accent" id="simPillarsL2">For Cosmetic &amp; Skincare Scaling.</span></span>
+          </h2>
+        </div>
+
+        <div class="grid-pillars-4">
+          <div class="pro-card is-revealed">
+            <div class="pillar-digit">01</div>
+            <h3 class="card-h3" id="simPillar0Title">High-Velocity UGC Studio</h3>
+            <p class="card-p" id="simPillar0Desc">Vetted beauty creators briefed with high-converting hooks, texture shots, and skin-routine demonstrations.</p>
+          </div>
+          <div class="pro-card is-revealed">
+            <div class="pillar-digit">02</div>
+            <h3 class="card-h3" id="simPillar1Title">Profit-First Paid Media</h3>
+            <p class="card-p" id="simPillar1Desc">Data-driven Meta and TikTok campaigns structured for maximum return on ad spend (ROAS) and scale.</p>
+          </div>
+          <div class="pro-card is-revealed">
+            <div class="pillar-digit">03</div>
+            <h3 class="card-h3" id="simPillar2Title">Conversion &amp; Routine Bundling</h3>
+            <p class="card-p" id="simPillar2Desc">High-converting product landing pages, multi-step routines, and smart cart upsells that increase AOV.</p>
+          </div>
+          <div class="pro-card is-revealed">
+            <div class="pillar-digit">04</div>
+            <h3 class="card-h3" id="simPillar3Title">Automated Replenishment Loops</h3>
+            <p class="card-p" id="simPillar3Desc">Predictive replenishment reminders and VIP retention flows that maximize customer lifetime value.</p>
+          </div>
+        </div>
+
+        <!-- Case Study Metric & Testimonial Quote -->
+        <div class="case-banner">
+          <span class="card-tag">CASE STUDY HIGHLIGHT</span>
+          <div class="metrics-strip">
+            <div>
+              <div class="metric-big">4.8x</div>
+              <div class="metric-label">Target ROAS Scaled</div>
+            </div>
+            <div>
+              <div class="metric-big">+320%</div>
+              <div class="metric-label">Monthly Gross Revenue</div>
+            </div>
+            <div>
+              <div class="metric-big">68 Days</div>
+              <div class="metric-label">To 7-Figure Run Rate</div>
+            </div>
+          </div>
+          <p class="case-quote">
+            "POLISH didn't just run ads—they redesigned our entire customer acquisition journey, transforming our botanical serums into an iconic cult favorite."
+          </p>
+          <a href="/apply" class="btn-cta">
+            <span>Review Full Growth Dossier</span>
           </a>
         </div>
+
       </div>
+    </section>
+
+  </div><!-- /previewCanvas -->
+
+  <!-- Side-by-Side Comparison Matrix -->
+  <section class="comparison-section-box">
+    <div class="section-head" style="margin-bottom: 24px;">
+      <div class="eyebrow-tag">SIDE-BY-SIDE EVALUATION</div>
+      <h2 class="section-h2">The 5 Typography Archetypes</h2>
+      <p class="section-p">Compare the typographic tone, weight balance, and emotional resonance across all five candidate hierarchies.</p>
     </div>
 
-    <div class="eyebrow-tag" style="color: var(--brand-cyan); border-color: rgba(0, 229, 255, 0.4); text-align: center; margin-bottom: 24px;">
-      SIDE-BY-SIDE LUXURY COMPARISON
-    </div>
-
-    <!-- Stacked Comparison Grid -->
-    <div class="comparison-grid">
+    <div class="compare-grid">
 
       <!-- Card 1: Cormorant Garamond -->
-      <div class="font-card-box font-cormorant">
-        <div class="font-card-meta">
-          <div class="font-name-badge">Option 1: Cormorant Garamond (Italic / SemiBold)</div>
-          <div class="font-tagline-badge">Vogue & Haute Parfumerie Luxury</div>
+      <div class="compare-card preview-mode-cormorant">
+        <div class="compare-header">
+          <div class="compare-title">Option 1: Cormorant Garamond (Italic / SemiBold)</div>
+          <div class="compare-tagline">Vogue &amp; Haute Parfumerie Luxury (Recommended)</div>
         </div>
-        <h1 class="hero-h1" style="font-size: clamp(34px, 4.2vw, 50px); margin-bottom: 16px;">
+        <h1 class="hero-h1 compare-h1" style="font-size: clamp(32px, 4vw, 48px);">
           From Breakthrough Formulation<br>
-          <span class="gradient-accent">To Household Beauty Brand.</span>
+          <span class="gradient-accent hero-serif-accent">To Household Beauty Brand.</span>
         </h1>
-        <p class="hero-desc" style="font-size: 15px; margin-bottom: 22px;">
-          Sensual, high-fashion editorial serif with razor-sharp italic contrast. Used by the world's most prestigious perfume houses and luxury beauty ateliers.
+        <p class="hero-desc" style="font-size: 15px; margin-bottom: 20px;">
+          Sensual, high-fashion editorial serif with razor-sharp italic contrast. Provides the timeless luxury aura of luxury fashion and haute parfumerie.
         </p>
-        <button class="font-pill-btn active" onclick="selectFont('cormorant')">Select Cormorant Garamond</button>
+        <button class="studio-pill-btn active" onclick="setStudioFont('cormorant')">Preview Option 1 Live</button>
       </div>
 
       <!-- Card 2: Syne -->
-      <div class="font-card-box font-syne">
-        <div class="font-card-meta">
-          <div class="font-name-badge">Option 2: Syne (ExtraBold)</div>
-          <div class="font-tagline-badge">Architectural Neo-Grotesque (Studio Freight & Monopo)</div>
+      <div class="compare-card preview-mode-syne">
+        <div class="compare-header">
+          <div class="compare-title">Option 2: Syne (ExtraBold 800)</div>
+          <div class="compare-tagline">Architectural Neo-Grotesque (Studio Freight &amp; Monopo)</div>
         </div>
-        <h1 class="hero-h1" style="font-size: clamp(32px, 3.8vw, 46px); margin-bottom: 16px;">
+        <h1 class="hero-h1 compare-h1" style="font-size: clamp(30px, 3.8vw, 44px);">
           From Breakthrough Formulation<br>
           <span class="gradient-accent">To Household Beauty Brand.</span>
         </h1>
-        <p class="hero-desc" style="font-size: 15px; margin-bottom: 22px;">
-          Bold, sculptural, high-fashion agency energy. Wide character set with sharp geometric terminals and commanding presence.
+        <p class="hero-desc" style="font-size: 15px; margin-bottom: 20px;">
+          Bold, sculptural, and high-fashion. Distinctive wide proportions and razor-sharp geometric cuts confer an avant-garde creative studio edge.
         </p>
-        <button class="font-pill-btn" onclick="selectFont('syne')">Select Syne</button>
+        <button class="studio-pill-btn" onclick="setStudioFont('syne')">Preview Option 2 Live</button>
       </div>
 
       <!-- Card 3: Playfair Display -->
-      <div class="font-card-box font-playfair">
-        <div class="font-card-meta">
-          <div class="font-name-badge">Option 3: Playfair Display</div>
-          <div class="font-tagline-badge">Modern Cosmetic Editorial (Rhode Skin & Glossier)</div>
+      <div class="compare-card preview-mode-playfair">
+        <div class="compare-header">
+          <div class="compare-title">Option 3: Playfair Display (Bold 700 Italic)</div>
+          <div class="compare-tagline">Modern Cosmetic Editorial (Rhode &amp; Glossier)</div>
         </div>
-        <h1 class="hero-h1" style="font-size: clamp(34px, 4vw, 48px); margin-bottom: 16px;">
+        <h1 class="hero-h1 compare-h1" style="font-size: clamp(32px, 4vw, 48px);">
           From Breakthrough Formulation<br>
-          <span class="gradient-accent">To Household Beauty Brand.</span>
+          <span class="gradient-accent hero-serif-accent">To Household Beauty Brand.</span>
         </h1>
-        <p class="hero-desc" style="font-size: 15px; margin-bottom: 22px;">
-          Classic, high-contrast transitional serif. Warm, approachable luxury with prestigious editorial heritage.
+        <p class="hero-desc" style="font-size: 15px; margin-bottom: 20px;">
+          Transitional, warm, and approachable luxury. Balanced high-contrast serif favored by modern direct-to-consumer skincare brands.
         </p>
-        <button class="font-pill-btn" onclick="selectFont('playfair')">Select Playfair Display</button>
+        <button class="studio-pill-btn" onclick="setStudioFont('playfair')">Preview Option 3 Live</button>
       </div>
 
       <!-- Card 4: Space Grotesk -->
-      <div class="font-card-box font-space">
-        <div class="font-card-meta">
-          <div class="font-name-badge">Option 4: Space Grotesk</div>
-          <div class="font-tagline-badge">Cyber-Luxury Venture Studio</div>
+      <div class="compare-card preview-mode-space">
+        <div class="compare-header">
+          <div class="compare-title">Option 4: Space Grotesk (SemiBold 700)</div>
+          <div class="compare-tagline">Cyber-Luxury Venture Studio</div>
         </div>
-        <h1 class="hero-h1" style="font-size: clamp(32px, 3.8vw, 46px); margin-bottom: 16px;">
+        <h1 class="hero-h1 compare-h1" style="font-size: clamp(30px, 3.8vw, 44px);">
           From Breakthrough Formulation<br>
           <span class="gradient-accent">To Household Beauty Brand.</span>
         </h1>
-        <p class="hero-desc" style="font-size: 15px; margin-bottom: 22px;">
-          Technical precision, tight metrics, and engineered clarity. Gives the impression of a deep-tech beauty scaling fund.
+        <p class="hero-desc" style="font-size: 15px; margin-bottom: 20px;">
+          Engineered precision, tight tracking, and deep-tech algorithmic authority. Positions POLISH as a venture-grade scaling engine.
         </p>
-        <button class="font-pill-btn" onclick="selectFont('space')">Select Space Grotesk</button>
+        <button class="studio-pill-btn" onclick="setStudioFont('space')">Preview Option 4 Live</button>
       </div>
 
       <!-- Card 5: Plus Jakarta Sans -->
-      <div class="font-card-box font-jakarta">
-        <div class="font-card-meta">
-          <div class="font-name-badge">Option 5: Plus Jakarta Sans (Current)</div>
-          <div class="font-tagline-badge">Ultra-Clean Geometric Grotesque</div>
+      <div class="compare-card preview-mode-jakarta">
+        <div class="compare-header">
+          <div class="compare-title">Option 5: Plus Jakarta Sans (Unified ExtraBold 800)</div>
+          <div class="compare-tagline">Pure Minimalist Swiss Grotesque</div>
         </div>
-        <h1 class="hero-h1" style="font-size: clamp(32px, 3.8vw, 46px); margin-bottom: 16px;">
+        <h1 class="hero-h1 compare-h1" style="font-size: clamp(30px, 3.8vw, 44px);">
           From Breakthrough Formulation<br>
           <span class="gradient-accent">To Household Beauty Brand.</span>
         </h1>
-        <p class="hero-desc" style="font-size: 15px; margin-bottom: 22px;">
-          Current clean geometric sans-serif. Modern, highly legible, and balanced.
+        <p class="hero-desc" style="font-size: 15px; margin-bottom: 20px;">
+          Ultra-clean, balanced geometric sans with unified weights across all titles and body copy. Minimalist, modern, and uncluttered.
         </p>
-        <button class="font-pill-btn" onclick="selectFont('jakarta')">Select Plus Jakarta Sans</button>
+        <button class="studio-pill-btn" onclick="setStudioFont('jakarta')">Preview Option 5 Live</button>
       </div>
 
     </div>
-  </div>
+  </section>
 
+  <!-- Interactive Studio Script -->
   <script>
-    const fontInfo = {
-      cormorant: { name: 'Option 1: Cormorant Garamond', tag: 'Editorial Haute Parfumerie (Vogue & Chanel Luxury)', cls: 'font-cormorant' },
-      syne: { name: 'Option 2: Syne', tag: 'Architectural Neo-Grotesque (Studio Freight & Monopo)', cls: 'font-syne' },
-      playfair: { name: 'Option 3: Playfair Display', tag: 'Modern Cosmetic Editorial (Rhode Skin & Glossier)', cls: 'font-playfair' },
-      space: { name: 'Option 4: Space Grotesk', tag: 'Cyber-Luxury Venture Studio', cls: 'font-space' },
-      jakarta: { name: 'Option 5: Plus Jakarta Sans', tag: 'Ultra-Clean Geometric Grotesque', cls: 'font-jakarta' }
+    const fontConfigs = {
+      cormorant: {
+        cls: 'preview-mode-cormorant',
+        title: 'Option 1: Editorial Haute Parfumerie (Vogue & Chanel Luxury)',
+        desc: 'Pairs modern, razor-sharp Plus Jakarta Sans body text with high-contrast sensual display serif accents (Cormorant Garamond Italic) on select headline words. Used by the world’s most prestigious perfume houses and luxury beauty ateliers.',
+        heading: 'Heading: Jakarta (800) + Cormorant (600 Italic)',
+        body: 'Body: Plus Jakarta Sans',
+        tracking: 'Tracking: -0.022em / +0.16em'
+      },
+      syne: {
+        cls: 'preview-mode-syne',
+        title: 'Option 2: Syne (Architectural Neo-Grotesque)',
+        desc: 'Bold, sculptural, and architectural. Distinctive wide proportions with razor-sharp terminal cuts confer an avant-garde European creative laboratory presence.',
+        heading: 'Heading: Syne (ExtraBold 800)',
+        body: 'Body: Plus Jakarta Sans',
+        tracking: 'Tracking: -0.035em / +0.16em'
+      },
+      playfair: {
+        cls: 'preview-mode-playfair',
+        title: 'Option 3: Playfair Display (Modern Cosmetic Editorial)',
+        desc: 'Transitional, warm, and approachable luxury. Balanced high-contrast serif favored by prestigious modern beauty icons like Rhode Skin and Glossier.',
+        heading: 'Heading: Jakarta (800) + Playfair (700 Italic)',
+        body: 'Body: Plus Jakarta Sans',
+        tracking: 'Tracking: -0.015em / +0.14em'
+      },
+      space: {
+        cls: 'preview-mode-space',
+        title: 'Option 4: Space Grotesk (Cyber-Luxury Venture)',
+        desc: 'Technical clarity, tight metrics, and engineered precision. Positions POLISH as a venture-grade algorithmic growth fund for cosmetic brands.',
+        heading: 'Heading: Space Grotesk (700)',
+        body: 'Body: Plus Jakarta Sans',
+        tracking: 'Tracking: -0.04em / +0.12em'
+      },
+      jakarta: {
+        cls: 'preview-mode-jakarta',
+        title: 'Option 5: Plus Jakarta Sans (Pure Minimalist Swiss)',
+        desc: 'Unified geometric sans-serif throughout. Minimalist, uncluttered, and surgical balance across all viewports.',
+        heading: 'Heading: Plus Jakarta Sans (800)',
+        body: 'Body: Plus Jakarta Sans',
+        tracking: 'Tracking: -0.025em / +0.16em'
+      }
     };
 
-    function selectFont(fontKey) {
-      const card = document.getElementById('interactiveCard');
-      const nameEl = document.getElementById('activeFontName');
-      const tagEl = document.getElementById('activeFontTag');
+    const i18nContent = {
+      en: {
+        dir: 'ltr',
+        cohort: 'Q4 INTAKE COHORT ACTIVE',
+        heroL1: 'From Breakthrough Formulation',
+        heroL2: 'To Household Beauty Brand.',
+        heroDesc: 'We partner with visionary cosmetic founders to scale paid acquisition, high-converting UGC creator campaigns, and automated retention loops.',
+        ctaBtn: 'Explore Partnership',
+        agitEyebrow: 'THE BOTTLENECKS',
+        agitL1: "Great Formulas Don't Sell Themselves.",
+        agitL2: 'Where Beauty Brands Hit a Wall.',
+        agitDesc: 'Most beauty brands plateau not from weak products, but from creative burnout and rising ad costs.',
+        card0Title: 'Ads Burn Out in 14 Days',
+        card0Desc: 'Without a constant pipeline of fresh video hooks and angles, ad fatigue spikes your customer acquisition cost.',
+        card1Title: "Aesthetic Views Don't Drive Sales",
+        card1Desc: 'Pretty feeds don't guarantee revenue. Conversions require structured hooks, ingredient breakdowns, and clear texture proof.',
+        card2Title: 'One-Time Buyers Drain Margins',
+        card2Desc: 'If customers don't reorder within 60 days, acquisition costs consume your profit. We turn first orders into recurring replenishment.',
+        pillarsEyebrow: 'THE GROWTH ENGINE',
+        pillarsL1: 'Engineered Specifically',
+        pillarsL2: 'For Cosmetic & Skincare Scaling.',
+        pillar0Title: 'High-Velocity UGC Studio',
+        pillar0Desc: 'Vetted beauty creators briefed with high-converting hooks, texture shots, and skin-routine demonstrations.',
+        pillar1Title: 'Profit-First Paid Media',
+        pillar1Desc: 'Data-driven Meta and TikTok campaigns structured for maximum return on ad spend (ROAS) and scale.',
+        pillar2Title: 'Conversion & Routine Bundling',
+        pillar2Desc: 'High-converting product landing pages, multi-step routines, and smart cart upsells that increase AOV.',
+        pillar3Title: 'Automated Replenishment Loops',
+        pillar3Desc: 'Predictive replenishment reminders and VIP retention flows that maximize customer lifetime value.'
+      },
+      fr: {
+        dir: 'ltr',
+        cohort: 'COHORTE T4 EN COURS',
+        heroL1: 'De la Formulation Innovante',
+        heroL2: 'À la Marque de Cosmétique Incontournable.',
+        heroDesc: 'Nous accompagnons les fondateurs d’ateliers et marques cosmétiques pour faire exploser leur croissance payante et leurs boucles de réapprovisionnement.',
+        ctaBtn: 'Postuler au Partenariat',
+        agitEyebrow: 'LES POINTS DE BLOCAGE',
+        agitL1: 'Les Bonnes Formules Ne Se Vendent Pas Seules.',
+        agitL2: 'Où les Marques Butent sur un Mur.',
+        agitDesc: 'La plupart des marques stagnent en raison de la fatigue créative et de la hausse des coûts publicitaires.',
+        card0Title: 'Fatigue Créative en 14 Jours',
+        card0Desc: 'Sans flux continu de nouveaux angles vidéo, le coût d’acquisition grimpe en flèche.',
+        card1Title: 'Les Vues Esthétiques Ne Convertissent Pas',
+        card1Desc: 'Convertir exige des accroches psychologiques précises et des démonstrations d’ingrédients.',
+        card2Title: 'Les Acheteurs Uniques Drainent Vos Marges',
+        card2Desc: 'Nous transformons les premières commandes en abonnements et réachats automatiques.',
+        pillarsEyebrow: 'LE MOTEUR DE CROISSANCE',
+        pillarsL1: 'Conçu Spécifiquement',
+        pillarsL2: 'Pour l’Échelle des Cosmétiques & Skincare.',
+        pillar0Title: 'Studio Créateur UGC Haute Fréquence',
+        pillar0Desc: 'Créateurs beauté validés et briefés sur les hooks à fort taux de conversion.',
+        pillar1Title: 'Média Payant Axé sur le Profit',
+        pillar1Desc: 'Campagnes Meta et TikTok optimisées pour un ROAS maximal.',
+        pillar2Title: 'Conversion & Bundles de Routines',
+        pillar2Desc: 'Landing pages cosmétiques et parcours de panier pensés pour maximiser le panier moyen.',
+        pillar3Title: 'Boucles de Réapprovisionnement',
+        pillar3Desc: 'Automatisation prédictive des rappels pour maximiser la valeur vie client (LTV).'
+      },
+      ar: {
+        dir: 'rtl',
+        cohort: 'دفعة الربع الرابع نشطة حالياً',
+        heroL1: 'من تركيبة مبتكرة وواعدة',
+        heroL2: 'إلى علامة تجميلية رائدة ومنتشرة عالمياً.',
+        heroDesc: 'نتعاون مع مؤسسي العلامات التجميلية والعناية بالبشرة لمضاعفة العوائد عبر حملات الاستحواذ المدفوع والمحتوى الإبداعي الأصيل.',
+        ctaBtn: 'اكتشف الشراكة الآن',
+        agitEyebrow: 'العقبات والتحديات',
+        agitL1: 'التركيبات العظيمة لا تبيع نفسها.',
+        agitL2: 'أين تتوقف علامات التجميل.',
+        agitDesc: 'معظم العلامات تتراجع ليس بسبب جودة المنتج، بل بسبب استنزاف الأفكار الإعلانية وارتفاع تكلفة الاستحواذ.',
+        card0Title: 'احتراق الإعلانات خلال 14 يوماً',
+        card0Desc: 'بدون تدفق مستمر لزوايا تصوير مبتكرة، ترتفع تكلفة العميل وتفقد الحملات زخمها.',
+        card1Title: 'المشاهدات الجمالية لا تحقق المبيعات',
+        card1Desc: 'التحويل الحقيقي يتطلب هيكلية إقناعية وإثباتاً حسياً لملمس المنتج وفوائده.',
+        card2Title: 'المشترون لمرة واحدة يستنزفون الأرباح',
+        card2Desc: 'نحول الطلب الأول إلى دورة شراء متكررة وتلقائية تضمن استدامة التدفق النقدي.',
+        pillarsEyebrow: 'محرك النمو المتكامل',
+        pillarsL1: 'مصمم ومبني خصيصاً',
+        pillarsL2: 'لتوسيع علامات التجميل والعناية بالبشرة.',
+        pillar0Title: 'استوديو صناع المحتوى (UGC)',
+        pillar0Desc: 'صناع محتوى محترفون في مجال التجميل ينفذون سيناريوهات مبنية على البيانات التحويلية.',
+        pillar1Title: 'إعلانات رقمية تركز على صافي الربح',
+        pillar1Desc: 'حملات ممولة على تيك توك وميتا بهياكل استهداف دقيقة تضمن أعلى عائد على الإنفاق الإعلاني.',
+        pillar2Title: 'تحسين التحويل وحزم الروتين',
+        pillar2Desc: 'صفحات هبوط عالية التحويل وحزم منتجات ترفع متوسط قيمة سلة الشراء.',
+        pillar3Title: 'دورات إعادة الشراء المؤتمتة',
+        pillar3Desc: 'رسائل وتذكيرات ذكية مبنية على توقيت نفاد المنتج ترفع القيمة الدائمة للعميل.'
+      }
+    };
 
-      card.className = 'hero-glass-card ' + fontInfo[fontKey].cls;
-      nameEl.textContent = fontInfo[fontKey].name;
-      tagEl.textContent = fontInfo[fontKey].tag;
+    let activeFontKey = 'cormorant';
+    let activeLang = 'en';
 
-      document.querySelectorAll('.font-pill-btn').forEach(btn => {
-        if (btn.getAttribute('onclick').includes(fontKey)) {
+    function setStudioFont(fontKey) {
+      activeFontKey = fontKey;
+      const canvas = document.getElementById('previewCanvas');
+      const cfg = fontConfigs[fontKey];
+
+      // Remove previous mode classes
+      canvas.className = cfg.cls;
+
+      // Update Meta details
+      document.getElementById('metaTitle').textContent = cfg.title;
+      document.getElementById('metaDesc').textContent = cfg.desc;
+      document.getElementById('specHeading').textContent = cfg.heading;
+      document.getElementById('specBody').textContent = cfg.body;
+      document.getElementById('specTracking').textContent = cfg.tracking;
+
+      // Update Pill Button active state
+      document.querySelectorAll('.studio-pill-btn').forEach(btn => {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(fontKey)) {
           btn.classList.add('active');
         } else {
           btn.classList.remove('active');
         }
       });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setStudioLang(langKey) {
+      activeLang = langKey;
+      const data = i18nContent[langKey];
+      const canvas = document.getElementById('previewCanvas');
+
+      if (data.dir === 'rtl') {
+        canvas.setAttribute('dir', 'rtl');
+        document.body.classList.add('is-rtl');
+      } else {
+        canvas.setAttribute('dir', 'ltr');
+        document.body.classList.remove('is-rtl');
+      }
+
+      // Update simulation text strings
+      document.getElementById('simCohort').textContent = data.cohort;
+      document.getElementById('simHeroL1').textContent = data.heroL1;
+      document.getElementById('simHeroL2').textContent = data.heroL2;
+      document.getElementById('simHeroDesc').textContent = data.heroDesc;
+      document.getElementById('simCtaBtn').textContent = data.ctaBtn;
+      document.getElementById('simAgitEyebrow').textContent = data.agitEyebrow;
+      document.getElementById('simAgitL1').textContent = data.agitL1;
+      document.getElementById('simAgitL2').textContent = data.agitL2;
+      document.getElementById('simAgitDesc').textContent = data.agitDesc;
+      document.getElementById('simCard0Title').textContent = data.card0Title;
+      document.getElementById('simCard0Desc').textContent = data.card0Desc;
+      document.getElementById('simCard1Title').textContent = data.card1Title;
+      document.getElementById('simCard1Desc').textContent = data.card1Desc;
+      document.getElementById('simCard2Title').textContent = data.card2Title;
+      document.getElementById('simCard2Desc').textContent = data.card2Desc;
+      document.getElementById('simPillarsEyebrow').textContent = data.pillarsEyebrow;
+      document.getElementById('simPillarsL1').textContent = data.pillarsL1;
+      document.getElementById('simPillarsL2').textContent = data.pillarsL2;
+      document.getElementById('simPillar0Title').textContent = data.pillar0Title;
+      document.getElementById('simPillar0Desc').textContent = data.pillar0Desc;
+      document.getElementById('simPillar1Title').textContent = data.pillar1Title;
+      document.getElementById('simPillar1Desc').textContent = data.pillar1Desc;
+      document.getElementById('simPillar2Title').textContent = data.pillar2Title;
+      document.getElementById('simPillar2Desc').textContent = data.pillar2Desc;
+      document.getElementById('simPillar3Title').textContent = data.pillar3Title;
+      document.getElementById('simPillar3Desc').textContent = data.pillar3Desc;
+
+      // Update lang buttons
+      document.querySelectorAll('.studio-lang-btn').forEach(btn => {
+        if (btn.id === 'btnLang' + langKey.charAt(0).toUpperCase() + langKey.slice(1)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
     }
   </script>
+
 </body>
 </html>

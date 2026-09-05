@@ -83,13 +83,30 @@ The application has successfully completed a luxury atelier rebranding and typog
 
 ### G. Logo Exploration & Redesign Studio (`public/logo-preview.html` / `/logo-preview`)
 * **5 Curated Haute Atelier Redesign Concepts**:
-  1. *Concept 1: The Golden Ratio Pipette* (Precision evolution of current mark with golden ratio fillets & locked droplet).
-  2. *Concept 2: The Maison 'P' Crest* (Parisian fashion house monogram fusing 'P' + ascending arrow + suspended drop).
-  3. *Concept 3: The Solitaire Facet & Flacon* (High-jewelry crystalline refraction & French perfume stopper).
-  4. *Concept 4: The Liquid Silk Möbius* (Continuous 3D metallic ribbon capturing sensory cosmetic cream & compounding scale).
-  5. *Concept 5: The Celestial Eclipse* (Concentric crescent blades around diamond core; quiet luxury & clinical cosmeceuticals).
-* **Features**: Live surface toggle (Obsidian, Alabaster, Gold Foil, Grid), scale stress tests (512px to 16px favicon), amber dropper bottle mockups, and live dynamic island navbar simulator.
-* **Routes Registered**: `GET /logo-preview`.
+  1. *Concept 1: The Golden Ratio Pipette* (**OFFICIALLY SELECTED BRAND IDENTITY**) — Precision aerodynamic geometry with golden ratio ($\phi \approx 1.618$) fillets and optically locked diamond droplet.
+  2. *Concept 2: The Maison 'P' Crest* — Parisian fashion house monogram fusing 'P' + ascending arrow + suspended drop.
+  3. *Concept 3: The Solitaire Facet & Flacon* — High-jewelry crystalline refraction & French perfume stopper.
+  4. *Concept 4: The Liquid Silk Möbius* — Continuous 3D metallic ribbon capturing sensory cosmetic cream & compounding scale.
+  5. *Concept 5: The Celestial Eclipse* — Concentric crescent blades around diamond core; quiet luxury & clinical cosmeceuticals.
+* **Master Assets Updated**:
+  * `public/assets/logo-gold.svg` (Official Vector Mark)
+  * `public/assets/logo-gold.png` (1200px High-Res Raster Mark)
+  * `public/assets/favicon.svg` & `public/brand-pack/02_favicons_and_icons/`
+  * Complete 75-asset suite in `public/brand-pack/` + Master ZIP (`POLISH_Media_Co_Brand_Pack.zip`).
+
+### H. Award-Winning Luxury Cards & Tactile Micro-Interactions
+* **Dynamic Cursor Spotlight (120FPS RAF-Throttled Tracking)**:
+  * Radial gradient light cone following cursor position via CSS custom properties `--mouse-x` and `--mouse-y`.
+  * Integrated across `.pro-card` (Bottleneck & Pillar cards), `.hero-glass-card` (Main Hero card), and `.form-container-shell` (Intake Wizard).
+  * Upgraded backgrounds from legacy blue tint to Haute Obsidian Noir (`linear-gradient(135deg, rgba(20, 17, 14, 0.88) 0%, rgba(12, 10, 8, 0.94) 100%)`).
+* **Specular Rim Lighting & Dual Borders**:
+  * Dual-rim beveled specular borders with Champagne Gold hover radiance (`rgba(226, 199, 153, 0.42)`).
+* **Tactile Magnetic Button Physics**:
+  * Subtle 28% magnetic pull towards cursor on desktop for `.btn-cta`, `.btn-cta-lg`, `.sticky-glowing-btn`, and `.header-home-btn`.
+  * Smooth spring return animation (`cubic-bezier(0.16, 1, 0.3, 1)`) on mouseleave.
+  * Completely bypassed on touch devices and `prefers-reduced-motion`.
+* **Zero Cyan Left**:
+  * Completely eliminated all legacy cyan (`#00E5FF` and `rgba(0, 229, 255)`) from `admin.html`, `luxury-effects.js`, and site CSS.
 
 ---
 
@@ -108,8 +125,8 @@ The application has successfully completed a luxury atelier rebranding and typog
 ## 4. Git & Repository Status
 
 * **Branch**: `main`
-* **Working Directory**: Clean (All changes committed as `feat(branding): complete Haute Atelier Champagne Gold luxury rebranding...`).
-* **Assets**: All vector and raster gold logos are committed and referenced.
+* **Working Directory**: Clean (Latest commit: `feat(ui): implement dynamic cursor spotlight tracking, obsidian noir cards, and magnetic button physics`).
+* **Assets**: All vector and raster gold logos are committed and synchronized with backup workspace.
 
 ---
 

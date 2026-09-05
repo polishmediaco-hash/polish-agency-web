@@ -108,6 +108,93 @@
   }
 
   // =========================================================================
+  // 5B. DYNAMIC CURSOR SPOTLIGHT TRACKING (120FPS RAF-THROTTLED)
+  // =========================================================================
+  function initSpotlightCards() {
+    if (isTouch || prefersReducedMotion) return;
+    const cards = document.querySelectorAll('.pro-card, .hero-glass-card, .form-container-shell');
+    if (cards.length === 0) return;
+
+    cards.forEach(card => {
+      let raf = null;
+      card.addEventListener('mousemove', (e) => {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
+          card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
+        });
+      }, { passive: true });
+
+      card.addEventListener('mouseleave', () => {
+        if (raf) cancelAnimationFrame(raf);
+        card.style.removeProperty('--mouse-x');
+        card.style.removeProperty('--mouse-y');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSpotlightCards);
+  } else {
+    initSpotlightCards();
+  }
+
+  // =========================================================================
+  // 5C. TACTILE MAGNETIC BUTTON PHYSICS (SPRING DAMPED ACCELERATION)
+  // =========================================================================
+  function initMagneticButtons() {
+    if (isTouch || prefersReducedMotion) return;
+    const buttons = document.querySelectorAll('.btn-cta, .btn-cta-lg, .sticky-glowing-btn, .header-home-btn');
+    if (buttons.length === 0) return;
+
+    buttons.forEach(btn => {
+      let raf = null;
+      let isHovered = false;
+
+      btn.addEventListener('mouseenter', () => {
+        isHovered = true;
+        btn.style.transition = 'transform 0.12s ease-out';
+      });
+
+      btn.addEventListener('mousemove', (e) => {
+        if (!isHovered) return;
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const rect = btn.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          // Smooth 28% magnetic pull coefficient capped at 8px max displacement
+          const pullX = Math.max(-8, Math.min(8, (e.clientX - centerX) * 0.28));
+          const pullY = Math.max(-8, Math.min(8, (e.clientY - centerY) * 0.28));
+          btn.style.transform = `translate3d(${pullX.toFixed(1)}px, ${(pullY - 2).toFixed(1)}px, 0)`;
+        });
+      }, { passive: true });
+
+      btn.addEventListener('mouseleave', () => {
+        isHovered = false;
+        if (raf) cancelAnimationFrame(raf);
+        btn.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+        btn.style.transform = 'translate3d(0, 0, 0)';
+        setTimeout(() => {
+          if (!isHovered) {
+            btn.style.transition = '';
+            btn.style.transform = '';
+          }
+        }, 450);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMagneticButtons);
+  } else {
+    initMagneticButtons();
+  }
+
+  // =========================================================================
   // 6. AMBIENT PARTICLES ENGINE (DESKTOP ONLY — 0MS OVERHEAD)
   // =========================================================================
   const bgContainer = document.querySelector('.bg-canvas-wrap');
@@ -131,9 +218,9 @@
 
     const particleCount = 14;
     const holoColors = [
-      'rgba(0, 229, 255, 0.45)',
-      'rgba(235, 0, 255, 0.38)',
-      'rgba(138, 43, 226, 0.35)',
+      'rgba(226, 199, 153, 0.55)',
+      'rgba(245, 230, 211, 0.65)',
+      'rgba(197, 168, 128, 0.40)',
       'rgba(255, 255, 255, 0.55)'
     ];
     const particles = Array.from({ length: particleCount }, () => ({

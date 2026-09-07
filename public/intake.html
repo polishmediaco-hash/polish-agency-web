@@ -40,6 +40,7 @@
     .form-container-shell.intake-shell {
       max-width: 660px;
       margin: 0 auto 60px;
+      text-align: left;
     }
 
     .form-textarea {
@@ -47,17 +48,39 @@
       min-height: 88px;
     }
 
-    .island-btn-group {
+    .dynamic-island-shell.intake-header-shell {
+      max-width: 440px;
+      padding: 8px 22px;
       display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
+      background: linear-gradient(135deg, rgba(20, 16, 13, 0.92) 0%, rgba(10, 9, 8, 0.96) 100%);
+      border: 1px solid rgba(226, 199, 153, 0.24);
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.8), 0 0 20px rgba(226, 199, 153, 0.08), inset 0 1px 1.5px rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .dynamic-island-shell.intake-header-shell .island-logo-zone {
+      order: 1;
+    }
+
+    .dynamic-island-shell.intake-header-shell .island-actions-zone {
+      order: 2;
+    }
+
+    .site-header.is-scrolled .dynamic-island-shell.intake-header-shell {
+      max-width: 360px;
+      padding: 6px 18px;
+      border-color: rgba(226, 199, 153, 0.35);
     }
 
     .header-board-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 9999px;
       font-size: 12.5px;
       font-weight: 700;
@@ -74,24 +97,17 @@
       border-color: rgba(226, 199, 153, 0.35);
     }
 
-    .lang-pill-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 12.5px;
-      font-weight: 700;
-      text-decoration: none;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-muted);
-      transition: all 0.22s ease;
+    .field-label {
+      text-align: left;
     }
 
-    .lang-pill-link:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: #FFF;
+    .field-hint {
+      font-size: 12.5px;
+      color: var(--text-muted, #A29E96);
+      margin-top: -3px;
+      margin-bottom: 9px;
+      line-height: 1.45;
+      text-align: left;
     }
 
     .copy-toast {
@@ -188,31 +204,22 @@
     </div>
   </div>
 
-  <!-- Top Luxury Dynamic Island Header Capsule -->
+  <!-- Top Luxury Dynamic Island Header Capsule (Logo + Board Button Only) -->
   <header class="site-header" id="siteHeader">
-    <div class="dynamic-island-shell has-center-home" id="dynamicIslandShell">
+    <div class="dynamic-island-shell intake-header-shell" id="dynamicIslandShell">
       <div class="island-logo-zone">
         <a href="/" class="brand-logo-link" aria-label="POLISH Home">
           <img src="/assets/logo-gold.svg?v=22.0" alt="POLISH Media Co." class="brand-logo-img island-capsule-logo" width="153" height="46" fetchpriority="high">
         </a>
       </div>
       
-      <div class="island-center-zone island-btn-group">
-        <a href="/eman" class="header-board-btn" aria-label="Interactive Board">
+      <div class="island-actions-zone">
+        <a href="/eman" class="header-board-btn" aria-label="Interactive Strategy Board">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
           <span>Board</span>
-        </a>
-        <a href="/" class="header-home-btn" aria-label="Home">
-          <span>Home</span>
-        </a>
-      </div>
-
-      <div class="island-lang-zone">
-        <a href="/pdf" target="_blank" rel="noopener noreferrer" class="lang-pill-link" title="Open 2-Page Options PDF">
-          <span>PDF</span>
         </a>
       </div>
 
@@ -255,62 +262,72 @@
             <!-- STEP 1: Avatar, Dream Outcome & Container Name -->
             <div class="form-step-pane active" data-step="1">
               <div class="field-group">
-                <label class="field-label" for="q1_avatar">1. Primary Target Avatar <span class="req">*</span></label>
-                <textarea class="form-textarea" id="q1_avatar" placeholder="Who is your ideal executive client, and what acute challenge forces them to reach out?" required></textarea>
+                <label class="field-label" for="q1_avatar">1. Primary Target Client & Acute Crisis <span class="req">*</span></label>
+                <p class="field-hint">Who is your ideal executive client in the UAE, and what acute challenge, burnout, or decision overload forces them to reach out?</p>
+                <textarea class="form-textarea" id="q1_avatar" placeholder="e.g. Emirati & expat female senior directors in DIFC/Abu Dhabi, C-suite leaders, and founders battling pace fatigue, imposter exhaustion, and high-stakes decision paralysis..." required></textarea>
               </div>
 
               <div class="field-group">
-                <label class="field-label" for="q2_dream_outcome">2. 30 & 90-Day Dream Outcome <span class="req">*</span></label>
-                <textarea class="form-textarea" id="q2_dream_outcome" placeholder="What tangible transformation and peace do they experience after working with you?" required></textarea>
+                <label class="field-label" for="q2_dream_outcome">2. 30-Day & 90-Day Dream Transformation <span class="req">*</span></label>
+                <p class="field-hint">What tangible transformation, emotional relief, and measurable boardroom mastery do they experience after working with you?</p>
+                <textarea class="form-textarea" id="q2_dream_outcome" placeholder="e.g. 30 Days: Shift from reactive firefighting to decisive calm, emotional sovereignty, and 10+ hours/week reclaimed. 90 Days: Permanent leadership recalibration with zero burnout..." required></textarea>
               </div>
 
               <div class="field-group">
-                <label class="field-label" for="q3_naming">3. Signature Container Name <span class="req">*</span></label>
-                <input type="text" class="form-input" id="q3_naming" placeholder="e.g. The Executive Reset Advisory™" required>
+                <label class="field-label" for="q3_naming">3. Flagship Advisory Program Name <span class="req">*</span></label>
+                <p class="field-hint">What is the high-status title for your 1:1 private advisory container?</p>
+                <input type="text" class="form-input" id="q3_naming" placeholder="e.g. The Executive Reset Advisory™ (or Leading with Heart & Mind: Sovereign Leadership Container)" required>
               </div>
             </div>
 
             <!-- STEP 2: Delivery Cadence, Pricing & Bonus Stack -->
             <div class="form-step-pane" data-step="2" style="display: none;">
               <div class="field-group">
-                <label class="field-label" for="q4_delivery">4. Delivery Cadence & Rapid First-Win <span class="req">*</span></label>
-                <textarea class="form-textarea" id="q4_delivery" placeholder="e.g. In-person deep dive + weekly calibrations + priority voice memo lifeline." required></textarea>
+                <label class="field-label" for="q4_delivery">4. Delivery Format & Rapid First-Win Protocol <span class="req">*</span></label>
+                <p class="field-hint">How do you meet with executives, and what rapid breakthrough do you deliver within the first 48 hours?</p>
+                <textarea class="form-textarea" id="q4_delivery" placeholder="e.g. In-person deep dive at The Arts Club DIFC / Zoom + 4x weekly 45-min calibrations + Mon–Fri VIP WhatsApp voice note access. Immediate clarity breakthrough in <48 hours." required></textarea>
               </div>
 
               <div class="field-group">
-                <label class="field-label" for="q5_pricing">5. Container Investment & Commercial Terms <span class="req">*</span></label>
-                <input type="text" class="form-input" id="q5_pricing" placeholder="e.g. 6,500 AED / month sprint | 17,500 AED 90-day VIP container" required>
+                <label class="field-label" for="q5_pricing">5. Commercial Fee Structure & Investment (AED) <span class="req">*</span></label>
+                <p class="field-hint">What are your commercial terms for the front-end diagnostic and ongoing monthly retainer (calibrated for corporate expensing)?</p>
+                <input type="text" class="form-input" id="q5_pricing" placeholder="e.g. 1,200 AED for 60-min Life Friction Diagnostic (100% credited) | 6,500 AED/month for 30-day container | 17,500 AED for 90-day VIP retainer" required>
               </div>
 
               <div class="field-group">
-                <label class="field-label" for="q6_bonus_stack">6. Value Multiplier Bonus Stack <span class="req">*</span></label>
-                <textarea class="form-textarea" id="q6_bonus_stack" placeholder="e.g. 24/7 Crisis WhatsApp SOS lifeline, Decision SOP matrix, Stakeholder alignment protocol." required></textarea>
+                <label class="field-label" for="q6_bonus_stack">6. High-Value Bonus Stack (Value Multipliers) <span class="req">*</span></label>
+                <p class="field-hint">What exclusive inclusions or privileges eliminate client hesitations and multiply perceived value?</p>
+                <textarea class="form-textarea" id="q6_bonus_stack" placeholder="e.g. 1) 24/7 Executive SOS WhatsApp lifeline; 2) The Decision & Energy SOP Matrix; 3) Stakeholder Alignment Protocol; 4) Private peer introductions." required></textarea>
               </div>
             </div>
 
             <!-- STEP 3: Guarantee, Capacity & Authority Proof -->
             <div class="form-step-pane" data-step="3" style="display: none;">
               <div class="field-group">
-                <label class="field-label" for="q7_guarantee">7. Risk-Reversal Guarantee <span class="req">*</span></label>
-                <textarea class="form-textarea" id="q7_guarantee" placeholder="e.g. 14-Day Radical Clarity Guarantee: 100% refund if clarity is not reached." required></textarea>
+                <label class="field-label" for="q7_guarantee">7. Risk-Reversal Guarantee (Peace of Mind) <span class="req">*</span></label>
+                <p class="field-hint">What bold, honorable promise eliminates client hesitation and demonstrates complete confidence?</p>
+                <textarea class="form-textarea" id="q7_guarantee" placeholder="e.g. 14-Day Radical Clarity Guarantee: Complete the initial deep dive and first 2 calibrations. If you do not feel immediate emotional relief and decisive clarity, receive a 100% courteous refund." required></textarea>
               </div>
 
               <div class="field-group">
-                <label class="field-label" for="q8_scarcity_urgency">8. Monthly Client Cap & Fast-Action Perk <span class="req">*</span></label>
-                <textarea class="form-textarea" id="q8_scarcity_urgency" placeholder="e.g. Strict cap of 5 active 1:1 clients/month. 48h perk: Private strategy lunch." required></textarea>
+                <label class="field-label" for="q8_scarcity_urgency">8. Monthly Capacity Limit & Fast-Action Perk <span class="req">*</span></label>
+                <p class="field-hint">What is your strict monthly client roster cap, and what exclusive reward incentivizes confirmation within 48 hours?</p>
+                <textarea class="form-textarea" id="q8_scarcity_urgency" placeholder="e.g. Strict cap of 5 active 1:1 executive retainers per month. 48-Hour Fast-Action Perk: Private strategy lunch at The Arts Club DIFC + 1 extra month of WhatsApp voice advisory." required></textarea>
               </div>
 
               <div class="field-group">
-                <label class="field-label" for="q9_proof">9. Authority Proof & Media Assets <span class="req">*</span></label>
-                <input type="text" class="form-input" id="q9_proof" placeholder="e.g. TV appearances, 15+ verified executive testimonials, credentials." required>
+                <label class="field-label" for="q9_proof">9. Authority Proof & Credibility Assets <span class="req">*</span></label>
+                <p class="field-hint">What credentials, TV broadcast appearances, and track record establish instant trust with senior executives?</p>
+                <input type="text" class="form-input" id="q9_proof" placeholder="e.g. Dubai TV (Masa'a Dubai) broadcast clips, Fujairah TV, 15+ verified executive testimonials, corporate workshop credentials with UAE government entities." required>
               </div>
             </div>
 
             <!-- STEP 4: Launch Runway & Client Verification -->
             <div class="form-step-pane" data-step="4" style="display: none;">
               <div class="field-group">
-                <label class="field-label" for="q10_warm_launch">10. 48-Hour Warm Outreach Pipeline <span class="req">*</span></label>
-                <input type="text" class="form-input" id="q10_warm_launch" placeholder="e.g. 25–35 warm executive contacts ready for personal outreach." required>
+                <label class="field-label" for="q10_warm_launch">10. 48-Hour Warm Rolodex Cashflow Pipeline <span class="req">*</span></label>
+                <p class="field-hint">How many past clients, colleagues, and corporate contacts can receive personal voice notes to fill your first retainers?</p>
+                <input type="text" class="form-input" id="q10_warm_launch" placeholder="e.g. 25–35 warm executive contacts ready for personal voice note outreach, securing 2–3 immediate retainer enrollments (13,000–19,500 AED) in week 1." required>
               </div>
 
               <div class="input-grid-2">
@@ -325,7 +342,8 @@
               </div>
 
               <div class="field-group">
-                <label class="field-label" for="client_notes">Special Requests / Requirements</label>
+                <label class="field-label" for="client_notes">Special Requests / Strategic Focus</label>
+                <p class="field-hint">Any specific requirements, questions, or focus areas for our partnership...</p>
                 <textarea class="form-textarea" id="client_notes" placeholder="Any specific requirements or focus areas for our partnership..." style="min-height: 64px;"></textarea>
               </div>
             </div>
@@ -432,36 +450,51 @@
       'q10_warm_launch', 'client_name', 'client_whatsapp', 'client_notes'
     ];
 
-    const STORAGE_KEY = 'polish_strategy_intake_data';
+    const STORAGE_KEY_OBJ = 'polish_strategy_intake_data';
+    const STORAGE_PREFIX = 'polish_dubai_';
 
     function saveFormData() {
       const data = {};
       FORM_FIELDS.forEach(id => {
         const el = document.getElementById(id);
-        if (el) data[id] = el.value;
+        if (el) {
+          const val = el.value;
+          data[id] = val;
+          try {
+            localStorage.setItem(STORAGE_PREFIX + id, val);
+          } catch (e) {}
+        }
       });
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      } catch (e) {
-        // silent
-      }
+        localStorage.setItem(STORAGE_KEY_OBJ, JSON.stringify(data));
+      } catch (e) {}
     }
 
     function loadSavedData() {
+      let objData = {};
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-          const data = JSON.parse(raw);
-          FORM_FIELDS.forEach(id => {
-            const el = document.getElementById(id);
-            if (el && data[id] !== undefined) {
-              el.value = data[id];
-            }
-          });
+        const raw = localStorage.getItem(STORAGE_KEY_OBJ);
+        if (raw) objData = JSON.parse(raw) || {};
+      } catch (e) {}
+
+      FORM_FIELDS.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        let val = '';
+        try {
+          const single = localStorage.getItem(STORAGE_PREFIX + id);
+          if (single !== null && single !== undefined && single.trim() !== '') {
+            val = single;
+          } else if (objData[id] !== undefined && objData[id] !== null && String(objData[id]).trim() !== '') {
+            val = objData[id];
+          }
+        } catch (e) {}
+
+        if (val !== '') {
+          el.value = val;
         }
-      } catch (e) {
-        // silent
-      }
+      });
     }
 
     FORM_FIELDS.forEach(id => {
@@ -471,14 +504,22 @@
       }
     });
 
+    // Cross-tab live synchronization listener
+    window.addEventListener('storage', (e) => {
+      if (!e.key) return;
+      if (e.key === STORAGE_KEY_OBJ || e.key.startsWith(STORAGE_PREFIX)) {
+        loadSavedData();
+      }
+    });
+
     // Step Controller
     let currentStep = 1;
     const totalSteps = 4;
     const stepTitles = [
-      "1. Client Avatar",
-      "2. Delivery & Pricing",
-      "3. Trust & Scarcity",
-      "4. Launch & Verification"
+      "1. Client & Outcome",
+      "2. Format & Pricing",
+      "3. Guarantee & Proof",
+      "4. Pipeline & Verification"
     ];
 
     function updateStepUI() {
@@ -552,35 +593,36 @@
       return `POLISH MEDIA CO. — STRATEGY INTAKE BRIEF
 =============================================
 Client: ${getVal('client_name', 'Eman Al Katheeri').toUpperCase()}
-Container: ${getVal('q3_naming', 'The Executive Reset Advisory™')}
-Target Pricing: ${getVal('q5_pricing', '6,500 AED / mo | 17,500 AED VIP')}
+Direct WhatsApp: ${getVal('client_whatsapp', '+971 50 123 4567')}
+Flagship Container: ${getVal('q3_naming', 'The Executive Reset Advisory™')}
+Fee Structure: ${getVal('q5_pricing', '1,200 AED Diagnostic | 6,500 AED / Month Retainer | 17,500 AED VIP')}
 
-1. Primary Avatar:
+1. Primary Target Client & Acute Crisis:
 ${getVal('q1_avatar', 'Not specified')}
 
-2. 30/90-Day Dream Outcome:
+2. 30/90-Day Dream Transformation:
 ${getVal('q2_dream_outcome', 'Not specified')}
 
-3. Delivery Cadence:
+3. Delivery Format & Rapid First Win:
 ${getVal('q4_delivery', 'Not specified')}
 
-4. Bonus Stack:
+4. High-Value Bonus Stack:
 ${getVal('q6_bonus_stack', 'Not specified')}
 
-5. Guarantee:
+5. Risk-Reversal Guarantee:
 ${getVal('q7_guarantee', 'Not specified')}
 
-6. Scarcity & Cap:
+6. Monthly Capacity Limit & Fast-Action Perk:
 ${getVal('q8_scarcity_urgency', 'Not specified')}
 
-7. Authority Proof:
+7. Authority Proof & Media Track Record:
 ${getVal('q9_proof', 'Not specified')}
 
-8. Warm Outreach Pipeline:
+8. 48-Hour Warm Contact Outreach:
 ${getVal('q10_warm_launch', 'Not specified')}
 
-Contact: ${getVal('client_name', 'Eman Al Katheeri')} | WhatsApp: ${getVal('client_whatsapp', '+971')}
-Notes: ${getVal('client_notes', 'None')}
+Special Requests / Focus:
+${getVal('client_notes', 'None')}
 =============================================
 Submitted via https://polishmediaco.com/intake`;
     }
@@ -612,14 +654,15 @@ Submitted via https://polishmediaco.com/intake`;
       const msg = `*POLISH MEDIA CO. — STRATEGY INTAKE BRIEF*\n\n` +
         `• *Client:* ${getVal('client_name', 'Eman Al Katheeri')}\n` +
         `• *Container:* ${getVal('q3_naming', 'The Executive Reset Advisory™')}\n` +
-        `• *Pricing:* ${getVal('q5_pricing', '6,500 AED / mo | 17,500 AED VIP')}\n` +
-        `• *Primary Avatar:* ${getVal('q1_avatar', '')}\n` +
+        `• *Fee Structure:* ${getVal('q5_pricing', '6,500 AED / mo | 17,500 AED VIP')}\n` +
+        `• *Target Client:* ${getVal('q1_avatar', '')}\n` +
         `• *Dream Outcome:* ${getVal('q2_dream_outcome', '')}\n` +
-        `• *Delivery Cadence:* ${getVal('q4_delivery', '')}\n` +
+        `• *Delivery:* ${getVal('q4_delivery', '')}\n` +
         `• *Guarantee:* ${getVal('q7_guarantee', '')}\n` +
-        `• *Cap:* ${getVal('q8_scarcity_urgency', '')}\n` +
+        `• *Monthly Cap:* ${getVal('q8_scarcity_urgency', '')}\n` +
         `• *Warm Pipeline:* ${getVal('q10_warm_launch', '')}\n` +
-        `• *WhatsApp:* ${getVal('client_whatsapp', '+971')}\n\n` +
+        `• *WhatsApp:* ${getVal('client_whatsapp', '+971')}\n` +
+        `• *Notes:* ${getVal('client_notes', 'None')}\n\n` +
         `_Submitted via https://polishmediaco.com/intake_`;
 
       window.open('https://wa.me/213662417761?text=' + encodeURIComponent(msg), '_blank');

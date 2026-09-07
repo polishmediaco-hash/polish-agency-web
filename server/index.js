@@ -28,9 +28,11 @@ app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 // High-performance intelligent caching policy
 app.use((req, res, next) => {
-  // HTML documents: validate on each request so updates appear immediately
-  if (req.path === '/' || req.path === '/apply' || req.path === '/creators' || req.path === '/brand-pack' || req.path === '/brand-guidelines' || req.path === '/logo-preview' || req.path === '/font-preview' || req.path === '/palette-preview' || req.path.endsWith('.html')) {
-    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+  // HTML documents & dynamic boards: never cache so updates appear immediately
+  if (req.path === '/' || !req.path.includes('.') || req.path.endsWith('.html')) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
   } else {
     // Static assets (CSS, JS, WebP, PNG, SVG): cache on edge CDN and browser with stale-while-revalidate
     res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
@@ -89,6 +91,27 @@ app.get('/brand-guidelines', (req, res) => {
 
 app.get('/logo-preview', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/logo-preview.html'));
+});
+
+// Strategic Whiteboard & Proposal Routes (No Cache for Instant Updates)
+app.get(['/eman', '/eman-alkatheeri', '/board', '/dubai', '/strategy'], (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.sendFile(path.join(__dirname, '../public/eman-alkatheeri.html'));
+});
+
+// Standalone Executive Discovery & Offer Calibration Portal (Dual Night / Day Mode)
+app.get(['/intake', '/calibration', '/eman-intake', '/discovery', '/intake.html', '/eman-intake.html'], (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.sendFile(path.join(__dirname, '../public/intake.html'));
+});
+
+app.get(['/makeup', '/filmmaking', '/makeup-filmmaking'], (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.sendFile(path.join(__dirname, '../public/makeup-filmmaking.html'));
+});
+
+app.get(['/pdf', '/eman-pdf', '/options-pdf', '/partnership-options'], (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/POLISH_MEDIA_Eman_Partnership_Options.pdf'));
 });
 
 // Health Check

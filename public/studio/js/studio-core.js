@@ -13,11 +13,41 @@ window.StudioCore = (function () {
 
   let saveTimeout = null;
   let canvasContainer = null;
+  let multiSelectedIds = [];
+  let selectedStroke = null;
+
+  function initTheme() {
+    const saved = localStorage.getItem('polish_studio_theme') || 'light';
+    if (saved === 'dark') {
+      document.body.classList.add('theme-dark');
+    } else {
+      document.body.classList.remove('theme-dark');
+    }
+    updateThemeButton();
+  }
+
+  function toggleTheme() {
+    const isDark = document.body.classList.toggle('theme-dark');
+    localStorage.setItem('polish_studio_theme', isDark ? 'dark' : 'light');
+    updateThemeButton();
+    if (window.MiniMap) window.MiniMap.update();
+  }
+
+  function updateThemeButton() {
+    const btn = document.getElementById('themeToggleBtn');
+    if (!btn) return;
+    const isDark = document.body.classList.contains('theme-dark');
+    btn.innerHTML = isDark
+      ? '<span class="dock-theme-icon">☼</span> Light'
+      : '<span class="dock-theme-icon">☾</span> Dark';
+    btn.title = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+  }
 
   async function init() {
     canvasContainer = document.getElementById('board-canvas');
+    initTheme();
 
-    // 1. Determine Board ID from URL
+    // 1. Determine Board ID from URL or Local Storage
     const params = new URLSearchParams(window.location.search);
     let boardId = params.get('id');
 
@@ -25,6 +55,10 @@ window.StudioCore = (function () {
     const pathParts = window.location.pathname.split('/').filter(Boolean);
     if (pathParts[0] === 'b' && pathParts[1]) {
       boardId = pathParts[1];
+    }
+
+    if (!boardId) {
+      boardId = localStorage.getItem('polish_board_last_id');
     }
 
     if (!boardId) {
@@ -36,72 +70,137 @@ window.StudioCore = (function () {
         }
       }
       if (!boardId) {
-        const res = await fetch('/api/boards');
-        const data = await res.json();
-        if (data.boards && data.boards.length > 0) {
-          boardId = data.boards[0].id;
-        }
+        try {
+          const res = await fetch('/api/boards');
+          const data = await res.json();
+          if (data.boards && data.boards.length > 0) {
+            boardId = data.boards[0].id;
+          }
+        } catch (_) {}
       }
     }
 
-    if (boardId) {
-      await loadBoard(boardId);
+    if (!boardId) {
+      boardId = 'starter-strategy-board';
     }
 
-    // Bind Keyboard Shortcuts
+    await loadBoard(boardId);
+
+    // Bind Keyboard Shortcuts & Title input
     bindKeyboardShortcuts();
+    bindTitleInput();
+  }
+
+  function bindTitleInput() {
+    const input = document.getElementById('boardTitleInput');
+    if (input) {
+      input.addEventListener('input', () => {
+        if (currentBoard) {
+          currentBoard.title = input.value;
+          triggerAutoSave();
+        }
+      });
+    }
   }
 
   async function loadBoard(id) {
     try {
       let board = null;
-      if (window.PolishFirebase) {
-        board = await window.PolishFirebase.getBoard(id);
+
+      // 1. Check local cache first for instantaneous offline load
+      const localCached = localStorage.getItem(`polish_board_${id}`) || (localStorage.getItem('polish_board_last_id') === id ? localStorage.getItem('polish_board_current') : null);
+      if (localCached) {
+        try {
+          board = JSON.parse(localCached);
+        } catch (_) {}
       }
 
-      if (!board) {
-        const res = await fetch(`/api/boards/${encodeURIComponent(id)}`);
-        const data = await res.json();
-        if (data.success && data.board) {
-          board = data.board;
+      if (board) {
+        currentBoard = board;
+        applyLoadedBoard();
+        indicateSaved(false); // Indicates saved locally initially
+      }
+
+      // 2. Fetch from cloud / server in background
+      try {
+        let cloudBoard = null;
+        if (window.PolishFirebase && window.PolishFirebase.currentUser) {
+          cloudBoard = await window.PolishFirebase.getBoard(id);
         }
+
+        if (!cloudBoard) {
+          const res = await fetch(`/api/boards/${encodeURIComponent(id)}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.board) {
+              cloudBoard = data.board;
+            }
+          }
+        }
+
+        if (cloudBoard) {
+          // If cloud has newer timestamp or board was not locally cached, apply cloud
+          if (!board || new Date(cloudBoard.updatedAt || 0) >= new Date(board.updatedAt || 0)) {
+            currentBoard = cloudBoard;
+            saveLocally();
+            applyLoadedBoard();
+          }
+          indicateSaved(true);
+        }
+      } catch (cloudErr) {
+        console.warn('[StudioCore] Cloud sync offline; local version loaded:', cloudErr);
       }
 
-      if (!board) {
-        console.error('Failed to load board');
-        return;
+      if (!currentBoard) {
+        console.log('[StudioCore] Initializing fresh offline whiteboard');
+        currentBoard = {
+          id: id || `board-${Date.now()}`,
+          title: 'Personal Whiteboard',
+          elements: [],
+          connections: [],
+          panX: 0,
+          panY: 0,
+          zoom: 1,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+        saveLocally();
+        applyLoadedBoard();
+        indicateSaved(false);
       }
-
-      currentBoard = board;
-      document.getElementById('boardTitleInput').value = currentBoard.title || 'Untitled Board';
-
-      // Update client view button link
-      const btnClient = document.getElementById('btnClientView');
-      if (btnClient) {
-        btnClient.href = `/b/${encodeURIComponent(currentBoard.id)}`;
-      }
-
-      // Restore Viewport Transform
-      if (currentBoard.viewport && window.CanvasEngine) {
-        window.CanvasEngine.setTransform(
-          currentBoard.viewport.scale || 0.75,
-          currentBoard.viewport.panX || 100,
-          currentBoard.viewport.panY || 80
-        );
-      }
-
-      renderBoard();
-      indicateSaved();
     } catch (err) {
       console.error('Error loading board:', err);
     }
+  }
+
+  function applyLoadedBoard() {
+    if (!currentBoard) return;
+    const titleInput = document.getElementById('boardTitleInput');
+    if (titleInput) titleInput.value = currentBoard.title || 'Untitled Board';
+
+    // Update client view button link
+    const btnClient = document.getElementById('btnClientView');
+    if (btnClient) {
+      btnClient.href = `/b/${encodeURIComponent(currentBoard.id)}`;
+    }
+
+    // Restore Viewport Transform
+    if (currentBoard.viewport && window.CanvasEngine) {
+      window.CanvasEngine.setTransform(
+        currentBoard.viewport.scale || 0.75,
+        currentBoard.viewport.panX || 100,
+        currentBoard.viewport.panY || 80
+      );
+    }
+
+    renderBoard();
   }
 
   function renderBoard() {
     if (!currentBoard || !canvasContainer) return;
 
     // Clear existing DOM elements
-    canvasContainer.querySelectorAll('.board-frame, .sticky-note, .pricing-card, .form-field-card, .script-bubble').forEach(el => el.remove());
+    canvasContainer.querySelectorAll('.studio-element').forEach(el => el.remove());
 
     // Render all elements
     (currentBoard.elements || []).forEach(data => {
@@ -111,6 +210,16 @@ window.StudioCore = (function () {
     // Render all connections
     if (window.ConnectorEngine) {
       window.ConnectorEngine.renderAllConnections(currentBoard.connections || []);
+    }
+
+    // Render all freehand vector strokes
+    if (window.DrawingEngine) {
+      window.DrawingEngine.renderAllStrokes(currentBoard.drawings || []);
+    }
+
+    // Update Mini-Map
+    if (window.MiniMap) {
+      window.MiniMap.update();
     }
   }
 
@@ -216,6 +325,79 @@ window.StudioCore = (function () {
     const el = window.ElementsFactory.renderElement(newSticky, canvasContainer);
     selectElement(el, newSticky);
     triggerAutoSave();
+    if (window.MiniMap) window.MiniMap.update();
+  }
+
+  function addShape(shapeType = 'rect', x, y) {
+    if (!currentBoard) return;
+    const center = (x !== undefined && y !== undefined) ? { x, y } : getCanvasCenter();
+    const isCircle = shapeType === 'circle';
+    const isDiamond = shapeType === 'diamond';
+    const isLine = shapeType === 'line';
+
+    const newShape = {
+      id: `shape-${Date.now()}`,
+      type: 'shape',
+      shapeType: shapeType,
+      x: Math.round(center.x - (isCircle ? 90 : 110)),
+      y: Math.round(center.y - (isCircle ? 90 : (isLine ? 20 : 70))),
+      width: isCircle ? 180 : (isDiamond ? 180 : 220),
+      height: isCircle ? 180 : (isDiamond ? 180 : (isLine ? 40 : 140)),
+      text: isLine ? '' : (shapeType.charAt(0).toUpperCase() + shapeType.slice(1) + ' Concept'),
+      zIndex: 15
+    };
+
+    pushHistory();
+    currentBoard.elements.push(newShape);
+    const el = window.ElementsFactory.renderElement(newShape, canvasContainer);
+    selectElement(el, newShape);
+    triggerAutoSave();
+    if (window.MiniMap) window.MiniMap.update();
+  }
+
+  function addText(x, y) {
+    if (!currentBoard) return;
+    const center = (x !== undefined && y !== undefined) ? { x, y } : getCanvasCenter();
+
+    const newText = {
+      id: `text-${Date.now()}`,
+      type: 'text',
+      x: Math.round(center.x - 70),
+      y: Math.round(center.y - 20),
+      text: 'Type your ideas here...',
+      fontSize: 22,
+      zIndex: 22
+    };
+
+    pushHistory();
+    currentBoard.elements.push(newText);
+    const el = window.ElementsFactory.renderElement(newText, canvasContainer);
+    selectElement(el, newText);
+
+    // Auto-focus text content
+    const inner = el.querySelector('.floating-text-inner');
+    if (inner) {
+      inner.focus();
+      document.execCommand('selectAll', false, null);
+    }
+
+    triggerAutoSave();
+    if (window.MiniMap) window.MiniMap.update();
+  }
+
+  function addDrawingStroke(strokeData) {
+    if (!currentBoard) return;
+    pushHistory();
+    if (!currentBoard.drawings) currentBoard.drawings = [];
+    currentBoard.drawings.push(strokeData);
+    saveLocally();
+    triggerAutoSave();
+    if (window.MiniMap) window.MiniMap.update();
+  }
+
+  function selectStroke(strokeData, pathEl) {
+    deselectAll();
+    selectedStroke = { data: strokeData, el: pathEl };
   }
 
   function addPricing() {
@@ -323,25 +505,74 @@ window.StudioCore = (function () {
     triggerAutoSave();
   }
 
-  // Duplicate Selected Element
-  function duplicateSelected() {
-    if (!selectedElementData || !currentBoard) return;
-    pushHistory();
-
-    const clone = JSON.parse(JSON.stringify(selectedElementData));
-    clone.id = `${clone.type}-${Date.now()}`;
-    clone.x += 40;
-    clone.y += 40;
-
-    currentBoard.elements.push(clone);
-    const el = window.ElementsFactory.renderElement(clone, canvasContainer);
-    selectElement(el, clone);
-    triggerAutoSave();
+  function setMultiSelected(ids) {
+    multiSelectedIds = ids || [];
   }
 
-  // Delete Selected Element
+  function clearMultiSelection() {
+    multiSelectedIds = [];
+  }
+
+  function updateElementPosition(id, x, y) {
+    const elData = findElement(id);
+    if (elData) {
+      elData.x = x;
+      elData.y = y;
+    }
+  }
+
+  // Duplicate Selected Element (Single or Multi-select)
+  function duplicateSelected() {
+    if (!currentBoard) return;
+
+    if (multiSelectedIds.length > 0) {
+      pushHistory();
+      const newIds = [];
+      multiSelectedIds.forEach(id => {
+        const item = findElement(id);
+        if (item) {
+          const clone = JSON.parse(JSON.stringify(item));
+          clone.id = `${item.type}-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+          clone.x = (clone.x || 0) + 40;
+          clone.y = (clone.y || 0) + 40;
+          currentBoard.elements.push(clone);
+          newIds.push(clone.id);
+        }
+      });
+      renderBoard();
+      triggerAutoSave();
+      return;
+    }
+
+    if (selectedElementData) {
+      pushHistory();
+      const clone = JSON.parse(JSON.stringify(selectedElementData));
+      clone.id = `${clone.type}-${Date.now()}`;
+      clone.x += 40;
+      clone.y += 40;
+
+      currentBoard.elements.push(clone);
+      const el = window.ElementsFactory.renderElement(clone, canvasContainer);
+      selectElement(el, clone);
+      triggerAutoSave();
+    }
+  }
+
+  // Delete Selected Element (Single, Multi-select, Connector, or Stroke)
   function deleteSelected() {
     if (!currentBoard) return;
+
+    if (multiSelectedIds.length > 0) {
+      pushHistory();
+      currentBoard.elements = currentBoard.elements.filter(e => !multiSelectedIds.includes(e.id));
+      if (currentBoard.connections) {
+        currentBoard.connections = currentBoard.connections.filter(c => !multiSelectedIds.includes(c.from) && !multiSelectedIds.includes(c.to));
+      }
+      multiSelectedIds = [];
+      renderBoard();
+      triggerAutoSave();
+      return;
+    }
 
     if (selectedElement && selectedElementData) {
       pushHistory();
@@ -361,6 +592,13 @@ window.StudioCore = (function () {
       deselectAll();
       if (window.ConnectorEngine) window.ConnectorEngine.renderAllConnections(currentBoard.connections || []);
       triggerAutoSave();
+    } else if (selectedStroke) {
+      pushHistory();
+      const strokeId = selectedStroke.data.id;
+      currentBoard.drawings = (currentBoard.drawings || []).filter(s => s.id !== strokeId);
+      if (selectedStroke.el) selectedStroke.el.remove();
+      selectedStroke = null;
+      triggerAutoSave();
     }
   }
 
@@ -371,8 +609,30 @@ window.StudioCore = (function () {
     return { x: 500, y: 300 };
   }
 
-  // Auto-Save Debouncer
+  // Save to LocalStorage immediately
+  function saveLocally() {
+    if (!currentBoard) return;
+    try {
+      if (window.CanvasEngine) {
+        const pan = window.CanvasEngine.getPan();
+        currentBoard.viewport = {
+          panX: pan.x,
+          panY: pan.y,
+          scale: window.CanvasEngine.getScale()
+        };
+      }
+      currentBoard.updatedAt = new Date().toISOString();
+      localStorage.setItem(`polish_board_${currentBoard.id}`, JSON.stringify(currentBoard));
+      localStorage.setItem('polish_board_current', JSON.stringify(currentBoard));
+      localStorage.setItem('polish_board_last_id', currentBoard.id);
+    } catch (e) {
+      console.warn('LocalStorage save failed:', e);
+    }
+  }
+
+  // Auto-Save Debouncer (Local + Cloud Dual Sync)
   function triggerAutoSave() {
+    saveLocally();
     indicateSaving();
     if (saveTimeout) clearTimeout(saveTimeout);
     saveTimeout = setTimeout(async () => {
@@ -382,33 +642,28 @@ window.StudioCore = (function () {
 
   async function persistBoard() {
     if (!currentBoard) return;
+    saveLocally();
 
-    if (window.CanvasEngine) {
-      const pan = window.CanvasEngine.getPan();
-      currentBoard.viewport = {
-        panX: pan.x,
-        panY: pan.y,
-        scale: window.CanvasEngine.getScale()
-      };
-    }
-
+    let isCloudSynced = false;
     try {
-      if (window.PolishFirebase) {
+      if (window.PolishFirebase && window.PolishFirebase.currentUser) {
         await window.PolishFirebase.saveBoard(currentBoard, window.PolishFirebase.currentUser);
-        indicateSaved();
+        isCloudSynced = true;
       } else {
         const res = await fetch(`/api/boards/${encodeURIComponent(currentBoard.id)}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(currentBoard)
         });
-        const data = await res.json();
-        if (data.success) {
-          indicateSaved();
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success) isCloudSynced = true;
         }
       }
+      indicateSaved(isCloudSynced);
     } catch (err) {
-      console.error('Error saving board:', err);
+      console.warn('Cloud sync error, local cache active:', err);
+      indicateSaved(false);
     }
   }
 
@@ -417,9 +672,14 @@ window.StudioCore = (function () {
     if (el) el.innerHTML = '<span class="save-dot" style="background:#F59E0B"></span> Saving...';
   }
 
-  function indicateSaved() {
+  function indicateSaved(isCloud = true) {
     const el = document.getElementById('saveIndicator');
-    if (el) el.innerHTML = '<span class="save-dot" style="background:#10B981"></span> Saved to Cloud';
+    if (!el) return;
+    if (isCloud) {
+      el.innerHTML = '<span class="save-dot" style="background:#10B981"></span> Local & Cloud Synced';
+    } else {
+      el.innerHTML = '<span class="save-dot" style="background:#F59E0B"></span> Saved Locally (Offline)';
+    }
   }
 
   // History (Undo / Redo)
@@ -450,33 +710,73 @@ window.StudioCore = (function () {
 
   function bindKeyboardShortcuts() {
     window.addEventListener('keydown', (e) => {
-      // Don't trigger shortcuts when typing in inputs/textareas
+      // Don't trigger shortcuts when typing in inputs/textareas, but allow Escape to exit editing
       if (['INPUT', 'TEXTAREA'].includes(e.target.tagName) || e.target.isContentEditable) {
+        if (e.key === 'Escape') {
+          if (typeof e.target.blur === 'function') e.target.blur();
+          deselectAll();
+          if (window.MarqueeEngine) window.MarqueeEngine.clearMultiSelection();
+          if (window.CanvasEngine) window.CanvasEngine.setTool('select');
+        }
         return;
       }
 
       // Cmd+Z (Undo) / Cmd+Shift+Z (Redo)
-      if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') {
         if (e.shiftKey) redo();
         else undo();
         e.preventDefault();
+        return;
       }
 
       // Cmd+D (Duplicate)
-      if ((e.metaKey || e.ctrlKey) && e.key === 'd') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'd') {
         duplicateSelected();
         e.preventDefault();
+        return;
       }
 
       // Delete / Backspace
       if (e.key === 'Backspace' || e.key === 'Delete') {
         deleteSelected();
         e.preventDefault();
+        return;
       }
 
       // Escape (Deselect)
       if (e.key === 'Escape') {
         deselectAll();
+        if (window.MarqueeEngine) window.MarqueeEngine.clearMultiSelection();
+        if (window.CanvasEngine) window.CanvasEngine.setTool('select');
+        return;
+      }
+
+      // Single Key Miro Hotkeys:
+      const key = e.key.toLowerCase();
+      if (!e.metaKey && !e.ctrlKey && !e.altKey) {
+        if (key === 'v') {
+          if (window.CanvasEngine) window.CanvasEngine.setTool('select');
+        } else if (key === 'h') {
+          if (window.CanvasEngine) window.CanvasEngine.setTool('hand');
+        } else if (key === 'n') {
+          addSticky('yellow');
+        } else if (key === 't') {
+          if (window.CanvasEngine) window.CanvasEngine.setTool('text');
+        } else if (key === 's') {
+          if (window.CanvasEngine) window.CanvasEngine.setTool('shape', 'rect');
+        } else if (key === 'p') {
+          if (window.CanvasEngine) window.CanvasEngine.setTool('pen');
+        } else if (key === 'f') {
+          addFrame();
+        } else if (e.key === '?') {
+          toggleShortcutsModal();
+        } else if (key === '+' || key === '=') {
+          if (window.CanvasEngine) window.CanvasEngine.zoomDelta(0.15);
+        } else if (key === '-') {
+          if (window.CanvasEngine) window.CanvasEngine.zoomDelta(-0.15);
+        } else if (key === '0') {
+          if (window.CanvasEngine) window.CanvasEngine.resetView();
+        }
       }
     });
 
@@ -681,15 +981,292 @@ window.StudioCore = (function () {
     URL.revokeObjectURL(url);
   }
 
+  function importJSON(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const imported = JSON.parse(e.target.result);
+        if (!imported || !Array.isArray(imported.elements)) {
+          alert('Invalid canvas JSON: missing elements array.');
+          return;
+        }
+        pushHistory();
+        currentBoard = imported;
+        if (!currentBoard.id) currentBoard.id = `imported-${Date.now()}`;
+        document.getElementById('boardTitleInput').value = currentBoard.title || 'Imported Board';
+        renderBoard();
+        saveLocally();
+        triggerAutoSave();
+        if (window.CanvasEngine && currentBoard.viewport) {
+          window.CanvasEngine.setTransform(
+            currentBoard.viewport.scale || 0.75,
+            currentBoard.viewport.panX || 100,
+            currentBoard.viewport.panY || 80
+          );
+        }
+      } catch (err) {
+        alert('Could not parse board JSON file: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function exportPNG() {
+    if (!currentBoard || !window.CanvasEngine) return;
+    const bounds = window.CanvasEngine.getCanvasBounds();
+
+    const canvas = document.createElement('canvas');
+    const padding = 60;
+    const width = bounds.width + padding * 2;
+    const height = bounds.height + padding * 2;
+
+    canvas.width = Math.min(width * 2, 8000);
+    canvas.height = Math.min(height * 2, 8000);
+    const ctx = canvas.getContext('2d');
+    ctx.scale(canvas.width / width, canvas.height / height);
+
+    const isDark = document.body.classList.contains('theme-dark');
+
+    // Canvas Background
+    ctx.fillStyle = isDark ? '#080706' : '#FAF7F2';
+    ctx.fillRect(0, 0, width, height);
+
+    // Subtle Dot Grid
+    ctx.fillStyle = isDark ? 'rgba(226, 199, 153, 0.15)' : 'rgba(26, 23, 21, 0.1)';
+    for (let gx = 0; gx < width; gx += 34) {
+      for (let gy = 0; gy < height; gy += 34) {
+        ctx.beginPath();
+        ctx.arc(gx, gy, 1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Render elements silhouettes & content
+    document.querySelectorAll('.studio-element').forEach(el => {
+      const left = (parseFloat(el.style.left) || 0) - bounds.minX + padding;
+      const top = (parseFloat(el.style.top) || 0) - bounds.minY + padding;
+      const w = el.offsetWidth || 200;
+      const h = el.offsetHeight || 150;
+
+      ctx.fillStyle = isDark ? '#141210' : '#FFFFFF';
+      ctx.strokeStyle = isDark ? 'rgba(226, 199, 153, 0.35)' : 'rgba(26, 23, 21, 0.12)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(left, top, w, h, 14);
+      } else {
+        ctx.rect(left, top, w, h);
+      }
+      ctx.fill();
+      ctx.stroke();
+
+      const heading = el.querySelector('h2, .sticky-header, .form-card-title, .table-title, .shape-content-text, .floating-text-inner');
+      if (heading) {
+        ctx.fillStyle = isDark ? '#F5E6D3' : '#1A1715';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.fillText(heading.textContent.trim().slice(0, 34), left + 18, top + 36);
+      }
+
+      const desc = el.querySelector('p, .sticky-content, .field-instructions');
+      if (desc) {
+        ctx.fillStyle = isDark ? '#A8A096' : '#736D67';
+        ctx.font = '13px sans-serif';
+        ctx.fillText(desc.textContent.trim().slice(0, 48), left + 18, top + 64);
+      }
+    });
+
+    // Draw freehand strokes
+    (currentBoard.drawings || []).forEach(stroke => {
+      if (stroke.points && stroke.points.length > 1) {
+        ctx.strokeStyle = stroke.color || (isDark ? '#E2C799' : '#1A1715');
+        ctx.lineWidth = stroke.width || 4;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        const startX = stroke.points[0].x - bounds.minX + padding;
+        const startY = stroke.points[0].y - bounds.minY + padding;
+        ctx.moveTo(startX, startY);
+        for (let i = 1; i < stroke.points.length; i++) {
+          ctx.lineTo(stroke.points[i].x - bounds.minX + padding, stroke.points[i].y - bounds.minY + padding);
+        }
+        ctx.stroke();
+      }
+    });
+
+    const a = document.createElement('a');
+    a.download = `${currentBoard.title ? currentBoard.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') : 'board'}-export.png`;
+    a.href = canvas.toDataURL('image/png');
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  function loadTemplate(templateKey) {
+    if (!currentBoard) return;
+    pushHistory();
+
+    let newElements = [];
+    let newConnections = [];
+    let title = 'Untitled Board';
+
+    if (templateKey === 'blank') {
+      title = 'Blank Canvas';
+      newElements = [];
+      newConnections = [];
+    } else if (templateKey === 'mindmap') {
+      title = 'Personal Mind Map';
+      const rootId = `shape-root-${Date.now()}`;
+      const branch1Id = `sticky-b1-${Date.now()}`;
+      const branch2Id = `sticky-b2-${Date.now()}`;
+      const branch3Id = `sticky-b3-${Date.now()}`;
+      const branch4Id = `sticky-b4-${Date.now()}`;
+
+      newElements = [
+        {
+          id: rootId,
+          type: 'shape',
+          shapeType: 'circle',
+          x: 750,
+          y: 400,
+          width: 200,
+          height: 200,
+          text: 'Core Idea\n& Vision',
+          zIndex: 20
+        },
+        {
+          id: branch1Id,
+          type: 'sticky',
+          color: 'rose',
+          x: 1080,
+          y: 220,
+          width: 260,
+          header: 'AUDIENCE & BRAND',
+          content: 'Target persona, emotional triggers, and core positioning pillars.',
+          footer: 'BRANCH 01'
+        },
+        {
+          id: branch2Id,
+          type: 'sticky',
+          color: 'yellow',
+          x: 1080,
+          y: 560,
+          width: 260,
+          header: 'OFFERS & REVENUE',
+          content: 'Flagship packaging, retainer tiers, and conversion mechanics.',
+          footer: 'BRANCH 02'
+        },
+        {
+          id: branch3Id,
+          type: 'sticky',
+          color: 'blue',
+          x: 380,
+          y: 560,
+          width: 260,
+          header: 'CONTENT & MEDIA',
+          content: 'Editorial visual assets, video hooks, and organic growth loops.',
+          footer: 'BRANCH 03'
+        },
+        {
+          id: branch4Id,
+          type: 'sticky',
+          color: 'mint',
+          x: 380,
+          y: 220,
+          width: 260,
+          header: 'EXECUTION & OPS',
+          content: 'Daily protocols, autonomous tools, and weekly deliverables.',
+          footer: 'BRANCH 04'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-1`, from: rootId, fromAnchor: 'right', to: branch1Id, toAnchor: 'left', style: 'curved', color: 'rose', label: 'Positioning' },
+        { id: `conn-2`, from: rootId, fromAnchor: 'bottom', to: branch2Id, toAnchor: 'left', style: 'curved', color: 'gold', label: 'Monetization' },
+        { id: `conn-3`, from: rootId, fromAnchor: 'bottom', to: branch3Id, toAnchor: 'right', style: 'curved', color: 'blue', label: 'Traffic' },
+        { id: `conn-4`, from: rootId, fromAnchor: 'left', to: branch4Id, toAnchor: 'right', style: 'curved', color: 'green', label: 'Delivery' }
+      ];
+    } else if (templateKey === 'planner') {
+      title = 'Weekly Project Planner';
+      const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+      const colors = ['yellow', 'rose', 'blue', 'mint', 'lavender'];
+      newElements = [];
+      newConnections = [];
+
+      days.forEach((day, idx) => {
+        const frameId = `frame-day-${idx}-${Date.now()}`;
+        const stickyId = `sticky-task-${idx}-${Date.now()}`;
+        const startX = 180 + idx * 420;
+
+        newElements.push({
+          id: frameId,
+          type: 'frame',
+          x: startX,
+          y: 160,
+          width: 380,
+          height: 600,
+          frameNumber: `0${idx + 1}`,
+          titlePill: day.toUpperCase(),
+          headline: `${day} Focus`,
+          description: `Key deliverables and strategic outcomes for ${day}.`,
+          boxes: [
+            { tag: 'HIGH PRIORITY', tagColor: 'gold', title: 'Deep Work Sprint', content: 'Focus block for core deliverable output.' }
+          ]
+        });
+
+        newElements.push({
+          id: stickyId,
+          type: 'sticky',
+          color: colors[idx % colors.length],
+          x: startX + 50,
+          y: 480,
+          width: 280,
+          header: 'DAILY OUTCOME',
+          content: '1 non-negotiable metric or shipment completed.',
+          footer: day
+        });
+      });
+    } else {
+      window.location.href = '/studio?id=starter-strategy-board';
+      return;
+    }
+
+    currentBoard.title = title;
+    currentBoard.elements = newElements;
+    currentBoard.connections = newConnections;
+    currentBoard.drawings = [];
+    const input = document.getElementById('boardTitleInput');
+    if (input) input.value = title;
+    renderBoard();
+    saveLocally();
+    triggerAutoSave();
+    if (window.CanvasEngine) {
+      window.CanvasEngine.fitToContent();
+    }
+  }
+
+  function toggleShortcutsModal() {
+    const modal = document.getElementById('shortcutsModal');
+    if (!modal) return;
+    modal.classList.toggle('visible');
+  }
+
   return {
     init,
     selectElement,
     selectConnection,
+    selectStroke,
     deselectAll,
+    setMultiSelected,
+    clearMultiSelection,
+    updateElementPosition,
     addFrame,
     addFrameBox,
     removeFrameBox,
     addSticky,
+    addShape,
+    addText,
+    addDrawingStroke,
     addPricing,
     addPricingFeature,
     removePricingFeature,
@@ -706,9 +1283,15 @@ window.StudioCore = (function () {
     duplicateSelected,
     deleteSelected,
     triggerAutoSave,
+    saveBoardDebounced: triggerAutoSave,
     undo,
     redo,
     exportJSON,
+    importJSON,
+    exportPNG,
+    loadTemplate,
+    toggleTheme,
+    toggleShortcutsModal,
     getConnections: () => (currentBoard ? currentBoard.connections || [] : []),
     findElement,
     findConnection,

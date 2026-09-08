@@ -85,7 +85,7 @@ window.StudioPresentation = (function () {
   // Keyboard navigation
   window.addEventListener('keydown', (e) => {
     if (!isPresenting) {
-      if (e.key === 'p' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName) && !document.activeElement?.isContentEditable) {
+      if (e.key === 'P' && e.shiftKey && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName) && !document.activeElement?.isContentEditable) {
         start();
       }
       return;

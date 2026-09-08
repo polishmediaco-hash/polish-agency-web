@@ -7,6 +7,7 @@ const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const apiRoutes = require('./routes/api');
 const boardsRoutes = require('./routes/boards');
+const { requireAdminAuth } = require('./middleware/auth');
 const { startCalendlyPoller } = require('./services/calendlySync');
 
 const app = express();
@@ -16,15 +17,69 @@ const DOMAIN = process.env.DOMAIN || 'polishmediaco.com';
 // Security Headers
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",                    // Required for inline scripts in existing HTML pages
+          "https://www.gstatic.com",            // Firebase SDK
+          "https://apis.google.com",            // Google Auth
+          "https://www.googletagmanager.com",   // Analytics
+          "https://assets.calendly.com",        // Calendly widget
+        ],
+        scriptSrcAttr: ["'unsafe-inline'"],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://fonts.googleapis.com",
+          "https://assets.calendly.com",
+        ],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+        imgSrc: ["'self'", "data:", "https:", "blob:"],
+        connectSrc: [
+          "'self'",
+          "https://*.googleapis.com",
+          "https://*.firebaseapp.com",
+          "https://*.firebaseio.com",
+          "https://firestore.googleapis.com",
+          "https://api.calendly.com",
+          "https://7105.api.greenapi.com",
+          "https://api.telegram.org",
+        ],
+        frameSrc: [
+          "'self'",
+          "https://calendly.com",
+          "https://www.google.com",
+        ],
+        objectSrc: ["'none'"],
+        baseUri:   ["'self'"],
+        formAction: ["'self'"],
+        upgradeInsecureRequests: [],
+      },
+    },
     crossOriginEmbedderPolicy: false,
-    crossOriginOpenerPolicy: false // Allows OAuth popups (Firebase/Google) to communicate with opener
+    crossOriginOpenerPolicy: false, // Allows OAuth popups (Firebase/Google) to communicate with opener
   })
 );
 
 // Compression
 app.use(compression());
-app.use(cors());
+// CORS — restricted to known POLISH Media domains
+const ALLOWED_ORIGINS = [
+  'https://polishmediaco.com',
+  'https://www.polishmediaco.com',
+  'https://app.polishmediaco.com',
+  ...(process.env.NODE_ENV !== 'production' ? ['http://localhost:3000', 'http://localhost:8080'] : []),
+];
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow same-origin / server-to-server (no Origin header) and whitelisted origins
+    if (!origin || ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+    callback(new Error('CORS: Origin not allowed'));
+  },
+  credentials: true,
+}));
 
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
@@ -43,15 +98,25 @@ app.use((req, res, next) => {
   next();
 });
 
-// Rate limiter
+// Rate limiters
 const intakeLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 30,
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10,                   // Tightened from 30 — form submissions only
+  standardHeaders: true,
+  legacyHeaders: false,
   message: { success: false, error: 'Too many requests. Please wait a moment.' }
 });
 
-// Public Firebase Client Config Endpoint (Always unthrottled)
-app.get('/api/config/firebase', (req, res) => {
+const configLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 30,
+  message: { error: 'Too many requests.' }
+});
+
+// ── Route Registration ───────────────────────────────────────────────────────
+
+// Firebase config — rate limited (safe to be public, but throttle abuse)
+app.get('/api/config/firebase', configLimiter, (req, res) => {
   res.json({
     apiKey: process.env.FIREBASE_API_KEY || '',
     authDomain: process.env.FIREBASE_AUTH_DOMAIN || '',
@@ -63,8 +128,17 @@ app.get('/api/config/firebase', (req, res) => {
   });
 });
 
+// Form submission routes — rate limited tightly to prevent spam/relay abuse
+app.use('/api/apply', intakeLimiter);
+app.use('/api/creators/apply', intakeLimiter);
+app.use('/api/intake', intakeLimiter);
+app.use('/api/calendly-webhook', intakeLimiter);
+
+// General API routes
 app.use('/api', apiRoutes);
-app.use('/api/boards', boardsRoutes);
+
+// Boards API — protected by Firebase Admin Token or Master Admin Key
+app.use('/api/boards', requireAdminAuth, boardsRoutes);
 
 // Subdomain & Virtual Host Routing (app.polishmediaco.com)
 app.use((req, res, next) => {
@@ -122,11 +196,11 @@ app.get(['/studio/dashboard', '/app/dashboard'], (req, res) => {
   return res.redirect(301, target);
 });
 
-// Primary Studio Routes (Available on standard domain & dev)
-app.get('/studio', (req, res) => {
+// Primary Studio & Personal Miro Canvas Routes
+app.get(['/studio', '/miro', '/canvas', '/whiteboard'], (req, res) => {
   const host = (req.headers.host || '').toLowerCase();
   const isProd = !host.includes('localhost') && !host.includes('127.0.0.1');
-  if (isProd) {
+  if (isProd && req.path === '/studio') {
     const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
     return res.redirect(301, `https://app.${DOMAIN}/${query}`);
   }
@@ -186,6 +260,7 @@ app.get('/creators', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/admin.html'));
 });
 
@@ -236,7 +311,7 @@ app.get(['/pdf', '/eman-pdf', '/options-pdf', '/partnership-options'], (req, res
 
 // Health Check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', env: process.env.NODE_ENV || 'development', ts: Date.now() });
+  res.json({ status: 'ok', ts: Date.now() });
 });
 
 // 404 Fallback
@@ -250,14 +325,18 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, error: 'Internal server error.' });
 });
 
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`  🚀 POLISH Engine LIVE (Cache-Busting Enabled)     `);
-  console.log(`  🌐 Local URL:       http://localhost:${PORT}        `);
-  console.log(`  🎯 Target Domain:   https://${DOMAIN}            `);
-  console.log(`  💬 WhatsApp Link:   +${process.env.WHATSAPP_NUMBER} `);
-  console.log(`====================================================`);
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`====================================================`);
+    console.log(`  🚀 POLISH Engine LIVE (Cache-Busting Enabled)     `);
+    console.log(`  🌐 Local URL:       http://localhost:${PORT}        `);
+    console.log(`  🎯 Target Domain:   https://${DOMAIN}            `);
+    console.log(`  💬 WhatsApp Link:   +${process.env.WHATSAPP_NUMBER} `);
+    console.log(`====================================================`);
 
-  // Start background auto-poller for Calendly meetings (No paid webhook plan needed!)
-  startCalendlyPoller(60);
-});
+    // Start background auto-poller for Calendly meetings (No paid webhook plan needed!)
+    startCalendlyPoller(60);
+  });
+}
+
+module.exports = app;

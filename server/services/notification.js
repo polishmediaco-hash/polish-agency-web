@@ -117,8 +117,8 @@ async function notifyNewLead(lead) {
   });
 
   // 2. Telegram Bot Notification
-  const botToken = process.env.TELEGRAM_BOT_TOKEN || '8829600331:AAEOxPu-pdprEZQGvFDEdTWsdoimRxI5kjU';
-  const chatId = process.env.TELEGRAM_CHAT_ID || '8209512124';
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (botToken && chatId) {
     try {
@@ -217,8 +217,8 @@ async function notifyNewMeeting(meeting) {
   });
 
   // 2. Telegram Alert
-  const botToken = process.env.TELEGRAM_BOT_TOKEN || '8829600331:AAEOxPu-pdprEZQGvFDEdTWsdoimRxI5kjU';
-  const chatId = process.env.TELEGRAM_CHAT_ID || '8209512124';
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (botToken && chatId) {
     try {

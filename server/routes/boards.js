@@ -221,7 +221,11 @@ function readBoardFile(filePath) {
 function writeBoardFile(filePath, data) {
   try {
     data.updatedAt = new Date().toISOString();
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const tmp = filePath + '.tmp.' + Date.now();
+    fs.writeFileSync(tmp, JSON.stringify(data, null, 2), 'utf8');
+    fs.renameSync(tmp, filePath);
     return true;
   } catch (err) {
     console.error(`Error writing board file ${filePath}:`, err.message);

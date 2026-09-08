@@ -914,3 +914,176 @@
 .font-mono { font-family: var(--font-mono) !important; }
 .font-arabic { font-family: var(--font-arabic) !important; }
 
+/* ========================================================== */
+/* BASIC SHAPES (RECT, CIRCLE, DIAMOND, TRIANGLE, ARROW)      */
+/* ========================================================== */
+.studio-shape {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.studio-shape:active {
+  cursor: grabbing;
+}
+
+.studio-shape.is-selected {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.studio-shape.shape-circle.is-selected {
+  border-radius: 50%;
+}
+
+.shape-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: auto;
+  filter: drop-shadow(0 4px 12px rgba(26, 23, 21, 0.05));
+}
+
+.shape-content-text {
+  position: relative;
+  z-index: 3;
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text-ink);
+  outline: none;
+  word-break: break-word;
+  max-width: 85%;
+  pointer-events: auto;
+  cursor: text;
+}
+
+.shape-line .shape-content-text {
+  display: none;
+}
+
+/* ========================================================== */
+/* STANDALONE FLOATING TEXT                                   */
+/* ========================================================== */
+.floating-text-element {
+  position: absolute;
+  min-width: 120px;
+  max-width: 750px;
+  background: transparent;
+  cursor: grab;
+  user-select: text;
+  touch-action: none;
+}
+
+.floating-text-element:active {
+  cursor: grabbing;
+}
+
+.floating-text-element.is-selected .floating-text-inner {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+.floating-text-inner {
+  font-family: var(--font-body);
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--text-ink);
+  outline: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  word-break: break-word;
+  cursor: text;
+  transition: background 0.15s ease;
+}
+
+.floating-text-inner:hover {
+  background: rgba(226, 199, 153, 0.08);
+}
+
+/* ========================================================== */
+/* FREEHAND PEN VECTOR STROKES                                */
+/* ========================================================== */
+#svg-drawings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14000px;
+  height: 6000px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.freehand-stroke {
+  pointer-events: stroke;
+  cursor: pointer;
+  transition: filter 0.15s ease, stroke-width 0.15s ease;
+}
+
+.freehand-stroke:hover {
+  filter: drop-shadow(0 0 5px rgba(226, 199, 153, 0.7));
+}
+
+.freehand-stroke.is-selected {
+  stroke: var(--brand-gold) !important;
+  filter: drop-shadow(0 0 6px rgba(226, 199, 153, 0.9));
+}
+
+/* ========================================================== */
+/* EXPANDED STICKY NOTE PALETTES (MINT, LAVENDER, OBSIDIAN)   */
+/* ========================================================== */
+.sticky-mint {
+  background: #DCFCE7 !important;
+  border-color: #86EFAC !important;
+  color: #14532D !important;
+}
+.sticky-mint .sticky-header,
+.sticky-mint .sticky-content,
+.sticky-mint .sticky-footer {
+  color: #14532D !important;
+}
+.sticky-mint .sticky-tape {
+  background: rgba(134, 239, 172, 0.55) !important;
+}
+
+.sticky-lavender {
+  background: #F3E8FF !important;
+  border-color: #D8B4FE !important;
+  color: #581C87 !important;
+}
+.sticky-lavender .sticky-header,
+.sticky-lavender .sticky-content,
+.sticky-lavender .sticky-footer {
+  color: #581C87 !important;
+}
+.sticky-lavender .sticky-tape {
+  background: rgba(216, 180, 254, 0.55) !important;
+}
+
+.sticky-obsidian {
+  background: #181614 !important;
+  border-color: rgba(226, 199, 153, 0.45) !important;
+  color: #F5E6D3 !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4) !important;
+}
+.sticky-obsidian .sticky-header,
+.sticky-obsidian .sticky-content,
+.sticky-obsidian .sticky-footer {
+  color: #F5E6D3 !important;
+}
+.sticky-obsidian .sticky-tape {
+  background: rgba(226, 199, 153, 0.3) !important;
+}
+
+

@@ -22,7 +22,7 @@
     <div class="dock-left">
       <a href="/boards" class="brand-mark-btn" title="Go to Boards Dashboard">
         <div class="brand-mark-squircle">
-          <svg viewBox="0 0 512 512" width="36" height="36">
+          <svg viewBox="0 0 512 512" width="32" height="32">
             <defs>
               <linearGradient id="champagneGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="#C5A880"/>
@@ -47,17 +47,19 @@
         </div>
         <div class="brand-text-lockup">
           <span class="brand-name">POLISH</span>
-          <span class="studio-pill">STUDIO</span>
+          <span class="studio-pill">BOARD STUDIO</span>
         </div>
       </a>
       <div class="dock-divider"></div>
-      <input type="text" id="boardTitleInput" class="board-title-input" value="Executive Strategy Board" title="Click to rename board" />
-      <div id="saveIndicator" class="save-indicator">
-        <span class="save-dot"></span> Saved to Cloud
-      </div>
+      <input type="text" id="boardTitleInput" class="board-title-input" value="Personal Whiteboard" title="Click to rename board" />
     </div>
 
     <div class="dock-center">
+      <button class="dock-btn" onclick="toggleTemplateModal()" title="Start from Template">
+        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Templates ▾
+      </button>
+      <div class="dock-divider"></div>
       <button class="dock-btn" onclick="StudioCore.undo()" title="Undo (Cmd+Z)">
         <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
         Undo
@@ -67,28 +69,33 @@
         Redo
       </button>
       <div class="dock-divider"></div>
-      <button class="dock-btn btn-present" onclick="StudioPresentation.start()" title="Enter Client Presentation Mode (P)">
+      <button class="dock-btn btn-present" onclick="StudioPresentation.start()" title="Enter Presentation Mode (P)">
         <svg class="dock-svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         Present
       </button>
     </div>
 
     <div class="dock-right">
-      <a id="btnClientView" href="#" target="_blank" class="dock-btn" style="color:var(--text-ink); border-color:var(--border-strong)" title="Open Clean Client Presentation View">
-        <svg class="dock-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        Client View ↗
-      </a>
-      <button class="dock-btn" onclick="copyShareLink()" title="Copy Public Client Presentation Link">
-        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        Share
+      <!-- 1-Click Theme Toggle -->
+      <button id="themeToggleBtn" class="dock-btn" onclick="StudioCore.toggleTheme()" title="Switch Light/Dark Theme">
+        <span class="dock-theme-icon">☾</span> Dark
       </button>
-      <button class="dock-btn" onclick="StudioCore.exportJSON()" title="Export Board JSON Backup">
-        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Export
+
+      <!-- Import & Export -->
+      <button class="dock-btn" onclick="document.getElementById('importFileInput').click()" title="Import board JSON from hard drive">
+        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Import
+      <button class="dock-btn" onclick="StudioCore.exportPNG()" title="Export board as high-res PNG">
+        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        PNG
       </button>
-      <a href="/boards" class="dock-btn" style="text-decoration:none">
-        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        All Boards
+      <button class="dock-btn" onclick="StudioCore.toggleShortcutsModal()" title="Keyboard Shortcuts (?)">
+        ?
+      </button>
+
+      <div class="dock-divider"></div>
+      <a href="/boards" class="dock-btn" style="text-decoration:none" title="All Boards Dashboard">
+        Boards
       </a>
       <!-- User Account Avatar -->
       <div id="studioUserCapsule" style="display:flex; align-items:center; gap:6px; margin-left:4px">
@@ -97,43 +104,192 @@
     </div>
   </header>
 
+  <!-- Hidden File Input for JSON Restore -->
+  <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="if (this.files[0]) StudioCore.importJSON(this.files[0])" />
+
   <!-- ========================================================== -->
-  <!-- LEFT CREATION PALETTE                                      -->
+  <!-- LEFT CREATION PALETTE (FULL MIRO TOOLSET)                  -->
   <!-- ========================================================== -->
   <aside class="creation-toolbar">
-    <button class="tool-item" onclick="StudioCore.addFrame()" data-tooltip="Add Board Frame (Card)">
+    <!-- Select Tool (V) -->
+    <button class="tool-item active" data-tool="select" onclick="CanvasEngine.setTool('select')" data-tooltip="Select & Marquee (V)">
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2l12 11.5-5.5.5 3.5 7-2.5 1.2-3.5-7-4 4V2z"/></svg>
+      </span>
+      <span class="tool-label">Select</span>
+    </button>
+
+    <!-- Hand Tool (H) -->
+    <button class="tool-item" data-tool="hand" onclick="CanvasEngine.setTool('hand')" data-tooltip="Hand / Pan Tool (H / Space)">
+      <span class="tool-icon">✋</span>
+      <span class="tool-label">Hand</span>
+    </button>
+
+    <!-- Freehand Pen (P) -->
+    <button class="tool-item" data-tool="pen" onclick="togglePenMenu(event)" data-tooltip="Freehand Pen (P)">
+      <span class="tool-icon">✎</span>
+      <span class="tool-label">Pen</span>
+    </button>
+
+    <!-- Basic Shapes (S) -->
+    <button class="tool-item" data-tool="shape" onclick="toggleShapeMenu(event)" data-tooltip="Geometric Shapes (S)">
+      <span class="tool-icon">◇</span>
+      <span class="tool-label">Shape</span>
+    </button>
+
+    <!-- Standalone Text (T) -->
+    <button class="tool-item" data-tool="text" onclick="CanvasEngine.setTool('text')" data-tooltip="Floating Text (T)">
+      <span class="tool-icon" style="font-family:serif; font-weight:800">T</span>
+      <span class="tool-label">Text</span>
+    </button>
+
+    <!-- Sticky Notes (N) -->
+    <button class="tool-item" data-tool="sticky" onclick="toggleStickyMenu(event)" data-tooltip="Sticky Notes (N)">
+      <span class="tool-icon" style="color:#EAB308">■</span>
+      <span class="tool-label">Note</span>
+    </button>
+
+    <!-- Frame (F) -->
+    <button class="tool-item" data-tool="frame" onclick="StudioCore.addFrame()" data-tooltip="Board Frame (F)">
       <span class="tool-icon">▢</span>
       <span class="tool-label">Frame</span>
     </button>
-    <button class="tool-item" onclick="StudioCore.addTable()" data-tooltip="Add Strategy & Matrix Table">
+
+    <div class="toolbar-divider"></div>
+
+    <!-- Strategy Components -->
+    <button class="tool-item" onclick="StudioCore.addTable()" data-tooltip="Strategy Matrix Table">
       <span class="tool-icon">⊞</span>
       <span class="tool-label">Table</span>
     </button>
-    <button class="tool-item" onclick="StudioCore.addPricing()" data-tooltip="Add High-Ticket Offer Card">
+    <button class="tool-item" onclick="StudioCore.addPricing()" data-tooltip="Retainer Offer Card">
       <span class="tool-icon">❖</span>
       <span class="tool-label">Offer</span>
     </button>
-    <button class="tool-item" onclick="StudioCore.addSticky('yellow')" data-tooltip="Add Canary Yellow Sticky Note">
-      <span class="tool-icon" style="color:#EAB308">■</span>
-      <span class="tool-label">Yellow</span>
-    </button>
-    <button class="tool-item" onclick="StudioCore.addSticky('rose')" data-tooltip="Add Rose Silk Sticky Note">
-      <span class="tool-icon" style="color:#F43F5E">■</span>
-      <span class="tool-label">Rose</span>
-    </button>
-    <button class="tool-item" onclick="StudioCore.addSticky('blue')" data-tooltip="Add Sky Azure Sticky Note">
-      <span class="tool-icon" style="color:#0284C7">■</span>
-      <span class="tool-label">Azure</span>
-    </button>
-    <button class="tool-item" onclick="StudioCore.addForm()" data-tooltip="Add Diagnostic Intake Form Block">
+    <button class="tool-item" onclick="StudioCore.addForm()" data-tooltip="Diagnostic Intake Form">
       <span class="tool-icon">▤</span>
       <span class="tool-label">Form</span>
     </button>
-    <button class="tool-item" onclick="StudioCore.addScript()" data-tooltip="Add Advisory Script Quote">
-      <span class="tool-icon">❝</span>
-      <span class="tool-label">Script</span>
-    </button>
   </aside>
+
+  <!-- Flyout Menu: Geometric Shapes -->
+  <div id="shapeFlyout" class="tool-flyout" style="display:none">
+    <div class="flyout-title">Shapes</div>
+    <div class="flyout-grid">
+      <button class="flyout-btn" onclick="selectShapeType('rect')" title="Rectangle">▭ Rect</button>
+      <button class="flyout-btn" onclick="selectShapeType('rounded-rect')" title="Rounded Rectangle">▢ Round</button>
+      <button class="flyout-btn" onclick="selectShapeType('circle')" title="Circle / Ellipse">◯ Circle</button>
+      <button class="flyout-btn" onclick="selectShapeType('diamond')" title="Decision Diamond">◇ Diamond</button>
+      <button class="flyout-btn" onclick="selectShapeType('triangle')" title="Triangle">△ Triangle</button>
+      <button class="flyout-btn" onclick="selectShapeType('arrow')" title="Process Arrow">➔ Arrow</button>
+      <button class="flyout-btn" onclick="selectShapeType('line')" title="Divider Line">— Line</button>
+    </div>
+  </div>
+
+  <!-- Flyout Menu: Sticky Notes Color Picker -->
+  <div id="stickyFlyout" class="tool-flyout" style="display:none">
+    <div class="flyout-title">Sticky Colors</div>
+    <div class="flyout-grid-swatches">
+      <button class="swatch-btn" style="background:#FEF08A; border:1px solid #CA8A04" onclick="createStickyWithColor('yellow')" title="Canary Yellow"></button>
+      <button class="swatch-btn" style="background:#FFE4E6; border:1px solid #E11D48" onclick="createStickyWithColor('rose')" title="Rose Silk"></button>
+      <button class="swatch-btn" style="background:#E0F2FE; border:1px solid #0284C7" onclick="createStickyWithColor('blue')" title="Sky Azure"></button>
+      <button class="swatch-btn" style="background:#DCFCE7; border:1px solid #16A34A" onclick="createStickyWithColor('mint')" title="Mint Sage"></button>
+      <button class="swatch-btn" style="background:#F3E8FF; border:1px solid #9333EA" onclick="createStickyWithColor('lavender')" title="Cashmere Lavender"></button>
+      <button class="swatch-btn" style="background:#1C1917; border:1px solid #E2C799" onclick="createStickyWithColor('obsidian')" title="Obsidian Noir"></button>
+    </div>
+  </div>
+
+  <!-- Flyout Menu: Freehand Pen Options -->
+  <div id="penFlyout" class="tool-flyout" style="display:none">
+    <div class="flyout-title">Pen Color & Width</div>
+    <div class="flyout-grid-swatches" style="margin-bottom:8px">
+      <button class="swatch-btn" style="background:#1A1715" onclick="setPenColor('#1A1715')" title="Noir Ink"></button>
+      <button class="swatch-btn" style="background:#E2C799" onclick="setPenColor('#E2C799')" title="Champagne Gold"></button>
+      <button class="swatch-btn" style="background:#F43F5E" onclick="setPenColor('#F43F5E')" title="Rose Silk"></button>
+      <button class="swatch-btn" style="background:#0284C7" onclick="setPenColor('#0284C7')" title="Sky Azure"></button>
+      <button class="swatch-btn" style="background:#10B981" onclick="setPenColor('#10B981')" title="Emerald"></button>
+    </div>
+    <div class="flyout-stroke-sizes">
+      <button class="stroke-size-btn" onclick="setPenWidth(2)">Fine (2px)</button>
+      <button class="stroke-size-btn" onclick="setPenWidth(4)">Med (4px)</button>
+      <button class="stroke-size-btn" onclick="setPenWidth(8)">Bold (8px)</button>
+    </div>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- STARTER TEMPLATE PICKER MODAL                              -->
+  <!-- ========================================================== -->
+  <div id="templateModal" class="template-modal" style="display:none">
+    <div class="template-modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Starter Architectures</h3>
+          <p class="modal-subtitle">Select a canvas blueprint or start completely clean.</p>
+        </div>
+        <button class="modal-close-btn" onclick="toggleTemplateModal()">✕</button>
+      </div>
+
+      <div class="template-grid">
+        <!-- 1. Blank Canvas -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('blank'); toggleTemplateModal();">
+          <div class="template-badge">CLEAN SLATE</div>
+          <h4>Blank Canvas</h4>
+          <p>An empty infinite dot grid. Zero pre-populated objects, pure creative space.</p>
+          <span class="template-action-link">Open Canvas →</span>
+        </div>
+
+        <!-- 2. Personal Mind Map -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('mindmap'); toggleTemplateModal();">
+          <div class="template-badge">IDEATION</div>
+          <h4>Personal Mind Map</h4>
+          <p>Central concept hub with 4 color-coded thematic branch clusters and bezier links.</p>
+          <span class="template-action-link">Load Mind Map →</span>
+        </div>
+
+        <!-- 3. Weekly Project Planner -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('planner'); toggleTemplateModal();">
+          <div class="template-badge">EXECUTION</div>
+          <h4>Weekly Project Planner</h4>
+          <p>Monday–Friday sprint frames, prioritized daily outcomes, and action stickies.</p>
+          <span class="template-action-link">Load Planner →</span>
+        </div>
+
+        <!-- 4. High-Ticket Strategy -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('strategy'); toggleTemplateModal();">
+          <div class="template-badge">AGENCY BLUEPRINT</div>
+          <h4>High-Ticket Strategy</h4>
+          <p>Elite positioning foundation, two-tier offer ladder, and execution matrix table.</p>
+          <span class="template-action-link">Load Strategy →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- KEYBOARD SHORTCUTS MODAL                                   -->
+  <!-- ========================================================== -->
+  <div id="shortcutsModal" class="shortcuts-modal" style="display:none">
+    <div class="shortcuts-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Keyboard Shortcuts</h3>
+        <button class="modal-close-btn" onclick="StudioCore.toggleShortcutsModal()">✕</button>
+      </div>
+      <div class="shortcuts-list">
+        <div class="shortcut-row"><kbd>V</kbd><span>Select Tool & Marquee Drag</span></div>
+        <div class="shortcut-row"><kbd>H</kbd> or <kbd>Space</kbd><span>Hand / Pan Canvas</span></div>
+        <div class="shortcut-row"><kbd>P</kbd><span>Freehand Pen Tool</span></div>
+        <div class="shortcut-row"><kbd>S</kbd><span>Geometric Shapes Tool</span></div>
+        <div class="shortcut-row"><kbd>T</kbd><span>Standalone Floating Text</span></div>
+        <div class="shortcut-row"><kbd>N</kbd><span>Drop Sticky Note</span></div>
+        <div class="shortcut-row"><kbd>F</kbd><span>Add Structural Board Frame</span></div>
+        <div class="shortcut-row"><kbd>Cmd / Ctrl + D</kbd><span>Duplicate Selected Item(s)</span></div>
+        <div class="shortcut-row"><kbd>Backspace / Del</kbd><span>Delete Selected Item(s)</span></div>
+        <div class="shortcut-row"><kbd>Cmd / Ctrl + Z</kbd><span>Undo / Redo</span></div>
+        <div class="shortcut-row"><kbd>+</kbd> / <kbd>-</kbd> / <kbd>0</kbd><span>Zoom In / Out / Reset</span></div>
+        <div class="shortcut-row"><kbd>?</kbd><span>Toggle Shortcuts Cheat Sheet</span></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ========================================================== -->
   <!-- INFINITE WORKSPACE VIEWPORT                                -->
@@ -158,7 +314,7 @@
     <div id="zoomLabel" class="zoom-label">75%</div>
     <button class="vp-btn" onclick="CanvasEngine.zoomDelta(0.15)" title="Zoom In">+</button>
     <div class="dock-divider" style="height:14px; margin:0 2px"></div>
-    <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Reset Viewport">⊡</button>
+    <button class="vp-btn" onclick="CanvasEngine.fitToContent()" title="Fit to Content">⊡</button>
   </div>
 
   <!-- ========================================================== -->
@@ -180,6 +336,9 @@
   <script src="/studio/js/firebase-config.js?v=20260908_live"></script>
 
   <script src="/studio/js/canvas-panzoom.js"></script>
+  <script src="/studio/js/drawing-engine.js"></script>
+  <script src="/studio/js/marquee-selection.js"></script>
+  <script src="/studio/js/minimap.js"></script>
   <script src="/studio/js/elements-factory.js"></script>
   <script src="/studio/js/connector-engine.js"></script>
   <script src="/studio/js/inspector.js"></script>
@@ -191,26 +350,34 @@
     document.addEventListener('DOMContentLoaded', async () => {
       await PolishFirebase.init();
 
-      // Check authentication
-      if (!PolishFirebase.currentUser) {
+      // Persistent Login & Offline Mode Check:
+      // If user was logged in before, PolishFirebase has restored them from localStorage!
+      let activeUser = PolishFirebase.currentUser;
+      if (!activeUser) {
+        const cachedUser = localStorage.getItem('polish_studio_user');
+        if (cachedUser) {
+          try { activeUser = JSON.parse(cachedUser); PolishFirebase.currentUser = activeUser; } catch (_) {}
+        }
+      }
+
+      // If still no user and online, direct to login. If in offline mode, allow local guest use!
+      const isPersonalMode = new URLSearchParams(window.location.search).get('mode') === 'personal' || window.location.pathname.startsWith('/miro') || window.location.pathname.startsWith('/canvas');
+      if (!activeUser && !isPersonalMode && navigator.onLine) {
         window.location.replace(`/login?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`);
         return;
       }
 
       const avatar = document.getElementById('studioUserAvatar');
-      if (avatar && PolishFirebase.currentUser) {
-        const name = PolishFirebase.currentUser.displayName || PolishFirebase.currentUser.email.split('@')[0];
+      if (avatar && activeUser) {
+        const name = activeUser.displayName || activeUser.email.split('@')[0];
         avatar.textContent = (name.slice(0, 2) || 'AD').toUpperCase();
       }
 
-      PolishFirebase.onAuthStateChanged((user) => {
-        if (!user) {
-          window.location.replace(`/login?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`);
-          return;
-        }
-      });
-
+      // Initialize all engines
       CanvasEngine.init();
+      DrawingEngine.init();
+      MarqueeEngine.init();
+      MiniMap.init();
       ConnectorEngine.init();
       await StudioCore.init();
 
@@ -226,6 +393,75 @@
         setTimeout(() => StudioPresentation.start(), 500);
       }
     });
+
+    // Toolbar Flyout Helpers
+    function toggleShapeMenu(e) {
+      e.stopPropagation();
+      closeAllFlyouts();
+      const flyout = document.getElementById('shapeFlyout');
+      if (flyout) {
+        flyout.style.display = 'block';
+        flyout.style.left = '74px';
+        flyout.style.top = '140px';
+      }
+    }
+
+    function selectShapeType(type) {
+      CanvasEngine.setTool('shape', type);
+      closeAllFlyouts();
+    }
+
+    function toggleStickyMenu(e) {
+      e.stopPropagation();
+      closeAllFlyouts();
+      const flyout = document.getElementById('stickyFlyout');
+      if (flyout) {
+        flyout.style.display = 'block';
+        flyout.style.left = '74px';
+        flyout.style.top = '220px';
+      }
+    }
+
+    function createStickyWithColor(color) {
+      StudioCore.addSticky(color);
+      closeAllFlyouts();
+    }
+
+    function togglePenMenu(e) {
+      e.stopPropagation();
+      CanvasEngine.setTool('pen');
+      closeAllFlyouts();
+      const flyout = document.getElementById('penFlyout');
+      if (flyout) {
+        flyout.style.display = 'block';
+        flyout.style.left = '74px';
+        flyout.style.top = '100px';
+      }
+    }
+
+    function setPenColor(color) {
+      DrawingEngine.setPenConfig(color);
+      closeAllFlyouts();
+    }
+
+    function setPenWidth(width) {
+      DrawingEngine.setPenConfig(null, width);
+      closeAllFlyouts();
+    }
+
+    function closeAllFlyouts() {
+      document.querySelectorAll('.tool-flyout').forEach(el => el.style.display = 'none');
+    }
+
+    window.addEventListener('click', () => {
+      closeAllFlyouts();
+    });
+
+    function toggleTemplateModal() {
+      const modal = document.getElementById('templateModal');
+      if (!modal) return;
+      modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
+    }
 
     function copyShareLink() {
       const curId = StudioCore.getCurrentBoardId ? StudioCore.getCurrentBoardId() : new URLSearchParams(window.location.search).get('id') || 'starter-strategy-board';

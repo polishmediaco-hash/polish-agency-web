@@ -59,14 +59,29 @@
             }, 1200);
 
             this.auth.onAuthStateChanged((user) => {
-              this.currentUser = user
-                ? {
-                    uid: user.uid,
-                    displayName: user.displayName || (user.email ? user.email.split('@')[0] : 'Advisor'),
-                    email: user.email,
-                    photoURL: user.photoURL || null
+              if (user) {
+                this.currentUser = {
+                  uid: user.uid,
+                  displayName: user.displayName || (user.email ? user.email.split('@')[0] : 'Advisor'),
+                  email: user.email,
+                  photoURL: user.photoURL || null
+                };
+                try {
+                  localStorage.setItem('polish_studio_user', JSON.stringify(this.currentUser));
+                } catch (_) {}
+              } else {
+                // If offline or disconnected, check if we have a valid cached user in localStorage before clearing
+                const cachedUser = localStorage.getItem('polish_studio_user');
+                if (cachedUser && !navigator.onLine) {
+                  try {
+                    this.currentUser = JSON.parse(cachedUser);
+                  } catch (_) {
+                    this.currentUser = null;
                   }
-                : null;
+                } else if (!cachedUser) {
+                  this.currentUser = null;
+                }
+              }
 
               this._notifyAuthListeners(this.currentUser);
 

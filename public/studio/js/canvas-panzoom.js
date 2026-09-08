@@ -11,6 +11,8 @@ window.CanvasEngine = (function () {
   let startX = 0;
   let startY = 0;
   let isSpacePressed = false;
+  let activeTool = 'select'; // 'select' | 'hand' | 'pen' | 'shape' | 'text' | 'sticky' | 'frame'
+  let pendingShapeType = 'rect';
 
   let viewport, boardCanvas, zoomLabel;
 
@@ -21,10 +23,25 @@ window.CanvasEngine = (function () {
 
     if (!viewport || !boardCanvas) return;
 
-    // Pointer Down (Pan Canvas)
+    // Pointer Down (Pan or Tool Action)
     viewport.addEventListener('pointerdown', (e) => {
-      // Ignore if clicking inside cards, buttons, docks, inputs, or ports
-      if (e.target.closest('.studio-element, .board-frame, .sticky-note, .pricing-card, .table-card, .form-field-card, .script-bubble, button, input, textarea, select, .studio-dock, .creation-toolbar, .viewport-tools, #floating-inspector, .card-port, .resize-handle, .connector-label-pill, .flow-line')) {
+      // Ignore if clicking inside interactive UI elements
+      if (e.target.closest('button, input, textarea, select, .studio-dock, .creation-toolbar, .viewport-tools, #floating-inspector, .minimap-hud, .template-modal, .shortcuts-modal')) {
+        return;
+      }
+
+      // If in Hand mode or holding spacebar, pan canvas from anywhere
+      if (activeTool === 'hand' || isSpacePressed || e.button === 1) {
+        isDragging = true;
+        viewport.classList.add('is-dragging');
+        startX = e.clientX - panX;
+        startY = e.clientY - panY;
+        try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
+        return;
+      }
+
+      // If clicking inside cards or elements in Select mode, let element factory handle drag
+      if (e.target.closest('.studio-element, .card-port, .resize-handle, .connector-label-pill, .flow-line, .freehand-stroke')) {
         return;
       }
 
@@ -33,11 +50,28 @@ window.CanvasEngine = (function () {
         window.StudioCore.deselectAll();
       }
 
-      isDragging = true;
-      viewport.classList.add('is-dragging');
-      startX = e.clientX - panX;
-      startY = e.clientY - panY;
-      try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
+      // Creation clicks
+      const canvasPos = screenToCanvas(e.clientX, e.clientY);
+      if (activeTool === 'text') {
+        if (window.StudioCore && window.StudioCore.addText) {
+          window.StudioCore.addText(canvasPos.x, canvasPos.y);
+          setTool('select');
+        }
+        return;
+      }
+
+      if (activeTool === 'shape') {
+        if (window.StudioCore && window.StudioCore.addShape) {
+          window.StudioCore.addShape(pendingShapeType, canvasPos.x, canvasPos.y);
+          setTool('select');
+        }
+        return;
+      }
+
+      // If in Select mode and clicked on empty canvas: Marquee Selection will handle it, or drag canvas if right-click
+      if (activeTool === 'select' && window.MarqueeEngine) {
+        window.MarqueeEngine.startMarquee(e);
+      }
     });
 
     viewport.addEventListener('pointermove', (e) => {
@@ -121,6 +155,9 @@ window.CanvasEngine = (function () {
     if (window.StudioInspector) {
       window.StudioInspector.updatePosition();
     }
+    if (window.MiniMap) {
+      window.MiniMap.update();
+    }
   }
 
   function zoomDelta(delta) {
@@ -177,6 +214,103 @@ window.CanvasEngine = (function () {
     requestAnimationFrame(step);
   }
 
+  function setTool(tool, subOption) {
+    activeTool = tool;
+    if (subOption) pendingShapeType = subOption;
+
+    if (viewport) {
+      viewport.dataset.tool = tool;
+      if (tool === 'hand') {
+        viewport.style.cursor = 'grab';
+      } else if (tool === 'pen') {
+        viewport.style.cursor = 'crosshair';
+      } else if (tool === 'text') {
+        viewport.style.cursor = 'text';
+      } else if (tool === 'shape') {
+        viewport.style.cursor = 'crosshair';
+      } else {
+        viewport.style.cursor = '';
+      }
+    }
+
+    // Update active class on toolbar buttons
+    document.querySelectorAll('.tool-item').forEach(btn => {
+      if (btn.dataset.tool === tool) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    if (window.DrawingEngine) {
+      window.DrawingEngine.setEnabled(tool === 'pen');
+    }
+  }
+
+  function getCanvasBounds() {
+    const elements = document.querySelectorAll('.studio-element');
+    const strokes = document.querySelectorAll('.freehand-stroke');
+
+    if (elements.length === 0 && strokes.length === 0) {
+      return { minX: 0, minY: 0, maxX: 2000, maxY: 1200, width: 2000, height: 1200 };
+    }
+
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+
+    elements.forEach(el => {
+      const left = parseFloat(el.style.left) || 0;
+      const top = parseFloat(el.style.top) || 0;
+      const width = el.offsetWidth || 300;
+      const height = el.offsetHeight || 200;
+
+      if (left < minX) minX = left;
+      if (top < minY) minY = top;
+      if (left + width > maxX) maxX = left + width;
+      if (top + height > maxY) maxY = top + height;
+    });
+
+    strokes.forEach(stroke => {
+      try {
+        const bbox = stroke.getBBox();
+        if (bbox.x < minX) minX = bbox.x;
+        if (bbox.y < minY) minY = bbox.y;
+        if (bbox.x + bbox.width > maxX) maxX = bbox.x + bbox.width;
+        if (bbox.y + bbox.height > maxY) maxY = bbox.y + bbox.height;
+      } catch (_) {}
+    });
+
+    // Add safe padding
+    minX = Math.max(0, minX - 100);
+    minY = Math.max(0, minY - 100);
+    maxX += 100;
+    maxY += 100;
+
+    return {
+      minX,
+      minY,
+      maxX,
+      maxY,
+      width: Math.max(1200, maxX - minX),
+      height: Math.max(800, maxY - minY)
+    };
+  }
+
+  function fitToContent() {
+    const bounds = getCanvasBounds();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    const padding = 120;
+    const scaleX = (vw - padding * 2) / bounds.width;
+    const scaleY = (vh - padding * 2) / bounds.height;
+    let targetScale = Math.min(Math.max(0.2, Math.min(scaleX, scaleY)), 1.2);
+
+    const targetPanX = (vw - bounds.width * targetScale) / 2 - bounds.minX * targetScale;
+    const targetPanY = (vh - bounds.height * targetScale) / 2 - bounds.minY * targetScale;
+
+    smoothPanTo(targetPanX, targetPanY, targetScale, 400);
+  }
+
   return {
     init,
     getScale: () => scale,
@@ -184,8 +318,13 @@ window.CanvasEngine = (function () {
     setTransform: (s, x, y) => { scale = s; panX = x; panY = y; applyTransform(); },
     zoomDelta,
     resetView,
+    fitToContent,
+    getCanvasBounds,
     screenToCanvas,
     canvasToScreen,
-    smoothPanTo
+    smoothPanTo,
+    setTool,
+    getTool: () => activeTool,
+    getPendingShape: () => pendingShapeType
   };
 })();

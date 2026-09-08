@@ -22,6 +22,12 @@ window.ElementsFactory = (function () {
       case 'sticky':
         el = createStickyDOM(data);
         break;
+      case 'shape':
+        el = createShapeDOM(data);
+        break;
+      case 'text':
+        el = createTextDOM(data);
+        break;
       case 'pricing':
         el = createPricingDOM(data);
         break;
@@ -128,9 +134,103 @@ window.ElementsFactory = (function () {
       <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
       <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
       <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
     `;
 
     return note;
+  }
+
+  // 2.5. Basic Shape DOM (Rect, Rounded, Circle, Diamond, Triangle, Arrow, Line)
+  function createShapeDOM(data) {
+    const shape = document.createElement('div');
+    shape.id = data.id;
+    const shapeType = data.shapeType || 'rect';
+    shape.className = `studio-shape shape-${shapeType} ${data.fontFamily ? 'font-' + data.fontFamily : ''}`;
+    shape.style.left = `${data.x}px`;
+    shape.style.top = `${data.y}px`;
+    shape.style.width = `${data.width || (shapeType === 'circle' ? 180 : (shapeType === 'diamond' ? 180 : 220))}px`;
+    shape.style.height = `${data.height || (shapeType === 'circle' ? 180 : (shapeType === 'diamond' ? 180 : (shapeType === 'line' ? 40 : 140)))}px`;
+    shape.style.zIndex = data.zIndex || 15;
+    shape.dataset.type = 'shape';
+    shape.dataset.shapeType = shapeType;
+
+    const isDark = document.body.classList.contains('theme-dark');
+    const defaultFill = isDark ? 'rgba(30, 26, 23, 0.7)' : 'rgba(255, 255, 255, 0.9)';
+    const defaultStroke = isDark ? '#E2C799' : '#1A1715';
+
+    const fill = data.fillColor || defaultFill;
+    const stroke = data.strokeColor || defaultStroke;
+    const strokeWidth = data.strokeWidth || 2;
+
+    let svgGraphic = '';
+    if (shapeType === 'circle') {
+      svgGraphic = `<svg class="shape-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="46" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/></svg>`;
+    } else if (shapeType === 'diamond') {
+      svgGraphic = `<svg class="shape-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="50,5 95,50 50,95 5,50" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/></svg>`;
+    } else if (shapeType === 'triangle') {
+      svgGraphic = `<svg class="shape-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="50,6 95,94 5,94" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/></svg>`;
+    } else if (shapeType === 'rounded-rect') {
+      svgGraphic = `<svg class="shape-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="3" y="3" width="94" height="94" rx="16" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/></svg>`;
+    } else if (shapeType === 'arrow') {
+      svgGraphic = `<svg class="shape-svg" viewBox="0 0 100 60" preserveAspectRatio="none"><polygon points="4,20 62,20 62,6 96,30 62,54 62,40 4,40" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/></svg>`;
+    } else if (shapeType === 'line') {
+      svgGraphic = `<svg class="shape-svg" viewBox="0 0 100 20" preserveAspectRatio="none"><line x1="4" y1="10" x2="96" y2="10" stroke="${stroke}" stroke-width="${strokeWidth * 1.8}" stroke-linecap="round"/></svg>`;
+    } else {
+      svgGraphic = `<svg class="shape-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="3" y="3" width="94" height="94" rx="4" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/></svg>`;
+    }
+
+    shape.innerHTML = `
+      ${svgGraphic}
+      <div class="shape-content-text" contenteditable="true" data-field="text">${data.text || (shapeType === 'line' ? '' : 'Shape Concept')}</div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+
+    return shape;
+  }
+
+  // 2.8. Standalone Floating Text DOM
+  function createTextDOM(data) {
+    const textEl = document.createElement('div');
+    textEl.id = data.id;
+    textEl.className = `floating-text-element ${data.fontFamily ? 'font-' + data.fontFamily : ''}`;
+    textEl.style.left = `${data.x}px`;
+    textEl.style.top = `${data.y}px`;
+    if (data.width) textEl.style.width = `${data.width}px`;
+    textEl.style.zIndex = data.zIndex || 22;
+    textEl.dataset.type = 'text';
+
+    const fontSize = data.fontSize || 22;
+    const color = data.color || '';
+
+    textEl.innerHTML = `
+      <div class="floating-text-inner" contenteditable="true" data-field="text" style="font-size:${fontSize}px; ${color ? 'color:' + color : ''}">${data.text || 'Type your ideas here...'}</div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handle -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+    `;
+
+    return textEl;
   }
 
   // 3. High-Ticket Pricing Card DOM

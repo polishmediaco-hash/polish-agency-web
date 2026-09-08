@@ -115,14 +115,18 @@ async function checkNewCalendlyMeetings() {
         status: 'SCHEDULED'
       };
 
-      // Persist to database
+      // Persist to database atomically
       try {
         let leads = [];
         if (fs.existsSync(DB_FILE)) {
           leads = JSON.parse(fs.readFileSync(DB_FILE, 'utf8') || '[]');
         }
         leads.unshift(meetingRecord);
-        fs.writeFileSync(DB_FILE, JSON.stringify(leads, null, 2), 'utf8');
+        const dir = path.dirname(DB_FILE);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        const tmp = DB_FILE + '.tmp.' + Date.now();
+        fs.writeFileSync(tmp, JSON.stringify(leads, null, 2), 'utf8');
+        fs.renameSync(tmp, DB_FILE);
       } catch (fsErr) {
         console.error('[Calendly Sync] Error writing meeting to DB:', fsErr.message);
       }

@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage } = require('../services/notification');
+const { requireAdminAuth } = require('../middleware/auth');
 
 const router = express.Router();
 // On Vercel serverless the project root is read-only; use /tmp which is writable.
@@ -32,10 +33,14 @@ function readLeads() {
   }
 }
 
-// Helper to write DB safely
+// Helper to write DB safely — atomic rename prevents race condition data loss
 function writeLeads(leads) {
   try {
-    fs.writeFileSync(DB_FILE, JSON.stringify(leads, null, 2), 'utf8');
+    const dir = path.dirname(DB_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const tmp = DB_FILE + '.tmp.' + Date.now();
+    fs.writeFileSync(tmp, JSON.stringify(leads, null, 2), 'utf8');
+    fs.renameSync(tmp, DB_FILE); // atomic on same filesystem
     return true;
   } catch (err) {
     console.error('Error writing leads DB:', err);
@@ -50,6 +55,14 @@ router.get('/config', (req, res) => {
     instagramUrl: process.env.INSTAGRAM_URL || 'https://www.instagram.com/polishmedia.co/',
     email: process.env.CONTACT_EMAIL || 'contact@polishmediaco.com',
     domain: process.env.DOMAIN || 'polishmediaco.com'
+  });
+});
+
+// GET /api/admin/verify (Validate Firebase Bearer token or API key and return admin profile)
+router.get('/admin/verify', requireAdminAuth, (req, res) => {
+  res.json({
+    success: true,
+    user: req.adminUser
   });
 });
 
@@ -203,7 +216,9 @@ router.post('/intake', async (req, res) => {
       if (!fs.existsSync(dbDir)) {
         fs.mkdirSync(dbDir, { recursive: true });
       }
-      fs.writeFileSync(INTAKE_FILE, JSON.stringify(intakeLead, null, 2), 'utf8');
+      const tmpIntake = INTAKE_FILE + '.tmp.' + Date.now();
+      fs.writeFileSync(tmpIntake, JSON.stringify(intakeLead, null, 2), 'utf8');
+      fs.renameSync(tmpIntake, INTAKE_FILE);
     } catch (fsErr) {
       console.warn('Warning: Could not write latest intake file:', fsErr);
     }
@@ -225,8 +240,8 @@ router.post('/intake', async (req, res) => {
   }
 });
 
-// GET /api/intake (Retrieve latest calibrated intake brief for the Board)
-router.get('/intake', (req, res) => {
+// GET /api/intake (Retrieve latest calibrated intake brief for the Board — Admin only)
+router.get('/intake', requireAdminAuth, (req, res) => {
   try {
     if (fs.existsSync(INTAKE_FILE)) {
       const data = fs.readFileSync(INTAKE_FILE, 'utf8');
@@ -248,14 +263,7 @@ router.get('/intake', (req, res) => {
 });
 
 // GET /api/leads
-router.get('/leads', (req, res) => {
-  const authKey = req.headers['x-api-key'] || req.query.key;
-  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
-
-  if (authKey !== expectedKey) {
-    return res.status(401).json({ success: false, error: 'Unauthorized access.' });
-  }
-
+router.get('/leads', requireAdminAuth, (req, res) => {
   const leads = readLeads();
   res.json({
     success: true,
@@ -265,14 +273,7 @@ router.get('/leads', (req, res) => {
 });
 
 // PATCH /api/leads/:id (Update CRM stage, founder notes, priority)
-router.patch('/leads/:id', (req, res) => {
-  const authKey = req.headers['x-api-key'] || req.query.key;
-  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
-
-  if (authKey !== expectedKey) {
-    return res.status(401).json({ success: false, error: 'Unauthorized access.' });
-  }
-
+router.patch('/leads/:id', requireAdminAuth, (req, res) => {
   const { id } = req.params;
   const { status, notes, priority } = req.body || {};
   const leads = readLeads();
@@ -296,14 +297,7 @@ router.patch('/leads/:id', (req, res) => {
 });
 
 // DELETE /api/leads/:id (Delete application from Admin Dashboard)
-router.delete('/leads/:id', (req, res) => {
-  const authKey = req.headers['x-api-key'] || req.query.key;
-  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
-
-  if (authKey !== expectedKey) {
-    return res.status(401).json({ success: false, error: 'Unauthorized access.' });
-  }
-
+router.delete('/leads/:id', requireAdminAuth, (req, res) => {
   const { id } = req.params;
   const leads = readLeads();
   const initialLength = leads.length;
@@ -322,14 +316,7 @@ router.delete('/leads/:id', (req, res) => {
 });
 
 // POST /api/notifications/test (Test Notification Service)
-router.post('/notifications/test', async (req, res) => {
-  const authKey = req.headers['x-api-key'] || req.query.key;
-  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
-
-  if (authKey !== expectedKey) {
-    return res.status(401).json({ success: false, error: 'Unauthorized access.' });
-  }
-
+router.post('/notifications/test', requireAdminAuth, async (req, res) => {
   const testLead = {
     id: `TEST-${Date.now().toString(36).toUpperCase()}`,
     fullName: 'Test Executive Applicant',
@@ -355,14 +342,14 @@ router.post('/notifications/test', async (req, res) => {
 });
 
 // GET /api/test-whatsapp (One-Click WhatsApp Alert Verification)
-router.get('/test-whatsapp', async (req, res) => {
+router.get('/test-whatsapp', requireAdminAuth, async (req, res) => {
   const authKey = req.headers['x-api-key'] || req.query.key;
-  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
+  const expectedKey = process.env.ADMIN_API_KEY;
 
-  if (authKey !== expectedKey) {
+  if (!expectedKey || authKey !== expectedKey) {
     return res.status(401).json({
       success: false,
-      error: 'Unauthorized. Please provide ?key=polish_admin_secure_key_2026'
+      error: 'Unauthorized.'
     });
   }
 
@@ -752,7 +739,11 @@ function readContent() {
 
 function writeContent(content) {
   try {
-    fs.writeFileSync(CONTENT_FILE, JSON.stringify(content, null, 2), 'utf8');
+    const dir = path.dirname(CONTENT_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const tmp = CONTENT_FILE + '.tmp.' + Date.now();
+    fs.writeFileSync(tmp, JSON.stringify(content, null, 2), 'utf8');
+    fs.renameSync(tmp, CONTENT_FILE);
     return true;
   } catch (err) {
     console.error('Error writing content DB:', err);
@@ -767,14 +758,7 @@ router.get('/content', (req, res) => {
 });
 
 // POST /api/content (Protected - Save website text from Admin Dashboard)
-router.post('/content', (req, res) => {
-  const authKey = req.headers['x-api-key'] || req.body.key || req.query.key;
-  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
-
-  if (authKey !== expectedKey) {
-    return res.status(401).json({ success: false, error: 'Unauthorized: Invalid Admin Key.' });
-  }
-
+router.post('/content', requireAdminAuth, (req, res) => {
   const { content } = req.body;
   if (!content || typeof content !== 'object') {
     return res.status(400).json({ success: false, error: 'Invalid content payload.' });
@@ -789,14 +773,7 @@ router.post('/content', (req, res) => {
 });
 
 // POST /api/content/reset (Protected - Reset website text to original defaults)
-router.post('/content/reset', (req, res) => {
-  const authKey = req.headers['x-api-key'] || req.body.key || req.query.key;
-  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
-
-  if (authKey !== expectedKey) {
-    return res.status(401).json({ success: false, error: 'Unauthorized: Invalid Admin Key.' });
-  }
-
+router.post('/content/reset', requireAdminAuth, (req, res) => {
   const def = getDefaultContent();
   writeContent(def);
   res.json({ success: true, message: 'Website content reset to factory defaults.', content: def });

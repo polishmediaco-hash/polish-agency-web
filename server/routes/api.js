@@ -13,6 +13,9 @@ const DB_FILE = IS_VERCEL
 const CONTENT_FILE_PATH = IS_VERCEL
   ? path.join('/tmp', 'content.json')
   : path.join(__dirname, '../db/content.json');
+const INTAKE_FILE = IS_VERCEL
+  ? path.join('/tmp', 'intake_latest.json')
+  : path.join(__dirname, '../db/intake_latest.json');
 
 // Helper to read DB safely
 function readLeads() {
@@ -155,6 +158,92 @@ router.post('/creators/apply', async (req, res) => {
       success: false,
       error: 'An internal server error occurred. Please reach out directly on WhatsApp.'
     });
+  }
+});
+
+// POST /api/intake (Strategy Intake & Offer Calibration Submission)
+router.post('/intake', async (req, res) => {
+  try {
+    const {
+      clientName = 'Eman Al Katheeri',
+      clientWhatsapp = '',
+      clientNotes = '',
+      answers = {}
+    } = req.body || {};
+
+    const leadId = `INTAKE-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+
+    const intakeLead = {
+      id: leadId,
+      type: 'STRATEGY_INTAKE',
+      fullName: (clientName || 'Eman Al Katheeri').trim(),
+      brandName: (answers.q3_naming || 'Executive Advisory Container').trim(),
+      phone: (clientWhatsapp || '').trim(),
+      socialLink: '@eman.alkatheeri',
+      role: 'Executive Quality of Life & Leadership Consultant',
+      businessCategory: 'Executive Advisory',
+      primaryGoal: (answers.q2_dream_outcome || '30-Day & 90-Day Executive Transformation').trim(),
+      marketingHistory: (answers.q1_avatar || 'UAE Senior Executives & Directors').trim(),
+      answers: answers,
+      notes: (clientNotes || '').trim(),
+      ipAddress: req.ip || req.headers['x-forwarded-for'] || 'unknown',
+      userAgent: req.headers['user-agent'] || 'unknown',
+      submittedAt: new Date().toISOString(),
+      status: 'NEW_APPLICATION'
+    };
+
+    // 1. Save to central leads DB
+    const leads = readLeads();
+    leads.unshift(intakeLead);
+    writeLeads(leads);
+
+    // 2. Persist latest calibrated intake answers for private board sync
+    try {
+      const dbDir = path.dirname(INTAKE_FILE);
+      if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+      }
+      fs.writeFileSync(INTAKE_FILE, JSON.stringify(intakeLead, null, 2), 'utf8');
+    } catch (fsErr) {
+      console.warn('Warning: Could not write latest intake file:', fsErr);
+    }
+
+    // 3. Fire off notification
+    notifyNewLead(intakeLead).catch(console.error);
+
+    return res.status(201).json({
+      success: true,
+      message: 'Strategy brief successfully stored in cloud.',
+      leadId: intakeLead.id
+    });
+  } catch (error) {
+    console.error('Server error processing strategy intake:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'An internal server error occurred while saving the intake brief.'
+    });
+  }
+});
+
+// GET /api/intake (Retrieve latest calibrated intake brief for the Board)
+router.get('/intake', (req, res) => {
+  try {
+    if (fs.existsSync(INTAKE_FILE)) {
+      const data = fs.readFileSync(INTAKE_FILE, 'utf8');
+      return res.json({ success: true, intake: JSON.parse(data || '{}') });
+    }
+
+    // Fallback: check leads for type: STRATEGY_INTAKE
+    const leads = readLeads();
+    const latest = leads.find(l => l.type === 'STRATEGY_INTAKE');
+    if (latest) {
+      return res.json({ success: true, intake: latest });
+    }
+
+    return res.json({ success: false, message: 'No intake brief found on file.' });
+  } catch (err) {
+    console.error('Error fetching latest intake:', err);
+    return res.status(500).json({ success: false, error: 'Could not fetch intake.' });
   }
 });
 

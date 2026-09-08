@@ -2837,6 +2837,25 @@
           el.value = val;
         }
       });
+
+      // Synchronize with Cloud Submissions from /intake
+      fetch('/api/intake')
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.success && data.intake && data.intake.answers) {
+            const answers = data.intake.answers;
+            fields.forEach(id => {
+              const el = document.getElementById(id);
+              if (el && answers[id] && answers[id].trim() !== '') {
+                if (!el.value || el.value.trim() === '') {
+                  el.value = answers[id];
+                }
+              }
+            });
+            saveBoardData();
+          }
+        })
+        .catch(() => {});
     }
 
     function saveBoardData() {

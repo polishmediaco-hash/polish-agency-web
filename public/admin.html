@@ -2508,8 +2508,36 @@
     document.getElementById('modalSubmittedAt').textContent = d.toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
     // Answers / Diagnostic
-    document.getElementById('modalMarketingHistory').textContent = isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `Portfolio / Showreel: ${lead.portfolio}` : 'Creator Network UGC Applicant') : (lead.marketingHistory || 'No baseline specified.');
-    document.getElementById('modalPrimaryGoal').textContent = isCreator ? (lead.portfolio || 'Creator Network Partnership') : (lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? lead.primaryGoal : 'Scale profitable acquisition & UGC volume.');
+    if (lead.type === 'STRATEGY_INTAKE' && lead.answers) {
+      let answersHtml = '<div style="display: grid; gap: 8px; margin-top: 6px;">';
+      const qLabels = {
+        q1_avatar: '1. Primary Target Client & Acute Crisis',
+        q2_dream_outcome: '2. 30/90-Day Dream Transformation',
+        q3_naming: '3. Flagship Advisory Program Name',
+        q4_delivery: '4. Delivery Format & Rapid First Win',
+        q5_pricing: '5. Commercial Fee Structure (AED)',
+        q6_bonus_stack: '6. High-Value Bonus Stack',
+        q7_guarantee: '7. Risk-Reversal Guarantee',
+        q8_scarcity_urgency: '8. Monthly Capacity & Fast-Action Perk',
+        q9_proof: '9. Authority Proof & Media Track Record',
+        q10_warm_launch: '10. 48-Hour Warm Rolodex Contacts'
+      };
+      for (const [key, label] of Object.entries(qLabels)) {
+        const val = lead.answers[key];
+        if (val) {
+          answersHtml += `<div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(226,199,153,0.18); border-radius: 8px; padding: 10px 14px; text-align: left;">
+            <div style="font-size: 11px; font-weight: 800; color: var(--cyan); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">${label}</div>
+            <div style="font-size: 13px; color: #F5F1EA; line-height: 1.45; white-space: pre-wrap;">${esc(val)}</div>
+          </div>`;
+        }
+      }
+      answersHtml += '</div>';
+      document.getElementById('modalMarketingHistory').innerHTML = answersHtml;
+      document.getElementById('modalPrimaryGoal').textContent = lead.notes ? `Special Notes: ${lead.notes}` : 'No special notes provided.';
+    } else {
+      document.getElementById('modalMarketingHistory').textContent = isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `Portfolio / Showreel: ${lead.portfolio}` : 'Creator Network UGC Applicant') : (lead.marketingHistory || 'No baseline specified.');
+      document.getElementById('modalPrimaryGoal').textContent = isCreator ? (lead.portfolio || 'Creator Network Partnership') : (lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? lead.primaryGoal : 'Scale profitable acquisition & UGC volume.');
+    }
 
     // Stage Selector in Modal
     document.getElementById('modalStageWrapper').innerHTML = renderStageSelect(leadId, stage, true);
@@ -2759,6 +2787,46 @@
             <td>
               <div style="font-size: 12px; color: #E2E8F0; line-height: 1.4;">
                 ${lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color: #60A5FA; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg> Showreel Portfolio</a>` : '<span style="color:var(--dim);">No portfolio link</span>'}
+              </div>
+              ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
+            </td>
+            <td>
+              <span class="badge-pill" style="background: rgba(255,255,255,0.06); color: var(--muted); font-size: 9.5px;">${esc(lead.id.slice(0, 14))}</span>
+              <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">${dateStr}<br>${timeStr}</div>
+            </td>
+            <td onclick="event.stopPropagation()" style="text-align: right;">
+              <div style="display: inline-flex; align-items: center; gap: 6px;">
+                <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  Dossier
+                </button>
+                ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 5px 10px; font-size: 11px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
+                <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }
+
+      if (lead.type === 'STRATEGY_INTAKE') {
+        return `
+          <tr onclick="openProspectModal('${esc(lead.id)}')">
+            <td>
+              <div style="font-weight: 800; color: #FFFFFF; font-size: 14.5px;">${esc(lead.brandName || 'Executive Advisory Container')}</div>
+              <div style="color: var(--cyan); font-weight: 700; font-size: 12px; margin-top: 1px;">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">Executive Consultant</span></div>
+              <div style="font-size: 11px; color: var(--dim); margin-top: 2px;">${esc(lead.phone || 'No phone')}</div>
+            </td>
+            <td>
+              <span class="badge-pill" style="background: rgba(226, 199, 153, 0.18); color: var(--cyan); border: 1px solid rgba(226, 199, 153, 0.4);">Executive Intake</span>
+            </td>
+            <td onclick="event.stopPropagation()">
+              ${renderStageSelect(lead.id, lead.status)}
+            </td>
+            <td>
+              <div style="font-size: 12.5px; color: #E2E8F0; font-weight: 600; line-height: 1.35; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(lead.primaryGoal || '')}">
+                ${esc(lead.primaryGoal || '10-Pillar Strategy Brief Logged')}
               </div>
               ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
             </td>

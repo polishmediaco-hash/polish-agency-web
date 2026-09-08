@@ -556,8 +556,50 @@
       }
     });
 
-    function submitForm() {
+    async function submitForm() {
       saveFormData();
+
+      const btnSubmit = document.getElementById('wizardBtnSubmit');
+      if (btnSubmit) {
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = '<span>Saving Brief...</span>';
+      }
+
+      const answers = {
+        q1_avatar: document.getElementById('q1_avatar')?.value.trim() || '',
+        q2_dream_outcome: document.getElementById('q2_dream_outcome')?.value.trim() || '',
+        q3_naming: document.getElementById('q3_naming')?.value.trim() || '',
+        q4_delivery: document.getElementById('q4_delivery')?.value.trim() || '',
+        q5_pricing: document.getElementById('q5_pricing')?.value.trim() || '',
+        q6_bonus_stack: document.getElementById('q6_bonus_stack')?.value.trim() || '',
+        q7_guarantee: document.getElementById('q7_guarantee')?.value.trim() || '',
+        q8_scarcity_urgency: document.getElementById('q8_scarcity_urgency')?.value.trim() || '',
+        q9_proof: document.getElementById('q9_proof')?.value.trim() || '',
+        q10_warm_launch: document.getElementById('q10_warm_launch')?.value.trim() || ''
+      };
+
+      const payload = {
+        clientName: document.getElementById('client_name')?.value.trim() || 'Eman Al Katheeri',
+        clientWhatsapp: document.getElementById('client_whatsapp')?.value.trim() || '',
+        clientNotes: document.getElementById('client_notes')?.value.trim() || '',
+        answers: answers
+      };
+
+      try {
+        const response = await fetch('/api/intake', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (result && result.success && result.leadId) {
+          const refBadge = document.getElementById('successLeadRef');
+          if (refBadge) refBadge.textContent = result.leadId;
+        }
+      } catch (err) {
+        console.warn('Could not complete cloud transmission, preserved locally:', err);
+      }
+
       document.getElementById('wizardFormShell').style.display = 'none';
       document.getElementById('wizardSuccessScreen').style.display = 'block';
       window.scrollTo({ top: 120, behavior: 'smooth' });

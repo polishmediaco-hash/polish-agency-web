@@ -49,11 +49,11 @@
     }
 
     .dynamic-island-shell.intake-header-shell {
-      max-width: 440px;
-      padding: 8px 22px;
+      max-width: 220px;
+      padding: 8px 20px;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, rgba(20, 16, 13, 0.92) 0%, rgba(10, 9, 8, 0.96) 100%);
       border: 1px solid rgba(226, 199, 153, 0.24);
@@ -62,17 +62,9 @@
       -webkit-backdrop-filter: blur(18px);
     }
 
-    .dynamic-island-shell.intake-header-shell .island-logo-zone {
-      order: 1;
-    }
-
-    .dynamic-island-shell.intake-header-shell .island-actions-zone {
-      order: 2;
-    }
-
     .site-header.is-scrolled .dynamic-island-shell.intake-header-shell {
-      max-width: 360px;
-      padding: 6px 18px;
+      max-width: 200px;
+      padding: 6px 16px;
       border-color: rgba(226, 199, 153, 0.35);
     }
 
@@ -204,22 +196,12 @@
     </div>
   </div>
 
-  <!-- Top Luxury Dynamic Island Header Capsule (Logo + Board Button Only) -->
+  <!-- Top Luxury Dynamic Island Header Capsule (Pure Logo Only) -->
   <header class="site-header" id="siteHeader">
     <div class="dynamic-island-shell intake-header-shell" id="dynamicIslandShell">
-      <div class="island-logo-zone">
-        <a href="/" class="brand-logo-link" aria-label="POLISH Home">
+      <div class="island-logo-zone" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <a href="/" class="brand-logo-link" aria-label="POLISH Home" style="display: flex; justify-content: center;">
           <img src="/assets/logo-gold.svg?v=22.0" alt="POLISH Media Co." class="brand-logo-img island-capsule-logo" width="153" height="46" fetchpriority="high">
-        </a>
-      </div>
-      
-      <div class="island-actions-zone">
-        <a href="/eman" class="header-board-btn" aria-label="Interactive Strategy Board">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          <span>Board</span>
         </a>
       </div>
 
@@ -291,7 +273,7 @@
               <div class="field-group">
                 <label class="field-label" for="q5_pricing">5. Commercial Fee Structure & Investment (AED) <span class="req">*</span></label>
                 <p class="field-hint">What are your commercial terms for the front-end diagnostic and ongoing monthly retainer (calibrated for corporate expensing)?</p>
-                <input type="text" class="form-input" id="q5_pricing" placeholder="e.g. 1,200 AED for 60-min Life Friction Diagnostic (100% credited) | 6,500 AED/month for 30-day container | 17,500 AED for 90-day VIP retainer" required>
+                <input type="text" class="form-input" id="q5_pricing" placeholder="e.g. 1,200 AED for 60-min Life Friction Diagnostic (100% credited) | 6,500 AED/month Founding Roster Rate (first 5 leaders, scaling to 8,500 AED) | 17,500 AED for 90-day VIP Container (saves 2,000 AED)" required>
               </div>
 
               <div class="field-group">
@@ -306,13 +288,13 @@
               <div class="field-group">
                 <label class="field-label" for="q7_guarantee">7. Risk-Reversal Guarantee (Peace of Mind) <span class="req">*</span></label>
                 <p class="field-hint">What bold, honorable promise eliminates client hesitation and demonstrates complete confidence?</p>
-                <textarea class="form-textarea" id="q7_guarantee" placeholder="e.g. 14-Day Radical Clarity Guarantee: Complete the initial deep dive and first 2 calibrations. If you do not feel immediate emotional relief and decisive clarity, receive a 100% courteous refund." required></textarea>
+                <textarea class="form-textarea" id="q7_guarantee" placeholder="e.g. 60-Min Diagnostic Satisfaction Floor: If we do not identify at least 3 actionable hours of weekly cognitive fatigue to reclaim immediately, receive an immediate 100% refund. Plus: 14-day container peace-of-mind guarantee." required></textarea>
               </div>
 
               <div class="field-group">
                 <label class="field-label" for="q8_scarcity_urgency">8. Monthly Capacity Limit & Fast-Action Perk <span class="req">*</span></label>
                 <p class="field-hint">What is your strict monthly client roster cap, and what exclusive reward incentivizes confirmation within 48 hours?</p>
-                <textarea class="form-textarea" id="q8_scarcity_urgency" placeholder="e.g. Strict cap of 5 active 1:1 executive retainers per month. 48-Hour Fast-Action Perk: Private strategy lunch at The Arts Club DIFC + 1 extra month of WhatsApp voice advisory." required></textarea>
+                <textarea class="form-textarea" id="q8_scarcity_urgency" placeholder="e.g. Strict cap of 5 active executive retainers per month (Founding Roster). 48-Hour Fast-Action Perk: Private strategy lunch at The Arts Club DIFC + 1 extra month of WhatsApp voice advisory." required></textarea>
               </div>
 
               <div class="field-group">
@@ -392,9 +374,6 @@
             <button type="button" onclick="copyBrief()" class="btn-back-step" style="cursor: pointer;">
               <span>📋 Copy Brief Text</span>
             </button>
-            <a href="/eman" class="btn-back-step" style="text-decoration: none; display: inline-flex; align-items: center;">
-              <span>← View Board</span>
-            </a>
           </div>
         </div>
 

@@ -146,6 +146,54 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Footer Brand Row**: Added `.footer-logo-img` (`/assets/logo-gold.svg`, `height: 36px`) anchoring the copyright bar.
 * **Admin CRM Portal**: Upgraded header logo to `44px` height and login bubble mark to `52px`.
 * **Brand Pack Updated**: Rebuilt `scripts/generate-brand-pack.js` to render all 53 multi-resolution assets with tight bounds; master zip refreshed (`public/brand-pack/POLISH_Media_Co_Brand_Pack.zip`).
+* **Official Component Catalog & Boilerplate (`public/_template.html`)**:
+  * Clean, minimal HTML boilerplate for spawning new pages (`/template`).
+* **Meeting Booking Page (`public/book.html`)**:
+  * Centered, distraction-free meeting scheduling engine (`/book`, `/schedule`, `/meeting`, `/call`, `/calendar`).
+  * Embedded Calendly widget (`https://calendly.com/polishmediaco/new-meeting`) with auto-prefill from query parameters (`?name=...&brand=...`) and fail-safe ad-blocker fallback card.
+  * Direct conversion bridge from `public/apply.html` success step to `/book`.
+* **Automated Notification Engine (`server/services/notification.js` & `server/routes/api.js`)**:
+  * **WhatsApp Alerts (Green-API Free Developer Gateway)**: Dispatches instant real-time alerts to founder WhatsApp (`+213662417761`) on form submission (`/apply`, `/creators`, `/intake`) and meeting booking.
+  * **Calendly Webhook Handler (`POST /api/calendly-webhook`)**: Parses `invitee.created` events, logs meeting to `leads.json`, and triggers WhatsApp & Telegram alerts.
+  * **One-Click Diagnostic Route (`GET /api/test-whatsapp?key=polish_admin_secure_key_2026`)**: Direct live ping verification.
+
+### B. POLISH Board Studio (`public/studio/`) & Boards Hub (`/boards`, `app.polishmediaco.com`)
+* **Whiteboard Architecture**: Fully custom Miro-alternative engineered specifically for POLISH Media Co high-ticket cosmetic/skincare client onboarding, positioning blueprints, and retainer presentations.
+* **Canvas Engine (`canvas-panzoom.js`)**:
+  - GPU-accelerated infinite panning and multi-touch/trackpad pinch zoom (15% to 250%).
+  - Grid background matching luxury editorial dots.
+  - Minimap-ready viewport transformations (`screenToCanvas`, `canvasToScreen`, `smoothPanTo`, `resetView`).
+* **Interactive Elements Factory (`elements-factory.js`)**:
+  - **Strategic Frames**: Header tags, Roman numeral numbering (`01`, `02`), serif accent headlines, modular sub-boxes (`+ Box`, `✕ Remove`), and four-quadrant anchor ports.
+  - **Tactical Stickies**: Rotatable analog cards with translucent tape strips (`yellow`, `rose`, `blue` / `azure`).
+  - **High-Ticket Retainer Pricing Cards**: Featured tiers, currency selection (`AED`, `$`, `€`), figure counter, period, and dynamic deliverables list (`+ Deliverable`, `✕ Remove`).
+  - **Strategic Deliverables Matrix Table**: Phase, deliverable output, timeline, target metric, with live DOM control buttons (`+ Row`, `− Row`, `+ Col`, `− Col`).
+  - **Brand Diagnostic Intake Worksheet**: Multi-field dynamic questionnaire with question titles, type badges (`SHORT`, `DEEP`), instructions, textareas and inputs, with live controls (`+ Question (Long)`, `+ Input (Short)`, `✕ Remove`).
+  - **Executive Script Bubbles**: Talking points and audio script containers.
+  - **Vector Connector Engine (`connector-engine.js`)**: Interactive port-to-port bezier/dashed/solid connection lines with customizable labels, line styles, and live endpoint dragging.
+* **State & Cloud Storage (`studio-core.js` & `server/routes/boards.js`)**:
+  - Real-time debounced auto-save to atomic JSON storage (`server/db/boards/`).
+  - History engine with 30-level Undo (`Cmd+Z`) and Redo (`Cmd+Shift+Z`).
+  - Duplicate (`Cmd+D`) and Delete (`Backspace`/`Delete`).
+  - Clean JSON export and shareable board URLs (`/studio?id=...`).
+* **Visual Identity & Header Lockup**:
+  - Authentic Haute Atelier gold squircle brand emblem (obsidian surface, champagne gold gradient chevron, cosmetic droplet facet, diamond core) with gold "POLISH STUDIO" lockup.
+  - Pinned luxury glass header with Cloud Save status indicator, Undo/Redo, Present mode, Export, Share, and Boards Hub link.
+* **Boards Hub (`/boards`)**:
+  - Atelier Whiteboards dashboard listing active boards, element counts, flow counts, last-updated timestamps, duplicate, delete, and direct "+ Strategy Template" or "+ Blank Canvas" creation.
+* **Haute Atelier Light / Day Mode Restoration**:
+  - Warm Alabaster (`#FAF7F2`) dot canvas, frosted white glass cards (`#FFFFFF`), rich ink black text (`#1A1715`), and Cormorant Garamond serif accents across builder, dashboard, and login.
+* **Dedicated Client Presentation Engine (`/b/:id` & `/view/:id`)**:
+  - Clean, distraction-free client strategy board view modeled after `eman-alkatheeri.html`. Strips all builder controls, toolbar, and inspector. Features co-branded header lockup with WhatsApp VIP strategy discussion link (`https://wa.me/213662417761`) and `▶ Present` mode.
+* **Firebase Auth & Multi-User Isolation (`public/studio/js/firebase-config.js`)**:
+  - Zero-bundler Firebase Web SDK integration exposing `PolishAuth` and `PolishDB` with dynamic `/api/config/firebase` server bridge. Includes automatic local-storage fallback for instantaneous zero-friction offline/dev operation.
+  - Multi-user data isolation ensuring each user sees only their own private boards on `/boards`.
+* **Exclusive Google Sign-In Architecture**:
+  - Simplified `/login` (`public/studio/login.html`) to an ultra-clean, distraction-free single-click Google authentication flow with Haute Atelier luxury card aesthetics.
+  - Resolved COOP isolation (`crossOriginOpenerPolicy: false` in Helmet) allowing the Google OAuth popup to communicate with the opener window, and implemented automatic fallback to `signInWithRedirect` with `getRedirectResult()`.
+* **Clean Route Hygiene & Dead Duplicate Purge**:
+  - Permanently deleted `dubai_strategy_board.html`, `eman.html`, and `eman-intake.html`.
+  - Preserved canonical `eman-alkatheeri.html`, `intake.html`, and `public/index.html` marketing header.
 
 ---
 
@@ -154,11 +202,11 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Branch**: `main`
 * **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
+  * `feat(notifications): integrate GREEN-API WhatsApp notification gateway & Calendly webhook listener`
+  * `feat(booking): launch luxury minimal /book Calendly scheduling page & apply.html bridge`
+  * `feat(template): build _template.html official component catalog & boilerplate`
   * `feat(design): Emulsion Mask & Liquid Refraction, Viscous Meniscus Capsule CTA, and FLIP Docking Alignment`
   * `fix(rtl): resolve Arabic inverted sticky CTA arrow and mobile right-edge headline clipping`
-  * `feat(marquee): 4-cycle seamless infinite loop conveyor with trilingual localization`
-  * `feat(intro): The Laboratory Drop — Anime.js opening cinematic with sub-pixel FLIP docking`
-  * `feat(design): execute full priority action list — grain texture, CTA shimmer, tablet hero fix`
 * **Assets**: All horizontal, vertical, and standalone vector marks committed and synced across backup repositories.
 
 ---
@@ -167,7 +215,7 @@ The application has successfully completed a luxury atelier rebranding and typog
 
 1. **Production Deployment**: Deploy to Railway / Render / DigitalOcean or VPS with PM2.
 2. **Custom Domain Setup**: Bind `polishmediaco.com` DNS CNAME/A records.
-3. **Live Webhook Integrations**: Connect Telegram / Slack / Discord bot webhooks to trigger instant alerts when a brand submits an intake form.
+3. **Calendly Webhook Activation**: Set subscription endpoint to `https://polishmediaco.com/api/calendly-webhook` in Calendly developer console.
 4. **Interactive 3D Polish**: Further elevate 3D product textures (glass reflections, metallic gold caps) using Three.js / WebGL.
 
 ---

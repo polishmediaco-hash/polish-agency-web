@@ -326,6 +326,16 @@ document.addEventListener('DOMContentLoaded', () => {
           leadIdEl.innerText = result.leadId;
         }
 
+        const bookBtn = document.getElementById('successBookDirectBtn');
+        if (bookBtn) {
+          const bookParams = new URLSearchParams({
+            name: formData.fullName || '',
+            brand: formData.brandName || '',
+            social: formData.socialLink || ''
+          });
+          bookBtn.href = `/book?${bookParams.toString()}`;
+        }
+
         window.scrollTo({
           top: successBox.getBoundingClientRect().top + window.scrollY - 100,
           behavior: 'smooth'

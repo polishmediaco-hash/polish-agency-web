@@ -1,0 +1,193 @@
+{
+  "id": "board-mtt4q9rd-cigy",
+  "slug": "board-mtt4q9rd-cigy",
+  "title": "Executive Advisory Client — Strategy Whiteboard",
+  "client": "Executive Advisory Client",
+  "createdAt": "2026-09-08T20:36:01.140Z",
+  "updatedAt": "2026-09-08T20:38:20.407Z",
+  "viewport": {
+    "panX": 720.5617366546285,
+    "panY": 307.05681972827534,
+    "scale": 0.8619028469105544
+  },
+  "elements": [
+    {
+      "id": "frame-foundation",
+      "type": "frame",
+      "x": -624,
+      "y": -112,
+      "width": 640,
+      "height": 520,
+      "zIndex": 10,
+      "frameNumber": "01",
+      "titlePill": "EXECUTIVE FOUNDATION",
+      "headline": "Positioning & Strategic Reality",
+      "serifAccent": "Strategic Reality",
+      "description": "Establishing elite category authority and pricing power before entering the market.",
+      "boxes": [
+        {
+          "tag": "CORE INSIGHT",
+          "tagColor": "gold",
+          "title": "Discreet Boutique Authority",
+          "content": "High-net-worth clients seek trusted confidential advisors. Direct high-context conversations outperform passive social views."
+        },
+        {
+          "tag": "THE BARRIER",
+          "tagColor": "rose",
+          "title": "Eliminating Low-Ticket Fatigue",
+          "content": "Eliminating hourly sessions in favor of structured high-ticket advisory containers that preserve executive peace."
+        }
+      ]
+    },
+    {
+      "id": "frame-offer",
+      "type": "frame",
+      "x": 832,
+      "y": 339,
+      "width": 680,
+      "height": 580,
+      "zIndex": 10,
+      "frameNumber": "02",
+      "titlePill": "HAUTE OFFER LADDER",
+      "headline": "Two-Tier Retainer Architecture",
+      "serifAccent": "Retainer Architecture",
+      "description": "A structured conversion bridge converting friction into ongoing partnership retainers.",
+      "boxes": [
+        {
+          "tag": "TIER 1 • DIAGNOSTIC",
+          "tagColor": "blue",
+          "title": "The 60-Min Life Friction Audit",
+          "content": "One-time diagnostic mapping pace fatigue, decision paralysis, and boundary erosion. Delivers a custom 1-page blueprint."
+        },
+        {
+          "tag": "TIER 2 • CORE RETAINER",
+          "tagColor": "green",
+          "title": "30-Day Executive Reset Container",
+          "content": "Weekly private calibrations in-person or Zoom + VIP async WhatsApp audio notes access. Roster capped at 5 active clients."
+        }
+      ]
+    },
+    {
+      "id": "sticky-1",
+      "type": "sticky",
+      "x": 770,
+      "y": 40,
+      "width": 260,
+      "height": 180,
+      "zIndex": 25,
+      "color": "rose",
+      "rotation": -2,
+      "hasTape": true,
+      "header": "STRATEGIC NOTE",
+      "content": "Never pitch retainers cold. The Tier 1 diagnostic audit filters out non-serious leads and converts at 60%+ into Tier 2.",
+      "footer": "REF: POLISH-PROTO"
+    },
+    {
+      "id": "sticky-2",
+      "type": "sticky",
+      "x": 1966,
+      "y": 288,
+      "width": 260,
+      "height": 180,
+      "zIndex": 25,
+      "color": "rose",
+      "rotation": 1.5,
+      "hasTape": true,
+      "header": "EXECUTION RULE",
+      "content": "Cap roster strictly at 5–6 clients to maintain impeccable aura, bespoke focus, and uncompromising pricing leverage.",
+      "footer": "REF: POLISH-LADDER"
+    },
+    {
+      "id": "pricing-1",
+      "type": "pricing",
+      "x": 1600,
+      "y": 120,
+      "width": 320,
+      "zIndex": 15,
+      "isFeatured": true,
+      "badge": "HAUTE ADVISORY RETAINER",
+      "currency": "AED",
+      "figure": "18,500",
+      "period": "Quarterly Private Retainer",
+      "features": [
+        "Bi-weekly In-Person or Private Zoom Calibrations",
+        "Direct VIP WhatsApp Async Voice Hotline",
+        "End-to-End Retention Architecture Blueprint",
+        "Complete Team Protocols & Governance Handover"
+      ]
+    },
+    {
+      "id": "table-1",
+      "type": "table",
+      "x": 840,
+      "y": 780,
+      "width": 640,
+      "zIndex": 12,
+      "title": "Strategic Deliverables Matrix",
+      "badge": "EXECUTION ROADMAP",
+      "headers": [
+        "Phase",
+        "Deliverable Output",
+        "Timeline",
+        "Target Metric"
+      ],
+      "rows": [
+        [
+          "Phase 01: Audit",
+          "Conversion & Retention Diagnostic",
+          "Weeks 1–2",
+          "+18% CVR"
+        ],
+        [
+          "Phase 02: Architecture",
+          "VIP Advisory Retainer Launch",
+          "Weeks 3–6",
+          "$45k ARR Added"
+        ],
+        [
+          "Phase 03: Scaling",
+          "Autonomous Systems & Handover",
+          "Months 2–3",
+          "Zero Founder Fatigue"
+        ]
+      ]
+    },
+    {
+      "id": "frame-1788899836659",
+      "type": "frame",
+      "x": -1768,
+      "y": -397,
+      "width": 620,
+      "height": 480,
+      "zIndex": 10,
+      "frameNumber": "03",
+      "titlePill": "STRATEGY MODULE",
+      "headline": "New Strategic Container",
+      "serifAccent": "Strategic Container",
+      "description": "Double-click to customize the strategy and pillars of this frame.",
+      "boxes": [
+        {
+          "tag": "CORE LEVER",
+          "tagColor": "gold",
+          "title": "Section Objective",
+          "content": "Add high-impact points and rationale here..."
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1",
+      "from": "frame-foundation",
+      "fromAnchor": "right",
+      "to": "frame-offer",
+      "toAnchor": "left",
+      "style": "dashed",
+      "color": "slate",
+      "label": "1. Foundation Positioning→ Informs Haute Offer"
+    }
+  ],
+  "ownerId": "Pl8h9hhB4rNL5b3wJkxUzS1O7is1",
+  "ownerEmail": "choulif.work@gmail.com",
+  "isPublished": true
+}

@@ -1,0 +1,41 @@
+{
+  "id": "board-mtt4tfvy-fscx",
+  "createdAt": "2026-09-08T20:38:29.038Z",
+  "connections": [],
+  "elements": [
+    {
+      "description": "Double-click any text on this board to begin editing.",
+      "zIndex": 10,
+      "headline": "Strategic Overview",
+      "x": 120,
+      "serifAccent": "Strategic Overview",
+      "frameNumber": "01",
+      "y": 120,
+      "type": "frame",
+      "titlePill": "FOUNDATION",
+      "width": 600,
+      "id": "frame-1",
+      "boxes": [
+        {
+          "title": "Primary Strategic Objective",
+          "tag": "PHASE 01",
+          "tagColor": "gold",
+          "content": "Describe the core objective and methodology for this client container."
+        }
+      ],
+      "height": 480
+    }
+  ],
+  "slug": "board-mtt4tfvy-fscx",
+  "ownerEmail": "choulif.work@gmail.com",
+  "client": "Private Client",
+  "isPublished": true,
+  "title": "New Strategic Advisory Board",
+  "ownerId": "Pl8h9hhB4rNL5b3wJkxUzS1O7is1",
+  "viewport": {
+    "panX": 304.35546875,
+    "panY": 78.8203125,
+    "scale": 0.8
+  },
+  "updatedAt": "2026-09-08T20:38:38.751Z"
+}

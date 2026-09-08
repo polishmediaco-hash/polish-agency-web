@@ -1,0 +1,507 @@
+/* ==========================================================================
+   POLISH BOARD STUDIO — Workspace, Viewport & Docks
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--surface-alabaster);
+  font-family: var(--font-body);
+  color: var(--text-ink);
+  user-select: none;
+}
+
+/* ========================================================== */
+/* PANNABLE CANVAS VIEWPORT                                   */
+/* ========================================================== */
+#viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+  touch-action: none;
+  background-color: var(--surface-alabaster);
+  background-image: radial-gradient(var(--border-strong) 1.5px, transparent 1.5px);
+  background-size: 34px 34px;
+}
+
+#viewport.is-dragging {
+  cursor: grabbing;
+}
+
+#viewport.is-connecting {
+  cursor: crosshair;
+}
+
+#board-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14000px;
+  height: 6000px;
+  background: transparent;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* Dynamic SVG Connectors Layer */
+#svg-connections {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14000px;
+  height: 6000px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.flow-line {
+  fill: none;
+  stroke: #736D67;
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 8 6;
+  pointer-events: stroke;
+  cursor: pointer;
+  transition: stroke 0.2s, stroke-width 0.2s;
+}
+
+.flow-line:hover,
+.flow-line.is-selected {
+  stroke: var(--brand-noir) !important;
+  stroke-width: 4.5px !important;
+  stroke-dasharray: none !important;
+}
+
+.flow-line.color-gold { stroke: var(--brand-gold); }
+.flow-line.color-noir { stroke: var(--brand-noir); }
+.flow-line.color-rose { stroke: var(--accent-rose); }
+.flow-line.color-green { stroke: var(--accent-green); }
+
+/* Temporary line being drawn */
+.temp-flow-line {
+  fill: none;
+  stroke: var(--brand-gold);
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-dasharray: 6 6;
+  pointer-events: none;
+}
+
+/* Floating Centered Pill Labels on Arrows */
+.connector-label-pill {
+  position: absolute;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-slate);
+  box-shadow: 0 4px 12px rgba(26, 23, 21, 0.08);
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  white-space: nowrap;
+  z-index: 40;
+  transition: all 0.15s ease;
+}
+
+.connector-label-pill:hover,
+.connector-label-pill.is-selected {
+  border-color: var(--brand-noir);
+  color: var(--brand-noir);
+  box-shadow: 0 6px 16px rgba(26, 23, 21, 0.14);
+}
+
+/* ========================================================== */
+/* TOP DOCK: BRAND, TITLE, ACTIONS & NAVIGATION               */
+/* ========================================================== */
+header.studio-dock {
+  position: fixed;
+  top: 12px;
+  left: 18px;
+  right: 18px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.25rem;
+  box-shadow: 0 10px 30px rgba(26, 23, 21, 0.07);
+  z-index: 1000;
+  gap: 1rem;
+}
+
+.dock-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand-mark-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.brand-mark-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-0.5px);
+}
+
+.brand-mark-squircle {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 10px rgba(8, 7, 6, 0.18));
+}
+
+.brand-mark-squircle svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.brand-text-lockup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.96rem;
+  letter-spacing: 0.08em;
+  color: var(--brand-noir);
+}
+
+.studio-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--brand-noir);
+  background: var(--brand-gold);
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.dock-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border-subtle);
+}
+
+/* Board Title Input */
+.board-title-input {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--brand-noir);
+  padding: 4px 10px;
+  outline: none;
+  min-width: 240px;
+  max-width: 420px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.board-title-input:hover {
+  background: var(--surface-subtle);
+}
+
+.board-title-input:focus {
+  background: #FFFFFF;
+  border-color: var(--brand-gold);
+}
+
+.save-indicator {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+}
+
+.save-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
+}
+
+/* Center History & Tool Actions */
+.dock-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dock-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-slate);
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dock-svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.dock-btn:focus-visible {
+  outline: 2px solid var(--brand-gold, #C5A880);
+  outline-offset: 2px;
+}
+
+.dock-btn:hover {
+  background: var(--surface-subtle);
+  color: var(--text-ink);
+  border-color: var(--border-subtle);
+}
+
+.dock-btn.btn-present {
+  background: var(--brand-noir);
+  color: #FFFFFF;
+  border-color: var(--brand-noir);
+  padding: 0 14px;
+  border-radius: 20px;
+  font-weight: 800;
+}
+
+.dock-btn.btn-present:hover {
+  background: #262321;
+}
+
+/* Right Actions */
+.dock-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ========================================================== */
+/* LEFT CREATION TOOLBAR DOCK                                 */
+/* ========================================================== */
+aside.creation-toolbar {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 12px 36px rgba(26, 23, 21, 0.09);
+  z-index: 1000;
+}
+
+.tool-item {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: transparent;
+  border: none;
+  color: var(--text-slate);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.tool-item:hover {
+  background: var(--surface-subtle);
+  color: var(--text-ink);
+  transform: scale(1.06);
+}
+
+.tool-item.active {
+  background: var(--brand-noir);
+  color: #FFFFFF;
+}
+
+.tool-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.tool-label {
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tool-item[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 56px;
+  background: var(--brand-noir);
+  color: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+  transform: translateX(-4px);
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.tool-item[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ========================================================== */
+/* VIEWPORT ZOOM HUD (BOTTOM RIGHT)                           */
+/* ========================================================== */
+.viewport-tools {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 1000;
+  box-shadow: 0 10px 26px rgba(26, 23, 21, 0.08);
+}
+
+.vp-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-ink);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.vp-btn:hover {
+  background: var(--surface-subtle);
+}
+
+.zoom-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-slate);
+  min-width: 44px;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+/* ========================================================== */
+/* PRESENTATION MODE CONTROLS                                 */
+/* ========================================================== */
+.presentation-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-strong);
+  border-radius: 40px;
+  padding: 8px 18px;
+  display: none;
+  align-items: center;
+  gap: 16px;
+  z-index: 2000;
+  box-shadow: 0 16px 40px rgba(26, 23, 21, 0.15);
+}
+
+.is-presenting .presentation-bar {
+  display: flex;
+}
+
+.is-presenting header.studio-dock,
+.is-presenting aside.creation-toolbar,
+.is-presenting .viewport-tools,
+.is-presenting .card-port,
+.is-presenting .resize-handle {
+  display: none !important;
+}
+
+.present-nav-btn {
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-ink);
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.present-nav-btn:hover {
+  background: var(--brand-noir);
+  color: #FFFFFF;
+  border-color: var(--brand-noir);
+}
+
+.present-slide-info {
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--brand-noir);
+}

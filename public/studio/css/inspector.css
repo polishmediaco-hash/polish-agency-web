@@ -1,0 +1,230 @@
+/* ==========================================================================
+   POLISH BOARD STUDIO — Haute Atelier Floating Contextual Mini-Toolbar
+   Haute Atelier Light / Day Mode Edition
+   ========================================================================== */
+
+#floating-inspector {
+  position: fixed;
+  transform: translate(-50%, -100%) scale(0.95);
+  transform-origin: center bottom;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 9999px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 
+    0 16px 36px rgba(26, 23, 21, 0.09),
+    0 0 0 1px rgba(197, 168, 128, 0.25) inset,
+    0 4px 12px rgba(197, 168, 128, 0.12);
+  z-index: 1500;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: 
+    opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.18s;
+  max-width: calc(100vw - 32px);
+  box-sizing: border-box;
+}
+
+#floating-inspector.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, -100%) scale(1);
+}
+
+#floating-inspector.place-below {
+  transform: translate(-50%, 0) scale(0.95);
+  transform-origin: center top;
+}
+
+#floating-inspector.place-below.active {
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* Specular Golden Glint Line on top edge */
+#floating-inspector::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 168, 128, 0.4), rgba(226, 199, 153, 0.7), transparent);
+  pointer-events: none;
+}
+
+/* Element Type Badge Pill */
+.insp-type-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #92400E;
+  background: #FEF8ED;
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.insp-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.insp-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-subtle, #E8E2D8);
+  flex-shrink: 0;
+  margin: 0 1px;
+}
+
+/* Color Swatches Row */
+.insp-swatch-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.insp-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0;
+  outline: none;
+}
+
+/* WCAG 44x44px Touch Target Hitbox Expansion for Tablets & Mobile */
+.insp-swatch::after {
+  content: "";
+  position: absolute;
+  inset: -13px;
+  border-radius: 50%;
+}
+
+.insp-swatch:hover {
+  transform: scale(1.22);
+}
+
+.insp-swatch.active {
+  border-color: #1A1715;
+  box-shadow: 0 0 0 2px var(--brand-gold, #C5A880);
+  transform: scale(1.15);
+}
+
+.insp-swatch:focus-visible,
+.insp-btn:focus-visible,
+.insp-select:focus-visible {
+  outline: 2px solid var(--brand-gold, #C5A880);
+  outline-offset: 2px;
+}
+
+.insp-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.swatch-yellow { background: var(--sticky-yellow, #FEF08A); border-color: #FDE047; }
+.swatch-rose   { background: var(--sticky-rose, #FECDD3); border-color: #FDA4AF; }
+.swatch-blue   { background: var(--sticky-blue, #BAE6FD); border-color: #7DD3FC; }
+.swatch-green  { background: var(--sticky-green, #BBF7D0); border-color: #86EFAC; }
+.swatch-gold   { background: var(--brand-gold, #E2C799); border-color: #C5A880; }
+.swatch-noir   { background: #1A1715; border-color: #080706; }
+.swatch-slate  { background: #64748B; border-color: #475569; }
+
+/* Font Selector Dropdown */
+.insp-select {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 999px;
+  font-family: var(--font-body, inherit);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-ink, #1A1715);
+  padding: 4px 10px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.insp-select:hover, .insp-select:focus {
+  background: #FAF7F2;
+  border-color: var(--brand-gold, #C5A880);
+}
+
+.insp-select option {
+  background: #FFFFFF;
+  color: #1A1715;
+  padding: 6px;
+}
+
+/* Action Buttons inside Mini-Toolbar */
+.insp-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-slate, #3F3C39);
+  height: 28px;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.insp-btn:hover {
+  background: #FAF7F2;
+  color: var(--text-ink, #1A1715);
+  border-color: var(--border-subtle, #E8E2D8);
+}
+
+.insp-btn.active {
+  background: #080706;
+  color: #F5E6D3;
+  font-weight: 800;
+  border-color: #080706;
+}
+
+.insp-btn.btn-connect {
+  background: #FEF8ED;
+  color: #92400E;
+  border-color: rgba(197, 168, 128, 0.4);
+}
+
+.insp-btn.btn-connect:hover {
+  background: var(--brand-gold, #C5A880);
+  color: #080706;
+}
+
+.insp-btn.btn-danger {
+  color: #BE123C;
+}
+
+.insp-btn.btn-danger:hover {
+  background: #FFF1F2;
+  color: #BE123C;
+  border-color: #FDA4AF;
+}

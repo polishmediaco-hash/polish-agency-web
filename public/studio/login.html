@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POLISH Studio — Executive Workspace Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
+  <style>
+    :root {
+      --brand-gold: #C5A880;
+      --brand-gold-bright: #E2C799;
+      --brand-noir: #080706;
+      --surface-alabaster: #FAF7F2;
+      --surface-white: #FFFFFF;
+      --surface-card: #FFFFFF;
+      --surface-subtle: #F5F1EB;
+      --text-ink: #1A1715;
+      --text-slate: #3F3C39;
+      --text-muted: #736D67;
+      --border-subtle: #E8E2D8;
+      --border-strong: #D5CEC4;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+    body {
+      background-color: var(--surface-alabaster);
+      background-image: radial-gradient(var(--border-strong) 1.5px, transparent 1.5px);
+      background-size: 34px 34px;
+      font-family: var(--font-heading);
+      color: var(--text-ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 28px;
+      padding: 2.75rem 2.25rem;
+      box-shadow: 0 20px 50px rgba(26, 23, 21, 0.08), 0 0 0 1px rgba(197, 168, 128, 0.2) inset;
+    }
+
+    .auth-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .brand-squircle {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #080706;
+      border: 1px solid rgba(226, 199, 153, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .brand-squircle svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .auth-title {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--text-ink);
+      letter-spacing: -0.01em;
+    }
+
+    .auth-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Auth Tabs */
+    .auth-error {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #FFF1F2;
+      border: 1px solid #FDA4AF;
+      color: #BE123C;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    /* Primary Luxury Google Button */
+    .btn-google-primary {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 16px;
+      background: #080706;
+      color: #F5E6D3;
+      border: 1px solid rgba(197, 168, 128, 0.45);
+      font-family: var(--font-heading);
+      font-size: 0.94rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 6px 20px rgba(8, 7, 6, 0.16);
+      user-select: none;
+    }
+
+    .btn-google-primary:hover {
+      background: #1A1715;
+      color: #FFFFFF;
+      border-color: var(--brand-gold-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(8, 7, 6, 0.26);
+    }
+
+    .btn-google-primary:active {
+      transform: translateY(0);
+    }
+
+    .google-icon-chip {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .auth-footer-notice {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .auth-shield-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--brand-gold);
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="brand-squircle">
+        <svg viewBox="0 0 512 512">
+          <defs>
+            <linearGradient id="goldGradAuth" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#C5A880"/>
+              <stop offset="50%" stop-color="#E2C799"/>
+              <stop offset="100%" stop-color="#F5E6D3"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(256, 256) scale(3.2) translate(-50, -50)">
+            <path d="M 34 68 C 30 64 30 58 34 54 L 56 32 L 48 32 C 45 32 43 30 43 27 C 43 24 45 22 48 22 L 75 22 C 77 22 79 24 79 26 L 79 53 C 79 56 77 58 74 58 C 71 58 69 56 69 53 L 69 45 L 47 68 C 43 72 38 72 34 68 Z" fill="url(#goldGradAuth)"/>
+            <path d="M 24 72 C 27 75 29 79 28 83 C 27 87 23 89 19 88 C 15 87 13 83 14 79 C 15 75 21 69 24 72 Z" fill="url(#goldGradAuth)" opacity="0.95"/>
+            <rect x="18.5" y="77.5" width="5.5" height="5.5" rx="1.2" transform="rotate(45 21.25 80.25)" fill="#F5E6D3"/>
+          </g>
+        </svg>
+      </div>
+      <h1 class="auth-title">POLISH Studio</h1>
+      <p class="auth-subtitle">Executive Strategy Workspace</p>
+    </div>
+
+    <div id="authError" class="auth-error"></div>
+
+    <button type="button" id="btnGoogleSignIn" class="btn-google-primary" onclick="handleGoogleSignIn()">
+      <div class="google-icon-chip">
+        <svg width="17" height="17" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.26 21.36 7.33 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+        </svg>
+      </div>
+      <span id="btnGoogleText">Continue with Google</span>
+    </button>
+
+    <div class="auth-footer-notice">
+      <div class="auth-shield-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Private & Isolated
+      </div>
+      <br>
+      Each advisor has a private workspace.<br>
+      Canvases and client proposals are confidential to your account.
+    </div>
+  </div>
+
+  <!-- Firebase Web SDK (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="/studio/js/firebase-config.js?v=20260908_live"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await PolishFirebase.init();
+
+      // If user is already logged in, redirect to /boards
+      if (PolishFirebase.currentUser) {
+        let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
+        if (redirect === '/login' || redirect.startsWith('/login')) redirect = '/boards';
+        window.location.replace(redirect);
+      }
+    });
+
+    async function handleGoogleSignIn() {
+      const authError = document.getElementById('authError');
+      const btn = document.getElementById('btnGoogleSignIn');
+      const text = document.getElementById('btnGoogleText');
+      
+      authError.style.display = 'none';
+      btn.style.opacity = '0.75';
+      btn.style.pointerEvents = 'none';
+      text.textContent = 'Connecting to Google...';
+
+      try {
+        await PolishFirebase.loginWithGoogle();
+        const redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
+        window.location.href = redirect;
+      } catch (err) {
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+        text.textContent = 'Continue with Google';
+        console.error('[Login] Google auth error:', err);
+
+        let msg = err.message || 'Google Sign-In could not be completed.';
+        if (err.code === 'auth/popup-closed-by-user') {
+          msg = 'Sign-in popup was closed before completing.';
+        } else if (err.code === 'auth/cancelled-popup-request') {
+          msg = 'Only one sign-in window can be open at a time.';
+        } else if (err.code === 'auth/unauthorized-domain') {
+          msg = 'This domain is not authorized in Firebase Auth settings. Please add localhost or your custom domain.';
+        }
+        authError.textContent = msg;
+        authError.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

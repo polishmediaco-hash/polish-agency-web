@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POLISH Studio — Executive Boards Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
+  <style>
+    :root {
+      --brand-gold: #C5A880;
+      --brand-gold-bright: #E2C799;
+      --brand-noir: #080706;
+      --surface-alabaster: #FAF7F2;
+      --surface-white: #FFFFFF;
+      --surface-card: #FFFFFF;
+      --surface-subtle: #F5F1EB;
+      --surface-subtle-hover: #ECE6DD;
+      --text-ink: #1A1715;
+      --text-slate: #3F3C39;
+      --text-muted: #736D67;
+      --border-subtle: #E8E2D8;
+      --border-strong: #D5CEC4;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+    body {
+      background-color: var(--surface-alabaster);
+      background-image: radial-gradient(var(--border-strong) 1.5px, transparent 1.5px);
+      background-size: 34px 34px;
+      font-family: var(--font-heading);
+      color: var(--text-ink);
+      min-height: 100vh;
+      padding: 3rem 2rem;
+    }
+
+    .dashboard-container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* Header Nav (Haute Atelier Light) */
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3.5rem;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9999px;
+      padding: 0.85rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(26, 23, 21, 0.05);
+      gap: 1.5rem;
+    }
+
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-ink);
+      font-weight: 800;
+    }
+
+    .brand-mark-squircle {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #080706;
+      border: 1px solid rgba(226, 199, 153, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .brand-mark-squircle svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .dash-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-capsule {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 12px 5px 6px;
+      border-radius: 30px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-slate);
+    }
+
+    .user-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #080706;
+      color: #F5E6D3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-signout {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-signout:hover {
+      color: #BE123C;
+      background: #FFF1F2;
+    }
+
+    .btn {
+      padding: 9px 18px;
+      border-radius: 24px;
+      font-family: var(--font-heading);
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--brand-gold);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: #080706;
+      color: #F5E6D3;
+      border: 1px solid #080706;
+    }
+
+    .btn-primary:hover {
+      background: #1A1715;
+      color: #FFFFFF;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(8, 7, 6, 0.2);
+    }
+
+    .btn-secondary {
+      background: #FFFFFF;
+      color: var(--text-ink);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-subtle);
+      border-color: var(--brand-gold);
+      transform: translateY(-1px);
+    }
+
+    /* Page Titles */
+    .title-row {
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .eyebrow {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .headline {
+      font-size: 2.25rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--text-ink);
+    }
+
+    .headline .serif-accent {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--brand-gold);
+      font-weight: 700;
+    }
+
+    /* Boards Grid */
+    .boards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .board-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(26, 23, 21, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250px;
+    }
+
+    .board-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 45px -8px rgba(26, 23, 21, 0.12);
+      border-color: rgba(197, 168, 128, 0.5);
+    }
+
+    .card-top {
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .board-badge {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: 6px;
+      color: var(--text-slate);
+    }
+
+    .badge-status {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: #ECFDF5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+
+    .board-card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .board-card-client {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .board-card-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .footer-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .board-meta-stat {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .footer-buttons-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .btn-client-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #FAF7F2;
+      border: 1px solid rgba(197, 168, 128, 0.4);
+      color: #92400E;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-client-link:hover {
+      background: #FEF8ED;
+      border-color: #C5A880;
+      transform: translateY(-1px);
+    }
+
+    .board-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-action-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-slate);
+      cursor: pointer;
+      padding: 5px 8px;
+      border-radius: 8px;
+      transition: all 0.15s;
+    }
+
+    .card-action-btn:hover {
+      background: var(--surface-subtle);
+      border-color: var(--border-subtle);
+      color: var(--text-ink);
+    }
+
+    .card-action-btn.btn-delete:hover {
+      background: #FFF1F2;
+      color: #BE123C;
+      border-color: #FDA4AF;
+    }
+
+    /* Toast */
+    .dash-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #080706;
+      color: #F5E6D3;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      z-index: 2000;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dash-toast.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="dash-header">
+      <a href="/boards" class="brand-cluster">
+        <div class="brand-mark-squircle">
+          <svg viewBox="0 0 512 512">
+            <defs>
+              <linearGradient id="goldGradDash" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#C5A880"/>
+                <stop offset="50%" stop-color="#E2C799"/>
+                <stop offset="100%" stop-color="#F5E6D3"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(256, 256) scale(3.2) translate(-50, -50)">
+              <path d="M 34 68 C 30 64 30 58 34 54 L 56 32 L 48 32 C 45 32 43 30 43 27 C 43 24 45 22 48 22 L 75 22 C 77 22 79 24 79 26 L 79 53 C 79 56 77 58 74 58 C 71 58 69 56 69 53 L 69 45 L 47 68 C 43 72 38 72 34 68 Z" fill="url(#goldGradDash)"/>
+              <path d="M 24 72 C 27 75 29 79 28 83 C 27 87 23 89 19 88 C 15 87 13 83 14 79 C 15 75 21 69 24 72 Z" fill="url(#goldGradDash)" opacity="0.95"/>
+              <rect x="18.5" y="77.5" width="5.5" height="5.5" rx="1.2" transform="rotate(45 21.25 80.25)" fill="#F5E6D3"/>
+            </g>
+          </svg>
+        </div>
+        <div>
+          <div style="display:flex; align-items:center; gap:6px">
+            <span style="letter-spacing:0.04em; font-weight:900; font-size:1.05rem; color:#1A1715">POLISH</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; background:var(--brand-gold); color:#080706; padding:2px 7px; border-radius:6px">STUDIO</span>
+          </div>
+          <div style="font-size:0.72rem; color:var(--text-muted); font-weight:600; margin-top:2px">Executive Whiteboard Hub</div>
+        </div>
+      </a>
+
+      <div class="dash-actions">
+        <!-- User Account Profile Capsule -->
+        <div id="userCapsule" class="user-capsule" style="display:none">
+          <div id="userAvatar" class="user-avatar">AD</div>
+          <span id="userName">Advisor</span>
+          <button class="btn-signout" onclick="signOut()" title="Log out of this workspace">Sign Out</button>
+        </div>
+
+        <button class="btn btn-secondary" onclick="createFromTemplate()">+ Strategy Template</button>
+        <button class="btn btn-primary" onclick="createBlankBoard()">+ Blank Canvas</button>
+      </div>
+    </header>
+
+    <!-- Title -->
+    <div class="title-row">
+      <div>
+        <div class="eyebrow">Atelier Whiteboards</div>
+        <h1 class="headline">Strategic Client <span class="serif-accent">Canvases & Boards</span></h1>
+      </div>
+    </div>
+
+    <!-- Grid of Boards -->
+    <div id="boardsGrid" class="boards-grid">
+      <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">
+        Loading private workspace boards...
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="dashToast" class="dash-toast">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span>Notification</span>
+  </div>
+
+  <!-- Firebase Web SDK (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="/studio/js/firebase-config.js?v=20260908_live"></script>
+
+  <script>
+    let activeUser = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await PolishFirebase.init();
+
+      if (!PolishFirebase.currentUser) {
+        // If unauthenticated, redirect to login cleanly
+        window.location.replace('/login?redirect=/boards');
+        return;
+      }
+
+      activeUser = PolishFirebase.currentUser;
+      renderUserProfile(activeUser);
+      loadUserBoards(activeUser.uid);
+
+      PolishFirebase.onAuthStateChanged((user) => {
+        if (!user) {
+          window.location.replace('/login?redirect=/boards');
+          return;
+        }
+        activeUser = user;
+        renderUserProfile(user);
+      });
+    });
+
+    function renderUserProfile(user) {
+      const capsule = document.getElementById('userCapsule');
+      const avatar = document.getElementById('userAvatar');
+      const name = document.getElementById('userName');
+
+      if (!capsule) return;
+      capsule.style.display = 'flex';
+
+      const displayName = user.displayName || user.email.split('@')[0];
+      name.textContent = displayName;
+
+      const initials = displayName
+        .split(' ')
+        .map(n => n[0])
+        .join('')
+        .toUpperCase()
+        .slice(0, 2) || 'AD';
+      avatar.textContent = initials;
+    }
+
+    async function signOut() {
+      await PolishFirebase.logout();
+      window.location.replace('/login');
+    }
+
+    async function loadUserBoards(userId) {
+      try {
+        const grid = document.getElementById('boardsGrid');
+        const boards = await PolishFirebase.listBoards(userId);
+
+        if (!boards || boards.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background:#fff; border-radius:24px; border:1px solid var(--border-subtle); box-shadow: 0 10px 30px rgba(26,23,21,0.03)">
+              <div style="font-size:2.5rem; margin-bottom:1rem">✦</div>
+              <h3 style="font-size:1.35rem; font-weight:800; margin-bottom:0.5rem">Your Workspace is Ready</h3>
+              <p style="color:var(--text-muted); max-width:440px; margin:0 auto 1.75rem auto; font-size:0.9rem">Create your first client strategy blueprint or start from our battle-tested executive template.</p>
+              <button class="btn btn-primary" onclick="createFromTemplate()">+ Create Executive Blueprint</button>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = boards.map(b => `
+          <div class="board-card">
+            <div class="card-top">
+              <div class="badge-row">
+                <span class="board-badge">${b.elementCount || 0} Elements • ${b.connectionCount || 0} Flows</span>
+                <span class="badge-status">Active Proposal</span>
+              </div>
+              <h2 class="board-card-title">${escapeHtml(b.title || 'Untitled Board')}</h2>
+              <div class="board-card-client">${escapeHtml(b.client || 'Private Advisory')}</div>
+            </div>
+
+            <div class="board-card-footer">
+              <div class="footer-meta-row">
+                <div class="board-meta-stat">Updated ${new Date(b.updatedAt || Date.now()).toLocaleDateString()}</div>
+                <button class="btn-client-link" onclick="copyClientLink('${b.id}')" title="Copy public client presentation link">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  Copy Client Link
+                </button>
+              </div>
+
+              <div class="footer-buttons-row">
+                <div class="board-card-actions">
+                  <a href="/b/${encodeURIComponent(b.id)}" target="_blank" class="card-action-btn" title="Preview client presentation view">View Client ↗</a>
+                  <button class="card-action-btn" onclick="duplicateBoard('${b.id}')" title="Duplicate board">⧉ Copy</button>
+                  <button class="card-action-btn btn-delete" onclick="deleteBoard('${b.id}', '${escapeHtml(b.title)}')" title="Delete board">✕</button>
+                </div>
+                <a href="/studio?id=${encodeURIComponent(b.id)}" class="btn btn-primary" style="padding:6px 16px; font-size:0.8rem">Edit Canvas →</a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        console.error('Error loading boards:', err);
+      }
+    }
+
+    async function createBlankBoard() {
+      if (!activeUser) return;
+      const title = prompt('Enter a title for the new board:', 'New Strategic Advisory Board');
+      if (!title) return;
+
+      const boardId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+      const newBoard = {
+        id: boardId,
+        slug: boardId,
+        title: title.trim(),
+        client: 'Private Client',
+        ownerId: activeUser.uid,
+        ownerEmail: activeUser.email,
+        viewport: { panX: 100, panY: 80, scale: 0.8 },
+        elements: [
+          {
+            id: 'frame-1',
+            type: 'frame',
+            x: 120,
+            y: 120,
+            width: 600,
+            height: 480,
+            zIndex: 10,
+            frameNumber: '01',
+            titlePill: 'FOUNDATION',
+            headline: 'Strategic Overview',
+            serifAccent: 'Strategic Overview',
+            description: 'Double-click any text on this board to begin editing.',
+            boxes: [
+              {
+                tag: 'PHASE 01',
+                tagColor: 'gold',
+                title: 'Primary Strategic Objective',
+                content: 'Describe the core objective and methodology for this client container.'
+              }
+            ]
+          }
+        ],
+        connections: []
+      };
+
+      await PolishFirebase.saveBoard(newBoard, activeUser);
+      window.location.href = `/studio?id=${boardId}`;
+    }
+
+    async function createFromTemplate() {
+      if (!activeUser) return;
+      const client = prompt('Client name or Brand:', 'Executive Advisory Client');
+      const title = prompt('Board title:', `${client || 'Executive'} — Strategy Whiteboard`);
+      if (!title) return;
+
+      const boardId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+      
+      // Fetch starter template structure
+      let starterData;
+      try {
+        const res = await fetch('/api/boards/starter-strategy-board');
+        if (res.ok) {
+          const data = await res.json();
+          starterData = data.board;
+        }
+      } catch (e) {}
+
+      const newBoard = {
+        ...(starterData || {}),
+        id: boardId,
+        slug: boardId,
+        title: title.trim(),
+        client: (client || 'Private Client').trim(),
+        ownerId: activeUser.uid,
+        ownerEmail: activeUser.email,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      await PolishFirebase.saveBoard(newBoard, activeUser);
+      window.location.href = `/studio?id=${boardId}`;
+    }
+
+    async function duplicateBoard(id) {
+      if (!activeUser) return;
+      const original = await PolishFirebase.getBoard(id);
+      if (!original) return;
+
+      const newId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+      const copy = {
+        ...original,
+        id: newId,
+        slug: newId,
+        title: `${original.title || 'Board'} (Copy)`,
+        ownerId: activeUser.uid,
+        ownerEmail: activeUser.email,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      await PolishFirebase.saveBoard(copy, activeUser);
+      showToast('Board duplicated successfully!');
+      loadUserBoards(activeUser.uid);
+    }
+
+    async function deleteBoard(id, title) {
+      if (!confirm(`Are you sure you want to delete "${title}"? This cannot be undone.`)) return;
+      await PolishFirebase.deleteBoard(id);
+      showToast('Board deleted.');
+      if (activeUser) loadUserBoards(activeUser.uid);
+    }
+
+    function copyClientLink(id) {
+      const url = `${window.location.origin}/b/${encodeURIComponent(id)}`;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Client presentation link copied!');
+      }).catch(() => {
+        prompt('Copy client link:', url);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('dashToast');
+      if (!toast) return;
+      toast.querySelector('span').textContent = msg;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 2800);
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/[&<>"']/g, m => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[m]));
+    }
+  </script>
+</body>
+</html>

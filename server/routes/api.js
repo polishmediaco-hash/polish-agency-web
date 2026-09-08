@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { notifyNewLead } = require('../services/notification');
+const { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage } = require('../services/notification');
 
 const router = express.Router();
 // On Vercel serverless the project root is read-only; use /tmp which is writable.
@@ -351,6 +351,147 @@ router.post('/notifications/test', async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET /api/test-whatsapp (One-Click WhatsApp Alert Verification)
+router.get('/test-whatsapp', async (req, res) => {
+  const authKey = req.headers['x-api-key'] || req.query.key;
+  const expectedKey = process.env.ADMIN_API_KEY || 'polish_admin_secure_key_2026';
+
+  if (authKey !== expectedKey) {
+    return res.status(401).json({
+      success: false,
+      error: 'Unauthorized. Please provide ?key=polish_admin_secure_key_2026'
+    });
+  }
+
+  const targetNumber = process.env.WHATSAPP_ALERT_NUMBER || process.env.WHATSAPP_NUMBER || '213662417761';
+  const hasGreenApi = Boolean(process.env.GREEN_API_ID_INSTANCE && process.env.GREEN_API_TOKEN_INSTANCE);
+  const hasUltraMsg = Boolean(process.env.ULTRAMSG_INSTANCE_ID && process.env.ULTRAMSG_TOKEN);
+
+  if (!hasGreenApi && !hasUltraMsg) {
+    return res.status(400).json({
+      success: false,
+      error: 'WhatsApp credentials not configured.',
+      help: 'Add GREEN_API_ID_INSTANCE and GREEN_API_TOKEN_INSTANCE to your .env file.',
+      targetNumber
+    });
+  }
+
+  const testMessage = `*POLISH Media Co — WhatsApp Alert Gateway Active!* 🚀\n\n` +
+    `Connected recipient: +${targetNumber}\n` +
+    `Provider: ${hasGreenApi ? 'GREEN-API (Developer Free Tier)' : 'UltraMsg'}\n` +
+    `Timestamp: ${new Date().toUTCString()}\n\n` +
+    `You will receive instant push notifications on this chat whenever:\n` +
+    `• A brand applies (/apply)\n` +
+    `• A meeting is booked (/book)\n` +
+    `• A creator registers (/creators)`;
+
+  try {
+    const result = await sendWhatsAppMessage(testMessage);
+    return res.json({
+      success: true,
+      message: 'Test ping dispatched successfully to WhatsApp.',
+      provider: result.provider || (hasGreenApi ? 'green-api' : 'ultramsg'),
+      recipient: targetNumber,
+      gatewayResponse: result
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// POST /api/calendly-webhook (Calendly Automated Meeting Webhook)
+router.post('/calendly-webhook', async (req, res) => {
+  try {
+    const body = req.body || {};
+    const eventType = body.event || body.event_type || 'invitee.created';
+    const payload = body.payload || body;
+
+    // Acknowledge non-creation events gracefully
+    if (eventType !== 'invitee.created' && !body.payload && !body.invitee) {
+      console.log('[Calendly Webhook] Received non-creation event:', eventType);
+      return res.status(200).json({ success: true, message: 'Event logged', eventType });
+    }
+
+    const invitee = payload.invitee || payload;
+    const scheduledEvent = payload.scheduled_event || payload.event || {};
+    const eventTypeInfo = payload.event_type || scheduledEvent || {};
+
+    const fullName = (
+      invitee.name ||
+      (invitee.first_name ? `${invitee.first_name} ${invitee.last_name || ''}` : '') ||
+      'Discovery Call Guest'
+    ).trim();
+    const email = invitee.email || 'Not provided';
+    const eventName = eventTypeInfo.name || scheduledEvent.name || 'POLISH Executive Discovery Call';
+    const startTime = scheduledEvent.start_time || payload.start_time || new Date().toISOString();
+
+    // Extract Join URL / Meeting Location
+    let joinUrl = 'See Calendly / Calendar Invite';
+    if (scheduledEvent.location) {
+      if (typeof scheduledEvent.location === 'string') {
+        joinUrl = scheduledEvent.location;
+      } else if (scheduledEvent.location.join_url) {
+        joinUrl = scheduledEvent.location.join_url;
+      } else if (scheduledEvent.location.location) {
+        joinUrl = scheduledEvent.location.location;
+      }
+    } else if (payload.location) {
+      joinUrl = typeof payload.location === 'string' ? payload.location : (payload.location.join_url || 'See Calendly');
+    }
+
+    // Extract brand name and questions
+    const qna = payload.questions_and_answers || payload.questions_and_responses || [];
+    let brand = '';
+    let notes = '';
+    if (Array.isArray(qna)) {
+      qna.forEach(item => {
+        const q = (item.question || '').toLowerCase();
+        const a = item.answer || item.response || '';
+        if (q.includes('brand') || q.includes('company')) {
+          brand = a;
+        } else if (a) {
+          notes += `${item.question}: ${a}\n`;
+        }
+      });
+    }
+
+    const meetingRecord = {
+      id: `MEET-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`,
+      type: 'CALENDLY_MEETING',
+      fullName,
+      email,
+      brand: brand || 'Not specified',
+      eventName,
+      startTime,
+      joinUrl,
+      notes: notes.trim(),
+      ipAddress: req.ip || req.headers['x-forwarded-for'] || 'calendly-webhook',
+      submittedAt: new Date().toISOString(),
+      status: 'SCHEDULED'
+    };
+
+    // Save to leads DB
+    const leads = readLeads();
+    leads.unshift(meetingRecord);
+    writeLeads(leads);
+
+    // Fire off async notifications (WhatsApp + Telegram + Webhook)
+    notifyNewMeeting(meetingRecord).catch(console.error);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Calendly meeting recorded and notification dispatched.',
+      meetingId: meetingRecord.id
+    });
+  } catch (error) {
+    console.error('[Calendly Webhook Error]:', error);
+    return res.status(200).json({
+      success: false,
+      error: 'Error processing webhook, logged for review.'
+    });
   }
 });
 

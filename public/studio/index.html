@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POLISH Board Studio — Haute Whiteboard & Strategy Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
+  <link rel="stylesheet" href="/studio/css/board-elements.css">
+  <link rel="stylesheet" href="/studio/css/studio.css">
+  <link rel="stylesheet" href="/studio/css/inspector.css">
+</head>
+<body>
+
+  <!-- ========================================================== -->
+  <!-- TOP STUDIO DOCK                                            -->
+  <!-- ========================================================== -->
+  <header class="studio-dock">
+    <div class="dock-left">
+      <a href="/boards" class="brand-mark-btn" title="Go to Boards Dashboard">
+        <div class="brand-mark-squircle">
+          <svg viewBox="0 0 512 512" width="36" height="36">
+            <defs>
+              <linearGradient id="champagneGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#C5A880"/>
+                <stop offset="45%" stop-color="#E2C799"/>
+                <stop offset="70%" stop-color="#F5E6D3"/>
+                <stop offset="100%" stop-color="#E2C799"/>
+              </linearGradient>
+              <linearGradient id="obsidianSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#181614"/>
+                <stop offset="100%" stop-color="#080706"/>
+              </linearGradient>
+            </defs>
+            <rect x="16" y="16" width="480" height="480" rx="120" fill="url(#obsidianSurface)" stroke="rgba(226, 199, 153, 0.45)" stroke-width="8"/>
+            <g transform="translate(256, 256) scale(3.2) translate(-50, -50)">
+              <g transform="translate(3.5, -5.5)">
+                <path d="M 34 68 C 30 64 30 58 34 54 L 56 32 L 48 32 C 45 32 43 30 43 27 C 43 24 45 22 48 22 L 75 22 C 77 22 79 24 79 26 L 79 53 C 79 56 77 58 74 58 C 71 58 69 56 69 53 L 69 45 L 47 68 C 43 72 38 72 34 68 Z" fill="url(#champagneGoldGrad)"/>
+                <path d="M 24 72 C 27 75 29 79 28 83 C 27 87 23 89 19 88 C 15 87 13 83 14 79 C 15 75 21 69 24 72 Z" fill="url(#champagneGoldGrad)" opacity="0.95"/>
+                <rect x="18.5" y="77.5" width="5.5" height="5.5" rx="1.2" transform="rotate(45 21.25 80.25)" fill="#F5E6D3"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="brand-text-lockup">
+          <span class="brand-name">POLISH</span>
+          <span class="studio-pill">STUDIO</span>
+        </div>
+      </a>
+      <div class="dock-divider"></div>
+      <input type="text" id="boardTitleInput" class="board-title-input" value="Executive Strategy Board" title="Click to rename board" />
+      <div id="saveIndicator" class="save-indicator">
+        <span class="save-dot"></span> Saved to Cloud
+      </div>
+    </div>
+
+    <div class="dock-center">
+      <button class="dock-btn" onclick="StudioCore.undo()" title="Undo (Cmd+Z)">
+        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+        Undo
+      </button>
+      <button class="dock-btn" onclick="StudioCore.redo()" title="Redo (Cmd+Shift+Z)">
+        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"/></svg>
+        Redo
+      </button>
+      <div class="dock-divider"></div>
+      <button class="dock-btn btn-present" onclick="StudioPresentation.start()" title="Enter Client Presentation Mode (P)">
+        <svg class="dock-svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Present
+      </button>
+    </div>
+
+    <div class="dock-right">
+      <a id="btnClientView" href="#" target="_blank" class="dock-btn" style="color:var(--text-ink); border-color:var(--border-strong)" title="Open Clean Client Presentation View">
+        <svg class="dock-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Client View ↗
+      </a>
+      <button class="dock-btn" onclick="copyShareLink()" title="Copy Public Client Presentation Link">
+        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Share
+      </button>
+      <button class="dock-btn" onclick="StudioCore.exportJSON()" title="Export Board JSON Backup">
+        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+      <a href="/boards" class="dock-btn" style="text-decoration:none">
+        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        All Boards
+      </a>
+      <!-- User Account Avatar -->
+      <div id="studioUserCapsule" style="display:flex; align-items:center; gap:6px; margin-left:4px">
+        <div id="studioUserAvatar" style="width:28px; height:28px; border-radius:50%; background:#080706; color:#F5E6D3; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:800; cursor:pointer" title="Workspace Profile">AD</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================== -->
+  <!-- LEFT CREATION PALETTE                                      -->
+  <!-- ========================================================== -->
+  <aside class="creation-toolbar">
+    <button class="tool-item" onclick="StudioCore.addFrame()" data-tooltip="Add Board Frame (Card)">
+      <span class="tool-icon">▢</span>
+      <span class="tool-label">Frame</span>
+    </button>
+    <button class="tool-item" onclick="StudioCore.addTable()" data-tooltip="Add Strategy & Matrix Table">
+      <span class="tool-icon">⊞</span>
+      <span class="tool-label">Table</span>
+    </button>
+    <button class="tool-item" onclick="StudioCore.addPricing()" data-tooltip="Add High-Ticket Offer Card">
+      <span class="tool-icon">❖</span>
+      <span class="tool-label">Offer</span>
+    </button>
+    <button class="tool-item" onclick="StudioCore.addSticky('yellow')" data-tooltip="Add Canary Yellow Sticky Note">
+      <span class="tool-icon" style="color:#EAB308">■</span>
+      <span class="tool-label">Yellow</span>
+    </button>
+    <button class="tool-item" onclick="StudioCore.addSticky('rose')" data-tooltip="Add Rose Silk Sticky Note">
+      <span class="tool-icon" style="color:#F43F5E">■</span>
+      <span class="tool-label">Rose</span>
+    </button>
+    <button class="tool-item" onclick="StudioCore.addSticky('blue')" data-tooltip="Add Sky Azure Sticky Note">
+      <span class="tool-icon" style="color:#0284C7">■</span>
+      <span class="tool-label">Azure</span>
+    </button>
+    <button class="tool-item" onclick="StudioCore.addForm()" data-tooltip="Add Diagnostic Intake Form Block">
+      <span class="tool-icon">▤</span>
+      <span class="tool-label">Form</span>
+    </button>
+    <button class="tool-item" onclick="StudioCore.addScript()" data-tooltip="Add Advisory Script Quote">
+      <span class="tool-icon">❝</span>
+      <span class="tool-label">Script</span>
+    </button>
+  </aside>
+
+  <!-- ========================================================== -->
+  <!-- INFINITE WORKSPACE VIEWPORT                                -->
+  <!-- ========================================================== -->
+  <div id="viewport">
+    <div id="board-canvas">
+      <!-- Dynamic SVG Connectors -->
+      <svg id="svg-connections"></svg>
+
+      <!-- Elements dynamically injected here by ElementsFactory -->
+    </div>
+
+    <!-- Floating Contextual Mini-Toolbar (Screen Space) -->
+    <div id="floating-inspector" class="floating-mini-toolbar"></div>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- BOTTOM-RIGHT VIEWPORT HUD                                  -->
+  <!-- ========================================================== -->
+  <div class="viewport-tools">
+    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(-0.15)" title="Zoom Out">−</button>
+    <div id="zoomLabel" class="zoom-label">75%</div>
+    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(0.15)" title="Zoom In">+</button>
+    <div class="dock-divider" style="height:14px; margin:0 2px"></div>
+    <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Reset Viewport">⊡</button>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- PRESENTATION MODE SLIDE CONTROLLER                         -->
+  <!-- ========================================================== -->
+  <div class="presentation-bar">
+    <button class="present-nav-btn" onclick="StudioPresentation.prev()">← Previous</button>
+    <div id="presentSlideInfo" class="present-slide-info">Slide 1 of 8</div>
+    <button class="present-nav-btn" onclick="StudioPresentation.next()">Next →</button>
+    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">✕ Exit (Esc)</button>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- JAVASCRIPT MODULES                                         -->
+  <!-- ========================================================== -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="/studio/js/firebase-config.js?v=20260908_live"></script>
+
+  <script src="/studio/js/canvas-panzoom.js"></script>
+  <script src="/studio/js/elements-factory.js"></script>
+  <script src="/studio/js/connector-engine.js"></script>
+  <script src="/studio/js/inspector.js"></script>
+  <script src="/studio/js/presentation.js"></script>
+  <script src="/studio/js/studio-core.js"></script>
+
+  <script>
+    // Initialize Studio on DOM Load
+    document.addEventListener('DOMContentLoaded', async () => {
+      await PolishFirebase.init();
+
+      // Check authentication
+      if (!PolishFirebase.currentUser) {
+        window.location.replace(`/login?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`);
+        return;
+      }
+
+      const avatar = document.getElementById('studioUserAvatar');
+      if (avatar && PolishFirebase.currentUser) {
+        const name = PolishFirebase.currentUser.displayName || PolishFirebase.currentUser.email.split('@')[0];
+        avatar.textContent = (name.slice(0, 2) || 'AD').toUpperCase();
+      }
+
+      PolishFirebase.onAuthStateChanged((user) => {
+        if (!user) {
+          window.location.replace(`/login?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`);
+          return;
+        }
+      });
+
+      CanvasEngine.init();
+      ConnectorEngine.init();
+      await StudioCore.init();
+
+      // Update Client View Link
+      const curId = StudioCore.getCurrentBoardId ? StudioCore.getCurrentBoardId() : new URLSearchParams(window.location.search).get('id');
+      const btnClientView = document.getElementById('btnClientView');
+      if (btnClientView && curId) {
+        btnClientView.href = `/b/${encodeURIComponent(curId)}`;
+      }
+
+      // If URL has ?present=1, enter presentation mode automatically
+      if (new URLSearchParams(window.location.search).get('present') === '1') {
+        setTimeout(() => StudioPresentation.start(), 500);
+      }
+    });
+
+    function copyShareLink() {
+      const curId = StudioCore.getCurrentBoardId ? StudioCore.getCurrentBoardId() : new URLSearchParams(window.location.search).get('id') || 'starter-strategy-board';
+      const clientUrl = `${window.location.origin}/b/${encodeURIComponent(curId)}`;
+      navigator.clipboard.writeText(clientUrl).then(() => {
+        alert('Public Client Presentation Link Copied!\n' + clientUrl + '\n\nClients will see this clean presentation board with zero editing tools.');
+      }).catch(() => {
+        prompt('Copy client presentation link:', clientUrl);
+      });
+    }
+  </script>
+</body>
+</html>

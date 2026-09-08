@@ -143,6 +143,18 @@ const POLISH_TRANSLATIONS = {
     "apply.successTitle": "Application Received",
     "apply.successP": "Your brand brief has been logged. A senior partner will review your brand within 24 hours.",
     "apply.successCta": "Open Direct Founder WhatsApp Line",
+    "apply.bookDirectCta": "Skip the Review Queue: Book Strategy Call Directly →",
+
+    // Book / Schedule Strategy Call (Minimal & Direct)
+    "book.metaTitle": "Book a Meeting | POLISH Media Co.",
+    "book.metaDesc": "Schedule your 30-minute private session with POLISH Media Co.",
+    "book.h1": "Book a Strategy Meeting.",
+    "book.sub": "Select a date and time below to schedule your 30-minute private session.",
+    "book.sessionFormat": "30 MIN • GOOGLE MEET / ZOOM",
+    "book.fallbackBtn": "Open Calendar in New Tab →",
+    "book.scheduledTitle": "Meeting Confirmed",
+    "book.scheduledDesc": "Your session is reserved. A calendar invitation has been sent to your email.",
+    "book.scheduledHome": "Return Home",
 
     // Creators Page
     "creators.title": "Creator Network | POLISH Media Co",
@@ -302,6 +314,18 @@ const POLISH_TRANSLATIONS = {
     "apply.successTitle": "Dossier Enregistré avec Succès",
     "apply.successP": "Votre dossier a été transmis à notre comité de direction. Un associé analysera votre marque et vous contactera sous 24 heures.",
     "apply.successCta": "Contacter la Direction sur WhatsApp",
+    "apply.bookDirectCta": "Accélérer l'Examen : Réserver Directement l'Appel Stratégique →",
+
+    // Book / Schedule Strategy Call (Minimal & Direct)
+    "book.metaTitle": "Planifier une Réunion | POLISH Media Co.",
+    "book.metaDesc": "Réservez votre session privée de 30 minutes avec POLISH Media Co.",
+    "book.h1": "Planifier une Réunion Stratégique.",
+    "book.sub": "Sélectionnez une date et une heure ci-dessous pour réserver votre session privée de 30 minutes.",
+    "book.sessionFormat": "30 MIN • GOOGLE MEET / ZOOM",
+    "book.fallbackBtn": "Ouvrir le Calendrier dans un Nouvel Onglet →",
+    "book.scheduledTitle": "Réunion Confirmée",
+    "book.scheduledDesc": "Votre session est réservée. Une invitation d'agenda vous a été envoyée par e-mail.",
+    "book.scheduledHome": "Retour à l'Accueil",
 
     // Creators Page
     "creators.title": "Réseau Créateurs & UGC | POLISH Media Co",
@@ -461,6 +485,18 @@ const POLISH_TRANSLATIONS = {
     "apply.successTitle": "تم استلام ملف طلب الشراكة بنجاح",
     "apply.successP": "تم تسجيل بيانات علامتك بنجاح. سيقوم أحد الشركاء بدراسة ملفك والتواصل معك خلال 24 ساعة.",
     "apply.successCta": "التواصل المباشر مع الإدارة عبر واتساب",
+    "apply.bookDirectCta": "تجاوز فترة الانتظار: احجز مكالمتك الاستراتيجية مباشرة ←",
+
+    // Book / Schedule Strategy Call (Minimal & Direct)
+    "book.metaTitle": "حجز موعد اجتماع | بولش ميديا",
+    "book.metaDesc": "احجز موعد جلستك الخاصة لمدة 30 دقيقة مع بولش ميديا.",
+    "book.h1": "حجز موعد اجتماع استراتيجي.",
+    "book.sub": "اختر اليوم والوقت المناسب لك أدناه لحجز جلستك الخاصة لمدة 30 دقيقة.",
+    "book.sessionFormat": "30 دقيقة • GOOGLE MEET / ZOOM",
+    "book.fallbackBtn": "فتح التقويم في نافذة جديدة ←",
+    "book.scheduledTitle": "تم تأكيد الموعد بنجاح",
+    "book.scheduledDesc": "تم حجز موعدك بنجاح. أرسلنا دعوة التقويم إلى بريدك الإلكتروني.",
+    "book.scheduledHome": "العودة إلى الرئيسية",
 
     // Creators Page
     "creators.title": "شبكة المبدعين & UGC | POLISH Media Co",
@@ -581,6 +617,8 @@ class PolishI18n {
       document.title = dict['apply.title'];
     } else if (dict['creators.title'] && window.location.pathname.includes('/creators')) {
       document.title = dict['creators.title'];
+    } else if (dict['book.metaTitle'] && (window.location.pathname.includes('/book') || window.location.pathname.includes('/schedule') || window.location.pathname.includes('/meeting') || window.location.pathname.includes('/call'))) {
+      document.title = dict['book.metaTitle'];
     }
   }
 

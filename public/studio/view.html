@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POLISH Media Co. — Executive Strategy Blueprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
+  <link rel="stylesheet" href="/studio/css/board-elements.css">
+  <link rel="stylesheet" href="/studio/css/studio.css">
+  <style>
+    /* View-Only Luxury Polish Customizations */
+    body {
+      background-color: var(--surface-alabaster, #FAF7F2);
+    }
+
+    .client-dock {
+      position: fixed;
+      top: 14px;
+      left: 20px;
+      right: 20px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle, #E8E2D8);
+      border-radius: 9999px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.25rem;
+      box-shadow: 0 10px 30px rgba(26, 23, 21, 0.05);
+      z-index: 1000;
+      gap: 1rem;
+    }
+
+    .dock-brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dock-brand-squircle {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #080706;
+      border: 1px solid rgba(226, 199, 153, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .dock-brand-squircle svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .dock-titles {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .dock-agency-name {
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      color: #1A1715;
+    }
+
+    .dock-x {
+      color: #C5A880;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .dock-client-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #3F3C39;
+    }
+
+    .dock-board-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #736D67;
+      border-left: 1px solid #E8E2D8;
+      padding-left: 10px;
+    }
+
+    .badge-confidential {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: #FEF8ED;
+      color: #92400E;
+      border: 1px solid rgba(197, 168, 128, 0.45);
+    }
+
+    .dock-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-client {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid var(--border-subtle, #E8E2D8);
+      background: #FFFFFF;
+      color: #1A1715;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-client:hover {
+      background: #FAF7F2;
+      border-color: #C5A880;
+    }
+
+    .btn-client-primary {
+      background: #080706;
+      color: #F5E6D3;
+      border-color: #080706;
+    }
+
+    .btn-client-primary:hover {
+      background: #1A1715;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(8, 7, 6, 0.25);
+    }
+
+    .btn-whatsapp {
+      background: #047857;
+      color: #FFFFFF;
+      border-color: #047857;
+    }
+
+    .btn-whatsapp:hover {
+      background: #065F46;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
+    }
+
+    .btn-edit-owner {
+      background: #FAF7F2;
+      color: #C5A880;
+      border-color: rgba(197, 168, 128, 0.4);
+      display: none; /* revealed if user is logged in as author */
+    }
+
+    .btn-edit-owner:hover {
+      background: #FEF8ED;
+      border-color: #C5A880;
+      color: #92400E;
+    }
+
+    /* Client Viewport Customizations */
+    #viewport.view-only {
+      cursor: grab;
+    }
+    #viewport.view-only.is-dragging {
+      cursor: grabbing;
+    }
+
+    /* Prevent accidental card drag / edits for clients while keeping text selectable */
+    .view-only .canvas-element {
+      cursor: default !important;
+    }
+
+    .view-only .card-handle,
+    .view-only .delete-btn,
+    .view-only .connector-anchor,
+    .view-only .btn-add-item {
+      display: none !important;
+    }
+
+    /* Toast Notification */
+    .client-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #080706;
+      color: #F5E6D3;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      z-index: 2000;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .client-toast.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+      .dock-board-title, .badge-confidential {
+        display: none;
+      }
+      .client-dock {
+        padding: 0 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================== -->
+  <!-- CLIENT PRESENTATION HEADER DOCK                            -->
+  <!-- ========================================================== -->
+  <header class="client-dock">
+    <div class="dock-brand-cluster">
+      <div class="dock-brand-squircle">
+        <svg viewBox="0 0 512 512">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#C5A880"/>
+              <stop offset="50%" stop-color="#E2C799"/>
+              <stop offset="100%" stop-color="#F5E6D3"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(256, 256) scale(3.2) translate(-50, -50)">
+            <path d="M 34 68 C 30 64 30 58 34 54 L 56 32 L 48 32 C 45 32 43 30 43 27 C 43 24 45 22 48 22 L 75 22 C 77 22 79 24 79 26 L 79 53 C 79 56 77 58 74 58 C 71 58 69 56 69 53 L 69 45 L 47 68 C 43 72 38 72 34 68 Z" fill="url(#goldGrad)"/>
+            <path d="M 24 72 C 27 75 29 79 28 83 C 27 87 23 89 19 88 C 15 87 13 83 14 79 C 15 75 21 69 24 72 Z" fill="url(#goldGrad)" opacity="0.95"/>
+            <rect x="18.5" y="77.5" width="5.5" height="5.5" rx="1.2" transform="rotate(45 21.25 80.25)" fill="#F5E6D3"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="dock-titles">
+        <span class="dock-agency-name">POLISH</span>
+        <span class="dock-x">×</span>
+        <span id="clientName" class="dock-client-name">Private Advisory Client</span>
+        <span id="boardTitle" class="dock-board-title">Executive Strategy Blueprint</span>
+        <span class="badge-confidential">Confidential Strategy</span>
+      </div>
+    </div>
+
+    <div class="dock-controls">
+      <button class="btn-client btn-client-primary" onclick="StudioPresentation.start()" title="Enter Interactive Slide Presentation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Present
+      </button>
+
+      <a id="whatsappBtn" href="https://wa.me/213662417761" target="_blank" rel="noopener" class="btn-client btn-whatsapp" title="Discuss Proposal with POLISH Media">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.96.524 1.961.817 2.796.817 3.181 0 5.767-2.587 5.767-5.766.001-3.18-2.585-5.766-5.767-5.766zm3.374 8.163c-.145.409-.838.774-1.17.822-.311.046-.71.074-2.029-.472-1.684-.698-2.775-2.42-2.859-2.533-.084-.112-.682-.907-.682-1.729 0-.822.428-1.227.581-1.393.153-.167.334-.209.446-.209.112 0 .224.001.321.006.103.005.242-.039.378.29.145.35.497 1.213.541 1.303.044.089.073.193.014.309-.059.116-.089.189-.177.292-.088.104-.185.232-.265.312-.089.089-.181.185-.078.362.103.177.458.756.982 1.224.676.602 1.246.788 1.423.876.177.088.281.074.385-.044.103-.119.444-.517.562-.695.118-.178.237-.148.397-.089.16.059 1.018.48 1.194.568.176.089.294.133.338.207.044.074.044.43-.101.839z"/></svg>
+        Discuss Strategy
+      </a>
+
+      <button class="btn-client" onclick="copyClientLink()" title="Share Board Link">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Share
+      </button>
+
+      <!-- Only visible if the authenticated board owner is viewing -->
+      <a id="editBoardBtn" href="#" class="btn-client btn-edit-owner" title="Open in Studio Canvas Editor">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Edit in Studio ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================================== -->
+  <!-- INTERACTIVE CANVAS (VIEWPORT)                              -->
+  <!-- ========================================================== -->
+  <div id="viewport" class="view-only">
+    <div id="board-canvas">
+      <!-- Dynamic SVG Connectors Layer -->
+      <svg id="svg-connections" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- BOTTOM-RIGHT HUD CONTROLS                                  -->
+  <!-- ========================================================== -->
+  <div class="viewport-tools">
+    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(-0.15)" title="Zoom Out">−</button>
+    <div id="zoomLabel" class="zoom-label">75%</div>
+    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(0.15)" title="Zoom In">+</button>
+    <div class="dock-divider" style="height:14px; margin:0 2px"></div>
+    <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Fit to Blueprint">⊡</button>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- PRESENTATION MODE CONTROLLER                               -->
+  <!-- ========================================================== -->
+  <div class="presentation-bar">
+    <button class="present-nav-btn" onclick="StudioPresentation.prev()">← Previous</button>
+    <div id="presentSlideInfo" class="present-slide-info">Strategic Pillar 1 of 4</div>
+    <button class="present-nav-btn" onclick="StudioPresentation.next()">Next →</button>
+    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">✕ Exit (Esc)</button>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="clientToast" class="client-toast">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span>Link copied to clipboard!</span>
+  </div>
+
+  <!-- Firebase Web SDK (Compat - Zero Bundler) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <!-- Studio Modules -->
+  <script src="/studio/js/firebase-config.js?v=20260908_live"></script>
+  <script src="/studio/js/canvas-panzoom.js"></script>
+  <script src="/studio/js/elements-factory.js"></script>
+  <script src="/studio/js/connector-engine.js"></script>
+  <script src="/studio/js/presentation.js"></script>
+
+  <script>
+    let currentBoardId = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Extract Board ID from URL (/b/:id or ?id=...)
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      if (pathSegments.length >= 2 && (pathSegments[0] === 'b' || pathSegments[0] === 'view')) {
+        currentBoardId = pathSegments[1];
+      } else {
+        currentBoardId = new URLSearchParams(window.location.search).get('id') || 'starter-strategy-board';
+      }
+
+      // 2. Initialize Engines
+      CanvasEngine.init();
+      ConnectorEngine.init();
+      await PolishFirebase.init();
+
+      // 3. Load Board Data
+      await loadClientBoard(currentBoardId);
+
+      // 4. Check if authenticated owner is viewing
+      PolishFirebase.onAuthStateChanged((user) => {
+        if (user) {
+          const editBtn = document.getElementById('editBoardBtn');
+          if (editBtn) {
+            editBtn.href = `/studio?id=${encodeURIComponent(currentBoardId)}`;
+            editBtn.style.display = 'inline-flex';
+          }
+        }
+      });
+    });
+
+    async function loadClientBoard(id) {
+      try {
+        let board = await PolishFirebase.getBoard(id);
+
+        // Fallback: If not found in cloud, fetch from API
+        if (!board) {
+          const res = await fetch(`/api/boards/${encodeURIComponent(id)}`);
+          if (res.ok) {
+            const data = await res.json();
+            board = data.board;
+          }
+        }
+
+        if (!board) {
+          document.getElementById('boardTitle').textContent = 'Board Not Found';
+          return;
+        }
+
+        // Update titles
+        if (board.client) {
+          document.getElementById('clientName').textContent = board.client;
+        }
+        if (board.title) {
+          document.getElementById('boardTitle').textContent = board.title;
+          document.title = `POLISH Media Co. × ${board.client || 'Client'} — ${board.title}`;
+        }
+
+        // Render Canvas Elements
+        const canvas = document.getElementById('board-canvas');
+        (board.elements || []).forEach(elData => {
+          const domEl = ElementsFactory.renderElement(elData, canvas);
+          if (domEl) {
+            // Remove editing UI in view mode
+            const del = domEl.querySelector('.delete-btn');
+            if (del) del.remove();
+            const handles = domEl.querySelectorAll('.card-handle');
+            handles.forEach(h => h.remove());
+            const anchors = domEl.querySelectorAll('.connector-anchor');
+            anchors.forEach(a => a.remove());
+            const addButtons = domEl.querySelectorAll('.btn-add-item, .add-row-btn, .table-mutator');
+            addButtons.forEach(b => b.remove());
+          }
+        });
+
+        // Render Connections
+        setTimeout(() => {
+          if (window.ConnectorEngine && window.ConnectorEngine.renderAllConnections) {
+            window.ConnectorEngine.renderAllConnections(board.connections || []);
+          }
+        }, 150);
+
+        // Apply Viewport
+        if (board.viewport && window.CanvasEngine) {
+          CanvasEngine.setTransform(
+            board.viewport.scale || 0.75,
+            board.viewport.panX || 80,
+            board.viewport.panY || 60
+          );
+        } else if (window.CanvasEngine) {
+          CanvasEngine.resetView();
+        }
+      } catch (err) {
+        console.error('Failed to load board in client view:', err);
+      }
+    }
+
+    function copyClientLink() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Client presentation link copied!');
+      }).catch(() => {
+        prompt('Copy your client presentation link:', url);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('clientToast');
+      if (!toast) return;
+      toast.querySelector('span').textContent = msg;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 2800);
+    }
+  </script>
+</body>
+</html>

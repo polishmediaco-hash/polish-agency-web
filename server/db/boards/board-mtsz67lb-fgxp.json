@@ -1,0 +1,51 @@
+{
+  "id": "board-mtsz67lb-fgxp",
+  "slug": "board-mtsz67lb-fgxp",
+  "title": "New Strategic Advisory Board",
+  "client": "Private Client",
+  "createdAt": "2026-09-08T18:00:27.119Z",
+  "updatedAt": "2026-09-08T18:21:48.314Z",
+  "viewport": {
+    "panX": 384.9398123196508,
+    "panY": -20.21211138315215,
+    "scale": 0.6971389086509802
+  },
+  "elements": [
+    {
+      "id": "frame-1",
+      "type": "frame",
+      "x": -341,
+      "y": 102,
+      "width": 912.4041131507627,
+      "height": 593.9814985420385,
+      "zIndex": 10,
+      "frameNumber": "01",
+      "titlePill": "FOUNDATION",
+      "headline": "Strategic Overview",
+      "serifAccent": "Strategic Overview",
+      "description": "Double-click any text on this board to begin editing.",
+      "boxes": [
+        {
+          "tag": "PHASE 01",
+          "tagColor": "gold",
+          "title": "Primary Strategic Objective",
+          "content": "Describe the core objective and methodology for this client container."
+        }
+      ]
+    },
+    {
+      "id": "form-1788891684172",
+      "type": "form",
+      "x": 67,
+      "y": 667,
+      "width": 340,
+      "height": 240,
+      "zIndex": 12,
+      "label": "Diagnostic Question",
+      "badge": "INTAKE",
+      "instructions": "Client answers during calibration:",
+      "value": ""
+    }
+  ],
+  "connections": []
+}

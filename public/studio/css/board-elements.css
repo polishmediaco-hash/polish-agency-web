@@ -1158,9 +1158,9 @@
 
 body.theme-dark {
   --text-ink: #FFFFFF;
-  --text-slate: #E2DBD2;
-  --text-muted: #C5BCB0;
-  --text-light: #B8B0A4;
+  --text-slate: #F5E6D3;
+  --text-muted: #FFDF9E;
+  --text-light: #E6DFD5;
   --border-subtle: rgba(226, 199, 153, 0.22);
   --border-strong: rgba(226, 199, 153, 0.38);
 }
@@ -1432,7 +1432,7 @@ body.theme-dark .field-badge {
 }
 
 body.theme-dark .field-instructions {
-  color: #C5BCB0 !important;
+  color: #F0ECE1 !important;
   font-weight: 500 !important;
 }
 

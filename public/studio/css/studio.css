@@ -880,8 +880,8 @@ body.theme-dark {
   --surface-subtle: #1C1917;
   --surface-subtle-hover: #262320;
   --text-ink: #FFFFFF;
-  --text-slate: #E2DBD2;
-  --text-muted: #B8B0A4;
+  --text-slate: #F5E6D3;
+  --text-muted: #C5A880;
   --border-subtle: rgba(226, 199, 153, 0.22);
   --border-strong: rgba(226, 199, 153, 0.38);
   --brand-noir: #F5E6D3;
@@ -1046,7 +1046,7 @@ body.theme-dark .minimap-title {
 }
 
 body.theme-dark .minimap-toggle {
-  color: #E2DBD2 !important;
+  color: #F5E6D3 !important;
 }
 
 body.theme-dark .minimap-toggle:hover {
@@ -1124,12 +1124,14 @@ body.theme-dark .board-title-input:focus {
 }
 
 body.theme-dark .dock-btn {
-  color: #E2DBD2;
+  color: #F5E6D3 !important;
+  font-weight: 700 !important;
 }
 
 body.theme-dark .dock-btn:hover {
-  background: #262320;
-  color: #FFFFFF;
+  background: rgba(226, 199, 153, 0.18) !important;
+  color: #FFFFFF !important;
+  border-color: #E2C799 !important;
 }
 
 body.theme-dark .board-frame,

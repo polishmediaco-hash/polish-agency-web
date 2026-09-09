@@ -1261,6 +1261,93 @@ window.StudioCore = (function () {
     a.remove();
   }
 
+  /**
+   * Export each board Frame as an individual high-res PNG.
+   * Uses html2canvas (already loaded) to capture the live DOM per frame.
+   * @param {string|null} singleFrameId  If provided, exports only that frame.
+   */
+  async function exportFrames(singleFrameId) {
+    if (!currentBoard) {
+      showToast('No board loaded.', 'warning');
+      return;
+    }
+    if (typeof window.html2canvas !== 'function') {
+      showToast('html2canvas not loaded.', 'warning');
+      return;
+    }
+
+    let frameEls = Array.from(document.querySelectorAll('.board-frame'));
+    if (singleFrameId) {
+      frameEls = frameEls.filter(el => el.id === singleFrameId);
+    }
+
+    if (frameEls.length === 0) {
+      showToast('No frames found. Add a Frame to use Export Frames.', 'warning');
+      return;
+    }
+
+    // Sort by frame number
+    frameEls.sort((a, b) => {
+      const nA = parseInt(a.querySelector('.frame-number')?.innerText || '99', 10);
+      const nB = parseInt(b.querySelector('.frame-number')?.innerText || '99', 10);
+      return nA - nB;
+    });
+
+    showToast(`Exporting ${frameEls.length} frame${frameEls.length > 1 ? 's' : ''}…`);
+
+    const boardName = (currentBoard.title || 'board').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const scale = window.CanvasEngine ? window.CanvasEngine.getScale() : 1;
+    const panX = window.CanvasPanZoom ? window.CanvasPanZoom.panX : 0;
+    const panY = window.CanvasPanZoom ? window.CanvasPanZoom.panY : 0;
+
+    for (let i = 0; i < frameEls.length; i++) {
+      const frameEl = frameEls[i];
+      const frameLeft = parseFloat(frameEl.style.left) || 0;
+      const frameTop  = parseFloat(frameEl.style.top)  || 0;
+      const frameW    = frameEl.offsetWidth;
+      const frameH    = frameEl.offsetHeight;
+
+      // Compute screen-space bounding box of the frame
+      const screenX = Math.round(frameLeft * scale + panX);
+      const screenY = Math.round(frameTop  * scale + panY);
+      const screenW = Math.round(frameW * scale);
+      const screenH = Math.round(frameH * scale);
+
+      try {
+        const canvas = await window.html2canvas(document.getElementById('canvas-container') || document.body, {
+          x: screenX,
+          y: screenY,
+          width:  Math.max(screenW, 10),
+          height: Math.max(screenH, 10),
+          scale: Math.max(2, 2 / scale),   // always export at ≥2× retina
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: document.body.classList.contains('theme-dark') ? '#080706' : '#FAF7F2',
+          logging: false
+        });
+
+        const frameNum = String(i + 1).padStart(2, '0');
+        const frameTitle = frameEl.querySelector('.frame-headline')?.innerText?.trim() || `frame-${frameNum}`;
+        const slug = frameTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40);
+
+        const a = document.createElement('a');
+        a.download = `${boardName}-${frameNum}-${slug}.png`;
+        a.href = canvas.toDataURL('image/png');
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        // Small stagger to avoid browser throttling multiple downloads
+        await new Promise(r => setTimeout(r, 400));
+      } catch (err) {
+        console.warn('[exportFrames] Error capturing frame', i + 1, err);
+        showToast(`Error capturing frame ${i + 1}.`, 'warning');
+      }
+    }
+
+    showToast(`${frameEls.length} frame${frameEls.length > 1 ? 's' : ''} exported.`);
+  }
+
   function toggleCameraBubble() {
     if (window.StudioCamera) {
       window.StudioCamera.toggle();
@@ -2411,6 +2498,7 @@ window.StudioCore = (function () {
     exportJSON,
     importJSON,
     exportPNG,
+    exportFrames,
     toggleCameraBubble,
     takeCameraSnapshot: toggleCameraBubble,
     loadTemplate,

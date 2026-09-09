@@ -102,7 +102,7 @@ async function requireAdminAuth(req, res, next) {
         console.warn(`[Security Alert] Unauthorized access attempt by authenticated user: ${user.email}`);
         return res.status(403).json({
           success: false,
-          error: `Access Denied: ${user.email} is not authorized for executive administrative access.`
+          error: 'Access Denied: Account not authorized.'
         });
       }
       return res.status(401).json({

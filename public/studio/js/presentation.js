@@ -80,7 +80,7 @@ window.StudioPresentation = (function () {
     const info = document.getElementById('presentSlideInfo');
     const title = frame.querySelector('.frame-headline')?.innerText?.trim() || 'Frame';
     if (info) {
-      info.textContent = `Slide ${index + 1} of ${slides.length}: ${title.substring(0, 24)}`;
+      info.innerHTML = `<span class="slide-count">Slide ${index + 1} of ${slides.length}</span><span class="slide-sep">•</span><span class="slide-title">${title.substring(0, 26)}</span>`;
     }
   }
 

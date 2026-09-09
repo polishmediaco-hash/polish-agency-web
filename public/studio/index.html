@@ -53,9 +53,9 @@
         Present
       </button>
       <div class="dock-divider"></div>
-      <button type="button" id="btnAiCopilot" class="dock-btn btn-ai-copilot" onclick="StudioAI.toggleDrawer()" title="Polish AI (Cmd+J)">
-        <svg class="dock-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span class="ai-btn-text">Polish AI</span>
+      <button type="button" id="btnAiCopilot" class="dock-btn btn-ai-copilot" onclick="StudioAI.toggleWindow()" title="POLISH AI (Cmd+J)">
+        <img src="/assets/logo-gold-mark.svg?v=22.0" alt="" width="14" height="14" />
+        <span class="ai-btn-text">POLISH AI</span>
       </button>
     </div>
 
@@ -115,11 +115,11 @@
   <!-- ========================================================== -->
   <!-- LEFT CREATION PALETTE (FULL MIRO TOOLSET)                  -->
   <!-- ========================================================== -->
-  <aside class="creation-toolbar">
+  <aside class="creation-toolbar" role="toolbar" aria-label="Creation Tools">
     <!-- Select Tool (V) -->
     <button class="tool-item active" data-tool="select" onclick="CanvasEngine.setTool('select')" data-tooltip="Select & Marquee (V)">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l12 11.5-5.5.5 3.5 7-2.5 1.2-3.5-7-4 4V2z" fill="currentColor"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3l13 10.5-6 .6 3.6 7.4-2.8 1.4-3.6-7.4L4 19V3z" fill="currentColor"/></svg>
       </span>
       <span class="tool-label">Select</span>
     </button>
@@ -127,7 +127,7 @@
     <!-- Hand Tool (H) -->
     <button class="tool-item" data-tool="hand" onclick="CanvasEngine.setTool('hand')" data-tooltip="Hand / Pan Tool (H / Space)">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v4"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8.5a2 2 0 0 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L6 15"/></svg>
       </span>
       <span class="tool-label">Hand</span>
     </button>
@@ -135,7 +135,7 @@
     <!-- Freehand Pen (P) -->
     <button class="tool-item" data-tool="pen" onclick="togglePenMenu(event)" data-tooltip="Freehand Pen (P)">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/><circle cx="11" cy="13" r="1"/></svg>
       </span>
       <span class="tool-label">Pen</span>
     </button>
@@ -143,7 +143,7 @@
     <!-- Basic Shapes (S) -->
     <button class="tool-item" data-tool="shape" onclick="toggleShapeMenu(event)" data-tooltip="Geometric Shapes (S)">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="9" height="9" x="3" y="3" rx="1.5"/><circle cx="15.5" cy="15.5" r="5.5"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="10" height="10" rx="2.5"/><circle cx="16.5" cy="16.5" r="5"/></svg>
       </span>
       <span class="tool-label">Shape</span>
     </button>
@@ -151,7 +151,7 @@
     <!-- Standalone Text (T) -->
     <button class="tool-item" data-tool="text" onclick="CanvasEngine.setTool('text')" data-tooltip="Floating Text (T)">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V4h16v3"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>
       </span>
       <span class="tool-label">Text</span>
     </button>
@@ -159,7 +159,7 @@
     <!-- Sticky Notes (N) -->
     <button class="tool-item" data-tool="sticky" onclick="toggleStickyMenu(event)" data-tooltip="Sticky Notes (N)">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/><polyline points="15 3 15 9 21 9"/><line x1="7" y1="13" x2="13" y2="13"/><line x1="7" y1="17" x2="11" y2="17"/></svg>
       </span>
       <span class="tool-label">Note</span>
     </button>
@@ -167,7 +167,7 @@
     <!-- Frame (F) -->
     <button class="tool-item" data-tool="frame" onclick="StudioCore.addFrame()" data-tooltip="Board Frame (F)">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="6" x2="2" y2="6"/><line x1="22" y1="18" x2="2" y2="18"/><line x1="6" y1="2" x2="6" y2="22"/><line x1="18" y1="2" x2="18" y2="22"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><line x1="3" y1="8" x2="21" y2="8"/><circle cx="6" cy="5.5" r="0.75" fill="currentColor"/></svg>
       </span>
       <span class="tool-label">Frame</span>
     </button>
@@ -177,19 +177,19 @@
     <!-- Strategy Components -->
     <button class="tool-item" onclick="StudioCore.addTable()" data-tooltip="Strategy Matrix Table">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2.5"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 9h18"/><path d="M11 9v12"/></svg>
       </span>
       <span class="tool-label">Table</span>
     </button>
     <button class="tool-item" onclick="StudioCore.addPricing()" data-tooltip="Retainer Offer Card">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="3" x2="7" y2="9"/><line x1="12" y1="3" x2="17" y2="9"/><line x1="12" y1="21" x2="7" y2="9"/><line x1="12" y1="21" x2="17" y2="9"/></svg>
       </span>
       <span class="tool-label">Offer</span>
     </button>
     <button class="tool-item" onclick="StudioCore.addForm()" data-tooltip="Diagnostic Intake Form">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2.5"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><polyline points="9 13 11 15 15 11"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
       </span>
       <span class="tool-label">Form</span>
     </button>
@@ -269,7 +269,55 @@
       <div class="template-grid" style="grid-template-columns: repeat(2, 1fr); max-height: 60vh; overflow-y: auto; padding-right: 4px;">
         <!-- 90-Day Luxury Beauty Scaling Blueprint -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('scaling-blueprint'); toggleTemplateModal();">
-          <div class="template-badge" style="background: rgba(226, 199, 153, 0.18); color: #C5A880; border-color: rgba(226, 199, 153, 0.45);">90-DAY SCALING</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Dotted background -->
+              <circle cx="20" cy="20" r="1" fill="rgba(226,199,153,0.2)"/>
+              <circle cx="80" cy="20" r="1" fill="rgba(226,199,153,0.2)"/>
+              <circle cx="140" cy="20" r="1" fill="rgba(226,199,153,0.2)"/>
+              <circle cx="200" cy="20" r="1" fill="rgba(226,199,153,0.2)"/>
+              <circle cx="260" cy="20" r="1" fill="rgba(226,199,153,0.2)"/>
+              <!-- Frame 1 -->
+              <rect x="15" y="10" width="92" height="70" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.4)" stroke-width="1"/>
+              <rect x="22" y="16" width="36" height="6" rx="3" fill="#E2C799"/>
+              <rect x="22" y="26" width="55" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="22" y="36" width="78" height="18" rx="4" fill="#141210" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <rect x="26" y="40" width="22" height="3" rx="1" fill="#E2C799"/>
+              <rect x="22" y="58" width="78" height="16" rx="4" fill="#141210" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <!-- Connector line -->
+              <path d="M107 45 H119" stroke="#E2C799" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <polygon points="119,45 115,42 115,48" fill="#E2C799"/>
+              <!-- Frame 2 -->
+              <rect x="121" y="10" width="92" height="70" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.4)" stroke-width="1"/>
+              <rect x="128" y="16" width="40" height="6" rx="3" fill="#34D399"/>
+              <rect x="128" y="26" width="58" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="128" y="36" width="78" height="18" rx="4" fill="#141210" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+              <rect x="128" y="58" width="78" height="16" rx="4" fill="#141210" stroke="rgba(251,113,133,0.2)" stroke-width="1"/>
+              <!-- Retainer Offer Card -->
+              <rect x="223" y="10" width="82" height="70" rx="6" fill="#161412" stroke="#E2C799" stroke-width="1.2"/>
+              <rect x="230" y="16" width="38" height="5" rx="2" fill="rgba(226,199,153,0.3)"/>
+              <text x="230" y="31" font-size="8" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">AED 28K</text>
+              <line x1="230" y1="38" x2="295" y2="38" stroke="rgba(226,199,153,0.25)"/>
+              <circle cx="233" cy="46" r="2" fill="#E2C799"/>
+              <rect x="238" y="44" width="52" height="3" rx="1" fill="#E2DBD2"/>
+              <circle cx="233" cy="54" r="2" fill="#E2C799"/>
+              <rect x="238" y="52" width="45" height="3" rx="1" fill="#E2DBD2"/>
+              <circle cx="233" cy="62" r="2" fill="#E2C799"/>
+              <rect x="238" y="60" width="48" height="3" rx="1" fill="#E2DBD2"/>
+              <!-- Floating sticky notes -->
+              <g transform="translate(98, 4) rotate(-8)">
+                <rect width="24" height="22" rx="2" fill="#FEF08A" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="6" x2="18" y2="6" stroke="#854D0E" stroke-width="1"/>
+                <line x1="3" y1="11" x2="15" y2="11" stroke="#854D0E" stroke-width="1"/>
+              </g>
+              <g transform="translate(202, 52) rotate(6)">
+                <rect width="22" height="20" rx="2" fill="#FECDD3" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="6" x2="16" y2="6" stroke="#9F1239" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(226, 199, 153, 0.18); color: #FFDF9E; border-color: rgba(226, 199, 153, 0.5);">90-DAY SCALING</div>
           <h4>90-Day Beauty Brand Scaling Blueprint</h4>
           <p>Full-funnel scaling engine: Meta ASC acquisition, clinical 3-step routine bundling, 60-day replenishment loops, and quarterly milestone matrix.</p>
           <span class="template-action-link">Load Blueprint →</span>
@@ -277,7 +325,40 @@
 
         <!-- DTC Skincare Retention & Replenishment Flywheel -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('retention-flywheel'); toggleTemplateModal();">
-          <div class="template-badge" style="background: rgba(20, 184, 166, 0.12); color: #0D9488; border-color: rgba(20, 184, 166, 0.35);">RETENTION & LTV</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Frame 1 -->
+              <rect x="15" y="10" width="105" height="70" rx="6" fill="#1C1916" stroke="rgba(20,184,166,0.5)" stroke-width="1"/>
+              <rect x="23" y="16" width="46" height="6" rx="3" fill="#14B8A6"/>
+              <rect x="23" y="27" width="70" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="23" y="37" width="89" height="18" rx="4" fill="#141210" stroke="rgba(20,184,166,0.25)" stroke-width="1"/>
+              <rect x="23" y="58" width="89" height="16" rx="4" fill="#141210" stroke="rgba(226,199,153,0.25)" stroke-width="1"/>
+              <!-- Curved Loop Connector -->
+              <path d="M120 45 C 130 20, 150 20, 160 45" stroke="#14B8A6" stroke-width="1.5" fill="none" stroke-dasharray="2 2"/>
+              <polygon points="160,45 156,40 162,40" fill="#14B8A6"/>
+              <!-- VIP Retention Tier -->
+              <rect x="135" y="10" width="85" height="70" rx="6" fill="#161412" stroke="#E2C799" stroke-width="1.2"/>
+              <rect x="143" y="16" width="42" height="5" rx="2" fill="rgba(226,199,153,0.3)"/>
+              <text x="143" y="31" font-size="8" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">AED 18,500</text>
+              <line x1="143" y1="38" x2="210" y2="38" stroke="rgba(226,199,153,0.25)"/>
+              <rect x="143" y="44" width="60" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="143" y="52" width="55" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="143" y="60" width="58" height="3" rx="1" fill="#E2DBD2"/>
+              <!-- Talk Track Card -->
+              <rect x="230" y="18" width="75" height="58" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.35)" stroke-width="1"/>
+              <rect x="237" y="24" width="30" height="4" rx="2" fill="#E2C799"/>
+              <line x1="237" y1="34" x2="295" y2="34" stroke="#A8A29E" stroke-width="1.5"/>
+              <line x1="237" y1="42" x2="290" y2="42" stroke="#A8A29E" stroke-width="1.5"/>
+              <line x1="237" y1="50" x2="275" y2="50" stroke="#A8A29E" stroke-width="1.5"/>
+              <!-- Emerald note -->
+              <g transform="translate(112, 48) rotate(-6)">
+                <rect width="24" height="22" rx="2" fill="#BBF7D0" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="6" x2="16" y2="6" stroke="#166534" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(20, 184, 166, 0.18); color: #2DD4BF; border-color: rgba(20, 184, 166, 0.5);">RETENTION & LTV</div>
           <h4>DTC Skincare Retention & Replenishment</h4>
           <p>LTV acceleration engine: Unboxing rituals, automated 42-day jar burn replenishment triggers, VIP formulation access, and churn mitigation.</p>
           <span class="template-action-link">Load Flywheel →</span>
@@ -285,7 +366,38 @@
 
         <!-- 1. Personal Branding & Sovereign Authority -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('personal-branding'); toggleTemplateModal();">
-          <div class="template-badge" style="background: rgba(197, 168, 128, 0.18); color: #8C6D3F; border-color: rgba(197, 168, 128, 0.4);">SOVEREIGN AUTHORITY</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Frame 1 -->
+              <rect x="15" y="10" width="90" height="70" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.4)" stroke-width="1"/>
+              <rect x="22" y="16" width="38" height="5" rx="2" fill="#E2C799"/>
+              <rect x="22" y="26" width="55" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="22" y="36" width="76" height="18" rx="4" fill="#141210" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <rect x="22" y="58" width="76" height="16" rx="4" fill="#141210" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <!-- Connector -->
+              <path d="M105 45 H115" stroke="#E2C799" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <!-- Frame 2 -->
+              <rect x="117" y="10" width="90" height="70" rx="6" fill="#1C1916" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+              <rect x="124" y="16" width="38" height="5" rx="2" fill="#38BDF8"/>
+              <rect x="124" y="26" width="55" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="124" y="36" width="76" height="18" rx="4" fill="#141210" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <rect x="124" y="58" width="76" height="16" rx="4" fill="#141210" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <!-- Retainer -->
+              <rect x="217" y="10" width="88" height="70" rx="6" fill="#161412" stroke="#E2C799" stroke-width="1.2"/>
+              <rect x="224" y="16" width="40" height="5" rx="2" fill="rgba(226,199,153,0.3)"/>
+              <text x="224" y="31" font-size="8" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">AED 15K</text>
+              <rect x="224" y="42" width="65" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="224" y="50" width="58" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="224" y="58" width="62" height="3" rx="1" fill="#E2DBD2"/>
+              <!-- Canary note -->
+              <g transform="translate(94, 6) rotate(-7)">
+                <rect width="24" height="22" rx="2" fill="#FEF08A" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="6" x2="17" y2="6" stroke="#854D0E" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(197, 168, 128, 0.2); color: #FFDF9E; border-color: rgba(197, 168, 128, 0.5);">SOVEREIGN AUTHORITY</div>
           <h4>Personal Branding & Sovereign Authority</h4>
           <p>Founder category ownership, 1-to-many syndication architecture, keynote hook tracks, and advisory retainer pricing.</p>
           <span class="template-action-link">Load Blueprint →</span>
@@ -293,7 +405,36 @@
 
         <!-- 2. Omnichannel DTC Product Launch Master Roadmap -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('product-launch'); toggleTemplateModal();">
-          <div class="template-badge" style="background: rgba(16, 185, 129, 0.12); color: #059669; border-color: rgba(16, 185, 129, 0.35);">GO-TO-MARKET</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Countdown Frame -->
+              <rect x="15" y="10" width="92" height="70" rx="6" fill="#1C1916" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+              <rect x="23" y="16" width="38" height="5" rx="2" fill="#34D399"/>
+              <rect x="23" y="27" width="50" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="23" y="37" width="76" height="16" rx="4" fill="#141210" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+              <rect x="23" y="58" width="76" height="16" rx="4" fill="#141210" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+              <!-- Embargo Frame -->
+              <rect x="118" y="10" width="92" height="70" rx="6" fill="#1C1916" stroke="rgba(168,85,247,0.4)" stroke-width="1"/>
+              <rect x="126" y="16" width="38" height="5" rx="2" fill="#A855F7"/>
+              <rect x="126" y="27" width="52" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="126" y="37" width="76" height="16" rx="4" fill="#141210" stroke="rgba(168,85,247,0.2)" stroke-width="1"/>
+              <rect x="126" y="58" width="76" height="16" rx="4" fill="#141210" stroke="rgba(168,85,247,0.2)" stroke-width="1"/>
+              <!-- Offer -->
+              <rect x="220" y="10" width="85" height="70" rx="6" fill="#161412" stroke="#E2C799" stroke-width="1.2"/>
+              <rect x="228" y="16" width="45" height="5" rx="2" fill="rgba(226,199,153,0.3)"/>
+              <text x="228" y="31" font-size="8" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">AED 35,000</text>
+              <rect x="228" y="42" width="60" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="228" y="50" width="54" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="228" y="58" width="58" height="3" rx="1" fill="#E2DBD2"/>
+              <!-- Rose note -->
+              <g transform="translate(98, 48) rotate(6)">
+                <rect width="22" height="20" rx="2" fill="#FECDD3" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="5" x2="15" y2="5" stroke="#9F1239" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(16, 185, 129, 0.18); color: #34D399; border-color: rgba(16, 185, 129, 0.5);">GO-TO-MARKET</div>
           <h4>Product Launch Master Roadmap</h4>
           <p>Omnichannel DTC launch sprint: VIP waitlist drops, chemist seeding embargoes, collector edition pricing, and countdown matrices.</p>
           <span class="template-action-link">Load Roadmap →</span>
@@ -301,7 +442,36 @@
 
         <!-- 3. Influencer & Creator Collaborations Engine -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('influencer-collabs'); toggleTemplateModal();">
-          <div class="template-badge" style="background: rgba(99, 102, 241, 0.12); color: #4F46E5; border-color: rgba(99, 102, 241, 0.35);">TALENT & UGC</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Frame 1 -->
+              <rect x="15" y="10" width="95" height="70" rx="6" fill="#1C1916" stroke="rgba(99,102,241,0.4)" stroke-width="1"/>
+              <rect x="23" y="16" width="42" height="5" rx="2" fill="#818CF8"/>
+              <rect x="23" y="27" width="52" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="23" y="37" width="79" height="16" rx="4" fill="#141210" stroke="rgba(99,102,241,0.2)" stroke-width="1"/>
+              <rect x="23" y="58" width="79" height="16" rx="4" fill="#141210" stroke="rgba(99,102,241,0.2)" stroke-width="1"/>
+              <!-- Frame 2 -->
+              <rect x="120" y="10" width="95" height="70" rx="6" fill="#1C1916" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+              <rect x="128" y="16" width="42" height="5" rx="2" fill="#38BDF8"/>
+              <rect x="128" y="27" width="54" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="128" y="37" width="79" height="16" rx="4" fill="#141210" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <rect x="128" y="58" width="79" height="16" rx="4" fill="#141210" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <!-- Fee Roster Table -->
+              <rect x="225" y="10" width="80" height="70" rx="6" fill="#161412" stroke="rgba(226,199,153,0.4)" stroke-width="1"/>
+              <rect x="229" y="14" width="72" height="8" rx="2" fill="rgba(226,199,153,0.2)"/>
+              <line x1="229" y1="32" x2="301" y2="32" stroke="rgba(226,199,153,0.15)"/>
+              <line x1="229" y1="44" x2="301" y2="44" stroke="rgba(226,199,153,0.15)"/>
+              <line x1="229" y1="56" x2="301" y2="56" stroke="rgba(226,199,153,0.15)"/>
+              <line x1="229" y1="68" x2="301" y2="68" stroke="rgba(226,199,153,0.15)"/>
+              <!-- Blue note -->
+              <g transform="translate(102, 6) rotate(-5)">
+                <rect width="24" height="22" rx="2" fill="#BAE6FD" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="6" x2="16" y2="6" stroke="#0369A1" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(99, 102, 241, 0.18); color: #818CF8; border-color: rgba(99, 102, 241, 0.5);">TALENT & UGC</div>
           <h4>Influencer & Creator Collaborations</h4>
           <p>Credibility tier curation (dermatologists vs stylists), Spark whitelisting governance, briefing mandates, and active fee roster.</p>
           <span class="template-action-link">Load Engine →</span>
@@ -309,7 +479,36 @@
 
         <!-- 4. Meta & TikTok Ads Performance Engine -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('meta-tiktok-ads'); toggleTemplateModal();">
-          <div class="template-badge" style="background: rgba(225, 29, 72, 0.12); color: #BE123C; border-color: rgba(225, 29, 72, 0.35);">PAID MEDIA SCALE</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Frame 1 -->
+              <rect x="15" y="10" width="95" height="70" rx="6" fill="#1C1916" stroke="rgba(225,29,72,0.4)" stroke-width="1"/>
+              <rect x="23" y="16" width="38" height="5" rx="2" fill="#F43F5E"/>
+              <rect x="23" y="27" width="55" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="23" y="37" width="79" height="16" rx="4" fill="#141210" stroke="rgba(225,29,72,0.2)" stroke-width="1"/>
+              <rect x="23" y="58" width="79" height="16" rx="4" fill="#141210" stroke="rgba(225,29,72,0.2)" stroke-width="1"/>
+              <!-- Frame 2 -->
+              <rect x="120" y="10" width="95" height="70" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.4)" stroke-width="1"/>
+              <rect x="128" y="16" width="42" height="5" rx="2" fill="#E2C799"/>
+              <rect x="128" y="27" width="56" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="128" y="37" width="79" height="16" rx="4" fill="#141210" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <rect x="128" y="58" width="79" height="16" rx="4" fill="#141210" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <!-- Budget card -->
+              <rect x="225" y="10" width="80" height="70" rx="6" fill="#161412" stroke="#E2C799" stroke-width="1.2"/>
+              <rect x="231" y="16" width="36" height="5" rx="2" fill="rgba(225,29,72,0.25)"/>
+              <text x="231" y="31" font-size="8" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">$50K/MO</text>
+              <rect x="231" y="42" width="55" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="231" y="50" width="48" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="231" y="58" width="52" height="3" rx="1" fill="#E2DBD2"/>
+              <!-- Canary note -->
+              <g transform="translate(104, 48) rotate(7)">
+                <rect width="22" height="20" rx="2" fill="#FEF08A" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="5" x2="16" y2="5" stroke="#854D0E" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(225, 29, 72, 0.18); color: #FDA4AF; border-color: rgba(225, 29, 72, 0.5);">PAID MEDIA SCALE</div>
           <h4>Meta & TikTok Ads Performance Engine</h4>
           <p>Meta Advantage+ ASC testing (3:2:2 DCT), TikTok Spark thumbstop hooks, monthly media budget card, and creative testing matrix.</p>
           <span class="template-action-link">Load Engine →</span>
@@ -317,7 +516,35 @@
 
         <!-- 5. High-Ticket Strategy Blueprint -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('strategy'); toggleTemplateModal();">
-          <div class="template-badge">AGENCY BLUEPRINT</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Frame 1 -->
+              <rect x="15" y="10" width="95" height="70" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.4)" stroke-width="1"/>
+              <rect x="23" y="16" width="44" height="5" rx="2" fill="#E2C799"/>
+              <rect x="23" y="27" width="55" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="23" y="37" width="79" height="16" rx="4" fill="#141210" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <rect x="23" y="58" width="79" height="16" rx="4" fill="#141210" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <!-- Frame 2 -->
+              <rect x="120" y="10" width="95" height="70" rx="6" fill="#1C1916" stroke="rgba(197,168,128,0.4)" stroke-width="1"/>
+              <rect x="128" y="16" width="44" height="5" rx="2" fill="#C5A880"/>
+              <rect x="128" y="27" width="56" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="128" y="37" width="79" height="16" rx="4" fill="#141210" stroke="rgba(197,168,128,0.2)" stroke-width="1"/>
+              <rect x="128" y="58" width="79" height="16" rx="4" fill="#141210" stroke="rgba(197,168,128,0.2)" stroke-width="1"/>
+              <!-- Deliverables Matrix -->
+              <rect x="225" y="10" width="80" height="70" rx="6" fill="#161412" stroke="rgba(226,199,153,0.35)" stroke-width="1"/>
+              <rect x="229" y="14" width="72" height="8" rx="2" fill="rgba(226,199,153,0.2)"/>
+              <line x1="229" y1="32" x2="301" y2="32" stroke="rgba(226,199,153,0.15)"/>
+              <line x1="229" y1="44" x2="301" y2="44" stroke="rgba(226,199,153,0.15)"/>
+              <line x1="229" y1="56" x2="301" y2="56" stroke="rgba(226,199,153,0.15)"/>
+              <!-- Canary note -->
+              <g transform="translate(98, 6) rotate(-6)">
+                <rect width="24" height="22" rx="2" fill="#FEF08A" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="6" x2="17" y2="6" stroke="#854D0E" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(226, 199, 153, 0.2); color: #FFDF9E; border-color: rgba(226, 199, 153, 0.5);">AGENCY BLUEPRINT</div>
           <h4>Executive Strategy Blueprint</h4>
           <p>3-phase master framework: positioning foundation, two-tier retainer architecture, matrix table, and diagnostic worksheet.</p>
           <span class="template-action-link">Load Blueprint →</span>
@@ -325,7 +552,34 @@
 
         <!-- 6. Brand & Creative Audit -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('audit'); toggleTemplateModal();">
-          <div class="template-badge">GROWTH DIAGNOSTIC</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Audit Frame 1 -->
+              <rect x="15" y="10" width="110" height="70" rx="6" fill="#1C1916" stroke="rgba(251,113,133,0.4)" stroke-width="1"/>
+              <rect x="23" y="16" width="50" height="5" rx="2" fill="#FB7185"/>
+              <rect x="23" y="27" width="70" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="23" y="37" width="94" height="18" rx="4" fill="#141210" stroke="rgba(251,113,133,0.2)" stroke-width="1"/>
+              <rect x="23" y="59" width="94" height="16" rx="4" fill="#141210" stroke="rgba(251,113,133,0.2)" stroke-width="1"/>
+              <!-- Friction Map Frame 2 -->
+              <rect x="135" y="10" width="105" height="70" rx="6" fill="#1C1916" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+              <rect x="143" y="16" width="46" height="5" rx="2" fill="#38BDF8"/>
+              <rect x="143" y="27" width="65" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="143" y="37" width="89" height="18" rx="4" fill="#141210" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <rect x="143" y="59" width="89" height="16" rx="4" fill="#141210" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <!-- Diagnostic Table -->
+              <rect x="250" y="15" width="55" height="60" rx="4" fill="#141210" stroke="rgba(226,199,153,0.3)" stroke-width="1"/>
+              <line x1="250" y1="28" x2="305" y2="28" stroke="rgba(226,199,153,0.2)"/>
+              <line x1="250" y1="42" x2="305" y2="42" stroke="rgba(226,199,153,0.2)"/>
+              <line x1="250" y1="56" x2="305" y2="56" stroke="rgba(226,199,153,0.2)"/>
+              <!-- Notes -->
+              <g transform="translate(118, 6) rotate(-7)">
+                <rect width="22" height="20" rx="2" fill="#FECDD3" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="5" x2="16" y2="5" stroke="#9F1239" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(244, 63, 94, 0.18); color: #FDA4AF; border-color: rgba(244, 63, 94, 0.5);">GROWTH DIAGNOSTIC</div>
           <h4>Brand & Creative Audit</h4>
           <p>Full DTC diagnostic: packaging critique, TikTok/Reels hook teardown, CVR friction map, and retention review.</p>
           <span class="template-action-link">Load Audit →</span>
@@ -333,7 +587,37 @@
 
         <!-- 7. Luxury Skincare Product Lineup -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('skincare'); toggleTemplateModal();">
-          <div class="template-badge">PRODUCT ARCHITECTURE</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Product Lineup Frame -->
+              <rect x="15" y="10" width="115" height="70" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.4)" stroke-width="1"/>
+              <rect x="23" y="16" width="50" height="5" rx="2" fill="#E2C799"/>
+              <rect x="23" y="27" width="65" height="4" rx="2" fill="#FFFFFF"/>
+              <rect x="23" y="38" width="30" height="34" rx="4" fill="#141210" stroke="rgba(226,199,153,0.25)" stroke-width="1"/>
+              <rect x="58" y="38" width="30" height="34" rx="4" fill="#141210" stroke="rgba(226,199,153,0.25)" stroke-width="1"/>
+              <rect x="93" y="38" width="30" height="34" rx="4" fill="#141210" stroke="rgba(226,199,153,0.25)" stroke-width="1"/>
+              <!-- VIP Subscription Tier -->
+              <rect x="140" y="10" width="85" height="70" rx="6" fill="#161412" stroke="#E2C799" stroke-width="1.2"/>
+              <rect x="148" y="16" width="45" height="5" rx="2" fill="rgba(226,199,153,0.3)"/>
+              <text x="148" y="31" font-size="8" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">AED 480</text>
+              <rect x="148" y="42" width="60" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="148" y="50" width="54" height="3" rx="1" fill="#E2DBD2"/>
+              <rect x="148" y="58" width="58" height="3" rx="1" fill="#E2DBD2"/>
+              <!-- Formulation Matrix -->
+              <rect x="235" y="10" width="70" height="70" rx="6" fill="#141210" stroke="rgba(226,199,153,0.3)" stroke-width="1"/>
+              <rect x="239" y="14" width="62" height="8" rx="2" fill="rgba(226,199,153,0.2)"/>
+              <line x1="239" y1="32" x2="301" y2="32" stroke="rgba(226,199,153,0.15)"/>
+              <line x1="239" y1="46" x2="301" y2="46" stroke="rgba(226,199,153,0.15)"/>
+              <line x1="239" y1="60" x2="301" y2="60" stroke="rgba(226,199,153,0.15)"/>
+              <!-- Gold note -->
+              <g transform="translate(122, 6) rotate(6)">
+                <rect width="22" height="20" rx="2" fill="#FAF5EE" stroke="#C5A880" stroke-width="1" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+                <line x1="3" y1="5" x2="16" y2="5" stroke="#8C6D3F" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(226, 199, 153, 0.2); color: #FFDF9E; border-color: rgba(226, 199, 153, 0.5);">PRODUCT ARCHITECTURE</div>
           <h4>Luxury Skincare Lineup & Offer Ladder</h4>
           <p>Product architecture mapping Hero Serum, Night Repair Elixir, Cleanser, and high-margin VIP subscription bundles.</p>
           <span class="template-action-link">Load Lineup →</span>
@@ -341,7 +625,31 @@
 
         <!-- 8. Weekly Sprint & Kanban Planner -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('planner'); toggleTemplateModal();">
-          <div class="template-badge">OPERATIONS</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Col 1: Backlog -->
+              <rect x="15" y="10" width="68" height="70" rx="6" fill="#1C1916" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+              <rect x="22" y="16" width="35" height="5" rx="2" fill="#E2DBD2"/>
+              <rect x="20" y="26" width="58" height="20" rx="4" fill="#141210" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <rect x="20" y="50" width="58" height="20" rx="4" fill="#141210" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <!-- Col 2: In Production -->
+              <rect x="89" y="10" width="68" height="70" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.5)" stroke-width="1"/>
+              <rect x="96" y="16" width="38" height="5" rx="2" fill="#E2C799"/>
+              <rect x="94" y="26" width="58" height="20" rx="4" fill="#141210" stroke="rgba(226,199,153,0.3)" stroke-width="1"/>
+              <rect x="94" y="50" width="58" height="20" rx="4" fill="#141210" stroke="rgba(226,199,153,0.3)" stroke-width="1"/>
+              <!-- Col 3: Review -->
+              <rect x="163" y="10" width="68" height="70" rx="6" fill="#1C1916" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+              <rect x="170" y="16" width="32" height="5" rx="2" fill="#38BDF8"/>
+              <rect x="168" y="26" width="58" height="20" rx="4" fill="#141210" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <!-- Col 4: Deployed -->
+              <rect x="237" y="10" width="68" height="70" rx="6" fill="#1C1916" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+              <rect x="244" y="16" width="36" height="5" rx="2" fill="#34D399"/>
+              <rect x="242" y="26" width="58" height="20" rx="4" fill="#141210" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+              <rect x="242" y="50" width="58" height="20" rx="4" fill="#141210" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(56, 189, 248, 0.18); color: #7DD3FC; border-color: rgba(56, 189, 248, 0.5);">OPERATIONS</div>
           <h4>Weekly Sprint & Production Kanban</h4>
           <p>Agile production board with Backlog, Creative Production, Executive Review, and Deployed containers.</p>
           <span class="template-action-link">Load Planner →</span>
@@ -349,7 +657,28 @@
 
         <!-- 9. Haute Brand Identity Moodboard -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('moodboard'); toggleTemplateModal();">
-          <div class="template-badge">CREATIVE DIRECTION</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Frame container -->
+              <rect x="15" y="10" width="290" height="70" rx="6" fill="#1C1916" stroke="rgba(226,199,153,0.45)" stroke-width="1"/>
+              <rect x="25" y="16" width="50" height="5" rx="2" fill="#E2C799"/>
+              <!-- Editorial asset cards -->
+              <rect x="25" y="26" width="60" height="46" rx="4" fill="#24201C" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <rect x="92" y="26" width="70" height="46" rx="4" fill="#24201C" stroke="rgba(226,199,153,0.2)" stroke-width="1"/>
+              <!-- Typography spec card -->
+              <rect x="169" y="26" width="68" height="46" rx="4" fill="#141210" stroke="rgba(226,199,153,0.3)" stroke-width="1"/>
+              <text x="175" y="44" font-size="12" font-style="italic" fill="#E2C799" font-family="serif">Haute</text>
+              <text x="175" y="58" font-size="7" fill="#FFFFFF" font-family="sans-serif">Cormorant</text>
+              <!-- Tactile color swatch row -->
+              <circle cx="252" cy="38" r="6" fill="#080706" stroke="#E2C799" stroke-width="1"/>
+              <circle cx="268" cy="38" r="6" fill="#E2C799"/>
+              <circle cx="284" cy="38" r="6" fill="#C5A880"/>
+              <circle cx="260" cy="56" r="6" fill="#F5E6D3"/>
+              <circle cx="276" cy="56" r="6" fill="#FDA4AF"/>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(197, 168, 128, 0.2); color: #FFDF9E; border-color: rgba(197, 168, 128, 0.5);">CREATIVE DIRECTION</div>
           <h4>Haute Brand Identity Moodboard</h4>
           <p>Editorial visual curation board with aesthetic guidelines, luxury typography pairings, and tactile color swatches.</p>
           <span class="template-action-link">Load Moodboard →</span>
@@ -357,7 +686,25 @@
 
         <!-- 10. Blank Canvas -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('blank'); toggleTemplateModal();">
-          <div class="template-badge">CLEAN SLATE</div>
+          <div class="template-preview-box" aria-hidden="true">
+            <svg viewBox="0 0 320 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="90" rx="10" fill="#12100E"/>
+              <!-- Dotted canvas grid -->
+              <g fill="rgba(226,199,153,0.25)">
+                <circle cx="40" cy="20" r="1.5"/><circle cx="80" cy="20" r="1.5"/><circle cx="120" cy="20" r="1.5"/>
+                <circle cx="160" cy="20" r="1.5"/><circle cx="200" cy="20" r="1.5"/><circle cx="240" cy="20" r="1.5"/><circle cx="280" cy="20" r="1.5"/>
+                <circle cx="40" cy="45" r="1.5"/><circle cx="80" cy="45" r="1.5"/><circle cx="120" cy="45" r="1.5"/>
+                <circle cx="200" cy="45" r="1.5"/><circle cx="240" cy="45" r="1.5"/><circle cx="280" cy="45" r="1.5"/>
+                <circle cx="40" cy="70" r="1.5"/><circle cx="80" cy="70" r="1.5"/><circle cx="120" cy="70" r="1.5"/>
+                <circle cx="160" cy="70" r="1.5"/><circle cx="200" cy="70" r="1.5"/><circle cx="240" cy="70" r="1.5"/><circle cx="280" cy="70" r="1.5"/>
+              </g>
+              <!-- Center crosshair and clean slate indicator -->
+              <circle cx="160" cy="45" r="16" fill="rgba(226,199,153,0.12)" stroke="rgba(226,199,153,0.4)" stroke-width="1"/>
+              <line x1="160" y1="36" x2="160" y2="54" stroke="#E2C799" stroke-width="1.8"/>
+              <line x1="151" y1="45" x2="169" y2="45" stroke="#E2C799" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="template-badge" style="background: rgba(255, 255, 255, 0.12); color: #FFFFFF; border-color: rgba(255, 255, 255, 0.3);">CLEAN SLATE</div>
           <h4>Blank Infinite Canvas</h4>
           <p>Pure infinite dot grid with zero pre-populated items. Absolute freedom for custom bespoke strategy sessions.</p>
           <span class="template-action-link">Open Blank Canvas →</span>
@@ -440,10 +787,10 @@
       <!-- Device Upload Area -->
       <div style="margin-bottom: 1.25rem;">
         <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px;">Upload Image from Device</div>
-        <div class="cover-dropzone" onclick="document.getElementById('coverDeviceFileInput').click()" style="border: 2px dashed rgba(197, 168, 128, 0.4); border-radius: 14px; padding: 16px; text-align: center; cursor: pointer; background: var(--surface-subtle); transition: all 0.2s;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--brand-gold); margin-bottom: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-ink);">Choose Image from Mac / Device</div>
-          <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 2px;">PNG, JPG, WebP up to 10MB</div>
+        <div class="cover-dropzone" onclick="document.getElementById('coverDeviceFileInput').click()">
+          <svg class="cover-dropzone-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <div class="cover-dropzone-title">Choose Image from Mac / Device</div>
+          <div class="cover-dropzone-hint">PNG, JPG, WebP up to 10MB</div>
         </div>
         <input type="file" id="coverDeviceFileInput" accept="image/*" style="display:none" onchange="StudioInspector.handleDeviceCoverUpload(event)" />
       </div>
@@ -451,7 +798,7 @@
       <!-- URL Input Field -->
       <div style="margin-bottom: 1.25rem;">
         <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px;">Or Image Web Address</div>
-        <input type="url" id="coverUrlInput" placeholder="https://images.unsplash.com/photo-..." style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border-subtle); background: var(--surface-subtle); color: var(--text-ink); font-size: 0.82rem; font-family: var(--font-mono);" oninput="StudioInspector.updateCoverPreview()" />
+        <input type="url" id="coverUrlInput" class="cover-url-input" placeholder="https://images.unsplash.com/photo-..." oninput="StudioInspector.updateCoverPreview()" />
       </div>
 
       <!-- Live Preview -->
@@ -460,11 +807,11 @@
       </div>
 
       <!-- Modal Actions -->
-      <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-        <button type="button" id="btnRemoveCover" class="btn btn-secondary" style="color: #BE123C; border-color: rgba(190, 18, 60, 0.3); background: transparent;" onclick="StudioInspector.removeCoverBanner()">Remove Banner</button>
+      <div class="cover-modal-actions">
+        <button type="button" id="btnRemoveCover" class="cover-action-btn cover-btn-remove" onclick="StudioInspector.removeCoverBanner()">Remove Banner</button>
         <div style="display: flex; gap: 8px; margin-left: auto;">
-          <button type="button" class="btn btn-secondary" onclick="StudioInspector.closeCoverModal()">Cancel</button>
-          <button type="button" class="btn btn-primary" onclick="StudioInspector.applyCoverBanner()">Apply Cover</button>
+          <button type="button" class="cover-action-btn cover-btn-cancel" onclick="StudioInspector.closeCoverModal()">Cancel</button>
+          <button type="button" class="cover-action-btn cover-btn-apply" onclick="StudioInspector.applyCoverBanner()">Apply Cover</button>
         </div>
       </div>
     </div>
@@ -541,9 +888,9 @@
   <!-- PRESENTATION MODE SLIDE CONTROLLER                         -->
   <!-- ========================================================== -->
   <div class="presentation-bar">
-    <button class="present-nav-btn" onclick="StudioPresentation.prev()">← Previous</button>
-    <div id="presentSlideInfo" class="present-slide-info">Slide 1 of 8</div>
-    <button class="present-nav-btn" onclick="StudioPresentation.next()">Next →</button>
+    <button class="present-nav-btn btn-prev" onclick="StudioPresentation.prev()">← Previous</button>
+    <div id="presentSlideInfo" class="present-slide-info"><span class="slide-count">Slide 1 of 8</span></div>
+    <button class="present-nav-btn btn-next" onclick="StudioPresentation.next()">Next →</button>
     <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">Exit (Esc)</button>
   </div>
 
@@ -740,42 +1087,34 @@
   <div id="aiCopilotBackdrop" class="ai-copilot-backdrop" style="display: none !important;"></div>
 
   <!-- Minimized Floating Pill (Non-blocking Ambient Assistant) -->
-  <div id="aiMinimizedPill" class="ai-minimized-pill" onclick="StudioAI.toggleWindow(true)" title="Open Polish AI (Cmd+J)">
-    <span class="ai-pill-pulse"></span>
-    <span class="ai-pill-crest">AI</span>
-    <span class="ai-pill-title">Polish AI</span>
-    <span class="ai-pill-badge">Active</span>
+  <div id="aiMinimizedPill" class="ai-minimized-pill" onclick="StudioAI.toggleWindow(true)" title="Open POLISH AI (Cmd+J)">
+    <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" width="16" height="16" />
+    <span class="ai-pill-title">POLISH AI</span>
     <span id="aiPillCardsBadge" class="ai-pill-cards-badge" style="display: none;">0 Cards</span>
   </div>
 
   <!-- Floating Strategy Window -->
-  <aside id="aiCopilotWindow" class="ai-copilot-window" aria-label="Polish AI" role="region">
+  <aside id="aiCopilotWindow" class="ai-copilot-window" aria-label="POLISH AI" role="region">
     <!-- Draggable Window Header -->
     <div id="aiWindowHeader" class="ai-window-header">
-      <div class="ai-header-drag-zone" title="Drag to reposition window">
+      <div class="ai-header-drag-zone" title="Drag to reposition">
         <div class="ai-drag-grip" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
         <div class="ai-header-brand">
-          <div class="ai-brand-crest">AI</div>
-          <div class="ai-header-titles">
-            <div class="ai-title-row">
-              <span class="ai-header-title">Polish AI</span>
-              <span class="ai-header-badge">Growth Intelligence</span>
-            </div>
-            <span class="ai-header-subtitle">Haute Atelier Strategy Engine</span>
-          </div>
+          <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="ai-brand-mark" width="22" height="22" />
+          <span class="ai-header-title">POLISH AI</span>
         </div>
       </div>
 
       <div class="ai-header-actions">
-        <button type="button" class="ai-icon-btn" onclick="StudioAI.clearChat()" title="Reset Strategy Session">
+        <button type="button" class="ai-icon-btn" onclick="StudioAI.clearChat()" title="Reset Session">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
         </button>
-        <button type="button" id="aiDockToggleBtn" class="ai-icon-btn" onclick="StudioAI.toggleDock()" title="Dock to Side / Float Window">
+        <button type="button" id="aiDockToggleBtn" class="ai-icon-btn" onclick="StudioAI.toggleDock()" title="Dock / Float">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
         </button>
-        <button type="button" id="aiMinimizeBtn" class="ai-icon-btn" onclick="StudioAI.minimize()" title="Minimize (Cmd+J)">
+        <button type="button" id="aiMinimizeBtn" class="ai-icon-btn" onclick="StudioAI.minimize()" title="Minimize">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </button>
         <button type="button" id="aiCloseBtn" class="ai-icon-btn ai-btn-close" onclick="StudioAI.close()" title="Close (Esc)">
@@ -809,31 +1148,24 @@
     <!-- Messages Scroll View -->
     <div id="aiMessagesContainer" class="ai-messages-container">
       <div class="ai-message assistant">
-        <div class="ai-msg-avatar">AI</div>
+        <div class="ai-msg-avatar">
+          <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" width="16" height="16" />
+        </div>
         <div class="ai-msg-body">
-          <div class="ai-brief-card">
-            <div class="ai-brief-header">
-              <span class="ai-brief-tag">INTELLIGENCE BRIEF</span>
-              <span class="ai-brief-status">READY</span>
-            </div>
-            <h4 class="ai-brief-title">Polish AI Active</h4>
-            <p class="ai-brief-prose">Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board. I will provide direct DTC unit economics and spawn custom strategy frames directly onto your canvas.</p>
+          <div class="ai-msg-bubble">
+            <p>Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Input Area -->
+    <!-- Input Area (Clean, Minimal, Zero Filler Footer) -->
     <div class="ai-input-area">
       <div class="ai-input-wrapper">
         <textarea id="aiPromptInput" class="ai-textarea" rows="1" placeholder="Specify an offer, copy angle, positioning, or ad strategy..."></textarea>
-        <button type="button" id="aiSendBtn" class="ai-send-btn" onclick="StudioAI.sendMessage()" title="Send Prompt (Enter)">
+        <button type="button" id="aiSendBtn" class="ai-send-btn" onclick="StudioAI.sendMessage()" title="Send">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
-      </div>
-      <div class="ai-input-footer">
-        <span class="ai-footer-note">Polish AI • Floating Non-Blocking Assistant</span>
-        <span class="ai-shortcut-hint"><kbd>Cmd</kbd>+<kbd>J</kbd> to toggle</span>
       </div>
     </div>
   </aside>

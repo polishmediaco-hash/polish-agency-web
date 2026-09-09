@@ -157,7 +157,7 @@ window.StudioInspector = (function () {
       html += `
         <div class="insp-group" title="Text Color">
           <div class="insp-swatch-row" role="radiogroup" aria-label="Text Color">
-            <span style="font-size:0.68rem; font-weight:800; color:var(--text-muted); margin-right:2px;">T:</span>
+            <span class="insp-text-indicator">T:</span>
             <button type="button" class="insp-swatch ${curText === '#1a1715' || curText === '#080706' ? 'active' : ''}" style="background:#1A1715; border-color:#080706" title="Dark Ink" onclick="StudioInspector.setElementTextColor('${data.id}', '#1A1715')"></button>
             <button type="button" class="insp-swatch ${curText === '#ffffff' ? 'active' : ''}" style="background:#FFFFFF; border-color:#E8E2D8" title="White Text" onclick="StudioInspector.setElementTextColor('${data.id}', '#FFFFFF')"></button>
             <button type="button" class="insp-swatch ${curText === '#c5a880' ? 'active' : ''}" style="background:#C5A880; border-color:#8C6D3F" title="Gold Accent" onclick="StudioInspector.setElementTextColor('${data.id}', '#C5A880')"></button>

@@ -1,9 +1,9 @@
 /**
- * POLISH Board Studio — Polish AI Strategy Intelligence Engine
+ * POLISH Board Studio — POLISH AI Strategy Engine
  * 
- * Non-blocking floating luxury window with draggable spatial controls,
- * ambient minimized pill, zero-emoji high-ticket copywriting,
- * and smart whiteboard card spawning.
+ * Non-blocking floating luxury window with official POLISH branding,
+ * draggable spatial controls, zero conversational filler,
+ * zero fake titles, and smart whiteboard card spawning.
  */
 
 (function () {
@@ -265,15 +265,12 @@
       if (container) {
         container.innerHTML = `
           <div class="ai-message assistant">
-            <div class="ai-msg-avatar">AI</div>
+            <div class="ai-msg-avatar">
+              <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" width="16" height="16" />
+            </div>
             <div class="ai-msg-body">
-              <div class="ai-brief-card">
-                <div class="ai-brief-header">
-                  <span class="ai-brief-tag">INTELLIGENCE BRIEF</span>
-                  <span class="ai-brief-status">READY</span>
-                </div>
-                <h4 class="ai-brief-title">Polish AI Active</h4>
-                <p class="ai-brief-prose">Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board. I will provide direct DTC unit economics and spawn custom strategy frames directly onto your canvas.</p>
+              <div class="ai-msg-bubble">
+                <p>Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board.</p>
               </div>
             </div>
           </div>
@@ -335,11 +332,11 @@
           }
           this.appendMessage('assistant', data.reply, data.boardCards);
         } else {
-          this.appendMessage('assistant', `**System Notice:** ${data.error || 'Unable to connect to AI engine.'}`);
+          this.appendMessage('assistant', `**Notice:** ${data.error || 'Unable to connect to AI engine.'}`);
         }
       } catch (err) {
         this.removeTypingIndicator(typingId);
-        this.appendMessage('assistant', `**Connection Error:** Could not reach the Strategy Engine (${err.message}).`);
+        this.appendMessage('assistant', `**Notice:** Could not reach the Strategy Engine (${err.message}).`);
       } finally {
         this.isThinking = false;
         this.setSendButtonState(false);
@@ -355,33 +352,26 @@
 
       const avatar = document.createElement('div');
       avatar.className = 'ai-msg-avatar';
-      avatar.innerHTML = role === 'user' ? 'YOU' : 'AI';
+      if (role === 'user') {
+        avatar.textContent = 'YOU';
+      } else {
+        avatar.innerHTML = '<img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" width="16" height="16" />';
+      }
 
       const body = document.createElement('div');
       body.className = 'ai-msg-body';
 
       if (role === 'user') {
         const bubble = document.createElement('div');
-        bubble.className = 'ai-msg-bubble';
+        bubble.className = 'ai-msg-bubble user';
         bubble.textContent = text;
         body.appendChild(bubble);
       } else {
-        // Assistant: Haute Atelier Executive Brief Card
-        const briefCard = document.createElement('div');
-        briefCard.className = 'ai-brief-card';
-
-        const briefHeader = document.createElement('div');
-        briefHeader.className = 'ai-brief-header';
-        briefHeader.innerHTML = `
-          <span class="ai-brief-tag">STRATEGIC ANALYSIS</span>
-          <span class="ai-brief-status">VALIDATED</span>
-        `;
-        briefCard.appendChild(briefHeader);
-
-        const contentWrapper = document.createElement('div');
-        contentWrapper.className = 'ai-brief-content';
-        contentWrapper.innerHTML = this.renderMarkdown(text);
-        briefCard.appendChild(contentWrapper);
+        // Assistant: Direct Strategic Output Bubble (Zero Filler Headers)
+        const bubble = document.createElement('div');
+        bubble.className = 'ai-msg-bubble assistant';
+        bubble.innerHTML = this.renderMarkdown(text);
+        body.appendChild(bubble);
 
         // Render Strategy Card Deck Spawner if cards are available
         if (boardCards && Array.isArray(boardCards) && boardCards.length > 0) {
@@ -424,17 +414,14 @@
           };
           spawnerEl.appendChild(addBtn);
 
-          briefCard.appendChild(spawnerEl);
+          body.appendChild(spawnerEl);
         }
-
-        body.appendChild(briefCard);
       }
 
       msgEl.appendChild(avatar);
       msgEl.appendChild(body);
       container.appendChild(msgEl);
 
-      // Smooth scroll to bottom
       container.scrollTop = container.scrollHeight;
     },
 
@@ -458,14 +445,14 @@
       typingEl.id = id;
       typingEl.className = 'ai-message assistant';
       typingEl.innerHTML = `
-        <div class="ai-msg-avatar">AI</div>
+        <div class="ai-msg-avatar">
+          <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" width="16" height="16" />
+        </div>
         <div class="ai-msg-body">
-          <div class="ai-brief-card" style="padding: 10px 14px;">
-            <div class="ai-typing-indicator">
-              <div class="ai-typing-dot"></div>
-              <div class="ai-typing-dot"></div>
-              <div class="ai-typing-dot"></div>
-            </div>
+          <div class="ai-msg-bubble assistant ai-typing-indicator">
+            <div class="ai-typing-dot"></div>
+            <div class="ai-typing-dot"></div>
+            <div class="ai-typing-dot"></div>
           </div>
         </div>
       `;

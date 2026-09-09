@@ -143,11 +143,11 @@ window.ElementsFactory = (function () {
       boxesHTML = data.boxes.map((b, i) => `
         <div class="content-box ${b.isWhite ? 'white' : ''}">
           <div class="box-header-row">
-            <div class="box-tag tag-${b.tagColor || 'gold'}" contenteditable="true" data-field="box-tag-${i}">${b.tag || 'INSIGHT'}</div>
+            <div class="box-tag tag-${b.tagColor || 'gold'}" contenteditable="true" data-field="box-tag-${i}">${b.tag || 'NOTE'}</div>
             <button class="box-remove-btn" title="Remove box" onclick="StudioCore.removeFrameBox('${data.id}', ${i})">✕</button>
           </div>
-          <h4 contenteditable="true" data-field="box-title-${i}">${b.title || 'Section Title'}</h4>
-          <p contenteditable="true" data-field="box-content-${i}">${b.content || 'Add detailed strategy description here...'}</p>
+          <h4 contenteditable="true" data-field="box-title-${i}">${b.title || ''}</h4>
+          <p contenteditable="true" data-field="box-content-${i}">${b.content || ''}</p>
         </div>
       `).join('');
     }
@@ -158,14 +158,14 @@ window.ElementsFactory = (function () {
       <div class="frame-drag-bar"></div>
       <div class="frame-badge-wrap">
         <span class="frame-number" contenteditable="true" data-field="frameNumber">${data.frameNumber || '01'}</span>
-        <span class="frame-title-pill" contenteditable="true" data-field="titlePill">${data.titlePill || 'ZONE STRATEGY'}</span>
+        ${data.titlePill ? `<span class="frame-title-pill" contenteditable="true" data-field="titlePill">${data.titlePill}</span>` : ''}
       </div>
       ${bannerHTML}
       <h2 class="frame-headline">
-        <span contenteditable="true" data-field="headline">${data.headline || 'Strategic Objective'}</span>
+        <span contenteditable="true" data-field="headline">${data.headline || ''}</span>
         ${data.serifAccent ? `<span class="serif-accent" contenteditable="true" data-field="serifAccent"> ${data.serifAccent}</span>` : ''}
       </h2>
-      <p class="frame-desc" contenteditable="true" data-field="description">${data.description || 'Describe the objective of this strategic frame.'}</p>
+      ${data.description ? `<p class="frame-desc" contenteditable="true" data-field="description">${data.description}</p>` : ''}
       <div class="frame-boxes-wrap">${boxesHTML}</div>
       <div class="frame-ctrl-bar" style="margin-top: 12px; display: flex; justify-content: flex-end;">
         <button class="table-btn" onclick="StudioCore.addFrameBox('${data.id}')">+ Box</button>
@@ -201,9 +201,9 @@ window.ElementsFactory = (function () {
 
     note.innerHTML = `
       ${data.hasTape !== false ? '<div class="sticky-tape"></div>' : ''}
-      <div class="sticky-header" contenteditable="true" data-field="header">${data.header || 'NOTE'}</div>
-      <div class="sticky-content" contenteditable="true" data-field="content">${data.content || 'Write a thought, rule, or friction point...'}</div>
-      <div class="sticky-footer" contenteditable="true" data-field="footer">${data.footer || 'REF: POLISH'}</div>
+      ${data.header ? `<div class="sticky-header" contenteditable="true" data-field="header">${data.header}</div>` : ''}
+      <div class="sticky-content" contenteditable="true" data-field="content">${data.content || ''}</div>
+      ${data.footer ? `<div class="sticky-footer" contenteditable="true" data-field="footer">${data.footer}</div>` : ''}
 
       <!-- Ports -->
       <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
@@ -260,7 +260,7 @@ window.ElementsFactory = (function () {
 
     shape.innerHTML = `
       ${svgGraphic}
-      <div class="shape-content-text" contenteditable="true" data-field="text">${data.text || (shapeType === 'line' ? '' : 'Shape Concept')}</div>
+      <div class="shape-content-text" contenteditable="true" data-field="text">${data.text || ''}</div>
 
       <!-- Ports -->
       <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
@@ -293,7 +293,7 @@ window.ElementsFactory = (function () {
     const color = data.color || '';
 
     textEl.innerHTML = `
-      <div class="floating-text-inner" contenteditable="true" data-field="text" style="font-size:${fontSize}px; ${color ? 'color:' + color : ''}">${data.text || 'Type your ideas here...'}</div>
+      <div class="floating-text-inner" contenteditable="true" data-field="text" style="font-size:${fontSize}px; ${color ? 'color:' + color : ''}">${data.text || ''}</div>
 
       <!-- Ports -->
       <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
@@ -502,7 +502,7 @@ window.ElementsFactory = (function () {
     bubble.dataset.type = 'script';
 
     bubble.innerHTML = `
-      <div contenteditable="true" data-field="content">${data.content || '"Client audio script response or strategic talking point..."'}</div>
+      <div contenteditable="true" data-field="content">${data.content || ''}</div>
 
       <!-- Ports -->
       <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>

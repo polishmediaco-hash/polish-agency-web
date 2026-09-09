@@ -368,16 +368,16 @@ window.StudioCore = (function () {
       height: 480,
       zIndex: 10,
       frameNumber: count,
-      titlePill: 'STRATEGY MODULE',
-      headline: 'Strategic Architecture',
-      serifAccent: 'Framework',
-      description: 'Double-click to customize the strategy and pillars of this frame.',
+      titlePill: '',
+      headline: `Frame ${count}`,
+      serifAccent: '',
+      description: '',
       boxes: [
         {
-          tag: 'CORE LEVER',
+          tag: 'NOTE',
           tagColor: 'gold',
-          title: 'Section Objective',
-          content: 'Add high-impact points and rationale here...'
+          title: 'Title',
+          content: ''
         }
       ]
     };
@@ -405,9 +405,9 @@ window.StudioCore = (function () {
       color: color,
       rotation: parseFloat(rotation),
       hasTape: true,
-      header: 'TACTICAL NOTE',
-      content: 'Write an actionable rule, friction point, or strategic memo...',
-      footer: 'REF: POLISH'
+      header: 'Note',
+      content: '',
+      footer: ''
     };
 
     pushHistory();
@@ -433,7 +433,7 @@ window.StudioCore = (function () {
       y: Math.round(center.y - (isCircle ? 90 : (isLine ? 20 : 70))),
       width: isCircle ? 180 : (isDiamond ? 180 : 220),
       height: isCircle ? 180 : (isDiamond ? 180 : (isLine ? 40 : 140)),
-      text: isLine ? '' : (shapeType.charAt(0).toUpperCase() + shapeType.slice(1) + ' Concept'),
+      text: '',
       zIndex: 15
     };
 
@@ -454,7 +454,7 @@ window.StudioCore = (function () {
       type: 'text',
       x: Math.round(center.x - 70),
       y: Math.round(center.y - 20),
-      text: 'Type your ideas here...',
+      text: 'Text',
       fontSize: 22,
       zIndex: 22
     };

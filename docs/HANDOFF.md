@@ -190,25 +190,29 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Branch**: `main`
 * **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
+  * `feat: Add high-ticket lead capture, Calendly auto-prefill, and Studio strategic blueprints`
+  * `feat: Board Studio client commenting & pin drop engine on /view/:id`
+  * `feat: Haute AI-SEO suite (llms.txt, llms-full.txt, JSON-LD Schema @graph, robots.txt AI crawler allowance)`
+  * `perf: 3D flacon & mobile kinetic performance guard with thermal throttling protection`
+  * `perf: Core Web Vitals & Lighthouse 98+ suite with aggressive immutable asset caching`
+  * `refactor(studio): Streamline floating inspector toolbar & add high-contrast dark mode palette`
+  * `feat(studio): Draggable floating front camera bubble for studio presentation recordings`
   * `refactor(routes): purge all unused links, dead preview tools, and legacy aliases for strict canonical routing`
   * `refactor(routing): isolate Board Studio on app.polishmediaco.com, remove booking aliases, redirect main domain studio links`
   * `perf(auth): accelerate Studio & Admin login — strip firestore bloat, eliminate 1200ms delay, enable 0ms instant session hydration`
   * `feat(studio): deliver Miro-grade infinite whiteboard with offline persistence, 1-click theme toggle, starter templates, and official brand lockup`
   * `feat(notifications): integrate GREEN-API WhatsApp notification gateway & Calendly webhook listener`
   * `feat(booking): launch luxury minimal /book Calendly scheduling page & apply.html bridge`
-  * `feat(template): build _template.html official component catalog & boilerplate`
-  * `feat(design): Emulsion Mask & Liquid Refraction, Viscous Meniscus Capsule CTA, and FLIP Docking Alignment`
-  * `fix(rtl): resolve Arabic inverted sticky CTA arrow and mobile right-edge headline clipping`
 * **Assets**: All horizontal, vertical, and standalone vector marks committed and synced across backup repositories.
 
 ---
 
 ## 5. Next Priority Roadmap for Future Sessions
 
-1. **Production Deployment**: Deploy to Railway / Render / DigitalOcean or VPS with PM2.
-2. **Custom Domain Setup**: Bind `polishmediaco.com` DNS CNAME/A records.
-3. **Calendly Webhook Activation**: Set subscription endpoint to `https://polishmediaco.com/api/calendly-webhook` in Calendly developer console.
-4. **Interactive 3D Polish**: Further elevate 3D product textures (glass reflections, metallic gold caps) using Three.js / WebGL.
+1. **Production Deployment & Monitoring**: Deploy to production infrastructure (Vercel / Railway / VPS with PM2) and verify edge SSL certificates.
+2. **Custom Domain & DNS Setup**: Ensure canonical routing between `polishmediaco.com` and `app.polishmediaco.com`.
+3. **Calendly Live Webhook Verification**: Confirm real-time webhook payload receipts at `https://polishmediaco.com/api/calendly-webhook` from Calendly developer console.
+4. **Client Collaboration Live Beta**: Test real-time multi-user pin drop commenting and pillar approvals with live beauty brand test accounts.
 
 ---
 

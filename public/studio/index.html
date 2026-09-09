@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/studio/css/studio.css?v=20260909_v4">
   <link rel="stylesheet" href="/studio/css/inspector.css?v=20260909_v4">
   <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v4">
-  <link rel="stylesheet" href="/studio/css/ai-copilot.css?v=20260909_copilot">
+  <link rel="stylesheet" href="/studio/css/ai-copilot.css?v=20260909_floating">
 </head>
 <body>
 
@@ -735,25 +735,52 @@
   </script>
 
   <!-- ========================================================== -->
-  <!-- POLISH BOARD STUDIO — POLISH AI DRAWER                     -->
+  <!-- POLISH BOARD STUDIO — POLISH AI FLOATING LUXURY WINDOW     -->
   <!-- ========================================================== -->
-  <div id="aiCopilotBackdrop" class="ai-copilot-backdrop" onclick="StudioAI.toggleDrawer(false)"></div>
+  <div id="aiCopilotBackdrop" class="ai-copilot-backdrop" style="display: none !important;"></div>
 
-  <aside id="aiCopilotDrawer" class="ai-copilot-drawer" aria-label="Polish AI">
-    <!-- Header -->
-    <div class="ai-drawer-header">
-      <div class="ai-header-brand">
-        <div class="ai-brand-crest">AI</div>
-        <div class="ai-header-titles">
-          <span class="ai-header-title">Polish AI</span>
-          <span class="ai-header-badge">Growth Intelligence</span>
+  <!-- Minimized Floating Pill (Non-blocking Ambient Assistant) -->
+  <div id="aiMinimizedPill" class="ai-minimized-pill" onclick="StudioAI.toggleWindow(true)" title="Open Polish AI (Cmd+J)">
+    <span class="ai-pill-pulse"></span>
+    <span class="ai-pill-crest">AI</span>
+    <span class="ai-pill-title">Polish AI</span>
+    <span class="ai-pill-badge">Active</span>
+    <span id="aiPillCardsBadge" class="ai-pill-cards-badge" style="display: none;">0 Cards</span>
+  </div>
+
+  <!-- Floating Strategy Window -->
+  <aside id="aiCopilotWindow" class="ai-copilot-window" aria-label="Polish AI" role="region">
+    <!-- Draggable Window Header -->
+    <div id="aiWindowHeader" class="ai-window-header">
+      <div class="ai-header-drag-zone" title="Drag to reposition window">
+        <div class="ai-drag-grip" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="ai-header-brand">
+          <div class="ai-brand-crest">AI</div>
+          <div class="ai-header-titles">
+            <div class="ai-title-row">
+              <span class="ai-header-title">Polish AI</span>
+              <span class="ai-header-badge">Growth Intelligence</span>
+            </div>
+            <span class="ai-header-subtitle">Haute Atelier Strategy Engine</span>
+          </div>
         </div>
       </div>
+
       <div class="ai-header-actions">
-        <button type="button" class="ai-icon-btn" onclick="StudioAI.clearChat()" title="Reset Chat">
+        <button type="button" class="ai-icon-btn" onclick="StudioAI.clearChat()" title="Reset Strategy Session">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
         </button>
-        <button type="button" id="aiCloseBtn" class="ai-icon-btn" onclick="StudioAI.toggleDrawer(false)" title="Close (Esc)">✕</button>
+        <button type="button" id="aiDockToggleBtn" class="ai-icon-btn" onclick="StudioAI.toggleDock()" title="Dock to Side / Float Window">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+        </button>
+        <button type="button" id="aiMinimizeBtn" class="ai-icon-btn" onclick="StudioAI.minimize()" title="Minimize (Cmd+J)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <button type="button" id="aiCloseBtn" class="ai-icon-btn ai-btn-close" onclick="StudioAI.close()" title="Close (Esc)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
     </div>
 
@@ -784,9 +811,13 @@
       <div class="ai-message assistant">
         <div class="ai-msg-avatar">AI</div>
         <div class="ai-msg-body">
-          <div class="ai-msg-bubble">
-            <p><strong>Polish AI Active.</strong></p>
-            <p>Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board.</p>
+          <div class="ai-brief-card">
+            <div class="ai-brief-header">
+              <span class="ai-brief-tag">INTELLIGENCE BRIEF</span>
+              <span class="ai-brief-status">READY</span>
+            </div>
+            <h4 class="ai-brief-title">Polish AI Active</h4>
+            <p class="ai-brief-prose">Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board. I will provide direct DTC unit economics and spawn custom strategy frames directly onto your canvas.</p>
           </div>
         </div>
       </div>
@@ -801,13 +832,13 @@
         </button>
       </div>
       <div class="ai-input-footer">
-        <span>Polish AI • Studio Exclusive</span>
+        <span class="ai-footer-note">Polish AI • Floating Non-Blocking Assistant</span>
         <span class="ai-shortcut-hint"><kbd>Cmd</kbd>+<kbd>J</kbd> to toggle</span>
       </div>
     </div>
   </aside>
 
   <!-- Studio AI Engine -->
-  <script src="/studio/js/studio-ai.js?v=20260909_copilot"></script>
+  <script src="/studio/js/studio-ai.js?v=20260909_floating"></script>
 </body>
 </html>

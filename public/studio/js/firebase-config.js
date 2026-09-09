@@ -36,6 +36,20 @@
           console.warn('[PolishFirebase] Dynamic config fetch failed:', e.message);
         }
 
+        // Project client configuration fallback for zero-downtime authentication
+        if (!config || !config.apiKey) {
+          config = {
+            apiKey: 'AIzaSyAdtvlrJwmTGMe6JbMCSdEQCKC7eAle-TM',
+            authDomain: 'polishmediacocom.firebaseapp.com',
+            projectId: 'polishmediacocom',
+            storageBucket: 'polishmediacocom.firebasestorage.app',
+            messagingSenderId: '70668280388',
+            appId: '1:70668280388:web:455f906c6fbca8ce701211',
+            measurementId: 'G-7MGW2YG98L',
+            isConfigured: true
+          };
+        }
+
         // Initialize Firebase with config
         if (config && typeof firebase !== 'undefined' && firebase.initializeApp) {
           if (!firebase.apps.length) {

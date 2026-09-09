@@ -117,14 +117,16 @@ const configLimiter = rateLimit({
 
 // Firebase config — rate limited (safe to be public, but throttle abuse)
 app.get('/api/config/firebase', configLimiter, (req, res) => {
+  const apiKey = process.env.FIREBASE_API_KEY || 'AIzaSyAdtvlrJwmTGMe6JbMCSdEQCKC7eAle-TM';
+  const projectId = process.env.FIREBASE_PROJECT_ID || 'polishmediacocom';
   res.json({
-    apiKey: process.env.FIREBASE_API_KEY || '',
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN || '',
-    projectId: process.env.FIREBASE_PROJECT_ID || '',
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || '',
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || '',
-    appId: process.env.FIREBASE_APP_ID || '',
-    isConfigured: !!(process.env.FIREBASE_API_KEY && process.env.FIREBASE_PROJECT_ID)
+    apiKey,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN || 'polishmediacocom.firebaseapp.com',
+    projectId,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || 'polishmediacocom.firebasestorage.app',
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || '70668280388',
+    appId: process.env.FIREBASE_APP_ID || '1:70668280388:web:455f906c6fbca8ce701211',
+    isConfigured: true
   });
 });
 

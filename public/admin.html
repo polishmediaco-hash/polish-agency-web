@@ -1246,21 +1246,6 @@
 
       <!-- Auth Error Notification Box (Generic, zero data leakage) -->
       <div id="authGateError" class="auth-error-box" style="display: none; margin-top: 18px;"></div>
-
-      <!-- Discreet Fallback Key Access -->
-      <div style="margin-top: 28px;">
-        <button type="button" onclick="toggleKeyForm()" style="background: none; border: none; color: rgba(255,255,255,0.2); font-size: 10.5px; cursor: pointer; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#E2C799'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">
-          Key Access
-        </button>
-        <div id="manualKeyForm" style="display: none; margin-top: 14px; text-align: left;">
-          <input type="password" id="adminSecurityKey" class="form-input" placeholder="Enter security key" autocomplete="off"
-            onkeydown="if(event.key==='Enter') verifyAndUnlock()">
-          <button type="button" class="btn-ghost" style="width: 100%; justify-content: center; margin-top: 8px; font-size: 11.5px;" onclick="verifyAndUnlock()">
-            Unlock with Key
-          </button>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

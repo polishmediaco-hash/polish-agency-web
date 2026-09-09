@@ -32,11 +32,7 @@ async function verifyFirebaseIdToken(idToken) {
     return cached.user;
   }
 
-  const apiKey = process.env.FIREBASE_API_KEY;
-  if (!apiKey) {
-    console.error('[Auth] FIREBASE_API_KEY not configured in environment.');
-    return null;
-  }
+  const apiKey = process.env.FIREBASE_API_KEY || 'AIzaSyAdtvlrJwmTGMe6JbMCSdEQCKC7eAle-TM';
 
   try {
     const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`, {

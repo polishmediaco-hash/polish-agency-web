@@ -74,7 +74,7 @@ window.StudioCore = (function () {
               tag: 'VISUAL SEMANTICS',
               tagColor: 'gold',
               title: 'Color Coded Flow Logic',
-              content: '🔵 Sky Azure: Automated Flows & Tech Stack\n🟡 Haute Gold: Strategic Architecture Pillars\n🟢 Mint Sage: High-Ticket Revenue & Retainers\n🔴 Rose: Friction Bottlenecks Solved'
+              content: '• Sky Azure: Automated Flows & Tech Stack\n• Haute Gold: Strategic Architecture Pillars\n• Mint Sage: High-Ticket Revenue & Retainers\n• Rose: Friction Bottlenecks Solved'
             },
             {
               tag: 'NORTH STAR KPIS',
@@ -394,21 +394,30 @@ window.StudioCore = (function () {
     const pathParts = window.location.pathname.split('/').filter(Boolean);
     const pathId = (pathParts[0] === 'b' || pathParts[0] === 'view') && pathParts[1] ? pathParts[1] : null;
     const boardId = params.get('id') || pathId || localStorage.getItem('polish_board_last_id') || 'starter-strategy-board';
-
-    // 2. Instant render from local cache or built-in template (0ms Frame-1 render!)
-    loadBoard(boardId);
-
-    // 2b. Auto-populate template if template param is present
     const templateParam = params.get('template');
+
+    // 2. Instant render: if templateParam is present, initialize directly with template
     if (templateParam) {
-      setTimeout(() => {
-        loadTemplate(templateParam);
-        try {
-          const cleanUrl = new URL(window.location);
-          cleanUrl.searchParams.delete('template');
-          window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search);
-        } catch (_) {}
-      }, 80);
+      currentBoard = {
+        id: boardId,
+        slug: boardId,
+        title: 'Strategy Board',
+        client: 'Private Client',
+        elements: [],
+        connections: [],
+        templateKey: templateParam,
+        updatedAt: new Date().toISOString()
+      };
+      loadTemplate(templateParam);
+      saveLocally();
+      try {
+        const cleanUrl = new URL(window.location);
+        cleanUrl.searchParams.delete('template');
+        window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search);
+      } catch (_) {}
+      triggerAutoSave();
+    } else {
+      loadBoard(boardId);
     }
 
     // 3. Bind Keyboard Shortcuts & Title input
@@ -456,6 +465,15 @@ window.StudioCore = (function () {
         .then(data => {
           if (data && data.success && data.board) {
             const cloudBoard = data.board;
+            const currentCount = (currentBoard && currentBoard.elements) ? currentBoard.elements.length : 0;
+            const cloudCount = (cloudBoard && cloudBoard.elements) ? cloudBoard.elements.length : 0;
+
+            // Guard: Never let an empty or starter cloud board wipe out a populated canvas
+            if (currentCount > 0 && cloudCount === 0) {
+              triggerAutoSave();
+              return;
+            }
+
             if (!board || new Date(cloudBoard.updatedAt || 0) > new Date(board.updatedAt || 0)) {
               currentBoard = cloudBoard;
               saveLocally();
@@ -480,6 +498,13 @@ window.StudioCore = (function () {
     if (!currentBoard) return;
     const titleInput = document.getElementById('boardTitleInput');
     if (titleInput) titleInput.value = currentBoard.title || 'Untitled Board';
+
+    // Update currency selector in top dock
+    const activeCur = currentBoard.currency || localStorage.getItem('polish_studio_currency') || 'AED';
+    currentBoard.currency = activeCur;
+    document.querySelectorAll('.dock-currency-picker .currency-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.currency === activeCur);
+    });
 
     // Update client view button link
     const btnClient = document.getElementById('btnClientView');
@@ -636,32 +661,223 @@ window.StudioCore = (function () {
   function addStrategyCard(cardData, posX, posY) {
     if (!currentBoard) return null;
     const center = getCanvasCenter();
-    const count = (currentBoard.elements.filter(e => e.type === 'frame').length + 1).toString().padStart(2, '0');
-    const frameId = `frame-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    const rawType = String(cardData.type || cardData.elementType || 'frame').toLowerCase();
+    let newCard = null;
 
-    const newCard = {
-      id: frameId,
-      type: 'frame',
-      x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 210),
-      y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 160),
-      width: 440,
-      height: 340,
-      zIndex: 15,
-      frameNumber: count,
-      titlePill: (cardData.type || 'STRATEGY').toUpperCase(),
-      headline: cardData.title || `Strategy Pillar ${count}`,
-      serifAccent: '',
-      description: '',
-      boxes: [
-        {
-          tag: (cardData.type || 'EXECUTION').toUpperCase(),
-          tagColor: 'gold',
-          title: 'Actionable Blueprint',
-          content: cardData.content || '',
-          isWhite: true
-        }
-      ]
-    };
+    if (rawType === 'value-equation') {
+      newCard = {
+        id: `ve-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'value-equation',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 360),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 200),
+        width: cardData.width || 720,
+        zIndex: 15,
+        title: cardData.title || 'The $100M Value Equation',
+        scoreBadge: cardData.scoreBadge || 'SCORE: 98.4 / 100',
+        dreamOutcome: cardData.dreamOutcome || { title: cardData.dreamTitle || 'Dream Outcome', desc: cardData.dreamDesc || cardData.content || 'Category dominance in luxury aesthetics.' },
+        likelihood: cardData.likelihood || { title: cardData.likelihoodTitle || 'Perceived Certainty', desc: cardData.likelihoodDesc || 'Clinical trial proof and ironclad guarantee.' },
+        timeDelay: cardData.timeDelay || { title: cardData.timeTitle || 'Time Delay Compressed', desc: cardData.timeDesc || 'Instant 48-hour onboarding and sprint launch.' },
+        effort: cardData.effort || { title: cardData.effortTitle || 'Effort Eliminated', desc: cardData.effortDesc || 'Done-For-You operational execution.' },
+        footerLaw: cardData.footerLaw || 'Mathematical Law: When Denominator (Time × Effort) Approaches 0, Perceived Value Approaches Infinity.'
+      };
+    } else if (rawType === 'bonus-stack') {
+      newCard = {
+        id: `bs-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'bonus-stack',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 230),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 220),
+        width: cardData.width || 460,
+        zIndex: 15,
+        title: cardData.title || 'Grand Slam Bonus Stack',
+        items: Array.isArray(cardData.items) && cardData.items.length > 0 ? cardData.items : [
+          { title: 'Bonus 01: Turnkey SOP & Protocol Database', desc: 'Pre-vetted clinical operational blueprints', strike: 'AED 8,500' },
+          { title: 'Bonus 02: High-AOV Funnel Architecture', desc: 'Custom funnel engineered for 3.4x MER', strike: 'AED 12,000' },
+          { title: 'Bonus 03: 24/7 Sovereign Partner VIP Hotline', desc: 'Direct WhatsApp async access to senior advisory team', strike: 'AED 15,000' }
+        ],
+        totalValue: cardData.totalValue || 'AED 35,500',
+        price: cardData.price || 'AED 12,500 / mo',
+        savings: cardData.savings || 'AED 23,000'
+      };
+    } else if (rawType === 'capacity-indicator') {
+      newCard = {
+        id: `cap-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'capacity-indicator',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 180),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 120),
+        width: cardData.width || 360,
+        zIndex: 15,
+        title: cardData.title || 'Atelier Client Roster',
+        totalSlots: cardData.totalSlots || 3,
+        filledSlots: cardData.filledSlots !== undefined ? cardData.filledSlots : 2,
+        remainingText: cardData.remainingText || 'Accepting 1 new engagement this quarter.',
+        urgency: cardData.urgency || 'Next opening: Q2 2025. Enquire to reserve.'
+      };
+    } else if (rawType === 'payment-architecture') {
+      newCard = {
+        id: `pa-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'payment-architecture',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 380),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 200),
+        width: cardData.width || 760,
+        zIndex: 15,
+        title: cardData.title || 'Investment Structure Comparison',
+        columns: Array.isArray(cardData.columns) && cardData.columns.length > 0 ? cardData.columns : [
+          {
+            name: 'Upfront Full Pay',
+            total: cardData.upfrontTotal || 'AED 75,000',
+            cashflow: 'Single payment, Day 1',
+            psychology: 'Maximum client commitment. Eliminates monthly friction.',
+            bestFor: 'High-trust, high-ticket close',
+            badge: 'BEST VALUE',
+            highlight: true
+          },
+          {
+            name: 'Monthly Retainer',
+            total: cardData.monthlyTotal || 'AED 25,000 / mo',
+            cashflow: 'Rolling 3-month minimum',
+            psychology: 'Lower barrier to entry. Price perceived as ongoing advisory.',
+            bestFor: 'Ongoing advisory relationships',
+            badge: '',
+            highlight: false
+          },
+          {
+            name: 'Milestone-Based',
+            total: cardData.milestoneTotal || 'AED 25,000 × 3 milestones',
+            cashflow: 'On delivery of each phase',
+            psychology: 'Aligns payment to progress. Reduces buyer anxiety.',
+            bestFor: 'Project-based engagements',
+            badge: '',
+            highlight: false
+          }
+        ],
+        footnote: cardData.footnote || 'All structures access the same full scope of advisory. Investment architecture is a strategic choice, not a service tier.'
+      };
+    } else if (rawType === 'prescription') {
+      newCard = {
+        id: `rx-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'prescription',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 210),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 180),
+        width: cardData.width || 420,
+        zIndex: 15,
+        title: cardData.title || 'Sovereign Advisory Retainer',
+        fee: cardData.fee || 'AED 25,000 / Month',
+        term: cardData.term || 'Closed-Door 90-Day Container Commitment',
+        term1: cardData.term1 || (cardData.terms && cardData.terms[0]) || 'Bi-Weekly 1-on-1 Consultative Diagnostic & Growth Offsite',
+        term2: cardData.term2 || (cardData.terms && cardData.terms[1]) || '24/7 Async Sovereign Partner WhatsApp Hotline',
+        term3: cardData.term3 || (cardData.terms && cardData.terms[2]) || 'Creative Sandbox Teardowns & Multi-Touch Funnel Architecture'
+      };
+    } else if (rawType === 'sticky') {
+      const rotation = (Math.random() * 4 - 2).toFixed(1);
+      newCard = {
+        id: `sticky-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'sticky',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 140),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 100),
+        width: cardData.width || 280,
+        height: cardData.height || 190,
+        zIndex: 25,
+        color: cardData.color || 'gold',
+        rotation: parseFloat(rotation),
+        hasTape: true,
+        header: cardData.title || cardData.header || 'Strategic Note',
+        content: cardData.content || cardData.text || '',
+        footer: cardData.footer || ''
+      };
+    } else if (rawType === 'pricing') {
+      newCard = {
+        id: `pricing-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'pricing',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 160),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 160),
+        width: cardData.width || 320,
+        zIndex: 15,
+        badge: cardData.badge || cardData.title || 'TIER OPTION',
+        currency: cardData.currency || 'AED',
+        figure: cardData.figure || cardData.price || '15,000',
+        period: cardData.period || 'Monthly Retainer',
+        features: Array.isArray(cardData.features) ? cardData.features : (cardData.content ? [cardData.content] : ['Dedicated Strategic Advisor', 'Weekly Optimization Sprints', 'Priority SLA Response']),
+        isFeatured: !!cardData.isFeatured
+      };
+    } else if (rawType === 'diagnostic-protocol') {
+      newCard = {
+        id: `diag-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'diagnostic-protocol',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 340),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 200),
+        width: cardData.width || 680,
+        zIndex: 15,
+        title: cardData.title || 'Consultative Diagnostic & Prescription Protocol',
+        stages: Array.isArray(cardData.stages) ? cardData.stages : [
+          { roman: 'STAGE I', title: 'Symptom Elicitation', desc: cardData.symptom || 'Identify visible client friction points and current conversion bottlenecks.' },
+          { roman: 'STAGE II', title: 'Root Pathophysiology', desc: cardData.rootCause || 'Diagnose systemic operational leaks: positioning, offer economics, and pricing asymmetry.' },
+          { roman: 'STAGE III', title: 'Cost of Inaction', desc: cardData.inactionCost || 'Compound cost of staying the course over the next 12 months.' },
+          { roman: 'STAGE IV', title: 'Prescription of Care', desc: cardData.prescription || 'Prescribe 90-Day transformation container with dedicated senior advisory.' },
+          { roman: 'STAGE V', title: 'Frame Control', desc: cardData.frameControl || 'State investment fee with absolute calm conviction. Hold the silence.' }
+        ]
+      };
+    } else if (rawType === 'pipeline-node') {
+      newCard = {
+        id: `node-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'pipeline-node',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 210),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 160),
+        width: cardData.width || 420,
+        zIndex: 15,
+        nodeId: cardData.nodeId || 'NODE_01',
+        status: cardData.status || 'ONLINE 200 OK',
+        title: cardData.title || 'Autonomous Intelligence Node',
+        desc: cardData.desc || cardData.content || '',
+        tech: cardData.tech || ['Claude 3.5 Sonnet', 'Make.com', 'Supabase Vector'],
+        steps: Array.isArray(cardData.steps) ? cardData.steps : [
+          'Ingest raw unstructured client data via webhook',
+          'Run multi-pass LLM reasoning against proprietary knowledge base',
+          'Synthesize executive brief and deliver to client portal'
+        ],
+        latency: cardData.latency || 'Latency: <120ms',
+        compute: cardData.compute || 'Cost: $0.0028 / run'
+      };
+    } else if (rawType === 'offer-name-generator') {
+      newCard = {
+        id: `ong-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'offer-name-generator',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 240),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 160),
+        width: cardData.width || 480,
+        zIndex: 15,
+        adjective: cardData.adjective || 'Sovereign',
+        outcome: cardData.outcome || 'Growth',
+        vehicle: cardData.vehicle || 'Accelerator',
+        duration: cardData.duration || '90-Day',
+        audience: cardData.audience || 'Luxury Aesthetic Clinics'
+      };
+    } else {
+      // Default: Strategy Container Frame
+      const count = (currentBoard.elements.filter(e => e.type === 'frame').length + 1).toString().padStart(2, '0');
+      newCard = {
+        id: `frame-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+        type: 'frame',
+        x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 210),
+        y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 160),
+        width: cardData.width || 440,
+        height: cardData.height || 340,
+        zIndex: 15,
+        frameNumber: count,
+        titlePill: (cardData.type || 'STRATEGY').toUpperCase(),
+        headline: cardData.title || `Strategy Pillar ${count}`,
+        serifAccent: cardData.serifAccent || '',
+        description: cardData.description || '',
+        boxes: Array.isArray(cardData.boxes) && cardData.boxes.length > 0 ? cardData.boxes : [
+          {
+            tag: (cardData.type || 'EXECUTION').toUpperCase(),
+            tagColor: cardData.tagColor || 'gold',
+            title: cardData.boxTitle || 'Actionable Blueprint',
+            content: cardData.content || '',
+            isWhite: true
+          }
+        ]
+      };
+    }
 
     pushHistory();
     currentBoard.elements.push(newCard);
@@ -906,7 +1122,7 @@ window.StudioCore = (function () {
       width: 280,
       zIndex: 15,
       title: 'NORTH STAR METRIC',
-      badge: '▲ +42% Lift',
+      badge: '+42% Lift',
       deltaColor: 'tag-green',
       figure: '3.8x MER',
       subtitle: 'Blended RoAS across Meta ASC & Spark Ads'
@@ -1120,16 +1336,130 @@ window.StudioCore = (function () {
 
   function indicateSaving() {
     const el = document.getElementById('saveIndicator');
-    if (el) el.innerHTML = '<span class="save-dot" style="background:#F59E0B"></span> Saving...';
+    if (el) el.innerHTML = '<span class="save-dot" style="background:#F59E0B; box-shadow:0 0 6px rgba(245,158,11,0.5)"></span> <span class="save-text">Saving...</span>';
   }
 
   function indicateSaved(isCloud = true) {
     const el = document.getElementById('saveIndicator');
     if (!el) return;
     if (isCloud) {
-      el.innerHTML = '<span class="save-dot" style="background:#10B981"></span> Local & Cloud Synced';
+      el.innerHTML = '<span class="save-dot"></span> <span class="save-text">Cloud Synced</span>';
     } else {
-      el.innerHTML = '<span class="save-dot" style="background:#F59E0B"></span> Saved Locally (Offline)';
+      el.innerHTML = '<span class="save-dot" style="background:#F59E0B; box-shadow:0 0 6px rgba(245,158,11,0.5)"></span> <span class="save-text">Saved Locally</span>';
+    }
+  }
+
+  // ==========================================================
+  // MULTI-CURRENCY ENGINE (DZD, AED, USD, EUR)
+  // ==========================================================
+  const CURRENCY_PRESETS = [
+    { AED: 'AED 75,000', USD: '$ 20,000', EUR: '€ 18,500', DZD: '2,800,000 DZD' },
+    { AED: 'AED 800', USD: '$ 250', EUR: '€ 220', DZD: '30,000 DZD' },
+    { AED: 'AED 3,250', USD: '$ 900', EUR: '€ 820', DZD: '120,000 DZD' },
+    { AED: 'AED 380', USD: '$ 100', EUR: '€ 95', DZD: '14,000 DZD' },
+    { AED: 'AED 12,500', USD: '$ 3,400', EUR: '€ 3,100', DZD: '460,000 DZD' },
+    { AED: 'AED 25,000', USD: '$ 6,800', EUR: '€ 6,200', DZD: '925,000 DZD' },
+    { AED: 'AED 28,000', USD: '$ 7,600', EUR: '€ 7,000', DZD: '1,050,000 DZD' },
+    { AED: 'AED 35,500', USD: '$ 9,600', EUR: '€ 8,800', DZD: '1,300,000 DZD' },
+    { AED: 'AED 23,000', USD: '$ 6,200', EUR: '€ 5,700', DZD: '850,000 DZD' },
+    { AED: 'AED 180,000', USD: '$ 49,000', EUR: '€ 45,000', DZD: '6,600,000 DZD' },
+    { AED: 'AED 185,000', USD: '$ 50,000', EUR: '€ 46,000', DZD: '6,800,000 DZD' },
+    { AED: 'AED 8,500', USD: '$ 2,300', EUR: '€ 2,100', DZD: '310,000 DZD' },
+    { AED: 'AED 15,000', USD: '$ 4,000', EUR: '€ 3,700', DZD: '550,000 DZD' },
+    { AED: 'AED 420', USD: '$ 115', EUR: '€ 105', DZD: '15,500 DZD' },
+    { AED: 'AED 180', USD: '$ 50', EUR: '€ 45', DZD: '6,600 DZD' },
+    { AED: 'AED 4,500', USD: '$ 1,200', EUR: '€ 1,100', DZD: '165,000 DZD' },
+    { AED: '267.00', USD: '72.50', EUR: '66.75', DZD: '9,880' },
+    { AED: '44.50', USD: '12.00', EUR: '11.10', DZD: '1,650' },
+    { AED: '17.80', USD: '4.85', EUR: '4.45', DZD: '660' },
+    { AED: '0.80', USD: '0.22', EUR: '0.20', DZD: '30' }
+  ];
+
+  const CURRENCY_SYMBOLS = {
+    AED: 'AED',
+    USD: '$',
+    EUR: '€',
+    DZD: 'DZD'
+  };
+
+  function formatConvertedText(text, targetCurrency) {
+    if (!text || typeof text !== 'string') return text;
+    let res = text;
+
+    // 1. Calibrated Presets Check (bidirectional across all currencies)
+    for (const set of CURRENCY_PRESETS) {
+      for (const [cur, val] of Object.entries(set)) {
+        if (res.includes(val)) {
+          res = res.split(val).join(set[targetCurrency]);
+        }
+      }
+    }
+
+    // 2. Generic Currency Headers and Symbols
+    const sym = CURRENCY_SYMBOLS[targetCurrency] || targetCurrency;
+    res = res.replace(/\((?:AED|USD|\$|EUR|€|DZD|DA)\)/gi, `(${sym})`);
+    return res;
+  }
+
+  function applyCurrencyToElements(elements, currency) {
+    if (!Array.isArray(elements)) return;
+    elements.forEach(el => {
+      if (el.type === 'metric') {
+        el.currency = currency;
+        if (el.figure) el.figure = formatConvertedText(el.figure, currency);
+        if (el.subtitle) el.subtitle = formatConvertedText(el.subtitle, currency);
+      } else if (el.type === 'pricing') {
+        el.currency = (currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency);
+        if (el.figure) el.figure = formatConvertedText(el.figure, currency).replace(/[^0-9,.]/g, '');
+        if (el.totalValue) el.totalValue = formatConvertedText(el.totalValue, currency);
+        if (el.price) el.price = formatConvertedText(el.price, currency);
+        if (el.savings) el.savings = formatConvertedText(el.savings, currency);
+      } else if (el.type === 'table') {
+        if (Array.isArray(el.headers)) {
+          el.headers = el.headers.map(h => formatConvertedText(h, currency));
+        }
+        if (Array.isArray(el.rows)) {
+          el.rows = el.rows.map(row => row.map(cell => formatConvertedText(cell, currency)));
+        }
+      } else if (el.type === 'prescription') {
+        if (el.fee) el.fee = formatConvertedText(el.fee, currency);
+        if (Array.isArray(el.stages)) {
+          el.stages = el.stages.map(st => {
+            if (st.desc) st.desc = formatConvertedText(st.desc, currency);
+            return st;
+          });
+        }
+      } else if (el.type === 'diagnostic-protocol') {
+        if (Array.isArray(el.stages)) {
+          el.stages = el.stages.map(st => {
+            if (st.desc) st.desc = formatConvertedText(st.desc, currency);
+            return st;
+          });
+        }
+      }
+    });
+  }
+
+  function setBoardCurrency(currency) {
+    if (!['DZD', 'AED', 'USD', 'EUR'].includes(currency)) return;
+    if (!currentBoard) return;
+
+    pushHistory();
+    currentBoard.currency = currency;
+    localStorage.setItem('polish_studio_currency', currency);
+
+    // Update Top Dock active button
+    document.querySelectorAll('.dock-currency-picker .currency-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.currency === currency);
+    });
+
+    // Apply to elements and re-render
+    applyCurrencyToElements(currentBoard.elements, currency);
+    renderBoard();
+    triggerAutoSave();
+
+    if (window.StudioInspector && typeof window.StudioInspector.updateSelection === 'function') {
+      window.StudioInspector.updateSelection();
     }
   }
 
@@ -1696,8 +2026,8 @@ window.StudioCore = (function () {
       newConnections = [];
     } else if (templateKey === 'hormozi-offer' || templateKey === 'hormozi') {
       title = 'Alex Hormozi • $100M Grand Slam Offer & Value Equation Canvas';
-      const f1Id = `frame-hz-1-${Date.now()}`;
-      const f2Id = `frame-hz-2-${Date.now()}`;
+      const veId = `ve-hz-${Date.now()}`;
+      const stackId = `stack-hz-${Date.now()}`;
       const priceId = `pricing-hz-${Date.now()}`;
       const tblId = `table-hz-${Date.now()}`;
       const metricId = `metric-hz-${Date.now()}`;
@@ -1706,53 +2036,46 @@ window.StudioCore = (function () {
 
       newElements = [
         {
-          id: f1Id,
-          type: 'frame',
+          id: veId,
+          type: 'value-equation',
           x: 100,
           y: 120,
-          width: 660,
-          height: 560,
-          frameNumber: '01',
-          titlePill: 'VALUE EQUATION DECONSTRUCTION',
-          headline: 'The Value Equation &',
-          serifAccent: 'Pricing Asymmetry',
-          description: 'Maximizing perceived value while eliminating price resistance: (Dream Outcome × Likelihood) ÷ (Time Delay × Effort).',
-          boxes: [
-            { tag: 'DREAM OUTCOME', tagColor: 'gold', title: 'Status & Certainty Transformation', content: 'Never sell cream in a glass bottle. Sell the undeniable executive prestige of flawless skin, zero rosacea flareups, and clinical certainty.' },
-            { tag: 'PERCEIVED LIKELIHOOD', tagColor: 'green', title: '56-Day Double-Blind Proof', content: 'Neutralize skepticism using third-party French laboratory test results with statistically significant 42% barrier thickness lift.' },
-            { tag: 'TIME DELAY (COMPRESSED)', tagColor: 'rose', title: '12-Hour Micro-Relief Milestone', content: 'Guarantee visible overnight hydration and redness reduction on night 1 to create immediate neurological reward.' },
-            { tag: 'EFFORT & SACRIFICE (ZERO)', tagColor: 'noir', title: '1-Step Metered Protocol', content: 'Eliminate complex 10-step confusion. Single precision dropper replaces morning serums, toners, and moisturizers.' }
-          ]
+          width: 740,
+          title: 'The $100M Value Equation',
+          scoreBadge: 'SCORE: 98.4 / 100',
+          dreamOutcome: { title: 'Executive Prestige & Clinical Transformation', desc: 'Flawless complexion, eliminated rosacea flare-ups, and Paris laboratory status.' },
+          likelihood: { title: '56-Day Double-Blind French Laboratory Proof', desc: '42% statistically verified barrier thickness lift with ISO bio-safety trials.' },
+          timeDelay: { title: '12-Hour Overnight Micro-Relief', desc: 'Noticeable reduction in skin inflammation and redness on Night 1.' },
+          effort: { title: '1-Step Precision Metered Protocol', desc: 'Single metered dropper replaces morning and evening 10-step multi-product confusion.' },
+          footerLaw: 'Mathematical Law: When Denominator (Time × Effort) Approaches 0, Perceived Value Approaches Infinity.'
         },
         {
-          id: f2Id,
-          type: 'frame',
-          x: 820,
+          id: stackId,
+          type: 'bonus-stack',
+          x: 880,
           y: 120,
-          width: 660,
-          height: 560,
-          frameNumber: '02',
-          titlePill: 'DELIVERABLES ARCHITECTURE',
-          headline: 'Trim & Stack',
-          serifAccent: 'Grand Slam Deliverables',
-          description: 'Transforming every customer objection into a high-margin, proprietary deliverable bonus stacked into an irresistible offer.',
-          boxes: [
-            { tag: 'CORE VEHICLE', tagColor: 'gold', title: '50ml Copper Peptide Barrier Emulsion', content: 'Micro-encapsulated copper peptides in frosted French flint glass with anodized metered dropper.' },
-            { tag: 'SPEED BONUS', tagColor: 'blue', title: 'Rose-Gold Cryo-Sculpt Contouring Tool', content: 'Physical tool (AED 350 retail value) accelerating lymphatic drainage and visible jawline contour in 3 minutes.' },
-            { tag: 'CERTAINTY BONUS', tagColor: 'green', title: 'Quarterly Biochemist Skin Health Hotline', content: 'Private WhatsApp VIP access to formulation team for tailored dosage calibration based on seasonal humidity.' }
-          ]
+          width: 480,
+          title: 'Trim & Stack Grand Slam Offer',
+          items: [
+            { title: 'Core: 50ml Copper Peptide Barrier Emulsion', desc: 'Micro-encapsulated copper peptides in frosted French flint glass', strike: 'AED 6,500' },
+            { title: 'Speed: Rose-Gold Cryo-Sculpt Contouring Tool', desc: 'Accelerates lymphatic drainage and facial contouring in 3 minutes', strike: 'AED 4,200' },
+            { title: 'Certainty: Private Biochemist Skin Health Hotline', desc: '24/7 WhatsApp VIP formulation hotline for seasonal dosage adjustments', strike: 'AED 12,000' },
+            { title: 'Guarantee: 100% Empty-Bottle Risk Reversal', desc: 'Keep the cryo-tool and get full refund if skin fails to transform in 60 days', strike: 'AED 8,500' }
+          ],
+          totalValue: 'AED 31,200',
+          price: 'AED 12,500 / mo'
         },
         {
           id: priceId,
           type: 'pricing',
-          x: 1540,
+          x: 1400,
           y: 120,
           width: 380,
           isFeatured: true,
           badge: '$100M GRAND SLAM VIP RETAINER',
           currency: 'AED',
-          figure: '18,500',
-          period: '/ Quarter (Zero Risk)',
+          figure: '12,500',
+          period: '/ Month (Quarterly Commitment)',
           features: [
             '3-Month Active Regimen Batch (3x 50ml French Flint Glass)',
             'Rose-Gold Cryo-Sculpt Contouring Tool Included',
@@ -1762,23 +2085,11 @@ window.StudioCore = (function () {
           ]
         },
         {
-          id: metricId,
-          type: 'metric',
-          x: 1540,
-          y: 480,
-          width: 380,
-          title: 'VALUE TO PRICE RATIO',
-          badge: '10:1 VALUE ASYMMETRY',
-          deltaColor: 'tag-gold',
-          figure: '10x Value',
-          subtitle: 'AED 185,000 Stacked Worth / AED 18,500 Investment'
-        },
-        {
           id: tblId,
           type: 'table',
           x: 100,
-          y: 740,
-          width: 900,
+          y: 800,
+          width: 860,
           title: 'Hormozi Problem-to-Solution Deliverable Stack',
           badge: 'VALUE MATRIX',
           headers: ['Client Friction / Fear', 'Underlying Bottleneck', 'Grand Slam Deliverable', 'Perceived Value (AED)'],
@@ -1790,11 +2101,23 @@ window.StudioCore = (function () {
           ]
         },
         {
+          id: metricId,
+          type: 'metric',
+          x: 1000,
+          y: 800,
+          width: 320,
+          title: 'VALUE TO PRICE RATIO',
+          badge: '10:1 VALUE ASYMMETRY',
+          deltaColor: 'tag-gold',
+          figure: '10x Value',
+          subtitle: 'AED 31,200 Stacked Worth / AED 12,500 Investment'
+        },
+        {
           id: s1Id,
           type: 'sticky',
-          x: 1040,
-          y: 740,
-          width: 290,
+          x: 1360,
+          y: 800,
+          width: 280,
           height: 190,
           color: 'yellow',
           rotation: -1.5,
@@ -1806,9 +2129,9 @@ window.StudioCore = (function () {
         {
           id: s2Id,
           type: 'sticky',
-          x: 1370,
-          y: 740,
-          width: 290,
+          x: 1680,
+          y: 800,
+          width: 280,
           height: 190,
           color: 'rose',
           rotation: 2,
@@ -1820,15 +2143,15 @@ window.StudioCore = (function () {
       ];
 
       newConnections = [
-        { id: `conn-hz-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '1. Value Equation → Grand Slam Deliverables' },
-        { id: `conn-hz-2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '2. Stacked into Irresistible Retainer' },
-        { id: `conn-hz-3`, from: priceId, fromAnchor: 'bottom', to: metricId, toAnchor: 'top', style: 'dashed', color: 'gold', label: '' }
+        { id: `conn-hz-1`, from: veId, fromAnchor: 'right', to: stackId, toAnchor: 'left', style: 'solid', color: 'gold', label: 'Value Equation → Bonus Stack' },
+        { id: `conn-hz-2`, from: stackId, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'solid', color: 'green', label: 'Stacked Retainer' }
       ];
     } else if (templateKey === 'ottley-ai' || templateKey === 'ottley') {
       title = 'Liam Ottley • AI Automation & Autonomous Systems Pipeline';
-      const f1Id = `frame-ot-1-${Date.now()}`;
-      const f2Id = `frame-ot-2-${Date.now()}`;
-      const f3Id = `frame-ot-3-${Date.now()}`;
+      const n1Id = `node-ot-1-${Date.now()}`;
+      const n2Id = `node-ot-2-${Date.now()}`;
+      const n3Id = `node-ot-3-${Date.now()}`;
+      const n4Id = `node-ot-4-${Date.now()}`;
       const tblId = `table-ot-${Date.now()}`;
       const metricId = `metric-ot-${Date.now()}`;
       const s1Id = `sticky-ot-1-${Date.now()}`;
@@ -1836,73 +2159,86 @@ window.StudioCore = (function () {
 
       newElements = [
         {
-          id: f1Id,
-          type: 'frame',
+          id: n1Id,
+          type: 'pipeline-node',
           x: 100,
           y: 120,
-          width: 580,
-          height: 520,
-          frameNumber: '01',
-          titlePill: 'AUTONOMOUS LEAD INGESTION',
-          headline: 'Webhook Trigger &',
-          serifAccent: 'Intelligent Ingestion',
-          description: 'Instant zero-latency capture and enrichment of high-intent brand dossiers without human data entry.',
-          boxes: [
-            { tag: 'NODE 01: WEBHOOK', tagColor: 'gold', title: 'Real-Time Ingestion Webhook', content: 'Captures brand intake responses, monthly gross ad spend, and SKU catalogs instantly from landing page forms.' },
-            { tag: 'NODE 02: SCORING', tagColor: 'blue', title: 'Gemini 3.5 Classification Agent', content: 'Scores brand qualification in 1.2s: flags qualified brands (> $30k/mo media spend) for VIP fast-track.' }
-          ]
-        },
-        {
-          id: f2Id,
-          type: 'frame',
-          x: 740,
-          y: 120,
-          width: 580,
-          height: 520,
-          frameNumber: '02',
-          titlePill: 'AGENTIC SYNTHESIS PIPELINE',
-          headline: 'RAG Knowledge &',
-          serifAccent: 'Human-in-the-Loop',
-          description: 'Vector-grounded intelligence synthesizing clinical formulation teardowns with senior advisor review.',
-          boxes: [
-            { tag: 'NODE 03: RAG ENGINE', tagColor: 'green', title: 'Vector Retrieval DB', content: 'Cross-references active ingredients against 500+ clinical trials and regulatory databases (EU 1223/2009 & FDA).' },
-            { tag: 'NODE 04: QUALITY GATE', tagColor: 'rose', title: 'Human-in-the-Loop Slack Alert', content: 'Transmits generated audit to Senior Advisor Slack channel for 60-second review before client transmission.' }
-          ]
-        },
-        {
-          id: f3Id,
-          type: 'frame',
-          x: 1380,
-          y: 120,
-          width: 580,
-          height: 520,
-          frameNumber: '03',
-          titlePill: 'AUTONOMOUS CLIENT DELIVERY',
-          headline: 'Dossier Generation &',
-          serifAccent: 'CRM Synchronization',
-          description: 'Zero-touch client presentation generation, calendar booking, and contract dispatch.',
-          boxes: [
-            { tag: 'NODE 05: WHITEBOARD', tagColor: 'gold', title: 'POLISH Board Auto-Spawning', content: 'Instantiates an interactive, password-protected Whiteboard Studio instance with custom brand metrics.' },
-            { tag: 'NODE 06: CRM SYNC', tagColor: 'noir', title: 'HubSpot & WhatsApp Dispatch', content: 'Pushes qualified opportunity to CRM and sends high-touch executive WhatsApp calendar invite.' }
-          ]
-        },
-        {
-          id: metricId,
-          type: 'metric',
-          x: 100,
-          y: 690,
           width: 380,
-          title: 'PIPELINE TIME-TO-DELIVERY',
-          badge: '⚡ 98.4% AUTONOMOUS',
-          deltaColor: 'tag-green',
-          figure: '3.8 Minutes',
-          subtitle: 'Intake-to-Dossier Turnaround vs 48 Hours Manual'
+          nodeId: 'NODE_01: INGESTION',
+          status: 'ONLINE 200 OK',
+          title: 'Autonomous Ingestion Webhook',
+          desc: 'Captures brand intake responses, gross ad spend, and SKU catalogs instantly from form submissions.',
+          tech: ['Cloudflare Worker', 'Make.com Webhook', 'REST API'],
+          steps: [
+            'Ingests form JSON payload in <120ms',
+            'Normalizes currency and spend metrics',
+            'Emits event to scoring agent queue'
+          ],
+          latency: 'Latency: <120ms',
+          compute: 'Cost: $0.0018 / run'
+        },
+        {
+          id: n2Id,
+          type: 'pipeline-node',
+          x: 520,
+          y: 120,
+          width: 380,
+          nodeId: 'NODE_02: CLASSIFIER',
+          status: 'ONLINE 200 OK',
+          title: 'Gemini 3.5 Classifier Agent',
+          desc: 'Evaluates qualification criteria: flags brands with > $30k/mo media spend for VIP executive lane.',
+          tech: ['Gemini 3.5 Flash', 'Structured JSON Schema'],
+          steps: [
+            'Validates MER and monthly media spend',
+            'Extracts target demographic archetypes',
+            'Assigns qualification tier & priority route'
+          ],
+          latency: 'Latency: <850ms',
+          compute: 'Cost: $0.0042 / run'
+        },
+        {
+          id: n3Id,
+          type: 'pipeline-node',
+          x: 940,
+          y: 120,
+          width: 380,
+          nodeId: 'NODE_03: RAG SYNTHESIS',
+          status: 'ONLINE 200 OK',
+          title: 'Vector RAG & Clinical Lab DB',
+          desc: 'Grounds brand offer in clinical laboratory research papers, formulation bio-safety, and regulatory trials.',
+          tech: ['Supabase pgvector', 'OpenAI Embeddings', 'ISO 11930 DB'],
+          steps: [
+            'Vector semantic search against 500+ lab trials',
+            'Synthesizes 3 clinical differentiator claims',
+            'Prepares audit brief for human sign-off'
+          ],
+          latency: 'Latency: <1.4s',
+          compute: 'Cost: $0.0075 / run'
+        },
+        {
+          id: n4Id,
+          type: 'pipeline-node',
+          x: 1360,
+          y: 120,
+          width: 380,
+          nodeId: 'NODE_04: DISPATCH',
+          status: 'ONLINE 200 OK',
+          title: 'POLISH Board Auto-Spawning',
+          desc: 'Auto-instantiates password-protected Whiteboard Studio instance and synchronizes with HubSpot CRM.',
+          tech: ['POLISH Board API', 'HubSpot Webhook', 'WhatsApp API'],
+          steps: [
+            'Generates interactive custom Miro canvas',
+            'Dispatches VIP WhatsApp calendar invite',
+            'Logs opportunity to enterprise sales CRM'
+          ],
+          latency: 'Latency: <420ms',
+          compute: 'Cost: $0.0021 / run'
         },
         {
           id: tblId,
           type: 'table',
-          x: 520,
-          y: 690,
+          x: 100,
+          y: 640,
           width: 900,
           title: 'Liam Ottley Autonomous Systems Integration Architecture',
           badge: 'SYSTEMS TELEMETRY',
@@ -1915,10 +2251,22 @@ window.StudioCore = (function () {
           ]
         },
         {
+          id: metricId,
+          type: 'metric',
+          x: 1040,
+          y: 640,
+          width: 320,
+          title: 'PIPELINE TIME-TO-DELIVERY',
+          badge: '98.4% AUTONOMOUS',
+          deltaColor: 'tag-green',
+          figure: '3.8 Minutes',
+          subtitle: 'Intake-to-Dossier Turnaround vs 48 Hours Manual'
+        },
+        {
           id: s1Id,
           type: 'sticky',
-          x: 1460,
-          y: 690,
+          x: 1400,
+          y: 640,
           width: 280,
           height: 190,
           color: 'mint',
@@ -1931,8 +2279,8 @@ window.StudioCore = (function () {
         {
           id: s2Id,
           type: 'sticky',
-          x: 1780,
-          y: 690,
+          x: 1720,
+          y: 640,
           width: 280,
           height: 190,
           color: 'noir',
@@ -1945,14 +2293,15 @@ window.StudioCore = (function () {
       ];
 
       newConnections = [
-        { id: `conn-ot-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'solid', color: 'gold', label: '1. Ingested Payload' },
-        { id: `conn-ot-2`, from: f2Id, fromAnchor: 'right', to: f3Id, toAnchor: 'left', style: 'solid', color: 'green', label: '2. Approved Synthesis' }
+        { id: `conn-ot-1`, from: n1Id, fromAnchor: 'right', to: n2Id, toAnchor: 'left', style: 'solid', color: 'gold', label: '1. Ingest Payload' },
+        { id: `conn-ot-2`, from: n2Id, fromAnchor: 'right', to: n3Id, toAnchor: 'left', style: 'solid', color: 'green', label: '2. Qualified Tier' },
+        { id: `conn-ot-3`, from: n3Id, fromAnchor: 'right', to: n4Id, toAnchor: 'left', style: 'solid', color: 'gold', label: '3. Audit Dossier' }
       ];
     } else if (templateKey === 'bradley-inbound' || templateKey === 'bradley') {
       title = 'Chris Bradley • High-Ticket Inbound & Diagnostic Closing Blueprint';
       const f1Id = `frame-cb-1-${Date.now()}`;
-      const f2Id = `frame-cb-2-${Date.now()}`;
-      const priceId = `pricing-cb-${Date.now()}`;
+      const diagId = `diag-cb-${Date.now()}`;
+      const rxId = `rx-cb-${Date.now()}`;
       const formId = `form-cb-${Date.now()}`;
       const s1Id = `sticky-cb-1-${Date.now()}`;
       const s2Id = `sticky-cb-2-${Date.now()}`;
@@ -1963,59 +2312,51 @@ window.StudioCore = (function () {
           type: 'frame',
           x: 100,
           y: 120,
-          width: 660,
+          width: 540,
           height: 540,
           frameNumber: '01',
-          titlePill: 'SOVEREIGN AUTHORITY ASSETS',
-          headline: 'Inbound Conversion &',
-          serifAccent: 'Category Authority',
+          titlePill: 'AUTHORITY MEDIA',
+          headline: '12-Minute Inbound',
+          serifAccent: 'Authority Breakdown',
           description: 'Attracting high-net-worth beauty brand founders through undeniable proof breakdowns, zero sales chasing.',
           boxes: [
-            { tag: 'AUTHORITY MEDIA', tagColor: 'gold', title: 'Undeniable Technical Breakdowns', content: 'Publishing 20-minute deconstructions of formulation economics and Meta Advantage+ ad spend leakage.' },
-            { tag: 'DIAGNOSTIC BRIDGE', tagColor: 'blue', title: '60-Min Friction Diagnostic Intake', content: 'Positioning the initial consultation as an objective clinical diagnostic rather than a generic discovery call.' }
+            { tag: 'AUTHORITY VIDEO', tagColor: 'gold', title: 'Unit Economics Deconstruction', content: 'Publishing 20-minute deconstructions of formulation economics and Meta Advantage+ ad spend leakage.' },
+            { tag: 'DIAGNOSTIC BRIDGE', tagColor: 'blue', title: 'Clinical Diagnostic Intake', content: 'Positioning the initial consultation as an objective clinical diagnostic rather than a generic sales call.' }
           ]
         },
         {
-          id: f2Id,
-          type: 'frame',
-          x: 820,
+          id: diagId,
+          type: 'diagnostic-protocol',
+          x: 680,
           y: 120,
-          width: 660,
-          height: 540,
-          frameNumber: '02',
-          titlePill: 'DOCTOR-PATIENT CLOSING',
-          headline: 'Diagnostic Intake &',
-          serifAccent: 'Prescription of Care',
-          description: 'Conducting high-status consultative interviews where the prospect reveals their deepest operational bottlenecks.',
-          boxes: [
-            { tag: 'DEEP DIAGNOSIS', tagColor: 'rose', title: 'Bottleneck Extraction Protocol', content: 'Ask diagnostic questions about founder exhaustion, creative burn rate, and distributor margin erosion.' },
-            { tag: 'PRESCRIPTION', tagColor: 'green', title: 'Prescribing The 90-Day Container', content: 'Never pitch hourly rates or deliverables. Prescribe a closed-door quarterly partnership container.' }
+          width: 680,
+          title: 'Consultative Diagnostic & Prescription Protocol',
+          stages: [
+            { roman: 'STAGE I', title: 'Symptom Elicitation', desc: 'Identify visible pain: client complains of Meta CAC inflation and high single-purchase churn.' },
+            { roman: 'STAGE II', title: 'Root Pathophysiology', desc: 'Diagnose systemic leak: lack of clinical authority assets and failure to package regimen routine bundles.' },
+            { roman: 'STAGE III', title: 'Cost of Inaction Prognosis', desc: 'Compound impact: continuing current tactics burns AED 180,000 in wasted ad spend over 12 months.' },
+            { roman: 'STAGE IV', title: 'Prescription of Care', desc: 'Prescribe 90-Day Sovereign Container: Parisian lab positioning, DTC regimen rebrand, and Meta ASC creative.' },
+            { roman: 'STAGE V', title: 'The Silence Rule', desc: 'State fee with absolute certainty: AED 25,000 / mo quarterly retainer. Stop speaking and hold the frame.' }
           ]
         },
         {
-          id: priceId,
-          type: 'pricing',
-          x: 1540,
+          id: rxId,
+          type: 'prescription',
+          x: 1400,
           y: 120,
-          width: 380,
-          isFeatured: true,
-          badge: 'HIGH-TICKET ADVISORY CONTAINER',
-          currency: 'AED',
-          figure: '25,000',
-          period: '/ Month (Quarterly Commitment)',
-          features: [
-            'Bi-Weekly 1-on-1 Sovereign Growth Advisory Sessions',
-            '24/7 VIP Async WhatsApp Hotline to Senior Partner',
-            'Omnichannel CAC Compression & Creative Sandbox Teardowns',
-            'Proprietary Parisian Cosmetic Laboratory Network Access',
-            'Full Whiteboard Studio Strategy Map & Quarterly Offsite'
-          ]
+          width: 420,
+          title: 'Sovereign Advisory Retainer Rx',
+          fee: 'AED 25,000 / Month',
+          term: 'Closed-Door 90-Day Container Commitment',
+          term1: 'Bi-Weekly 1-on-1 Consultative Diagnostic & Growth Offsite',
+          term2: '24/7 Async Sovereign Partner WhatsApp Hotline',
+          term3: 'Creative Sandbox Teardowns & Multi-Touch Funnel Architecture'
         },
         {
           id: formId,
           type: 'form',
           x: 100,
-          y: 720,
+          y: 760,
           width: 660,
           title: 'Chris Bradley 4-Pillar Diagnostic Intake Worksheet',
           badge: 'DIAGNOSTIC INTAKE',
@@ -2028,8 +2369,8 @@ window.StudioCore = (function () {
         {
           id: s1Id,
           type: 'sticky',
-          x: 820,
-          y: 720,
+          x: 800,
+          y: 780,
           width: 290,
           height: 200,
           color: 'yellow',
@@ -2042,8 +2383,8 @@ window.StudioCore = (function () {
         {
           id: s2Id,
           type: 'sticky',
-          x: 1150,
-          y: 720,
+          x: 1120,
+          y: 780,
           width: 290,
           height: 200,
           color: 'rose',
@@ -2056,13 +2397,13 @@ window.StudioCore = (function () {
       ];
 
       newConnections = [
-        { id: `conn-cb-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '1. Inbound Authority → Diagnostic Intake' },
-        { id: `conn-cb-2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '2. Prescribed Advisory Container' }
+        { id: `conn-cb-1`, from: f1Id, fromAnchor: 'right', to: diagId, toAnchor: 'left', style: 'dashed', color: 'gold', label: 'Inbound → Diagnostic' },
+        { id: `conn-cb-2`, from: diagId, fromAnchor: 'right', to: rxId, toAnchor: 'left', style: 'dashed', color: 'green', label: 'Prescription of Care' }
       ];
     } else if (templateKey === 'morgan-outbound' || templateKey === 'morgan') {
       title = 'Charlie Morgan • Sovereign Outbound Machine & Prospect Conversion Engine';
-      const f1Id = `frame-cm-1-${Date.now()}`;
-      const f2Id = `frame-cm-2-${Date.now()}`;
+      const triadId = `triad-cm-${Date.now()}`;
+      const cadenceId = `cadence-cm-${Date.now()}`;
       const tblId = `table-cm-${Date.now()}`;
       const metricId = `metric-cm-${Date.now()}`;
       const s1Id = `sticky-cm-1-${Date.now()}`;
@@ -2070,44 +2411,32 @@ window.StudioCore = (function () {
 
       newElements = [
         {
-          id: f1Id,
-          type: 'frame',
+          id: triadId,
+          type: 'belief-triad',
           x: 100,
           y: 120,
-          width: 660,
-          height: 540,
-          frameNumber: '01',
-          titlePill: 'OUTBOUND VOLUME ARCHITECTURE',
-          headline: 'Multi-Touch Cadence &',
-          serifAccent: 'Predictable Volume Math',
-          description: 'Engineering high-volume personalized outbound pipelines that turn cold beauty founders into booked client audits.',
-          boxes: [
-            { tag: 'DUAL OUTREACH', tagColor: 'gold', title: 'Targeted Multi-Channel Touches', content: '50 personalized LinkedIn touches + 150 verified cold emails daily targeted at beauty brand C-suite.' },
-            { tag: 'LOOM AUDIT BRIDGE', tagColor: 'blue', title: '2-Minute Video Teardown', content: 'Identify 1 concrete leak in their current PDP or ad creative; deliver a personalized 120-second loom teardown.' }
-          ]
+          width: 720,
+          title: 'The 3 Limiting Beliefs Triad',
+          vTitle: 'The Agency Vehicle',
+          vBody: 'Shift belief from "Generic marketing agencies burn cash on vanity ads" to "Scientific clinical accelerators multiply cash on first-purchase AOV."',
+          iTitle: 'Internal Capability',
+          iBody: 'Shift belief from "Our team has no time or capacity to handle complex campaigns" to "Modular turnkey systems require zero internal staff overhead."',
+          eTitle: 'External Market',
+          eBody: 'Shift belief from "High-net-worth beauty buyers are cutting spend" to "Affluent cosmetic consumers actively seek lab-certified formulation transparency."'
         },
         {
-          id: f2Id,
-          type: 'frame',
-          x: 820,
+          id: cadenceId,
+          type: 'cadence-timeline',
+          x: 960,
           y: 120,
-          width: 660,
-          height: 540,
-          frameNumber: '02',
-          titlePill: 'BELIEF-SHIFTING MATRIX',
-          headline: 'Psychological Reframing &',
-          serifAccent: 'Objection Neutralization',
-          description: 'Systematically dismantling the prospect core limiting beliefs before the closing conversation.',
-          boxes: [
-            { tag: 'VEHICLE BELIEF', tagColor: 'green', title: 'Reframe The Agency Vehicle', content: 'Shift belief from "All marketing agencies burn cash" to "Skin-first scientific accelerators scale profit."' },
-            { tag: 'INTERNAL BELIEF', tagColor: 'rose', title: 'Reframe Margin Capabilities', content: 'Shift belief from "Our margins cannot afford customer acquisition" to "Our high-AOV routine bundles fund CAC."' }
-          ]
+          width: 780,
+          title: '21-Day 8-Touch Outbound Machine'
         },
         {
           id: tblId,
           type: 'table',
           x: 100,
-          y: 720,
+          y: 580,
           width: 900,
           title: 'Charlie Morgan Outbound Cadence & Conversion Pipeline',
           badge: 'PIPELINE EQUATION',
@@ -2123,7 +2452,7 @@ window.StudioCore = (function () {
           id: metricId,
           type: 'metric',
           x: 1040,
-          y: 720,
+          y: 580,
           width: 320,
           title: 'OUTBOUND CASH ROI',
           badge: '93.6x PIPELINE MULTIPLIER',
@@ -2135,7 +2464,7 @@ window.StudioCore = (function () {
           id: s1Id,
           type: 'sticky',
           x: 1400,
-          y: 720,
+          y: 580,
           width: 280,
           height: 190,
           color: 'noir',
@@ -2149,7 +2478,7 @@ window.StudioCore = (function () {
           id: s2Id,
           type: 'sticky',
           x: 1720,
-          y: 720,
+          y: 580,
           width: 280,
           height: 190,
           color: 'rose',
@@ -2162,75 +2491,61 @@ window.StudioCore = (function () {
       ];
 
       newConnections = [
-        { id: `conn-cm-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '1. Cold Volume → Qualified Belief Shift' },
-        { id: `conn-cm-2`, from: f2Id, fromAnchor: 'bottom', to: tblId, toAnchor: 'top', style: 'dashed', color: 'green', label: '2. Tracked in Conversion Pipeline' }
+        { id: `conn-cm-1`, from: triadId, fromAnchor: 'right', to: cadenceId, toAnchor: 'left', style: 'dashed', color: 'gold', label: 'Dismantle Beliefs' }
       ];
     } else if (templateKey === 'ajsmart-sprint' || templateKey === 'ajsmart') {
       title = 'AJ&Smart • 4-Day Product Strategy & Executive Facilitation Sprint';
-      const f1Id = `frame-aj-1-${Date.now()}`;
-      const f2Id = `frame-aj-2-${Date.now()}`;
-      const f3Id = `frame-aj-3-${Date.now()}`;
+      const swimlaneId = `swimlane-aj-${Date.now()}`;
+      const dots1Id = `dots-aj-1-${Date.now()}`;
+      const dots2Id = `dots-aj-2-${Date.now()}`;
+      const matrixId = `ldj-aj-${Date.now()}`;
       const tblId = `table-aj-${Date.now()}`;
       const s1Id = `sticky-aj-1-${Date.now()}`;
       const s2Id = `sticky-aj-2-${Date.now()}`;
 
       newElements = [
         {
-          id: f1Id,
-          type: 'frame',
+          id: swimlaneId,
+          type: 'sprint-swimlane',
           x: 100,
           y: 120,
-          width: 580,
-          height: 540,
-          frameNumber: '01',
-          titlePill: 'DAY 01 • MAP & SKETCH',
-          headline: 'Problem Definition &',
-          serifAccent: 'Expert Interrogation',
-          description: 'Deconstructing the product challenge and sketching solutions individually in complete silence.',
-          boxes: [
-            { tag: 'EXPERT INTERVIEWS', tagColor: 'gold', title: 'Chemist & Leadership Sync', content: '45-minute interviews extracting institutional knowledge and unaddressed technical bottlenecks.' },
-            { tag: 'LIGHTNING DEMOS', tagColor: 'blue', title: 'Cross-Industry Solutions', content: 'Review how non-competing luxury industries (Swiss horology, aerospace) solve tactile packaging.' }
+          width: 1220,
+          title: 'AJ&Smart 4-Day Product Strategy & Facilitation Sprint'
+        },
+        {
+          id: dots1Id,
+          type: 'voting-dots',
+          x: 430,
+          y: 350,
+          dots: [
+            { color: 'dot-violet', text: 'JS' },
+            { color: 'dot-mint', text: 'AK' },
+            { color: 'dot-gold', text: 'MH' }
           ]
         },
         {
-          id: f2Id,
-          type: 'frame',
-          x: 740,
-          y: 120,
-          width: 580,
-          height: 540,
-          frameNumber: '02',
-          titlePill: 'DAY 02 • DECIDE & STORYBOARD',
-          headline: 'Heatmap Voting &',
-          serifAccent: '8-Step Storyboard',
-          description: 'Eliminating endless consensus meetings: silent dot voting followed by decider selection.',
-          boxes: [
-            { tag: 'HEATMAP VOTING', tagColor: 'green', title: 'Silent Sticky Dot Voting', content: 'Team places dot stickers on standout ideas without discussion, revealing organic group alignment.' },
-            { tag: 'THE DECIDER', tagColor: 'rose', title: 'Sovereign Decider Selection', content: 'Executive Decider casts the sovereign green vote, locking the storyboard flow for prototyping.' }
+          id: dots2Id,
+          type: 'voting-dots',
+          x: 730,
+          y: 350,
+          dots: [
+            { color: 'dot-rose', text: 'EL' },
+            { color: 'dot-mint', text: 'AK' }
           ]
         },
         {
-          id: f3Id,
-          type: 'frame',
-          x: 1380,
+          id: matrixId,
+          type: 'ldj-matrix',
+          x: 1360,
           y: 120,
           width: 580,
-          height: 540,
-          frameNumber: '03',
-          titlePill: 'DAYS 03-04 • PROTOTYPE & TEST',
-          headline: 'Realistic Prototype &',
-          serifAccent: '5 Target User Tests',
-          description: 'Building a realistic Goldilocks test asset in 1 day and testing with 5 real target customers.',
-          boxes: [
-            { tag: 'GOLDILOCKS ASSET', tagColor: 'gold', title: 'High-Fidelity Shopify Prototype', content: 'Working interactive landing page with photorealistic 3D render of the frosted glass dropper.' },
-            { tag: '5 USER INTERVIEWS', tagColor: 'green', title: '1-on-1 Qualitative Testing', content: 'Testing with 5 verified skincare buyers reveals 85% of usability and price resistance patterns.' }
-          ]
+          title: 'LDJ Impact vs. Effort Prioritization Matrix'
         },
         {
           id: tblId,
           type: 'table',
           x: 100,
-          y: 720,
+          y: 680,
           width: 900,
           title: 'AJ&Smart Day 4 User Testing & Usability Matrix',
           badge: 'TEST MATRIX',
@@ -2246,7 +2561,7 @@ window.StudioCore = (function () {
           id: s1Id,
           type: 'sticky',
           x: 1040,
-          y: 720,
+          y: 680,
           width: 290,
           height: 190,
           color: 'yellow',
@@ -2260,7 +2575,7 @@ window.StudioCore = (function () {
           id: s2Id,
           type: 'sticky',
           x: 1370,
-          y: 720,
+          y: 680,
           width: 290,
           height: 190,
           color: 'blue',
@@ -2273,13 +2588,12 @@ window.StudioCore = (function () {
       ];
 
       newConnections = [
-        { id: `conn-aj-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: 'Day 01 → Day 02 Decision' },
-        { id: `conn-aj-2`, from: f2Id, fromAnchor: 'right', to: f3Id, toAnchor: 'left', style: 'dashed', color: 'green', label: 'Day 02 → Day 03 Prototype' }
+        { id: `conn-aj-1`, from: swimlaneId, fromAnchor: 'right', to: matrixId, toAnchor: 'left', style: 'dashed', color: 'gold', label: 'Decisions → Prioritization' }
       ];
     } else if (templateKey === 'isenberg-community' || templateKey === 'isenberg') {
       title = 'Greg Isenberg • Community-Led Growth Flywheel & Unbundling Canvas';
-      const f1Id = `frame-gi-1-${Date.now()}`;
-      const f2Id = `frame-gi-2-${Date.now()}`;
+      const unbundleId = `unbundle-gi-${Date.now()}`;
+      const flywheelId = `flywheel-gi-${Date.now()}`;
       const tblId = `table-gi-${Date.now()}`;
       const metricId = `metric-gi-${Date.now()}`;
       const s1Id = `sticky-gi-1-${Date.now()}`;
@@ -2287,45 +2601,39 @@ window.StudioCore = (function () {
 
       newElements = [
         {
-          id: f1Id,
-          type: 'frame',
+          id: unbundleId,
+          type: 'unbundling-tree',
           x: 100,
           y: 120,
-          width: 660,
-          height: 540,
-          frameNumber: '01',
-          titlePill: 'DIGITAL WATERING HOLE RESEARCH',
-          headline: 'Unbundling Reddit &',
-          serifAccent: 'Digital Watering Holes',
-          description: 'Mining high-signal online subcultures where passionate consumers discuss unaddressed product frustrations.',
-          boxes: [
-            { tag: 'FORUM MINING', tagColor: 'gold', title: 'Subreddit Sentiment Analysis', content: 'Scraping r/30PlusSkinCare and Discord aesthetic servers for recurring formulation complaints.' },
-            { tag: 'UNBUNDLED NICHE', tagColor: 'blue', title: 'The Unbundled Solution', content: 'Unbundling generic Reddit threads into a dedicated $150/mo private aesthetic membership concierge.' }
-          ]
+          width: 620,
+          title: 'Reddit Platform Unbundling Engine',
+          communityPill: 'r/30PlusSkinCare • 2.4M'
         },
         {
-          id: f2Id,
-          type: 'frame',
-          x: 820,
+          id: flywheelId,
+          type: 'flywheel-rings',
+          x: 760,
           y: 120,
-          width: 660,
-          height: 540,
-          frameNumber: '02',
-          titlePill: 'COMMUNITY-LED FLYWHEEL',
-          headline: 'Audience → Community →',
-          serifAccent: 'Product Monetization',
-          description: 'Building an engaged community asset that serves as an ongoing design partner and zero-CAC distribution channel.',
-          boxes: [
-            { tag: 'FREE AUDIENCE', tagColor: 'green', title: 'TOFU: Educational Content Engine', content: 'Substack deep dives on cosmetic chemistry attracting 25k beauty founders and aesthetic doctors.' },
-            { tag: 'CURATED COMMUNITY', tagColor: 'rose', title: 'MOFU: Application-Only VIP Circle', content: 'Private WhatsApp channel for 500 discerning high-ticket cosmetic patrons who co-create products.' },
-            { tag: 'MONETIZED PRODUCT', tagColor: 'gold', title: 'BOFU: Co-Created Product Drops', content: 'Micro-batch drops selling out within 24 hours with zero upfront paid ad spend.' }
-          ]
+          width: 580,
+          title: 'Audience → Community → Product (ACP)'
+        },
+        {
+          id: metricId,
+          type: 'metric',
+          x: 1380,
+          y: 120,
+          width: 320,
+          title: 'COMMUNITY LTV EXPANSION',
+          badge: '+84% LTV MULTIPLIER',
+          deltaColor: 'tag-gold',
+          figure: 'AED 3,250',
+          subtitle: 'Community Member 12-Mo LTV vs AED 380 DTC Single Buyer'
         },
         {
           id: tblId,
           type: 'table',
           x: 100,
-          y: 720,
+          y: 640,
           width: 900,
           title: 'Greg Isenberg Subreddit & Community Unbundling Matrix',
           badge: 'UNBUNDLING ENGINE',
@@ -2337,22 +2645,10 @@ window.StudioCore = (function () {
           ]
         },
         {
-          id: metricId,
-          type: 'metric',
-          x: 1040,
-          y: 720,
-          width: 320,
-          title: 'COMMUNITY LTV EXPANSION',
-          badge: '▲ 84% LTV MULTIPLIER',
-          deltaColor: 'tag-gold',
-          figure: 'AED 3,250',
-          subtitle: 'Community Member 12-Mo LTV vs AED 380 DTC Single Buyer'
-        },
-        {
           id: s1Id,
           type: 'sticky',
-          x: 1400,
-          y: 720,
+          x: 1040,
+          y: 640,
           width: 280,
           height: 190,
           color: 'rose',
@@ -2365,8 +2661,8 @@ window.StudioCore = (function () {
         {
           id: s2Id,
           type: 'sticky',
-          x: 1720,
-          y: 720,
+          x: 1370,
+          y: 640,
           width: 280,
           height: 190,
           color: 'mint',
@@ -2379,8 +2675,8 @@ window.StudioCore = (function () {
       ];
 
       newConnections = [
-        { id: `conn-gi-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '1. Unbundled Need → Community Flywheel' },
-        { id: `conn-gi-2`, from: f2Id, fromAnchor: 'bottom', to: tblId, toAnchor: 'top', style: 'dashed', color: 'green', label: '2. Unbundled Product Roadmap' }
+        { id: `conn-gi-1`, from: unbundleId, fromAnchor: 'right', to: flywheelId, toAnchor: 'left', style: 'dashed', color: 'gold', label: 'Unbundling → Flywheel' },
+        { id: `conn-gi-2`, from: flywheelId, fromAnchor: 'bottom', to: tblId, toAnchor: 'top', style: 'dashed', color: 'green', label: 'Product Roadmap' }
       ];
     } else if (templateKey === 'scaling-blueprint') {
       title = '90-Day Luxury Beauty Scaling Blueprint';
@@ -3471,6 +3767,17 @@ window.StudioCore = (function () {
     currentBoard.elements = newElements;
     currentBoard.connections = newConnections;
     currentBoard.drawings = [];
+
+    // Apply active currency
+    const activeCur = localStorage.getItem('polish_studio_currency') || 'AED';
+    currentBoard.currency = activeCur;
+    document.querySelectorAll('.dock-currency-picker .currency-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.currency === activeCur);
+    });
+    if (activeCur !== 'AED') {
+      applyCurrencyToElements(currentBoard.elements, activeCur);
+    }
+
     const input = document.getElementById('boardTitleInput');
     if (input) input.value = title;
     renderBoard();
@@ -3540,6 +3847,9 @@ window.StudioCore = (function () {
     loadTemplate,
     toggleTheme,
     toggleShortcutsModal,
+    setBoardCurrency,
+    formatConvertedText,
+    getBoardCurrency: () => (currentBoard && currentBoard.currency) || 'AED',
     getConnections: () => (currentBoard ? currentBoard.connections || [] : []),
     getCurrentBoard: () => currentBoard,
     getElements: () => (currentBoard ? currentBoard.elements || [] : []),

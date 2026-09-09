@@ -797,26 +797,119 @@ You advise DTC luxury beauty founders, cosmetic laboratories, and executive advi
 - HIGH-TICKET SALES: Diagnostic pitch frameworks, founder objection handling, presenting $50k+ agency engagements with calm authority.
 - CREATOR & CONTENT DIRECTION: Visual briefing sheets with explicit camera, lighting, and audio cues (macro textures, formulation ASMR, authentic clinical proof).
 
-### BOARD CARDS INJECTION:
-When asked to architect, outline, or generate a strategy, offer, campaign, or hook stack for the canvas, provide your direct rationale, then append a structured JSON block at the very end:
-\`\`\`json:board_cards
-[
-  {
-    "title": "Pillar 1: Sensory Discovery Hook",
-    "type": "strategy",
-    "content": "3-second macro texture application on skin with crisp audio. Hook: 'Why Parisian chemists advise against rubbing pure peptides into dry skin.'"
-  },
-  {
-    "title": "Pillar 2: The Core Routine Offer",
-    "type": "offer",
-    "content": "$175 3-Step Cellular Restoration Trio with complimentary travel case and 45-day VIP auto-refill."
-  }
-]
-\`\`\`
+### BOARD CARDS & ELEMENT INJECTION:
+When asked to architect, outline, generate, or add elements, strategies, offers, pricing, or blueprints for the canvas, provide your direct rationale, then append a structured JSON block at the very end in \`\`\`json:board_cards format.
+
+You have full authority to generate ANY of the following board element types based on the user's intent:
+
+1. Standard Strategy Frame (Default for multi-step frameworks, funnels, copy):
+{
+  "type": "strategy" (or "offer", "copy", "sales", "content", "frame"),
+  "title": "Frame Headline",
+  "content": "Actionable blueprint breakdown text..."
+}
+
+2. Hormozi Value Equation (Interactive fraction with sliders):
+{
+  "type": "value-equation",
+  "title": "The $100M Value Equation",
+  "dreamOutcome": { "title": "Category Dominance", "desc": "Achieving undisputed authority." },
+  "likelihood": { "title": "Certainty of Success", "desc": "Clinical trials and proof." },
+  "timeDelay": { "title": "Time Delay Compressed", "desc": "Instant 48-hour onboarding." },
+  "effort": { "title": "Effort Eliminated", "desc": "Done-For-You operational execution." }
+}
+
+3. Grand Slam Bonus Stack (Trim & stack with strikethroughs):
+{
+  "type": "bonus-stack",
+  "title": "Grand Slam Bonus Stack",
+  "items": [
+    { "title": "Bonus 01: SOP Database", "desc": "Turnkey formulation specs", "strike": "AED 8,500" },
+    { "title": "Bonus 02: Routine Funnel Blueprint", "desc": "Shopify architecture for 3.4x MER", "strike": "AED 12,000" },
+    { "title": "Bonus 03: 24/7 VIP WhatsApp Hotline", "desc": "Direct async advisor access", "strike": "AED 15,000" }
+  ],
+  "totalValue": "AED 35,500",
+  "price": "AED 12,500 / mo",
+  "savings": "AED 23,000"
+}
+
+4. Capacity Indicator (Scarcity slot meter):
+{
+  "type": "capacity-indicator",
+  "title": "Atelier Client Roster",
+  "totalSlots": 3,
+  "filledSlots": 2,
+  "remainingText": "Accepting 1 new engagement this quarter.",
+  "urgency": "Next opening: Q2 2025. Enquire to reserve."
+}
+
+5. Payment Architecture (3-column comparison):
+{
+  "type": "payment-architecture",
+  "title": "Investment Structure Comparison",
+  "columns": [
+    { "name": "Upfront Full Pay", "total": "AED 75,000", "cashflow": "Single payment, Day 1", "psychology": "Maximum commitment, zero monthly friction.", "bestFor": "High-trust close", "badge": "BEST VALUE", "highlight": true },
+    { "name": "Monthly Retainer", "total": "AED 25,000 / mo", "cashflow": "Rolling 3-month minimum", "psychology": "Low barrier to entry.", "bestFor": "Ongoing advisory", "badge": "", "highlight": false },
+    { "name": "Milestone-Based", "total": "AED 25,000 x 3 milestones", "cashflow": "On milestone delivery", "psychology": "De-risked progression.", "bestFor": "Project scopes", "badge": "", "highlight": false }
+  ]
+}
+
+6. Sovereign Advisory Prescription (Doctor-patient prescription with terms):
+{
+  "type": "prescription",
+  "title": "Sovereign Advisory Retainer",
+  "fee": "AED 25,000 / Month",
+  "term": "Closed-Door 90-Day Container Commitment",
+  "term1": "Bi-Weekly Consultative Growth Offsite",
+  "term2": "24/7 Async Sovereign Partner Hotline",
+  "term3": "Creative Sandbox Teardowns & Multi-Touch Funnel"
+}
+
+7. Sticky Note (Quick insight, objection, note):
+{
+  "type": "sticky",
+  "color": "gold" (or "yellow", "rose", "blue", "green"),
+  "title": "Key Insight",
+  "content": "One core thought or observation."
+}
+
+8. High-Ticket Pricing Card:
+{
+  "type": "pricing",
+  "badge": "SOVEREIGN TIER",
+  "currency": "AED",
+  "figure": "25,000",
+  "period": "Monthly Retainer",
+  "features": ["Weekly Strategy Offsite", "Creative Sandbox Production", "24/7 Hotline Access"]
+}
+
+9. Consultative Diagnostic Protocol:
+{
+  "type": "diagnostic-protocol",
+  "title": "Consultative Diagnostic Protocol",
+  "stages": [
+    { "roman": "STAGE I", "title": "Symptom Elicitation", "desc": "Identify visible client friction points." },
+    { "roman": "STAGE II", "title": "Root Pathophysiology", "desc": "Diagnose systemic operational leaks." },
+    { "roman": "STAGE III", "title": "Cost of Inaction", "desc": "Compound 12-month cost of inaction." },
+    { "roman": "STAGE IV", "title": "Prescription of Care", "desc": "Prescribe 90-Day transformation container." },
+    { "roman": "STAGE V", "title": "The Silence Rule", "desc": "State investment fee with absolute calm conviction. Hold the silence." }
+  ]
+}
+
+10. Offer Name Generator:
+{
+  "type": "offer-name-generator",
+  "adjective": "Sovereign",
+  "outcome": "Growth",
+  "vehicle": "Accelerator",
+  "duration": "90-Day",
+  "audience": "Luxury Cosmetic Clinics"
+}
+
 Rules for board_cards JSON:
 - No emojis anywhere in the JSON strings.
-- Titles must be direct, professional, and clear.
-- Valid types: "strategy", "offer", "copy", "content", "sales".`;
+- Titles and text must be direct, professional, and clear.
+- Match the element type to the user's specific request.`;
 
 router.post('/ai/chat', async (req, res) => {
   try {
@@ -995,19 +1088,35 @@ Frameworks to embody:
     const textPart = candidate && candidate.content && candidate.content.parts && candidate.content.parts.find(p => p.text);
     const replyText = textPart ? textPart.text : 'I was unable to formulate a strategy recommendation. Please retry.';
 
-    // Extract any board_cards JSON blocks if present
+    // Extract any board_cards JSON blocks if present (array or single object)
     let boardCards = null;
-    const cardsMatch = replyText.match(/```json:board_cards\s*([\s\S]*?)\s*```/);
+    let cardsMatch = replyText.match(/```(?:json:)?board_?cards\s*([\s\S]*?)\s*```/i);
+    if (!cardsMatch) {
+      // Fallback: Check if there's any ```json { ... } ``` or ```json [ ... ] ``` block containing valid board elements
+      const anyJsonMatch = replyText.match(/```(?:json)?\s*([\{\[][\s\S]*?[\}\]])\s*```/i);
+      if (anyJsonMatch && (anyJsonMatch[1].includes('"type"') || anyJsonMatch[1].includes('"title"') || anyJsonMatch[1].includes('"items"'))) {
+        cardsMatch = anyJsonMatch;
+      }
+    }
+
     if (cardsMatch && cardsMatch[1]) {
       try {
-        boardCards = JSON.parse(cardsMatch[1]);
+        const parsed = JSON.parse(cardsMatch[1]);
+        if (Array.isArray(parsed)) {
+          boardCards = parsed;
+        } else if (parsed && typeof parsed === 'object') {
+          boardCards = [parsed];
+        }
       } catch (parseErr) {
         console.warn('[POLISH Copilot] Failed to parse board_cards JSON block:', parseErr.message);
       }
     }
 
     // Clean reply text of raw json block so it reads cleanly to user
-    const cleanedReply = replyText.replace(/```json:board_cards\s*[\s\S]*?\s*```/, '').trim();
+    const cleanedReply = replyText
+      .replace(/```(?:json:)?board_?cards\s*[\s\S]*?\s*```/gi, '')
+      .replace(/```(?:json)?\s*[\{\[][\s\S]*?[\}\]]\s*```/gi, '')
+      .trim();
 
     return res.json({
       success: true,

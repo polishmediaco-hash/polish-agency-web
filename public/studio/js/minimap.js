@@ -37,7 +37,11 @@ window.MiniMap = (function () {
     hudContainer.innerHTML = `
       <div class="minimap-header">
         <span class="minimap-title">NAV RADAR</span>
-        <button id="btnToggleMinimap" class="minimap-toggle" title="Collapse / Expand Radar">−</button>
+        <button id="btnToggleMinimap" class="minimap-toggle" title="Collapse / Expand Radar" aria-label="Toggle Radar">
+          <svg class="minimap-toggle-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.2s ease;">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
       </div>
       <div class="minimap-body">
         <canvas id="minimapCanvas" width="${MAP_WIDTH}" height="${MAP_HEIGHT}"></canvas>
@@ -52,7 +56,8 @@ window.MiniMap = (function () {
         e.stopPropagation();
         isCollapsed = !isCollapsed;
         hudContainer.classList.toggle('is-collapsed', isCollapsed);
-        toggleBtn.textContent = isCollapsed ? '+' : '−';
+        const icon = toggleBtn.querySelector('svg');
+        if (icon) icon.style.transform = isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';
       });
     }
   }
@@ -148,8 +153,14 @@ window.MiniMap = (function () {
       // Color coding based on element type
       const type = el.dataset.type || '';
       if (type === 'frame') {
-        ctx.fillStyle = isDark ? 'rgba(226, 199, 153, 0.35)' : 'rgba(197, 168, 128, 0.35)';
+        ctx.fillStyle = isDark ? 'rgba(226, 199, 153, 0.28)' : 'rgba(197, 168, 128, 0.28)';
         ctx.strokeStyle = isDark ? '#E2C799' : '#C5A880';
+        ctx.lineWidth = 1;
+        ctx.fillRect(elX, elY, elW, elH);
+        ctx.strokeRect(elX, elY, elW, elH);
+      } else if (['pipeline-node', 'diagnostic-protocol', 'prescription', 'belief-triad', 'cadence-timeline', 'sprint-swimlane', 'ldj-matrix', 'unbundling-tree', 'flywheel-rings', 'table', 'metric'].includes(type)) {
+        ctx.fillStyle = isDark ? 'rgba(226, 199, 153, 0.16)' : 'rgba(197, 168, 128, 0.2)';
+        ctx.strokeStyle = isDark ? 'rgba(226, 199, 153, 0.45)' : 'rgba(197, 168, 128, 0.5)';
         ctx.lineWidth = 1;
         ctx.fillRect(elX, elY, elW, elH);
         ctx.strokeRect(elX, elY, elW, elH);
@@ -157,13 +168,13 @@ window.MiniMap = (function () {
         ctx.fillStyle = el.classList.contains('sticky-rose') ? '#F43F5E' : (el.classList.contains('sticky-blue') ? '#0284C7' : '#EAB308');
         ctx.fillRect(elX, elY, elW, elH);
       } else if (type === 'shape') {
-        ctx.fillStyle = isDark ? 'rgba(245, 230, 211, 0.6)' : 'rgba(26, 23, 21, 0.5)';
+        ctx.fillStyle = isDark ? 'rgba(245, 230, 211, 0.5)' : 'rgba(26, 23, 21, 0.4)';
         ctx.fillRect(elX, elY, elW, elH);
       } else if (type === 'text') {
         ctx.fillStyle = isDark ? '#E2C799' : '#1A1715';
         ctx.fillRect(elX, elY, elW, Math.max(2, elH));
       } else {
-        ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(26, 23, 21, 0.25)';
+        ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.35)' : 'rgba(26, 23, 21, 0.2)';
         ctx.fillRect(elX, elY, elW, elH);
       }
     });
@@ -184,10 +195,10 @@ window.MiniMap = (function () {
     const vpW = (visibleMaxX - visibleMinX) * mapScale;
     const vpH = (visibleMaxY - visibleMinY) * mapScale;
 
-    ctx.fillStyle = isDark ? 'rgba(226, 199, 153, 0.12)' : 'rgba(197, 168, 128, 0.16)';
+    ctx.fillStyle = isDark ? 'rgba(226, 199, 153, 0.12)' : 'rgba(197, 168, 128, 0.14)';
     ctx.fillRect(vpX, vpY, vpW, vpH);
 
-    ctx.strokeStyle = isDark ? '#E2C799' : '#1A1715';
+    ctx.strokeStyle = isDark ? '#E2C799' : '#8A6B3D';
     ctx.lineWidth = 1.5;
     ctx.strokeRect(vpX, vpY, vpW, vpH);
   }

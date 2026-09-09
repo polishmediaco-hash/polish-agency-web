@@ -160,11 +160,15 @@ The application has successfully completed a luxury atelier rebranding and typog
   - History engine with 30-level Undo (`Cmd+Z`) and Redo (`Cmd+Shift+Z`).
   - Duplicate (`Cmd+D`) and Delete (`Backspace`/`Delete`).
   - Clean JSON export and shareable board URLs (`/studio?id=...`).
-* **Visual Identity & Header Lockup**:
-  - Authentic Haute Atelier gold squircle brand emblem (obsidian surface, champagne gold gradient chevron, cosmetic droplet facet, diamond core) with gold "POLISH STUDIO" lockup.
-  - Pinned luxury glass header with Cloud Save status indicator, Undo/Redo, Present mode, Export, Share, and Boards Hub link.
-* **Boards Hub (`/boards`)**:
-  - Atelier Whiteboards dashboard listing active boards, element counts, flow counts, last-updated timestamps, duplicate, delete, and direct "+ Strategy Template" or "+ Blank Canvas" creation.
+* **Architectural Studio Overhaul (Linear / Figma / Freeform Duality)**:
+  - **Unified Strategy Blueprint Cards (`/boards`)**: Purged fake AI tags, redundant audience filler, and micro-chips from all 6 creator framework cards (Alex Hormozi, Liam Ottley, Chris Bradley, Charlie Morgan, AJ&Smart, Greg Isenberg). Standardized to full-width authoritative `Deploy Blueprint →` CTAs.
+  - **Dynamic Vector Duality Tokens**: 10 semantic CSS variables (`--bp-surface`, `--bp-stroke`, `--bp-text-primary`, `--bp-chip-bg`, etc.) ensuring vector preview schematics look like warm architectural blueprints in Light Mode and glowing obsidian schematics in Dark Mode.
+  - **Floating Segmented Tool Dock (`/studio`)**: Replaced the bulky 13-item vertical sidebar with a floating, 4-island bottom-center dock (Navigation, Primitives, Strategy Blocks, Executive Actions) featuring dynamically computed popover flyout menus and monospace tooltips (`Select (V)`, `Sticky Note (N)`, `POLISH AI (⌘J)`).
+  - **Canvas Normalization Across All 6 Frameworks**: Purged off-brand neon accents (cyan/navy on Liam Ottley, forest green on Chris Bradley, garish purple on AJ&Smart); aligned all canvas nodes with Haute Atelier champagne gold and obsidian noir.
+  - **Theme-Aware Connector Badges**: Replaced glaring hardcoded white pills with dynamic frosted glass badges (`.connector-label-pill`) adapted to both Light and Dark themes.
+  - **Frosted CAD Minimap & Viewport HUD**: Collapsible `• NAV RADAR` HUD with live silhouette rendering of all custom strategy nodes and a unified zoom capsule.
+  - **Deterministic 4-Way Multi-Currency Engine (`DZD / AED / USD / EUR`)**: Architectural segmented switcher supporting Algerian Dinar (DZD), UAE Dirham (AED), US Dollar ($), and Euro (€). Dynamically transforms retainer metrics, target CPA table headers/cells, pricing cards, and inspector panels.
+  - **Complete Header Design Unification**: Both `/boards` and `/studio` share the identical 16px capsule geometry (`height: 52px; padding: 0 1.25rem`), unboxed brand lockup, 32px component ergonomics, search input with `/` shortcut badge, and synced theme toggle duality.
 * **Haute Atelier Light / Day Mode Restoration**:
   - Warm Alabaster (`#FAF7F2`) dot canvas, frosted white glass cards (`#FFFFFF`), rich ink black text (`#1A1715`), and Cormorant Garamond serif accents across builder, dashboard, and login.
 * **Dedicated Client Presentation Engine (`/b/:id` & `/view/:id`)**:
@@ -196,6 +200,11 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Branch**: `main`
 * **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
+  * `feat(studio): complete header design unification between /boards and /studio (16px capsule, unboxed brand lockup, 32px ergonomics, and / shortcut badge)`
+  * `feat(studio): 4-way multi-currency engine (DZD / AED / USD / EUR) with deterministic conversion across strategy nodes, tables, metrics, and inspector`
+  * `feat(studio): canvas normalization across all 6 creator blueprints, frosted CAD minimap NAV RADAR HUD with collapse toggle, and theme-aware connector pills`
+  * `feat(studio): bottom-center floating 4-island tool dock with dynamic flyout menus, monospace tooltips, and tactile node elevation shadows`
+  * `feat(boards): architectural studio overhaul — purged filler chips, standardized full-width Deploy Blueprint CTAs, and engineered vector duality tokens`
   * `feat(studio): lasso & selection context for Polish AI, 1-click frame-by-frame PNG export, webhook E2E suite, and Vercel edge security headers`
   * `feat(boards): complete luxury redesign of board dashboard with dark mode & templates (purged all cringe copy, added 12-framework template modal, live search, and procedural whiteboard preview thumbnail)`
   * `feat(studio): radiant POLISH AI jewel, brand capsule, decoupled toolbar`
@@ -221,10 +230,12 @@ The application has successfully completed a luxury atelier rebranding and typog
 
 ## 5. Next Priority Roadmap for Future Sessions
 
-1. **Production Deployment & Monitoring**: Deploy to production infrastructure (Vercel / Railway / VPS with PM2) and verify edge SSL certificates.
-2. **Custom Domain & DNS Setup**: Ensure canonical routing between `polishmediaco.com` and `app.polishmediaco.com`.
-3. **Calendly Live Webhook Verification**: Confirm real-time webhook payload receipts at `https://polishmediaco.com/api/calendly-webhook` from Calendly developer console.
-4. **Client Collaboration Live Beta**: Test real-time multi-user pin drop commenting and pillar approvals with live beauty brand test accounts.
+1. **Client Presentation View Alignment (`/view/:id` & `/b/:id`)**: Upgrade `.client-dock` from 64px 9999px balloon pill to the unified 52px 16px architectural capsule, unboxed brand mark, and enable the 4-way currency switcher (`DZD / AED / USD / EUR`) for international client reviews.
+2. **Template Modals Harmonization**: Synchronize the modal dialogs between `/boards` and `/studio` with identical frosted glassmorphism and category filtering.
+3. **Production Deployment & Monitoring**: Deploy to production infrastructure (Vercel / Railway / VPS with PM2) and verify edge SSL certificates.
+4. **Custom Domain & DNS Setup**: Ensure canonical routing between `polishmediaco.com` and `app.polishmediaco.com`.
+5. **Calendly Live Webhook Verification**: Confirm real-time webhook payload receipts at `https://polishmediaco.com/api/calendly-webhook` from Calendly developer console.
+6. **Client Collaboration Live Beta**: Test real-time multi-user pin drop commenting and pillar approvals with live beauty brand test accounts.
 
 ---
 

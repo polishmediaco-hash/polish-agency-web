@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POLISH Board Studio — Option 3: Sovereign Atelier Ecosystem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
+  <style>
+    :root {
+      --brand-gold: #E2C799;
+      --brand-bronze: #C5A880;
+      --brand-platinum: #F5E6D3;
+      --bg-noir: #090807;
+      --bg-surface: #141210;
+      --bg-card: rgba(22, 19, 16, 0.88);
+      --border-subtle: rgba(226, 199, 153, 0.16);
+      --border-focus: rgba(226, 199, 153, 0.45);
+      --text-heading: #F5E6D3;
+      --text-body: #CFC5B8;
+      --text-muted: #857D74;
+      --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--bg-noir);
+      font-family: var(--font-body);
+      color: var(--text-body);
+    }
+
+    /* ==========================================================
+       TOP MASTER SWITCHER (ENVIRONMENT SELECTOR)
+       ========================================================== */
+    .master-ecosystem-bar {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 500;
+      background: rgba(14, 12, 10, 0.92);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--border-focus);
+      border-radius: 999px;
+      padding: 4px 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(226, 199, 153, 0.2);
+    }
+
+    .ecosystem-brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px 6px 8px;
+      border-right: 1px solid var(--border-subtle);
+      margin-right: 2px;
+    }
+
+    .ecosystem-brand img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ecosystem-brand span {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--brand-gold);
+    }
+
+    .env-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 15px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .env-tab-btn:hover {
+      color: var(--brand-platinum);
+      background: rgba(226, 199, 153, 0.08);
+    }
+
+    .env-tab-btn.active {
+      background: linear-gradient(135deg, rgba(226, 199, 153, 0.24), rgba(226, 199, 153, 0.1));
+      border-color: rgba(226, 199, 153, 0.45);
+      color: var(--brand-platinum);
+      box-shadow: 0 4px 14px rgba(226, 199, 153, 0.2);
+    }
+
+    .env-key-badge {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      background: rgba(226, 199, 153, 0.15);
+      color: var(--brand-gold);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    /* Container for the 3 surface views */
+    .surface-view {
+      position: absolute;
+      inset: 0;
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .surface-view.active {
+      display: block;
+    }
+
+    /* ==========================================================
+       SURFACE 1: THE EXECUTIVE BENTO LAUNCHER (/boards)
+       ========================================================== */
+    #surface-dashboard {
+      overflow-y: auto;
+      background: #080706;
+      background-image: 
+        radial-gradient(rgba(226, 199, 153, 0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
+      padding: 84px 3rem 4rem;
+    }
+
+    .dash-container {
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+
+    .bento-hero-row {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .bento-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 36px -10px rgba(0,0,0,0.5);
+      backdrop-filter: blur(20px);
+    }
+
+    .hero-focus-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--brand-gold);
+      background: rgba(226, 199, 153, 0.12);
+      border: 1px solid rgba(226, 199, 153, 0.3);
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-focus-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-focus-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 580px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-metric-tile {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(226, 199, 153, 0.1);
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .hero-metric-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--text-muted);
+    }
+
+    .hero-metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--brand-platinum);
+      margin-top: 3px;
+    }
+
+    .hero-action-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-gold-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 999px;
+      background: #E2C799;
+      color: #080706;
+      border: none;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(226, 199, 153, 0.35);
+    }
+
+    .btn-gold-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(226, 199, 153, 0.5);
+    }
+
+    .btn-ghost-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(226, 199, 153, 0.08);
+      color: var(--brand-platinum);
+      border: 1px solid var(--border-subtle);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-ghost-action:hover {
+      background: rgba(226, 199, 153, 0.16);
+      border-color: var(--border-focus);
+    }
+
+    /* Scratchpad Bento */
+    .scratchpad-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .scratchpad-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.92rem;
+      color: var(--text-heading);
+    }
+
+    .scratchpad-textarea {
+      width: 100%;
+      height: 140px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px;
+      color: var(--text-body);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      line-height: 1.45;
+      resize: none;
+      outline: none;
+    }
+
+    .scratchpad-textarea:focus {
+      border-color: var(--border-focus);
+    }
+
+    /* Framework Bento Row */
+    .bento-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.25rem;
+    }
+
+    .bento-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+
+    .framework-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .framework-mini-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 1.1rem;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .framework-mini-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-focus);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .f-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.65rem;
+    }
+
+    .f-card-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-heading);
+    }
+
+    .f-card-creator {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      color: var(--brand-gold);
+    }
+
+    .f-card-desc {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 0.85rem;
+    }
+
+    /* Dense Linear-Style Blueprints Table */
+    .blueprints-table-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .b-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+
+    .b-table th {
+      text-align: left;
+      padding: 12px 18px;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(0,0,0,0.25);
+      letter-spacing: 0.06em;
+    }
+
+    .b-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(226, 199, 153, 0.07);
+      color: var(--text-body);
+    }
+
+    .b-table tr:hover td {
+      background: rgba(226, 199, 153, 0.04);
+      color: var(--brand-platinum);
+    }
+
+    .blueprint-row-name {
+      font-weight: 700;
+      color: var(--text-heading);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    /* ==========================================================
+       SURFACE 2: SPATIAL STRATEGY STUDIO (/studio)
+       ========================================================== */
+    #surface-studio {
+      background-color: #070605;
+      background-image: 
+        radial-gradient(rgba(226, 199, 153, 0.12) 1.25px, transparent 1.25px),
+        linear-gradient(to right, rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 32px 32px, 160px 160px, 160px 160px;
+      cursor: grab;
+    }
+
+    #surface-studio.is-panning {
+      cursor: grabbing;
+    }
+
+    #studio-plane {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8000px;
+      height: 6000px;
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+
+    /* Dynamic Island Bottom Dock */
+    .studio-bottom-dock {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(18, 15, 12, 0.9);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--border-focus);
+      border-radius: 999px;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 100;
+      box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.6);
+    }
+
+    .dock-btn-tool {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-body);
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dock-btn-tool.active {
+      background: linear-gradient(135deg, rgba(226, 199, 153, 0.25), rgba(226, 199, 153, 0.1));
+      border-color: rgba(226, 199, 153, 0.4);
+      color: var(--brand-platinum);
+    }
+
+    /* Spatial Nodes in Studio */
+    .studio-node {
+      position: absolute;
+      border-radius: 18px;
+      background: var(--bg-card);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+      cursor: default;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .studio-node:hover {
+      border-color: var(--border-focus);
+      box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.75), 0 0 0 1px var(--border-focus);
+    }
+
+    .s-node-head {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: grab;
+    }
+
+    .s-node-head:active {
+      cursor: grabbing;
+    }
+
+    .s-node-body {
+      padding: 16px;
+    }
+
+    /* ==========================================================
+       SURFACE 3: CINEMATIC STORYBOARD PRESENTATION (/view)
+       ========================================================== */
+    #surface-presentation {
+      background: #060504;
+      background-image: radial-gradient(rgba(226, 199, 153, 0.08) 1.5px, transparent 1.5px);
+      background-size: 36px 36px;
+      overflow: hidden;
+    }
+
+    .pres-header-dock {
+      position: fixed;
+      top: 68px;
+      left: 32px;
+      right: 32px;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .pres-brand-seal {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(18, 15, 12, 0.9);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-focus);
+      padding: 8px 18px;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .pres-seal-tag {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #E2C799;
+      background: rgba(226, 199, 153, 0.12);
+      border: 1px solid rgba(226, 199, 153, 0.3);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .pres-director-bar {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(14, 12, 10, 0.92);
+      backdrop-filter: blur(28px);
+      border: 1px solid var(--border-focus);
+      border-radius: 999px;
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 200;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+    }
+
+    .pres-step-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(226, 199, 153, 0.1);
+      border: 1px solid var(--border-subtle);
+      color: var(--brand-platinum);
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pres-step-btn:hover {
+      background: var(--brand-gold);
+      color: #080706;
+    }
+
+    .pres-stage-display {
+      text-align: center;
+      min-width: 220px;
+    }
+
+    .pres-stage-number {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--brand-gold);
+      letter-spacing: 0.1em;
+    }
+
+    .pres-stage-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.86rem;
+      color: var(--text-heading);
+    }
+
+    /* Presentation Spotlight Focus Node Stage */
+    .presentation-stage-viewport {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .spotlight-frame {
+      width: 760px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-focus);
+      border-radius: 24px;
+      padding: 2.25rem;
+      box-shadow: 0 24px 80px -10px rgba(0,0,0,0.85), 0 0 0 1px rgba(226, 199, 153, 0.2);
+      backdrop-filter: blur(32px);
+      position: relative;
+    }
+
+    .spotlight-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--brand-gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .spotlight-heading {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--text-heading);
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+
+    .spotlight-body {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTER ECOSYSTEM TOP SWITCHER -->
+  <header class="master-ecosystem-bar">
+    <div class="ecosystem-brand">
+      <img src="/assets/logo-gold-mark.svg" alt="POLISH" />
+      <span>POLISH OS</span>
+    </div>
+
+    <button id="tab-dash" class="env-tab-btn active" onclick="switchSurface('dashboard')">
+      <span>1. Bento Launcher</span>
+      <span class="env-key-badge">/boards</span>
+    </button>
+
+    <button id="tab-studio" class="env-tab-btn" onclick="switchSurface('studio')">
+      <span>2. Spatial Studio</span>
+      <span class="env-key-badge">/studio</span>
+    </button>
+
+    <button id="tab-pres" class="env-tab-btn" onclick="switchSurface('presentation')">
+      <span>3. Cinematic Pitch</span>
+      <span class="env-key-badge">/view</span>
+    </button>
+  </header>
+
+  <!-- ==========================================================
+       SURFACE 1: THE EXECUTIVE BENTO LAUNCHER (/boards)
+       ========================================================== -->
+  <section id="surface-dashboard" class="surface-view active">
+    <div class="dash-container">
+      
+      <!-- Top Bento Hero Row -->
+      <div class="bento-hero-row">
+        <!-- Hero Focus Card -->
+        <div class="bento-card">
+          <div class="hero-focus-badge">
+            <span>● ACTIVE ADVISORY ENGAGEMENT</span>
+          </div>
+          <h2 class="hero-focus-title">Omnichannel Growth &amp; Retainer Architecture</h2>
+          <p class="hero-focus-sub">High-ticket consultative diagnostic paired with an 8-touch omnichannel outbound sequence and autonomous lead routing pipeline.</p>
+          
+          <div class="hero-metrics-grid">
+            <div class="hero-metric-tile">
+              <div class="hero-metric-label">TOTAL NODES</div>
+              <div class="hero-metric-val">18 Elements</div>
+            </div>
+            <div class="hero-metric-tile">
+              <div class="hero-metric-label">VALUE SCORE</div>
+              <div class="hero-metric-val">22.5x ROI</div>
+            </div>
+            <div class="hero-metric-tile">
+              <div class="hero-metric-label">TARGET RETAINER</div>
+              <div class="hero-metric-val">$18,500/MO</div>
+            </div>
+          </div>
+
+          <div class="hero-action-row">
+            <button class="btn-gold-action" onclick="switchSurface('studio')">
+              <span>Resume Whiteboard Session</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <button class="btn-ghost-action" onclick="switchSurface('presentation')">
+              <span>Client Presentation ↗</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Strategy Scratchpad Card -->
+        <div class="bento-card">
+          <div class="scratchpad-header">
+            <h3 class="scratchpad-title">Executive Scratchpad</h3>
+            <span style="font-family:var(--font-mono); font-size:0.62rem; color:#34D399;">● AUTO-SAVED</span>
+          </div>
+          <textarea class="scratchpad-textarea" placeholder="Jot thoughts, deal parameters, or quick hypotheses...">- Bradley Triage Call at 2:00 PM: Focus on unit economics before deliverables.
+- Value Equation numerator: Emphasize 100% unconditional risk-reversal guarantee.
+- Automate Apollo scrapers to feed Claude 3.5 Sonnet context router.</textarea>
+        </div>
+      </div>
+
+      <!-- Creator Frameworks Shelf -->
+      <div class="bento-section-head">
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--brand-gold); letter-spacing:0.12em;">FRAMEWORK ACCELERATOR</div>
+          <h3 class="bento-section-title">Verified Creator Blueprints</h3>
+        </div>
+        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">6 Strategy Blueprints Ready</span>
+      </div>
+
+      <div class="framework-mini-grid">
+        <div class="framework-mini-card" onclick="switchSurface('studio')">
+          <div>
+            <div class="f-card-top">
+              <span class="f-card-name">Alex Hormozi</span>
+              <span class="f-card-creator">OFFERS</span>
+            </div>
+            <p class="f-card-desc">Grand Slam Offer &amp; Value Equation live calculator with bonus stack and risk-reversal ladder.</p>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.65rem; color:var(--brand-gold);">Deploy Blueprint →</span>
+        </div>
+
+        <div class="framework-mini-card" onclick="switchSurface('studio')">
+          <div>
+            <div class="f-card-top">
+              <span class="f-card-name">Liam Ottley</span>
+              <span class="f-card-creator">AI SYSTEMS</span>
+            </div>
+            <p class="f-card-desc">Four-stage autonomous intelligence pipeline with webhook router and SLA monitor.</p>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.65rem; color:#38BDF8;">Deploy Blueprint →</span>
+        </div>
+
+        <div class="framework-mini-card" onclick="switchSurface('studio')">
+          <div>
+            <div class="f-card-top">
+              <span class="f-card-name">Chris Bradley</span>
+              <span class="f-card-creator">ADVISORY</span>
+            </div>
+            <p class="f-card-desc">5-stage consultative diagnostic protocol paired with an Rx-sealed advisory prescription.</p>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.65rem; color:#34D399;">Deploy Blueprint →</span>
+        </div>
+
+        <div class="framework-mini-card" onclick="switchSurface('studio')">
+          <div>
+            <div class="f-card-top">
+              <span class="f-card-name">Charlie Morgan</span>
+              <span class="f-card-creator">OUTBOUND</span>
+            </div>
+            <p class="f-card-desc">3-belief dismantling engine and 21-day omnichannel cadence for high-ticket B2B deals.</p>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.65rem; color:#F59E0B;">Deploy Blueprint →</span>
+        </div>
+
+        <div class="framework-mini-card" onclick="switchSurface('studio')">
+          <div>
+            <div class="f-card-top">
+              <span class="f-card-name">AJ&amp;Smart</span>
+              <span class="f-card-creator">SPRINTS</span>
+            </div>
+            <p class="f-card-desc">4-day Design Sprint 2.0 with silent dot-voting and Lightning Decision Jam (LDJ).</p>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.65rem; color:#C084FC;">Deploy Blueprint →</span>
+        </div>
+
+        <div class="framework-mini-card" onclick="switchSurface('studio')">
+          <div>
+            <div class="f-card-top">
+              <span class="f-card-name">Greg Isenberg</span>
+              <span class="f-card-creator">COMMUNITY</span>
+            </div>
+            <p class="f-card-desc">Subreddit niche unbundling teardown and concentric ACP community flywheel.</p>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.65rem; color:#FB7185;">Deploy Blueprint →</span>
+        </div>
+      </div>
+
+      <!-- Linear-Style Dense Blueprints Table -->
+      <div class="bento-section-head">
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--brand-gold); letter-spacing:0.12em;">STORED WORKSPACES</div>
+          <h3 class="bento-section-title">Client Blueprints</h3>
+        </div>
+        <button class="btn-gold-action" style="padding:6px 14px; font-size:0.72rem;" onclick="switchSurface('studio')">+ New Board</button>
+      </div>
+
+      <div class="blueprints-table-wrap">
+        <table class="b-table">
+          <thead>
+            <tr>
+              <th>BLUEPRINT TITLE</th>
+              <th>PRIMARY FRAMEWORK</th>
+              <th>ELEMENTS</th>
+              <th>LAST UPDATED</th>
+              <th style="text-align:right;">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="blueprint-row-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-gold)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+                  <span>Omnichannel Growth &amp; Retainer Architecture</span>
+                </div>
+              </td>
+              <td><span style="color:#38BDF8; font-family:var(--font-mono); font-size:0.68rem;">Ottley AI + Hormozi</span></td>
+              <td style="font-family:var(--font-mono);">18 Nodes</td>
+              <td style="font-family:var(--font-mono); color:var(--text-muted);">24m ago</td>
+              <td style="text-align:right;">
+                <button class="btn-ghost-action" style="padding:4px 10px; font-size:0.68rem;" onclick="switchSurface('studio')">Open</button>
+                <button class="btn-ghost-action" style="padding:4px 10px; font-size:0.68rem;" onclick="switchSurface('presentation')">Pitch</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="blueprint-row-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-gold)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+                  <span>Sovereign Advisory Prescription (Q4 Cohort)</span>
+                </div>
+              </td>
+              <td><span style="color:#34D399; font-family:var(--font-mono); font-size:0.68rem;">Chris Bradley Rx</span></td>
+              <td style="font-family:var(--font-mono);">12 Nodes</td>
+              <td style="font-family:var(--font-mono); color:var(--text-muted);">Yesterday</td>
+              <td style="text-align:right;">
+                <button class="btn-ghost-action" style="padding:4px 10px; font-size:0.68rem;" onclick="switchSurface('studio')">Open</button>
+                <button class="btn-ghost-action" style="padding:4px 10px; font-size:0.68rem;" onclick="switchSurface('presentation')">Pitch</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="blueprint-row-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-gold)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+                  <span>SaaS Community Unbundling &amp; VIP Tier</span>
+                </div>
+              </td>
+              <td><span style="color:#FB7185; font-family:var(--font-mono); font-size:0.68rem;">Greg Isenberg Flywheel</span></td>
+              <td style="font-family:var(--font-mono);">9 Nodes</td>
+              <td style="font-family:var(--font-mono); color:var(--text-muted);">Sep 07, 2026</td>
+              <td style="text-align:right;">
+                <button class="btn-ghost-action" style="padding:4px 10px; font-size:0.68rem;" onclick="switchSurface('studio')">Open</button>
+                <button class="btn-ghost-action" style="padding:4px 10px; font-size:0.68rem;" onclick="switchSurface('presentation')">Pitch</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SURFACE 2: SPATIAL STRATEGY STUDIO (/studio)
+       ========================================================== -->
+  <section id="surface-studio" class="surface-view">
+    <div id="studio-plane">
+      <!-- SVG Connectors -->
+      <svg style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+        <path d="M 560 280 C 620 280, 620 280, 680 280" stroke="#E2C799" stroke-width="2" fill="none" filter="drop-shadow(0 0 6px rgba(226,199,153,0.4))" />
+        <path d="M 560 280 C 620 280, 620 280, 680 280" stroke="#38BDF8" stroke-width="2" stroke-dasharray="6 8" fill="none" />
+        <path d="M 1080 280 C 1140 280, 1140 280, 1200 280" stroke="#E2C799" stroke-width="2" fill="none" filter="drop-shadow(0 0 6px rgba(226,199,153,0.4))" />
+        <path d="M 1080 280 C 1140 280, 1140 280, 1200 280" stroke="#34D399" stroke-width="2" stroke-dasharray="6 8" fill="none" />
+      </svg>
+
+      <!-- Node 1: Hormozi Value Calculator -->
+      <div class="studio-node" style="top:160px; left:120px; width:440px;">
+        <div class="s-node-head">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-family:var(--font-mono); font-size:0.62rem; font-weight:800; background:rgba(226,199,153,0.18); color:var(--brand-gold); padding:2px 6px; border-radius:4px;">01 OFFER</span>
+            <span style="font-weight:800; color:var(--text-heading); font-size:0.86rem;">Grand Slam Value Equation</span>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--brand-gold);">22.5x</span>
+        </div>
+        <div class="s-node-body">
+          <div style="margin-bottom:10px; font-size:0.75rem; color:var(--text-muted);">
+            Formula: <code>(Dream × Likelihood) / (Time × Effort)</code>
+          </div>
+          <div style="padding:10px; background:rgba(0,0,0,0.3); border-radius:8px; border:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.72rem; color:var(--brand-platinum);">Calculated Value: $18,500/mo Retainer</span>
+            <span style="font-family:var(--font-mono); font-size:0.62rem; color:#34D399;">100% UNCONDITIONAL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Node 2: Ottley Pipeline -->
+      <div class="studio-node" style="top:160px; left:680px; width:400px;">
+        <div class="s-node-head">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-family:var(--font-mono); font-size:0.62rem; font-weight:800; background:rgba(56,189,248,0.18); color:#38BDF8; padding:2px 6px; border-radius:4px;">02 SYSTEMS</span>
+            <span style="font-weight:800; color:var(--text-heading); font-size:0.86rem;">Autonomous AI Pipeline</span>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.7rem; color:#38BDF8;">ACTIVE</span>
+        </div>
+        <div class="s-node-body">
+          <div style="font-size:0.75rem; margin-bottom:6px;">Webhook Ingestion → Claude 3.5 Router → SLA Client Retainer</div>
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-muted);">Latency: 12ms • Uptime: 99.9%</div>
+        </div>
+      </div>
+
+      <!-- Node 3: Bradley Diagnostic Rx -->
+      <div class="studio-node" style="top:160px; left:1200px; width:420px;">
+        <div class="s-node-head">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-family:var(--font-mono); font-size:0.62rem; font-weight:800; background:rgba(52,211,153,0.18); color:#34D399; padding:2px 6px; border-radius:4px;">03 ADVISORY</span>
+            <span style="font-weight:800; color:var(--text-heading); font-size:0.86rem;">Advisory Prescription Rx</span>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.7rem; color:#34D399;">PRESCRIPTION</span>
+        </div>
+        <div class="s-node-body">
+          <div style="font-size:0.75rem; margin-bottom:6px;">5-Stage Consultative Protocol (Symptom → Pathophysiology → Rx)</div>
+          <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--brand-gold);">$18,500 Quarterly Advisory Retainer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Dynamic Island Dock -->
+    <nav class="studio-bottom-dock">
+      <button class="dock-btn-tool active">Pan [H]</button>
+      <button class="dock-btn-tool">Select [V]</button>
+      <button class="dock-btn-tool">Node [N]</button>
+      <button class="dock-btn-tool">Wire [C]</button>
+      <div style="width:1px; height:18px; background:var(--border-subtle); margin:0 4px;"></div>
+      <button class="dock-btn-tool" style="color:var(--brand-gold);" onclick="switchSurface('presentation')">Start Pitch ↗</button>
+    </nav>
+  </section>
+
+  <!-- ==========================================================
+       SURFACE 3: CINEMATIC STORYBOARD PRESENTATION (/view)
+       ========================================================== -->
+  <section id="surface-presentation" class="surface-view">
+    <!-- Header with Watermark Seal -->
+    <div class="pres-header-dock">
+      <div class="pres-brand-seal">
+        <img src="/assets/logo-gold-mark.svg" width="22" height="22" alt="POLISH" />
+        <span style="font-family:var(--font-heading); font-weight:800; font-size:0.78rem; color:var(--brand-platinum);">EXECUTIVE BRIEFING</span>
+        <span class="pres-seal-tag">CONFIDENTIAL</span>
+      </div>
+
+      <div style="pointer-events:auto; display:flex; gap:8px;">
+        <button class="btn-ghost-action" style="padding:6px 14px; font-size:0.72rem;" onclick="triggerExport('pdf')">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Export 1-Page Summary PDF</span>
+        </button>
+        <button class="btn-ghost-action" style="padding:6px 12px; font-size:0.72rem;" onclick="switchSurface('dashboard')">
+          <span>Exit Presentation</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Director Stage Canvas (Changes on Next/Prev) -->
+    <div class="presentation-stage-viewport">
+      <div class="spotlight-frame" id="presentation-spotlight">
+        <div class="spotlight-eyebrow" id="p-eyebrow">STAGE 01 OF 03 • CONSULTATIVE DIAGNOSIS</div>
+        <h2 class="spotlight-heading" id="p-heading">Isolating the Growth Bottleneck</h2>
+        <p class="spotlight-body" id="p-body">The agency is experiencing severe acquisition friction. Traditional cold outbound is burning domain reputation while delivery remains unautomated. The root cause is not deal volume—it is the absence of a consultative diagnostic protocol.</p>
+        
+        <div id="p-interactive-box" style="padding:16px; border-radius:12px; background:rgba(0,0,0,0.35); border:1px solid var(--border-subtle); margin-bottom:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.8rem; font-weight:700; color:var(--brand-platinum);">Prescribed Action: Clinical Consultation Script</span>
+            <span style="font-family:var(--font-mono); font-size:0.72rem; color:#34D399;">90-DAY PROTOCOL</span>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-subtle); padding-top:1rem;">
+          <span style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-muted);">FRAMEWORK: CHRIS BRADLEY ADVISORY PROTOCOL</span>
+          <span style="font-family:var(--font-mono); font-size:0.74rem; font-weight:800; color:var(--brand-gold);">$18,500 / MONTH</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Presentation Director Bottom Bar -->
+    <nav class="pres-director-bar">
+      <button class="pres-step-btn" onclick="prevStep()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Prev</span>
+      </button>
+
+      <div class="pres-stage-display">
+        <div class="pres-stage-number" id="nav-step-indicator">STAGE 1 / 3</div>
+        <div class="pres-stage-title" id="nav-step-title">Diagnostic Bottleneck</div>
+      </div>
+
+      <button class="pres-step-btn" onclick="nextStep()">
+        <span>Next</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </nav>
+  </section>
+
+  <script>
+    let currentSurface = 'dashboard';
+    let presentationStep = 1;
+
+    const stages = [
+      {
+        eyebrow: 'STAGE 01 OF 03 • CONSULTATIVE DIAGNOSIS',
+        heading: 'Isolating the Growth Bottleneck',
+        body: 'The brand is experiencing severe customer acquisition friction. Traditional cold outbound is burning domain reputation while delivery remains unautomated. The root cause is not deal volume—it is the absence of a consultative diagnostic protocol.',
+        box: 'Prescribed Action: Clinical Consultation Script (Chris Bradley Protocol)',
+        tag: '90-DAY PROTOCOL',
+        price: '$18,500 / MONTH'
+      },
+      {
+        eyebrow: 'STAGE 02 OF 03 • AUTONOMOUS INTELLIGENCE',
+        heading: 'The 4-Stage Autonomous Pipeline',
+        body: 'Deploying Liam Ottley’s AI architecture. Inbound leads are instantly enriched through Apollo APIs, routed by Claude 3.5 Sonnet according to qualification tier, and monitored under a strict 99.9% client SLA dashboard.',
+        box: 'System Pipeline: Webhook Ingestion → Claude Context Router → SLA Retainer',
+        tag: '12ms RESPONSE TIME',
+        price: 'AUTOMATED DEPLOYMENT'
+      },
+      {
+        eyebrow: 'STAGE 03 OF 03 • OFFER & RISK REVERSAL',
+        heading: 'Grand Slam Offer & Unit Economics',
+        body: 'Structuring the engagement under Alex Hormozi’s Value Equation. By collapsing the Time Delay and Effort with our automated systems, the perceived client value reaches 22.5x ROI. Backed by a 100% unconditional milestone guarantee.',
+        box: 'Value Multiplier: (Dream × Likelihood) / (Time × Effort) = 22.5x Score',
+        tag: '100% UNCONDITIONAL',
+        price: 'AED 68,000 / QUARTER'
+      }
+    ];
+
+    function switchSurface(surfaceName) {
+      currentSurface = surfaceName;
+      document.querySelectorAll('.surface-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.env-tab-btn').forEach(b => b.classList.remove('active'));
+
+      if (surfaceName === 'dashboard') {
+        document.getElementById('surface-dashboard').classList.add('active');
+        document.getElementById('tab-dash').classList.add('active');
+      } else if (surfaceName === 'studio') {
+        document.getElementById('surface-studio').classList.add('active');
+        document.getElementById('tab-studio').classList.add('active');
+      } else if (surfaceName === 'presentation') {
+        document.getElementById('surface-presentation').classList.add('active');
+        document.getElementById('tab-pres').classList.add('active');
+        renderPresentationStep();
+      }
+    }
+
+    function nextStep() {
+      presentationStep = (presentationStep % stages.length) + 1;
+      renderPresentationStep();
+    }
+
+    function prevStep() {
+      presentationStep = presentationStep === 1 ? stages.length : presentationStep - 1;
+      renderPresentationStep();
+    }
+
+    function renderPresentationStep() {
+      const data = stages[presentationStep - 1];
+      const frame = document.getElementById('presentation-spotlight');
+      
+      // Animate frame slightly
+      frame.style.transform = 'scale(0.98)';
+      frame.style.opacity = '0.7';
+
+      setTimeout(() => {
+        document.getElementById('p-eyebrow').innerText = data.eyebrow;
+        document.getElementById('p-heading').innerText = data.heading;
+        document.getElementById('p-body').innerText = data.body;
+        document.getElementById('p-interactive-box').innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.8rem; font-weight:700; color:var(--brand-platinum);">${data.box}</span>
+            <span style="font-family:var(--font-mono); font-size:0.72rem; color:#34D399;">${data.tag}</span>
+          </div>
+        `;
+        document.getElementById('nav-step-indicator').innerText = `STAGE ${presentationStep} / ${stages.length}`;
+        document.getElementById('nav-step-title').innerText = data.heading;
+
+        frame.style.transform = 'scale(1)';
+        frame.style.opacity = '1';
+      }, 150);
+    }
+
+    function triggerExport(type) {
+      alert(`Executive ${type.toUpperCase()} Export triggered! Generating 1-page watermarked client briefing summary.`);
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '1') switchSurface('dashboard');
+      if (e.key === '2') switchSurface('studio');
+      if (e.key === '3') switchSurface('presentation');
+      if (currentSurface === 'presentation') {
+        if (e.key === 'ArrowRight' || e.key === 'Space') nextStep();
+        if (e.key === 'ArrowLeft') prevStep();
+      }
+    });
+  </script>
+</body>
+</html>

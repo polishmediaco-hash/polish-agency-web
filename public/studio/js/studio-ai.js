@@ -545,7 +545,7 @@
           const spawnerHeader = document.createElement('div');
           spawnerHeader.className = 'ai-deck-header';
           spawnerHeader.innerHTML = `
-            <span class="ai-deck-count-info">${boardCards.length} Strategy ${boardCards.length === 1 ? 'Card' : 'Cards'} Ready</span>
+            <span class="ai-deck-count-info">${boardCards.length} Board Element${boardCards.length === 1 ? '' : 's'} Ready</span>
           `;
           spawnerEl.appendChild(spawnerHeader);
 
@@ -636,7 +636,7 @@
       if (btn) btn.disabled = disabled;
     },
 
-    // Insert AI generated cards directly onto the whiteboard canvas
+    // Insert AI generated cards & widgets directly onto the whiteboard canvas
     insertCardsToCanvas(cards) {
       if (!window.StudioCore || !cards || !cards.length) return;
 
@@ -646,15 +646,33 @@
       const viewportHeight = window.innerHeight;
 
       // Center of visible screen converted to board world coordinates
-      let startX = (-panZoom.panX + (viewportWidth / 2) - 200) / panZoom.zoom;
-      let startY = (-panZoom.panY + (viewportHeight / 2) - 140) / panZoom.zoom;
+      let startX = (-panZoom.panX + (viewportWidth / 2) - 260) / panZoom.zoom;
+      let startY = (-panZoom.panY + (viewportHeight / 2) - 160) / panZoom.zoom;
 
       const createdCardIds = [];
+      const nonConnectableTypes = ['sticky', 'text'];
+      let currentX = startX;
 
       cards.forEach((card, index) => {
-        // Place cards horizontally staggered across the board
-        const posX = Math.round(startX + (index * 470));
-        const posY = Math.round(startY + ((index % 2) * 50));
+        const rawType = String(card.type || card.elementType || 'frame').toLowerCase();
+        const elemWidth = card.width || (
+          rawType === 'payment-architecture' ? 780 :
+          rawType === 'value-equation' ? 740 :
+          rawType === 'sprint-swimlane' ? 900 :
+          rawType === 'belief-triad' ? 780 :
+          rawType === 'diagnostic-protocol' ? 700 :
+          rawType === 'offer-name-generator' ? 500 :
+          rawType === 'bonus-stack' ? 480 :
+          rawType === 'prescription' ? 440 :
+          rawType === 'pipeline-node' ? 440 :
+          rawType === 'capacity-indicator' ? 380 :
+          rawType === 'pricing' ? 340 :
+          rawType === 'sticky' ? 300 : 460
+        );
+
+        const posX = Math.round(currentX);
+        const posY = Math.round(startY + ((index % 2) * 35));
+        currentX += elemWidth + 40;
 
         let element = null;
         if (typeof window.StudioCore.addStrategyCard === 'function') {
@@ -663,7 +681,7 @@
           element = window.StudioCore.addSticky('gold');
         }
 
-        if (element && element.id) {
+        if (element && element.id && !nonConnectableTypes.includes(rawType)) {
           createdCardIds.push(element.id);
         }
       });
@@ -686,7 +704,7 @@
       // Mark dirty and trigger auto-save
       window.StudioCore.markDirty();
       if (typeof window.StudioCore.showToast === 'function') {
-        window.StudioCore.showToast(`Added ${cards.length} strategy cards to canvas.`);
+        window.StudioCore.showToast(`Added ${cards.length} element${cards.length === 1 ? '' : 's'} to canvas.`);
       }
     },
 

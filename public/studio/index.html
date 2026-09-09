@@ -24,7 +24,7 @@
     <div class="dock-left">
       <a href="/boards" class="brand-mark-btn" title="Go to Boards Dashboard">
         <div class="brand-capsule">
-          <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="28" height="28" />
+          <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="26" height="26" />
           <div class="brand-text-lockup">
             <span class="brand-name">POLISH</span>
             <span class="brand-subtitle">BOARD STUDIO</span>
@@ -49,26 +49,17 @@
         <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"/></svg>
         Redo
       </button>
-      <div class="dock-divider"></div>
-      <button class="dock-btn btn-present" onclick="StudioPresentation.start()" title="Enter Presentation Mode (P)">
-        <svg class="dock-svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        Present
-      </button>
-      <div class="dock-divider"></div>
-      <button type="button" id="btnAiCopilot" class="dock-btn btn-ai-copilot" onclick="StudioAI.toggleWindow()" title="POLISH AI Copilot (Cmd+J)">
-        <span class="ai-sparkle-icon-wrap" aria-hidden="true">
-          <svg class="ai-sparkle-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
-            <circle cx="19.5" cy="4.5" r="2.5" fill="currentColor"/>
-            <circle cx="4.5" cy="19.5" r="1.5" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="ai-btn-text">POLISH AI</span>
-        <span class="ai-kbd-badge">⌘J</span>
-      </button>
     </div>
 
     <div class="dock-right">
+      <!-- Currency Switcher: DZD / AED / USD / EUR -->
+      <div class="dock-currency-picker" role="group" aria-label="Base Currency" title="Switch Board Currency (DZD / AED / USD / EUR)">
+        <button type="button" class="currency-btn" data-currency="DZD" onclick="StudioCore.setBoardCurrency('DZD')">DZD</button>
+        <button type="button" class="currency-btn active" data-currency="AED" onclick="StudioCore.setBoardCurrency('AED')">AED</button>
+        <button type="button" class="currency-btn" data-currency="USD" onclick="StudioCore.setBoardCurrency('USD')">USD</button>
+        <button type="button" class="currency-btn" data-currency="EUR" onclick="StudioCore.setBoardCurrency('EUR')">EUR</button>
+      </div>
+
       <!-- 1-Click Theme Toggle -->
       <button type="button" id="themeToggleBtn" class="theme-toggle-btn" onclick="StudioCore.toggleTheme()" title="Switch Light/Dark Theme">
         <svg class="dock-theme-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -127,106 +118,109 @@
   <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="if (this.files[0]) StudioCore.importJSON(this.files[0])" />
 
   <!-- ========================================================== -->
-  <!-- LEFT CREATION PALETTE (FULL MIRO TOOLSET)                  -->
+  <!-- ARCHITECTURAL STUDIO: FLOATING TOOL DOCK (SEGMENTED 4-ISLAND DOCK) -->
   <!-- ========================================================== -->
-  <aside class="creation-toolbar" role="toolbar" aria-label="Creation Tools">
-    <!-- Select Tool (V) -->
-    <button class="tool-item active" data-tool="select" onclick="CanvasEngine.setTool('select')" data-tooltip="Select & Marquee (V)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l7.07 17 2.51-7.39L21 11.07 4 4z"/></svg>
-      </span>
-      <span class="tool-label">Select</span>
-    </button>
+  <aside class="creation-toolbar floating-tool-dock" role="toolbar" aria-label="Creation Tools">
+    <!-- Island 1: Navigation & Precision -->
+    <div class="tool-island nav-island">
+      <button class="tool-item active" data-tool="select" onclick="CanvasEngine.setTool('select')" data-tooltip="Select (V)" aria-label="Select Tool (V)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l7.07 17 2.51-7.39L21 11.07 4 4z"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" data-tool="hand" onclick="CanvasEngine.setTool('hand')" data-tooltip="Hand Pan (H)" aria-label="Hand Pan Tool (H)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v4"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8.5a2 2 0 0 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L6 15"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" data-tool="laser" onclick="CanvasEngine.setTool('laser')" data-tooltip="Laser Pointer (L)" aria-label="Presenter Laser (L)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.5-6.5l-2.1 2.1m-8.8 8.8l-2.1 2.1m0-13l2.1 2.1m8.8 8.8l2.1 2.1"/></svg>
+        </span>
+      </button>
+    </div>
 
-    <!-- Hand Tool (H) -->
-    <button class="tool-item" data-tool="hand" onclick="CanvasEngine.setTool('hand')" data-tooltip="Hand / Pan Tool (H / Space)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v4"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8.5a2 2 0 0 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L6 15"/></svg>
-      </span>
-      <span class="tool-label">Hand</span>
-    </button>
+    <div class="dock-separator" aria-hidden="true"></div>
 
-    <!-- Laser Pointer (L) -->
-    <button class="tool-item" data-tool="laser" onclick="CanvasEngine.setTool('laser')" data-tooltip="Presenter Laser (L)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.5-6.5l-2.1 2.1m-8.8 8.8l-2.1 2.1m0-13l2.1 2.1m8.8 8.8l2.1 2.1"/></svg>
-      </span>
-      <span class="tool-label">Laser</span>
-    </button>
+    <!-- Island 2: Core Primitives -->
+    <div class="tool-island primitives-island">
+      <button class="tool-item" data-tool="frame" onclick="StudioCore.addFrame()" data-tooltip="Board Frame (F)" aria-label="Board Frame (F)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><line x1="3" y1="8" x2="21" y2="8"/><circle cx="6" cy="5.5" r="0.75" fill="currentColor"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" data-tool="sticky" onclick="toggleStickyMenu(event)" data-tooltip="Sticky Note (N)" aria-label="Sticky Notes (N)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/><polyline points="15 3 15 9 21 9"/><line x1="7" y1="13" x2="13" y2="13"/><line x1="7" y1="17" x2="11" y2="17"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" data-tool="text" onclick="CanvasEngine.setTool('text')" data-tooltip="Floating Text (T)" aria-label="Floating Text (T)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V4h16v3"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" data-tool="shape" onclick="toggleShapeMenu(event)" data-tooltip="Geometric Shapes (S)" aria-label="Geometric Shapes (S)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="10" height="10" rx="2.5"/><circle cx="16.5" cy="16.5" r="5"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" data-tool="pen" onclick="togglePenMenu(event)" data-tooltip="Freehand Pen (P)" aria-label="Freehand Pen (P)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/><circle cx="11" cy="13" r="1"/></svg>
+        </span>
+      </button>
+    </div>
 
-    <!-- Freehand Pen (P) -->
-    <button class="tool-item" data-tool="pen" onclick="togglePenMenu(event)" data-tooltip="Freehand Pen (P)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/><circle cx="11" cy="13" r="1"/></svg>
-      </span>
-      <span class="tool-label">Pen</span>
-    </button>
+    <div class="dock-separator" aria-hidden="true"></div>
 
-    <!-- Basic Shapes (S) -->
-    <button class="tool-item" data-tool="shape" onclick="toggleShapeMenu(event)" data-tooltip="Geometric Shapes (S)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="10" height="10" rx="2.5"/><circle cx="16.5" cy="16.5" r="5"/></svg>
-      </span>
-      <span class="tool-label">Shape</span>
-    </button>
+    <!-- Island 3: Strategy Blocks -->
+    <div class="tool-island strategy-island">
+      <button class="tool-item" onclick="StudioCore.addMetric()" data-tooltip="Metric KPI (M)" aria-label="Metric KPI Card (M)">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-3 3"/><circle cx="18" cy="9" r="1.5" fill="currentColor"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" onclick="StudioCore.addCallout()" data-tooltip="Callout Ribbon" aria-label="Chapter Callout Ribbon">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16"/><line x1="20" y1="10" x2="20" y2="14"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" onclick="StudioCore.addTable()" data-tooltip="Strategy Matrix Table" aria-label="Strategy Matrix Table">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 9h18"/><path d="M11 9v12"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" onclick="StudioCore.addPricing()" data-tooltip="Retainer Offer Card" aria-label="Retainer Offer Card">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="3" x2="7" y2="9"/><line x1="12" y1="3" x2="17" y2="9"/><line x1="12" y1="21" x2="7" y2="9"/><line x1="12" y1="21" x2="17" y2="9"/></svg>
+        </span>
+      </button>
+      <button class="tool-item" onclick="StudioCore.addForm()" data-tooltip="Diagnostic Intake Form" aria-label="Diagnostic Intake Form">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><polyline points="9 13 11 15 15 11"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+        </span>
+      </button>
+    </div>
 
-    <!-- Standalone Text (T) -->
-    <button class="tool-item" data-tool="text" onclick="CanvasEngine.setTool('text')" data-tooltip="Floating Text (T)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V4h16v3"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>
-      </span>
-      <span class="tool-label">Text</span>
-    </button>
+    <div class="dock-separator" aria-hidden="true"></div>
 
-    <!-- Sticky Notes (N) -->
-    <button class="tool-item" data-tool="sticky" onclick="toggleStickyMenu(event)" data-tooltip="Sticky Notes (N)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/><polyline points="15 3 15 9 21 9"/><line x1="7" y1="13" x2="13" y2="13"/><line x1="7" y1="17" x2="11" y2="17"/></svg>
-      </span>
-      <span class="tool-label">Note</span>
-    </button>
-
-    <!-- Frame (F) -->
-    <button class="tool-item" data-tool="frame" onclick="StudioCore.addFrame()" data-tooltip="Board Frame (F)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><line x1="3" y1="8" x2="21" y2="8"/><circle cx="6" cy="5.5" r="0.75" fill="currentColor"/></svg>
-      </span>
-      <span class="tool-label">Frame</span>
-    </button>
-
-    <div class="toolbar-divider"></div>
-
-    <!-- Strategy Components -->
-    <button class="tool-item" onclick="StudioCore.addMetric()" data-tooltip="Metric KPI Card (M)">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-3 3"/><circle cx="18" cy="9" r="1.5" fill="currentColor"/></svg>
-      </span>
-      <span class="tool-label">Metric</span>
-    </button>
-    <button class="tool-item" onclick="StudioCore.addCallout()" data-tooltip="Chapter Callout Ribbon">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16"/><line x1="20" y1="10" x2="20" y2="14"/></svg>
-      </span>
-      <span class="tool-label">Ribbon</span>
-    </button>
-    <button class="tool-item" onclick="StudioCore.addTable()" data-tooltip="Strategy Matrix Table">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 9h18"/><path d="M11 9v12"/></svg>
-      </span>
-      <span class="tool-label">Table</span>
-    </button>
-    <button class="tool-item" onclick="StudioCore.addPricing()" data-tooltip="Retainer Offer Card">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="3" x2="7" y2="9"/><line x1="12" y1="3" x2="17" y2="9"/><line x1="12" y1="21" x2="7" y2="9"/><line x1="12" y1="21" x2="17" y2="9"/></svg>
-      </span>
-      <span class="tool-label">Offer</span>
-    </button>
-    <button class="tool-item" onclick="StudioCore.addForm()" data-tooltip="Diagnostic Intake Form">
-      <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><polyline points="9 13 11 15 15 11"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
-      </span>
-      <span class="tool-label">Form</span>
-    </button>
+    <!-- Island 4: Executive Actions -->
+    <div class="tool-island executive-island">
+      <button class="tool-item tool-action-btn" onclick="StudioPresentation.start()" data-tooltip="Present Board (P)" aria-label="Present Board (P)">
+        <span class="tool-icon">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </span>
+      </button>
+      <button class="tool-item tool-ai-btn" onclick="StudioAI.toggleWindow()" data-tooltip="POLISH AI (⌘J)" aria-label="POLISH AI Copilot (Cmd+J)">
+        <span class="tool-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
+            <circle cx="19.5" cy="4.5" r="2.5" fill="currentColor"/>
+            <circle cx="4.5" cy="19.5" r="1.5" fill="currentColor"/>
+          </svg>
+        </span>
+      </button>
+    </div>
   </aside>
 
   <!-- Flyout Menu: Geometric Shapes -->
@@ -1045,12 +1039,19 @@
     // Toolbar Flyout Helpers
     function toggleShapeMenu(e) {
       e.stopPropagation();
-      closeAllFlyouts();
       const flyout = document.getElementById('shapeFlyout');
-      if (flyout) {
-        flyout.style.display = 'block';
-        flyout.style.left = '74px';
-        flyout.style.top = '140px';
+      const isVisible = flyout && flyout.style.display === 'block';
+      closeAllFlyouts();
+      if (flyout && !isVisible) {
+        const btn = document.querySelector('[data-tool="shape"]');
+        if (btn) {
+          const rect = btn.getBoundingClientRect();
+          flyout.style.display = 'block';
+          flyout.style.left = `${Math.round(rect.left + rect.width / 2)}px`;
+          flyout.style.transform = 'translateX(-50%)';
+          flyout.style.top = 'auto';
+          flyout.style.bottom = `${Math.round(window.innerHeight - rect.top + 12)}px`;
+        }
       }
     }
 
@@ -1061,12 +1062,19 @@
 
     function toggleStickyMenu(e) {
       e.stopPropagation();
-      closeAllFlyouts();
       const flyout = document.getElementById('stickyFlyout');
-      if (flyout) {
-        flyout.style.display = 'block';
-        flyout.style.left = '74px';
-        flyout.style.top = '220px';
+      const isVisible = flyout && flyout.style.display === 'block';
+      closeAllFlyouts();
+      if (flyout && !isVisible) {
+        const btn = document.querySelector('[data-tool="sticky"]');
+        if (btn) {
+          const rect = btn.getBoundingClientRect();
+          flyout.style.display = 'block';
+          flyout.style.left = `${Math.round(rect.left + rect.width / 2)}px`;
+          flyout.style.transform = 'translateX(-50%)';
+          flyout.style.top = 'auto';
+          flyout.style.bottom = `${Math.round(window.innerHeight - rect.top + 12)}px`;
+        }
       }
     }
 
@@ -1078,12 +1086,19 @@
     function togglePenMenu(e) {
       e.stopPropagation();
       CanvasEngine.setTool('pen');
-      closeAllFlyouts();
       const flyout = document.getElementById('penFlyout');
-      if (flyout) {
-        flyout.style.display = 'block';
-        flyout.style.left = '74px';
-        flyout.style.top = '100px';
+      const isVisible = flyout && flyout.style.display === 'block';
+      closeAllFlyouts();
+      if (flyout && !isVisible) {
+        const btn = document.querySelector('[data-tool="pen"]');
+        if (btn) {
+          const rect = btn.getBoundingClientRect();
+          flyout.style.display = 'block';
+          flyout.style.left = `${Math.round(rect.left + rect.width / 2)}px`;
+          flyout.style.transform = 'translateX(-50%)';
+          flyout.style.top = 'auto';
+          flyout.style.bottom = `${Math.round(window.innerHeight - rect.top + 12)}px`;
+        }
       }
     }
 

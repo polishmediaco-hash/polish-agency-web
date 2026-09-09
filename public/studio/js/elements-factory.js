@@ -46,6 +46,51 @@ window.ElementsFactory = (function () {
       case 'callout':
         el = createCalloutDOM(data);
         break;
+      case 'value-equation':
+        el = createValueEquationDOM(data);
+        break;
+      case 'bonus-stack':
+        el = createBonusStackDOM(data);
+        break;
+      case 'pipeline-node':
+        el = createPipelineNodeDOM(data);
+        break;
+      case 'diagnostic-protocol':
+        el = createDiagnosticProtocolDOM(data);
+        break;
+      case 'prescription':
+        el = createPrescriptionDOM(data);
+        break;
+      case 'belief-triad':
+        el = createBeliefTriadDOM(data);
+        break;
+      case 'cadence-timeline':
+        el = createCadenceTimelineDOM(data);
+        break;
+      case 'sprint-swimlane':
+        el = createSprintSwimlaneDOM(data);
+        break;
+      case 'voting-dots':
+        el = createVotingDotsDOM(data);
+        break;
+      case 'ldj-matrix':
+        el = createLdjMatrixDOM(data);
+        break;
+      case 'unbundling-tree':
+        el = createUnbundlingTreeDOM(data);
+        break;
+      case 'flywheel-rings':
+        el = createFlywheelRingsDOM(data);
+        break;
+      case 'capacity-indicator':
+        el = createCapacityIndicatorDOM(data);
+        break;
+      case 'offer-name-generator':
+        el = createOfferNameGeneratorDOM(data);
+        break;
+      case 'payment-architecture':
+        el = createPaymentArchitectureDOM(data);
+        break;
       default:
         el = createFrameDOM(data);
     }
@@ -172,7 +217,7 @@ window.ElementsFactory = (function () {
         ${data.serifAccent ? `<span class="serif-accent" contenteditable="true" data-field="serifAccent"> ${data.serifAccent}</span>` : ''}
       </h2>
       ${data.description ? `<p class="frame-desc" contenteditable="true" data-field="description">${data.description}</p>` : ''}
-      <div class="frame-boxes-wrap">${boxesHTML}</div>
+      <div class="frame-boxes-wrap ${data.boxes && data.boxes.length >= 4 ? 'grid-2-col' : ''}">${boxesHTML}</div>
       <div class="frame-ctrl-bar" style="margin-top: 12px; display: flex; justify-content: flex-end;">
         <button class="table-btn" onclick="StudioCore.addFrameBox('${data.id}')">+ Box</button>
       </div>
@@ -534,7 +579,7 @@ window.ElementsFactory = (function () {
     card.innerHTML = `
       <div class="metric-card-header">
         <span class="metric-title" contenteditable="true" data-field="metric-title">${data.title || 'NORTH STAR METRIC'}</span>
-        <span class="metric-badge ${data.deltaColor || 'tag-green'}" contenteditable="true" data-field="metric-badge">${data.badge || '▲ +42% Lift'}</span>
+        <span class="metric-badge ${data.deltaColor || 'tag-green'}" contenteditable="true" data-field="metric-badge">${data.badge || '+42% Lift'}</span>
       </div>
       <div class="metric-figure" contenteditable="true" data-field="metric-figure">${data.figure || '3.8x MER'}</div>
       <div class="metric-subtitle" contenteditable="true" data-field="metric-subtitle">${data.subtitle || 'Blended RoAS across Meta ASC & Spark Ads'}</div>
@@ -586,6 +631,795 @@ window.ElementsFactory = (function () {
     `;
     return banner;
   }
+
+  // 9. Alex Hormozi: Value Equation Fraction DOM (with interactive calculator)
+  function createValueEquationDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-value-equation ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 720}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'value-equation';
+
+    const dOutcome = data.dreamOutcome || { title: 'Category Dominance & Dream Outcome', desc: 'Achieving the undisputed status as the authority brand in the luxury niche.' };
+    const dLikelihood = data.likelihood || { title: 'Perceived Certainty of Success', desc: 'Proprietary laboratory proof mechanisms, guarantees, and verifiable case studies.' };
+    const dTime = data.timeDelay || { title: 'Time Delay Compressed to Zero', desc: 'Instant 48-hour system onboarding and turnkey sprint deployment.' };
+    const dEffort = data.effort || { title: 'Effort & Sacrifice Eliminated', desc: 'Done-For-You operational execution with dedicated sovereign advisory support.' };
+    const calcId = data.id + '-calc';
+
+    card.innerHTML = `
+      <div class="ve-header">
+        <div class="ve-tag-wrap">
+          <span class="ve-badge-yellow">VALUE CALCULUS</span>
+          <h3 class="ve-title" contenteditable="true" data-field="title">${data.title || 'The $100M Value Equation'}</h3>
+        </div>
+        <div class="ve-score-badge" contenteditable="true" data-field="scoreBadge">${data.scoreBadge || 'SCORE: 98.4 / 100'}</div>
+      </div>
+
+      <div class="ve-fraction-container">
+        <!-- Numerator: Value Multipliers -->
+        <div class="ve-row">
+          <div class="ve-var-card ve-multiplier">
+            <div class="ve-var-head">
+              <span class="ve-var-name">01. Dream Outcome</span>
+              <span class="ve-action-pill">↑ Maximize</span>
+            </div>
+            <h4 class="ve-var-title" contenteditable="true" data-field="do-title">${dOutcome.title}</h4>
+            <p class="ve-var-desc" contenteditable="true" data-field="do-desc">${dOutcome.desc}</p>
+          </div>
+          <div class="ve-var-card ve-multiplier">
+            <div class="ve-var-head">
+              <span class="ve-var-name">02. Likelihood of Success</span>
+              <span class="ve-action-pill">↑ Maximize</span>
+            </div>
+            <h4 class="ve-var-title" contenteditable="true" data-field="lk-title">${dLikelihood.title}</h4>
+            <p class="ve-var-desc" contenteditable="true" data-field="lk-desc">${dLikelihood.desc}</p>
+          </div>
+        </div>
+
+        <!-- Center Division Bar -->
+        <div class="ve-divider-bar">
+          <div class="ve-divider-line"></div>
+          <div class="ve-divider-pill">÷ DIVIDED BY (REDUCERS)</div>
+        </div>
+
+        <!-- Denominator: Value Reducers -->
+        <div class="ve-row">
+          <div class="ve-var-card ve-reducer">
+            <div class="ve-var-head">
+              <span class="ve-var-name">03. Time Delay</span>
+              <span class="ve-action-pill">↓ Minimize</span>
+            </div>
+            <h4 class="ve-var-title" contenteditable="true" data-field="td-title">${dTime.title}</h4>
+            <p class="ve-var-desc" contenteditable="true" data-field="td-desc">${dTime.desc}</p>
+          </div>
+          <div class="ve-var-card ve-reducer">
+            <div class="ve-var-head">
+              <span class="ve-var-name">04. Effort & Sacrifice</span>
+              <span class="ve-action-pill">↓ Minimize</span>
+            </div>
+            <h4 class="ve-var-title" contenteditable="true" data-field="ef-title">${dEffort.title}</h4>
+            <p class="ve-var-desc" contenteditable="true" data-field="ef-desc">${dEffort.desc}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE CALCULATOR -->
+      <div class="ve-calculator" id="${calcId}">
+        <div class="ve-calc-header">
+          <span class="ve-calc-label">LIVE VALUE CALCULATOR</span>
+          <div class="ve-calc-result" id="${calcId}-result">∞ × VALUE</div>
+        </div>
+        <div class="ve-calc-sliders">
+          <div class="ve-slider-row">
+            <span class="ve-slider-label">Dream Outcome</span>
+            <input type="range" class="ve-slider" id="${calcId}-d" min="1" max="10" value="9"
+              oninput="(function(){ var d=document.getElementById('${calcId}-d').value, l=document.getElementById('${calcId}-l').value, t=document.getElementById('${calcId}-t').value, e=document.getElementById('${calcId}-e').value; var score=(d*l)/(t*e); document.getElementById('${calcId}-result').textContent = isFinite(score) ? score.toFixed(1)+'× VALUE' : '∞ × VALUE'; document.getElementById('${calcId}-d-val').textContent=d; })()" />
+            <span class="ve-slider-val" id="${calcId}-d-val">9</span>
+          </div>
+          <div class="ve-slider-row">
+            <span class="ve-slider-label">Likelihood</span>
+            <input type="range" class="ve-slider" id="${calcId}-l" min="1" max="10" value="9"
+              oninput="(function(){ var d=document.getElementById('${calcId}-d').value, l=document.getElementById('${calcId}-l').value, t=document.getElementById('${calcId}-t').value, e=document.getElementById('${calcId}-e').value; var score=(d*l)/(t*e); document.getElementById('${calcId}-result').textContent = isFinite(score) ? score.toFixed(1)+'× VALUE' : '∞ × VALUE'; document.getElementById('${calcId}-l-val').textContent=l; })()" />
+            <span class="ve-slider-val" id="${calcId}-l-val">9</span>
+          </div>
+          <div class="ve-slider-row">
+            <span class="ve-slider-label">Time Delay</span>
+            <input type="range" class="ve-slider" id="${calcId}-t" min="1" max="10" value="1"
+              oninput="(function(){ var d=document.getElementById('${calcId}-d').value, l=document.getElementById('${calcId}-l').value, t=document.getElementById('${calcId}-t').value, e=document.getElementById('${calcId}-e').value; var score=(d*l)/(t*e); document.getElementById('${calcId}-result').textContent = isFinite(score) ? score.toFixed(1)+'× VALUE' : '∞ × VALUE'; document.getElementById('${calcId}-t-val').textContent=t; })()" />
+            <span class="ve-slider-val" id="${calcId}-t-val">1</span>
+          </div>
+          <div class="ve-slider-row">
+            <span class="ve-slider-label">Effort</span>
+            <input type="range" class="ve-slider" id="${calcId}-e" min="1" max="10" value="1"
+              oninput="(function(){ var d=document.getElementById('${calcId}-d').value, l=document.getElementById('${calcId}-l').value, t=document.getElementById('${calcId}-t').value, e=document.getElementById('${calcId}-e').value; var score=(d*l)/(t*e); document.getElementById('${calcId}-result').textContent = isFinite(score) ? score.toFixed(1)+'× VALUE' : '∞ × VALUE'; document.getElementById('${calcId}-e-val').textContent=e; })()" />
+            <span class="ve-slider-val" id="${calcId}-e-val">1</span>
+          </div>
+        </div>
+        <p class="ve-calc-formula">V = (D × L) ÷ (T × E)</p>
+      </div>
+
+      <div class="ve-footer-law" contenteditable="true" data-field="footerLaw">
+        ${data.footerLaw || 'Mathematical Law: When Denominator (Time × Effort) Approaches 0, Perceived Value Approaches Infinity.'}
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+
+  // 10. Alex Hormozi: Trim & Stack Bonus Architecture DOM
+  function createBonusStackDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-bonus-stack ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 460}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'bonus-stack';
+
+    const items = data.items || [
+      { title: 'Bonus 01: Turnkey SOP & Formula Database', desc: 'Pre-vetted Parisian laboratory formulation specs', strike: 'AED 8,500' },
+      { title: 'Bonus 02: High-AOV Routine Funnel Blueprint', desc: 'Shopify architecture engineered for 3.4x MER', strike: 'AED 12,000' },
+      { title: 'Bonus 03: 24/7 Sovereign Partner VIP Hotline', desc: 'Direct WhatsApp async access to senior strategist', strike: 'AED 15,000' }
+    ];
+
+    const itemsHTML = items.map((item, i) => `
+      <div class="bs-item">
+        <div class="bs-item-left">
+          <h4 contenteditable="true" data-field="bs-title-${i}">${item.title}</h4>
+          <p contenteditable="true" data-field="bs-desc-${i}">${item.desc}</p>
+        </div>
+        <div class="bs-item-right">
+          <span class="bs-strike-price" contenteditable="true" data-field="bs-strike-${i}">${item.strike}</span>
+          <span class="bs-free-pill">INCLUDED</span>
+        </div>
+      </div>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="bs-header">
+        <div>
+          <span class="ve-badge-yellow">TRIM & STACK</span>
+          <h3 style="margin: 6px 0 0 0; font-size: 1.2rem; font-weight: 800;" contenteditable="true" data-field="title">${data.title || 'Grand Slam Bonus Stack'}</h3>
+        </div>
+        <span style="font-family: var(--font-mono, monospace); font-size: 0.75rem; font-weight: 800; color: #16A34A;">3 BONUSES</span>
+      </div>
+
+      <div class="bs-items-list">${itemsHTML}</div>
+
+      <div class="bs-summary-bar">
+        <div class="bs-stack-total-row">
+          <div class="bs-summary-val-title">Total Stack Value</div>
+          <div class="bs-total-strike" contenteditable="true" data-field="totalValue">${data.totalValue || 'AED 35,500'}</div>
+        </div>
+        <div class="bs-divider-line"></div>
+        <div class="bs-investment-row">
+          <div class="bs-summary-val-title">Your Investment Today</div>
+          <div class="bs-summary-val-num bs-inv-price" contenteditable="true" data-field="price">${data.price || 'AED 12,500 / mo'}</div>
+        </div>
+        <div class="bs-savings-pill">You save <span contenteditable="true" data-field="savings">${data.savings || 'AED 23,000'}</span> in perceived value</div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 11. Liam Ottley: Modular AI Pipeline Node DOM
+  function createPipelineNodeDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-pipeline-node ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 420}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'pipeline-node';
+
+    const techPills = data.tech || ['Claude 3.5 Sonnet', 'Make.com', 'Supabase Vector'];
+    const pillsHTML = techPills.map(t => `<span class="node-tech-chip">${t}</span>`).join('');
+
+    const steps = data.steps || [
+      'Webhook listener triggers on intake submission',
+      'RAG embedding query against Parisian clinical trials',
+      'JSON output structured into client strategy brief'
+    ];
+    const stepsHTML = steps.map((s, idx) => `
+      <div class="node-step-item">
+        <span class="node-step-num">0${idx + 1}</span>
+        <span contenteditable="true" data-field="step-${idx}">${s}</span>
+      </div>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="node-header-row">
+        <span class="node-id-badge" contenteditable="true" data-field="nodeId">${data.nodeId || 'NODE_01'}</span>
+        <div class="node-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span contenteditable="true" data-field="status">${data.status || 'ONLINE 200 OK'}</span>
+        </div>
+      </div>
+
+      <h3 class="node-title" contenteditable="true" data-field="title">${data.title || 'Ingestion & Vector Synthesis Node'}</h3>
+      <p class="node-desc" contenteditable="true" data-field="desc">${data.desc || 'Autonomous ingestion parsing founder ad metrics and formulation profile.'}</p>
+
+      <div class="node-tech-pills">${pillsHTML}</div>
+      <div class="node-steps-list">${stepsHTML}</div>
+
+      <div class="node-telemetry-footer">
+        <span contenteditable="true" data-field="latency">${data.latency || 'Latency: <140ms'}</span>
+        <span contenteditable="true" data-field="compute">${data.compute || 'Cost: $0.0034 / run'}</span>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 12. Chris Bradley: Consultative Diagnostic Protocol DOM
+  function createDiagnosticProtocolDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-diagnostic-protocol ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 680}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'diagnostic-protocol';
+
+    const stages = data.stages || [
+      { roman: 'STAGE I', title: 'Symptom Elicitation', desc: 'Identify visible pain: client complains of Meta CAC inflation and high single-purchase churn.' },
+      { roman: 'STAGE II', title: 'Root Pathophysiology', desc: 'Diagnose systemic leak: lack of clinical authority assets and failure to package regimen routine bundles.' },
+      { roman: 'STAGE III', title: 'Cost of Inaction Prognosis', desc: 'Compound impact: continuing current tactics burns AED 180,000 in wasted ad spend over 12 months.' },
+      { roman: 'STAGE IV', title: 'Prescription of Care', desc: 'Prescribe 90-Day Sovereign Container: Parisian lab positioning, DTC regimen rebrand, and Meta ASC creative.' },
+      { roman: 'STAGE V', title: 'The Silence Rule', desc: 'State fee with absolute certainty: AED 25,000 / mo quarterly retainer. Stop speaking and hold the frame.' }
+    ];
+
+    const stagesHTML = stages.map((st, idx) => `
+      <div class="diag-stage-card">
+        <div class="diag-stage-head">
+          <span class="diag-roman">${st.roman}</span>
+          <h4 class="diag-stage-title" contenteditable="true" data-field="stage-title-${idx}">${st.title}</h4>
+        </div>
+        <p class="diag-stage-desc" contenteditable="true" data-field="stage-desc-${idx}">${st.desc}</p>
+      </div>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="diag-header">
+        <div class="diag-title-wrap">
+          <span style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: #064E3B; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;">DOCTOR-PATIENT FRAME</span>
+          <h3 contenteditable="true" data-field="title">${data.title || 'Consultative Diagnostic & Prescription Protocol'}</h3>
+        </div>
+        <span class="diag-badge-gold">SAVILE ROW AUTHORITY</span>
+      </div>
+
+      <div class="diag-stages-wrap">${stagesHTML}</div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 13. Chris Bradley: Sovereign Advisory Prescription Sheet DOM (with guarantee type selector)
+  function createPrescriptionDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-prescription ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 420}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'prescription';
+
+    const guaranteeTexts = {
+      unconditional: 'Contraindication: Full refund within 30 days, no questions asked.',
+      conditional: 'Contraindication: Refund issued only upon verified completion of all assigned sprint deliverables.',
+      performance: 'Contraindication: Investment returned if agreed KPIs are not reached by Day 90.',
+      service: 'Contraindication: Free remediation sprint guaranteed if output quality falls below agreed specification.',
+      anti: 'Contraindication: Zero refunds. You are committing to a sovereign transformation — not a trial.'
+    };
+    const gId = data.id + '-guarantee';
+
+    card.innerHTML = `
+      <div class="rx-watermark">Rx</div>
+      <div class="rx-header">
+        <span style="font-family: var(--font-mono, monospace); font-size: 0.68rem; font-weight: 800; color: #C9A84C; letter-spacing: 0.08em; text-transform: uppercase;">PRESCRIPTION OF CARE</span>
+        <h3 class="rx-title" contenteditable="true" data-field="title">${data.title || 'Sovereign Advisory Retainer'}</h3>
+      </div>
+
+      <div class="rx-container-fee" contenteditable="true" data-field="fee">${data.fee || 'AED 25,000 / Month'}</div>
+      <p style="font-size: 0.78rem; color: #666; margin: 0 0 1rem 0;" contenteditable="true" data-field="term">${data.term || 'Closed-Door 90-Day Container Commitment'}</p>
+
+      <!-- GUARANTEE TYPE SELECTOR -->
+      <div class="rx-guarantee-selector">
+        <span class="rx-guarantee-label">GUARANTEE TYPE</span>
+        <div class="rx-guarantee-group" id="${gId}-group">
+          <button type="button" class="rx-gtag active" data-gtype="unconditional"
+            onclick="(function(el){ el.closest('.rx-guarantee-group').querySelectorAll('.rx-gtag').forEach(b=>b.classList.remove('active')); el.classList.add('active'); var texts={unconditional:'${guaranteeTexts.unconditional}',conditional:'${guaranteeTexts.conditional}',performance:'${guaranteeTexts.performance}',service:'${guaranteeTexts.service}',anti:'${guaranteeTexts.anti}'}; var t=el.dataset.gtype; el.closest('.element-prescription').querySelector('.rx-contra-text').textContent=texts[t]||''; })(this)">Unconditional</button>
+          <button type="button" class="rx-gtag" data-gtype="conditional"
+            onclick="(function(el){ el.closest('.rx-guarantee-group').querySelectorAll('.rx-gtag').forEach(b=>b.classList.remove('active')); el.classList.add('active'); var texts={unconditional:'${guaranteeTexts.unconditional}',conditional:'${guaranteeTexts.conditional}',performance:'${guaranteeTexts.performance}',service:'${guaranteeTexts.service}',anti:'${guaranteeTexts.anti}'}; var t=el.dataset.gtype; el.closest('.element-prescription').querySelector('.rx-contra-text').textContent=texts[t]||''; })(this)">Conditional</button>
+          <button type="button" class="rx-gtag" data-gtype="performance"
+            onclick="(function(el){ el.closest('.rx-guarantee-group').querySelectorAll('.rx-gtag').forEach(b=>b.classList.remove('active')); el.classList.add('active'); var texts={unconditional:'${guaranteeTexts.unconditional}',conditional:'${guaranteeTexts.conditional}',performance:'${guaranteeTexts.performance}',service:'${guaranteeTexts.service}',anti:'${guaranteeTexts.anti}'}; var t=el.dataset.gtype; el.closest('.element-prescription').querySelector('.rx-contra-text').textContent=texts[t]||''; })(this)">Performance</button>
+          <button type="button" class="rx-gtag" data-gtype="service"
+            onclick="(function(el){ el.closest('.rx-guarantee-group').querySelectorAll('.rx-gtag').forEach(b=>b.classList.remove('active')); el.classList.add('active'); var texts={unconditional:'${guaranteeTexts.unconditional}',conditional:'${guaranteeTexts.conditional}',performance:'${guaranteeTexts.performance}',service:'${guaranteeTexts.service}',anti:'${guaranteeTexts.anti}'}; var t=el.dataset.gtype; el.closest('.element-prescription').querySelector('.rx-contra-text').textContent=texts[t]||''; })(this)">Service</button>
+          <button type="button" class="rx-gtag" data-gtype="anti"
+            onclick="(function(el){ el.closest('.rx-guarantee-group').querySelectorAll('.rx-gtag').forEach(b=>b.classList.remove('active')); el.classList.add('active'); var texts={unconditional:'${guaranteeTexts.unconditional}',conditional:'${guaranteeTexts.conditional}',performance:'${guaranteeTexts.performance}',service:'${guaranteeTexts.service}',anti:'${guaranteeTexts.anti}'}; var t=el.dataset.gtype; el.closest('.element-prescription').querySelector('.rx-contra-text').textContent=texts[t]||''; })(this)">Anti-Guarantee</button>
+        </div>
+      </div>
+
+      <div class="rx-terms-list">
+        <div class="rx-term-row">
+          <span class="rx-term-bullet">§</span>
+          <span contenteditable="true" data-field="term-1">${data.term1 || 'Bi-Weekly 1-on-1 Consultative Diagnostic & Growth Offsite'}</span>
+        </div>
+        <div class="rx-term-row">
+          <span class="rx-term-bullet">§</span>
+          <span contenteditable="true" data-field="term-2">${data.term2 || '24/7 Async Sovereign Partner WhatsApp Hotline'}</span>
+        </div>
+        <div class="rx-term-row">
+          <span class="rx-term-bullet">§</span>
+          <span contenteditable="true" data-field="term-3">${data.term3 || 'Creative Sandbox Teardowns & Multi-Touch Funnel Architecture'}</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px dashed rgba(201, 168, 76, 0.4); font-size: 0.75rem; color: #DC2626; font-weight: 700;">
+        <span class="rx-contra-text">${guaranteeTexts.unconditional}</span>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+
+
+  // 14. Charlie Morgan: 3-Limiting-Beliefs Triad DOM
+  function createBeliefTriadDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-belief-triad ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 760}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'belief-triad';
+
+    card.innerHTML = `
+      <div class="triad-header">
+        <div>
+          <span class="triad-badge-amber">ACQUISITION ENGINE</span>
+          <h3 style="margin: 6px 0 0 0; font-size: 1.2rem; font-weight: 800; color: #FFF;" contenteditable="true" data-field="title">${data.title || 'The 3 Limiting Beliefs Triad'}</h3>
+        </div>
+        <span style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #A3A3A3;">MORGAN CLOSING MATRIX</span>
+      </div>
+
+      <div class="triad-cols">
+        <div class="triad-col-card active-focus">
+          <div class="triad-col-tag">01. THE VEHICLE</div>
+          <h4 class="triad-col-title" contenteditable="true" data-field="v-title">${data.vTitle || 'Agency Vehicle Reframe'}</h4>
+          <p class="triad-col-body" contenteditable="true" data-field="v-body">${data.vBody || 'Shift prospect belief from "Generic marketing agencies burn cash on vanity ads" to "Scientific clinical accelerators multiply cash on first-purchase AOV."'}</p>
+        </div>
+        <div class="triad-col-card">
+          <div class="triad-col-tag">02. INTERNAL ABILITY</div>
+          <h4 class="triad-col-title" contenteditable="true" data-field="i-title">${data.iTitle || 'Margin & Bandwidth Reframe'}</h4>
+          <p class="triad-col-body" contenteditable="true" data-field="i-body">${data.iBody || 'Shift belief from "Our team has no time or capacity to handle complex campaigns" to "Modular turnkey systems require zero internal staff overhead."'}</p>
+        </div>
+        <div class="triad-col-card">
+          <div class="triad-col-tag">03. EXTERNAL MARKET</div>
+          <h4 class="triad-col-title" contenteditable="true" data-field="e-title">${data.eTitle || 'Market Receptivity Reframe'}</h4>
+          <p class="triad-col-body" contenteditable="true" data-field="e-body">${data.eBody || 'Shift belief from "High-net-worth beauty buyers are cutting spend" to "Affluent cosmetic consumers actively seek lab-certified formulation transparency."'}</p>
+        </div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 15. Charlie Morgan: 21-Day Cadence Timeline DOM
+  function createCadenceTimelineDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-cadence-timeline ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 760}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'cadence-timeline';
+
+    card.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #262626; padding-bottom: 0.75rem;">
+        <div>
+          <span style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: #F59E0B; font-weight: 800; text-transform: uppercase;">OUTBOUND MATH</span>
+          <h3 style="margin: 4px 0 0 0; font-size: 1.15rem; font-weight: 800; color: #FFF;" contenteditable="true" data-field="title">${data.title || '21-Day 8-Touch Outbound Machine'}</h3>
+        </div>
+        <span style="font-family: var(--font-mono, monospace); font-size: 0.75rem; color: #10B981; font-weight: 800;">4.5% REPLY TARGET</span>
+      </div>
+
+      <div class="cadence-steps-row">
+        <div class="cadence-step-box">
+          <div class="cadence-day-badge">DAY 01</div>
+          <h4 class="cadence-step-name" contenteditable="true" data-field="s1-name">LinkedIn Pattern Interrupt</h4>
+          <p class="cadence-step-detail" contenteditable="true" data-field="s1-detail">Soft personalized connection note identifying 1 specific ad leak.</p>
+        </div>
+        <div class="cadence-step-box">
+          <div class="cadence-day-badge">DAY 03</div>
+          <h4 class="cadence-step-name" contenteditable="true" data-field="s2-name">65-Word Loom Teardown</h4>
+          <p class="cadence-step-detail" contenteditable="true" data-field="s2-detail">Direct email with 120-sec custom loom deconstructing their PDP checkout.</p>
+        </div>
+        <div class="cadence-step-box">
+          <div class="cadence-day-badge">DAY 07</div>
+          <h4 class="cadence-step-name" contenteditable="true" data-field="s3-name">LinkedIn Voice Note</h4>
+          <p class="cadence-step-detail" contenteditable="true" data-field="s3-detail">High-status 20-sec voice message referencing the exact feedback.</p>
+        </div>
+        <div class="cadence-step-box">
+          <div class="cadence-day-badge">DAY 14</div>
+          <h4 class="cadence-step-name" contenteditable="true" data-field="s4-name">The Soft Breakup</h4>
+          <p class="cadence-step-detail" contenteditable="true" data-field="s4-detail">Low-friction question: "Shall I close your file on this, or revisit next quarter?"</p>
+        </div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 16. AJ&Smart: 4-Day Design Sprint 2.0 Swimlane DOM
+  function createSprintSwimlaneDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-sprint-swimlane ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 1200}px`;
+    card.style.zIndex = data.zIndex || 10;
+    card.dataset.type = 'sprint-swimlane';
+
+    card.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(124, 58, 237, 0.2); padding-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="background: #7C3AED; color: #FFF; font-family: var(--font-mono, monospace); font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 6px;">DESIGN SPRINT 2.0</span>
+          <h3 style="margin: 0; font-size: 1.25rem; font-weight: 800; color: #111;" contenteditable="true" data-field="title">${data.title || 'AJ&Smart 4-Day Strategy & Facilitation Sprint'}</h3>
+        </div>
+        <span style="font-family: var(--font-mono, monospace); font-size: 0.75rem; color: #7C3AED; font-weight: 800;">TOGETHER ALONE</span>
+      </div>
+
+      <div class="sprint-cols-wrap">
+        <!-- Day 1 -->
+        <div class="sprint-col">
+          <div class="sprint-col-head">
+            <span class="sprint-day-pill">DAY 01</span>
+            <h4 class="sprint-col-title">Map & Sketch</h4>
+          </div>
+          <div class="sprint-item-card">
+            <div class="sprint-item-title" contenteditable="true" data-field="d1-1-t">Expert Interviews</div>
+            <div class="sprint-item-desc" contenteditable="true" data-field="d1-1-d">Silent HMW sticky note capture while grilling leadership.</div>
+          </div>
+          <div class="sprint-item-card">
+            <div class="sprint-item-title" contenteditable="true" data-field="d1-2-t">Lightning Demos</div>
+            <div class="sprint-item-desc" contenteditable="true" data-field="d1-2-d">Reviewing Swiss horology packaging for cosmetic dropper inspiration.</div>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="sprint-col">
+          <div class="sprint-col-head">
+            <span class="sprint-day-pill">DAY 02</span>
+            <h4 class="sprint-col-title">Decide & Storyboard</h4>
+          </div>
+          <div class="sprint-item-card">
+            <div class="sprint-item-title" contenteditable="true" data-field="d2-1-t">Heatmap Dot Voting</div>
+            <div class="sprint-item-desc" contenteditable="true" data-field="d2-1-d">Silent dot voting removes extrovert bias and reveals group alignment.</div>
+          </div>
+          <div class="sprint-item-card">
+            <div class="sprint-item-title" contenteditable="true" data-field="d2-2-t">The Sovereign Decider</div>
+            <div class="sprint-item-desc" contenteditable="true" data-field="d2-2-d">Executive Decider locks the 8-step storyboard for rapid prototyping.</div>
+          </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="sprint-col">
+          <div class="sprint-col-head">
+            <span class="sprint-day-pill">DAY 03</span>
+            <h4 class="sprint-col-title">Prototype</h4>
+          </div>
+          <div class="sprint-item-card">
+            <div class="sprint-item-title" contenteditable="true" data-field="d3-1-t">Goldilocks Asset</div>
+            <div class="sprint-item-desc" contenteditable="true" data-field="d3-1-d">High-fidelity interactive Shopify PDP with 3D frosted glass dropper.</div>
+          </div>
+          <div class="sprint-item-card">
+            <div class="sprint-item-title" contenteditable="true" data-field="d3-2-t">Trial Scripting</div>
+            <div class="sprint-item-desc" contenteditable="true" data-field="d3-2-d">Neutral user interview protocol isolating price resistance.</div>
+          </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="sprint-col">
+          <div class="sprint-col-head">
+            <span class="sprint-day-pill">DAY 04</span>
+            <h4 class="sprint-col-title">Test & Learn</h4>
+          </div>
+          <div class="sprint-item-card">
+            <div class="sprint-item-title" contenteditable="true" data-field="d4-1-t">5 User Interviews</div>
+            <div class="sprint-item-desc" contenteditable="true" data-field="d4-1-d">Testing with 5 verified luxury cosmetic buyers reveals 85% of usability flaws.</div>
+          </div>
+          <div class="sprint-item-card">
+            <div class="sprint-item-title" contenteditable="true" data-field="d4-2-t">Synthesis Matrix</div>
+            <div class="sprint-item-desc" contenteditable="true" data-field="d4-2-d">Locking product roadmap based on qualitative customer patterns.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 17. AJ&Smart: Heatmap Voting Dot Stickers DOM
+  function createVotingDotsDOM(data) {
+    const cluster = document.createElement('div');
+    cluster.id = data.id;
+    cluster.className = `element-voting-dots ${data.isLocked ? 'is-locked' : ''}`;
+    cluster.style.left = `${data.x}px`;
+    cluster.style.top = `${data.y}px`;
+    cluster.style.zIndex = data.zIndex || 50;
+    cluster.dataset.type = 'voting-dots';
+
+    const dots = data.dots || [
+      { color: 'dot-violet', text: 'JS' },
+      { color: 'dot-mint', text: 'AK' },
+      { color: 'dot-gold', text: 'MH' },
+      { color: 'dot-rose', text: 'EL' }
+    ];
+
+    cluster.innerHTML = dots.map(d => `<div class="voting-dot ${d.color}">${d.text}</div>`).join('');
+    return cluster;
+  }
+
+  // 18. AJ&Smart: 2x2 LDJ Impact vs Effort Matrix DOM
+  function createLdjMatrixDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-ldj-matrix ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 620}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'ldj-matrix';
+
+    card.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(124, 58, 237, 0.2); padding-bottom: 0.75rem;">
+        <div>
+          <span style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: #7C3AED; font-weight: 800; text-transform: uppercase;">LDJ PRIORITIZATION</span>
+          <h3 style="margin: 4px 0 0 0; font-size: 1.15rem; font-weight: 800; color: #111;" contenteditable="true" data-field="title">${data.title || 'Impact vs. Effort Matrix'}</h3>
+        </div>
+        <span style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #10B981; font-weight: 800;">SWEET SPOT: Q1</span>
+      </div>
+
+      <div class="ldj-grid">
+        <div class="ldj-quadrant ldj-q1">
+          <div class="ldj-quadrant-tag">Q1 • HIGH IMPACT / LOW EFFORT</div>
+          <h4 class="ldj-quadrant-title" contenteditable="true" data-field="q1-t">Quick Wins (Execute Immediately)</h4>
+          <p class="ldj-quadrant-desc" contenteditable="true" data-field="q1-d">Add peptide clinical trial badge to above-the-fold hero and checkout.</p>
+        </div>
+        <div class="ldj-quadrant ldj-q2">
+          <div class="ldj-quadrant-tag">Q2 • HIGH IMPACT / HIGH EFFORT</div>
+          <h4 class="ldj-quadrant-title" contenteditable="true" data-field="q2-t">Major Projects (Sprint Candidate)</h4>
+          <p class="ldj-quadrant-desc" contenteditable="true" data-field="q2-d">Custom 3D unboxing ritual video and interactive skin barrier diagnostic app.</p>
+        </div>
+        <div class="ldj-quadrant ldj-q3">
+          <div class="ldj-quadrant-tag">Q3 • LOW IMPACT / LOW EFFORT</div>
+          <h4 class="ldj-quadrant-title" contenteditable="true" data-field="q3-t">Fill-Ins (When Time Permits)</h4>
+          <p class="ldj-quadrant-desc" contenteditable="true" data-field="q3-d">Updating footer copyright and secondary terms of service copy.</p>
+        </div>
+        <div class="ldj-quadrant ldj-q4">
+          <div class="ldj-quadrant-tag">Q4 • LOW IMPACT / HIGH EFFORT</div>
+          <h4 class="ldj-quadrant-title" contenteditable="true" data-field="q4-t">Thankless Tasks (Kill Immediately)</h4>
+          <p class="ldj-quadrant-desc" contenteditable="true" data-field="q4-d">Custom native mobile iOS app for single-product brand.</p>
+        </div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 19. Greg Isenberg: Subreddit Unbundling Tree DOM
+  function createUnbundlingTreeDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-unbundling-tree ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 600}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'unbundling-tree';
+
+    card.innerHTML = `
+      <div class="unbundle-head">
+        <div>
+          <span style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: #C2410C; font-weight: 800; text-transform: uppercase;">PLATFORM UNBUNDLING</span>
+          <h3 style="margin: 4px 0 0 0; font-size: 1.2rem; font-weight: 800; color: #1C1917;" contenteditable="true" data-field="title">${data.title || 'Digital Watering Hole Unbundling'}</h3>
+        </div>
+        <span class="unbundle-reddit-pill" contenteditable="true" data-field="communityPill">${data.communityPill || 'r/30PlusSkinCare • 2.4M'}</span>
+      </div>
+
+      <div class="unbundle-card-body">
+        <div class="unbundle-pain-tag">CORE UNRESOLVED FRUSTRATION</div>
+        <h4 style="margin: 4px 0 6px 0; font-size: 0.95rem; font-weight: 800; color: #111;" contenteditable="true" data-field="painTitle">Barrier Damage & Retinol Irritation</h4>
+        <p class="unbundle-solution-desc" contenteditable="true" data-field="painDesc">2,400+ monthly comments lamenting flaking, redness, and conflicting dermatologist routines without guidance.</p>
+      </div>
+
+      <div class="unbundle-card-body" style="border-left: 4px solid #C2410C;">
+        <div class="unbundle-pain-tag" style="color: #10B981;">THE UNBUNDLED LUXURY SOLUTION</div>
+        <h4 class="unbundle-solution-title" contenteditable="true" data-field="solTitle">Personalized Peptide Regimen Concierge</h4>
+        <p class="unbundle-solution-desc" contenteditable="true" data-field="solDesc">Direct-to-consumer auto-replenishment box paired with private aesthetician WhatsApp concierge ($120 / month).</p>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 20. Greg Isenberg: 3-Tier Concentric Flywheel DOM
+  function createFlywheelRingsDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-flywheel-rings ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 560}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'flywheel-rings';
+
+    card.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(139, 92, 246, 0.2); padding-bottom: 0.75rem;">
+        <div>
+          <span style="font-family: var(--font-mono, monospace); font-size: 0.70rem; color: #8B5CF6; font-weight: 800; text-transform: uppercase;">ACP FRAMEWORK</span>
+          <h3 style="margin: 4px 0 0 0; font-size: 1.2rem; font-weight: 800; color: #1C1917;" contenteditable="true" data-field="title">${data.title || 'Audience → Community → Product'}</h3>
+        </div>
+        <span style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #8B5CF6; font-weight: 800;">ZERO-CAC FLYWHEEL</span>
+      </div>
+
+      <div class="flywheel-rings-wrap">
+        <div class="flywheel-tier flywheel-tier-1">
+          <div class="flywheel-tier-tag">OUTER RING • AUDIENCE (TOFU)</div>
+          <h4 class="flywheel-tier-title" contenteditable="true" data-field="t1-t">Clinical Cosmetic Chemistry Substack & YouTube</h4>
+          <p class="flywheel-tier-desc" contenteditable="true" data-field="t1-d">Educational deep dives on formulation biochemistry attracting 35,000 discerning founders and beauty patrons.</p>
+        </div>
+        <div class="flywheel-tier flywheel-tier-2">
+          <div class="flywheel-tier-tag">MIDDLE RING • COMMUNITY (MOFU)</div>
+          <h4 class="flywheel-tier-title" contenteditable="true" data-field="t2-t">Application-Only Vanity Atelier VIP WhatsApp</h4>
+          <p class="flywheel-tier-desc" contenteditable="true" data-field="t2-d">Curated 500-member private circle who review formulation prototypes, test droppers, and become organic brand evangelists.</p>
+        </div>
+        <div class="flywheel-tier flywheel-tier-3">
+          <div class="flywheel-tier-tag">INNER CORE • PRODUCT (BOFU)</div>
+          <h4 class="flywheel-tier-title" contenteditable="true" data-field="t3-t">Co-Created Micro-Batch Drops & Retainers</h4>
+          <p class="flywheel-tier-desc" contenteditable="true" data-field="t3-d">Limited Parisian peptide drops that sell out in 6 hours with $0 upfront ad spend due to owned community distribution.</p>
+        </div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
 
   // Element Event Listeners: Select, Drag, Resize, Edit Sync
   function attachElementInteractions(el, data) {
@@ -781,6 +1615,203 @@ window.ElementsFactory = (function () {
         }
       }
     });
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // LENS 7 — NEW OFFER ARCHITECTURE WIDGETS
+  // ═══════════════════════════════════════════════════════════════
+
+  // CAPACITY INDICATOR: Client slot fill visualization (scarcity)
+  function createCapacityIndicatorDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-capacity-indicator ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 360}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'capacity-indicator';
+
+    const total = parseInt(data.totalSlots || 3);
+    const filled = parseInt(data.filledSlots || 2);
+    const remaining = total - filled;
+    const slotsHTML = Array.from({ length: total }, (_, i) =>
+      `<div class="cap-slot ${i < filled ? 'cap-slot-filled' : 'cap-slot-empty'}"></div>`
+    ).join('');
+
+    card.innerHTML = `
+      <div class="cap-header">
+        <span class="cap-badge">CAPACITY</span>
+        <h3 class="cap-title" contenteditable="true" data-field="title">${data.title || 'Atelier Client Roster'}</h3>
+      </div>
+      <div class="cap-slots-row" id="${data.id}-slots">${slotsHTML}</div>
+      <div class="cap-status">
+        <span class="cap-filled-count" contenteditable="true" data-field="filledSlots">${filled}</span>
+        <span class="cap-of"> of </span>
+        <span class="cap-total-count" contenteditable="true" data-field="totalSlots">${total}</span>
+        <span class="cap-label-text"> client positions filled.</span>
+      </div>
+      <div class="cap-remaining ${remaining === 0 ? 'cap-closed' : ''}" contenteditable="true" data-field="remainingText">
+        ${data.remainingText || (remaining > 0 ? `Accepting ${remaining} new engagement${remaining === 1 ? '' : 's'} this quarter.` : 'Roster closed. Join waitlist below.')}
+      </div>
+      <p class="cap-urgency" contenteditable="true" data-field="urgency">${data.urgency || 'Next opening: Q2 2025. Enquire to reserve.'}</p>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // OFFER NAME GENERATOR: Formula-based live naming composer
+  function createOfferNameGeneratorDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-offer-name-generator ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 480}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'offer-name-generator';
+    const oid = data.id + '-ong';
+
+    card.innerHTML = `
+      <div class="ong-header">
+        <span class="ong-badge">OFFER NAMING</span>
+        <h3 class="ong-title">Offer Name Generator</h3>
+      </div>
+      <div class="ong-fields">
+        <div class="ong-field-row">
+          <label class="ong-label">ADJECTIVE</label>
+          <input class="ong-input" id="${oid}-adj" type="text" value="${data.adjective || 'Sovereign'}" placeholder="Sovereign, Elite, Accelerated..."
+            oninput="document.getElementById('${oid}-output').textContent = 'The ' + document.getElementById('${oid}-adj').value + ' ' + document.getElementById('${oid}-outcome').value + ' ' + document.getElementById('${oid}-vehicle').value + ' — A ' + document.getElementById('${oid}-duration').value + ' Program for ' + document.getElementById('${oid}-audience').value" />
+        </div>
+        <div class="ong-field-row">
+          <label class="ong-label">OUTCOME</label>
+          <input class="ong-input" id="${oid}-outcome" type="text" value="${data.outcome || 'Growth'}" placeholder="Growth, Acquisition, Scaling..."
+            oninput="document.getElementById('${oid}-output').textContent = 'The ' + document.getElementById('${oid}-adj').value + ' ' + document.getElementById('${oid}-outcome').value + ' ' + document.getElementById('${oid}-vehicle').value + ' — A ' + document.getElementById('${oid}-duration').value + ' Program for ' + document.getElementById('${oid}-audience').value" />
+        </div>
+        <div class="ong-field-row">
+          <label class="ong-label">DELIVERY VEHICLE</label>
+          <input class="ong-input" id="${oid}-vehicle" type="text" value="${data.vehicle || 'Accelerator'}" placeholder="Accelerator, Retainer, Sprint..."
+            oninput="document.getElementById('${oid}-output').textContent = 'The ' + document.getElementById('${oid}-adj').value + ' ' + document.getElementById('${oid}-outcome').value + ' ' + document.getElementById('${oid}-vehicle').value + ' — A ' + document.getElementById('${oid}-duration').value + ' Program for ' + document.getElementById('${oid}-audience').value" />
+        </div>
+        <div class="ong-field-row">
+          <label class="ong-label">DURATION</label>
+          <input class="ong-input" id="${oid}-duration" type="text" value="${data.duration || '90-Day'}" placeholder="90-Day, 6-Month, 12-Week..."
+            oninput="document.getElementById('${oid}-output').textContent = 'The ' + document.getElementById('${oid}-adj').value + ' ' + document.getElementById('${oid}-outcome').value + ' ' + document.getElementById('${oid}-vehicle').value + ' — A ' + document.getElementById('${oid}-duration').value + ' Program for ' + document.getElementById('${oid}-audience').value" />
+        </div>
+        <div class="ong-field-row">
+          <label class="ong-label">AUDIENCE</label>
+          <input class="ong-input" id="${oid}-audience" type="text" value="${data.audience || 'Luxury Aesthetic Clinics'}" placeholder="Clinics, Founders, Brands..."
+            oninput="document.getElementById('${oid}-output').textContent = 'The ' + document.getElementById('${oid}-adj').value + ' ' + document.getElementById('${oid}-outcome').value + ' ' + document.getElementById('${oid}-vehicle').value + ' — A ' + document.getElementById('${oid}-duration').value + ' Program for ' + document.getElementById('${oid}-audience').value" />
+        </div>
+      </div>
+      <div class="ong-output-wrap">
+        <span class="ong-output-label">GENERATED OFFER NAME</span>
+        <div class="ong-output" id="${oid}-output">The Sovereign Growth Accelerator — A 90-Day Program for Luxury Aesthetic Clinics</div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // PAYMENT ARCHITECTURE: 3-column payment comparison card
+  function createPaymentArchitectureDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-payment-architecture ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 760}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'payment-architecture';
+
+    const cols = data.columns || [
+      {
+        name: 'Upfront Full Pay',
+        total: 'AED 75,000',
+        cashflow: 'Single payment, Day 1',
+        psychology: 'Maximum client commitment. Eliminates monthly friction. Best for transformation containers.',
+        bestFor: 'High-trust, high-ticket close',
+        badge: 'BEST VALUE',
+        highlight: true
+      },
+      {
+        name: 'Monthly Retainer',
+        total: 'AED 25,000 / mo',
+        cashflow: 'Rolling 3-month minimum',
+        psychology: 'Lower barrier to entry. Increases churn risk. Price perceived as "subscription".',
+        bestFor: 'Ongoing advisory relationships',
+        badge: '',
+        highlight: false
+      },
+      {
+        name: 'Milestone-Based',
+        total: 'AED 25,000 × 3 milestones',
+        cashflow: 'On delivery of each phase',
+        psychology: 'Aligns payment to progress. Reduces buyer anxiety. Requires clear deliverable gates.',
+        bestFor: 'Project-based engagements',
+        badge: '',
+        highlight: false
+      }
+    ];
+
+    const colsHTML = cols.map((col, i) => `
+      <div class="pa-col ${col.highlight ? 'pa-col-highlight' : ''}">
+        ${col.badge ? `<div class="pa-col-badge">${col.badge}</div>` : ''}
+        <div class="pa-col-name" contenteditable="true" data-field="pa-col-${i}-name">${col.name}</div>
+        <div class="pa-col-total" contenteditable="true" data-field="pa-col-${i}-total">${col.total}</div>
+        <div class="pa-col-divider"></div>
+        <div class="pa-col-row">
+          <span class="pa-col-row-label">CASH FLOW</span>
+          <span class="pa-col-row-val" contenteditable="true" data-field="pa-col-${i}-cashflow">${col.cashflow}</span>
+        </div>
+        <div class="pa-col-row">
+          <span class="pa-col-row-label">PSYCHOLOGY</span>
+          <span class="pa-col-row-val" contenteditable="true" data-field="pa-col-${i}-psychology">${col.psychology}</span>
+        </div>
+        <div class="pa-col-row pa-col-bestfor">
+          <span class="pa-col-row-label">BEST FOR</span>
+          <span class="pa-col-row-val" contenteditable="true" data-field="pa-col-${i}-bestfor">${col.bestFor}</span>
+        </div>
+      </div>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="pa-header">
+        <span class="pa-badge">PAYMENT ARCHITECTURE</span>
+        <h3 class="pa-title" contenteditable="true" data-field="title">${data.title || 'Investment Structure Comparison'}</h3>
+      </div>
+      <div class="pa-columns">${colsHTML}</div>
+      <p class="pa-footnote" contenteditable="true" data-field="footnote">${data.footnote || 'All structures access the same full scope of advisory. Investment architecture is a strategic choice, not a service tier.'}</p>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
   }
 
   return {

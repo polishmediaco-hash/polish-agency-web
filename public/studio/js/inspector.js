@@ -214,9 +214,10 @@ window.StudioInspector = (function () {
       html += `
         <div class="insp-group">
           <select class="insp-select" aria-label="Currency Selector" onchange="StudioInspector.setPricingCurrency('${data.id}', this.value)" title="Offer Currency">
+            <option value="DZD" ${cur === 'DZD' ? 'selected' : ''}>DZD (DA)</option>
             <option value="AED" ${cur === 'AED' ? 'selected' : ''}>AED</option>
-            <option value="$" ${cur === '$' ? 'selected' : ''}>$ USD</option>
-            <option value="€" ${cur === '€' ? 'selected' : ''}>€ EUR</option>
+            <option value="$" ${cur === '$' || cur === 'USD' ? 'selected' : ''}>$ USD</option>
+            <option value="€" ${cur === '€' || cur === 'EUR' ? 'selected' : ''}>€ EUR</option>
             <option value="£" ${cur === '£' ? 'selected' : ''}>£ GBP</option>
           </select>
           <button class="insp-btn ${data.isFeatured || data.featured ? 'active' : ''}" onclick="StudioInspector.togglePricingFeatured('${data.id}')" title="Toggle Featured Anchor">
@@ -279,11 +280,21 @@ window.StudioInspector = (function () {
       `;
     } else if (type === 'metric') {
       const curDelta = data.deltaColor || 'tag-green';
+      const curCurrency = data.currency || (window.StudioCore && window.StudioCore.getBoardCurrency ? window.StudioCore.getBoardCurrency() : 'AED');
       html += `
+        <div class="insp-group" title="Currency (DZD / AED / USD / EUR)">
+          <select class="insp-select" aria-label="Metric Currency" onchange="StudioInspector.setMetricCurrency('${data.id}', this.value)" title="Metric Currency">
+            <option value="DZD" ${curCurrency === 'DZD' ? 'selected' : ''}>DZD</option>
+            <option value="AED" ${curCurrency === 'AED' ? 'selected' : ''}>AED</option>
+            <option value="USD" ${curCurrency === 'USD' || curCurrency === '$' ? 'selected' : ''}>USD ($)</option>
+            <option value="EUR" ${curCurrency === 'EUR' || curCurrency === '€' ? 'selected' : ''}>EUR (€)</option>
+          </select>
+        </div>
+        <div class="insp-divider" aria-hidden="true"></div>
         <div class="insp-group" title="Trend Signal">
-          <button class="insp-btn ${curDelta === 'tag-green' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-green')" title="Positive Lift (▲)">▲ Up</button>
-          <button class="insp-btn ${curDelta === 'tag-rose' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-rose')" title="Caution / Drop (▼)">▼ Drop</button>
-          <button class="insp-btn ${curDelta === 'tag-gold' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-gold')" title="Neutral / Gold (●)">● Gold</button>
+          <button class="insp-btn ${curDelta === 'tag-green' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-green')" title="Positive Lift">+ Lift</button>
+          <button class="insp-btn ${curDelta === 'tag-rose' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-rose')" title="Caution / Drop">- Drop</button>
+          <button class="insp-btn ${curDelta === 'tag-gold' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-gold')" title="Neutral / Gold">• Gold</button>
         </div>
         <div class="insp-divider" aria-hidden="true"></div>
       `;
@@ -468,6 +479,20 @@ window.StudioInspector = (function () {
       window.StudioCore.reRenderElement(id);
       window.StudioCore.triggerAutoSave();
     }
+  }
+
+  function setMetricCurrency(id, newCur) {
+    const data = window.StudioCore.findElement(id);
+    if (!data) return;
+    data.currency = newCur;
+    if (data.figure && window.StudioCore.formatConvertedText) {
+      data.figure = window.StudioCore.formatConvertedText(data.figure, newCur);
+    }
+    if (data.subtitle && window.StudioCore.formatConvertedText) {
+      data.subtitle = window.StudioCore.formatConvertedText(data.subtitle, newCur);
+    }
+    window.StudioCore.reRenderElement(id);
+    window.StudioCore.triggerAutoSave();
   }
 
   function togglePricingFeatured(id) {
@@ -677,6 +702,7 @@ window.StudioInspector = (function () {
     setStickyColor,
     toggleTape,
     setPricingCurrency,
+    setMetricCurrency,
     togglePricingFeatured,
     setMetricDelta,
     setConnColor,

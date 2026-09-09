@@ -43,31 +43,55 @@
       --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.75);
       --shadow-hover: 0 24px 50px rgba(0, 0, 0, 0.9), 0 0 24px rgba(226, 199, 153, 0.2);
 
+      /* Blueprint Vector Duality (Dark Theme) */
+      --bp-surface: #171513;
+      --bp-surface-subtle: #0E0D0B;
+      --bp-surface-hover: #221E1A;
+      --bp-stroke: rgba(226, 199, 153, 0.32);
+      --bp-stroke-strong: rgba(226, 199, 153, 0.75);
+      --bp-text-primary: #F5E6D3;
+      --bp-text-muted: #9E9282;
+      --bp-canvas-dot: rgba(226, 199, 153, 0.15);
+      --bp-chip-bg: rgba(226, 199, 153, 0.05);
+      --bp-chip-border: rgba(226, 199, 153, 0.14);
+
       --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: 'Cormorant Garamond', Didot, Georgia, serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
-    /* Light Theme Override */
+    /* Light Theme Override — Haute Editorial Alabaster */
     body:not(.theme-dark) {
-      --bg-surface: #FAF7F2;
-      --bg-grid-dot: rgba(197, 168, 128, 0.22);
-      --card-surface: rgba(255, 255, 255, 0.95);
+      --bg-surface: #F8F7F4;
+      --bg-grid-dot: rgba(180, 150, 110, 0.28);
+      --card-surface: #FFFFFF;
       --card-surface-hover: #FFFFFF;
-      --dock-surface: rgba(255, 255, 255, 0.96);
-      --border-subtle: rgba(197, 168, 128, 0.32);
-      --border-strong: rgba(197, 168, 128, 0.65);
-      --text-heading: #1A1715;
-      --text-primary: #24201D;
-      --text-secondary: #7A5E32;
-      --text-muted: #736D67;
-      --pill-bg: rgba(197, 168, 128, 0.1);
-      --pill-border: rgba(197, 168, 128, 0.35);
-      --pill-text: #7A5E32;
-      --input-bg: rgba(250, 247, 242, 0.9);
-      --input-border: rgba(197, 168, 128, 0.35);
-      --shadow-card: 0 12px 32px rgba(26, 23, 21, 0.05);
-      --shadow-hover: 0 24px 50px -8px rgba(26, 23, 21, 0.12), 0 0 24px rgba(197, 168, 128, 0.16);
+      --dock-surface: rgba(255, 255, 255, 0.98);
+      --border-subtle: rgba(160, 130, 90, 0.22);
+      --border-strong: rgba(140, 105, 60, 0.45);
+      --text-heading: #080706;
+      --text-primary: #181614;
+      --text-secondary: #5A4325;
+      --text-muted: #6C645A;
+      --pill-bg: rgba(180, 140, 90, 0.08);
+      --pill-border: rgba(160, 120, 70, 0.28);
+      --pill-text: #5A4325;
+      --input-bg: #FFFFFF;
+      --input-border: rgba(160, 120, 70, 0.32);
+      --shadow-card: 0 10px 30px rgba(8, 7, 6, 0.05), 0 1px 3px rgba(8, 7, 6, 0.03);
+      --shadow-hover: 0 20px 48px rgba(8, 7, 6, 0.12), 0 0 20px rgba(180, 140, 90, 0.2);
+
+      /* Blueprint Vector Duality (Haute Light Architectural Draft Paper) */
+      --bp-surface: #FFFFFF;
+      --bp-surface-subtle: #F6F4F0;
+      --bp-surface-hover: #ECE8E0;
+      --bp-stroke: rgba(140, 115, 80, 0.28);
+      --bp-stroke-strong: rgba(110, 85, 50, 0.75);
+      --bp-text-primary: #1A1715;
+      --bp-text-muted: #6B6256;
+      --bp-canvas-dot: rgba(160, 130, 90, 0.28);
+      --bp-chip-bg: rgba(160, 120, 70, 0.06);
+      --bp-chip-border: rgba(160, 120, 70, 0.22);
     }
 
     * {
@@ -100,44 +124,65 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 3.5rem;
-      background: var(--dock-surface);
+      margin-bottom: 2rem;
+      height: 52px;
+      padding: 0 1.25rem;
+      border-radius: 16px;
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border-subtle);
-      border-radius: 9999px;
-      padding: 10px 20px;
-      box-shadow: var(--shadow-card), inset 0 1px 1px rgba(255, 255, 255, 0.08);
       gap: 16px;
       position: sticky;
       top: 16px;
       z-index: 100;
-      transition: all 0.25s ease;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Light Theme Dock */
+    body:not(.theme-dark) .dash-header {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(197, 168, 128, 0.32);
+      box-shadow: 0 8px 32px rgba(26, 23, 21, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    }
+
+    /* Dark Theme Dock */
+    body.theme-dark .dash-header {
+      background: rgba(18, 16, 14, 0.95);
+      border: 1px solid rgba(226, 199, 153, 0.28);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
     }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-shrink: 0;
+    }
+
+    .brand-mark-btn {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .brand-capsule {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 4px 14px 4px 6px;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      border: 1px solid var(--pill-border);
+      padding: 2px 6px;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
       text-decoration: none;
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    .brand-mark-btn:hover .brand-capsule,
     .brand-capsule:hover {
-      background: rgba(226, 199, 153, 0.16);
-      border-color: var(--brand-gold);
-      transform: translateY(-0.5px);
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      opacity: 0.82;
     }
 
     .brand-logo-mark {
@@ -146,36 +191,49 @@
       object-fit: contain;
       flex-shrink: 0;
       filter: drop-shadow(0 0 10px rgba(226, 199, 153, 0.45));
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
     }
 
+    .brand-mark-btn:hover .brand-logo-mark,
     .brand-capsule:hover .brand-logo-mark {
       transform: scale(1.06);
+      filter: drop-shadow(0 0 16px rgba(226, 199, 153, 0.75));
     }
 
     .brand-text-lockup {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 2px;
+      justify-content: center;
       line-height: 1;
+      gap: 2px;
     }
 
     .brand-name {
-      letter-spacing: 0.08em;
-      font-weight: 900;
+      font-family: var(--font-heading);
+      font-weight: 800;
       font-size: 0.92rem;
+      letter-spacing: 0.08em;
       color: var(--text-heading);
       line-height: 1.1;
     }
 
     .brand-subtitle {
+      font-family: var(--font-heading);
       font-size: 0.52rem;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-secondary);
       line-height: 1;
+      white-space: nowrap;
+    }
+
+    .dock-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-subtle);
+      margin: 0 4px;
     }
 
     /* Header Search */
@@ -189,12 +247,13 @@
 
     .header-search-input {
       width: 100%;
+      height: 32px;
       background: var(--input-bg);
-      border: 1px solid var(--input-border);
-      border-radius: 999px;
-      padding: 7px 14px 7px 32px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0 32px 0 32px;
       font-family: var(--font-heading);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--text-primary);
       outline: none;
@@ -203,6 +262,7 @@
 
     .header-search-input::placeholder {
       color: var(--text-muted);
+      font-weight: 500;
     }
 
     .header-search-input:focus {
@@ -212,108 +272,163 @@
 
     .search-icon {
       position: absolute;
-      left: 11px;
+      left: 10px;
       pointer-events: none;
       color: var(--text-muted);
       display: flex;
       align-items: center;
     }
 
+    .search-kbd-hint {
+      position: absolute;
+      right: 8px;
+      pointer-events: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    body.theme-dark .search-kbd-hint {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(226, 199, 153, 0.2);
+      color: rgba(245, 230, 211, 0.6);
+    }
+
     /* Header Actions */
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
     }
 
-    .btn {
-      padding: 8px 16px;
-      border-radius: 9999px;
+    .header-actions .btn {
+      height: 32px;
+      padding: 0 13px;
+      border-radius: 10px;
       font-family: var(--font-heading);
-      font-size: 0.82rem;
-      font-weight: 800;
+      font-size: 0.78rem;
+      font-weight: 700;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-      border: none;
+      border: 1px solid var(--border-subtle);
       white-space: nowrap;
     }
 
-    .btn-secondary {
-      background: var(--pill-bg);
+    .header-actions .btn-secondary {
+      background: var(--surface-subtle, rgba(26, 23, 20, 0.04));
       color: var(--text-primary);
       border: 1px solid var(--border-subtle);
     }
 
-    .btn-secondary:hover {
+    body.theme-dark .header-actions .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(226, 199, 153, 0.25);
+      color: #F5E6D3;
+    }
+
+    .header-actions .btn-secondary:hover {
       background: rgba(226, 199, 153, 0.18);
       border-color: var(--brand-gold);
       color: var(--text-heading);
-      transform: translateY(-1px);
+      transform: translateY(-0.5px);
     }
 
     /* Radiant Gold Hero Button */
-    .btn-hero-new {
-      background: linear-gradient(135deg, #FFF0D0 0%, #F3D382 28%, #E2C799 62%, #C5A880 100%);
+    .header-actions .btn-hero-new {
+      background: linear-gradient(135deg, #E2C799 0%, #C5A880 100%);
       color: #080706;
-      border: 1px solid #FFF5E2;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      box-shadow: 0 0 16px rgba(226, 199, 153, 0.45), 0 2px 8px rgba(0, 0, 0, 0.4);
-      position: relative;
-      overflow: hidden;
+      border: 1px solid rgba(255, 245, 226, 0.6);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 10px rgba(226, 199, 153, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.5);
     }
 
-    .btn-hero-new:hover {
-      transform: translateY(-1.5px) scale(1.02);
-      box-shadow: 0 0 26px rgba(243, 211, 130, 0.75), 0 4px 14px rgba(0, 0, 0, 0.6);
+    .header-actions .btn-hero-new:hover {
+      transform: translateY(-0.5px);
+      box-shadow: 0 4px 18px rgba(226, 199, 153, 0.45), inset 0 1px 1.5px rgba(255, 255, 255, 0.7);
     }
 
-    /* Theme Toggle Button */
-    .theme-toggle-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--pill-bg);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
-      cursor: pointer;
-      display: flex;
+    /* Theme Toggle Button (Architectural Capsule) */
+    .header-actions .theme-toggle-btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      transition: all 0.18s ease;
+      gap: 6px;
+      height: 32px;
+      padding: 0 11px;
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-subtle, rgba(26, 23, 20, 0.04));
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
       flex-shrink: 0;
     }
 
-    .theme-toggle-btn:hover {
-      background: rgba(226, 199, 153, 0.18);
+    .header-actions .theme-toggle-btn:hover {
+      background: #FFFFFF;
       border-color: var(--brand-gold);
-      color: var(--brand-gold);
-      transform: scale(1.05);
+      transform: translateY(-0.5px);
+    }
+
+    body.theme-dark .header-actions .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(226, 199, 153, 0.25);
+      color: #F5E6D3;
+    }
+
+    body.theme-dark .header-actions .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: #E2C799;
     }
 
     /* User Avatar Capsule & Dropdown */
     .profile-capsule-wrap {
       position: relative;
+      display: flex;
+      align-items: center;
+      height: 32px;
     }
 
     .user-profile-trigger {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 4px 10px 4px 5px;
-      border-radius: 9999px;
-      background: var(--pill-bg);
+      gap: 7px;
+      height: 32px;
+      padding: 0 9px 0 3px;
+      border-radius: 12px;
+      background: var(--surface-subtle, rgba(26, 23, 20, 0.04));
       border: 1px solid var(--border-subtle);
       cursor: pointer;
       color: var(--text-primary);
-      font-size: 0.8rem;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
       font-weight: 700;
       transition: all 0.18s ease;
+    }
+
+    body.theme-dark .user-profile-trigger {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(226, 199, 153, 0.22);
+      color: #F5E6D3;
     }
 
     .user-profile-trigger:hover {
@@ -322,19 +437,33 @@
     }
 
     .user-avatar-circle {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
-      background: #181512;
-      border: 1px solid var(--brand-gold);
-      color: var(--brand-gold);
+      background: #080706;
+      border: 1.5px solid rgba(197, 168, 128, 0.55);
+      color: #F5E6D3;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.05em;
+      font-size: 0.70rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
       flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .user-name-label {
+      line-height: 1;
+    }
+
+    .user-chevron-svg {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .profile-capsule-wrap.active .user-chevron-svg,
+    .user-profile-trigger.active .user-chevron-svg {
+      transform: rotate(180deg);
     }
 
     .profile-dropdown-menu {
@@ -1043,13 +1172,18 @@
     }
 
     body:not(.theme-dark) .template-picker-card {
-      background: #FAF7F2;
+      background: #FFFFFF;
+      border-color: rgba(160, 130, 90, 0.25);
     }
 
     .template-picker-card:hover {
       transform: translateY(-3px);
       border-color: var(--brand-gold);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 16px rgba(226, 199, 153, 0.25);
+    }
+
+    body:not(.theme-dark) .template-picker-card:hover {
+      box-shadow: 0 12px 30px rgba(8, 7, 6, 0.1), 0 0 16px rgba(180, 140, 90, 0.25);
     }
 
     .template-tag {
@@ -1082,64 +1216,89 @@
     }
 
     .btn-use-template {
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 800;
-      color: var(--brand-gold);
-      background: transparent;
-      border: none;
-      display: flex;
+      letter-spacing: 0.02em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    body.theme-dark .btn-use-template {
+      color: #F5E6D3;
+      background: rgba(226, 199, 153, 0.12);
+      border: 1px solid rgba(226, 199, 153, 0.35);
+    }
+
+    body.theme-dark .template-picker-card:hover .btn-use-template {
+      background: #E2C799;
+      color: #080706;
+    }
+
+    body:not(.theme-dark) .btn-use-template {
+      color: #F5E6D3;
+      background: #080706;
+      border: 1px solid #1A1715;
+    }
+
+    body:not(.theme-dark) .template-picker-card:hover .btn-use-template {
+      background: #1F1D1A;
+      color: #FFFFFF;
+      border-color: #C5A880;
+      box-shadow: 0 4px 12px rgba(8, 7, 6, 0.2);
     }
 
     /* ==========================================================
        ELITE CREATOR FRAMEWORKS SHELF (LUXURY HAUTE ATELIER)
        ========================================================== */
     .creator-shelf-section {
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.75rem;
     }
 
     .shelf-header-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       gap: 1rem;
       flex-wrap: wrap;
     }
 
     .shelf-eyebrow {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 800;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--brand-gold);
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.3rem;
       display: flex;
       align-items: center;
       gap: 7px;
     }
 
     .shelf-headline {
-      font-size: 1.7rem;
+      font-size: 1.55rem;
       font-weight: 900;
       letter-spacing: -0.025em;
       color: var(--text-heading);
     }
 
     .shelf-subheadline {
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
-      margin-top: 0.25rem;
-      max-width: 720px;
-      line-height: 1.5;
+      margin-top: 0.2rem;
+      max-width: 680px;
+      line-height: 1.45;
     }
 
     .creator-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.25rem;
     }
 
     @media (max-width: 860px) {
@@ -1151,8 +1310,8 @@
     .creator-card {
       background: var(--card-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      padding: 1.6rem 1.5rem 1.35rem;
+      border-radius: 18px;
+      padding: 1.25rem 1.25rem 1.15rem;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -1160,28 +1319,33 @@
       box-shadow: var(--shadow-card);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.26s ease, box-shadow 0.26s ease;
     }
 
-    .creator-card::before {
+    /* Dynamic cursor spotlight glow overlay */
+    .creator-card::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--creator-accent, var(--brand-gold)), transparent);
-      opacity: 0.4;
-      transition: opacity 0.25s ease;
+      inset: 0;
+      border-radius: 18px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: radial-gradient(
+        360px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--creator-accent-glow, rgba(226, 199, 153, 0.12)),
+        transparent 70%
+      );
+      z-index: 1;
     }
 
     .creator-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--brand-gold);
-      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+      border-color: var(--creator-accent-border, rgba(226, 199, 153, 0.45));
+      box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--creator-accent-border, rgba(226, 199, 153, 0.3));
     }
 
-    .creator-card:hover::before {
+    .creator-card:hover::after {
       opacity: 1;
     }
 
@@ -1189,31 +1353,34 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 1.1rem;
+      gap: 10px;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 2;
     }
 
     .creator-author-lockup {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
 
     .creator-avatar-badge {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-mono);
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 0.04em;
-      color: #080706;
-      background: var(--creator-accent, var(--brand-gold));
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
       flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--creator-accent-border, rgba(255, 255, 255, 0.15));
+      background: var(--creator-accent-bg, rgba(226, 199, 153, 0.15));
+      color: var(--creator-accent-text, #E2C799);
     }
 
     .creator-meta-col {
@@ -1222,7 +1389,7 @@
     }
 
     .creator-name {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 800;
       color: var(--text-heading);
       letter-spacing: -0.01em;
@@ -1231,140 +1398,183 @@
 
     .creator-category-pill {
       font-family: var(--font-mono);
-      font-size: 0.65rem;
-      font-weight: 700;
+      font-size: 0.62rem;
+      font-weight: 600;
       color: var(--text-secondary);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      margin-top: 2px;
-    }
-
-    .creator-ai-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: rgba(226, 199, 153, 0.12);
-      border: 1px solid rgba(226, 199, 153, 0.3);
-      color: var(--brand-gold);
-    }
-
-    .creator-ai-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--brand-gold);
-      box-shadow: 0 0 6px var(--brand-gold);
+      margin-top: 1px;
     }
 
     .creator-framework-title {
-      font-size: 1.16rem;
+      font-size: 1.05rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--text-heading);
-      line-height: 1.35;
-      margin-bottom: 0.65rem;
+      line-height: 1.3;
+      margin-bottom: 0.45rem;
+      position: relative;
+      z-index: 2;
     }
 
-    .creator-specs-row {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 0.9rem;
-      padding: 8px 10px;
-      background: var(--pill-bg);
+    /* Mini Miro Canvas Previews */
+    .creator-canvas-preview {
+      width: 100%;
+      height: 108px;
+      border-radius: 11px;
+      margin-bottom: 0.85rem;
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
     }
 
-    .creator-spec-item {
-      font-size: 0.74rem;
-      color: var(--text-secondary);
-      line-height: 1.4;
+    body:not(.theme-dark) .creator-canvas-preview {
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
-    .creator-spec-label {
-      font-weight: 800;
-      color: var(--brand-gold);
-      text-transform: uppercase;
-      font-size: 0.68rem;
-      letter-spacing: 0.04em;
+    .preview-hormozi {
+      background: #111012;
+      background-image: radial-gradient(rgba(226, 199, 153, 0.15) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+    .preview-ottley {
+      background: #08111F;
+      background-image: radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+    .preview-bradley {
+      background: #081613;
+      background-image: radial-gradient(rgba(52, 211, 153, 0.14) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+    .preview-morgan {
+      background: #130E07;
+      background-image: radial-gradient(rgba(245, 158, 11, 0.14) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+    .preview-ajsmart {
+      background: #120A22;
+      background-image: radial-gradient(rgba(192, 132, 252, 0.16) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+    .preview-isenberg {
+      background: #170A11;
+      background-image: radial-gradient(rgba(251, 113, 133, 0.14) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+
+    /* Unified Duality: Light Mode Architectural Drafting Canvases */
+    body:not(.theme-dark) .preview-hormozi {
+      background: #F9F7F2;
+      background-image: radial-gradient(rgba(200, 165, 110, 0.32) 1.2px, transparent 1.2px);
+    }
+    body:not(.theme-dark) .preview-ottley {
+      background: #F0F7FC;
+      background-image: radial-gradient(rgba(56, 189, 248, 0.30) 1.2px, transparent 1.2px);
+    }
+    body:not(.theme-dark) .preview-bradley {
+      background: #F0F9F5;
+      background-image: radial-gradient(rgba(52, 211, 153, 0.30) 1.2px, transparent 1.2px);
+    }
+    body:not(.theme-dark) .preview-morgan {
+      background: #FAF7F0;
+      background-image: radial-gradient(rgba(245, 158, 11, 0.30) 1.2px, transparent 1.2px);
+    }
+    body:not(.theme-dark) .preview-ajsmart {
+      background: #F8F4FD;
+      background-image: radial-gradient(rgba(192, 132, 252, 0.32) 1.2px, transparent 1.2px);
+    }
+    body:not(.theme-dark) .preview-isenberg {
+      background: #FDF4F6;
+      background-image: radial-gradient(rgba(251, 113, 133, 0.30) 1.2px, transparent 1.2px);
     }
 
     .creator-brief {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       line-height: 1.5;
-      margin-bottom: 1.1rem;
-      flex: 1;
-    }
-
-    .creator-features-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 1.25rem;
-    }
-
-    .creator-feature-chip {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background: rgba(226, 199, 153, 0.07);
-      border: 1px solid rgba(226, 199, 153, 0.18);
-      color: var(--text-secondary);
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.4rem;
     }
 
     .creator-card-bottom {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding-top: 0.9rem;
+      padding-top: 0.85rem;
       border-top: 1px solid var(--border-subtle);
       margin-top: auto;
+      position: relative;
+      z-index: 2;
+      width: 100%;
     }
 
-    .creator-style-tag {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
+    /* Executive High-Contrast Unified CTA Button */
     .btn-launch-creator {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 7px 16px;
+      justify-content: center;
+      width: 100%;
+      gap: 8px;
+      padding: 9px 16px;
       border-radius: 999px;
       font-family: var(--font-heading);
       font-size: 0.78rem;
-      font-weight: 800;
-      background: var(--pill-bg);
-      border: 1px solid var(--border-strong);
-      color: var(--brand-gold);
+      font-weight: 700;
+      letter-spacing: 0.02em;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
-    .btn-launch-creator:hover {
-      background: var(--brand-gold);
+    body.theme-dark .btn-launch-creator {
+      background: linear-gradient(135deg, rgba(226, 199, 153, 0.20), rgba(226, 199, 153, 0.08));
+      border: 1px solid rgba(226, 199, 153, 0.35);
+      color: #F5E6D3;
+    }
+
+    body.theme-dark .btn-launch-creator:hover {
+      background: #E2C799;
       color: #080706;
-      border-color: var(--brand-gold);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(226, 199, 153, 0.35);
+      border-color: #E2C799;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(226, 199, 153, 0.35);
+    }
+
+    body:not(.theme-dark) .btn-launch-creator {
+      background: #080706;
+      border: 1px solid #24201D;
+      color: #F5E6D3;
+    }
+
+    body:not(.theme-dark) .btn-launch-creator:hover {
+      background: #1F1D1A;
+      border-color: #C5A880;
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(8, 7, 6, 0.25);
+    }
+
+    .btn-launch-creator svg {
+      transition: transform 0.2s ease;
+    }
+
+    .btn-launch-creator:hover svg {
+      transform: translateX(3px);
     }
 
     /* Modal filter tabs */
@@ -1494,8 +1704,9 @@
     @media (max-width: 860px) {
       body { padding: 14px 12px; }
       .dash-header {
-        border-radius: 20px;
-        padding: 10px 12px;
+        height: auto;
+        border-radius: 16px;
+        padding: 8px 12px;
         flex-wrap: wrap;
         gap: 8px;
       }
@@ -1508,18 +1719,23 @@
         gap: 6px;
       }
       .header-actions .btn {
-        padding: 6px 11px;
-        font-size: 0.76rem;
+        height: 30px;
+        padding: 0 10px;
+        font-size: 0.75rem;
       }
-      .theme-toggle-btn {
-        width: 32px;
-        height: 32px;
+      .header-actions .theme-toggle-btn {
+        height: 30px;
+        padding: 0 8px;
+      }
+      .dock-theme-label {
+        display: none;
       }
       .user-name-label, .user-chevron-svg {
         display: none !important;
       }
       .user-profile-trigger {
-        padding: 3px;
+        height: 30px;
+        padding: 0 4px;
       }
       .header-search-wrap {
         order: 3;
@@ -1530,6 +1746,132 @@
       .headline { font-size: 1.8rem; }
       .boards-grid { grid-template-columns: 1fr; }
     }
+
+    /* ==========================================================
+       LENS 1 FIX: Modal visibility/opacity animation (replaces display:none)
+       ========================================================== */
+    .profile-dropdown-menu,
+    .card-menu-dropdown {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      transition: opacity 0.15s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.15s cubic-bezier(0.16,1,0.3,1),
+                  visibility 0s 0.15s;
+      display: block !important;
+    }
+    .profile-dropdown-menu.active,
+    .card-menu-dropdown.active {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition: opacity 0.15s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.15s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    /* LENS 1 FIX: preview-hover-overlay border-radius 15px → 16px */
+    .preview-hover-overlay { border-radius: 16px; }
+
+    /* LENS 1 FIX: mini-sticky-note token aligned */
+    .mini-sticky-note { background: #FEF08A; }
+
+    /* LENS 1 FIX: .btn-card-menu hit target 44×44px minimum */
+    .btn-card-menu {
+      width: 44px;
+      height: 44px;
+      padding: 8px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+    }
+
+    /* LENS 1 FIX: dark mode specular highlight increased to visible level */
+    .board-card { box-shadow: var(--shadow-card), inset 0 1px 1px rgba(255,255,255,0.15); }
+    .creator-card { box-shadow: var(--shadow-card), inset 0 1px 1px rgba(255,255,255,0.15); }
+
+    /* ==========================================================
+       LENS 2 FIX: --text-muted contrast bump to 4.6:1 (WCAG AA)
+       ========================================================== */
+    body.theme-dark { --text-muted: #9A9088; }
+
+    /* LENS 2 FIX: Modal filter tab active state — solid fill, distinct from hover */
+    .modal-tab-btn.is-active {
+      background: var(--brand-gold) !important;
+      color: #080706 !important;
+      border-color: var(--brand-gold) !important;
+      font-weight: 900;
+    }
+
+    /* LENS 2 FIX: Board cards keyboard focus ring */
+    .board-card:focus-visible,
+    .creator-card:focus-visible {
+      outline: 2px solid var(--brand-gold);
+      outline-offset: 3px;
+    }
+
+    /* LENS 2: Skeleton loader for boards grid loading state */
+    .board-skeleton {
+      background: var(--card-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 1.4rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .board-skeleton::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(226,199,153,0.07) 50%, transparent 100%);
+      animation: shimmer 1.6s infinite;
+      transform: translateX(-100%);
+    }
+    @keyframes shimmer { to { transform: translateX(100%); } }
+    .skeleton-preview {
+      height: 140px;
+      background: var(--pill-bg);
+      border-radius: 16px;
+      margin-bottom: 1.25rem;
+    }
+    .skeleton-line {
+      height: 12px;
+      border-radius: 6px;
+      background: var(--pill-bg);
+      margin-bottom: 10px;
+    }
+    .skeleton-line.w-90 { width: 90%; }
+    .skeleton-line.w-70 { width: 70%; }
+    .skeleton-line.w-50 { width: 50%; }
+
+
+    /* LENS 3 FIX: creator grid denser min-width for browse discovery */
+    .creator-grid { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+
+    /* LENS 3 FIX: dark-mode board frame surface tokens */
+    body.theme-dark .board-frame {
+      --surface-white: #1E1B18;
+      --surface-subtle: #161310;
+      --text-ink: #F5E6D3;
+      --text-slate: #D9C9B8;
+      --border-subtle: rgba(226,199,153,0.12);
+      --border-strong: rgba(226,199,153,0.28);
+    }
+
+    /* LENS 3 FIX: hardcoded preview bg uses token */
+    body:not(.theme-dark) .card-canvas-preview {
+      background: #FAF7F2; /* equals --surface-alabaster from board-elements.css */
+    }
+
+    /* ==========================================================
+       LENS 1 FIX: prefers-reduced-motion guard
+       ========================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body class="theme-dark">
@@ -1538,11 +1880,13 @@
     <!-- Floating Executive Header Dock -->
     <header class="dash-header">
       <div class="header-left">
-        <a href="/boards" class="brand-capsule" title="POLISH Board Studio">
-          <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="28" height="28" />
-          <div class="brand-text-lockup">
-            <span class="brand-name">POLISH</span>
-            <span class="brand-subtitle">BOARD STUDIO</span>
+        <a href="/boards" class="brand-mark-btn" title="POLISH Board Studio">
+          <div class="brand-capsule">
+            <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="28" height="28" />
+            <div class="brand-text-lockup">
+              <span class="brand-name">POLISH</span>
+              <span class="brand-subtitle">BOARD STUDIO</span>
+            </div>
           </div>
         </a>
       </div>
@@ -1550,15 +1894,17 @@
       <!-- Search Input -->
       <div class="header-search-wrap">
         <span class="search-icon">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </span>
         <input type="text" id="boardSearchInput" class="header-search-input" placeholder="Search boards... (Press /)" oninput="handleBoardSearch(event)" />
+        <kbd class="search-kbd-hint">/</kbd>
       </div>
 
       <div class="header-actions">
         <!-- 1-Click Theme Switcher -->
-        <button type="button" id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleDashboardTheme()" title="Toggle Light / Dark Mode">
-          <svg id="themeIconDark" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <button type="button" id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleDashboardTheme()" title="Switch Light/Dark Theme">
+          <svg class="dock-theme-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <span class="dock-theme-label">Light</span>
         </button>
 
         <!-- Template Picker Trigger -->
@@ -1569,15 +1915,15 @@
 
         <!-- Hero + New Board Button -->
         <button type="button" class="btn btn-hero-new" onclick="createBlankBoard()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          <span>New</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>New Blueprint</span>
         </button>
 
         <!-- User Profile Dropdown -->
         <div class="profile-capsule-wrap">
-          <div class="user-profile-trigger" onclick="toggleProfileDropdown(event)">
+          <div class="user-profile-trigger" onclick="toggleProfileDropdown(event)" title="Account & Settings">
             <div id="userAvatar" class="user-avatar-circle">AD</div>
-            <span id="userName" class="user-name-label" style="max-width:90px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Advisor</span>
+            <span id="userName" class="user-name-label" style="max-width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Advisor</span>
             <svg class="user-chevron-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
 
@@ -1601,228 +1947,417 @@
     </header>
 
     <!-- ==========================================================
-         ELITE CREATOR FRAMEWORKS (AI-SUPPORTED TEMPLATES)
+         CREATOR STRATEGY TEMPLATES
          ========================================================== -->
-    <section class="creator-shelf-section" aria-label="Elite Creator Frameworks">
+    <section class="creator-shelf-section" aria-label="Creator Strategy Templates">
       <div class="shelf-header-row">
         <div>
           <div class="shelf-eyebrow">
-            <span>SIGNATURE ARCHITECTURES</span>
-            <span style="opacity:0.4;">•</span>
-            <span>AI COPILOT POWERED</span>
+            <span>STRATEGY TEMPLATES</span>
           </div>
-          <h2 class="shelf-headline">Elite Creator Frameworks</h2>
-          <p class="shelf-subheadline">Battle-tested whiteboard methodologies reverse-engineered from premier direct-response, outbound, and product leaders. Each canvas boots with bespoke frames, flows, and a dedicated AI Copilot persona.</p>
+          <h1 class="shelf-headline">Blueprint Frameworks</h1>
+          <p class="shelf-subheadline">Strategy canvases built from the documented frameworks of the internet's most-studied business creators. Deploy in under 3 minutes.</p>
         </div>
       </div>
 
       <div class="creator-grid">
         <!-- 1. Alex Hormozi -->
-        <div class="creator-card" style="--creator-accent: #E2C799;">
+        <div class="creator-card" style="--creator-accent: #E2C799; --creator-accent-glow: rgba(226, 199, 153, 0.15); --creator-accent-bg: rgba(226, 199, 153, 0.12); --creator-accent-border: rgba(226, 199, 153, 0.35); --creator-accent-text: #E2C799;">
           <div class="creator-card-top">
             <div class="creator-author-lockup">
-              <div class="creator-avatar-badge" style="background:#FFF275; color:#1A1715;">AH</div>
+              <div class="creator-avatar-badge">AH</div>
               <div class="creator-meta-col">
                 <span class="creator-name">Alex Hormozi</span>
-                <span class="creator-category-pill">Direct-Response & Offers</span>
+                <span class="creator-category-pill">Offer Design &amp; Pricing</span>
               </div>
             </div>
-            <div class="creator-ai-indicator">
-              <span class="creator-ai-dot"></span>
-              <span>AI Copilot</span>
-            </div>
           </div>
-          <h3 class="creator-framework-title">$100M Grand Slam Offer & Value Equation</h3>
-          <div class="creator-specs-row">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket Direct-Response & Offer Architecture</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> Founders & Agency Owners eliminating price resistance</div>
+
+          <!-- Canvas Preview: Hormozi Value Equation -->
+          <div class="creator-canvas-preview preview-hormozi" aria-hidden="true">
+            <svg viewBox="0 0 360 108" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Frame 1: Value Equation -->
+              <rect x="12" y="11" width="180" height="86" rx="8" fill="var(--bp-surface)" stroke="var(--bp-stroke)" stroke-width="1.2"/>
+              <rect x="20" y="18" width="60" height="5" rx="2.5" fill="var(--creator-accent, #E2C799)"/>
+              <text x="20" y="32" font-size="7" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">01 VALUE EQUATION</text>
+              <rect x="20" y="38" width="164" height="26" rx="4" fill="var(--bp-surface-subtle)" stroke="var(--bp-stroke)" stroke-width="0.8"/>
+              <text x="26" y="49" font-size="7.5" font-weight="700" fill="var(--creator-accent, #E2C799)" font-family="'JetBrains Mono', monospace">(Dream × Likelihood)</text>
+              <line x1="26" y1="52" x2="178" y2="52" stroke="var(--creator-accent, #E2C799)" stroke-width="1"/>
+              <text x="26" y="60" font-size="7.5" font-weight="700" fill="var(--bp-text-muted)" font-family="'JetBrains Mono', monospace">(Time Delay × Effort)</text>
+              <rect x="20" y="68" width="70" height="4" rx="2" fill="var(--bp-stroke)"/>
+              <rect x="20" y="75" width="50" height="4" rx="2" fill="var(--bp-stroke)"/>
+              <rect x="20" y="82" width="62" height="4" rx="2" fill="var(--bp-stroke)"/>
+
+              <!-- Connector arrow -->
+              <path d="M192 54 H206" stroke="var(--creator-accent, #E2C799)" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <polygon points="206,54 201,51 201,57" fill="var(--creator-accent, #E2C799)"/>
+
+              <!-- Frame 2: Pricing Offer Card -->
+              <rect x="208" y="11" width="140" height="86" rx="8" fill="var(--bp-surface)" stroke="var(--creator-accent, #E2C799)" stroke-width="1.2"/>
+              <rect x="216" y="18" width="46" height="5" rx="2.5" fill="var(--creator-accent, #E2C799)"/>
+              <text x="216" y="33" font-size="10" font-weight="900" fill="var(--creator-accent, #E2C799)" font-family="'JetBrains Mono', monospace">$18,500/MO</text>
+              <line x1="216" y1="38" x2="338" y2="38" stroke="var(--bp-stroke)" stroke-width="0.8"/>
+              <circle cx="221" cy="46" r="2.5" fill="var(--creator-accent, #E2C799)"/>
+              <rect x="228" y="44" width="76" height="4" rx="2" fill="var(--bp-text-muted)"/>
+              <circle cx="221" cy="54" r="2.5" fill="var(--creator-accent, #E2C799)"/>
+              <rect x="228" y="52" width="68" height="4" rx="2" fill="var(--bp-text-muted)"/>
+              <circle cx="221" cy="62" r="2.5" fill="var(--creator-accent, #E2C799)"/>
+              <rect x="228" y="60" width="72" height="4" rx="2" fill="var(--bp-text-muted)"/>
+              <rect x="216" y="72" width="124" height="18" rx="4" fill="var(--creator-accent, #E2C799)"/>
+              <text x="225" y="84" font-size="7" font-weight="800" fill="#080706" font-family="'Plus Jakarta Sans', sans-serif">100% UNCONDITIONAL</text>
+
+              <!-- Floating Champagne Sticky with Washi tape -->
+              <g transform="translate(142, 6) rotate(-4)">
+                <rect width="64" height="42" rx="3" fill="var(--creator-accent, #E2C799)" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.25))"/>
+                <rect x="18" y="-3" width="28" height="6" rx="1" fill="rgba(255,255,255,0.7)"/>
+                <line x1="6" y1="12" x2="56" y2="12" stroke="#523B19" stroke-width="1.2"/>
+                <line x1="6" y1="18" x2="50" y2="18" stroke="#523B19" stroke-width="1.2"/>
+                <line x1="6" y1="24" x2="54" y2="24" stroke="#523B19" stroke-width="1.2"/>
+                <text x="6" y="34" font-size="6.5" font-weight="800" fill="#523B19" font-family="'JetBrains Mono', monospace">RULE #1: 10X ROI</text>
+              </g>
+            </svg>
           </div>
-          <p class="creator-brief">High-contrast yellow & charcoal canvas structuring Dream Outcome, Perceived Likelihood, Time Delay, Effort & Sacrifice, Bonus Stacking, and Risk Reversal Guarantees.</p>
-          <div class="creator-features-wrap">
-            <span class="creator-feature-chip">Value Equation Table</span>
-            <span class="creator-feature-chip">Bonus Stacking</span>
-            <span class="creator-feature-chip">Unconditional Guarantee</span>
-            <span class="creator-feature-chip">Washi Sticky Stack</span>
-          </div>
+
+          <h3 class="creator-framework-title">Grand Slam Offer &amp; Value Equation</h3>
+          <p class="creator-brief">Value equation, pricing tiers, bonus stacking, and unconditional guarantee architecture designed to maximize enterprise close rates.</p>
           <div class="creator-card-bottom">
-            <span class="creator-style-tag">Usecase: Re-bundle deliverables to $10k+</span>
             <button type="button" class="btn-launch-creator" onclick="createFromTemplate('hormozi-offer')">
-              Use Framework →
+              <span>Deploy Blueprint</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
         </div>
 
         <!-- 2. Liam Ottley -->
-        <div class="creator-card" style="--creator-accent: #38BDF8;">
+        <div class="creator-card" style="--creator-accent: #38BDF8; --creator-accent-glow: rgba(56, 189, 248, 0.14); --creator-accent-bg: rgba(56, 189, 248, 0.12); --creator-accent-border: rgba(56, 189, 248, 0.35); --creator-accent-text: #38BDF8;">
           <div class="creator-card-top">
             <div class="creator-author-lockup">
-              <div class="creator-avatar-badge" style="background:#0284C7; color:#FFFFFF;">LO</div>
+              <div class="creator-avatar-badge">LO</div>
               <div class="creator-meta-col">
                 <span class="creator-name">Liam Ottley</span>
-                <span class="creator-category-pill">Autonomous Systems & AAA</span>
+                <span class="creator-category-pill">AI Services &amp; Automation</span>
               </div>
             </div>
-            <div class="creator-ai-indicator">
-              <span class="creator-ai-dot"></span>
-              <span>AI Copilot</span>
-            </div>
           </div>
-          <h3 class="creator-framework-title">AI Automation Agency & Pipeline Blueprint</h3>
-          <div class="creator-specs-row">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> AAA / Autonomous Agent Infrastructure</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> AI consultants, founders & enterprise automation architects</div>
+
+          <!-- Canvas Preview: Ottley Systems Blueprint -->
+          <div class="creator-canvas-preview preview-ottley" aria-hidden="true">
+            <svg viewBox="0 0 360 108" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Node 1: Webhook Ingestion -->
+              <rect x="12" y="24" width="94" height="60" rx="7" fill="var(--bp-surface)" stroke="var(--creator-accent, #38BDF8)" stroke-width="1.2"/>
+              <rect x="20" y="32" width="28" height="5" rx="2.5" fill="#38BDF8"/>
+              <text x="20" y="47" font-size="7.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">LEAD INGESTION</text>
+              <text x="20" y="58" font-size="6.5" fill="var(--bp-text-muted)" font-family="'JetBrains Mono', monospace">Webhook / Typeform</text>
+              <rect x="20" y="66" width="52" height="12" rx="3" fill="rgba(56,189,248,0.15)"/>
+              <text x="24" y="75" font-size="6" font-weight="700" fill="#38BDF8" font-family="'JetBrains Mono', monospace">200 OK • 12ms</text>
+
+              <!-- Glowing Connector 1 -->
+              <path d="M106 54 H132" stroke="#38BDF8" stroke-width="1.6"/>
+              <polygon points="132,54 127,51 127,57" fill="#38BDF8"/>
+
+              <!-- Node 2: Multi-Agent Hub -->
+              <rect x="133" y="16" width="104" height="76" rx="8" fill="var(--bp-surface)" stroke="#38BDF8" stroke-width="1.4"/>
+              <rect x="141" y="24" width="34" height="5" rx="2.5" fill="#38BDF8"/>
+              <text x="141" y="39" font-size="8" font-weight="900" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">MAKE / n8n AGENT</text>
+              <rect x="141" y="46" width="88" height="18" rx="4" fill="var(--bp-surface-subtle)" stroke="rgba(56,189,248,0.3)" stroke-width="0.8"/>
+              <text x="146" y="57" font-size="6.5" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">Claude 3.5 Sonnet</text>
+              <rect x="141" y="68" width="88" height="18" rx="4" fill="var(--bp-surface-subtle)" stroke="rgba(56,189,248,0.3)" stroke-width="0.8"/>
+              <text x="146" y="79" font-size="6.5" fill="#34D399" font-family="'JetBrains Mono', monospace">Auto-Enrich Apollo</text>
+
+              <!-- Glowing Connector 2 -->
+              <path d="M237 54 H262" stroke="#38BDF8" stroke-width="1.6"/>
+              <polygon points="262,54 257,51 257,57" fill="#38BDF8"/>
+
+              <!-- Node 3: Client Retainer SLA -->
+              <rect x="263" y="24" width="85" height="60" rx="7" fill="var(--bp-surface)" stroke="var(--creator-accent, #38BDF8)" stroke-width="1.2"/>
+              <rect x="271" y="32" width="28" height="5" rx="2.5" fill="#34D399"/>
+              <text x="271" y="47" font-size="7.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">CLIENT SLA</text>
+              <text x="271" y="58" font-size="7" font-weight="700" fill="#F3D382" font-family="'JetBrains Mono', monospace">$8,500/MO</text>
+              <rect x="271" y="66" width="56" height="12" rx="3" fill="rgba(52,211,153,0.15)"/>
+              <text x="275" y="75" font-size="6" font-weight="700" fill="#34D399" font-family="'JetBrains Mono', monospace">99.9% Uptime</text>
+
+              <!-- Bottom Tech Pill -->
+              <g transform="translate(95, 94)">
+                <rect width="170" height="12" rx="6" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.3)" stroke-width="0.7"/>
+                <circle cx="8" cy="6" r="2.5" fill="#38BDF8"/>
+                <text x="15" y="9" font-size="6" font-weight="700" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">AUTONOMOUS DISCOVERY SPRINT</text>
+              </g>
+            </svg>
           </div>
-          <p class="creator-brief">Production systems blueprint mapping Omnichannel Lead Capture, n8n/Make Multi-Agent Orchestration, 7-Day Paid Discovery Sprints, and Client Delivery SLA Tiers.</p>
-          <div class="creator-features-wrap">
-            <span class="creator-feature-chip">Multi-Agent Pipeline</span>
-            <span class="creator-feature-chip">SLA Retainer Matrix</span>
-            <span class="creator-feature-chip">Make / n8n Integrations</span>
-            <span class="creator-feature-chip">Discovery Sprint Scope</span>
-          </div>
+
+          <h3 class="creator-framework-title">AI Agency Systems Pipeline</h3>
+          <p class="creator-brief">Four-stage autonomous intelligence architecture with webhook routing, multi-agent processing, and client SLA tracking.</p>
           <div class="creator-card-bottom">
-            <span class="creator-style-tag">Usecase: Enterprise AI audits & $5k-$15k/mo retainers</span>
             <button type="button" class="btn-launch-creator" onclick="createFromTemplate('ottley-ai')">
-              Use Framework →
+              <span>Deploy Blueprint</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
         </div>
 
         <!-- 3. Chris Bradley -->
-        <div class="creator-card" style="--creator-accent: #34D399;">
+        <div class="creator-card" style="--creator-accent: #34D399; --creator-accent-glow: rgba(52, 211, 153, 0.14); --creator-accent-bg: rgba(52, 211, 153, 0.12); --creator-accent-border: rgba(52, 211, 153, 0.35); --creator-accent-text: #34D399;">
           <div class="creator-card-top">
             <div class="creator-author-lockup">
-              <div class="creator-avatar-badge" style="background:#059669; color:#FFFFFF;">CB</div>
+              <div class="creator-avatar-badge">CB</div>
               <div class="creator-meta-col">
                 <span class="creator-name">Chris Bradley</span>
-                <span class="creator-category-pill">Inbound Client Acquisition</span>
+                <span class="creator-category-pill">Consultative Sales &amp; Advisory</span>
               </div>
             </div>
-            <div class="creator-ai-indicator">
-              <span class="creator-ai-dot"></span>
-              <span>AI Copilot</span>
-            </div>
           </div>
-          <h3 class="creator-framework-title">High-Ticket Inbound & Diagnostic Closing Blueprint</h3>
-          <div class="creator-specs-row">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket B2B & Consultative Advisory</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> Agency owners & consultants closing $5k-$30k engagements</div>
+
+          <!-- Canvas Preview: Bradley Diagnostic Closing -->
+          <div class="creator-canvas-preview preview-bradley" aria-hidden="true">
+            <svg viewBox="0 0 360 108" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Frame 1: 12-Min VSL Funnel -->
+              <rect x="12" y="14" width="105" height="80" rx="8" fill="var(--bp-surface)" stroke="var(--creator-accent, #34D399)" stroke-width="1.2"/>
+              <rect x="20" y="22" width="34" height="5" rx="2.5" fill="#34D399"/>
+              <text x="20" y="37" font-size="7.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">12-MIN VSL FUNNEL</text>
+              <rect x="20" y="44" width="89" height="24" rx="4" fill="var(--bp-surface-subtle)" stroke="var(--bp-stroke)" stroke-width="0.8"/>
+              <polygon points="32,56 42,51 42,61" fill="#34D399"/>
+              <text x="48" y="58" font-size="6.5" font-weight="700" fill="#34D399" font-family="'JetBrains Mono', monospace">Diagnostic Asset</text>
+              <rect x="20" y="74" width="60" height="4" rx="2" fill="var(--bp-stroke)"/>
+              <rect x="20" y="81" width="75" height="4" rx="2" fill="var(--bp-stroke)"/>
+
+              <!-- Forking Branch Connectors -->
+              <path d="M117 42 H138 V32 H152" stroke="#34D399" stroke-width="1.3"/>
+              <polygon points="152,32 147,29 147,35" fill="#34D399"/>
+              <path d="M117 68 H138 V78 H152" stroke="#34D399" stroke-width="1.3"/>
+              <polygon points="152,78 147,75 147,81" fill="#34D399"/>
+
+              <!-- Step 2A: 15-Min Triage -->
+              <rect x="153" y="14" width="96" height="36" rx="6" fill="var(--bp-surface)" stroke="var(--bp-stroke)" stroke-width="1"/>
+              <text x="161" y="27" font-size="7" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">15-MIN TRIAGE</text>
+              <text x="161" y="38" font-size="6" fill="var(--bp-text-muted)" font-family="'JetBrains Mono', monospace">Diagnose Friction</text>
+
+              <!-- Step 2B: Consultative Close -->
+              <rect x="153" y="56" width="96" height="38" rx="6" fill="var(--bp-surface)" stroke="#34D399" stroke-width="1.2"/>
+              <text x="161" y="69" font-size="7" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">SOVEREIGN CLOSE</text>
+              <text x="161" y="80" font-size="6.5" font-weight="800" fill="#F59E0B" font-family="'JetBrains Mono', monospace">$15K RETAINER</text>
+
+              <!-- Green Sticky Note -->
+              <g transform="translate(260, 16) rotate(3)">
+                <rect width="86" height="66" rx="4" fill="#A7F3D0" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.25))"/>
+                <rect x="28" y="-3" width="30" height="5" rx="1" fill="rgba(255,255,255,0.7)"/>
+                <line x1="8" y1="14" x2="78" y2="14" stroke="#065F46" stroke-width="1.2"/>
+                <line x1="8" y1="22" x2="72" y2="22" stroke="#065F46" stroke-width="1.2"/>
+                <line x1="8" y1="30" x2="76" y2="30" stroke="#065F46" stroke-width="1.2"/>
+                <text x="8" y="42" font-size="6.5" font-weight="900" fill="#064E3B" font-family="'JetBrains Mono', monospace">SELL THE GAP,</text>
+                <text x="8" y="52" font-size="6" font-weight="700" fill="#065F46" font-family="'JetBrains Mono', monospace">NOT DELIVERABLES</text>
+              </g>
+            </svg>
           </div>
-          <p class="creator-brief">Authority-driven inbound acquisition architecture covering 12-Minute Diagnostic VSL Funnels, 15-Minute Urgency Triage Flows, and Consultative 2-Call Closing Scripts.</p>
-          <div class="creator-features-wrap">
-            <span class="creator-feature-chip">12-Min VSL Matrix</span>
-            <span class="creator-feature-chip">Diagnostic Triage Script</span>
-            <span class="creator-feature-chip">2-Call Closing Flow</span>
-            <span class="creator-feature-chip">Objection Demolition</span>
-          </div>
+
+          <h3 class="creator-framework-title">Diagnostic Protocol &amp; Advisory Prescription</h3>
+          <p class="creator-brief">5-stage clinical consultative diagnostic protocol paired with an authentic quarterly advisory prescription blueprint.</p>
           <div class="creator-card-bottom">
-            <span class="creator-style-tag">Usecase: Converting organic views to $10k+ retainers</span>
             <button type="button" class="btn-launch-creator" onclick="createFromTemplate('bradley-inbound')">
-              Use Framework →
+              <span>Deploy Blueprint</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
         </div>
 
         <!-- 4. Charlie Morgan -->
-        <div class="creator-card" style="--creator-accent: #F59E0B;">
+        <div class="creator-card" style="--creator-accent: #F59E0B; --creator-accent-glow: rgba(245, 158, 11, 0.14); --creator-accent-bg: rgba(245, 158, 11, 0.12); --creator-accent-border: rgba(245, 158, 11, 0.35); --creator-accent-text: #F59E0B;">
           <div class="creator-card-top">
             <div class="creator-author-lockup">
-              <div class="creator-avatar-badge" style="background:#D97706; color:#FFFFFF;">CM</div>
+              <div class="creator-avatar-badge">CM</div>
               <div class="creator-meta-col">
                 <span class="creator-name">Charlie Morgan</span>
-                <span class="creator-category-pill">Outbound Sales Architecture</span>
+                <span class="creator-category-pill">B2B Outbound &amp; Prospecting</span>
               </div>
             </div>
-            <div class="creator-ai-indicator">
-              <span class="creator-ai-dot"></span>
-              <span>AI Copilot</span>
-            </div>
           </div>
-          <h3 class="creator-framework-title">Sovereign Outbound Machine & Conversion Engine</h3>
-          <div class="creator-specs-row">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Predictable B2B Outbound Acquisition & Pipeline</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> B2B founders, agency builders & SDR teams scaling cold pipeline</div>
+
+          <!-- Canvas Preview: Morgan Outbound Machine -->
+          <div class="creator-canvas-preview preview-morgan" aria-hidden="true">
+            <svg viewBox="0 0 360 108" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Frame 1: TAM Scraping Table -->
+              <rect x="12" y="14" width="135" height="80" rx="8" fill="var(--bp-surface)" stroke="var(--creator-accent, #F59E0B)" stroke-width="1.2"/>
+              <rect x="20" y="22" width="36" height="5" rx="2.5" fill="#F59E0B"/>
+              <text x="20" y="37" font-size="7.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">500-ACCOUNT TAM</text>
+              <!-- Table Rows -->
+              <rect x="20" y="44" width="119" height="12" rx="2" fill="var(--bp-surface-subtle)" stroke="var(--bp-stroke)" stroke-width="0.7"/>
+              <text x="24" y="52" font-size="6" font-weight="700" fill="var(--creator-accent, #F59E0B)" font-family="'JetBrains Mono', monospace">Target CXO • 10M-50M Rev</text>
+              <rect x="20" y="58" width="119" height="12" rx="2" fill="var(--bp-surface-subtle)" stroke="var(--bp-stroke)" stroke-width="0.7"/>
+              <text x="24" y="66" font-size="6" fill="var(--bp-text-muted)" font-family="'JetBrains Mono', monospace">Verified Cell + Work Email</text>
+              <rect x="20" y="72" width="119" height="12" rx="2" fill="var(--bp-surface-subtle)" stroke="var(--bp-stroke)" stroke-width="0.7"/>
+              <text x="24" y="80" font-size="6" fill="var(--bp-text-muted)" font-family="'JetBrains Mono', monospace">Loom Angle Calibrated</text>
+
+              <!-- Connector Arrow -->
+              <path d="M147 54 H166" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <polygon points="166,54 161,51 161,57" fill="#F59E0B"/>
+
+              <!-- 8-Touch Cadence Sequence -->
+              <rect x="168" y="14" width="180" height="80" rx="8" fill="var(--bp-surface)" stroke="#F59E0B" stroke-width="1.2"/>
+              <rect x="176" y="22" width="45" height="5" rx="2.5" fill="#F59E0B"/>
+              <text x="176" y="37" font-size="7.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">8-TOUCH OMNICHANNEL</text>
+
+              <!-- Timeline Sequence Dots -->
+              <line x1="184" y1="52" x2="332" y2="52" stroke="var(--bp-stroke)" stroke-width="1.5"/>
+              <circle cx="188" cy="52" r="5" fill="#F59E0B"/>
+              <text x="181" y="66" font-size="6" font-weight="700" fill="var(--creator-accent, #F59E0B)" font-family="'JetBrains Mono', monospace">Email</text>
+              <circle cx="232" cy="52" r="5" fill="#F59E0B"/>
+              <text x="221" y="66" font-size="6" font-weight="700" fill="var(--creator-accent, #F59E0B)" font-family="'JetBrains Mono', monospace">LinkedIn</text>
+              <circle cx="276" cy="52" r="5" fill="#F59E0B"/>
+              <text x="268" y="66" font-size="6" font-weight="700" fill="var(--creator-accent, #F59E0B)" font-family="'JetBrains Mono', monospace">Loom</text>
+              <circle cx="320" cy="52" r="5" fill="#10B981"/>
+              <text x="312" y="66" font-size="6" font-weight="700" fill="#10B981" font-family="'JetBrains Mono', monospace">Phone</text>
+
+              <!-- Metric Badge -->
+              <rect x="176" y="74" width="164" height="14" rx="4" fill="var(--bp-surface-subtle)" stroke="var(--bp-stroke)" stroke-width="0.8"/>
+              <text x="184" y="84" font-size="6.5" font-weight="800" fill="#F59E0B" font-family="'JetBrains Mono', monospace">10+ BOOKED DEMOS / MO</text>
+            </svg>
           </div>
-          <p class="creator-brief">Mathematical outbound operating system mapping 500-Account TAM Scraping, 8-Touch Omnichannel Cadences (Email + LinkedIn + Loom + Phone), and SDR Benchmark KPI tracking.</p>
-          <div class="creator-features-wrap">
-            <span class="creator-feature-chip">500-Account TAM Matrix</span>
-            <span class="creator-feature-chip">8-Touch Cadence</span>
-            <span class="creator-feature-chip">Sovereign Cold Script</span>
-            <span class="creator-feature-chip">SDR Ramp Benchmarks</span>
-          </div>
+
+          <h3 class="creator-framework-title">3-Belief Dismantling &amp; Outbound Cadence</h3>
+          <p class="creator-brief">Dismantle the 3 core buyer beliefs blocking conversion, paired with an 8-touch, 21-day omnichannel outbound cadence.</p>
           <div class="creator-card-bottom">
-            <span class="creator-style-tag">Usecase: Scaling from 0 to 10+ booked demos/mo</span>
             <button type="button" class="btn-launch-creator" onclick="createFromTemplate('morgan-outbound')">
-              Use Framework →
+              <span>Deploy Blueprint</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
         </div>
 
         <!-- 5. AJ&Smart -->
-        <div class="creator-card" style="--creator-accent: #C084FC;">
+        <div class="creator-card" style="--creator-accent: #C084FC; --creator-accent-glow: rgba(192, 132, 252, 0.15); --creator-accent-bg: rgba(192, 132, 252, 0.12); --creator-accent-border: rgba(192, 132, 252, 0.35); --creator-accent-text: #C084FC;">
           <div class="creator-card-top">
             <div class="creator-author-lockup">
-              <div class="creator-avatar-badge" style="background:#9333EA; color:#FFFFFF;">A&S</div>
+              <div class="creator-avatar-badge">A&amp;S</div>
               <div class="creator-meta-col">
-                <span class="creator-name">AJ&Smart</span>
-                <span class="creator-category-pill">Product Strategy & UX Workshops</span>
+                <span class="creator-name">AJ&amp;Smart</span>
+                <span class="creator-category-pill">Product Strategy &amp; Sprints</span>
               </div>
             </div>
-            <div class="creator-ai-indicator">
-              <span class="creator-ai-dot"></span>
-              <span>AI Copilot</span>
-            </div>
           </div>
-          <h3 class="creator-framework-title">Design Sprint 2.0 & Strategy Facilitation Canvas</h3>
-          <div class="creator-specs-row">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Rapid Product Strategy & Executive UX Workshops</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> Product managers, innovation leads & UX facilitators</div>
+
+          <!-- Canvas Preview: AJ&Smart Design Sprint 2.0 -->
+          <div class="creator-canvas-preview preview-ajsmart" aria-hidden="true">
+            <svg viewBox="0 0 360 108" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Sprint 4-Day Columns Header -->
+              <rect x="12" y="11" width="76" height="86" rx="6" fill="var(--bp-surface)" stroke="var(--bp-stroke)" stroke-width="1"/>
+              <rect x="18" y="17" width="30" height="4" rx="2" fill="#C084FC"/>
+              <text x="18" y="29" font-size="6.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">DAY 1: MAP</text>
+
+              <rect x="94" y="11" width="76" height="86" rx="6" fill="var(--bp-surface)" stroke="var(--bp-stroke)" stroke-width="1"/>
+              <rect x="100" y="17" width="30" height="4" rx="2" fill="#C084FC"/>
+              <text x="100" y="29" font-size="6.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">DAY 2: DECIDE</text>
+
+              <rect x="176" y="11" width="82" height="86" rx="6" fill="var(--bp-surface)" stroke="var(--bp-stroke)" stroke-width="1"/>
+              <rect x="182" y="17" width="30" height="4" rx="2" fill="#C084FC"/>
+              <text x="182" y="29" font-size="6.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">DAY 3: PROTOTYPE</text>
+
+              <rect x="264" y="11" width="84" height="86" rx="6" fill="var(--bp-surface)" stroke="var(--creator-accent, #C084FC)" stroke-width="1.2"/>
+              <rect x="270" y="17" width="30" height="4" rx="2" fill="#34D399"/>
+              <text x="270" y="29" font-size="6.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">DAY 4: TEST</text>
+
+              <!-- Sticky Notes with Dot-Voting -->
+              <g transform="translate(20, 38) rotate(-3)">
+                <rect width="40" height="34" rx="2" fill="#FEF08A" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))"/>
+                <line x1="4" y1="8" x2="36" y2="8" stroke="#854D0E" stroke-width="1"/>
+                <line x1="4" y1="14" x2="28" y2="14" stroke="#854D0E" stroke-width="1"/>
+                <circle cx="26" cy="22" r="3.5" fill="#EF4444"/>
+                <circle cx="34" cy="24" r="3.5" fill="#EF4444"/>
+              </g>
+
+              <g transform="translate(102, 36) rotate(4)">
+                <rect width="42" height="36" rx="2" fill="#FBCFE8" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))"/>
+                <line x1="4" y1="8" x2="36" y2="8" stroke="#9D174D" stroke-width="1"/>
+                <line x1="4" y1="14" x2="30" y2="14" stroke="#9D174D" stroke-width="1"/>
+                <circle cx="30" cy="24" r="5" fill="#22C55E" stroke="#FFFFFF" stroke-width="1"/>
+                <circle cx="16" cy="26" r="3.5" fill="#EF4444"/>
+              </g>
+
+              <g transform="translate(184, 38) rotate(-2)">
+                <rect width="44" height="34" rx="2" fill="#BAE6FD" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))"/>
+                <line x1="4" y1="8" x2="38" y2="8" stroke="#0369A1" stroke-width="1"/>
+                <line x1="4" y1="14" x2="32" y2="14" stroke="#0369A1" stroke-width="1"/>
+                <circle cx="34" cy="22" r="3.5" fill="#F59E0B"/>
+              </g>
+
+              <g transform="translate(272, 36) rotate(3)">
+                <rect width="48" height="36" rx="2" fill="#BBF7D0" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))"/>
+                <line x1="4" y1="8" x2="40" y2="8" stroke="#15803D" stroke-width="1"/>
+                <line x1="4" y1="14" x2="34" y2="14" stroke="#15803D" stroke-width="1"/>
+                <text x="4" y="26" font-size="6" font-weight="900" fill="#14532D" font-family="'JetBrains Mono', monospace">5/5 PASS</text>
+              </g>
+
+              <!-- Bottom Workshop Pill -->
+              <g transform="translate(85, 84)">
+                <rect width="190" height="13" rx="6" fill="var(--bp-surface-subtle)" stroke="rgba(192,132,252,0.4)" stroke-width="0.8"/>
+                <circle cx="9" cy="6.5" r="2.5" fill="#C084FC"/>
+                <text x="18" y="9.5" font-size="6" font-weight="800" fill="var(--creator-accent, #C084FC)" font-family="'JetBrains Mono', monospace">LIGHTNING DECISION JAM (LDJ) • VOTING</text>
+              </g>
+            </svg>
           </div>
-          <p class="creator-brief">Premium collaborative workshop canvas featuring 45-Minute Lightning Decision Jam (LDJ), How-Might-We (HMW) opportunity framing, Silent Voting, and 4-Day Prototyping Roadmap.</p>
-          <div class="creator-features-wrap">
-            <span class="creator-feature-chip">Lightning Decision Jam</span>
-            <span class="creator-feature-chip">How-Might-We Matrix</span>
-            <span class="creator-feature-chip">Silent Dot-Voting</span>
-            <span class="creator-feature-chip">4-Day Sprint Roadmap</span>
-          </div>
+
+          <h3 class="creator-framework-title">Design Sprint 2.0 &amp; LDJ Facilitation</h3>
+          <p class="creator-brief">4-day rapid strategy sprint framework featuring silent dot-voting, Lightning Decision Jam (LDJ), and storyboard testing.</p>
           <div class="creator-card-bottom">
-            <span class="creator-style-tag">Usecase: Aligning stakeholders & validating features</span>
             <button type="button" class="btn-launch-creator" onclick="createFromTemplate('ajsmart-sprint')">
-              Use Framework →
+              <span>Deploy Blueprint</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
         </div>
 
         <!-- 6. Greg Isenberg -->
-        <div class="creator-card" style="--creator-accent: #FB7185;">
+        <div class="creator-card" style="--creator-accent: #FB7185; --creator-accent-glow: rgba(251, 113, 133, 0.14); --creator-accent-bg: rgba(251, 113, 133, 0.12); --creator-accent-border: rgba(251, 113, 133, 0.35); --creator-accent-text: #FB7185;">
           <div class="creator-card-top">
             <div class="creator-author-lockup">
-              <div class="creator-avatar-badge" style="background:#E11D48; color:#FFFFFF;">GI</div>
+              <div class="creator-avatar-badge">GI</div>
               <div class="creator-meta-col">
                 <span class="creator-name">Greg Isenberg</span>
-                <span class="creator-category-pill">Community-Led Growth & Micro-SaaS</span>
+                <span class="creator-category-pill">Community Growth &amp; Micro-Products</span>
               </div>
             </div>
-            <div class="creator-ai-indicator">
-              <span class="creator-ai-dot"></span>
-              <span>AI Copilot</span>
-            </div>
           </div>
-          <h3 class="creator-framework-title">Community-Led Growth Flywheel & Unbundling Canvas</h3>
-          <div class="creator-specs-row">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Community-Led Growth, Unbundling & Micro-SaaS</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> Consumer internet founders, creators & community operators</div>
+
+          <!-- Canvas Preview: Isenberg Community Flywheel -->
+          <div class="creator-canvas-preview preview-isenberg" aria-hidden="true">
+            <svg viewBox="0 0 360 108" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Concentric Community Flywheel -->
+              <circle cx="70" cy="54" r="44" fill="none" stroke="var(--bp-stroke)" stroke-width="1" stroke-dasharray="3 3"/>
+              <circle cx="70" cy="54" r="30" fill="none" stroke="rgba(251,113,133,0.5)" stroke-width="1.2"/>
+              <circle cx="70" cy="54" r="16" fill="#FB7185" fill-opacity="0.2" stroke="#FB7185" stroke-width="1.5"/>
+              <text x="44" y="57" font-size="6.5" font-weight="900" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">COMMUNITY</text>
+
+              <!-- Flywheel Node Labels -->
+              <rect x="42" y="3" width="56" height="12" rx="3" fill="var(--bp-surface)" stroke="var(--bp-stroke)" stroke-width="0.8"/>
+              <text x="47" y="11" font-size="6" font-weight="700" fill="var(--creator-accent, #FB7185)" font-family="'JetBrains Mono', monospace">1. Content Hook</text>
+
+              <rect x="100" y="48" width="54" height="12" rx="3" fill="var(--bp-surface)" stroke="var(--bp-stroke)" stroke-width="0.8"/>
+              <text x="105" y="56" font-size="6" font-weight="700" fill="var(--creator-accent, #FB7185)" font-family="'JetBrains Mono', monospace">2. Micro-SaaS</text>
+
+              <rect x="42" y="93" width="56" height="12" rx="3" fill="var(--bp-surface)" stroke="var(--bp-stroke)" stroke-width="0.8"/>
+              <text x="47" y="101" font-size="6" font-weight="700" fill="var(--creator-accent, #FB7185)" font-family="'JetBrains Mono', monospace">3. Advocates</text>
+
+              <!-- Connector Arrow -->
+              <path d="M156 54 H178" stroke="#FB7185" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <polygon points="178,54 173,51 173,57" fill="#FB7185"/>
+
+              <!-- Reddit Unbundling Card -->
+              <rect x="180" y="14" width="168" height="80" rx="8" fill="var(--bp-surface)" stroke="#FB7185" stroke-width="1.2"/>
+              <rect x="188" y="22" width="42" height="5" rx="2.5" fill="#FB7185"/>
+              <text x="188" y="37" font-size="7.5" font-weight="800" fill="var(--bp-text-primary)" font-family="'JetBrains Mono', monospace">REDDIT UNBUNDLING</text>
+
+              <rect x="188" y="44" width="152" height="18" rx="4" fill="var(--bp-surface-subtle)" stroke="var(--bp-stroke)" stroke-width="0.8"/>
+              <text x="194" y="55" font-size="6.5" font-weight="700" fill="var(--creator-accent, #FB7185)" font-family="'JetBrains Mono', monospace">r/SkincareAddiction (2.4M)</text>
+
+              <rect x="188" y="68" width="152" height="18" rx="4" fill="var(--bp-surface-subtle)" stroke="rgba(52,211,153,0.3)" stroke-width="0.8"/>
+              <text x="194" y="79" font-size="6.5" font-weight="800" fill="#10B981" font-family="'JetBrains Mono', monospace">→ $99/Mo VIP Club</text>
+            </svg>
           </div>
-          <p class="creator-brief">Editorial community strategy canvas mapping Subreddit/FB Group unbundling, 0-to-100 founding member playbooks, and Content → Community → Micro-SaaS monetization flywheels.</p>
-          <div class="creator-features-wrap">
-            <span class="creator-feature-chip">Reddit Unbundling Matrix</span>
-            <span class="creator-feature-chip">Flywheel Loops</span>
-            <span class="creator-feature-chip">0-to-100 Playbook</span>
-            <span class="creator-feature-chip">Paid Membership Tier</span>
-          </div>
+
+          <h3 class="creator-framework-title">Community Flywheel &amp; Niche Unbundling</h3>
+          <p class="creator-brief">Map community-led growth flywheels, unbundle high-traffic subreddit niches, and engineer recurring VIP subscription tiers.</p>
           <div class="creator-card-bottom">
-            <span class="creator-style-tag">Usecase: Vertical micro-SaaS & $99/mo paid communities</span>
             <button type="button" class="btn-launch-creator" onclick="createFromTemplate('isenberg-community')">
-              Use Framework →
+              <span>Deploy Blueprint</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
         </div>
@@ -1833,10 +2368,10 @@
     <div class="title-row">
       <div>
         <div class="eyebrow">
-          <span>WORKSPACE</span>
+          <span>ATELIER</span>
         </div>
-        <h1 class="headline">Strategy Boards</h1>
-        <p class="subheadline">Executive whiteboard blueprints and client presentation architectures.</p>
+        <h2 class="headline">Client Blueprints</h2>
+        <p class="subheadline">Bespoke strategy architectures built for your elite advisory engagements.</p>
       </div>
 
       <div class="title-controls">
@@ -1855,8 +2390,24 @@
 
     <!-- Boards Grid -->
     <div id="boardsGrid" class="boards-grid">
-      <div style="grid-column: 1 / -1; text-align: center; padding: 4rem; color: var(--text-muted);">
-        Loading workspace boards...
+      <!-- Skeleton placeholders shown until boards load -->
+      <div class="board-skeleton">
+        <div class="skeleton-preview"></div>
+        <div class="skeleton-line w-90"></div>
+        <div class="skeleton-line w-70"></div>
+        <div class="skeleton-line w-50"></div>
+      </div>
+      <div class="board-skeleton">
+        <div class="skeleton-preview"></div>
+        <div class="skeleton-line w-90"></div>
+        <div class="skeleton-line w-70"></div>
+        <div class="skeleton-line w-50"></div>
+      </div>
+      <div class="board-skeleton">
+        <div class="skeleton-preview"></div>
+        <div class="skeleton-line w-90"></div>
+        <div class="skeleton-line w-70"></div>
+        <div class="skeleton-line w-50"></div>
       </div>
     </div>
   </div>
@@ -1868,19 +2419,20 @@
     <div class="template-modal-card" onclick="event.stopPropagation()">
       <div class="modal-top-bar">
         <div>
-          <div class="eyebrow">STRATEGY ARCHITECTURES</div>
-          <h2 style="font-size:1.4rem; font-weight:800; color:var(--text-heading);">Elite Creator Frameworks</h2>
+          <div class="eyebrow">FRAMEWORKS</div>
+          <h2 style="font-size:1.4rem; font-weight:800; color:var(--text-heading);">Choose Your Blueprint</h2>
+          <p style="font-size:0.84rem; color:var(--text-muted); margin: 4px 0 0 0;">Pick the framework that matches your next client engagement. Each deploys in under 3 minutes.</p>
         </div>
-        <button type="button" class="modal-close-btn" onclick="closeTemplateModal()">✕</button>
+        <button type="button" class="modal-close-btn" onclick="closeTemplateModal()" aria-label="Close template modal">✕</button>
       </div>
 
       <!-- Category Filter Tabs -->
       <div class="modal-filter-tabs">
-        <button type="button" class="modal-tab-btn is-active" onclick="filterModalTemplates('all', this)">All Frameworks</button>
-        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('creator', this)">Elite Creators (6)</button>
-        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('acquisition', this)">Inbound & Outbound</button>
-        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('offers', this)">Offers & Community</button>
-        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('systems', this)">AI & Product Sprints</button>
+        <button type="button" class="modal-tab-btn is-active" onclick="filterModalTemplates('all', this)">All Templates</button>
+        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('creator', this)">Creators (6)</button>
+        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('acquisition', this)">Inbound &amp; Outbound</button>
+        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('offers', this)">Offers &amp; Community</button>
+        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('systems', this)">AI &amp; Product Sprints</button>
       </div>
 
       <div class="templates-grid">
@@ -1888,16 +2440,16 @@
         <div class="template-picker-card" data-category="creator offers" onclick="createFromTemplate('hormozi-offer')">
           <div class="modal-creator-tag-badge">
             <span class="modal-creator-pill" style="background:#FFF275; color:#1A1715;">AH • Alex Hormozi</span>
-            <span class="modal-ai-tag">✦ AI Copilot</span>
+            <span class="modal-ai-tag">AI Assistant</span>
           </div>
-          <h3 class="template-title">$100M Grand Slam Offer & Value Equation</h3>
-          <p class="template-desc">High-contrast yellow & charcoal canvas structuring Dream Outcome, Perceived Likelihood, Time Delay, Effort, Bonus Stacking, and Risk Reversal Guarantees.</p>
+          <h3 class="template-title">Grand Slam Offer &amp; Value Equation</h3>
+          <p class="template-desc">Mathematical 2x2 value fraction calculation, strikethrough deliverable value stack, 4-tier investment ladder, and risk-reversal guarantee architecture.</p>
           <div class="creator-specs-row" style="margin-bottom:0.75rem;">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket Direct-Response</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Eliminate price resistance ($10k+)</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket Offer &amp; Unit Economics</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Signature:</span> 2x2 Fraction + Strikethrough Ladder</div>
           </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Framework →</span>
+            <span class="btn-use-template">Use Template</span>
           </div>
         </div>
 
@@ -1905,16 +2457,16 @@
         <div class="template-picker-card" data-category="creator systems" onclick="createFromTemplate('ottley-ai')">
           <div class="modal-creator-tag-badge">
             <span class="modal-creator-pill" style="background:#0284C7; color:#FFFFFF;">LO • Liam Ottley</span>
-            <span class="modal-ai-tag">✦ AI Copilot</span>
+            <span class="modal-ai-tag">AI Assistant</span>
           </div>
-          <h3 class="template-title">AI Automation Agency & Pipeline Blueprint</h3>
-          <p class="template-desc">Production systems blueprint mapping Omnichannel Lead Capture, n8n/Make Multi-Agent Orchestration, 7-Day Discovery Sprints, and Client Delivery SLAs.</p>
+          <h3 class="template-title">AI Agency Systems Pipeline</h3>
+          <p class="template-desc">Engineering-grade 4-node socketed blueprint: live pulsing radar status dots, Claude 3.5 Sonnet router, vector RAG retrieval, and $15k/mo client SLA telemetry.</p>
           <div class="creator-specs-row" style="margin-bottom:0.75rem;">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> AAA / Autonomous Systems</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Enterprise AI audits & retainers</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> AI Agency Workflows &amp; Retainers</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Signature:</span> 4-Node Blueprint + Pulse Radar</div>
           </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Framework →</span>
+            <span class="btn-use-template">Use Template</span>
           </div>
         </div>
 
@@ -1922,16 +2474,16 @@
         <div class="template-picker-card" data-category="creator acquisition" onclick="createFromTemplate('bradley-inbound')">
           <div class="modal-creator-tag-badge">
             <span class="modal-creator-pill" style="background:#059669; color:#FFFFFF;">CB • Chris Bradley</span>
-            <span class="modal-ai-tag">✦ AI Copilot</span>
+            <span class="modal-ai-tag">AI Assistant</span>
           </div>
-          <h3 class="template-title">High-Ticket Inbound & Diagnostic Closing</h3>
-          <p class="template-desc">Authority-driven inbound acquisition architecture covering 12-Minute Diagnostic VSL Funnels, 15-Minute Urgency Triage Flows, and Consultative 2-Call Closing Scripts.</p>
+          <h3 class="template-title">Diagnostic Protocol &amp; Advisory Prescription</h3>
+          <p class="template-desc">5-stage clinical consultative protocol (Symptom, Pathophysiology, Prognosis, Prescription, Silence) paired with an authentic Rx-sealed quarterly advisory prescription sheet.</p>
           <div class="creator-specs-row" style="margin-bottom:0.75rem;">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket B2B Advisory</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Convert views to $10k+ retainers</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket Consultative Selling</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Signature:</span> 5-Stage Protocol + Watermarked Rx</div>
           </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Framework →</span>
+            <span class="btn-use-template">Use Template</span>
           </div>
         </div>
 
@@ -1939,33 +2491,33 @@
         <div class="template-picker-card" data-category="creator acquisition" onclick="createFromTemplate('morgan-outbound')">
           <div class="modal-creator-tag-badge">
             <span class="modal-creator-pill" style="background:#D97706; color:#FFFFFF;">CM • Charlie Morgan</span>
-            <span class="modal-ai-tag">✦ AI Copilot</span>
+            <span class="modal-ai-tag">AI Assistant</span>
           </div>
-          <h3 class="template-title">Sovereign Outbound Machine & Conversion Engine</h3>
-          <p class="template-desc">Mathematical outbound operating system mapping 500-Account TAM Scraping, 8-Touch Omnichannel Cadences, and SDR Benchmark KPI tracking.</p>
+          <h3 class="template-title">3-Belief Dismantling &amp; Outbound Cadence</h3>
+          <p class="template-desc">Imperium Acquisition operating system: dismantling 3 limiting beliefs (Vehicle, Internal, External) alongside an 8-touch 21-day omnichannel sequence and 500-account TAM sheet.</p>
           <div class="creator-specs-row" style="margin-bottom:0.75rem;">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Predictable B2B Outbound</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Scale cold pipeline to 10+ demos/mo</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Predictable Sovereign B2B Outbound</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Signature:</span> 3-Belief Triad + 21-Day Cadence</div>
           </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Framework →</span>
+            <span class="btn-use-template">Use Template</span>
           </div>
         </div>
 
         <!-- 5. AJ&Smart -->
         <div class="template-picker-card" data-category="creator product systems" onclick="createFromTemplate('ajsmart-sprint')">
           <div class="modal-creator-tag-badge">
-            <span class="modal-creator-pill" style="background:#9333EA; color:#FFFFFF;">A&S • AJ&Smart</span>
-            <span class="modal-ai-tag">✦ AI Copilot</span>
+            <span class="modal-creator-pill" style="background:#9333EA; color:#FFFFFF;">A&amp;S • AJ&amp;Smart</span>
+            <span class="modal-ai-tag">AI Assistant</span>
           </div>
-          <h3 class="template-title">Design Sprint 2.0 & Strategy Facilitation</h3>
-          <p class="template-desc">Premium collaborative workshop canvas featuring 45-Minute Lightning Decision Jam (LDJ), How-Might-We (HMW) framing, and 4-Day Prototyping Roadmap.</p>
+          <h3 class="template-title">Design Sprint 2.0 &amp; LDJ Facilitation</h3>
+          <p class="template-desc">Official Miroverse Remote Sprint 2.0: 4-day swimlane board, clustered Miro voting dot stickers (Team &amp; Decider), 2x2 LDJ Impact vs. Effort matrix, and user testing scorecards.</p>
           <div class="creator-specs-row" style="margin-bottom:0.75rem;">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Product Strategy & UX Workshops</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Align teams & validate in 4 days</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Product Strategy &amp; Facilitation</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Signature:</span> 4-Day Swimlanes + Miro Dot Voting</div>
           </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Framework →</span>
+            <span class="btn-use-template">Use Template</span>
           </div>
         </div>
 
@@ -1973,26 +2525,26 @@
         <div class="template-picker-card" data-category="creator community offers" onclick="createFromTemplate('isenberg-community')">
           <div class="modal-creator-tag-badge">
             <span class="modal-creator-pill" style="background:#E11D48; color:#FFFFFF;">GI • Greg Isenberg</span>
-            <span class="modal-ai-tag">✦ AI Copilot</span>
+            <span class="modal-ai-tag">AI Assistant</span>
           </div>
-          <h3 class="template-title">Community-Led Growth & Unbundling Canvas</h3>
-          <p class="template-desc">Editorial community strategy canvas mapping Subreddit/FB Group unbundling, 0-to-100 founding member playbooks, and Micro-SaaS monetization flywheels.</p>
+          <h3 class="template-title">Community Flywheel &amp; Niche Unbundling</h3>
+          <p class="template-desc">Dissects high-density Reddit subreddits into niche recurring revenue models, anchored by a 3-ring concentric Audience-Community-Product (ACP) flywheel and VIP tier economics.</p>
           <div class="creator-specs-row" style="margin-bottom:0.75rem;">
-            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Community Growth & Micro-SaaS</div>
-            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Micro-SaaS & $99/mo communities</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Community-Led Growth &amp; Micro-SaaS</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Signature:</span> Subreddit Teardown + ACP Flywheel</div>
           </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Framework →</span>
+            <span class="btn-use-template">Use Template</span>
           </div>
         </div>
 
         <!-- 7. Blank Canvas -->
         <div class="template-picker-card" data-category="all creator offers systems acquisition product community" onclick="createFromTemplate('blank')">
           <span class="template-tag">Clean Canvas</span>
-          <h3 class="template-title">Blank Strategy Canvas</h3>
-          <p class="template-desc">An unformatted infinite strategy whiteboard with standard luxury grid, ready for custom bespoke frameworks.</p>
+          <h3 class="template-title">Blank Board</h3>
+          <p class="template-desc">An empty whiteboard canvas ready for custom diagrams, notes, and strategy maps.</p>
           <div class="template-card-footer" style="margin-top:auto;">
-            <span class="btn-use-template">Use Template →</span>
+            <span class="btn-use-template">Use Template</span>
           </div>
         </div>
       </div>
@@ -2046,30 +2598,24 @@
     }
 
     function toggleDashboardTheme() {
-      const isDark = document.body.classList.contains('theme-dark');
-      if (isDark) {
-        document.body.classList.remove('theme-dark');
-        localStorage.setItem('polish_studio_theme', 'light');
-        updateThemeIcon('light');
-      } else {
-        document.body.classList.add('theme-dark');
-        localStorage.setItem('polish_studio_theme', 'dark');
-        updateThemeIcon('dark');
-      }
+      const isDark = document.body.classList.toggle('theme-dark');
+      localStorage.setItem('polish_studio_theme', isDark ? 'dark' : 'light');
+      updateThemeIcon(isDark ? 'dark' : 'light');
     }
 
     function updateThemeIcon(mode) {
       const btn = document.getElementById('themeToggleBtn');
       if (!btn) return;
-      if (mode === 'light') {
-        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
-      } else {
-        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
-      }
+      const isDark = (mode === 'dark');
+      btn.innerHTML = isDark
+        ? '<svg class="dock-theme-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg> <span class="dock-theme-label">Light</span>'
+        : '<svg class="dock-theme-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> <span class="dock-theme-label">Dark</span>';
+      btn.title = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
       initTheme();
+      initSpotlightCards();
       bindKeyboardShortcuts();
       await PolishFirebase.init();
 
@@ -2106,6 +2652,19 @@
           closeDeleteModal();
           closeAllCardMenus();
         }
+      });
+    }
+
+    function initSpotlightCards() {
+      const cards = document.querySelectorAll('.creator-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
       });
     }
 
@@ -2187,7 +2746,7 @@
               <p class="empty-desc">Create your first strategy board or choose an executive starter framework.</p>
               <div class="empty-actions">
                 <button type="button" class="btn btn-hero-new" onclick="createBlankBoard()">+ Create Blank Board</button>
-                <button type="button" class="btn btn-secondary" onclick="openTemplateModal()">✦ Browse Templates</button>
+                <button type="button" class="btn btn-secondary" onclick="openTemplateModal()">Browse Templates</button>
               </div>
             </div>
           `;
@@ -2212,7 +2771,7 @@
         const boardId = b.id;
 
         return `
-        <div class="board-card" data-board-id="${boardId}">
+        <div class="board-card" data-board-id="${boardId}" tabindex="0" role="article" aria-label="${safeTitle}">
           <!-- Interactive Visual Micro-Canvas Preview -->
           <div class="card-canvas-preview" onclick="window.location.href='/studio?id=${encodeURIComponent(boardId)}'" title="Open in Studio">
             <div class="mini-frame-box">
@@ -2278,7 +2837,7 @@
           <!-- Board Title & Client Tag -->
           <h2 class="board-card-title" onclick="window.location.href='/studio?id=${encodeURIComponent(boardId)}'">${safeTitle}</h2>
           <div class="board-card-client">
-            <span class="client-diamond">✦</span>
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="var(--brand-gold)"><polygon points="12 2 22 12 12 22 2 12"/></svg>
             <span>${safeClient}</span>
           </div>
 
@@ -2393,16 +2952,6 @@
 
       const boardId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
 
-      // Fetch starter data if available
-      let starterData = null;
-      try {
-        const res = await fetch('/api/boards/starter-strategy-board');
-        if (res.ok) {
-          const data = await res.json();
-          starterData = data.board;
-        }
-      } catch (_) {}
-
       const templateTitles = {
         'hormozi-offer': '$100M Grand Slam Offer & Value Equation',
         'ottley-ai': 'AI Automation Agency & Pipeline Blueprint',
@@ -2427,11 +2976,13 @@
       const title = templateTitles[templateKey] || 'Executive Strategy Board';
 
       const newBoard = {
-        ...(starterData || {}),
         id: boardId,
         slug: boardId,
         title: title,
         client: 'Private Client',
+        elements: [],
+        connections: [],
+        templateKey: templateKey,
         ownerId: activeUser.uid,
         ownerEmail: activeUser.email,
         createdAt: new Date().toISOString(),

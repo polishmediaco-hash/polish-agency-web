@@ -57,9 +57,9 @@
           } else {
             this.app = firebase.app();
           }
-          this.auth = firebase.auth();
-          this.db = firebase.firestore();
-          this.hasLiveFirebase = true;
+          this.auth = typeof firebase.auth === 'function' ? firebase.auth() : null;
+          this.db = typeof firebase.firestore === 'function' ? firebase.firestore() : null;
+          this.hasLiveFirebase = !!this.auth;
 
           // Await initial auth state resolution so currentUser is known before init() completes
           await new Promise((resolve) => {
@@ -211,11 +211,31 @@
 
     // Authentication: Google Sign-In
     async loginWithGoogle() {
-      if (!this.isReady) {
+      if (!this.auth) {
         await this.init();
       }
 
-      if (this.hasLiveFirebase && this.auth) {
+      // Direct fallback if init ran before scripts were parsed
+      if (!this.auth && typeof firebase !== 'undefined' && typeof firebase.auth === 'function') {
+        const fallbackConfig = {
+          apiKey: 'AIzaSyAdtvlrJwmTGMe6JbMCSdEQCKC7eAle-TM',
+          authDomain: 'polishmediacocom.firebaseapp.com',
+          projectId: 'polishmediacocom',
+          storageBucket: 'polishmediacocom.firebasestorage.app',
+          messagingSenderId: '70668280388',
+          appId: '1:70668280388:web:455f906c6fbca8ce701211',
+          measurementId: 'G-7MGW2YG98L'
+        };
+        if (!firebase.apps.length) {
+          this.app = firebase.initializeApp(fallbackConfig);
+        } else {
+          this.app = firebase.app();
+        }
+        this.auth = firebase.auth();
+        this.hasLiveFirebase = true;
+      }
+
+      if (this.auth) {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('profile');
         provider.addScope('email');
@@ -226,13 +246,8 @@
           return cred.user;
         } catch (err) {
           console.warn('[PolishFirebase] Popup attempt returned:', err.code, err.message);
-          // If popup is closed, blocked, or isolated by browser COOP policies, seamlessly switch to redirect
-          if (
-            err.code === 'auth/popup-blocked' ||
-            err.code === 'auth/popup-closed-by-user' ||
-            err.code === 'auth/cancelled-popup-request'
-          ) {
-            console.log('[PolishFirebase] Switching to signInWithRedirect for full reliability...');
+          if (err.code === 'auth/popup-blocked') {
+            console.log('[PolishFirebase] Popup blocked, switching to signInWithRedirect for reliability...');
             await this.auth.signInWithRedirect(provider);
             return null;
           }

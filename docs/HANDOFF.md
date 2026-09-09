@@ -175,6 +175,12 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Exclusive Google Sign-In Architecture**:
   - Simplified `/login` (`public/studio/login.html`) to an ultra-clean, distraction-free single-click Google authentication flow with Haute Atelier luxury card aesthetics.
   - Resolved COOP isolation (`crossOriginOpenerPolicy: false` in Helmet) allowing the Google OAuth popup to communicate with the opener window, and implemented automatic fallback to `signInWithRedirect` with `getRedirectResult()`.
+* **Studio-Exclusive AI Strategy Copilot (`public/studio/js/studio-ai.js`)**:
+  - Embedded exclusively inside the Board Studio (`app.polishmediaco.com` / `/studio`) to aid growth advisors in mapping strategy boards.
+  - Powered by Google Gemini Flash (`gemini-3.5-flash` / `gemini-3.6-flash` / `gemini-3.7-flash` resilient fallback cascade).
+  - Hyper-specialized in 6 core disciplines: Luxury Branding, High-AOV Grand Slam Offers, Haute Direct-Response Copy, Paid Ads & CAC Compression, High-Ticket Sales Scripts, and UGC Video Creator Briefs.
+  - Features **1-Click "Add to Canvas" Card Spawner** (`addStrategyCard`) that turns AI-generated recommendations directly into interactive whiteboard cards with automatic sequential connector linking.
+  - Zero-leak architecture: API key is isolated in `.env` and proxies via server endpoint `POST /api/ai/chat`.
 * **Subdomain Isolation for Board Studio (`app.polishmediaco.com`)**:
   - All whiteboard canvas, dashboard, view, and studio login pages are strictly hosted on `app.polishmediaco.com`.
 * **Purge of Dead Routes & Unused Aliases**:

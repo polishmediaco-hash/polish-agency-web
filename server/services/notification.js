@@ -55,6 +55,7 @@ async function sendWhatsAppMessage(text) {
   const ultraToken = process.env.ULTRAMSG_TOKEN;
   if (ultraInstance && ultraToken) {
     try {
+      const targetNumber = rawTarget.replace(/\D/g, '');
       const params = new URLSearchParams();
       params.append('token', ultraToken);
       params.append('to', targetNumber);

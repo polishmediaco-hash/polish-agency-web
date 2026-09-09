@@ -19,5 +19,8 @@
   "license": "ISC",
   "devDependencies": {
     "puppeteer": "^25.9.0"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
   }
 }

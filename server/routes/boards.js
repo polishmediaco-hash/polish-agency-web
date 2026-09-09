@@ -355,18 +355,30 @@ router.post('/', (req, res) => {
   }
 });
 
+// Helper: Validate and sanitize board identifier against path traversal attacks
+function sanitizeBoardId(id) {
+  if (!id || typeof id !== 'string') return null;
+  const clean = path.basename(id).trim();
+  if (!/^[a-zA-Z0-9_-]{2,80}$/.test(clean)) return null;
+  return clean;
+}
+
 // GET /api/boards/:id (Get single board data)
 router.get('/:id', (req, res) => {
   try {
-    const { id } = req.params;
-    let filePath = path.join(BOARDS_DIR, `${id}.json`);
+    const safeId = sanitizeBoardId(req.params.id);
+    if (!safeId) {
+      return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
+    }
+
+    let filePath = path.join(BOARDS_DIR, `${safeId}.json`);
 
     // Also support finding by slug
     if (!fs.existsSync(filePath)) {
       const files = fs.readdirSync(BOARDS_DIR).filter(f => f.endsWith('.json'));
       for (const file of files) {
         const b = readBoardFile(path.join(BOARDS_DIR, file));
-        if (b && (b.slug === id || b.id === id)) {
+        if (b && (b.slug === safeId || b.id === safeId)) {
           filePath = path.join(BOARDS_DIR, file);
           break;
         }
@@ -388,15 +400,18 @@ router.get('/:id', (req, res) => {
 // PUT /api/boards/:id (Save/Update board data)
 router.put('/:id', (req, res) => {
   try {
-    const { id } = req.params;
+    const safeId = sanitizeBoardId(req.params.id);
+    if (!safeId) {
+      return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
+    }
     const incomingData = req.body;
 
     if (!incomingData || typeof incomingData !== 'object') {
       return res.status(400).json({ success: false, error: 'Invalid board payload.' });
     }
 
-    const filePath = path.join(BOARDS_DIR, `${id}.json`);
-    incomingData.id = id;
+    const filePath = path.join(BOARDS_DIR, `${safeId}.json`);
+    incomingData.id = safeId;
     const saved = writeBoardFile(filePath, incomingData);
 
     if (!saved) {
@@ -413,8 +428,11 @@ router.put('/:id', (req, res) => {
 // POST /api/boards/:id/duplicate (Duplicate a board)
 router.post('/:id/duplicate', (req, res) => {
   try {
-    const { id } = req.params;
-    const srcPath = path.join(BOARDS_DIR, `${id}.json`);
+    const safeId = sanitizeBoardId(req.params.id);
+    if (!safeId) {
+      return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
+    }
+    const srcPath = path.join(BOARDS_DIR, `${safeId}.json`);
 
     if (!fs.existsSync(srcPath)) {
       return res.status(404).json({ success: false, error: 'Original board not found.' });
@@ -444,8 +462,11 @@ router.post('/:id/duplicate', (req, res) => {
 // DELETE /api/boards/:id (Delete a board)
 router.delete('/:id', (req, res) => {
   try {
-    const { id } = req.params;
-    const filePath = path.join(BOARDS_DIR, `${id}.json`);
+    const safeId = sanitizeBoardId(req.params.id);
+    if (!safeId) {
+      return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
+    }
+    const filePath = path.join(BOARDS_DIR, `${safeId}.json`);
 
     if (!fs.existsSync(filePath)) {
       return res.status(404).json({ success: false, error: 'Board not found.' });

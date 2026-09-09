@@ -9,6 +9,7 @@
  *    - For CI/CD, curl, or emergency recovery
  */
 
+const crypto = require('crypto');
 const tokenCache = new Map(); // token -> { user, expiresAt }
 
 function getAdminEmails() {
@@ -112,13 +113,17 @@ async function requireAdminAuth(req, res, next) {
   const providedKey = req.headers['x-api-key'] || req.headers['x-admin-key'] || req.query.key;
   const expectedKey = process.env.ADMIN_API_KEY;
 
-  if (expectedKey && providedKey && providedKey === expectedKey) {
-    req.adminUser = {
-      email: 'service-key@polishmediaco.com',
-      displayName: 'Master Key Holder',
-      isServiceKey: true
-    };
-    return next();
+  if (expectedKey && providedKey && typeof providedKey === 'string') {
+    const pBuf = Buffer.from(providedKey);
+    const eBuf = Buffer.from(expectedKey);
+    if (pBuf.length === eBuf.length && crypto.timingSafeEqual(pBuf, eBuf)) {
+      req.adminUser = {
+        email: 'service-key@polishmediaco.com',
+        displayName: 'Master Key Holder',
+        isServiceKey: true
+      };
+      return next();
+    }
   }
 
   return res.status(401).json({

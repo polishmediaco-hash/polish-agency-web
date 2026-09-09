@@ -343,15 +343,6 @@ router.post('/notifications/test', requireAdminAuth, async (req, res) => {
 
 // GET /api/test-whatsapp (One-Click WhatsApp Alert Verification)
 router.get('/test-whatsapp', requireAdminAuth, async (req, res) => {
-  const authKey = req.headers['x-api-key'] || req.query.key;
-  const expectedKey = process.env.ADMIN_API_KEY;
-
-  if (!expectedKey || authKey !== expectedKey) {
-    return res.status(401).json({
-      success: false,
-      error: 'Unauthorized.'
-    });
-  }
 
   const targetNumber = process.env.WHATSAPP_ALERT_NUMBER || process.env.WHATSAPP_NUMBER || '213662417761';
   const hasGreenApi = Boolean(process.env.GREEN_API_ID_INSTANCE && process.env.GREEN_API_TOKEN_INSTANCE);

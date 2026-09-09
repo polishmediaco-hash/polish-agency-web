@@ -1290,11 +1290,17 @@
   <!-- BOTTOM-RIGHT HUD CONTROLS                                  -->
   <!-- ========================================================== -->
   <div class="viewport-tools">
-    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(-0.15)" title="Zoom Out">−</button>
+    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(-0.15)" title="Zoom Out">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
     <div id="zoomLabel" class="zoom-label">75%</div>
-    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(0.15)" title="Zoom In">+</button>
+    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(0.15)" title="Zoom In">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
     <div class="dock-divider" style="height:14px; margin:0 2px"></div>
-    <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Fit to Blueprint">⊡</button>
+    <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Fit to Blueprint">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+    </button>
   </div>
 
   <!-- ========================================================== -->
@@ -1304,7 +1310,7 @@
     <button class="present-nav-btn" onclick="StudioPresentation.prev()">← Previous</button>
     <div id="presentSlideInfo" class="present-slide-info">Strategic Pillar 1 of 4</div>
     <button class="present-nav-btn" onclick="StudioPresentation.next()">Next →</button>
-    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">✕ Exit (Esc)</button>
+    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">Exit (Esc)</button>
   </div>
 
   <!-- Confidential Advisory Footer -->

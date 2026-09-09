@@ -41,9 +41,15 @@ window.StudioCamera = (function () {
       <div class="camera-bubble-circle" id="cameraBubbleCircle">
         <video class="camera-bubble-video" id="cameraBubbleVideo" autoplay playsinline muted></video>
         <div class="camera-bubble-controls">
-          <button type="button" class="camera-bubble-btn" onclick="StudioCamera.toggleSize()" title="Toggle Size">⇲</button>
-          <button type="button" class="camera-bubble-btn" onclick="StudioCamera.toggleMirror()" title="Mirror Camera">↔</button>
-          <button type="button" class="camera-bubble-btn btn-close" onclick="StudioCamera.stop()" title="Close Camera">✕</button>
+          <button type="button" class="camera-bubble-btn" onclick="StudioCamera.toggleSize()" title="Toggle Size">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+          </button>
+          <button type="button" class="camera-bubble-btn" onclick="StudioCamera.toggleMirror()" title="Mirror Camera">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="8 21 3 21 3 16"/></svg>
+          </button>
+          <button type="button" class="camera-bubble-btn btn-close" onclick="StudioCamera.stop()" title="Close Camera">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
         </div>
       </div>
     `;

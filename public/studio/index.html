@@ -56,7 +56,7 @@
     <div class="dock-right">
       <!-- 1-Click Theme Toggle -->
       <button type="button" id="themeToggleBtn" class="theme-toggle-btn" onclick="StudioCore.toggleTheme()" title="Switch Light/Dark Theme">
-        <span class="dock-theme-icon">☾</span>
+        <svg class="dock-theme-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <span class="dock-theme-label">Dark</span>
       </button>
 
@@ -113,44 +113,56 @@
     <!-- Select Tool (V) -->
     <button class="tool-item active" data-tool="select" onclick="CanvasEngine.setTool('select')" data-tooltip="Select & Marquee (V)">
       <span class="tool-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2l12 11.5-5.5.5 3.5 7-2.5 1.2-3.5-7-4 4V2z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l12 11.5-5.5.5 3.5 7-2.5 1.2-3.5-7-4 4V2z" fill="currentColor"/></svg>
       </span>
       <span class="tool-label">Select</span>
     </button>
 
     <!-- Hand Tool (H) -->
     <button class="tool-item" data-tool="hand" onclick="CanvasEngine.setTool('hand')" data-tooltip="Hand / Pan Tool (H / Space)">
-      <span class="tool-icon">✋</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+      </span>
       <span class="tool-label">Hand</span>
     </button>
 
     <!-- Freehand Pen (P) -->
     <button class="tool-item" data-tool="pen" onclick="togglePenMenu(event)" data-tooltip="Freehand Pen (P)">
-      <span class="tool-icon">✎</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+      </span>
       <span class="tool-label">Pen</span>
     </button>
 
     <!-- Basic Shapes (S) -->
     <button class="tool-item" data-tool="shape" onclick="toggleShapeMenu(event)" data-tooltip="Geometric Shapes (S)">
-      <span class="tool-icon">◇</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="9" height="9" x="3" y="3" rx="1.5"/><circle cx="15.5" cy="15.5" r="5.5"/></svg>
+      </span>
       <span class="tool-label">Shape</span>
     </button>
 
     <!-- Standalone Text (T) -->
     <button class="tool-item" data-tool="text" onclick="CanvasEngine.setTool('text')" data-tooltip="Floating Text (T)">
-      <span class="tool-icon" style="font-family:serif; font-weight:800">T</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+      </span>
       <span class="tool-label">Text</span>
     </button>
 
     <!-- Sticky Notes (N) -->
     <button class="tool-item" data-tool="sticky" onclick="toggleStickyMenu(event)" data-tooltip="Sticky Notes (N)">
-      <span class="tool-icon" style="color:#EAB308">■</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+      </span>
       <span class="tool-label">Note</span>
     </button>
 
     <!-- Frame (F) -->
     <button class="tool-item" data-tool="frame" onclick="StudioCore.addFrame()" data-tooltip="Board Frame (F)">
-      <span class="tool-icon">▢</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="6" x2="2" y2="6"/><line x1="22" y1="18" x2="2" y2="18"/><line x1="6" y1="2" x2="6" y2="22"/><line x1="18" y1="2" x2="18" y2="22"/></svg>
+      </span>
       <span class="tool-label">Frame</span>
     </button>
 
@@ -158,15 +170,21 @@
 
     <!-- Strategy Components -->
     <button class="tool-item" onclick="StudioCore.addTable()" data-tooltip="Strategy Matrix Table">
-      <span class="tool-icon">⊞</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2.5"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+      </span>
       <span class="tool-label">Table</span>
     </button>
     <button class="tool-item" onclick="StudioCore.addPricing()" data-tooltip="Retainer Offer Card">
-      <span class="tool-icon">❖</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </span>
       <span class="tool-label">Offer</span>
     </button>
     <button class="tool-item" onclick="StudioCore.addForm()" data-tooltip="Diagnostic Intake Form">
-      <span class="tool-icon">▤</span>
+      <span class="tool-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2.5"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+      </span>
       <span class="tool-label">Form</span>
     </button>
   </aside>
@@ -175,13 +193,27 @@
   <div id="shapeFlyout" class="tool-flyout" style="display:none">
     <div class="flyout-title">Shapes</div>
     <div class="flyout-grid">
-      <button class="flyout-btn" onclick="selectShapeType('rect')" title="Rectangle">▭ Rect</button>
-      <button class="flyout-btn" onclick="selectShapeType('rounded-rect')" title="Rounded Rectangle">▢ Round</button>
-      <button class="flyout-btn" onclick="selectShapeType('circle')" title="Circle / Ellipse">◯ Circle</button>
-      <button class="flyout-btn" onclick="selectShapeType('diamond')" title="Decision Diamond">◇ Diamond</button>
-      <button class="flyout-btn" onclick="selectShapeType('triangle')" title="Triangle">△ Triangle</button>
-      <button class="flyout-btn" onclick="selectShapeType('arrow')" title="Process Arrow">➔ Arrow</button>
-      <button class="flyout-btn" onclick="selectShapeType('line')" title="Divider Line">— Line</button>
+      <button class="flyout-btn" onclick="selectShapeType('rect')" title="Rectangle">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="1"/></svg> Rect
+      </button>
+      <button class="flyout-btn" onclick="selectShapeType('rounded-rect')" title="Rounded Rectangle">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="5"/></svg> Round
+      </button>
+      <button class="flyout-btn" onclick="selectShapeType('circle')" title="Circle / Ellipse">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Circle
+      </button>
+      <button class="flyout-btn" onclick="selectShapeType('diamond')" title="Decision Diamond">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 12 12 22 2 12"/></svg> Diamond
+      </button>
+      <button class="flyout-btn" onclick="selectShapeType('triangle')" title="Triangle">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 3 22 21 2 21"/></svg> Triangle
+      </button>
+      <button class="flyout-btn" onclick="selectShapeType('arrow')" title="Process Arrow">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg> Arrow
+      </button>
+      <button class="flyout-btn" onclick="selectShapeType('line')" title="Divider Line">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/></svg> Line
+      </button>
     </div>
   </div>
 
@@ -479,12 +511,20 @@
   <!-- BOTTOM-RIGHT VIEWPORT HUD                                  -->
   <!-- ========================================================== -->
   <div class="viewport-tools">
-    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(-0.15)" title="Zoom Out">−</button>
+    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(-0.15)" title="Zoom Out">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
     <div id="zoomLabel" class="zoom-label">75%</div>
-    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(0.15)" title="Zoom In">+</button>
+    <button class="vp-btn" onclick="CanvasEngine.zoomDelta(0.15)" title="Zoom In">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
     <div class="dock-divider" style="height:14px; margin:0 2px"></div>
-    <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Center Camera (100%)">⌖</button>
-    <button class="vp-btn" onclick="CanvasEngine.fitToContent()" title="Fit to Content">⊡</button>
+    <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Center Camera (100%)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+    </button>
+    <button class="vp-btn" onclick="CanvasEngine.fitToContent()" title="Fit to Content">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+    </button>
     <div class="dock-divider" style="height:14px; margin:0 2px"></div>
     <button id="btnCameraBubble" class="vp-btn" onclick="StudioCamera.toggle()" title="Camera Bubble">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -498,7 +538,7 @@
     <button class="present-nav-btn" onclick="StudioPresentation.prev()">← Previous</button>
     <div id="presentSlideInfo" class="present-slide-info">Slide 1 of 8</div>
     <button class="present-nav-btn" onclick="StudioPresentation.next()">Next →</button>
-    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">✕ Exit (Esc)</button>
+    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">Exit (Esc)</button>
   </div>
 
   <!-- ========================================================== -->

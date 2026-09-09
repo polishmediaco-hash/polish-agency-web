@@ -13,6 +13,7 @@ window.DrawingEngine = (function () {
 
   let penColor = '#1A1715';
   let penWidth = 4;
+  let isLaserMode = false;
 
   function init() {
     let boardCanvas = document.getElementById('board-canvas');
@@ -55,9 +56,9 @@ window.DrawingEngine = (function () {
       currentPoints = [pos];
 
       currentSvgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      currentSvgPath.setAttribute('class', 'freehand-stroke active-stroke');
-      currentSvgPath.setAttribute('stroke', penColor);
-      currentSvgPath.setAttribute('stroke-width', penWidth);
+      currentSvgPath.setAttribute('class', isLaserMode ? 'freehand-stroke laser-stroke' : 'freehand-stroke active-stroke');
+      currentSvgPath.setAttribute('stroke', isLaserMode ? '#F3D382' : penColor);
+      currentSvgPath.setAttribute('stroke-width', isLaserMode ? 6 : penWidth);
       currentSvgPath.setAttribute('stroke-linecap', 'round');
       currentSvgPath.setAttribute('stroke-linejoin', 'round');
       currentSvgPath.setAttribute('fill', 'none');
@@ -82,6 +83,20 @@ window.DrawingEngine = (function () {
       if (!isDrawing) return;
       isDrawing = false;
       try { viewport.releasePointerCapture(e.pointerId); } catch (_) {}
+
+      // Laser Pointer Mode: Fade and dissolve automatically
+      if (isLaserMode) {
+        if (currentSvgPath) {
+          const laserEl = currentSvgPath;
+          laserEl.style.transition = 'opacity 0.85s ease-out, stroke-width 0.85s ease-out';
+          laserEl.style.opacity = '0';
+          laserEl.style.strokeWidth = '1px';
+          setTimeout(() => { laserEl.remove(); }, 900);
+        }
+        currentSvgPath = null;
+        currentPoints = [];
+        return;
+      }
 
       if (currentPoints.length > 1 && currentSvgPath) {
         currentSvgPath.classList.remove('active-stroke');
@@ -180,6 +195,8 @@ window.DrawingEngine = (function () {
     init,
     setEnabled: (enabled) => { isEnabled = enabled; },
     getEnabled: () => isEnabled,
+    setLaserMode: (laser) => { isLaserMode = laser; },
+    isLaserMode: () => isLaserMode,
     renderAllStrokes,
     setPenConfig,
     getPenConfig: () => ({ color: penColor, width: penWidth })

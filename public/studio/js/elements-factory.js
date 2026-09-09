@@ -40,6 +40,12 @@ window.ElementsFactory = (function () {
       case 'script':
         el = createScriptDOM(data);
         break;
+      case 'metric':
+        el = createMetricDOM(data);
+        break;
+      case 'callout':
+        el = createCalloutDOM(data);
+        break;
       default:
         el = createFrameDOM(data);
     }
@@ -514,8 +520,79 @@ window.ElementsFactory = (function () {
     return bubble;
   }
 
+  // 7. Metric KPI Callout Card DOM
+  function createMetricDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `metric-kpi-card ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 280}px`;
+    card.style.zIndex = data.zIndex || 14;
+    card.dataset.type = 'metric';
+
+    card.innerHTML = `
+      <div class="metric-card-header">
+        <span class="metric-title" contenteditable="true" data-field="metric-title">${data.title || 'NORTH STAR METRIC'}</span>
+        <span class="metric-badge ${data.deltaColor || 'tag-green'}" contenteditable="true" data-field="metric-badge">${data.badge || '▲ +42% Lift'}</span>
+      </div>
+      <div class="metric-figure" contenteditable="true" data-field="metric-figure">${data.figure || '3.8x MER'}</div>
+      <div class="metric-subtitle" contenteditable="true" data-field="metric-subtitle">${data.subtitle || 'Blended RoAS across Meta ASC & Spark Ads'}</div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 8. Section Chapter Callout Banner DOM
+  function createCalloutDOM(data) {
+    const banner = document.createElement('div');
+    banner.id = data.id;
+    banner.className = `chapter-callout-banner ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    banner.style.left = `${data.x}px`;
+    banner.style.top = `${data.y}px`;
+    banner.style.width = `${data.width || 680}px`;
+    banner.style.zIndex = data.zIndex || 8;
+    banner.dataset.type = 'callout';
+
+    banner.innerHTML = `
+      <div class="callout-roman" contenteditable="true" data-field="callout-roman">${data.roman || 'PHASE I'}</div>
+      <div class="callout-content-wrap">
+        <h3 class="callout-headline" contenteditable="true" data-field="callout-headline">${data.headline || 'System Architecture & Market Positioning'}</h3>
+        <p class="callout-desc" contenteditable="true" data-field="callout-desc">${data.desc || 'Foundational client acquisition & category authority container.'}</p>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return banner;
+  }
+
   // Element Event Listeners: Select, Drag, Resize, Edit Sync
   function attachElementInteractions(el, data) {
+    if (data.isLocked) {
+      el.classList.add('is-locked');
+    }
+
     // Select Element on Click
     el.addEventListener('pointerdown', (e) => {
       // Check if clicking a port
@@ -530,6 +607,11 @@ window.ElementsFactory = (function () {
       // Always select element on pointerdown
       if (window.StudioCore) {
         window.StudioCore.selectElement(el, data);
+      }
+
+      // If locked, disallow dragging and resizing
+      if (data.isLocked) {
+        return;
       }
 
       // Don't drag if clicking inside buttons, inputs, textareas, selects, or editable text
@@ -599,6 +681,12 @@ window.ElementsFactory = (function () {
         const canvasPos = window.CanvasEngine.screenToCanvas(e.clientX, e.clientY);
         let newX = Math.round(canvasPos.x - dragOffset.x);
         let newY = Math.round(canvasPos.y - dragOffset.y);
+
+        // Magnetic Grid Snap (20px) on Shift key or when enabled
+        if (e.shiftKey || (window.StudioCore && window.StudioCore.isGridSnapEnabled && window.StudioCore.isGridSnapEnabled())) {
+          newX = Math.round(newX / 20) * 20;
+          newY = Math.round(newY / 20) * 20;
+        }
 
         el.style.left = `${newX}px`;
         el.style.top = `${newY}px`;
@@ -672,6 +760,20 @@ window.ElementsFactory = (function () {
           } else if (field.startsWith('form-field-hint-')) {
             const idx = parseInt(field.replace('form-field-hint-', ''), 10);
             if (data.fields && data.fields[idx]) data.fields[idx].instructions = e.target.innerText;
+          } else if (field === 'metric-title') {
+            data.title = e.target.innerText;
+          } else if (field === 'metric-badge') {
+            data.badge = e.target.innerText;
+          } else if (field === 'metric-figure') {
+            data.figure = e.target.innerText;
+          } else if (field === 'metric-subtitle') {
+            data.subtitle = e.target.innerText;
+          } else if (field === 'callout-headline') {
+            data.headline = e.target.innerText;
+          } else if (field === 'callout-roman') {
+            data.roman = e.target.innerText;
+          } else if (field === 'callout-desc') {
+            data.desc = e.target.innerText;
           } else {
             data[field] = e.target.innerText;
           }

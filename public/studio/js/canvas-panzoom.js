@@ -222,7 +222,7 @@ window.CanvasEngine = (function () {
       viewport.dataset.tool = tool;
       if (tool === 'hand') {
         viewport.style.cursor = 'grab';
-      } else if (tool === 'pen') {
+      } else if (tool === 'pen' || tool === 'laser') {
         viewport.style.cursor = 'crosshair';
       } else if (tool === 'text') {
         viewport.style.cursor = 'text';
@@ -243,7 +243,10 @@ window.CanvasEngine = (function () {
     });
 
     if (window.DrawingEngine) {
-      window.DrawingEngine.setEnabled(tool === 'pen');
+      window.DrawingEngine.setEnabled(tool === 'pen' || tool === 'laser');
+      if (window.DrawingEngine.setLaserMode) {
+        window.DrawingEngine.setLaserMode(tool === 'laser');
+      }
     }
   }
 

@@ -277,10 +277,36 @@ window.StudioInspector = (function () {
         </div>
         <div class="insp-divider" aria-hidden="true"></div>
       `;
+    } else if (type === 'metric') {
+      const curDelta = data.deltaColor || 'tag-green';
+      html += `
+        <div class="insp-group" title="Trend Signal">
+          <button class="insp-btn ${curDelta === 'tag-green' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-green')" title="Positive Lift (▲)">▲ Up</button>
+          <button class="insp-btn ${curDelta === 'tag-rose' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-rose')" title="Caution / Drop (▼)">▼ Drop</button>
+          <button class="insp-btn ${curDelta === 'tag-gold' ? 'active' : ''}" onclick="StudioInspector.setMetricDelta('${data.id}', 'tag-gold')" title="Neutral / Gold (●)">● Gold</button>
+        </div>
+        <div class="insp-divider" aria-hidden="true"></div>
+      `;
     }
 
-    // 6. Common Global Actions: Duplicate & Delete
+    // 6. Common Global Actions: Lock, Layer Reorder, Duplicate & Delete
+    const isLocked = !!data.isLocked;
     html += `
+      <div class="insp-group" title="Layering & Protection">
+        <button class="insp-btn ${isLocked ? 'active' : ''}" onclick="StudioCore.toggleLockSelected()" title="${isLocked ? 'Unlock Element (Cmd+L)' : 'Lock Position (Cmd+L)'}">
+          ${isLocked 
+            ? '<svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
+            : '<svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>'
+          }
+        </button>
+        <button class="insp-btn" onclick="StudioCore.bringForward()" title="Bring Forward (Cmd+])">
+          <svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 4 4 12 20 12"/><line x1="12" y1="12" x2="12" y2="20"/></svg>
+        </button>
+        <button class="insp-btn" onclick="StudioCore.sendBackward()" title="Send Backward (Cmd+[)">
+          <svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 20 4 12 20 12"/><line x1="12" y1="4" x2="12" y2="12"/></svg>
+        </button>
+      </div>
+      <div class="insp-divider" aria-hidden="true"></div>
       <button class="insp-btn" onclick="StudioCore.duplicateSelected()" title="Duplicate Element (Cmd+D)">
         <svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         Copy
@@ -620,10 +646,25 @@ window.StudioInspector = (function () {
     }
   }
 
+  function setMetricDelta(id, deltaColor) {
+    const el = document.getElementById(id);
+    const data = window.StudioCore ? window.StudioCore.findElement(id) : null;
+    if (el && data) {
+      data.deltaColor = deltaColor;
+      const badge = el.querySelector('.metric-badge');
+      if (badge) {
+        badge.className = `metric-badge ${deltaColor}`;
+      }
+      if (window.StudioCore) window.StudioCore.triggerAutoSave();
+      renderControls(el, data);
+    }
+  }
+
   return {
     init,
     show,
     hide,
+    update: show,
     updatePosition,
     setFont,
     stepFontSize,
@@ -637,6 +678,7 @@ window.StudioInspector = (function () {
     toggleTape,
     setPricingCurrency,
     togglePricingFeatured,
+    setMetricDelta,
     setConnColor,
     setConnStyle,
     addBoxToFrame,

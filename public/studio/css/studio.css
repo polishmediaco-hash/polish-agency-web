@@ -789,6 +789,17 @@ body.theme-dark .tool-item.active {
   display: none !important;
 }
 
+.is-presenting .board-frame {
+  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
+  opacity: 0.78;
+}
+
+.is-presenting .board-frame.active-presentation-frame {
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 36px rgba(226, 199, 153, 0.35));
+  z-index: 50 !important;
+}
+
 .present-nav-btn {
   background: #F4EFEA;
   border: 1px solid rgba(197, 168, 128, 0.35);
@@ -805,6 +816,28 @@ body.theme-dark .tool-item.active {
   background: #110F0D;
   color: #FFFFFF;
   border-color: #110F0D;
+}
+
+.present-nav-btn.btn-godview {
+  background: rgba(226, 199, 153, 0.12);
+  border: 1px solid rgba(226, 199, 153, 0.45);
+  color: #C5A880;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.02em;
+}
+
+.present-nav-btn.btn-godview:hover,
+.present-nav-btn.btn-godview.active {
+  background: linear-gradient(135deg, #F3D382, #E2C799) !important;
+  color: #080706 !important;
+  border-color: #F3D382 !important;
+  box-shadow: 0 0 20px rgba(226, 199, 153, 0.45);
+}
+
+body.theme-dark .present-nav-btn.btn-godview {
+  color: #FFDF9E;
 }
 
 .present-slide-info {

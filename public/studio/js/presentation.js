@@ -7,6 +7,7 @@ window.StudioPresentation = (function () {
   let isPresenting = false;
   let currentSlideIndex = 0;
   let slides = [];
+  let isGodView = false;
 
   function start() {
     slides = Array.from(document.querySelectorAll('.board-frame'));
@@ -76,11 +77,40 @@ window.StudioPresentation = (function () {
 
     window.CanvasEngine.smoothPanTo(targetPanX, targetPanY, targetScale, 450);
 
+    // Highlight active slide and dim others
+    document.querySelectorAll('.board-frame').forEach(f => f.classList.remove('active-presentation-frame'));
+    frame.classList.add('active-presentation-frame');
+
+    isGodView = false;
+    const godBtn = document.querySelector('.btn-godview');
+    if (godBtn) godBtn.classList.remove('active');
+
     // Update Slide Info in Bar
     const info = document.getElementById('presentSlideInfo');
     const title = frame.querySelector('.frame-headline')?.innerText?.trim() || 'Frame';
     if (info) {
-      info.innerHTML = `<span class="slide-count">Slide ${index + 1} of ${slides.length}</span><span class="slide-sep">•</span><span class="slide-title">${title.substring(0, 26)}</span>`;
+      info.innerHTML = `<span class="slide-count">Slide ${index + 1} of ${slides.length}</span><span class="slide-sep">•</span><span class="slide-title">${title.substring(0, 32)}</span>`;
+    }
+  }
+
+  function toggleGodView() {
+    if (!isPresenting) return;
+    isGodView = !isGodView;
+    const godBtn = document.querySelector('.btn-godview');
+
+    if (isGodView) {
+      if (godBtn) godBtn.classList.add('active');
+      document.querySelectorAll('.board-frame').forEach(f => f.classList.remove('active-presentation-frame'));
+      if (window.CanvasEngine && window.CanvasEngine.fitToContent) {
+        window.CanvasEngine.fitToContent();
+      }
+      const info = document.getElementById('presentSlideInfo');
+      if (info) {
+        info.innerHTML = `<span class="slide-count">Overview</span><span class="slide-sep">•</span><span class="slide-title">Master System Blueprint (God View)</span>`;
+      }
+    } else {
+      if (godBtn) godBtn.classList.remove('active');
+      flyToSlide(currentSlideIndex);
     }
   }
 
@@ -99,6 +129,9 @@ window.StudioPresentation = (function () {
     } else if (e.key === 'ArrowLeft') {
       prev();
       e.preventDefault();
+    } else if (e.key === 'g' || e.key === 'G' || e.key === 'o' || e.key === 'O') {
+      toggleGodView();
+      e.preventDefault();
     } else if (e.key === 'Escape') {
       stop();
       e.preventDefault();
@@ -110,6 +143,7 @@ window.StudioPresentation = (function () {
     stop,
     next,
     prev,
+    toggleGodView,
     isPresenting: () => isPresenting
   };
 })();

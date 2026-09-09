@@ -47,84 +47,149 @@ window.StudioCore = (function () {
     return {
       id: 'starter-strategy-board',
       slug: 'executive-strategy-template',
-      title: 'Executive Strategy Blueprint',
+      title: 'Executive Client Acquisition & Retainer Blueprint',
       client: 'Private Advisory Client',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      viewport: { panX: 80, panY: 60, scale: 0.72 },
+      viewport: { panX: 60, panY: 60, scale: 0.55 },
       elements: [
+        // ==========================================================
+        // FRAME 00: EXECUTIVE CONTROL CENTER & SYSTEM LEGEND
+        // ==========================================================
+        {
+          id: 'frame-control-center',
+          type: 'frame',
+          x: 80,
+          y: 100,
+          width: 540,
+          height: 560,
+          zIndex: 10,
+          frameNumber: '00',
+          titlePill: 'EXECUTIVE CONTROL CENTER',
+          headline: 'System Legend &',
+          serifAccent: 'Strategic Thesis',
+          description: 'High-ticket advisory architecture mapping attention disruption, diagnostic qualification, and client conversion.',
+          boxes: [
+            {
+              tag: 'VISUAL SEMANTICS',
+              tagColor: 'gold',
+              title: 'Color Coded Flow Logic',
+              content: '🔵 Sky Azure: Automated Flows & Tech Stack\n🟡 Haute Gold: Strategic Architecture Pillars\n🟢 Mint Sage: High-Ticket Revenue & Retainers\n🔴 Rose: Friction Bottlenecks Solved'
+            },
+            {
+              tag: 'NORTH STAR KPIS',
+              tagColor: 'blue',
+              title: '90-Day Conversion Benchmarks',
+              content: '• Blended MER: 3.8x+ across ad spend\n• Diagnostic to Retainer CVR: 60%+\n• Client Retainer LTV: AED 18,500/quarter\n• Founder Delivery Time: Under 4 hrs/week'
+            }
+          ]
+        },
+
+        // ==========================================================
+        // FRAME 01: PHASE 01 • ACQUISITION & ATTENTION (TOFU)
+        // ==========================================================
         {
           id: 'frame-foundation',
           type: 'frame',
-          x: 100,
-          y: 120,
-          width: 640,
-          height: 520,
+          x: 680,
+          y: 100,
+          width: 660,
+          height: 560,
           zIndex: 10,
           frameNumber: '01',
-          titlePill: 'EXECUTIVE FOUNDATION',
-          headline: 'Positioning &',
-          serifAccent: 'Strategic Reality',
-          description: 'Establishing elite category authority and pricing power before entering the market.',
+          titlePill: 'PHASE 01 • ATTENTION & TRAFFIC',
+          headline: 'Advantage+ & Creator',
+          serifAccent: 'Prospecting Engine',
+          description: 'Engineering a predictable net-new customer acquisition machine via isolated DCT sandbox campaigns and advertorial bridges.',
           boxes: [
-            { tag: 'CORE INSIGHT', tagColor: 'gold', title: 'Discreet Boutique Authority', content: 'High-net-worth clients seek trusted confidential advisors. Direct high-context conversations outperform passive social views.' },
-            { tag: 'THE BARRIER', tagColor: 'rose', title: 'Eliminating Low-Ticket Fatigue', content: 'Eliminating hourly sessions in favor of structured high-ticket advisory containers that preserve executive peace.' }
+            {
+              tag: 'PROSPECTING SANDBOX',
+              tagColor: 'gold',
+              title: 'Dynamic Creative Testing (DCT)',
+              content: '3 video thumbstop variations x 2 body messaging angles tested in isolated sandbox campaigns before graduation to ASC core budget.'
+            },
+            {
+              tag: 'LANDING PAGE LIFT',
+              tagColor: 'blue',
+              title: 'Dedicated Advertorial Presell',
+              content: 'Directing high-intent clicks to editorial advertorials explaining clinical formulation science, lifting conversion velocity by 34%.'
+            }
           ]
         },
+
+        // ==========================================================
+        // FRAME 02: PHASE 02 • AUTHORITY & DIAGNOSTIC (MOFU)
+        // ==========================================================
+        {
+          id: 'frame-nurture',
+          type: 'frame',
+          x: 1400,
+          y: 100,
+          width: 660,
+          height: 560,
+          zIndex: 10,
+          frameNumber: '02',
+          titlePill: 'PHASE 02 • AUTHORITY & BELIEF',
+          headline: 'Diagnostic Audit &',
+          serifAccent: 'Belief Architecture',
+          description: 'Filtering non-serious prospects through a 60-min friction audit and asynchronous video proof sequences.',
+          boxes: [
+            {
+              tag: 'TIER 1 • DIAGNOSTIC',
+              tagColor: 'blue',
+              title: 'The 60-Min Life Friction Audit',
+              content: 'One-time diagnostic mapping pace fatigue, decision paralysis, and boundary erosion. Delivers a custom 1-page action blueprint.'
+            },
+            {
+              tag: 'PROOF ASSET',
+              tagColor: 'rose',
+              title: 'VIP WhatsApp Voice Notes Hotline',
+              content: 'Private async voice notes and weekly calibration audio teardowns establishing trusted confidential peer authority.'
+            }
+          ]
+        },
+
+        // ==========================================================
+        // FRAME 03: PHASE 03 • CONVERSION & RETAINERS (BOFU)
+        // ==========================================================
         {
           id: 'frame-offer',
           type: 'frame',
-          x: 840,
-          y: 120,
-          width: 680,
-          height: 580,
+          x: 2120,
+          y: 100,
+          width: 660,
+          height: 560,
           zIndex: 10,
-          frameNumber: '02',
-          titlePill: 'HAUTE OFFER LADDER',
-          headline: 'Two-Tier',
-          serifAccent: 'Retainer Architecture',
-          description: 'A structured conversion bridge converting friction into ongoing partnership retainers.',
+          frameNumber: '03',
+          titlePill: 'PHASE 03 • CONVERSION & RETAINER',
+          headline: 'Two-Tier Retainer',
+          serifAccent: 'Closing Architecture',
+          description: 'Converting qualified diagnostic leads into recurring private advisory contracts capped at 5 active clients.',
           boxes: [
-            { tag: 'TIER 1 • DIAGNOSTIC', tagColor: 'blue', title: 'The 60-Min Life Friction Audit', content: 'One-time diagnostic mapping pace fatigue, decision paralysis, and boundary erosion. Delivers a custom 1-page blueprint.' },
-            { tag: 'TIER 2 • CORE RETAINER', tagColor: 'green', title: '30-Day Executive Reset Container', content: 'Weekly private calibrations in-person or Zoom + VIP async WhatsApp audio notes access. Roster capped at 5 active clients.' }
+            {
+              tag: 'TIER 2 • CORE RETAINER',
+              tagColor: 'green',
+              title: '30-Day Executive Reset Container',
+              content: 'Bi-weekly private calibrations + VIP async WhatsApp access. Replaces low-ticket fatigue with predictable sovereign revenue.'
+            },
+            {
+              tag: 'GOVERNANCE',
+              tagColor: 'gold',
+              title: 'Boutique Sovereign Protocol',
+              content: 'Roster capped strictly at 5 active clients to preserve executive peace, impeccable aura, and uncompromising pricing power.'
+            }
           ]
         },
-        {
-          id: 'sticky-1',
-          type: 'sticky',
-          x: 770,
-          y: 40,
-          width: 260,
-          height: 180,
-          zIndex: 25,
-          color: 'yellow',
-          rotation: -2,
-          hasTape: true,
-          header: 'STRATEGIC NOTE',
-          content: 'Never pitch retainers cold. The Tier 1 diagnostic audit filters out non-serious leads and converts at 60%+ into Tier 2.',
-          footer: 'REF: POLISH-PROTO'
-        },
-        {
-          id: 'sticky-2',
-          type: 'sticky',
-          x: 1540,
-          y: 260,
-          width: 260,
-          height: 180,
-          zIndex: 25,
-          color: 'rose',
-          rotation: 1.5,
-          hasTape: true,
-          header: 'EXECUTION RULE',
-          content: 'Cap roster strictly at 5–6 clients to maintain impeccable aura, bespoke focus, and uncompromising pricing leverage.',
-          footer: 'REF: POLISH-LADDER'
-        },
+
+        // ==========================================================
+        // RETAINER OFFER CARD
+        // ==========================================================
         {
           id: 'pricing-1',
           type: 'pricing',
-          x: 1600,
-          y: 120,
-          width: 320,
+          x: 2840,
+          y: 100,
+          width: 360,
           zIndex: 15,
           isFeatured: true,
           badge: 'HAUTE ADVISORY RETAINER',
@@ -138,48 +203,183 @@ window.StudioCore = (function () {
             'Complete Team Protocols & Governance Handover'
           ]
         },
+
+        // ==========================================================
+        // STRATEGIC WASHI STICKY NOTES
+        // ==========================================================
         {
-          id: 'table-1',
-          type: 'table',
-          x: 840,
-          y: 780,
-          width: 640,
-          zIndex: 12,
-          title: 'Strategic Deliverables Matrix',
-          badge: 'EXECUTION ROADMAP',
-          headers: ['Phase', 'Deliverable Output', 'Timeline', 'Target Metric'],
-          rows: [
-            ['Phase 01: Audit', 'Conversion & Retention Diagnostic', 'Weeks 1–2', '+18% CVR'],
-            ['Phase 02: Architecture', 'VIP Advisory Retainer Launch', 'Weeks 3–6', '$45k ARR Added'],
-            ['Phase 03: Scaling', 'Autonomous Systems & Handover', 'Months 2–3', 'Zero Founder Fatigue']
-          ]
+          id: 'sticky-1',
+          type: 'sticky',
+          x: 620,
+          y: 20,
+          width: 250,
+          height: 170,
+          zIndex: 25,
+          color: 'yellow',
+          rotation: -2,
+          hasTape: true,
+          header: 'OPERATING RULE 01',
+          content: 'Never pitch retainers cold. The Tier 1 diagnostic audit filters tire-kickers and converts at 60%+ into Tier 2.',
+          footer: 'REF: POLISH-PROTO'
         },
+        {
+          id: 'sticky-2',
+          type: 'sticky',
+          x: 1340,
+          y: 20,
+          width: 250,
+          height: 170,
+          zIndex: 25,
+          color: 'rose',
+          rotation: 1.5,
+          hasTape: true,
+          header: 'OPERATING RULE 02',
+          content: 'Cap active advisory roster strictly at 5–6 clients to maintain bespoke focus and uncompromising pricing leverage.',
+          footer: 'REF: POLISH-LADDER'
+        },
+        {
+          id: 'sticky-3',
+          type: 'sticky',
+          x: 2060,
+          y: 20,
+          width: 250,
+          height: 170,
+          zIndex: 25,
+          color: 'blue',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'OPERATING RULE 03',
+          content: 'Automate post-intake delivery via VIP audio voice memo within 24 hours of diagnostic completion.',
+          footer: 'REF: POLISH-SPEED'
+        },
+
+        // ==========================================================
+        // INTAKE ENGINE (DIAGNOSTIC WORKSHEET)
+        // ==========================================================
         {
           id: 'form-1',
           type: 'form',
-          x: 100,
-          y: 780,
-          width: 520,
+          x: 680,
+          y: 720,
+          width: 660,
           zIndex: 12,
           title: 'Brand Diagnostic Intake Worksheet',
           badge: 'INTAKE ENGINE',
           desc: 'Calibrate core operational friction points prior to executive kickoff sprint.',
           fields: [
-            { id: 'field-diag-1', type: 'textarea', label: '01. Primary Conversion / Retention Friction', badge: 'DIAGNOSTIC', instructions: 'Where is the largest bottleneck between customer acquisition and 90-day repeat LTV?', value: 'Ad spend efficiency drops after second purchase; need bespoke high-ticket retention sequence.' },
-            { id: 'field-diag-2', type: 'input', label: '02. Target 90-Day Gross Revenue Benchmark (AED / $)', badge: 'METRIC', instructions: 'Current baseline vs Q4 goal:', value: 'Current $85k/mo → Target $160k/mo' }
+            {
+              id: 'field-diag-1',
+              type: 'textarea',
+              label: '01. Primary Conversion / Retention Friction',
+              badge: 'DIAGNOSTIC',
+              instructions: 'Where is the largest bottleneck between customer acquisition and 90-day repeat LTV?',
+              value: 'Ad spend efficiency drops after second purchase; need bespoke high-ticket retention sequence.'
+            },
+            {
+              id: 'field-diag-2',
+              type: 'input',
+              label: '02. Target 90-Day Gross Revenue Benchmark (AED / $)',
+              badge: 'METRIC',
+              instructions: 'Current baseline vs Q4 goal:',
+              value: 'Current $85k/mo → Target $160k/mo'
+            }
           ]
+        },
+
+        // ==========================================================
+        // DELIVERABLES MATRIX (ROADMAP TABLE)
+        // ==========================================================
+        {
+          id: 'table-1',
+          type: 'table',
+          x: 1400,
+          y: 720,
+          width: 780,
+          zIndex: 12,
+          title: '90-Day Scaling Trajectory & Quarterly Milestones',
+          badge: 'EXECUTION ROADMAP',
+          headers: ['Phase', 'Focus Area', 'Target Metric', 'Deliverable Output'],
+          rows: [
+            ['Phase 01: Audit', 'Baseline Diagnostic & Creative Sandbox', '2.8x - 3.2x MER', '3:2:2 DCT Ads + Advertorial Bridge'],
+            ['Phase 02: Authority', 'Executive Reset & Advisory Launch', '+60% Diagnostic CVR', 'VIP Retainer & WhatsApp Hotline Setup'],
+            ['Phase 03: Scaling', 'Autonomous Governance & Handover', 'Zero Founder Fatigue', 'Full SOP Handover & Protocol Runbook']
+          ]
+        },
+
+        // ==========================================================
+        // THESIS SCRIPT CARD
+        // ==========================================================
+        {
+          id: 'script-1',
+          type: 'script',
+          x: 2240,
+          y: 720,
+          width: 480,
+          height: 190,
+          zIndex: 12,
+          content: '"High-ticket category authority is not achieved by shouting louder. It is engineered through diagnostic precision, structured containers, and uncompromising pricing power."'
         }
       ],
       connections: [
         {
+          id: 'conn-ctrl-1',
+          from: 'frame-control-center',
+          fromAnchor: 'right',
+          to: 'frame-foundation',
+          toAnchor: 'left',
+          style: 'solid',
+          color: 'gold',
+          label: 'Phase 01 Launch'
+        },
+        {
           id: 'conn-1',
           from: 'frame-foundation',
           fromAnchor: 'right',
-          to: 'frame-offer',
+          to: 'frame-nurture',
           toAnchor: 'left',
           style: 'dashed',
+          color: 'blue',
+          label: 'High-Intent Prospecting Traffic'
+        },
+        {
+          id: 'conn-2',
+          from: 'frame-nurture',
+          fromAnchor: 'right',
+          to: 'frame-offer',
+          toAnchor: 'left',
+          style: 'solid',
+          color: 'green',
+          label: '60%+ Audit Qualification'
+        },
+        {
+          id: 'conn-3',
+          from: 'frame-offer',
+          fromAnchor: 'right',
+          to: 'pricing-1',
+          toAnchor: 'left',
+          style: 'solid',
+          color: 'gold',
+          label: 'Quarterly Retainer Contract'
+        },
+        {
+          id: 'conn-4',
+          from: 'frame-foundation',
+          fromAnchor: 'bottom',
+          to: 'form-1',
+          toAnchor: 'top',
+          style: 'dashed',
           color: 'slate',
-          label: ''
+          label: 'Friction Intake Calibration'
+        },
+        {
+          id: 'conn-5',
+          from: 'frame-nurture',
+          fromAnchor: 'bottom',
+          to: 'table-1',
+          toAnchor: 'top',
+          style: 'dashed',
+          color: 'slate',
+          label: '90-Day Milestone Execution'
         }
       ]
     };
@@ -297,6 +497,9 @@ window.StudioCore = (function () {
     }
 
     renderBoard();
+    if (window.StudioAI && window.StudioAI.onTemplateLoaded && currentBoard.templateKey) {
+      window.StudioAI.onTemplateLoaded(currentBoard.templateKey);
+    }
   }
 
   function renderBoard() {
@@ -691,6 +894,84 @@ window.StudioCore = (function () {
     }
   }
 
+  function addMetric() {
+    if (!currentBoard) return;
+    const center = getCanvasCenter();
+
+    const newMetric = {
+      id: `metric-${Date.now()}`,
+      type: 'metric',
+      x: Math.round(center.x - 140),
+      y: Math.round(center.y - 90),
+      width: 280,
+      zIndex: 15,
+      title: 'NORTH STAR METRIC',
+      badge: '▲ +42% Lift',
+      deltaColor: 'tag-green',
+      figure: '3.8x MER',
+      subtitle: 'Blended RoAS across Meta ASC & Spark Ads'
+    };
+
+    pushHistory();
+    currentBoard.elements.push(newMetric);
+    const el = window.ElementsFactory.renderElement(newMetric, canvasContainer);
+    selectElement(el, newMetric);
+    triggerAutoSave();
+  }
+
+  function addCallout() {
+    if (!currentBoard) return;
+    const center = getCanvasCenter();
+
+    const newCallout = {
+      id: `callout-${Date.now()}`,
+      type: 'callout',
+      x: Math.round(center.x - 340),
+      y: Math.round(center.y - 70),
+      width: 680,
+      zIndex: 8,
+      roman: 'PHASE I',
+      headline: 'System Architecture & Market Positioning',
+      desc: 'Foundational customer acquisition & category authority container.'
+    };
+
+    pushHistory();
+    currentBoard.elements.push(newCallout);
+    const el = window.ElementsFactory.renderElement(newCallout, canvasContainer);
+    selectElement(el, newCallout);
+    triggerAutoSave();
+  }
+
+  function toggleLockSelected() {
+    if (!currentBoard) return;
+    if (selectedElementData && selectedElement) {
+      pushHistory();
+      selectedElementData.isLocked = !selectedElementData.isLocked;
+      selectedElement.classList.toggle('is-locked', !!selectedElementData.isLocked);
+      showToast(selectedElementData.isLocked ? 'Element Locked (Cmd+L to unlock)' : 'Element Unlocked', 'info');
+      triggerAutoSave();
+      if (window.StudioInspector) window.StudioInspector.update(selectedElement, selectedElementData);
+    }
+  }
+
+  function bringForward() {
+    if (!selectedElementData || !selectedElement) return;
+    pushHistory();
+    selectedElementData.zIndex = (selectedElementData.zIndex || 10) + 2;
+    selectedElement.style.zIndex = selectedElementData.zIndex;
+    triggerAutoSave();
+    showToast('Layer: Brought Forward', 'info');
+  }
+
+  function sendBackward() {
+    if (!selectedElementData || !selectedElement) return;
+    pushHistory();
+    selectedElementData.zIndex = Math.max(1, (selectedElementData.zIndex || 10) - 2);
+    selectedElement.style.zIndex = selectedElementData.zIndex;
+    triggerAutoSave();
+    showToast('Layer: Sent Backward', 'info');
+  }
+
   // Duplicate Selected Element (Single or Multi-select)
   function duplicateSelected() {
     if (!currentBoard) return;
@@ -906,6 +1187,25 @@ window.StudioCore = (function () {
         return;
       }
 
+      // Cmd+L (Lock / Unlock Selected)
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'l') {
+        toggleLockSelected();
+        e.preventDefault();
+        return;
+      }
+
+      // Cmd+] (Bring Forward) / Cmd+[ (Send Backward)
+      if ((e.metaKey || e.ctrlKey) && e.key === ']') {
+        bringForward();
+        e.preventDefault();
+        return;
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === '[') {
+        sendBackward();
+        e.preventDefault();
+        return;
+      }
+
       // Delete / Backspace
       if (e.key === 'Backspace' || e.key === 'Delete') {
         deleteSelected();
@@ -936,6 +1236,10 @@ window.StudioCore = (function () {
           if (window.CanvasEngine) window.CanvasEngine.setTool('shape', 'rect');
         } else if (key === 'p') {
           if (window.CanvasEngine) window.CanvasEngine.setTool('pen');
+        } else if (key === 'l') {
+          if (window.CanvasEngine) window.CanvasEngine.setTool('laser');
+        } else if (key === 'm') {
+          addMetric();
         } else if (key === 'f') {
           addFrame();
         } else if (e.key === '?') {
@@ -1390,6 +1694,694 @@ window.StudioCore = (function () {
       title = 'Blank Canvas';
       newElements = [];
       newConnections = [];
+    } else if (templateKey === 'hormozi-offer' || templateKey === 'hormozi') {
+      title = 'Alex Hormozi • $100M Grand Slam Offer & Value Equation Canvas';
+      const f1Id = `frame-hz-1-${Date.now()}`;
+      const f2Id = `frame-hz-2-${Date.now()}`;
+      const priceId = `pricing-hz-${Date.now()}`;
+      const tblId = `table-hz-${Date.now()}`;
+      const metricId = `metric-hz-${Date.now()}`;
+      const s1Id = `sticky-hz-1-${Date.now()}`;
+      const s2Id = `sticky-hz-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 660,
+          height: 560,
+          frameNumber: '01',
+          titlePill: 'VALUE EQUATION DECONSTRUCTION',
+          headline: 'The Value Equation &',
+          serifAccent: 'Pricing Asymmetry',
+          description: 'Maximizing perceived value while eliminating price resistance: (Dream Outcome × Likelihood) ÷ (Time Delay × Effort).',
+          boxes: [
+            { tag: 'DREAM OUTCOME', tagColor: 'gold', title: 'Status & Certainty Transformation', content: 'Never sell cream in a glass bottle. Sell the undeniable executive prestige of flawless skin, zero rosacea flareups, and clinical certainty.' },
+            { tag: 'PERCEIVED LIKELIHOOD', tagColor: 'green', title: '56-Day Double-Blind Proof', content: 'Neutralize skepticism using third-party French laboratory test results with statistically significant 42% barrier thickness lift.' },
+            { tag: 'TIME DELAY (COMPRESSED)', tagColor: 'rose', title: '12-Hour Micro-Relief Milestone', content: 'Guarantee visible overnight hydration and redness reduction on night 1 to create immediate neurological reward.' },
+            { tag: 'EFFORT & SACRIFICE (ZERO)', tagColor: 'noir', title: '1-Step Metered Protocol', content: 'Eliminate complex 10-step confusion. Single precision dropper replaces morning serums, toners, and moisturizers.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 560,
+          frameNumber: '02',
+          titlePill: 'DELIVERABLES ARCHITECTURE',
+          headline: 'Trim & Stack',
+          serifAccent: 'Grand Slam Deliverables',
+          description: 'Transforming every customer objection into a high-margin, proprietary deliverable bonus stacked into an irresistible offer.',
+          boxes: [
+            { tag: 'CORE VEHICLE', tagColor: 'gold', title: '50ml Copper Peptide Barrier Emulsion', content: 'Micro-encapsulated copper peptides in frosted French flint glass with anodized metered dropper.' },
+            { tag: 'SPEED BONUS', tagColor: 'blue', title: 'Rose-Gold Cryo-Sculpt Contouring Tool', content: 'Physical tool (AED 350 retail value) accelerating lymphatic drainage and visible jawline contour in 3 minutes.' },
+            { tag: 'CERTAINTY BONUS', tagColor: 'green', title: 'Quarterly Biochemist Skin Health Hotline', content: 'Private WhatsApp VIP access to formulation team for tailored dosage calibration based on seasonal humidity.' }
+          ]
+        },
+        {
+          id: priceId,
+          type: 'pricing',
+          x: 1540,
+          y: 120,
+          width: 380,
+          isFeatured: true,
+          badge: '$100M GRAND SLAM VIP RETAINER',
+          currency: 'AED',
+          figure: '18,500',
+          period: '/ Quarter (Zero Risk)',
+          features: [
+            '3-Month Active Regimen Batch (3x 50ml French Flint Glass)',
+            'Rose-Gold Cryo-Sculpt Contouring Tool Included',
+            'Direct VIP WhatsApp Hotline to Senior Biochemist',
+            '100% Empty-Bottle Unconditional Money-Back Guarantee',
+            'Complimentary Collector Travel Pouch & Silk Sleeping Mask'
+          ]
+        },
+        {
+          id: metricId,
+          type: 'metric',
+          x: 1540,
+          y: 480,
+          width: 380,
+          title: 'VALUE TO PRICE RATIO',
+          badge: '10:1 VALUE ASYMMETRY',
+          deltaColor: 'tag-gold',
+          figure: '10x Value',
+          subtitle: 'AED 185,000 Stacked Worth / AED 18,500 Investment'
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 740,
+          width: 900,
+          title: 'Hormozi Problem-to-Solution Deliverable Stack',
+          badge: 'VALUE MATRIX',
+          headers: ['Client Friction / Fear', 'Underlying Bottleneck', 'Grand Slam Deliverable', 'Perceived Value (AED)'],
+          rows: [
+            ['Active irritation & redness', 'Molecular formula instability', '5.2% Micro-Encapsulated Peptides', '4,200'],
+            ['Complex multi-step routines', 'Lack of vanity mirror clarity', 'Magnetic 1-Step Routine Mirror Card', '650'],
+            ['Fear formula will fail on skin', 'Previous bad brand experiences', '56-Day Laboratory Proof Dossier', '5,000'],
+            ['Running out of bottle unexpectedly', 'DTC replenishment friction', 'Automated 45-Day Refill Concierge', '2,400']
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1040,
+          y: 740,
+          width: 290,
+          height: 190,
+          color: 'yellow',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'THE GUARANTEE',
+          content: 'The Empty-Bottle Guarantee: "If your skin does not visibly transform in 60 days, we return 100% of your investment and you keep the cryo-tool."',
+          footer: 'RISK REVERSAL'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1370,
+          y: 740,
+          width: 290,
+          height: 190,
+          color: 'rose',
+          rotation: 2,
+          hasTape: true,
+          header: 'HORMOZI LAW',
+          content: 'Never compete on price. When you drop prices, you attract customers who complain the most and refer the least. Double the price and 10x the perceived value.',
+          footer: 'PRICING DISCIPLINE'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-hz-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '1. Value Equation → Grand Slam Deliverables' },
+        { id: `conn-hz-2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '2. Stacked into Irresistible Retainer' },
+        { id: `conn-hz-3`, from: priceId, fromAnchor: 'bottom', to: metricId, toAnchor: 'top', style: 'dashed', color: 'gold', label: '' }
+      ];
+    } else if (templateKey === 'ottley-ai' || templateKey === 'ottley') {
+      title = 'Liam Ottley • AI Automation & Autonomous Systems Pipeline';
+      const f1Id = `frame-ot-1-${Date.now()}`;
+      const f2Id = `frame-ot-2-${Date.now()}`;
+      const f3Id = `frame-ot-3-${Date.now()}`;
+      const tblId = `table-ot-${Date.now()}`;
+      const metricId = `metric-ot-${Date.now()}`;
+      const s1Id = `sticky-ot-1-${Date.now()}`;
+      const s2Id = `sticky-ot-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 580,
+          height: 520,
+          frameNumber: '01',
+          titlePill: 'AUTONOMOUS LEAD INGESTION',
+          headline: 'Webhook Trigger &',
+          serifAccent: 'Intelligent Ingestion',
+          description: 'Instant zero-latency capture and enrichment of high-intent brand dossiers without human data entry.',
+          boxes: [
+            { tag: 'NODE 01: WEBHOOK', tagColor: 'gold', title: 'Real-Time Ingestion Webhook', content: 'Captures brand intake responses, monthly gross ad spend, and SKU catalogs instantly from landing page forms.' },
+            { tag: 'NODE 02: SCORING', tagColor: 'blue', title: 'Gemini 3.5 Classification Agent', content: 'Scores brand qualification in 1.2s: flags qualified brands (> $30k/mo media spend) for VIP fast-track.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 740,
+          y: 120,
+          width: 580,
+          height: 520,
+          frameNumber: '02',
+          titlePill: 'AGENTIC SYNTHESIS PIPELINE',
+          headline: 'RAG Knowledge &',
+          serifAccent: 'Human-in-the-Loop',
+          description: 'Vector-grounded intelligence synthesizing clinical formulation teardowns with senior advisor review.',
+          boxes: [
+            { tag: 'NODE 03: RAG ENGINE', tagColor: 'green', title: 'Vector Retrieval DB', content: 'Cross-references active ingredients against 500+ clinical trials and regulatory databases (EU 1223/2009 & FDA).' },
+            { tag: 'NODE 04: QUALITY GATE', tagColor: 'rose', title: 'Human-in-the-Loop Slack Alert', content: 'Transmits generated audit to Senior Advisor Slack channel for 60-second review before client transmission.' }
+          ]
+        },
+        {
+          id: f3Id,
+          type: 'frame',
+          x: 1380,
+          y: 120,
+          width: 580,
+          height: 520,
+          frameNumber: '03',
+          titlePill: 'AUTONOMOUS CLIENT DELIVERY',
+          headline: 'Dossier Generation &',
+          serifAccent: 'CRM Synchronization',
+          description: 'Zero-touch client presentation generation, calendar booking, and contract dispatch.',
+          boxes: [
+            { tag: 'NODE 05: WHITEBOARD', tagColor: 'gold', title: 'POLISH Board Auto-Spawning', content: 'Instantiates an interactive, password-protected Whiteboard Studio instance with custom brand metrics.' },
+            { tag: 'NODE 06: CRM SYNC', tagColor: 'noir', title: 'HubSpot & WhatsApp Dispatch', content: 'Pushes qualified opportunity to CRM and sends high-touch executive WhatsApp calendar invite.' }
+          ]
+        },
+        {
+          id: metricId,
+          type: 'metric',
+          x: 100,
+          y: 690,
+          width: 380,
+          title: 'PIPELINE TIME-TO-DELIVERY',
+          badge: '⚡ 98.4% AUTONOMOUS',
+          deltaColor: 'tag-green',
+          figure: '3.8 Minutes',
+          subtitle: 'Intake-to-Dossier Turnaround vs 48 Hours Manual'
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 520,
+          y: 690,
+          width: 900,
+          title: 'Liam Ottley Autonomous Systems Integration Architecture',
+          badge: 'SYSTEMS TELEMETRY',
+          headers: ['Node ID', 'Agent / Tool', 'Input Trigger', 'Latency Target', 'Fallback Protocol'],
+          rows: [
+            ['01_INGEST', 'Cloudflare Worker Webhook', 'Intake Form Submission', '< 150ms', 'Dead-Letter Queue + Retries'],
+            ['02_SCORE', 'Gemini 3.5 Flash', 'Ad Spend & Revenue Profile', '< 1.4s', 'Senior Advisor Manual Review'],
+            ['03_SYNTHESIS', 'Vector Knowledge RAG', 'Cosmetic Clinical DB', '< 2.8s', 'Fallback to Cached Standard'],
+            ['04_DISPATCH', 'POLISH Whiteboard API', 'Dossier Payload', '< 650ms', 'Auto-Retry with Backoff']
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1460,
+          y: 690,
+          width: 280,
+          height: 190,
+          color: 'mint',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'OTTLEY AAA RULE',
+          content: 'Never sell customized one-off code when you can standardize modular systems. Productize your AI agency architecture into repeatable nodes.',
+          footer: 'SYSTEM SCALE'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1780,
+          y: 690,
+          width: 280,
+          height: 190,
+          color: 'noir',
+          rotation: 2,
+          hasTape: true,
+          header: 'HUMAN IN THE LOOP',
+          content: 'AI handles 95% of the data gathering and drafting; humans provide the sovereign executive judgment that commands $25,000 advisory fees.',
+          footer: 'QUALITY GATE'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-ot-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'solid', color: 'gold', label: '1. Ingested Payload' },
+        { id: `conn-ot-2`, from: f2Id, fromAnchor: 'right', to: f3Id, toAnchor: 'left', style: 'solid', color: 'green', label: '2. Approved Synthesis' }
+      ];
+    } else if (templateKey === 'bradley-inbound' || templateKey === 'bradley') {
+      title = 'Chris Bradley • High-Ticket Inbound & Diagnostic Closing Blueprint';
+      const f1Id = `frame-cb-1-${Date.now()}`;
+      const f2Id = `frame-cb-2-${Date.now()}`;
+      const priceId = `pricing-cb-${Date.now()}`;
+      const formId = `form-cb-${Date.now()}`;
+      const s1Id = `sticky-cb-1-${Date.now()}`;
+      const s2Id = `sticky-cb-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '01',
+          titlePill: 'SOVEREIGN AUTHORITY ASSETS',
+          headline: 'Inbound Conversion &',
+          serifAccent: 'Category Authority',
+          description: 'Attracting high-net-worth beauty brand founders through undeniable proof breakdowns, zero sales chasing.',
+          boxes: [
+            { tag: 'AUTHORITY MEDIA', tagColor: 'gold', title: 'Undeniable Technical Breakdowns', content: 'Publishing 20-minute deconstructions of formulation economics and Meta Advantage+ ad spend leakage.' },
+            { tag: 'DIAGNOSTIC BRIDGE', tagColor: 'blue', title: '60-Min Friction Diagnostic Intake', content: 'Positioning the initial consultation as an objective clinical diagnostic rather than a generic discovery call.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'DOCTOR-PATIENT CLOSING',
+          headline: 'Diagnostic Intake &',
+          serifAccent: 'Prescription of Care',
+          description: 'Conducting high-status consultative interviews where the prospect reveals their deepest operational bottlenecks.',
+          boxes: [
+            { tag: 'DEEP DIAGNOSIS', tagColor: 'rose', title: 'Bottleneck Extraction Protocol', content: 'Ask diagnostic questions about founder exhaustion, creative burn rate, and distributor margin erosion.' },
+            { tag: 'PRESCRIPTION', tagColor: 'green', title: 'Prescribing The 90-Day Container', content: 'Never pitch hourly rates or deliverables. Prescribe a closed-door quarterly partnership container.' }
+          ]
+        },
+        {
+          id: priceId,
+          type: 'pricing',
+          x: 1540,
+          y: 120,
+          width: 380,
+          isFeatured: true,
+          badge: 'HIGH-TICKET ADVISORY CONTAINER',
+          currency: 'AED',
+          figure: '25,000',
+          period: '/ Month (Quarterly Commitment)',
+          features: [
+            'Bi-Weekly 1-on-1 Sovereign Growth Advisory Sessions',
+            '24/7 VIP Async WhatsApp Hotline to Senior Partner',
+            'Omnichannel CAC Compression & Creative Sandbox Teardowns',
+            'Proprietary Parisian Cosmetic Laboratory Network Access',
+            'Full Whiteboard Studio Strategy Map & Quarterly Offsite'
+          ]
+        },
+        {
+          id: formId,
+          type: 'form',
+          x: 100,
+          y: 720,
+          width: 660,
+          title: 'Chris Bradley 4-Pillar Diagnostic Intake Worksheet',
+          badge: 'DIAGNOSTIC INTAKE',
+          desc: 'Complete prior to client presentation to calibrate the prescription of care.',
+          fields: [
+            { id: 'cb-1', type: 'input', label: '01. Current Monthly Gross Revenue & Media Spend (AED / $)', badge: 'METRIC', instructions: 'What is the blended media spend and contribution margin?', value: '$65,000 / mo spend • 4.2x Target MER' },
+            { id: 'cb-2', type: 'textarea', label: '02. Primary Operational Growth Bottleneck', badge: 'DIAGNOSTIC', instructions: 'Where is founder attention or cashflow experiencing friction?', value: 'Creative fatigue on Meta every 14 days and single-purchase replenishment churn.' }
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 820,
+          y: 720,
+          width: 290,
+          height: 200,
+          color: 'yellow',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'DOCTOR-PATIENT FRAME',
+          content: 'Top surgeons never chase patients down the hall or offer holiday discounts. They diagnose the illness with calm authority, prescribe the treatment, and state the fee.',
+          footer: 'BRADLEY PRINCIPLE'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1150,
+          y: 720,
+          width: 290,
+          height: 200,
+          color: 'rose',
+          rotation: 2,
+          hasTape: true,
+          header: 'CLOSING RULE',
+          content: 'The person who asks the questions controls the frame. If you find yourself pitching for 40 minutes, you have already lost. The client should speak 70% of the call.',
+          footer: 'FRAME CONTROL'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-cb-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '1. Inbound Authority → Diagnostic Intake' },
+        { id: `conn-cb-2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '2. Prescribed Advisory Container' }
+      ];
+    } else if (templateKey === 'morgan-outbound' || templateKey === 'morgan') {
+      title = 'Charlie Morgan • Sovereign Outbound Machine & Prospect Conversion Engine';
+      const f1Id = `frame-cm-1-${Date.now()}`;
+      const f2Id = `frame-cm-2-${Date.now()}`;
+      const tblId = `table-cm-${Date.now()}`;
+      const metricId = `metric-cm-${Date.now()}`;
+      const s1Id = `sticky-cm-1-${Date.now()}`;
+      const s2Id = `sticky-cm-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '01',
+          titlePill: 'OUTBOUND VOLUME ARCHITECTURE',
+          headline: 'Multi-Touch Cadence &',
+          serifAccent: 'Predictable Volume Math',
+          description: 'Engineering high-volume personalized outbound pipelines that turn cold beauty founders into booked client audits.',
+          boxes: [
+            { tag: 'DUAL OUTREACH', tagColor: 'gold', title: 'Targeted Multi-Channel Touches', content: '50 personalized LinkedIn touches + 150 verified cold emails daily targeted at beauty brand C-suite.' },
+            { tag: 'LOOM AUDIT BRIDGE', tagColor: 'blue', title: '2-Minute Video Teardown', content: 'Identify 1 concrete leak in their current PDP or ad creative; deliver a personalized 120-second loom teardown.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'BELIEF-SHIFTING MATRIX',
+          headline: 'Psychological Reframing &',
+          serifAccent: 'Objection Neutralization',
+          description: 'Systematically dismantling the prospect core limiting beliefs before the closing conversation.',
+          boxes: [
+            { tag: 'VEHICLE BELIEF', tagColor: 'green', title: 'Reframe The Agency Vehicle', content: 'Shift belief from "All marketing agencies burn cash" to "Skin-first scientific accelerators scale profit."' },
+            { tag: 'INTERNAL BELIEF', tagColor: 'rose', title: 'Reframe Margin Capabilities', content: 'Shift belief from "Our margins cannot afford customer acquisition" to "Our high-AOV routine bundles fund CAC."' }
+          ]
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 720,
+          width: 900,
+          title: 'Charlie Morgan Outbound Cadence & Conversion Pipeline',
+          badge: 'PIPELINE EQUATION',
+          headers: ['Outbound Funnel Stage', 'Weekly Target', 'Conversion %', 'Pipeline Output', 'Target CPA (AED)'],
+          rows: [
+            ['Verified Brand Founder Outreach', '1,000 Contacts', '100%', '1,000 Touches Sent', '0.80'],
+            ['Positive Executive Response Rate', '45 Replies', '4.5%', '45 Qualified Dialogues', '17.80'],
+            ['Custom Video Teardown Booked', '18 Demos', '40.0%', '18 Loom Presentations', '44.50'],
+            ['Quarterly Client Retainer Closed', '3 Clients', '16.7%', 'AED 75,000 New ARR', '267.00']
+          ]
+        },
+        {
+          id: metricId,
+          type: 'metric',
+          x: 1040,
+          y: 720,
+          width: 320,
+          title: 'OUTBOUND CASH ROI',
+          badge: '93.6x PIPELINE MULTIPLIER',
+          deltaColor: 'tag-green',
+          figure: 'AED 75,000',
+          subtitle: 'Weekly Retainer Intake on AED 800 Domain & Data Spend'
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1400,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'noir',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'MORGAN IRON LAW',
+          content: 'B2B sales is not subjective magic. It is pure statistics: Volume of Outreach × Accuracy of ICP List × Relatability of Script = Inevitable Pipeline.',
+          footer: 'OUTBOUND MATH'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1720,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'rose',
+          rotation: 2,
+          hasTape: true,
+          header: 'OBJECTION REFRAME',
+          content: '"We already do this in-house" is never a rejection; it is evidence that they value the function. Position your retainer as a force-multiplier for their team.',
+          footer: 'OBJECTION REALITY'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-cm-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '1. Cold Volume → Qualified Belief Shift' },
+        { id: `conn-cm-2`, from: f2Id, fromAnchor: 'bottom', to: tblId, toAnchor: 'top', style: 'dashed', color: 'green', label: '2. Tracked in Conversion Pipeline' }
+      ];
+    } else if (templateKey === 'ajsmart-sprint' || templateKey === 'ajsmart') {
+      title = 'AJ&Smart • 4-Day Product Strategy & Executive Facilitation Sprint';
+      const f1Id = `frame-aj-1-${Date.now()}`;
+      const f2Id = `frame-aj-2-${Date.now()}`;
+      const f3Id = `frame-aj-3-${Date.now()}`;
+      const tblId = `table-aj-${Date.now()}`;
+      const s1Id = `sticky-aj-1-${Date.now()}`;
+      const s2Id = `sticky-aj-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 580,
+          height: 540,
+          frameNumber: '01',
+          titlePill: 'DAY 01 • MAP & SKETCH',
+          headline: 'Problem Definition &',
+          serifAccent: 'Expert Interrogation',
+          description: 'Deconstructing the product challenge and sketching solutions individually in complete silence.',
+          boxes: [
+            { tag: 'EXPERT INTERVIEWS', tagColor: 'gold', title: 'Chemist & Leadership Sync', content: '45-minute interviews extracting institutional knowledge and unaddressed technical bottlenecks.' },
+            { tag: 'LIGHTNING DEMOS', tagColor: 'blue', title: 'Cross-Industry Solutions', content: 'Review how non-competing luxury industries (Swiss horology, aerospace) solve tactile packaging.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 740,
+          y: 120,
+          width: 580,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'DAY 02 • DECIDE & STORYBOARD',
+          headline: 'Heatmap Voting &',
+          serifAccent: '8-Step Storyboard',
+          description: 'Eliminating endless consensus meetings: silent dot voting followed by decider selection.',
+          boxes: [
+            { tag: 'HEATMAP VOTING', tagColor: 'green', title: 'Silent Sticky Dot Voting', content: 'Team places dot stickers on standout ideas without discussion, revealing organic group alignment.' },
+            { tag: 'THE DECIDER', tagColor: 'rose', title: 'Sovereign Decider Selection', content: 'Executive Decider casts the sovereign green vote, locking the storyboard flow for prototyping.' }
+          ]
+        },
+        {
+          id: f3Id,
+          type: 'frame',
+          x: 1380,
+          y: 120,
+          width: 580,
+          height: 540,
+          frameNumber: '03',
+          titlePill: 'DAYS 03-04 • PROTOTYPE & TEST',
+          headline: 'Realistic Prototype &',
+          serifAccent: '5 Target User Tests',
+          description: 'Building a realistic Goldilocks test asset in 1 day and testing with 5 real target customers.',
+          boxes: [
+            { tag: 'GOLDILOCKS ASSET', tagColor: 'gold', title: 'High-Fidelity Shopify Prototype', content: 'Working interactive landing page with photorealistic 3D render of the frosted glass dropper.' },
+            { tag: '5 USER INTERVIEWS', tagColor: 'green', title: '1-on-1 Qualitative Testing', content: 'Testing with 5 verified skincare buyers reveals 85% of usability and price resistance patterns.' }
+          ]
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 720,
+          width: 900,
+          title: 'AJ&Smart Day 4 User Testing & Usability Matrix',
+          badge: 'TEST MATRIX',
+          headers: ['Target Tester', 'Customer Archetype', 'First Impression', 'Price Reaction (AED 420)', 'Purchase Intent'],
+          rows: [
+            ['Tester 01 (Elena)', 'HNW Cosmetic Enthusiast', 'Frosted glass feels ultra-luxurious', 'Expected AED 500+ for lab formula', 'High (Ready to buy)'],
+            ['Tester 02 (Sarah)', 'Clinical Derm Patient', 'Appreciated transparent trial data', 'Wants 30ml travel mini option', 'Medium (Wants sample)'],
+            ['Tester 03 (Nadia)', 'Clean Beauty Advocate', 'Scrutinized preservative bio-safety', 'Comfortable once ISO 11930 cited', 'High (Impressed by data)'],
+            ['Tester 04 (Fatima)', 'VIP Luxury Gifter', 'Wax seal & unboxing feels museum-grade', 'Very attractive for gifts', 'Immediate (Pre-ordered)']
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1040,
+          y: 720,
+          width: 290,
+          height: 190,
+          color: 'yellow',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'HMW QUESTION',
+          content: 'How Might We communicate clinical peptide potency without overwhelming non-scientific beauty buyers with medical jargon?',
+          footer: 'SPRINT ANCHOR'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1370,
+          y: 720,
+          width: 290,
+          height: 190,
+          color: 'blue',
+          rotation: 2,
+          hasTape: true,
+          header: 'TOGETHER ALONE',
+          content: 'Never brainstorm out loud. Brainstorm silently on stickies, then vote. It completely removes extrovert dominance and hippo bias.',
+          footer: 'FACILITATION LAW'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-aj-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: 'Day 01 → Day 02 Decision' },
+        { id: `conn-aj-2`, from: f2Id, fromAnchor: 'right', to: f3Id, toAnchor: 'left', style: 'dashed', color: 'green', label: 'Day 02 → Day 03 Prototype' }
+      ];
+    } else if (templateKey === 'isenberg-community' || templateKey === 'isenberg') {
+      title = 'Greg Isenberg • Community-Led Growth Flywheel & Unbundling Canvas';
+      const f1Id = `frame-gi-1-${Date.now()}`;
+      const f2Id = `frame-gi-2-${Date.now()}`;
+      const tblId = `table-gi-${Date.now()}`;
+      const metricId = `metric-gi-${Date.now()}`;
+      const s1Id = `sticky-gi-1-${Date.now()}`;
+      const s2Id = `sticky-gi-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '01',
+          titlePill: 'DIGITAL WATERING HOLE RESEARCH',
+          headline: 'Unbundling Reddit &',
+          serifAccent: 'Digital Watering Holes',
+          description: 'Mining high-signal online subcultures where passionate consumers discuss unaddressed product frustrations.',
+          boxes: [
+            { tag: 'FORUM MINING', tagColor: 'gold', title: 'Subreddit Sentiment Analysis', content: 'Scraping r/30PlusSkinCare and Discord aesthetic servers for recurring formulation complaints.' },
+            { tag: 'UNBUNDLED NICHE', tagColor: 'blue', title: 'The Unbundled Solution', content: 'Unbundling generic Reddit threads into a dedicated $150/mo private aesthetic membership concierge.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'COMMUNITY-LED FLYWHEEL',
+          headline: 'Audience → Community →',
+          serifAccent: 'Product Monetization',
+          description: 'Building an engaged community asset that serves as an ongoing design partner and zero-CAC distribution channel.',
+          boxes: [
+            { tag: 'FREE AUDIENCE', tagColor: 'green', title: 'TOFU: Educational Content Engine', content: 'Substack deep dives on cosmetic chemistry attracting 25k beauty founders and aesthetic doctors.' },
+            { tag: 'CURATED COMMUNITY', tagColor: 'rose', title: 'MOFU: Application-Only VIP Circle', content: 'Private WhatsApp channel for 500 discerning high-ticket cosmetic patrons who co-create products.' },
+            { tag: 'MONETIZED PRODUCT', tagColor: 'gold', title: 'BOFU: Co-Created Product Drops', content: 'Micro-batch drops selling out within 24 hours with zero upfront paid ad spend.' }
+          ]
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 720,
+          width: 900,
+          title: 'Greg Isenberg Subreddit & Community Unbundling Matrix',
+          badge: 'UNBUNDLING ENGINE',
+          headers: ['Broad Digital Watering Hole', 'Core Unaddressed Frustration', 'Unbundled Luxury Product', 'Monetization Model'],
+          rows: [
+            ['r/30PlusSkinCare (2.4M Members)', 'Retinol irritation & barrier damage', 'Personalized Peptide Regimen Box', 'AED 420 / Month Auto-Refill'],
+            ['TikTok #DermTok (12B Views)', 'Dermatologist claim skepticism', 'Third-Party Laboratory Claims Registry', 'AED 4,500 / Brand / Year'],
+            ['Dubai Luxury Vanity Club', 'Access to unreleased Parisian batches', 'Secret Atelier Vault VIP Access', 'AED 15,000 / Year Retainer']
+          ]
+        },
+        {
+          id: metricId,
+          type: 'metric',
+          x: 1040,
+          y: 720,
+          width: 320,
+          title: 'COMMUNITY LTV EXPANSION',
+          badge: '▲ 84% LTV MULTIPLIER',
+          deltaColor: 'tag-gold',
+          figure: 'AED 3,250',
+          subtitle: 'Community Member 12-Mo LTV vs AED 380 DTC Single Buyer'
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1400,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'rose',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'ISENBERG FLYWHEEL',
+          content: 'Build the community first, product second. When you own the community, your customer acquisition cost drops to near zero because members are your co-designers.',
+          footer: 'COMMUNITY LAW'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1720,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'mint',
+          rotation: 2,
+          hasTape: true,
+          header: 'UNBUNDLING LAW',
+          content: 'Every massive subreddit, Facebook group, or Discord with > 100k members is an unbundled $10M luxury company waiting to be built with world-class branding.',
+          footer: 'UNBUNDLING THESIS'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-gi-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '1. Unbundled Need → Community Flywheel' },
+        { id: `conn-gi-2`, from: f2Id, fromAnchor: 'bottom', to: tblId, toAnchor: 'top', style: 'dashed', color: 'green', label: '2. Unbundled Product Roadmap' }
+      ];
     } else if (templateKey === 'scaling-blueprint') {
       title = '90-Day Luxury Beauty Scaling Blueprint';
       const f1Id = `frame-sb-1-${Date.now()}`;
@@ -2345,7 +3337,7 @@ window.StudioCore = (function () {
         { id: `conn-mb1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' }
       ];
     } else if (templateKey === 'mindmap') {
-      title = 'Personal Mind Map';
+      title = 'POLISH Sovereign Brand Architecture Mind Map';
       const rootId = `shape-root-${Date.now()}`;
       const branch1Id = `sticky-b1-${Date.now()}`;
       const branch2Id = `sticky-b2-${Date.now()}`;
@@ -2359,53 +3351,57 @@ window.StudioCore = (function () {
           shapeType: 'circle',
           x: 750,
           y: 400,
-          width: 200,
-          height: 200,
-          text: 'Core Idea\n& Vision',
+          width: 220,
+          height: 220,
+          text: 'POLISH ATELIER\nSovereign Brand\nArchitecture',
           zIndex: 20
         },
         {
           id: branch1Id,
           type: 'sticky',
           color: 'rose',
-          x: 1080,
-          y: 220,
-          width: 260,
-          header: 'AUDIENCE & BRAND',
-          content: 'Target persona, emotional triggers, and core positioning pillars.',
+          x: 1100,
+          y: 200,
+          width: 280,
+          hasTape: true,
+          header: 'AUDIENCE & PERSONA',
+          content: 'Discerning aesthetic clientele valuing clinical biochemistry and third-party laboratory claim validation over superficial hype.',
           footer: 'BRANCH 01'
         },
         {
           id: branch2Id,
           type: 'sticky',
           color: 'yellow',
-          x: 1080,
+          x: 1100,
           y: 560,
-          width: 260,
-          header: 'OFFERS & REVENUE',
-          content: 'Flagship packaging, retainer tiers, and conversion mechanics.',
+          width: 280,
+          hasTape: true,
+          header: 'OFFER ARCHITECTURE',
+          content: '3-Tier Clinical Retainer (AED 28,000 / mo + 8% growth equity) with exclusive access to POLISH Strategy Studio.',
           footer: 'BRANCH 02'
         },
         {
           id: branch3Id,
           type: 'sticky',
           color: 'blue',
-          x: 380,
+          x: 360,
           y: 560,
-          width: 260,
+          width: 280,
+          hasTape: true,
           header: 'CONTENT & MEDIA',
-          content: 'Editorial visual assets, video hooks, and organic growth loops.',
+          content: 'Dynamic creative testing (3:2:2 framework), macro texture thumbstops, and high-conversion scientific advertorial presells.',
           footer: 'BRANCH 03'
         },
         {
           id: branch4Id,
           type: 'sticky',
           color: 'mint',
-          x: 380,
-          y: 220,
-          width: 260,
-          header: 'EXECUTION & OPS',
-          content: 'Daily protocols, autonomous tools, and weekly deliverables.',
+          x: 360,
+          y: 200,
+          width: 280,
+          hasTape: true,
+          header: 'CLINICAL & PACKAGING',
+          content: 'ISO 11930 PET preservative testing, French frosted flint glass vessels, and anodized champagne gold metered droppers.',
           footer: 'BRANCH 04'
         }
       ];
@@ -2417,30 +3413,36 @@ window.StudioCore = (function () {
         { id: `conn-4`, from: rootId, fromAnchor: 'left', to: branch4Id, toAnchor: 'right', style: 'curved', color: 'green', label: '' }
       ];
     } else if (templateKey === 'planner') {
-      title = 'Weekly Project Planner';
-      const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-      const colors = ['yellow', 'rose', 'blue', 'mint', 'lavender'];
+      title = 'Weekly Luxury Beauty Executive Sprint';
+      const days = [
+        { name: 'Monday', title: 'Pipeline & Media Calibration', boxTitle: 'ASC Liquidity & Spend Audit', boxContent: 'Review Meta ASC & TikTok Spark ROAS. Reallocate spend to winners with blended MER > 3.8x.', outcome: 'Media budgets balanced with zero algorithmic shock.' },
+        { name: 'Tuesday', title: 'Creative Direction & Hook Testing', boxTitle: '12 Raw UGC Cuts Review', boxContent: 'Audit b-roll lighting, audio mastering, and microscopic dropper texture holds with creator talent.', outcome: '6 dynamic creative variations approved for sandbox.' },
+        { name: 'Wednesday', title: 'Formulation & Clinical Sync', boxTitle: 'Biochemistry Stability Review', boxContent: 'Review accelerated aging reports at 45°C and sample batch 04 frosted flint glass seals.', outcome: 'EU 1223/2009 compliance dossier signed off.' },
+        { name: 'Thursday', title: 'Retention & Private Concierge', boxTitle: 'Klaviyo Replenishment Cadence', boxContent: 'Optimize 45-day automated refill triggers and inspect VIP WhatsApp high-roller voice memos.', outcome: 'Repeat customer 90-day LTV pace lifted to AED 420+.' },
+        { name: 'Friday', title: 'Unit Economics & Board Sign-off', boxTitle: 'Weekly Contribution Margin', boxContent: 'Audit gross revenue, net margins, customer acquisition costs, and 60-day inventory runway.', outcome: 'Executive board report transmitted to stakeholders.' }
+      ];
+      const colors = ['yellow', 'rose', 'blue', 'mint', 'noir'];
       newElements = [];
       newConnections = [];
 
       days.forEach((day, idx) => {
         const frameId = `frame-day-${idx}-${Date.now()}`;
         const stickyId = `sticky-task-${idx}-${Date.now()}`;
-        const startX = 180 + idx * 420;
+        const startX = 140 + idx * 430;
 
         newElements.push({
           id: frameId,
           type: 'frame',
           x: startX,
           y: 160,
-          width: 380,
+          width: 390,
           height: 600,
           frameNumber: `0${idx + 1}`,
-          titlePill: day.toUpperCase(),
-          headline: `${day} Focus`,
-          description: `Key deliverables and strategic outcomes for ${day}.`,
+          titlePill: day.name.toUpperCase(),
+          headline: day.title,
+          description: `Executive operations and non-negotiable milestones for ${day.name}.`,
           boxes: [
-            { tag: 'HIGH PRIORITY', tagColor: 'gold', title: 'Deep Work Sprint', content: 'Focus block for core deliverable output.' }
+            { tag: 'DEEP WORK SPRINT', tagColor: 'gold', title: day.boxTitle, content: day.boxContent }
           ]
         });
 
@@ -2450,10 +3452,11 @@ window.StudioCore = (function () {
           color: colors[idx % colors.length],
           x: startX + 50,
           y: 480,
-          width: 280,
-          header: 'DAILY OUTCOME',
-          content: '1 non-negotiable metric or shipment completed.',
-          footer: day
+          width: 290,
+          hasTape: true,
+          header: 'DAILY NON-NEGOTIABLE',
+          content: day.outcome,
+          footer: `${day.name.toUpperCase()} CADENCE`
         });
       });
     } else {
@@ -2464,6 +3467,7 @@ window.StudioCore = (function () {
     }
 
     currentBoard.title = title;
+    currentBoard.templateKey = templateKey;
     currentBoard.elements = newElements;
     currentBoard.connections = newConnections;
     currentBoard.drawings = [];
@@ -2472,6 +3476,9 @@ window.StudioCore = (function () {
     renderBoard();
     saveLocally();
     triggerAutoSave();
+    if (window.StudioAI && window.StudioAI.onTemplateLoaded) {
+      window.StudioAI.onTemplateLoaded(templateKey);
+    }
     if (window.CanvasEngine) {
       window.CanvasEngine.fitToContent();
     }
@@ -2503,6 +3510,8 @@ window.StudioCore = (function () {
     addPricing,
     addPricingFeature,
     removePricingFeature,
+    addMetric,
+    addCallout,
     addTable,
     addTableRow,
     removeTableRow,
@@ -2515,6 +3524,9 @@ window.StudioCore = (function () {
     addConnection,
     duplicateSelected,
     deleteSelected,
+    toggleLockSelected,
+    bringForward,
+    sendBackward,
     triggerAutoSave,
     saveBoardDebounced: triggerAutoSave,
     undo,

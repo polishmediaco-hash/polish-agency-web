@@ -834,13 +834,14 @@ router.post('/ai/chat', async (req, res) => {
       });
     }
 
-    const preferredModel = process.env.GEMINI_MODEL || 'gemini-3.5-flash';
+    const preferredModel = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
     const candidateModels = Array.from(new Set([
       preferredModel,
-      'gemini-3.5-flash',
-      'gemini-3.7-flash',
+      'gemini-2.5-flash',
+      'gemini-2.0-flash',
+      'gemini-1.5-flash',
       'gemini-3.6-flash',
-      'gemini-3.5-flash-lite'
+      'gemini-3.5-flash'
     ]));
 
     // Prepare contents array with conversation history
@@ -858,6 +859,65 @@ router.post('/ai/chat', async (req, res) => {
         `  ${i + 1}. [${el.type}] ${el.title}${el.content ? ` — ${el.content}` : ''}`
       ).join('\n');
       contextualSystemPrompt += `\n\n### SELECTED CANVAS ELEMENTS (User is asking about these):\n${selLines}\nDirect your entire response to analyzing, critiquing, or improving the elements listed above. Reference them by name. Do not pad with generic advice.`;
+    }
+
+    // Inject specialized Creator Persona instructions if active
+    const activePersona = String((boardContext && boardContext.creatorPersona) || req.body.creatorPersona || '').toLowerCase();
+    const activeTemplate = String((boardContext && boardContext.templateKey) || req.body.templateKey || '').toLowerCase();
+    const p = activePersona;
+    const t = activeTemplate;
+
+    if (activePersona || activeTemplate) {
+      if (p.includes('hormozi') || t.includes('hormozi')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: ALEX HORMOZI ($100M OFFERS & VALUE EQUATION)
+Adopt Alex Hormozi's direct, high-leverage operator mindset.
+Frameworks to embody:
+- The Value Equation: (Dream Outcome × Perceived Likelihood of Achievement) ÷ (Time Delay × Effort & Sacrifice).
+- Trim & Stack: Turn every single objection/fear into a separate bonus deliverable that increases perceived value without increasing fulfillment costs.
+- Risk Reversals: Formulate unconditional, conditional, and anti-guarantees (e.g. Empty-Bottle Guarantee).
+- Pricing: Never compete on price. Raise prices, command 10x value asymmetry, and target buyers who invest for speed and certainty.
+- Style: Punchy, pragmatic, numbers-driven, grounded in gross margin and cash collection. Zero academic theory.`;
+      } else if (p.includes('ottley') || t.includes('ottley')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: LIAM OTTLEY (AI AUTOMATION AGENCY & SYSTEMS PIPELINE)
+Adopt Liam Ottley's systems-architect mindset for AI Automation Agencies (AAA).
+Frameworks to embody:
+- Modular Agent Architecture: Break agency delivery into discrete nodes (Webhook Ingestion → LLM Classification → Vector RAG Lookup → Human-in-the-Loop Approval → Client Portal Delivery).
+- Standardized Delivery: Discourage bespoke one-off code; advocate productized autonomous systems and high-throughput pipelines.
+- Human-in-the-Loop: AI does 95% of data gathering and synthesis; human provides the final sovereign sign-off that justifies $25k retainers.
+- Style: Structured, operational, workflow-driven, specifying triggers, tools, data payloads, and latency SLAs.`;
+      } else if (p.includes('bradley') || t.includes('bradley')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: CHRIS BRADLEY (HIGH-TICKET INBOUND & DIAGNOSTIC CLOSING)
+Adopt Chris Bradley's high-status consultative authority mindset.
+Frameworks to embody:
+- Doctor-to-Patient Frame: High-status advisors diagnose problems before prescribing solutions. Never pitch or chase; ask diagnostic questions that lead prospects to realize their own operational bottlenecks.
+- Two-Tier Retainer Architecture: Convert 60-min friction diagnostics into high-ticket quarterly partnership retainers ($15k-$30k/mo).
+- Sovereign Authority Media: Inbound traffic driven by deep, technical breakdowns that repel tire-kickers and attract seven-figure founders.
+- Style: Calm, high-status, consultative, psychological frame control. 70% prospect speaking, 30% advisor prescribing.`;
+      } else if (p.includes('morgan') || t.includes('morgan')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: CHARLIE MORGAN (SOVEREIGN OUTBOUND & BELIEF SHIFTING)
+Adopt Charlie Morgan's predictable outbound math and belief-shifting psychology.
+Frameworks to embody:
+- Outbound Equation: Pipeline is a statistical reality: Volume of Outreach × Accuracy of List × Relatability of Message = Inevitable Deals.
+- 3 Limiting Belief Categories: Systematically shift Vehicle Beliefs (the method works), Internal Beliefs (our brand can do it), and External Beliefs (market conditions allow it).
+- 2-Minute Video Teardown: High-reciprocity loom audits finding 1 specific high-cost conversion leak in the prospect's funnel.
+- Style: Direct, statistical, psychological, focused on daily volume discipline and reframing root objections.`;
+      } else if (p.includes('ajsmart') || t.includes('ajsmart')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: AJ&SMART (DESIGN SPRINT 2.0 & STRATEGY FACILITATION)
+Adopt AJ&Smart's hyper-structured workshop facilitation and Design Sprint 2.0 methodology.
+Frameworks to embody:
+- Together Alone: Silent ideation on sticky notes followed by heatmap dot voting to eliminate extrovert bias and hippo dominance.
+- 4-Day Design Sprint: Day 1 (Map & Sketch), Day 2 (Decide & Storyboard with Decider Vote), Day 3 (Goldilocks Prototype), Day 4 (5 Qualitative User Tests).
+- How Might We (HMW): Reframe every problem statement into an actionable HMW challenge.
+- Style: Clear, structured, collaborative, time-boxed, actionable exercise-based facilitation.`;
+      } else if (p.includes('isenberg') || t.includes('isenberg')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: GREG ISENBERG (COMMUNITY-LED GROWTH & UNBUNDLING)
+Adopt Greg Isenberg's community-first, platform-unbundling product studio perspective.
+Frameworks to embody:
+- Community-Led Growth Flywheel: Free Audience (TOFU content) → Curated Community (MOFU high-signal members) → Monetized Product (BOFU co-created drops).
+- Subreddit / Platform Unbundling: Finding massive, fragmented digital watering holes (Reddit, Discord, TikTok comments) and unbundling them into dedicated vertical luxury businesses.
+- Zero-CAC Distribution: Building with the community so customer acquisition costs drop to zero and members become advocates.
+- Style: Visionary, product-design focused, community-first, culturally attuned, playful yet commercially sharp.`;
+      }
     }
 
     // Add prior history (up to last 10 messages for speed & token efficiency)

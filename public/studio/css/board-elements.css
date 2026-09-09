@@ -720,18 +720,32 @@
   transition: opacity 0.15s, transform 0.15s, background 0.15s;
 }
 
+/* 28px Invisible Magnetic Grab Zone */
+.card-port::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+}
+
 .board-frame:hover .card-port,
 .sticky-note:hover .card-port,
 .pricing-card:hover .card-port,
 .form-field-card:hover .card-port,
+.metric-kpi-card:hover .card-port,
+.chapter-callout-banner:hover .card-port,
 .is-connecting .card-port {
   opacity: 1;
 }
 
 .card-port:hover {
-  transform: scale(1.35);
-  background: var(--brand-gold);
-  border-color: var(--brand-gold);
+  transform: scale(1.45);
+  background: var(--brand-gold-bright, #F3D382);
+  border-color: var(--brand-noir);
+  box-shadow: 0 0 14px rgba(226, 199, 153, 0.85);
 }
 
 .card-port.port-top { top: -7px; left: 50%; transform: translateX(-50%); }
@@ -739,10 +753,10 @@
 .card-port.port-bottom { bottom: -7px; left: 50%; transform: translateX(-50%); }
 .card-port.port-left { left: -7px; top: 50%; transform: translateY(-50%); }
 
-.card-port.port-top:hover { transform: translateX(-50%) scale(1.35); }
-.card-port.port-right:hover { transform: translateY(-50%) scale(1.35); }
-.card-port.port-bottom:hover { transform: translateX(-50%) scale(1.35); }
-.card-port.port-left:hover { transform: translateY(-50%) scale(1.35); }
+.card-port.port-top:hover { transform: translateX(-50%) scale(1.45); }
+.card-port.port-right:hover { transform: translateY(-50%) scale(1.45); }
+.card-port.port-bottom:hover { transform: translateX(-50%) scale(1.45); }
+.card-port.port-left:hover { transform: translateY(-50%) scale(1.45); }
 
 /* Corner Resize Handles */
 .resize-handle {
@@ -1498,6 +1512,246 @@ body.theme-dark .card-port:hover {
 body.theme-dark .resize-handle {
   background: #141210 !important;
   border-color: #E2C799 !important;
+}
+
+/* ========================================================== */
+/* CREATOR-GRADE COMPONENTS: METRIC KPI & CHAPTER CALLOUT     */
+/* ========================================================== */
+
+/* Metric KPI Callout Card */
+.metric-kpi-card {
+  position: absolute;
+  background: var(--surface-white);
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-frame);
+  min-width: 240px;
+  cursor: move;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.metric-kpi-card:hover {
+  border-color: rgba(197, 168, 128, 0.65);
+  box-shadow: var(--shadow-hover);
+}
+
+.metric-kpi-card.is-selected {
+  outline: 2px solid var(--brand-noir) !important;
+  box-shadow: 0 0 0 4px rgba(8, 7, 6, 0.08), var(--shadow-hover) !important;
+}
+
+.metric-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.metric-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.metric-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+
+.metric-badge.tag-green {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.metric-badge.tag-rose {
+  background: #FFF1F2;
+  color: #BE123C;
+  border: 1px solid #FECDD3;
+}
+
+.metric-badge.tag-gold {
+  background: #FEF8ED;
+  color: #8C6226;
+  border: 1px solid #FDE68A;
+}
+
+.metric-figure {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--brand-noir);
+  font-variant-numeric: tabular-nums lining-nums;
+  margin-bottom: 0.35rem;
+}
+
+.metric-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Chapter Callout Banner */
+.chapter-callout-banner {
+  position: absolute;
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  border-left: 5px solid var(--brand-gold, #C5A880);
+  border-radius: 16px;
+  padding: 1.25rem 1.75rem;
+  box-shadow: var(--shadow-frame);
+  min-width: 440px;
+  cursor: move;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.chapter-callout-banner:hover {
+  border-color: rgba(197, 168, 128, 0.65);
+  box-shadow: var(--shadow-hover);
+}
+
+.chapter-callout-banner.is-selected {
+  outline: 2px solid var(--brand-noir) !important;
+  box-shadow: 0 0 0 4px rgba(8, 7, 6, 0.08), var(--shadow-hover) !important;
+}
+
+.callout-roman {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--brand-gold-text, #8C6226);
+  letter-spacing: 0.05em;
+  padding-right: 1rem;
+  border-right: 1px solid rgba(197, 168, 128, 0.3);
+}
+
+.callout-content-wrap {
+  flex-grow: 1;
+}
+
+.callout-headline {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--brand-noir);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.callout-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* Locked Element State */
+.studio-element.is-locked {
+  cursor: default !important;
+}
+
+.studio-element.is-locked::after {
+  content: '🔒';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.studio-element.is-locked .resize-handle {
+  display: none !important;
+}
+
+/* Presentation Laser Pointer Stroke */
+.laser-stroke {
+  stroke: #F3D382;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  filter: drop-shadow(0 0 8px rgba(243, 211, 130, 0.95)) drop-shadow(0 0 16px rgba(226, 199, 153, 0.6));
+  pointer-events: none;
+}
+
+/* Tabular Numerals Enforcement */
+.price-figure,
+.metric-figure,
+.luxury-table td,
+.luxury-table th,
+.slide-count {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Dark Mode Overrides for Creator Components */
+body.theme-dark .metric-kpi-card {
+  background: rgba(18, 16, 14, 0.96) !important;
+  border-color: rgba(226, 199, 153, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.theme-dark .metric-title {
+  color: #C5A880 !important;
+}
+
+body.theme-dark .metric-figure {
+  color: #FFFFFF !important;
+}
+
+body.theme-dark .metric-subtitle {
+  color: #F0ECE1 !important;
+}
+
+body.theme-dark .metric-badge.tag-green {
+  background: rgba(16, 185, 129, 0.2) !important;
+  color: #6EE7B7 !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+}
+
+body.theme-dark .metric-badge.tag-rose {
+  background: rgba(244, 63, 94, 0.2) !important;
+  color: #FDA4AF !important;
+  border-color: rgba(244, 63, 94, 0.45) !important;
+}
+
+body.theme-dark .metric-badge.tag-gold {
+  background: rgba(226, 199, 153, 0.22) !important;
+  color: #FFDF9E !important;
+  border-color: rgba(226, 199, 153, 0.5) !important;
+}
+
+body.theme-dark .chapter-callout-banner {
+  background: rgba(22, 20, 18, 0.96) !important;
+  border-color: rgba(226, 199, 153, 0.35) !important;
+  border-left-color: #E2C799 !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.theme-dark .callout-roman {
+  color: #FFDF9E !important;
+  border-right-color: rgba(226, 199, 153, 0.35) !important;
+}
+
+body.theme-dark .callout-headline {
+  color: #FFFFFF !important;
+}
+
+body.theme-dark .callout-desc {
+  color: #F0ECE1 !important;
 }
 
 

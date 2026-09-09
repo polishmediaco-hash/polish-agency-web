@@ -9,11 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
   <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
-  <link rel="stylesheet" href="/studio/css/board-elements.css?v=20260909_v4">
-  <link rel="stylesheet" href="/studio/css/studio.css?v=20260909_v4">
-  <link rel="stylesheet" href="/studio/css/inspector.css?v=20260909_v4">
-  <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v4">
-  <link rel="stylesheet" href="/studio/css/ai-copilot.css?v=20260909_floating">
+  <link rel="stylesheet" href="/studio/css/board-elements.css?v=20260909_v6">
+  <link rel="stylesheet" href="/studio/css/studio.css?v=20260909_v6">
+  <link rel="stylesheet" href="/studio/css/inspector.css?v=20260909_v6">
+  <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v6">
+  <link rel="stylesheet" href="/studio/css/ai-copilot.css?v=20260909_v6">
 </head>
 <body>
 
@@ -146,6 +146,14 @@
       <span class="tool-label">Hand</span>
     </button>
 
+    <!-- Laser Pointer (L) -->
+    <button class="tool-item" data-tool="laser" onclick="CanvasEngine.setTool('laser')" data-tooltip="Presenter Laser (L)">
+      <span class="tool-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.5-6.5l-2.1 2.1m-8.8 8.8l-2.1 2.1m0-13l2.1 2.1m8.8 8.8l2.1 2.1"/></svg>
+      </span>
+      <span class="tool-label">Laser</span>
+    </button>
+
     <!-- Freehand Pen (P) -->
     <button class="tool-item" data-tool="pen" onclick="togglePenMenu(event)" data-tooltip="Freehand Pen (P)">
       <span class="tool-icon">
@@ -189,6 +197,18 @@
     <div class="toolbar-divider"></div>
 
     <!-- Strategy Components -->
+    <button class="tool-item" onclick="StudioCore.addMetric()" data-tooltip="Metric KPI Card (M)">
+      <span class="tool-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-3 3"/><circle cx="18" cy="9" r="1.5" fill="currentColor"/></svg>
+      </span>
+      <span class="tool-label">Metric</span>
+    </button>
+    <button class="tool-item" onclick="StudioCore.addCallout()" data-tooltip="Chapter Callout Ribbon">
+      <span class="tool-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16"/><line x1="20" y1="10" x2="20" y2="14"/></svg>
+      </span>
+      <span class="tool-label">Ribbon</span>
+    </button>
     <button class="tool-item" onclick="StudioCore.addTable()" data-tooltip="Strategy Matrix Table">
       <span class="tool-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 9h18"/><path d="M11 9v12"/></svg>
@@ -739,12 +759,19 @@
       <div class="shortcuts-list">
         <div class="shortcut-row"><kbd>V</kbd><span>Select Tool & Marquee Drag</span></div>
         <div class="shortcut-row"><kbd>H</kbd> or <kbd>Space</kbd><span>Hand / Pan Canvas</span></div>
+        <div class="shortcut-row"><kbd>L</kbd><span>Presenter Laser Pointer (Gold Trail)</span></div>
         <div class="shortcut-row"><kbd>P</kbd><span>Freehand Pen Tool</span></div>
         <div class="shortcut-row"><kbd>S</kbd><span>Geometric Shapes Tool</span></div>
         <div class="shortcut-row"><kbd>T</kbd><span>Standalone Floating Text</span></div>
         <div class="shortcut-row"><kbd>N</kbd><span>Drop Sticky Note</span></div>
+        <div class="shortcut-row"><kbd>M</kbd><span>Drop Metric KPI Card</span></div>
         <div class="shortcut-row"><kbd>F</kbd><span>Add Structural Board Frame</span></div>
+        <div class="shortcut-row"><kbd>G</kbd> or <kbd>O</kbd><span>God View (Overview Canvas Fit)</span></div>
+        <div class="shortcut-row"><kbd>Cmd / Ctrl + L</kbd><span>Lock / Unlock Selected Item</span></div>
+        <div class="shortcut-row"><kbd>Cmd / Ctrl + ]</kbd><span>Bring Forward (Layer Up)</span></div>
+        <div class="shortcut-row"><kbd>Cmd / Ctrl + [</kbd><span>Send Backward (Layer Down)</span></div>
         <div class="shortcut-row"><kbd>Cmd / Ctrl + D</kbd><span>Duplicate Selected Item(s)</span></div>
+        <div class="shortcut-row"><kbd>Shift + Drag</kbd><span>Magnetic 20px Grid Snapping</span></div>
         <div class="shortcut-row"><kbd>Backspace / Del</kbd><span>Delete Selected Item(s)</span></div>
         <div class="shortcut-row"><kbd>Cmd / Ctrl + Z</kbd><span>Undo / Redo</span></div>
         <div class="shortcut-row"><kbd>+</kbd> / <kbd>-</kbd> / <kbd>0</kbd><span>Zoom In / Out / Reset</span></div>
@@ -905,6 +932,7 @@
     <button class="present-nav-btn btn-prev" onclick="StudioPresentation.prev()">← Previous</button>
     <div id="presentSlideInfo" class="present-slide-info"><span class="slide-count">Slide 1 of 8</span></div>
     <button class="present-nav-btn btn-next" onclick="StudioPresentation.next()">Next →</button>
+    <button class="present-nav-btn btn-godview" onclick="StudioPresentation.toggleGodView()" title="Toggle Macro God View (G / O)">⛶ God View</button>
     <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">Exit (Esc)</button>
   </div>
 
@@ -917,15 +945,15 @@
   <script src="/studio/js/html2canvas.min.js"></script>
   <script src="/studio/js/camera-bubble.js?v=20260909_v3"></script>
 
-  <script src="/studio/js/canvas-panzoom.js?v=20260909_v2"></script>
-  <script src="/studio/js/drawing-engine.js?v=20260909_v2"></script>
-  <script src="/studio/js/marquee-selection.js?v=20260909_v2"></script>
-  <script src="/studio/js/minimap.js?v=20260909_v2"></script>
-  <script src="/studio/js/elements-factory.js?v=20260909_v4"></script>
-  <script src="/studio/js/connector-engine.js?v=20260909_v4"></script>
-  <script src="/studio/js/inspector.js?v=20260909_v4"></script>
-  <script src="/studio/js/presentation.js?v=20260909_v4"></script>
-  <script src="/studio/js/studio-core.js?v=20260909_v4"></script>
+  <script src="/studio/js/canvas-panzoom.js?v=20260909_v6"></script>
+  <script src="/studio/js/drawing-engine.js?v=20260909_v6"></script>
+  <script src="/studio/js/marquee-selection.js?v=20260909_v6"></script>
+  <script src="/studio/js/minimap.js?v=20260909_v6"></script>
+  <script src="/studio/js/elements-factory.js?v=20260909_v6"></script>
+  <script src="/studio/js/connector-engine.js?v=20260909_v6"></script>
+  <script src="/studio/js/inspector.js?v=20260909_v6"></script>
+  <script src="/studio/js/presentation.js?v=20260909_v6"></script>
+  <script src="/studio/js/studio-core.js?v=20260909_v8"></script>
 
   <script>
     // Initialize Studio on DOM Load
@@ -1118,6 +1146,7 @@
         <div class="ai-header-brand">
           <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="ai-brand-mark" width="22" height="22" />
           <span class="ai-header-title">POLISH AI</span>
+          <span id="aiHeaderSubtitle" class="ai-header-persona-tag" style="display:none;"></span>
         </div>
       </div>
 
@@ -1192,6 +1221,6 @@
   </aside>
 
   <!-- Studio AI Engine -->
-  <script src="/studio/js/studio-ai.js?v=20260909_floating"></script>
+  <script src="/studio/js/studio-ai.js?v=20260909_v8"></script>
 </body>
 </html>

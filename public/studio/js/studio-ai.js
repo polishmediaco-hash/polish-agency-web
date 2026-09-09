@@ -9,6 +9,87 @@
 (function () {
   'use strict';
 
+  const CREATOR_PERSONAS = {
+    'hormozi-offer': {
+      persona: 'hormozi',
+      name: 'Alex Hormozi',
+      badge: 'HORMOZI COPILOT',
+      welcome: 'Alex Hormozi Grand Slam Copilot active. Ready to audit your offer equation, bonus stacking, price elasticity, and risk reversal.',
+      presets: [
+        { label: 'Value Equation Audit', prompt: 'Audit our offer against the Value Equation: Dream Outcome, Perceived Likelihood, Time Delay, and Effort & Sacrifice. How do we maximize the numerator and compress the denominator?' },
+        { label: 'Grand Slam Guarantee', prompt: 'Architect an unconditional, conditional, or anti-guarantee that completely reverses client risk without compromising margins.' },
+        { label: 'Bonus Stacking', prompt: 'Generate a high perceived value bonus stack with distinct anchor pricing to shatter price resistance.' },
+        { label: 'Scarcity & Urgency', prompt: 'Formulate ethical cohort-based scarcity and deadline urgency mechanics for this offer.' },
+        { label: 'Price Multiplier', prompt: 'How do we re-bundle our current deliverable into a $10,000+ high-conviction tier that requires zero fulfillment drag?' }
+      ]
+    },
+    'ottley-ai': {
+      persona: 'ottley',
+      name: 'Liam Ottley',
+      badge: 'OTTLEY COPILOT',
+      welcome: 'Liam Ottley AAA Copilot active. Ready to architect your AI automation pipeline, autonomous agent workflows, and agency SLA retainers.',
+      presets: [
+        { label: 'AI Audit & Roadmap', prompt: 'Architect an end-to-end AI workflow audit for an enterprise client to identify 3 high-ROI autonomous automations.' },
+        { label: 'AAA Retainer Pricing', prompt: 'Structure a performance-tied monthly retainer ($4k-$12k/mo) for maintaining autonomous agent workflows.' },
+        { label: 'Autonomous Architecture', prompt: 'Design a multi-agent orchestration pipeline using n8n/Make and webhooks that reduces manual human touches by 80%.' },
+        { label: 'Proof of Concept Scope', prompt: 'Define a 7-day Paid Discovery Sprint scope to de-risk implementation before signing the annual agreement.' },
+        { label: 'Client Delivery SLA', prompt: 'Establish diagnostic milestone SLAs and error-handling protocols for client automated systems.' }
+      ]
+    },
+    'bradley-inbound': {
+      persona: 'bradley',
+      name: 'Chris Bradley',
+      badge: 'BRADLEY COPILOT',
+      welcome: 'Chris Bradley High-Ticket Copilot active. Ready to construct your authority VSL, diagnostic qualification flow, and 2-call closing script.',
+      presets: [
+        { label: 'Authority VSL Script', prompt: 'Outline a 12-minute diagnostic VSL script demonstrating undeniable category authority and client case transformation.' },
+        { label: 'Diagnostic Triage Call', prompt: 'Formulate a 15-minute diagnostic triage framework to disqualify tire-kickers and anchor prospect urgency.' },
+        { label: '2-Call Closing Script', prompt: 'Provide the exact closing questions to transition a prospect from diagnosis to a $15,000 upfront engagement.' },
+        { label: 'Organic Content Engine', prompt: 'Map out 5 polarising authority posts for LinkedIn/YouTube that drive qualified inbound DM inquiries.' },
+        { label: 'Objection Neutralizer', prompt: 'How do we preemptively handle "We don\'t have the budget right now" using consultative diagnosis?' }
+      ]
+    },
+    'morgan-outbound': {
+      persona: 'morgan',
+      name: 'Charlie Morgan',
+      badge: 'MORGAN COPILOT',
+      welcome: 'Charlie Morgan Outbound Copilot active. Ready to scale your TAM scraping, multi-touch cold sequences, and sovereign conversion engine.',
+      presets: [
+        { label: 'TAM Spear List', prompt: 'Define the exact ICP qualification criteria and scraping strategy to build a high-conviction 500-account TAM list.' },
+        { label: 'Sovereign Cold Script', prompt: 'Write a 65-word cold outreach message with zero fluff, high personalization, and a soft conversational CTA.' },
+        { label: 'Multi-Touch Cadence', prompt: 'Architect an 8-touch omnichannel cadence (Email + LinkedIn + Loom + Phone) across 21 business days.' },
+        { label: 'Offer Diagnostic Hook', prompt: 'Create an offer-centric cold hook that leads with a quantifiable result rather than service deliverables.' },
+        { label: 'SDR Ramp Metrics', prompt: 'Establish daily and weekly benchmark KPIs for an outbound SDR: dials, touches, positive replies, and booked demos.' }
+      ]
+    },
+    'ajsmart-sprint': {
+      persona: 'ajsmart',
+      name: 'AJ&Smart',
+      badge: 'AJ&SMART COPILOT',
+      welcome: 'AJ&Smart Strategy Facilitator active. Ready to run Lightning Decision Jams, How-Might-We reframing, and 4-day Design Sprints.',
+      presets: [
+        { label: 'Lightning Decision Jam', prompt: 'Guide us through a 45-minute Lightning Decision Jam (LDJ) to identify top friction points and prioritize solutions.' },
+        { label: 'HMW Question Generator', prompt: 'Reframe our top 3 customer challenges into high-impact "How Might We" (HMW) opportunity statements.' },
+        { label: '4-Day Sprint Roadmap', prompt: 'Structure an executive-ready 4-day Design Sprint agenda from Map & Sketch to Prototype and User Testing.' },
+        { label: 'Silent Voting Matrix', prompt: 'Set up an impact vs effort matrix with dot-voting criteria to eliminate stakeholder debate.' },
+        { label: 'User Test Script', prompt: 'Draft a 5-interview user testing protocol to validate our prototype with target customers on Day 4.' }
+      ]
+    },
+    'isenberg-community': {
+      persona: 'isenberg',
+      name: 'Greg Isenberg',
+      badge: 'ISENBERG COPILOT',
+      welcome: 'Greg Isenberg Growth Copilot active. Ready to unbundle niche communities, architect growth flywheels, and launch vertical Micro-SaaS.',
+      presets: [
+        { label: 'Unbundling Reddit/FB', prompt: 'Analyze Reddit communities and identify 3 niche subreddits ready to be unbundled into premium vertical products.' },
+        { label: 'Community Flywheel', prompt: 'Map out a community-led growth flywheel: Content -> Community -> Product -> Advocates.' },
+        { label: 'Micro-SaaS Concept', prompt: 'Propose 3 hyper-targeted Micro-SaaS concepts tailored specifically to serve our core community audience.' },
+        { label: '0-to-100 Member Playbook', prompt: 'Draft an invite-only onboarding script to recruit our first 100 founding community members.' },
+        { label: 'Paid Community Tier', prompt: 'Structure a $99/mo paid membership tier with high utility, mastermind calls, and zero burnout for the host.' }
+      ]
+    }
+  };
+
   const StudioAI = {
     isOpen: false,
     isMinimized: false,
@@ -18,6 +99,9 @@
     lastBoardCards: [],
     pos: null,
     _selectionContext: null,   // array of {type, title, content} from selected canvas elements
+    activeCreatorPersona: null,
+    activeTemplateKey: null,
+    defaultPresetsHtml: null,
 
     init() {
       // Restore saved preferences
@@ -33,6 +117,20 @@
 
       // Setup Drag Physics on Header
       this.initDraggable();
+
+      // Store default presets HTML
+      const presetsWrap = document.querySelector('.ai-presets-wrap');
+      if (presetsWrap && !this.defaultPresetsHtml) {
+        this.defaultPresetsHtml = presetsWrap.innerHTML;
+      }
+
+      // Check URL parameters or current board for template key
+      const urlTemplate = new URLSearchParams(window.location.search).get('template');
+      if (urlTemplate && CREATOR_PERSONAS[urlTemplate]) {
+        this.applyCreatorPersona(urlTemplate);
+      } else if (window.StudioCore && window.StudioCore.getCurrentBoard && window.StudioCore.getCurrentBoard() && window.StudioCore.getCurrentBoard().templateKey) {
+        this.applyCreatorPersona(window.StudioCore.getCurrentBoard().templateKey);
+      }
 
       // Bind keyboard shortcut: Cmd+J or Ctrl+J
       window.addEventListener('keydown', (e) => {
@@ -260,10 +358,62 @@
       this.sendMessage();
     },
 
+    onTemplateLoaded(templateKey) {
+      this.applyCreatorPersona(templateKey);
+    },
+
+    applyCreatorPersona(templateKey) {
+      if (!templateKey) return;
+      const config = CREATOR_PERSONAS[templateKey];
+      if (!config) return;
+
+      this.activeTemplateKey = templateKey;
+      this.activeCreatorPersona = config.persona;
+
+      // Update Header Subtitle Tag
+      const subEl = document.getElementById('aiHeaderSubtitle');
+      if (subEl) {
+        subEl.textContent = config.badge;
+        subEl.style.display = 'inline-flex';
+      }
+
+      // Update Presets Chips
+      const presetsWrap = document.querySelector('.ai-presets-wrap');
+      if (presetsWrap) {
+        if (!this.defaultPresetsHtml) {
+          this.defaultPresetsHtml = presetsWrap.innerHTML;
+        }
+        presetsWrap.innerHTML = '';
+        config.presets.forEach(p => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'ai-preset-chip';
+          btn.textContent = p.label;
+          btn.title = p.prompt;
+          btn.onclick = () => this.sendPreset(p.prompt);
+          presetsWrap.appendChild(btn);
+        });
+      }
+
+      // Update initial assistant message if chat is fresh
+      if (this.history.length === 0) {
+        const msgContainer = document.getElementById('aiMessagesContainer');
+        if (msgContainer) {
+          const firstBubble = msgContainer.querySelector('.ai-message.assistant .ai-msg-bubble p');
+          if (firstBubble) {
+            firstBubble.textContent = config.welcome;
+          }
+        }
+      }
+    },
+
     clearChat() {
       this.history = [];
       this.lastBoardCards = [];
       this.updatePillCardsCount();
+
+      const config = this.activeTemplateKey ? CREATOR_PERSONAS[this.activeTemplateKey] : null;
+      const welcomeText = config ? config.welcome : 'Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board.';
 
       const container = document.getElementById('aiMessagesContainer');
       if (container) {
@@ -274,7 +424,7 @@
             </div>
             <div class="ai-msg-body">
               <div class="ai-msg-bubble">
-                <p>Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board.</p>
+                <p>${welcomeText}</p>
               </div>
             </div>
           </div>
@@ -310,10 +460,16 @@
       // Gather current board context + live selection context
       const boardTitleInput = document.getElementById('boardTitleInput');
       const liveSelection = this.getSelectionContext();
+      const currentBoardTemplate = (window.StudioCore && window.StudioCore.getCurrentBoard && window.StudioCore.getCurrentBoard()) ? window.StudioCore.getCurrentBoard().templateKey : null;
+      const activeTemplate = this.activeTemplateKey || currentBoardTemplate || undefined;
+      const activePersona = this.activeCreatorPersona || (activeTemplate && CREATOR_PERSONAS[activeTemplate] ? CREATOR_PERSONAS[activeTemplate].persona : undefined);
+
       const boardContext = {
         title: boardTitleInput ? boardTitleInput.value : 'Strategy Board',
         elementCount: window.StudioCore && window.StudioCore.getElements ? window.StudioCore.getElements().length : 0,
-        selectionContext: liveSelection || undefined
+        selectionContext: liveSelection || undefined,
+        templateKey: activeTemplate,
+        creatorPersona: activePersona
       };
 
       try {
@@ -323,7 +479,9 @@
           body: JSON.stringify({
             message,
             history: this.history.slice(-8),
-            boardContext
+            boardContext,
+            creatorPersona: activePersona,
+            templateKey: activeTemplate
           })
         });
 

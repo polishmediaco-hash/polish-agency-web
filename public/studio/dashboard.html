@@ -1094,6 +1094,337 @@
     }
 
     /* ==========================================================
+       ELITE CREATOR FRAMEWORKS SHELF (LUXURY HAUTE ATELIER)
+       ========================================================== */
+    .creator-shelf-section {
+      margin-bottom: 3.5rem;
+    }
+
+    .shelf-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .shelf-eyebrow {
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .shelf-headline {
+      font-size: 1.7rem;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      color: var(--text-heading);
+    }
+
+    .shelf-subheadline {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      max-width: 720px;
+      line-height: 1.5;
+    }
+
+    .creator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 860px) {
+      .creator-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .creator-card {
+      background: var(--card-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 1.6rem 1.5rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .creator-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--creator-accent, var(--brand-gold)), transparent);
+      opacity: 0.4;
+      transition: opacity 0.25s ease;
+    }
+
+    .creator-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--brand-gold);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .creator-card:hover::before {
+      opacity: 1;
+    }
+
+    .creator-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 1.1rem;
+    }
+
+    .creator-author-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .creator-avatar-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #080706;
+      background: var(--creator-accent, var(--brand-gold));
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      flex-shrink: 0;
+    }
+
+    .creator-meta-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .creator-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .creator-category-pill {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .creator-ai-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(226, 199, 153, 0.12);
+      border: 1px solid rgba(226, 199, 153, 0.3);
+      color: var(--brand-gold);
+    }
+
+    .creator-ai-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--brand-gold);
+      box-shadow: 0 0 6px var(--brand-gold);
+    }
+
+    .creator-framework-title {
+      font-size: 1.16rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-heading);
+      line-height: 1.35;
+      margin-bottom: 0.65rem;
+    }
+
+    .creator-specs-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 0.9rem;
+      padding: 8px 10px;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+    }
+
+    .creator-spec-item {
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .creator-spec-label {
+      font-weight: 800;
+      color: var(--brand-gold);
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+    }
+
+    .creator-brief {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.1rem;
+      flex: 1;
+    }
+
+    .creator-features-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.25rem;
+    }
+
+    .creator-feature-chip {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(226, 199, 153, 0.07);
+      border: 1px solid rgba(226, 199, 153, 0.18);
+      color: var(--text-secondary);
+    }
+
+    .creator-card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: auto;
+    }
+
+    .creator-style-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-launch-creator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-strong);
+      color: var(--brand-gold);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-launch-creator:hover {
+      background: var(--brand-gold);
+      color: #080706;
+      border-color: var(--brand-gold);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(226, 199, 153, 0.35);
+    }
+
+    /* Modal filter tabs */
+    .modal-filter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .modal-tab-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .modal-tab-btn.is-active,
+    .modal-tab-btn:hover {
+      background: rgba(226, 199, 153, 0.18);
+      border-color: var(--brand-gold);
+      color: var(--brand-gold);
+    }
+
+    .modal-creator-tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-creator-pill {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(226, 199, 153, 0.15);
+      color: var(--brand-gold);
+    }
+
+    .modal-ai-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      opacity: 0.9;
+    }
+
+    /* ==========================================================
        DELETE CONFIRMATION MODAL
        ========================================================== */
     .delete-modal-box {
@@ -1269,6 +1600,235 @@
       </div>
     </header>
 
+    <!-- ==========================================================
+         ELITE CREATOR FRAMEWORKS (AI-SUPPORTED TEMPLATES)
+         ========================================================== -->
+    <section class="creator-shelf-section" aria-label="Elite Creator Frameworks">
+      <div class="shelf-header-row">
+        <div>
+          <div class="shelf-eyebrow">
+            <span>SIGNATURE ARCHITECTURES</span>
+            <span style="opacity:0.4;">•</span>
+            <span>AI COPILOT POWERED</span>
+          </div>
+          <h2 class="shelf-headline">Elite Creator Frameworks</h2>
+          <p class="shelf-subheadline">Battle-tested whiteboard methodologies reverse-engineered from premier direct-response, outbound, and product leaders. Each canvas boots with bespoke frames, flows, and a dedicated AI Copilot persona.</p>
+        </div>
+      </div>
+
+      <div class="creator-grid">
+        <!-- 1. Alex Hormozi -->
+        <div class="creator-card" style="--creator-accent: #E2C799;">
+          <div class="creator-card-top">
+            <div class="creator-author-lockup">
+              <div class="creator-avatar-badge" style="background:#FFF275; color:#1A1715;">AH</div>
+              <div class="creator-meta-col">
+                <span class="creator-name">Alex Hormozi</span>
+                <span class="creator-category-pill">Direct-Response & Offers</span>
+              </div>
+            </div>
+            <div class="creator-ai-indicator">
+              <span class="creator-ai-dot"></span>
+              <span>AI Copilot</span>
+            </div>
+          </div>
+          <h3 class="creator-framework-title">$100M Grand Slam Offer & Value Equation</h3>
+          <div class="creator-specs-row">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket Direct-Response & Offer Architecture</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> Founders & Agency Owners eliminating price resistance</div>
+          </div>
+          <p class="creator-brief">High-contrast yellow & charcoal canvas structuring Dream Outcome, Perceived Likelihood, Time Delay, Effort & Sacrifice, Bonus Stacking, and Risk Reversal Guarantees.</p>
+          <div class="creator-features-wrap">
+            <span class="creator-feature-chip">Value Equation Table</span>
+            <span class="creator-feature-chip">Bonus Stacking</span>
+            <span class="creator-feature-chip">Unconditional Guarantee</span>
+            <span class="creator-feature-chip">Washi Sticky Stack</span>
+          </div>
+          <div class="creator-card-bottom">
+            <span class="creator-style-tag">Usecase: Re-bundle deliverables to $10k+</span>
+            <button type="button" class="btn-launch-creator" onclick="createFromTemplate('hormozi-offer')">
+              Use Framework →
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Liam Ottley -->
+        <div class="creator-card" style="--creator-accent: #38BDF8;">
+          <div class="creator-card-top">
+            <div class="creator-author-lockup">
+              <div class="creator-avatar-badge" style="background:#0284C7; color:#FFFFFF;">LO</div>
+              <div class="creator-meta-col">
+                <span class="creator-name">Liam Ottley</span>
+                <span class="creator-category-pill">Autonomous Systems & AAA</span>
+              </div>
+            </div>
+            <div class="creator-ai-indicator">
+              <span class="creator-ai-dot"></span>
+              <span>AI Copilot</span>
+            </div>
+          </div>
+          <h3 class="creator-framework-title">AI Automation Agency & Pipeline Blueprint</h3>
+          <div class="creator-specs-row">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> AAA / Autonomous Agent Infrastructure</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> AI consultants, founders & enterprise automation architects</div>
+          </div>
+          <p class="creator-brief">Production systems blueprint mapping Omnichannel Lead Capture, n8n/Make Multi-Agent Orchestration, 7-Day Paid Discovery Sprints, and Client Delivery SLA Tiers.</p>
+          <div class="creator-features-wrap">
+            <span class="creator-feature-chip">Multi-Agent Pipeline</span>
+            <span class="creator-feature-chip">SLA Retainer Matrix</span>
+            <span class="creator-feature-chip">Make / n8n Integrations</span>
+            <span class="creator-feature-chip">Discovery Sprint Scope</span>
+          </div>
+          <div class="creator-card-bottom">
+            <span class="creator-style-tag">Usecase: Enterprise AI audits & $5k-$15k/mo retainers</span>
+            <button type="button" class="btn-launch-creator" onclick="createFromTemplate('ottley-ai')">
+              Use Framework →
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Chris Bradley -->
+        <div class="creator-card" style="--creator-accent: #34D399;">
+          <div class="creator-card-top">
+            <div class="creator-author-lockup">
+              <div class="creator-avatar-badge" style="background:#059669; color:#FFFFFF;">CB</div>
+              <div class="creator-meta-col">
+                <span class="creator-name">Chris Bradley</span>
+                <span class="creator-category-pill">Inbound Client Acquisition</span>
+              </div>
+            </div>
+            <div class="creator-ai-indicator">
+              <span class="creator-ai-dot"></span>
+              <span>AI Copilot</span>
+            </div>
+          </div>
+          <h3 class="creator-framework-title">High-Ticket Inbound & Diagnostic Closing Blueprint</h3>
+          <div class="creator-specs-row">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket B2B & Consultative Advisory</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> Agency owners & consultants closing $5k-$30k engagements</div>
+          </div>
+          <p class="creator-brief">Authority-driven inbound acquisition architecture covering 12-Minute Diagnostic VSL Funnels, 15-Minute Urgency Triage Flows, and Consultative 2-Call Closing Scripts.</p>
+          <div class="creator-features-wrap">
+            <span class="creator-feature-chip">12-Min VSL Matrix</span>
+            <span class="creator-feature-chip">Diagnostic Triage Script</span>
+            <span class="creator-feature-chip">2-Call Closing Flow</span>
+            <span class="creator-feature-chip">Objection Demolition</span>
+          </div>
+          <div class="creator-card-bottom">
+            <span class="creator-style-tag">Usecase: Converting organic views to $10k+ retainers</span>
+            <button type="button" class="btn-launch-creator" onclick="createFromTemplate('bradley-inbound')">
+              Use Framework →
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Charlie Morgan -->
+        <div class="creator-card" style="--creator-accent: #F59E0B;">
+          <div class="creator-card-top">
+            <div class="creator-author-lockup">
+              <div class="creator-avatar-badge" style="background:#D97706; color:#FFFFFF;">CM</div>
+              <div class="creator-meta-col">
+                <span class="creator-name">Charlie Morgan</span>
+                <span class="creator-category-pill">Outbound Sales Architecture</span>
+              </div>
+            </div>
+            <div class="creator-ai-indicator">
+              <span class="creator-ai-dot"></span>
+              <span>AI Copilot</span>
+            </div>
+          </div>
+          <h3 class="creator-framework-title">Sovereign Outbound Machine & Conversion Engine</h3>
+          <div class="creator-specs-row">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Predictable B2B Outbound Acquisition & Pipeline</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> B2B founders, agency builders & SDR teams scaling cold pipeline</div>
+          </div>
+          <p class="creator-brief">Mathematical outbound operating system mapping 500-Account TAM Scraping, 8-Touch Omnichannel Cadences (Email + LinkedIn + Loom + Phone), and SDR Benchmark KPI tracking.</p>
+          <div class="creator-features-wrap">
+            <span class="creator-feature-chip">500-Account TAM Matrix</span>
+            <span class="creator-feature-chip">8-Touch Cadence</span>
+            <span class="creator-feature-chip">Sovereign Cold Script</span>
+            <span class="creator-feature-chip">SDR Ramp Benchmarks</span>
+          </div>
+          <div class="creator-card-bottom">
+            <span class="creator-style-tag">Usecase: Scaling from 0 to 10+ booked demos/mo</span>
+            <button type="button" class="btn-launch-creator" onclick="createFromTemplate('morgan-outbound')">
+              Use Framework →
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. AJ&Smart -->
+        <div class="creator-card" style="--creator-accent: #C084FC;">
+          <div class="creator-card-top">
+            <div class="creator-author-lockup">
+              <div class="creator-avatar-badge" style="background:#9333EA; color:#FFFFFF;">A&S</div>
+              <div class="creator-meta-col">
+                <span class="creator-name">AJ&Smart</span>
+                <span class="creator-category-pill">Product Strategy & UX Workshops</span>
+              </div>
+            </div>
+            <div class="creator-ai-indicator">
+              <span class="creator-ai-dot"></span>
+              <span>AI Copilot</span>
+            </div>
+          </div>
+          <h3 class="creator-framework-title">Design Sprint 2.0 & Strategy Facilitation Canvas</h3>
+          <div class="creator-specs-row">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Rapid Product Strategy & Executive UX Workshops</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> Product managers, innovation leads & UX facilitators</div>
+          </div>
+          <p class="creator-brief">Premium collaborative workshop canvas featuring 45-Minute Lightning Decision Jam (LDJ), How-Might-We (HMW) opportunity framing, Silent Voting, and 4-Day Prototyping Roadmap.</p>
+          <div class="creator-features-wrap">
+            <span class="creator-feature-chip">Lightning Decision Jam</span>
+            <span class="creator-feature-chip">How-Might-We Matrix</span>
+            <span class="creator-feature-chip">Silent Dot-Voting</span>
+            <span class="creator-feature-chip">4-Day Sprint Roadmap</span>
+          </div>
+          <div class="creator-card-bottom">
+            <span class="creator-style-tag">Usecase: Aligning stakeholders & validating features</span>
+            <button type="button" class="btn-launch-creator" onclick="createFromTemplate('ajsmart-sprint')">
+              Use Framework →
+            </button>
+          </div>
+        </div>
+
+        <!-- 6. Greg Isenberg -->
+        <div class="creator-card" style="--creator-accent: #FB7185;">
+          <div class="creator-card-top">
+            <div class="creator-author-lockup">
+              <div class="creator-avatar-badge" style="background:#E11D48; color:#FFFFFF;">GI</div>
+              <div class="creator-meta-col">
+                <span class="creator-name">Greg Isenberg</span>
+                <span class="creator-category-pill">Community-Led Growth & Micro-SaaS</span>
+              </div>
+            </div>
+            <div class="creator-ai-indicator">
+              <span class="creator-ai-dot"></span>
+              <span>AI Copilot</span>
+            </div>
+          </div>
+          <h3 class="creator-framework-title">Community-Led Growth Flywheel & Unbundling Canvas</h3>
+          <div class="creator-specs-row">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Community-Led Growth, Unbundling & Micro-SaaS</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Audience:</span> Consumer internet founders, creators & community operators</div>
+          </div>
+          <p class="creator-brief">Editorial community strategy canvas mapping Subreddit/FB Group unbundling, 0-to-100 founding member playbooks, and Content → Community → Micro-SaaS monetization flywheels.</p>
+          <div class="creator-features-wrap">
+            <span class="creator-feature-chip">Reddit Unbundling Matrix</span>
+            <span class="creator-feature-chip">Flywheel Loops</span>
+            <span class="creator-feature-chip">0-to-100 Playbook</span>
+            <span class="creator-feature-chip">Paid Membership Tier</span>
+          </div>
+          <div class="creator-card-bottom">
+            <span class="creator-style-tag">Usecase: Vertical micro-SaaS & $99/mo paid communities</span>
+            <button type="button" class="btn-launch-creator" onclick="createFromTemplate('isenberg-community')">
+              Use Framework →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Workspace Header & Meta -->
     <div class="title-row">
       <div>
@@ -1302,135 +1862,136 @@
   </div>
 
   <!-- ==========================================================
-       TEMPLATE PICKER MODAL (12 Bespoke Starter Frameworks)
+       TEMPLATE PICKER MODAL (Elite Creator Frameworks)
        ========================================================== -->
   <div id="templateModal" class="modal-backdrop" onclick="closeTemplateModal(event)">
     <div class="template-modal-card" onclick="event.stopPropagation()">
       <div class="modal-top-bar">
         <div>
-          <div class="eyebrow">STRATEGY TEMPLATES</div>
-          <h2 style="font-size:1.4rem; font-weight:800; color:var(--text-heading);">Choose a Starting Framework</h2>
+          <div class="eyebrow">STRATEGY ARCHITECTURES</div>
+          <h2 style="font-size:1.4rem; font-weight:800; color:var(--text-heading);">Elite Creator Frameworks</h2>
         </div>
         <button type="button" class="modal-close-btn" onclick="closeTemplateModal()">✕</button>
       </div>
 
+      <!-- Category Filter Tabs -->
+      <div class="modal-filter-tabs">
+        <button type="button" class="modal-tab-btn is-active" onclick="filterModalTemplates('all', this)">All Frameworks</button>
+        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('creator', this)">Elite Creators (6)</button>
+        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('acquisition', this)">Inbound & Outbound</button>
+        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('offers', this)">Offers & Community</button>
+        <button type="button" class="modal-tab-btn" onclick="filterModalTemplates('systems', this)">AI & Product Sprints</button>
+      </div>
+
       <div class="templates-grid">
-        <!-- 1. DTC Brand Scaling Blueprint -->
-        <div class="template-picker-card" onclick="createFromTemplate('scaling-blueprint')">
-          <span class="template-tag">Acquisition</span>
-          <h3 class="template-title">DTC Scaling Blueprint</h3>
-          <p class="template-desc">Advantage+ paid media architecture, high-intent advertorials, and CRO testing loops.</p>
+        <!-- 1. Alex Hormozi -->
+        <div class="template-picker-card" data-category="creator offers" onclick="createFromTemplate('hormozi-offer')">
+          <div class="modal-creator-tag-badge">
+            <span class="modal-creator-pill" style="background:#FFF275; color:#1A1715;">AH • Alex Hormozi</span>
+            <span class="modal-ai-tag">✦ AI Copilot</span>
+          </div>
+          <h3 class="template-title">$100M Grand Slam Offer & Value Equation</h3>
+          <p class="template-desc">High-contrast yellow & charcoal canvas structuring Dream Outcome, Perceived Likelihood, Time Delay, Effort, Bonus Stacking, and Risk Reversal Guarantees.</p>
+          <div class="creator-specs-row" style="margin-bottom:0.75rem;">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket Direct-Response</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Eliminate price resistance ($10k+)</div>
+          </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
+            <span class="btn-use-template">Use Framework →</span>
           </div>
         </div>
 
-        <!-- 2. Beauty VIP Retention Flywheel -->
-        <div class="template-picker-card" onclick="createFromTemplate('retention-flywheel')">
-          <span class="template-tag">Retention</span>
-          <h3 class="template-title">VIP Retention Flywheel</h3>
-          <p class="template-desc">Post-purchase Klaviyo flows, SMS replenishment cadence, and VIP tier mechanics.</p>
+        <!-- 2. Liam Ottley -->
+        <div class="template-picker-card" data-category="creator systems" onclick="createFromTemplate('ottley-ai')">
+          <div class="modal-creator-tag-badge">
+            <span class="modal-creator-pill" style="background:#0284C7; color:#FFFFFF;">LO • Liam Ottley</span>
+            <span class="modal-ai-tag">✦ AI Copilot</span>
+          </div>
+          <h3 class="template-title">AI Automation Agency & Pipeline Blueprint</h3>
+          <p class="template-desc">Production systems blueprint mapping Omnichannel Lead Capture, n8n/Make Multi-Agent Orchestration, 7-Day Discovery Sprints, and Client Delivery SLAs.</p>
+          <div class="creator-specs-row" style="margin-bottom:0.75rem;">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> AAA / Autonomous Systems</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Enterprise AI audits & retainers</div>
+          </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
+            <span class="btn-use-template">Use Framework →</span>
           </div>
         </div>
 
-        <!-- 3. Meta & TikTok Ads Performance Engine -->
-        <div class="template-picker-card" onclick="createFromTemplate('meta-tiktok-ads')">
-          <span class="template-tag">Paid Media</span>
-          <h3 class="template-title">Ads Performance Engine</h3>
-          <p class="template-desc">Dynamic creative testing (3:2:2), TikTok Spark hook retention, and catalog scaling.</p>
+        <!-- 3. Chris Bradley -->
+        <div class="template-picker-card" data-category="creator acquisition" onclick="createFromTemplate('bradley-inbound')">
+          <div class="modal-creator-tag-badge">
+            <span class="modal-creator-pill" style="background:#059669; color:#FFFFFF;">CB • Chris Bradley</span>
+            <span class="modal-ai-tag">✦ AI Copilot</span>
+          </div>
+          <h3 class="template-title">High-Ticket Inbound & Diagnostic Closing</h3>
+          <p class="template-desc">Authority-driven inbound acquisition architecture covering 12-Minute Diagnostic VSL Funnels, 15-Minute Urgency Triage Flows, and Consultative 2-Call Closing Scripts.</p>
+          <div class="creator-specs-row" style="margin-bottom:0.75rem;">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> High-Ticket B2B Advisory</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Convert views to $10k+ retainers</div>
+          </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
+            <span class="btn-use-template">Use Framework →</span>
           </div>
         </div>
 
-        <!-- 4. Luxury Hero SKU Product Launch -->
-        <div class="template-picker-card" onclick="createFromTemplate('product-launch')">
-          <span class="template-tag">Product Launch</span>
-          <h3 class="template-title">Hero SKU Launch</h3>
-          <p class="template-desc">Teaser waitlist funnel, VIP presale window, and press seeding momentum.</p>
+        <!-- 4. Charlie Morgan -->
+        <div class="template-picker-card" data-category="creator acquisition" onclick="createFromTemplate('morgan-outbound')">
+          <div class="modal-creator-tag-badge">
+            <span class="modal-creator-pill" style="background:#D97706; color:#FFFFFF;">CM • Charlie Morgan</span>
+            <span class="modal-ai-tag">✦ AI Copilot</span>
+          </div>
+          <h3 class="template-title">Sovereign Outbound Machine & Conversion Engine</h3>
+          <p class="template-desc">Mathematical outbound operating system mapping 500-Account TAM Scraping, 8-Touch Omnichannel Cadences, and SDR Benchmark KPI tracking.</p>
+          <div class="creator-specs-row" style="margin-bottom:0.75rem;">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Predictable B2B Outbound</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Scale cold pipeline to 10+ demos/mo</div>
+          </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
+            <span class="btn-use-template">Use Framework →</span>
           </div>
         </div>
 
-        <!-- 5. High-Ticket Creator & UGC Engine -->
-        <div class="template-picker-card" onclick="createFromTemplate('influencer-collabs')">
-          <span class="template-tag">Creators</span>
-          <h3 class="template-title">Creator & UGC Engine</h3>
-          <p class="template-desc">Product seeding matrix, creator briefing docs, and paid usage whitelisting rights.</p>
+        <!-- 5. AJ&Smart -->
+        <div class="template-picker-card" data-category="creator product systems" onclick="createFromTemplate('ajsmart-sprint')">
+          <div class="modal-creator-tag-badge">
+            <span class="modal-creator-pill" style="background:#9333EA; color:#FFFFFF;">A&S • AJ&Smart</span>
+            <span class="modal-ai-tag">✦ AI Copilot</span>
+          </div>
+          <h3 class="template-title">Design Sprint 2.0 & Strategy Facilitation</h3>
+          <p class="template-desc">Premium collaborative workshop canvas featuring 45-Minute Lightning Decision Jam (LDJ), How-Might-We (HMW) framing, and 4-Day Prototyping Roadmap.</p>
+          <div class="creator-specs-row" style="margin-bottom:0.75rem;">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Product Strategy & UX Workshops</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Align teams & validate in 4 days</div>
+          </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
+            <span class="btn-use-template">Use Framework →</span>
           </div>
         </div>
 
-        <!-- 6. Executive Personal Brand Engine -->
-        <div class="template-picker-card" onclick="createFromTemplate('personal-branding')">
-          <span class="template-tag">Advisory</span>
-          <h3 class="template-title">Personal Brand Engine</h3>
-          <p class="template-desc">Founder authority architecture, thought leadership pipeline, and high-ticket inbound funnel.</p>
+        <!-- 6. Greg Isenberg -->
+        <div class="template-picker-card" data-category="creator community offers" onclick="createFromTemplate('isenberg-community')">
+          <div class="modal-creator-tag-badge">
+            <span class="modal-creator-pill" style="background:#E11D48; color:#FFFFFF;">GI • Greg Isenberg</span>
+            <span class="modal-ai-tag">✦ AI Copilot</span>
+          </div>
+          <h3 class="template-title">Community-Led Growth & Unbundling Canvas</h3>
+          <p class="template-desc">Editorial community strategy canvas mapping Subreddit/FB Group unbundling, 0-to-100 founding member playbooks, and Micro-SaaS monetization flywheels.</p>
+          <div class="creator-specs-row" style="margin-bottom:0.75rem;">
+            <div class="creator-spec-item"><span class="creator-spec-label">Niche:</span> Community Growth & Micro-SaaS</div>
+            <div class="creator-spec-item"><span class="creator-spec-label">Usecase:</span> Micro-SaaS & $99/mo communities</div>
+          </div>
           <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
+            <span class="btn-use-template">Use Framework →</span>
           </div>
         </div>
 
-        <!-- 7. Executive Strategy Blueprint -->
-        <div class="template-picker-card" onclick="createFromTemplate('strategy')">
-          <span class="template-tag">Strategy</span>
-          <h3 class="template-title">Executive Blueprint</h3>
-          <p class="template-desc">Boutique positioning, diagnostic friction audit, and high-ticket retainer tiers.</p>
-          <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
-          </div>
-        </div>
-
-        <!-- 8. Omnichannel Brand Diagnostic Audit -->
-        <div class="template-picker-card" onclick="createFromTemplate('audit')">
-          <span class="template-tag">Diagnostic</span>
-          <h3 class="template-title">Omnichannel Audit</h3>
-          <p class="template-desc">360° audit scoring acquisition leakage, LTV dropoff, and unit economics.</p>
-          <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
-          </div>
-        </div>
-
-        <!-- 9. Luxury Skincare Brand Architecture -->
-        <div class="template-picker-card" onclick="createFromTemplate('skincare')">
-          <span class="template-tag">Brand</span>
-          <h3 class="template-title">Skincare Architecture</h3>
-          <p class="template-desc">Cosmetic chemistry authority, clinical trial proof points, and luxury retail positioning.</p>
-          <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
-          </div>
-        </div>
-
-        <!-- 10. 90-Day Revenue Roadmap -->
-        <div class="template-picker-card" onclick="createFromTemplate('planner')">
-          <span class="template-tag">Roadmap</span>
-          <h3 class="template-title">90-Day Roadmap</h3>
-          <p class="template-desc">Sprint milestones, monthly revenue targets, and marketing resource allocation.</p>
-          <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
-          </div>
-        </div>
-
-        <!-- 11. Haute Aesthetic Moodboard -->
-        <div class="template-picker-card" onclick="createFromTemplate('moodboard')">
-          <span class="template-tag">Creative</span>
-          <h3 class="template-title">Visual Direction & Moodboard</h3>
-          <p class="template-desc">Art direction boards, typography pairings, packaging concepts, and editorial cues.</p>
-          <div class="template-card-footer">
-            <span class="btn-use-template">Use Template →</span>
-          </div>
-        </div>
-
-        <!-- 12. Blank Canvas -->
-        <div class="template-picker-card" onclick="createFromTemplate('blank')">
-          <span class="template-tag">Custom</span>
-          <h3 class="template-title">Blank Canvas</h3>
-          <p class="template-desc">A clean, infinite strategy whiteboard to build your custom framework from scratch.</p>
-          <div class="template-card-footer">
+        <!-- 7. Blank Canvas -->
+        <div class="template-picker-card" data-category="all creator offers systems acquisition product community" onclick="createFromTemplate('blank')">
+          <span class="template-tag">Clean Canvas</span>
+          <h3 class="template-title">Blank Strategy Canvas</h3>
+          <p class="template-desc">An unformatted infinite strategy whiteboard with standard luxury grid, ready for custom bespoke frameworks.</p>
+          <div class="template-card-footer" style="margin-top:auto;">
             <span class="btn-use-template">Use Template →</span>
           </div>
         </div>
@@ -1766,6 +2327,20 @@
       if (modal) modal.classList.remove('is-open');
     }
 
+    function filterModalTemplates(category, btn) {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('is-active'));
+      if (btn) btn.classList.add('is-active');
+      const cards = document.querySelectorAll('.template-modal-card .template-picker-card');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category') || '';
+        if (category === 'all' || cat.includes(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
     /* Board Creation Engines */
     async function createBlankBoard() {
       if (!activeUser) return;
@@ -1829,6 +2404,12 @@
       } catch (_) {}
 
       const templateTitles = {
+        'hormozi-offer': '$100M Grand Slam Offer & Value Equation',
+        'ottley-ai': 'AI Automation Agency & Pipeline Blueprint',
+        'bradley-inbound': 'High-Ticket Inbound & Diagnostic Closing Blueprint',
+        'morgan-outbound': 'Sovereign Outbound Machine & Conversion Engine',
+        'ajsmart-sprint': 'Design Sprint 2.0 & Strategy Facilitation',
+        'isenberg-community': 'Community-Led Growth Flywheel & Unbundling Canvas',
         'scaling-blueprint': 'DTC Brand Scaling Blueprint',
         'retention-flywheel': 'Beauty VIP Retention Flywheel',
         'meta-tiktok-ads': 'Meta & TikTok Ads Performance Engine',

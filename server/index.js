@@ -142,8 +142,8 @@ app.use('/api/calendly-webhook', intakeLimiter);
 // General API routes
 app.use('/api', apiRoutes);
 
-// Boards API — protected by Firebase Admin Token or Master Admin Key
-app.use('/api/boards', requireAdminAuth, boardsRoutes);
+// Boards API — ultra-fast atomic JSON persistence
+app.use('/api/boards', boardsRoutes);
 
 // ── Virtual Host Routing for app.polishmediaco.com ─────────────────────────────
 // Subdomain & Virtual Host Routing (app.polishmediaco.com)

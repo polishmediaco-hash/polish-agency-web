@@ -43,50 +43,162 @@ window.StudioCore = (function () {
     btn.title = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
   }
 
+  function getBuiltinStarterBoard() {
+    return {
+      id: 'starter-strategy-board',
+      slug: 'executive-strategy-template',
+      title: 'Executive Strategy Blueprint',
+      client: 'Private Advisory Client',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      viewport: { panX: 80, panY: 60, scale: 0.72 },
+      elements: [
+        {
+          id: 'frame-foundation',
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 640,
+          height: 520,
+          zIndex: 10,
+          frameNumber: '01',
+          titlePill: 'EXECUTIVE FOUNDATION',
+          headline: 'Positioning & Strategic Reality',
+          serifAccent: 'Strategic Reality',
+          description: 'Establishing elite category authority and pricing power before entering the market.',
+          boxes: [
+            { tag: 'CORE INSIGHT', tagColor: 'gold', title: 'Discreet Boutique Authority', content: 'High-net-worth clients seek trusted confidential advisors. Direct high-context conversations outperform passive social views.' },
+            { tag: 'THE BARRIER', tagColor: 'rose', title: 'Eliminating Low-Ticket Fatigue', content: 'Eliminating hourly sessions in favor of structured high-ticket advisory containers that preserve executive peace.' }
+          ]
+        },
+        {
+          id: 'frame-offer',
+          type: 'frame',
+          x: 840,
+          y: 120,
+          width: 680,
+          height: 580,
+          zIndex: 10,
+          frameNumber: '02',
+          titlePill: 'HAUTE OFFER LADDER',
+          headline: 'Two-Tier Retainer Architecture',
+          serifAccent: 'Retainer Architecture',
+          description: 'A structured conversion bridge converting friction into ongoing partnership retainers.',
+          boxes: [
+            { tag: 'TIER 1 • DIAGNOSTIC', tagColor: 'blue', title: 'The 60-Min Life Friction Audit', content: 'One-time diagnostic mapping pace fatigue, decision paralysis, and boundary erosion. Delivers a custom 1-page blueprint.' },
+            { tag: 'TIER 2 • CORE RETAINER', tagColor: 'green', title: '30-Day Executive Reset Container', content: 'Weekly private calibrations in-person or Zoom + VIP async WhatsApp audio notes access. Roster capped at 5 active clients.' }
+          ]
+        },
+        {
+          id: 'sticky-1',
+          type: 'sticky',
+          x: 770,
+          y: 40,
+          width: 260,
+          height: 180,
+          zIndex: 25,
+          color: 'yellow',
+          rotation: -2,
+          hasTape: true,
+          header: 'STRATEGIC NOTE',
+          content: 'Never pitch retainers cold. The Tier 1 diagnostic audit filters out non-serious leads and converts at 60%+ into Tier 2.',
+          footer: 'REF: POLISH-PROTO'
+        },
+        {
+          id: 'sticky-2',
+          type: 'sticky',
+          x: 1540,
+          y: 260,
+          width: 260,
+          height: 180,
+          zIndex: 25,
+          color: 'rose',
+          rotation: 1.5,
+          hasTape: true,
+          header: 'EXECUTION RULE',
+          content: 'Cap roster strictly at 5–6 clients to maintain impeccable aura, bespoke focus, and uncompromising pricing leverage.',
+          footer: 'REF: POLISH-LADDER'
+        },
+        {
+          id: 'pricing-1',
+          type: 'pricing',
+          x: 1600,
+          y: 120,
+          width: 320,
+          zIndex: 15,
+          isFeatured: true,
+          badge: 'HAUTE ADVISORY RETAINER',
+          currency: 'AED',
+          figure: '18,500',
+          period: 'Quarterly Private Retainer',
+          features: [
+            'Bi-weekly In-Person or Private Zoom Calibrations',
+            'Direct VIP WhatsApp Async Voice Hotline',
+            'End-to-End Retention Architecture Blueprint',
+            'Complete Team Protocols & Governance Handover'
+          ]
+        },
+        {
+          id: 'table-1',
+          type: 'table',
+          x: 840,
+          y: 780,
+          width: 640,
+          zIndex: 12,
+          title: 'Strategic Deliverables Matrix',
+          badge: 'EXECUTION ROADMAP',
+          headers: ['Phase', 'Deliverable Output', 'Timeline', 'Target Metric'],
+          rows: [
+            ['Phase 01: Audit', 'Conversion & Retention Diagnostic', 'Weeks 1–2', '+18% CVR'],
+            ['Phase 02: Architecture', 'VIP Advisory Retainer Launch', 'Weeks 3–6', '$45k ARR Added'],
+            ['Phase 03: Scaling', 'Autonomous Systems & Handover', 'Months 2–3', 'Zero Founder Fatigue']
+          ]
+        },
+        {
+          id: 'form-1',
+          type: 'form',
+          x: 100,
+          y: 780,
+          width: 520,
+          zIndex: 12,
+          title: 'Brand Diagnostic Intake Worksheet',
+          badge: 'INTAKE ENGINE',
+          desc: 'Calibrate core operational friction points prior to executive kickoff sprint.',
+          fields: [
+            { id: 'field-diag-1', type: 'textarea', label: '01. Primary Conversion / Retention Friction', badge: 'DIAGNOSTIC', instructions: 'Where is the largest bottleneck between customer acquisition and 90-day repeat LTV?', value: 'Ad spend efficiency drops after second purchase; need bespoke high-ticket retention sequence.' },
+            { id: 'field-diag-2', type: 'input', label: '02. Target 90-Day Gross Revenue Benchmark (AED / $)', badge: 'METRIC', instructions: 'Current baseline vs Q4 goal:', value: 'Current $85k/mo → Target $160k/mo' }
+          ]
+        }
+      ],
+      connections: [
+        {
+          id: 'conn-1',
+          from: 'frame-foundation',
+          fromAnchor: 'right',
+          to: 'frame-offer',
+          toAnchor: 'left',
+          style: 'dashed',
+          color: 'slate',
+          label: '1. Foundation Positioning → Informs Haute Offer'
+        }
+      ]
+    };
+  }
+
   async function init() {
     canvasContainer = document.getElementById('board-canvas');
     initTheme();
 
-    // 1. Determine Board ID from URL or Local Storage
+    // 1. Determine Board ID synchronously (0ms)
     const params = new URLSearchParams(window.location.search);
-    let boardId = params.get('id');
-
-    // Check pathname like /b/:id
     const pathParts = window.location.pathname.split('/').filter(Boolean);
-    if (pathParts[0] === 'b' && pathParts[1]) {
-      boardId = pathParts[1];
-    }
+    const pathId = (pathParts[0] === 'b' || pathParts[0] === 'view') && pathParts[1] ? pathParts[1] : null;
+    const boardId = params.get('id') || pathId || localStorage.getItem('polish_board_last_id') || 'starter-strategy-board';
 
-    if (!boardId) {
-      boardId = localStorage.getItem('polish_board_last_id');
-    }
+    // 2. Instant render from local cache or built-in template (0ms Frame-1 render!)
+    loadBoard(boardId);
 
-    if (!boardId) {
-      // Fetch latest board for current user
-      if (window.PolishFirebase && window.PolishFirebase.currentUser) {
-        const userBoards = await window.PolishFirebase.listBoards(window.PolishFirebase.currentUser.uid);
-        if (userBoards && userBoards.length > 0) {
-          boardId = userBoards[0].id;
-        }
-      }
-      if (!boardId) {
-        try {
-          const res = await fetch('/api/boards');
-          const data = await res.json();
-          if (data.boards && data.boards.length > 0) {
-            boardId = data.boards[0].id;
-          }
-        } catch (_) {}
-      }
-    }
-
-    if (!boardId) {
-      boardId = 'starter-strategy-board';
-    }
-
-    await loadBoard(boardId);
-
-    // Bind Keyboard Shortcuts & Title input
+    // 3. Bind Keyboard Shortcuts & Title input
     bindKeyboardShortcuts();
     bindTitleInput();
   }
@@ -107,66 +219,44 @@ window.StudioCore = (function () {
     try {
       let board = null;
 
-      // 1. Check local cache first for instantaneous offline load
+      // 1. Instant check from local cache (0ms)
       const localCached = localStorage.getItem(`polish_board_${id}`) || (localStorage.getItem('polish_board_last_id') === id ? localStorage.getItem('polish_board_current') : null);
       if (localCached) {
-        try {
-          board = JSON.parse(localCached);
-        } catch (_) {}
+        try { board = JSON.parse(localCached); } catch (_) {}
       }
 
+      // If not cached and starter board, use built-in template instantly (0ms)
+      if (!board && (id === 'starter-strategy-board' || id === 'executive-strategy-template' || !id)) {
+        board = getBuiltinStarterBoard();
+      }
+
+      // RENDER IMMEDIATELY ON FRAME 1 (0ms!)
       if (board) {
         currentBoard = board;
         applyLoadedBoard();
-        indicateSaved(false); // Indicates saved locally initially
+        indicateSaved(false);
       }
 
-      // 2. Fetch from cloud / server in background
-      try {
-        let cloudBoard = null;
-        if (window.PolishFirebase && window.PolishFirebase.currentUser) {
-          cloudBoard = await window.PolishFirebase.getBoard(id);
-        }
-
-        if (!cloudBoard) {
-          const res = await fetch(`/api/boards/${encodeURIComponent(id)}`);
-          if (res.ok) {
-            const data = await res.json();
-            if (data.success && data.board) {
-              cloudBoard = data.board;
+      // 2. Non-blocking asynchronous background refresh from /api/boards/:id
+      fetch(`/api/boards/${encodeURIComponent(id)}`)
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+          if (data && data.success && data.board) {
+            const cloudBoard = data.board;
+            if (!board || new Date(cloudBoard.updatedAt || 0) > new Date(board.updatedAt || 0)) {
+              currentBoard = cloudBoard;
+              saveLocally();
+              applyLoadedBoard();
             }
+            indicateSaved(true);
           }
-        }
-
-        if (cloudBoard) {
-          // If cloud has newer timestamp or board was not locally cached, apply cloud
-          if (!board || new Date(cloudBoard.updatedAt || 0) >= new Date(board.updatedAt || 0)) {
-            currentBoard = cloudBoard;
-            saveLocally();
-            applyLoadedBoard();
-          }
-          indicateSaved(true);
-        }
-      } catch (cloudErr) {
-        console.warn('[StudioCore] Cloud sync offline; local version loaded:', cloudErr);
-      }
+        })
+        .catch(() => {});
 
       if (!currentBoard) {
-        console.log('[StudioCore] Initializing fresh offline whiteboard');
-        currentBoard = {
-          id: id || `board-${Date.now()}`,
-          title: 'Personal Whiteboard',
-          elements: [],
-          connections: [],
-          panX: 0,
-          panY: 0,
-          zoom: 1,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString()
-        };
+        currentBoard = getBuiltinStarterBoard();
         saveLocally();
         applyLoadedBoard();
-        indicateSaved(false);
       }
     } catch (err) {
       console.error('Error loading board:', err);

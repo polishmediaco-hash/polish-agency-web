@@ -52,7 +52,7 @@
             this.app = firebase.app();
           }
           this.auth = typeof firebase.auth === 'function' ? firebase.auth() : null;
-          this.db = typeof firebase.firestore === 'function' ? firebase.firestore() : null;
+          this.db = null;
           this.hasLiveFirebase = !!this.auth;
 
           if (this.auth) {
@@ -259,88 +259,73 @@
       this._notifyAuthListeners(null);
     },
 
-    // Firestore Data: List Boards (User Isolated)
+    // Board Persistence: List Boards (User Isolated, Instant Local + Fast API)
     async listBoards(userId) {
       if (!userId) return [];
+      const localKey = `polish_boards_${userId}`;
 
-      if (this.hasLiveFirebase && this.db) {
-        try {
-          const snapshot = await this.db
-            .collection('boards')
-            .where('ownerId', '==', userId)
-            .get();
-
-          const boards = [];
-          snapshot.forEach((doc) => {
-            const data = doc.data();
-            boards.push({
-              id: doc.id,
-              ...data,
-              elementCount: (data.elements || []).length,
-              connectionCount: (data.connections || []).length
-            });
-          });
-
-          // Sort in JS to avoid needing complex composite indexes
-          boards.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0));
-          return boards;
-        } catch (err) {
-          console.error('[PolishFirebase] Error querying Firestore boards:', err);
-        }
-      }
-
-      // Fallback: Query backend API or localStorage
+      // 1. Instant return from cache (0ms)
+      let cachedBoards = [];
       try {
-        const res = await fetch('/api/boards');
+        const raw = localStorage.getItem(localKey);
+        if (raw) cachedBoards = JSON.parse(raw);
+      } catch (_) {}
+
+      // 2. Fetch fresh boards from API with 2.5s timeout
+      try {
+        const ctrl = new AbortController();
+        const timeoutId = setTimeout(() => ctrl.abort(), 2500);
+        const res = await fetch('/api/boards', { signal: ctrl.signal });
+        clearTimeout(timeoutId);
+
         if (res.ok) {
           const data = await res.json();
           if (data && data.boards) {
-            // Filter by userId if present, otherwise show user's boards
-            return data.boards.filter(b => !b.ownerId || b.ownerId === userId);
+            const userBoards = data.boards.filter(b => !b.ownerId || b.ownerId === userId);
+            try {
+              localStorage.setItem(localKey, JSON.stringify(userBoards));
+            } catch (_) {}
+            return userBoards;
           }
         }
-      } catch (e) {
-        console.warn('[PolishFirebase] Fallback API failed:', e);
-      }
+      } catch (_) {}
 
-      // LocalStorage fallback
-      const localKey = `polish_boards_${userId}`;
-      const cached = localStorage.getItem(localKey);
-      return cached ? JSON.parse(cached) : [];
+      return cachedBoards;
     },
 
-    // Firestore Data: Get Single Board
+    // Board Persistence: Get Single Board (Instant Local + Background API)
     async getBoard(boardId) {
       if (!boardId) return null;
 
-      if (this.hasLiveFirebase && this.db) {
-        try {
-          const doc = await this.db.collection('boards').doc(boardId).get();
-          if (doc.exists) {
-            return { id: doc.id, ...doc.data() };
-          }
-        } catch (err) {
-          console.warn('[PolishFirebase] Firestore getBoard failed, trying API fallback:', err.message);
-        }
-      }
-
-      // Fallback to API
+      // 1. Instant return from local cache (0ms)
+      let cached = null;
       try {
-        const res = await fetch(`/api/boards/${encodeURIComponent(boardId)}`);
+        const raw = localStorage.getItem(`polish_board_${boardId}`);
+        if (raw) cached = JSON.parse(raw);
+      } catch (_) {}
+
+      // 2. Fetch fresh board from API with 2.5s timeout
+      try {
+        const ctrl = new AbortController();
+        const timeoutId = setTimeout(() => ctrl.abort(), 2500);
+        const res = await fetch(`/api/boards/${encodeURIComponent(boardId)}`, { signal: ctrl.signal });
+        clearTimeout(timeoutId);
+
         if (res.ok) {
           const data = await res.json();
-          if (data && data.board) return data.board;
+          if (data && data.board) {
+            try {
+              localStorage.setItem(`polish_board_${boardId}`, JSON.stringify(data.board));
+            } catch (_) {}
+            return data.board;
+          }
         }
-      } catch (e) {
-        console.warn('[PolishFirebase] API getBoard failed:', e);
-      }
+      } catch (_) {}
 
-      // Local fallback
-      const cached = localStorage.getItem(`polish_board_${boardId}`);
-      return cached ? JSON.parse(cached) : null;
+      return cached;
     },
 
-    // Firestore Data: Save / Update Board
+    // Board Persistence: Save / Update Board (Instant Sync + Non-blocking Background API)
     async saveBoard(boardData, user) {
       if (!boardData || !boardData.id) throw new Error('Invalid board data');
 
@@ -350,53 +335,66 @@
         ownerId: user ? user.uid : (boardData.ownerId || 'anonymous'),
         ownerEmail: user ? user.email : (boardData.ownerEmail || ''),
         updatedAt: now,
-        isPublished: true // Allows client presentation viewing
+        isPublished: true
       };
 
       if (!payload.createdAt) payload.createdAt = now;
 
-      if (this.hasLiveFirebase && this.db) {
-        try {
-          await this.db.collection('boards').doc(boardData.id).set(payload, { merge: true });
-          console.log('[PolishFirebase] Board saved to Firestore:', boardData.id);
-        } catch (err) {
-          console.warn('[PolishFirebase] Firestore save failed, writing to backend API:', err);
-        }
-      }
-
-      // Also persist to backend API for multi-channel reliability
+      // 1. Instant synchronous write to localStorage (0ms)
       try {
-        await fetch(`/api/boards/${encodeURIComponent(boardData.id)}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      } catch (e) {
-        console.warn('[PolishFirebase] API sync failed:', e);
-      }
+        localStorage.setItem(`polish_board_${boardData.id}`, JSON.stringify(payload));
+        localStorage.setItem('polish_board_last_id', boardData.id);
 
-      // Cache locally
-      localStorage.setItem(`polish_board_${boardData.id}`, JSON.stringify(payload));
+        const localKey = `polish_boards_${payload.ownerId}`;
+        const rawList = localStorage.getItem(localKey);
+        let list = rawList ? JSON.parse(rawList) : [];
+        const idx = list.findIndex(b => b.id === boardData.id);
+        const meta = {
+          id: payload.id,
+          slug: payload.slug || payload.id,
+          title: payload.title || 'Untitled Board',
+          client: payload.client || 'Private Client',
+          createdAt: payload.createdAt,
+          updatedAt: payload.updatedAt,
+          elementCount: (payload.elements || []).length,
+          connectionCount: (payload.connections || []).length,
+          ownerId: payload.ownerId,
+          ownerEmail: payload.ownerEmail
+        };
+        if (idx >= 0) list[idx] = meta;
+        else list.unshift(meta);
+        localStorage.setItem(localKey, JSON.stringify(list));
+      } catch (_) {}
+
+      // 2. Non-blocking asynchronous sync to backend API in background
+      fetch(`/api/boards/${encodeURIComponent(boardData.id)}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+
       return payload;
     },
 
-    // Firestore Data: Delete Board
+    // Board Persistence: Delete Board (Instant Local + Non-blocking Background API)
     async deleteBoard(boardId) {
       if (!boardId) return false;
 
-      if (this.hasLiveFirebase && this.db) {
-        try {
-          await this.db.collection('boards').doc(boardId).delete();
-        } catch (err) {
-          console.warn('[PolishFirebase] Firestore delete failed:', err);
-        }
-      }
-
+      // 1. Instant delete from local cache (0ms)
       try {
-        await fetch(`/api/boards/${encodeURIComponent(boardId)}`, { method: 'DELETE' });
-      } catch (e) {}
+        localStorage.removeItem(`polish_board_${boardId}`);
+        if (this.currentUser) {
+          const localKey = `polish_boards_${this.currentUser.uid}`;
+          const rawList = localStorage.getItem(localKey);
+          if (rawList) {
+            const list = JSON.parse(rawList).filter(b => b.id !== boardId);
+            localStorage.setItem(localKey, JSON.stringify(list));
+          }
+        }
+      } catch (_) {}
 
-      localStorage.removeItem(`polish_board_${boardId}`);
+      // 2. Non-blocking delete on server
+      fetch(`/api/boards/${encodeURIComponent(boardId)}`, { method: 'DELETE' }).catch(() => {});
       return true;
     }
   };

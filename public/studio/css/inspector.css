@@ -381,18 +381,42 @@ body.theme-dark .insp-select option {
 
 body.theme-dark .insp-size-pill {
   background: #24201C !important;
-  border-color: rgba(226, 199, 153, 0.3) !important;
+  border: 1px solid rgba(226, 199, 153, 0.45) !important;
+  color: #FFDF9E !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 10px rgba(226, 199, 153, 0.2) !important;
+}
+
+.insp-text-indicator {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  margin-right: 2px;
+}
+
+body.theme-dark .insp-text-indicator {
   color: #E2C799 !important;
+  font-weight: 900 !important;
 }
 
 body.theme-dark .insp-btn {
-  color: #E2DBD2 !important;
+  color: #F5E6D3 !important;
+  border-color: rgba(226, 199, 153, 0.25) !important;
+  background: rgba(226, 199, 153, 0.08) !important;
+}
+
+body.theme-dark .insp-btn svg {
+  stroke: #E2C799 !important;
 }
 
 body.theme-dark .insp-btn:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(226, 199, 153, 0.22) !important;
   color: #FFFFFF !important;
-  border-color: rgba(226, 199, 153, 0.35) !important;
+  border-color: #E2C799 !important;
+}
+
+body.theme-dark .insp-btn:hover svg {
+  stroke: #FFFFFF !important;
 }
 
 body.theme-dark .insp-btn.active {
@@ -402,9 +426,9 @@ body.theme-dark .insp-btn.active {
 }
 
 body.theme-dark .insp-btn.btn-connect {
-  background: rgba(226, 199, 153, 0.15) !important;
+  background: rgba(226, 199, 153, 0.18) !important;
   color: #E2C799 !important;
-  border-color: rgba(226, 199, 153, 0.4) !important;
+  border-color: rgba(226, 199, 153, 0.45) !important;
 }
 
 body.theme-dark .insp-btn.btn-connect:hover {
@@ -423,12 +447,12 @@ body.theme-dark .insp-btn.btn-danger:hover {
 }
 
 body.theme-dark .insp-color-btn {
-  color: #E2DBD2 !important;
+  color: #F5E6D3 !important;
 }
 
 body.theme-dark .insp-color-btn:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border-color: rgba(226, 199, 153, 0.35) !important;
+  background: rgba(226, 199, 153, 0.2) !important;
+  border-color: #E2C799 !important;
   color: #FFFFFF !important;
 }
 

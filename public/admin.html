@@ -1952,7 +1952,7 @@
 <!-- Firebase Web SDK (Auth Only — zero firestore overhead) -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script src="/studio/js/firebase-config.js?v=20260909_fast"></script>
+<script src="/studio/js/firebase-config.js?v=20260909_v5"></script>
 
 <script>
   let activeAdminKey = '';
@@ -1991,10 +1991,11 @@
   function showAuthError(msg) {
     const el = document.getElementById('authGateError');
     if (el) {
-      el.textContent = msg;
+      el.innerHTML = msg;
       el.style.display = 'block';
     }
-    notifyToast(msg, true);
+    const plainText = msg.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+    notifyToast(plainText, true);
   }
 
   function toggleKeyForm() {
@@ -2030,17 +2031,26 @@
   }
 
   // ── Firebase Google Sign-In ───────────────────────────────
-  async function handleGoogleAdminSignIn() {
+  async function handleGoogleAdminSignIn(mode) {
     const errEl = document.getElementById('authGateError');
     if (errEl) errEl.style.display = 'none';
     const btn = document.getElementById('btnGoogleSignIn');
     const text = document.getElementById('btnGoogleText');
     if (btn) btn.style.opacity = '0.7';
-    if (text) text.textContent = 'Connecting with Google...';
+    if (text) text.textContent = mode === 'redirect' ? 'Redirecting to Google...' : 'Connecting with Google...';
 
     try {
       if (!window.PolishFirebase || !window.PolishFirebase.isReady) {
         await window.PolishFirebase.init();
+      }
+
+      if (mode === 'redirect') {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('profile');
+        provider.addScope('email');
+        provider.setCustomParameters({ prompt: 'select_account' });
+        await window.PolishFirebase.auth.signInWithRedirect(provider);
+        return;
       }
 
       const user = await window.PolishFirebase.loginWithGoogle();
@@ -2051,7 +2061,7 @@
       console.error('[Admin Auth] Google sign-in error:', err);
       let msg = err.message || 'Google sign-in could not be completed.';
       if (err.code === 'auth/popup-closed-by-user') {
-        msg = 'Sign-in window was closed before completing.';
+        msg = `Sign-in popup was closed before completing.<div style="margin-top:10px;"><button type="button" onclick="handleGoogleAdminSignIn('redirect')" style="background:rgba(226,199,153,0.18);border:1px solid rgba(226,199,153,0.45);color:#E2C799;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;">Continue with Direct Google Sign-In &rarr;</button></div>`;
       } else if (err.code === 'auth/unauthorized-domain') {
         msg = 'Domain not authorized in Firebase Auth. Add your custom domain to Authorized Domains in Firebase console.';
       }
@@ -2148,14 +2158,30 @@
       return;
     }
 
-    // 2. Fast Firebase check: synchronous init and immediate token check
+    // 2. Fast Firebase check: handle returning redirect and active sessions
     try {
       if (window.PolishFirebase) {
-        window.PolishFirebase.init();
-        if (window.PolishFirebase.auth && window.PolishFirebase.auth.currentUser) {
-          const user = window.PolishFirebase.auth.currentUser;
-          await verifyFirebaseUserAndUnlock(user);
-          return;
+        await window.PolishFirebase.init();
+
+        if (window.PolishFirebase.auth) {
+          // Check if returning from Google redirect
+          if (window.PolishFirebase.auth.getRedirectResult) {
+            try {
+              const redirectRes = await window.PolishFirebase.auth.getRedirectResult();
+              if (redirectRes && redirectRes.user) {
+                await verifyFirebaseUserAndUnlock(redirectRes.user);
+                return;
+              }
+            } catch (redirErr) {
+              console.warn('[Admin Auth] Redirect result error:', redirErr);
+            }
+          }
+
+          if (window.PolishFirebase.auth.currentUser) {
+            const user = window.PolishFirebase.auth.currentUser;
+            await verifyFirebaseUserAndUnlock(user);
+            return;
+          }
         }
       }
     } catch (e) {

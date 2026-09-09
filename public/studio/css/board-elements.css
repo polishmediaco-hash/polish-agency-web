@@ -7,6 +7,7 @@
   /* POLISH Media Co. Haute Atelier Light Tokens */
   --brand-gold: #C5A880;
   --brand-gold-bright: #E2C799;
+  --brand-gold-text: #8C6226;
   --brand-platinum: #F5E6D3;
   --brand-noir: #080706;
   --surface-alabaster: #FAF7F2;
@@ -14,10 +15,10 @@
   --surface-subtle: #F5F1EB;
   --surface-subtle-hover: #ECE6DD;
   
-  --text-ink: #1A1715;
-  --text-slate: #3F3C39;
-  --text-muted: #736D67;
-  --text-light: #948E87;
+  --text-ink: #110F0D;
+  --text-slate: #2E2A27;
+  --text-muted: #5C564F;
+  --text-light: #7E776F;
 
   --border-subtle: #E8E2D8;
   --border-strong: #D5CEC4;
@@ -143,8 +144,8 @@
 .serif-accent {
   font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 600;
-  color: var(--brand-gold);
+  font-weight: 700;
+  color: var(--brand-gold-text, #8C6226);
 }
 
 .frame-desc {

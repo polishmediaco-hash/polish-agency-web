@@ -577,14 +577,12 @@
 
     async function createBlankBoard() {
       if (!activeUser) return;
-      const title = prompt('Enter a title for the new board:', 'New Strategic Advisory Board');
-      if (!title) return;
-
+      const title = 'New Strategic Advisory Board';
       const boardId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
       const newBoard = {
         id: boardId,
         slug: boardId,
-        title: title.trim(),
+        title: title,
         client: 'Private Client',
         ownerId: activeUser.uid,
         ownerEmail: activeUser.email,
@@ -622,10 +620,8 @@
 
     async function createFromTemplate() {
       if (!activeUser) return;
-      const client = prompt('Client name or Brand:', 'Executive Advisory Client');
-      const title = prompt('Board title:', `${client || 'Executive'} — Strategy Whiteboard`);
-      if (!title) return;
-
+      const client = 'Executive Advisory Client';
+      const title = 'Executive Strategy Blueprint';
       const boardId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
       
       // Fetch starter template structure

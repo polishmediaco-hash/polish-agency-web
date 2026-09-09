@@ -114,9 +114,12 @@ window.MarqueeEngine = (function () {
       document.getElementById('viewport').releasePointerCapture(e.pointerId);
     } catch (_) {}
 
-    // If elements were selected, notify StudioCore
+    // If elements were selected, notify StudioCore and StudioAI
     if (multiSelectedIds.size > 0 && window.StudioCore) {
       window.StudioCore.setMultiSelected(Array.from(multiSelectedIds));
+    }
+    if (window.StudioAI && window.StudioAI.onCanvasSelectionChange) {
+      window.StudioAI.onCanvasSelectionChange(Array.from(multiSelectedIds));
     }
   }
 
@@ -125,6 +128,9 @@ window.MarqueeEngine = (function () {
     document.querySelectorAll('.is-multi-selected').forEach(el => el.classList.remove('is-multi-selected'));
     if (window.StudioCore && window.StudioCore.clearMultiSelection) {
       window.StudioCore.clearMultiSelection();
+    }
+    if (window.StudioAI && window.StudioAI.onCanvasSelectionChange) {
+      window.StudioAI.onCanvasSelectionChange([]);
     }
   }
 

@@ -852,6 +852,14 @@ router.post('/ai/chat', async (req, res) => {
       contextualSystemPrompt += `\n\n### ACTIVE BOARD CONTEXT:\n- Active Canvas: "${boardContext.title || 'Untitled Strategy Board'}"\n- Elements on Board: ${boardContext.elementCount || 0} cards/nodes\nTailor your answers to harmonize with this strategy canvas.`;
     }
 
+    // Inject selected canvas elements as direct context window
+    if (boardContext && Array.isArray(boardContext.selectionContext) && boardContext.selectionContext.length > 0) {
+      const selLines = boardContext.selectionContext.map((el, i) =>
+        `  ${i + 1}. [${el.type}] ${el.title}${el.content ? ` — ${el.content}` : ''}`
+      ).join('\n');
+      contextualSystemPrompt += `\n\n### SELECTED CANVAS ELEMENTS (User is asking about these):\n${selLines}\nDirect your entire response to analyzing, critiquing, or improving the elements listed above. Reference them by name. Do not pad with generic advice.`;
+    }
+
     // Add prior history (up to last 10 messages for speed & token efficiency)
     const recentHistory = Array.isArray(history) ? history.slice(-10) : [];
     for (const item of recentHistory) {

@@ -17,6 +17,7 @@
     history: [],
     lastBoardCards: [],
     pos: null,
+    _selectionContext: null,   // array of {type, title, content} from selected canvas elements
 
     init() {
       // Restore saved preferences
@@ -303,11 +304,13 @@
       this.setSendButtonState(true);
       const typingId = this.showTypingIndicator();
 
-      // Gather current board context
+      // Gather current board context + live selection context
       const boardTitleInput = document.getElementById('boardTitleInput');
+      const liveSelection = this.getSelectionContext();
       const boardContext = {
         title: boardTitleInput ? boardTitleInput.value : 'Strategy Board',
-        elementCount: window.StudioCore && window.StudioCore.getElements ? window.StudioCore.getElements().length : 0
+        elementCount: window.StudioCore && window.StudioCore.getElements ? window.StudioCore.getElements().length : 0,
+        selectionContext: liveSelection || undefined
       };
 
       try {
@@ -552,6 +555,63 @@
       html = html.replace(/<\/ul>\s*<ul>/g, '');
 
       return `<p>${html}</p>`;
+    },
+
+    // ── Selection Context ──────────────────────────────────────────────────────
+
+    // Reads currently selected canvas elements and builds a structured context array.
+    getSelectionContext() {
+      const ids = (window.MarqueeEngine && window.MarqueeEngine.getSelectedIds())
+        || (window.StudioCore && window.StudioCore._multiSelectedIds ? Array.from(window.StudioCore._multiSelectedIds) : []);
+
+      if (!ids || ids.length === 0) {
+        this._selectionContext = null;
+        return null;
+      }
+
+      const items = [];
+      ids.forEach(id => {
+        const data = window.StudioCore && window.StudioCore.findElement ? window.StudioCore.findElement(id) : null;
+        if (!data) return;
+
+        const type = (data.type || 'element').toUpperCase();
+        const title = data.title || data.headline || data.header || data.text || '(Untitled)';
+        const content = data.content || data.body || data.description || data.footer || '';
+
+        items.push({ type, title: title.slice(0, 120), content: content.slice(0, 300) });
+      });
+
+      this._selectionContext = items.length > 0 ? items : null;
+      return this._selectionContext;
+    },
+
+    clearSelectionContext() {
+      this._selectionContext = null;
+      this.updateSelectionBadge(null);
+    },
+
+    // Updates the #aiSelectionBadge UI element.
+    updateSelectionBadge(items) {
+      const badge = document.getElementById('aiSelectionBadge');
+      const label = document.getElementById('aiSelectionBadgeLabel');
+      if (!badge || !label) return;
+
+      if (items && items.length > 0) {
+        label.textContent = `${items.length} ${items.length === 1 ? 'element' : 'elements'} in context`;
+        badge.style.display = 'flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    },
+
+    // Hook called from marquee-selection / studio-core when selection changes.
+    onCanvasSelectionChange(ids) {
+      if (!ids || ids.length === 0) {
+        this.clearSelectionContext();
+        return;
+      }
+      const ctx = this.getSelectionContext();
+      this.updateSelectionBadge(ctx);
     }
   };
 

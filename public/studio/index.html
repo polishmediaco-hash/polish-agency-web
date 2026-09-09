@@ -104,7 +104,12 @@
 
           <button type="button" class="dropdown-item" onclick="StudioCore.exportPNG(); closeProfileDropdown();">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>Export High-Res PNG</span>
+            <span>Export Board as PNG</span>
+          </button>
+
+          <button type="button" class="dropdown-item" onclick="StudioCore.exportFrames(); closeProfileDropdown();">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            <span>Export All Frames as PNG</span>
           </button>
 
           <div class="dropdown-divider"></div>
@@ -1170,6 +1175,12 @@
 
     <!-- Input Area (Clean, Minimal, Zero Filler Footer) -->
     <div class="ai-input-area">
+      <!-- Selection Context Badge (shown when canvas elements are selected) -->
+      <div id="aiSelectionBadge" class="ai-selection-badge" style="display:none;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 2v20M17 2v20M2 7h20M2 17h20"/></svg>
+        <span id="aiSelectionBadgeLabel">0 elements in context</span>
+        <button type="button" class="ai-selection-badge-clear" onclick="StudioAI.clearSelectionContext()" title="Clear selection context">×</button>
+      </div>
       <div class="ai-input-wrapper">
         <textarea id="aiPromptInput" class="ai-textarea" rows="1" placeholder="Specify an offer, copy angle, positioning, or ad strategy..."></textarea>
         <button type="button" id="aiSendBtn" class="ai-send-btn" onclick="StudioAI.sendMessage()" title="Send">
@@ -1177,6 +1188,7 @@
         </button>
       </div>
     </div>
+
   </aside>
 
   <!-- Studio AI Engine -->

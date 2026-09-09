@@ -954,3 +954,57 @@ body.theme-dark .ai-send-btn,
     padding: 6px 12px;
   }
 }
+
+/* =========================================================================
+   SELECTION CONTEXT BADGE
+   ========================================================================= */
+.ai-selection-badge {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 8px;
+  margin: 0 12px 6px;
+  background: rgba(226, 199, 153, 0.12);
+  border: 1px solid rgba(226, 199, 153, 0.4);
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #E2C799;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  animation: aiBadgeFadeIn 0.2s ease;
+}
+
+@keyframes aiBadgeFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ai-selection-badge svg {
+  flex-shrink: 0;
+  stroke: #E2C799;
+  opacity: 0.85;
+}
+
+.ai-selection-badge-clear {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: rgba(226, 199, 153, 0.6);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.ai-selection-badge-clear:hover {
+  color: #FFFFFF;
+}
+
+body.theme-dark .ai-selection-badge {
+  background: rgba(226, 199, 153, 0.1);
+  border-color: rgba(226, 199, 153, 0.35);
+  color: #FFDF9E;
+}

@@ -1225,6 +1225,242 @@ window.StudioCore = (function () {
       title = 'Blank Canvas';
       newElements = [];
       newConnections = [];
+    } else if (templateKey === 'personal-branding') {
+      title = 'Personal Branding & Sovereign Authority Blueprint';
+      const f1Id = `frame-pb-1-${Date.now()}`;
+      const f2Id = `frame-pb-2-${Date.now()}`;
+      const scriptId = `script-pb-${Date.now()}`;
+      const priceId = `pricing-pb-${Date.now()}`;
+      const tblId = `table-pb-${Date.now()}`;
+      const s1Id = `sticky-pb-1-${Date.now()}`;
+      const s2Id = `sticky-pb-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '01',
+          titlePill: 'SOVEREIGN POSITIONING',
+          headline: 'Executive Persona &',
+          serifAccent: 'Category Ownership',
+          description: 'Positioning the founder as the undisputed sovereign authority in luxury beauty, formulation science, and clinical aesthetics.',
+          boxes: [
+            { tag: 'FOUNDER THESIS', tagColor: 'gold', title: 'The Polarizing Point of View', content: 'Challenge industry consensus: "Clean beauty is unregulated marketing; cosmetic biochemistry is the only sustainable luxury."' },
+            { tag: 'PILLAR NARRATIVE', tagColor: 'rose', title: 'Behind-The-Glass Formulation', content: 'Deconstruct laboratory trial failures, raw botanical extraction chemistry, and unfiltered Parisian factory visits.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'CONTENT SYNDICATION',
+          headline: 'Multi-Channel Media',
+          serifAccent: 'Velocity Engine',
+          description: 'Engineering a 1-to-many syndication architecture converting 1 long-form keynote into 30 high-impact sovereign media assets.',
+          boxes: [
+            { tag: 'LONG-FORM PILLAR', tagColor: 'blue', title: 'Substack & Private Journal', content: 'Bi-weekly 1,800-word deep dives into cosmetic chemistry economics and DTC brand equity preservation.' },
+            { tag: 'SHORT-FORM HOOKS', tagColor: 'green', title: 'LinkedIn & 9:16 Video Micro-Clips', content: '15-second cinematic soundbites extracted with raking laboratory lighting and hard-hitting contrarian hooks.' }
+          ]
+        },
+        {
+          id: scriptId,
+          type: 'script',
+          x: 1540,
+          y: 120,
+          width: 380,
+          height: 200,
+          content: '"Elite founders do not pitch services cold. They publish undeniable technical truth until the world\'s most discerning brands knock on their atelier door."'
+        },
+        {
+          id: priceId,
+          type: 'pricing',
+          x: 1540,
+          y: 360,
+          width: 380,
+          isFeatured: true,
+          badge: 'FOUNDER ADVISORY RETAINER',
+          currency: 'AED',
+          figure: '15,000',
+          period: '/ Month',
+          features: [
+            'Bi-Weekly 1-on-1 Strategic Narrative Session',
+            'Ghostwritten Substack & LinkedIn Pillar Essays',
+            'Cinematic 9:16 Video Editing (8 Cuts / Month)',
+            'Keynote Speech Architecture & PR Placement',
+            'Direct Private Concierge WhatsApp Access'
+          ]
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 720,
+          width: 880,
+          title: 'Weekly Publishing Cadence & Channel Architecture',
+          badge: 'MEDIA CADENCE',
+          headers: ['Day', 'Platform', 'Asset Format', 'Strategic Hook Angle', 'Primary CTA'],
+          rows: [
+            ['Monday', 'LinkedIn & X', 'Text Breakdown + Carousel', 'Deconstructing a $100M beauty acquisition', 'Subscribe to Atelier Memo'],
+            ['Wednesday', 'Instagram / TikTok', '9:16 Laboratory Video', 'Why 90% of vitamin C serums oxidize on skin', 'Comment "FORMULA" for PDF'],
+            ['Friday', 'Substack Editorial', 'Long-Form Strategic Essay', 'The Death of Aggressive Performance Marketing', 'Private Advisory Application'],
+            ['Sunday', 'Private WhatsApp / VIP', 'Voice Memo & Behind Scenes', 'Unfiltered weekend lab thoughts & formulation notes', 'Passive Sovereign Trust']
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1020,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'yellow',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'VOICE PRINCIPLE',
+          content: 'Speak only with absolute conviction. Never use timid hedging ("in my opinion", "I think"). State biochemistry principles as undeniable physical facts.',
+          footer: 'EXECUTIVE TONE'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1340,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'rose',
+          rotation: 2,
+          hasTape: true,
+          header: 'CONVERSION BRIDGE',
+          content: 'Every single piece of founder media must contain a passive conversion pathway leading to the private board application.',
+          footer: 'GROWTH ANCHOR'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-pb-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' },
+        { id: `conn-pb-2`, from: f2Id, fromAnchor: 'right', to: scriptId, toAnchor: 'left', style: 'dashed', color: 'blue', label: '' }
+      ];
+    } else if (templateKey === 'meta-tiktok-ads') {
+      title = 'Meta & TikTok Ads Performance Engine';
+      const f1Id = `frame-ads-1-${Date.now()}`;
+      const f2Id = `frame-ads-2-${Date.now()}`;
+      const priceId = `pricing-ads-${Date.now()}`;
+      const tblId = `table-ads-${Date.now()}`;
+      const s1Id = `sticky-ads-1-${Date.now()}`;
+      const s2Id = `sticky-ads-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '01',
+          titlePill: 'META ADVANTAGE+ ASC',
+          headline: 'Dynamic Creative &',
+          serifAccent: 'Algorithmic Scale',
+          description: 'Advantage+ Shopping Campaigns structured with dynamic creative testing (DCT) to maximize machine-learning liquidity without audience fragmentation.',
+          boxes: [
+            { tag: 'DCT SETUP', tagColor: 'blue', title: '3:2:2 Creative Testing Framework', content: '3 distinct video hooks, 2 core value proposition bodies, 2 lifestyle headlines into single dynamic sandbox ad sets.' },
+            { tag: 'RETARGETING', tagColor: 'gold', title: 'High-Intent Friction Elimination', content: 'Custom audience exclusions ensuring 95%+ net-new prospecting with 180-day customer exclusions.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'TIKTOK SPARK ENGINE',
+          headline: 'Native UGC Velocity &',
+          serifAccent: '3-Sec Hook Retention',
+          description: 'Spark ads driven by native creator b-roll, high thumbstop rates, and organic trending audio whitelisted for commercial scale.',
+          boxes: [
+            { tag: 'THUMBSTOP', tagColor: 'rose', title: '0-3 Second Pattern Interrupt', content: 'Microscopic texture application, tactile pipette clicks, and visceral dermatologist reactions exceeding 38% 3s hold.' },
+            { tag: 'LANDING PAGE BRIDGE', tagColor: 'green', title: 'Dedicated Advertorial Presell', content: 'Directing paid social traffic to customized editorial advertorials before the PDP to elevate blended AOV to AED 420+.' }
+          ]
+        },
+        {
+          id: priceId,
+          type: 'pricing',
+          x: 1540,
+          y: 120,
+          width: 370,
+          isFeatured: true,
+          badge: 'MONTHLY PERFORMANCE BUDGET',
+          currency: 'AED',
+          figure: '35,000',
+          period: '/ Month Spend',
+          features: [
+            'Meta Advantage+ ASC Architecture ($20k / mo)',
+            'TikTok Spark Whitelisted Ads ($15k / mo)',
+            'Weekly 6-Asset Creative Testing Cadence',
+            'Dedicated Advertorial & PDP Split Testing',
+            'Real-Time Blended MER & First-Order ROAS Tracking'
+          ]
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 720,
+          width: 880,
+          title: 'Weekly Paid Social Creative Testing Matrix',
+          badge: 'CREATIVE TESTING',
+          headers: ['Creative Concept', 'Platform', 'Visual Hook Angle', 'Thumbstop %', 'Target CPA (AED)', 'RoAS Status'],
+          rows: [
+            ['Lab Texture Drop', 'TikTok Spark', 'Micro-macro dropper on glass slide', '42.4%', '68.00', 'Scaling (3.8x)'],
+            ['Derm Split Screen', 'Meta ASC', '"Stop using retinol incorrectly"', '39.1%', '74.50', 'Winner (4.2x)'],
+            ['Unboxing ASMR', 'TikTok Spark', 'Uncoated paper rip + embossed seal', '31.2%', '92.00', 'Iterate Audio'],
+            ['Founder Formulation', 'Meta ASC', '"Why big beauty cuts active percentages"', '46.8%', '58.00', 'Top Performer (5.1x)']
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1020,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'mint',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'SCALING RULE',
+          content: 'Never increase campaign budget by more than 20% every 48 hours. Aggressive manual budget edits reset Meta machine learning algorithms.',
+          footer: 'BUDGET DISCIPLINE'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1340,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'rose',
+          rotation: 2,
+          hasTape: true,
+          header: 'CREATIVE FATIGUE',
+          content: 'Rotate winning angles every 18 days. Creative exhaustion is the #1 silent killer of high-volume cosmetics performance campaigns.',
+          footer: 'CADENCE ALERT'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-ads-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' },
+        { id: `conn-ads-2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '' }
+      ];
     } else if (templateKey === 'strategy') {
       title = 'Executive Strategy Blueprint';
       const starter = getBuiltinStarterBoard();
@@ -1336,8 +1572,8 @@ window.StudioCore = (function () {
       newConnections = [
         { id: `conn-a1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' }
       ];
-    } else if (templateKey === 'launch') {
-      title = 'Haute Product Launch Matrix';
+    } else if (templateKey === 'product-launch' || templateKey === 'launch') {
+      title = 'Omnichannel DTC Product Launch Master Roadmap';
       const f1Id = `frame-launch-1-${Date.now()}`;
       const f2Id = `frame-launch-2-${Date.now()}`;
       const priceId = `pricing-launch-${Date.now()}`;
@@ -1434,8 +1670,8 @@ window.StudioCore = (function () {
         { id: `conn-l1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' },
         { id: `conn-l2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '' }
       ];
-    } else if (templateKey === 'creator') {
-      title = 'Creator & UGC Talent Roster Accelerator';
+    } else if (templateKey === 'influencer-collabs' || templateKey === 'creator') {
+      title = 'Influencer & Creator Collaborations Engine';
       const f1Id = `frame-cr-1-${Date.now()}`;
       const f2Id = `frame-cr-2-${Date.now()}`;
       const tblId = `table-cr-${Date.now()}`;

@@ -199,7 +199,6 @@
         <span class="brand-name" style="font-size: 1.25rem; font-weight: 800; letter-spacing: 0.10em; color: var(--brand-noir);">POLISH</span>
         <span class="brand-subtitle" style="font-size: 0.58rem; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: #7A5E32;">BOARD STUDIO</span>
       </div>
-      <p class="auth-subtitle" style="margin-top: 8px;">Executive Strategy Workspace</p>
     </div>
 
     <div id="authError" class="auth-error"></div>
@@ -223,20 +222,8 @@
 
     <button type="button" class="btn-offline-entry" onclick="handleOfflineEntry()" style="width: 100%; padding: 12px 18px; border-radius: 14px; background: #FAF7F2; color: #1A1715; border: 1px solid var(--border-subtle); font-family: var(--font-heading); font-size: 0.86rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s ease;" onmouseover="this.style.background='#F5EFE6'" onmouseout="this.style.background='#FAF7F2'">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
-      1-Click Direct Access (Offline Mode)
+      Offline Mode
     </button>
-
-    <div class="auth-footer-notice">
-      <div class="auth-shield-badge">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-        Private & Isolated
-      </div>
-      <br>
-      Each advisor has a private workspace.<br>
-      Canvases and client proposals are confidential to your account.
-    </div>
   </div>
 
   <!-- Firebase Web SDK (Lightweight Auth Only — zero firestore overhead) -->
@@ -316,7 +303,7 @@
         if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/popup-blocked') {
           msg = `Sign-in popup was closed or blocked.<div style="margin-top:10px;"><button type="button" onclick="handleGoogleSignIn('redirect')" style="background:#080706;border:1px solid rgba(197,168,128,0.45);color:#F5E6D3;padding:8px 18px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;">Continue with Direct Google Sign-In &rarr;</button></div>`;
         } else if (err.code === 'auth/unauthorized-domain') {
-          msg = 'Domain not authorized in Firebase Auth. You can use 1-Click Direct Access below.';
+          msg = 'Domain not authorized in Firebase Auth. You can use Offline Mode below.';
         }
         authError.innerHTML = msg;
         authError.style.display = 'block';

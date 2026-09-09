@@ -772,5 +772,201 @@ router.post('/content/reset', requireAdminAuth, (req, res) => {
   res.json({ success: true, message: 'Website content reset to factory defaults.', content: def });
 });
 
+// =========================================================================
+// POLISH Board Studio — AI Strategy Copilot (Gemini API Integration)
+// Specialized in: Marketing, Branding, Offers, Copywriting, Sales, Content
+// =========================================================================
+
+const COPILOT_SYSTEM_PROMPT = `You are the POLISH Board Studio Strategy Copilot — an elite, world-class Luxury Growth Architect, Direct-Response Copywriter, and Haute Atelier Creative Director for POLISH Media Co (polishmediaco.com).
+
+You are embedded exclusively inside the POLISH Board Studio whiteboard environment to assist founders and growth advisors in crafting multi-million dollar beauty, cosmetics, fragrance, and luxury DTC strategies.
+
+### YOUR 6 CORE SPECIALIZATIONS:
+1. LUXURY BRANDING & PRESTIGE:
+   - Haute atelier aesthetic codes, sensory nomenclature (elixir, emulsion, olfactory accord, cellular rejuvenation).
+   - Price elasticity, eliminating discounting (never erode luxury equity), elevating formulation pedigree and laboratory authority.
+   - Positioning brands as coveted Parisian / Milanese / Dubai icons.
+
+2. IRRESISTIBLE GRAND SLAM OFFERS:
+   - High-AOV routine architectures ($120 - $350+ bundles).
+   - Discovery coffrets with built-in bounce-back vouchers.
+   - Replenishment subscriptions (30/45/60-day cycles with escalating VIP rewards).
+   - High-perceived-value Gift-With-Purchase (GWP) and limited seasonal batch scarcity.
+
+3. HAUTE DIRECT-RESPONSE COPYWRITING:
+   - Visceral 3-second ad hooks that shatter pattern fatigue.
+   - Objection-crushing headlines and sensory problem-agitation-solution copy.
+   - High-converting PDP layouts, founder letters, unboxing collateral, and 5-stage retention email/SMS sequences.
+
+4. PAID MEDIA & ACQUISITION MARKETING:
+   - Meta & TikTok scaling frameworks, Creative Sandbox testing, CAC compression.
+   - ROAS stabilization, Middle East (GCC: UAE, KSA, Qatar) and Western DTC luxury purchasing dynamics.
+   - Creator whitelisting, Spark Ads, and UGC conversion velocity.
+
+5. HIGH-TICKET SALES & DIAGNOSTIC CLOSING:
+   - Diagnostic whiteboard presentation structures for beauty founders.
+   - Overcoming founder skepticism, demonstrating proprietary methodology, and framing high-ticket partnership value.
+
+6. CONTENT & UGC CREATOR DIRECTION:
+   - High-converting TikTok/Reels briefs with explicit visual cues (lighting, macro textures, pacing, audio).
+   - Formulation ASMR, derm-approved demonstrations, unboxing theatrics, and authentic transformation social proof.
+
+### RESPONSE GUIDELINES:
+- Be concise, authoritative, sophisticated, and direct. Zero fluff or corporate jargon.
+- Format responses cleanly with bold headings and bullet points.
+- BOARD CARD INJECTION: When the user asks you to build, map, outline, or generate a strategy, offer, or campaign, provide your strategic rationale AND append a structured JSON block formatted EXACTLY like this at the very end of your response:
+\`\`\`json:board_cards
+[
+  {
+    "title": "Pillar 1: Sensory Discovery Hook",
+    "type": "strategy",
+    "content": "3s macro texture drip with ASMR audio. Hook: 'Why French dermatologists forbid rubbing pure peptides into dry skin.'"
+  },
+  {
+    "title": "Pillar 2: The Core Routine Offer",
+    "type": "offer",
+    "content": "$165 3-Step Cellular Restoration Trio with complimentary Silk Travel Pouch and 45-day VIP refill cadence."
+  }
+]
+\`\`\`
+Supported types for board cards: "strategy", "offer", "copy", "content", "sales".
+The studio frontend will automatically parse this block and allow the advisor to spawn the cards directly onto the canvas with 1 click.`;
+
+router.post('/ai/chat', async (req, res) => {
+  try {
+    const { message, history = [], boardContext = {} } = req.body;
+
+    if (!message || typeof message !== 'string') {
+      return res.status(400).json({ success: false, error: 'Message is required.' });
+    }
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({
+        success: false,
+        error: 'Gemini API key is not configured in server environment. Please set GEMINI_API_KEY in .env.'
+      });
+    }
+
+    const preferredModel = process.env.GEMINI_MODEL || 'gemini-3.5-flash';
+    const candidateModels = Array.from(new Set([
+      preferredModel,
+      'gemini-3.5-flash',
+      'gemini-3.7-flash',
+      'gemini-3.6-flash',
+      'gemini-3.5-flash-lite'
+    ]));
+
+    // Prepare contents array with conversation history
+    const contents = [];
+
+    // Inject active board context into system prompt if available
+    let contextualSystemPrompt = COPILOT_SYSTEM_PROMPT;
+    if (boardContext && (boardContext.title || boardContext.elementCount)) {
+      contextualSystemPrompt += `\n\n### ACTIVE BOARD CONTEXT:\n- Active Canvas: "${boardContext.title || 'Untitled Strategy Board'}"\n- Elements on Board: ${boardContext.elementCount || 0} cards/nodes\nTailor your answers to harmonize with this strategy canvas.`;
+    }
+
+    // Add prior history (up to last 10 messages for speed & token efficiency)
+    const recentHistory = Array.isArray(history) ? history.slice(-10) : [];
+    for (const item of recentHistory) {
+      if (item && item.role && item.text) {
+        contents.push({
+          role: item.role === 'assistant' || item.role === 'model' ? 'model' : 'user',
+          parts: [{ text: String(item.text) }]
+        });
+      }
+    }
+
+    // Add current user prompt
+    contents.push({
+      role: 'user',
+      parts: [{ text: message }]
+    });
+
+    const geminiPayload = {
+      systemInstruction: {
+        parts: [{ text: contextualSystemPrompt }]
+      },
+      contents,
+      generationConfig: {
+        temperature: 0.7,
+        topP: 0.95,
+        maxOutputTokens: 2500
+      }
+    };
+
+    let lastError = null;
+    let successfulData = null;
+    let resolvedModel = null;
+
+    // Try candidate models in cascade if one experiences high demand (503/429)
+    for (const model of candidateModels) {
+      try {
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${apiKey}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(geminiPayload)
+          }
+        );
+
+        if (response.ok) {
+          successfulData = await response.json();
+          resolvedModel = model;
+          break;
+        }
+
+        const errStatus = response.status;
+        const errBody = await response.text();
+        console.warn(`[POLISH Copilot] Model ${model} returned ${errStatus}:`, errBody.substring(0, 150));
+        lastError = `Status ${errStatus}: ${errBody}`;
+        
+        // If 400 (bad request/prompt format), don't retry other models
+        if (errStatus === 400) break;
+      } catch (fetchErr) {
+        console.warn(`[POLISH Copilot] Network error calling ${model}:`, fetchErr.message);
+        lastError = fetchErr.message;
+      }
+    }
+
+    if (!successfulData) {
+      return res.status(503).json({
+        success: false,
+        error: `AI service temporarily unavailable. Details: ${lastError}`
+      });
+    }
+
+    const candidate = successfulData.candidates && successfulData.candidates[0];
+    const textPart = candidate && candidate.content && candidate.content.parts && candidate.content.parts.find(p => p.text);
+    const replyText = textPart ? textPart.text : 'I was unable to formulate a strategy recommendation. Please retry.';
+
+    // Extract any board_cards JSON blocks if present
+    let boardCards = null;
+    const cardsMatch = replyText.match(/```json:board_cards\s*([\s\S]*?)\s*```/);
+    if (cardsMatch && cardsMatch[1]) {
+      try {
+        boardCards = JSON.parse(cardsMatch[1]);
+      } catch (parseErr) {
+        console.warn('[POLISH Copilot] Failed to parse board_cards JSON block:', parseErr.message);
+      }
+    }
+
+    // Clean reply text of raw json block so it reads cleanly to user
+    const cleanedReply = replyText.replace(/```json:board_cards\s*[\s\S]*?\s*```/, '').trim();
+
+    return res.json({
+      success: true,
+      reply: cleanedReply,
+      rawReply: replyText,
+      boardCards: Array.isArray(boardCards) ? boardCards : null,
+      model: resolvedModel
+    });
+  } catch (err) {
+    console.error('[POLISH Copilot] Internal error:', err);
+    return res.status(500).json({ success: false, error: err.message || 'Internal server error' });
+  }
+});
+
 module.exports = router;
 

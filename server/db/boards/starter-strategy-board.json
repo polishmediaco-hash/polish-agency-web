@@ -3,12 +3,12 @@
   "slug": "executive-strategy-template",
   "title": "Executive Strategy Blueprint",
   "client": "Private Advisory Client",
-  "createdAt": "2026-09-08T17:49:58.326Z",
-  "updatedAt": "2026-09-09T02:35:30.042Z",
+  "createdAt": "2026-09-09T04:03:13.193Z",
+  "updatedAt": "2026-09-09T04:03:29.453Z",
   "viewport": {
     "panX": 80,
-    "panY": -320,
-    "scale": 0.78
+    "panY": 60,
+    "scale": 0.72
   },
   "elements": [
     {
@@ -21,7 +21,7 @@
       "zIndex": 10,
       "frameNumber": "01",
       "titlePill": "EXECUTIVE FOUNDATION",
-      "headline": "Positioning & Strategic Reality",
+      "headline": "Positioning &",
       "serifAccent": "Strategic Reality",
       "description": "Establishing elite category authority and pricing power before entering the market.",
       "boxes": [
@@ -49,7 +49,7 @@
       "zIndex": 10,
       "frameNumber": "02",
       "titlePill": "HAUTE OFFER LADDER",
-      "headline": "Two-Tier Retainer Architecture",
+      "headline": "Two-Tier",
       "serifAccent": "Retainer Architecture",
       "description": "A structured conversion bridge converting friction into ongoing partnership retainers.",
       "boxes": [
@@ -75,7 +75,7 @@
       "width": 260,
       "height": 180,
       "zIndex": 25,
-      "color": "rose",
+      "color": "yellow",
       "rotation": -2,
       "hasTape": true,
       "header": "STRATEGIC NOTE",
@@ -85,8 +85,8 @@
     {
       "id": "sticky-2",
       "type": "sticky",
-      "x": 1966,
-      "y": 288,
+      "x": 1540,
+      "y": 260,
       "width": 260,
       "height": 180,
       "zIndex": 25,
@@ -178,14 +178,98 @@
           "badge": "METRIC",
           "instructions": "Current baseline vs Q4 goal:",
           "value": "Current $85k/mo → Target $160k/mo"
-        },
+        }
+      ]
+    },
+    {
+      "id": "frame-ai-1788926608243-491",
+      "type": "frame",
+      "x": 520,
+      "y": 310,
+      "width": 440,
+      "height": 340,
+      "zIndex": 15,
+      "frameNumber": "03",
+      "titlePill": "OFFER",
+      "headline": "Offer Architecture: Cellular Renaissance System",
+      "serifAccent": "",
+      "description": "",
+      "boxes": [
         {
-          "id": "field-diag-3",
-          "type": "textarea",
-          "label": "03. Founder Time Allocation Bottleneck",
-          "badge": "GOVERNANCE",
-          "instructions": "Which daily operational fires take you away from strategy?",
-          "value": ""
+          "tag": "OFFER",
+          "tagColor": "gold",
+          "title": "Actionable Blueprint",
+          "content": "Price: $185 (Value: $280). 4-Step System: Micro-Polish, Hydro-Peptide Elixir, Lipid Restorative Cream, Gold Matrix Eye Concentrate.",
+          "isWhite": true
+        }
+      ]
+    },
+    {
+      "id": "frame-ai-1788926608247-292",
+      "type": "frame",
+      "x": 990,
+      "y": 360,
+      "width": 440,
+      "height": 340,
+      "zIndex": 15,
+      "frameNumber": "04",
+      "titlePill": "OFFER",
+      "headline": "GWP Conversion Shield",
+      "serifAccent": "",
+      "description": "",
+      "boxes": [
+        {
+          "tag": "OFFER",
+          "tagColor": "gold",
+          "title": "Actionable Blueprint",
+          "content": "Free with Protocol: Italian Saffiano Leather Vanity Case + Cold-Forged Cryo Sculpting Wand ($120 combined value / COGS ~$10).",
+          "isWhite": true
+        }
+      ]
+    },
+    {
+      "id": "frame-ai-1788926608247-773",
+      "type": "frame",
+      "x": 1460,
+      "y": 310,
+      "width": 440,
+      "height": 340,
+      "zIndex": 15,
+      "frameNumber": "05",
+      "titlePill": "STRATEGY",
+      "headline": "45-Day Escalating VIP Refill Engine",
+      "serifAccent": "",
+      "description": "",
+      "boxes": [
+        {
+          "tag": "STRATEGY",
+          "tagColor": "gold",
+          "title": "Actionable Blueprint",
+          "content": "Day 1: Full System + GWP. Day 45: $125 Refill + Lab Discovery Sample. Day 90: $125 Refill + VIP Atelier Lifestyle Gift.",
+          "isWhite": true
+        }
+      ]
+    },
+    {
+      "id": "frame-ai-1788926608248-827",
+      "type": "frame",
+      "x": 1930,
+      "y": 360,
+      "width": 440,
+      "height": 340,
+      "zIndex": 15,
+      "frameNumber": "06",
+      "titlePill": "COPY",
+      "headline": "PDP Conversion Copy Stack",
+      "serifAccent": "",
+      "description": "",
+      "boxes": [
+        {
+          "tag": "COPY",
+          "tagColor": "gold",
+          "title": "Actionable Blueprint",
+          "content": "Hook: 'Restructure Lipid Density in 14 Nights.' Mechanics: Zero-discounting with high-perceived-value gift unlock at $185 threshold.",
+          "isWhite": true
         }
       ]
     }
@@ -199,8 +283,10 @@
       "toAnchor": "left",
       "style": "dashed",
       "color": "slate",
-      "label": "1. Foundation Positioning → Informs Haute Offer"
-    }
-  ],
-  "comments": []
+      "label": ""
+    },
+    "frame-ai-1788926608243-491",
+    "frame-ai-1788926608247-292",
+    "frame-ai-1788926608247-773"
+  ]
 }

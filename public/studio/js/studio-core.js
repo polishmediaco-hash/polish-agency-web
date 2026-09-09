@@ -389,6 +389,45 @@ window.StudioCore = (function () {
     triggerAutoSave();
   }
 
+  function addStrategyCard(cardData, posX, posY) {
+    if (!currentBoard) return null;
+    const center = getCanvasCenter();
+    const count = (currentBoard.elements.filter(e => e.type === 'frame').length + 1).toString().padStart(2, '0');
+    const frameId = `frame-ai-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+    const newCard = {
+      id: frameId,
+      type: 'frame',
+      x: posX !== undefined ? Math.round(posX) : Math.round(center.x - 210),
+      y: posY !== undefined ? Math.round(posY) : Math.round(center.y - 160),
+      width: 440,
+      height: 340,
+      zIndex: 15,
+      frameNumber: count,
+      titlePill: (cardData.type || 'STRATEGY').toUpperCase(),
+      headline: cardData.title || `Strategy Pillar ${count}`,
+      serifAccent: '',
+      description: '',
+      boxes: [
+        {
+          tag: (cardData.type || 'EXECUTION').toUpperCase(),
+          tagColor: 'gold',
+          title: 'Actionable Blueprint',
+          content: cardData.content || '',
+          isWhite: true
+        }
+      ]
+    };
+
+    pushHistory();
+    currentBoard.elements.push(newCard);
+    const el = window.ElementsFactory.renderElement(newCard, canvasContainer);
+    selectElement(el, newCard);
+    triggerAutoSave();
+    if (window.MiniMap) window.MiniMap.update();
+    return newCard;
+  }
+
   function addSticky(color = 'yellow') {
     if (!currentBoard) return;
     const center = getCanvasCenter();
@@ -2326,6 +2365,7 @@ window.StudioCore = (function () {
     clearMultiSelection,
     updateElementPosition,
     addFrame,
+    addStrategyCard,
     addFrameBox,
     removeFrameBox,
     addSticky,
@@ -2360,6 +2400,8 @@ window.StudioCore = (function () {
     toggleTheme,
     toggleShortcutsModal,
     getConnections: () => (currentBoard ? currentBoard.connections || [] : []),
+    getCurrentBoard: () => currentBoard,
+    getElements: () => (currentBoard ? currentBoard.elements || [] : []),
     findElement,
     findConnection,
     reRenderElement,

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/studio/css/studio.css?v=20260909_v4">
   <link rel="stylesheet" href="/studio/css/inspector.css?v=20260909_v4">
   <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v4">
+  <link rel="stylesheet" href="/studio/css/ai-copilot.css?v=20260909_copilot">
 </head>
 <body>
 
@@ -50,6 +51,11 @@
       <button class="dock-btn btn-present" onclick="StudioPresentation.start()" title="Enter Presentation Mode (P)">
         <svg class="dock-svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         Present
+      </button>
+      <div class="dock-divider"></div>
+      <button type="button" id="btnAiCopilot" class="dock-btn btn-ai-copilot" onclick="StudioAI.toggleDrawer()" title="POLISH Strategy Copilot (Cmd+J)">
+        <span class="ai-sparkle-icon">✨</span>
+        <span class="ai-btn-text">Strategy Copilot</span>
       </button>
     </div>
 
@@ -727,5 +733,82 @@
       });
     }
   </script>
+
+  <!-- ========================================================== -->
+  <!-- POLISH BOARD STUDIO — AI STRATEGY COPILOT DRAWER           -->
+  <!-- ========================================================== -->
+  <div id="aiCopilotBackdrop" class="ai-copilot-backdrop" onclick="StudioAI.toggleDrawer(false)"></div>
+
+  <aside id="aiCopilotDrawer" class="ai-copilot-drawer" aria-label="POLISH Strategy Copilot">
+    <!-- Header -->
+    <div class="ai-drawer-header">
+      <div class="ai-header-brand">
+        <div class="ai-brand-crest">✨</div>
+        <div class="ai-header-titles">
+          <span class="ai-header-title">Strategy Copilot</span>
+          <span class="ai-header-badge">Luxury Growth Atelier</span>
+        </div>
+      </div>
+      <div class="ai-header-actions">
+        <button type="button" class="ai-icon-btn" onclick="StudioAI.clearChat()" title="Reset Chat">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </button>
+        <button type="button" class="ai-icon-btn" onclick="StudioAI.toggleDrawer(false)" title="Close (Esc)">✕</button>
+      </div>
+    </div>
+
+    <!-- Quick Strategy Presets -->
+    <div class="ai-presets-wrap">
+      <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('Engineer a high-AOV replenishment routine offer ($150+) with GWP and VIP refills.')">
+        🏷️ High-AOV Offer
+      </button>
+      <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('Write 3 visceral 3-second ad hooks for TikTok & Meta targeting skincare routine fatigue.')">
+        ✍️ Visceral Hooks
+      </button>
+      <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('How do I elevate brand prestige and pricing without alienating our emerging customers?')">
+        💎 Luxury Brand
+      </button>
+      <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('Outline a 3-step CAC compression strategy for Meta and TikTok beauty ads.')">
+        📈 CAC Compression
+      </button>
+      <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('Give me an elite UGC video brief for creators demonstrating our formulation texture.')">
+        🎬 Creator Brief
+      </button>
+      <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('What is the ideal diagnostic pitch script to present this board to a beauty founder?')">
+        🤝 Pitch Script
+      </button>
+    </div>
+
+    <!-- Messages Scroll View -->
+    <div id="aiMessagesContainer" class="ai-messages-container">
+      <div class="ai-message assistant">
+        <div class="ai-msg-avatar">✨</div>
+        <div class="ai-msg-body">
+          <div class="ai-msg-bubble">
+            <p><strong>Bonjour, Advisor.</strong></p>
+            <p>I am your Board Studio Strategy Copilot — specialized in luxury beauty branding, high-AOV offer architectures, CAC compression, visceral direct-response copy, and high-ticket sales decks.</p>
+            <p>Ask me any strategy question, or click a preset above. You can spawn recommended cards directly onto your whiteboard with 1 click!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="ai-input-area">
+      <div class="ai-input-wrapper">
+        <textarea id="aiPromptInput" class="ai-textarea" rows="1" placeholder="Ask about offers, copy, positioning, or ad angles..."></textarea>
+        <button type="button" id="aiSendBtn" class="ai-send-btn" onclick="StudioAI.sendMessage()" title="Send Prompt (Enter)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <div class="ai-input-footer">
+        <span>Powered by Gemini Intelligence • Studio Only</span>
+        <span class="ai-shortcut-hint"><kbd>Cmd</kbd>+<kbd>J</kbd> to toggle</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Studio AI Engine -->
+  <script src="/studio/js/studio-ai.js?v=20260909_copilot"></script>
 </body>
 </html>

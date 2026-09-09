@@ -59,12 +59,21 @@ async function runMiroSuite() {
 
       // Take Dark Mode Screenshot
       await page.screenshot({ path: path.join(__dirname, '../scratch/miro_dark_mode.png') });
+      const dockEl = await page.$('header.studio-dock');
+      if (dockEl) {
+        await dockEl.screenshot({ path: path.join(__dirname, '../scratch/dock_dark_close.png') });
+        console.log('📸 Captured scratch/dock_dark_close.png');
+      }
       console.log('📸 Captured scratch/miro_dark_mode.png');
 
       // Switch back to Light Mode for visual parity
       await page.click('#themeToggleBtn');
       console.log('✔ Switched back to Haute Light Alabaster Mode');
       await new Promise(r => setTimeout(r, 250));
+      if (dockEl) {
+        await dockEl.screenshot({ path: path.join(__dirname, '../scratch/dock_light_close.png') });
+        console.log('📸 Captured scratch/dock_light_close.png');
+      }
 
       // 3. Test Tool Switching: Pen tool (P)
       await page.evaluate(() => {

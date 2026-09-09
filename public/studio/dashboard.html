@@ -71,21 +71,42 @@
       font-weight: 800;
     }
 
-    .brand-mark-squircle {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: #080706;
-      border: 1px solid rgba(226, 199, 153, 0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    .brand-logo-mark {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(226, 199, 153, 0.45));
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
     }
 
-    .brand-mark-squircle svg {
-      width: 26px;
-      height: 26px;
+    .brand-cluster:hover .brand-logo-mark {
+      transform: scale(1.06);
+      filter: drop-shadow(0 0 16px rgba(226, 199, 153, 0.75));
+    }
+
+    .brand-text-lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      line-height: 1;
+    }
+
+    .brand-name {
+      letter-spacing: 0.08em;
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: #1A1715;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 0.54rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #7A5E32;
+      line-height: 1;
     }
 
     .dash-actions {
@@ -401,29 +422,11 @@
   <div class="dashboard-container">
     <!-- Header -->
     <header class="dash-header">
-      <a href="/boards" class="brand-cluster">
-        <div class="brand-mark-squircle">
-          <svg viewBox="0 0 512 512">
-            <defs>
-              <linearGradient id="goldGradDash" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#C5A880"/>
-                <stop offset="50%" stop-color="#E2C799"/>
-                <stop offset="100%" stop-color="#F5E6D3"/>
-              </linearGradient>
-            </defs>
-            <g transform="translate(256, 256) scale(3.2) translate(-50, -50)">
-              <path d="M 34 68 C 30 64 30 58 34 54 L 56 32 L 48 32 C 45 32 43 30 43 27 C 43 24 45 22 48 22 L 75 22 C 77 22 79 24 79 26 L 79 53 C 79 56 77 58 74 58 C 71 58 69 56 69 53 L 69 45 L 47 68 C 43 72 38 72 34 68 Z" fill="url(#goldGradDash)"/>
-              <path d="M 24 72 C 27 75 29 79 28 83 C 27 87 23 89 19 88 C 15 87 13 83 14 79 C 15 75 21 69 24 72 Z" fill="url(#goldGradDash)" opacity="0.95"/>
-              <rect x="18.5" y="77.5" width="5.5" height="5.5" rx="1.2" transform="rotate(45 21.25 80.25)" fill="#F5E6D3"/>
-            </g>
-          </svg>
-        </div>
-        <div>
-          <div style="display:flex; align-items:center; gap:6px">
-            <span style="letter-spacing:0.04em; font-weight:900; font-size:1.05rem; color:#1A1715">POLISH</span>
-            <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; background:var(--brand-gold); color:#080706; padding:2px 7px; border-radius:6px">STUDIO</span>
-          </div>
-          <div style="font-size:0.72rem; color:var(--text-muted); font-weight:600; margin-top:2px">Executive Whiteboard Hub</div>
+      <a href="/boards" class="brand-cluster" title="POLISH Board Studio">
+        <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="34" height="34" />
+        <div class="brand-text-lockup">
+          <span class="brand-name">POLISH</span>
+          <span class="brand-subtitle">BOARD STUDIO</span>
         </div>
       </a>
 

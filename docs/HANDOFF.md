@@ -191,9 +191,11 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Exclusive Google Sign-In Architecture**:
   - Simplified `/login` (`public/studio/login.html`) to an ultra-clean, distraction-free single-click Google authentication flow with Haute Atelier luxury card aesthetics.
   - Resolved COOP isolation (`crossOriginOpenerPolicy: false` in Helmet) allowing the Google OAuth popup to communicate with the opener window, and implemented automatic fallback to `signInWithRedirect` with `getRedirectResult()`.
-* **Clean Route Hygiene & Dead Duplicate Purge**:
-  - Permanently deleted `dubai_strategy_board.html`, `eman.html`, and `eman-intake.html`.
-  - Preserved canonical `eman-alkatheeri.html`, `intake.html`, and `public/index.html` marketing header.
+* **Subdomain Isolation for Board Studio (`app.polishmediaco.com`)**:
+  - All whiteboard canvas, dashboard, view, and studio login pages are strictly hosted on `app.polishmediaco.com`.
+  - Main domain (`polishmediaco.com`) now 301 redirects `/login`, `/boards`, `/canvas`, `/studio`, and `/view/:id` cleanly to `app.polishmediaco.com`.
+  - Purged old booking aliases (`/schedule`, `/meeting`, `/call`, `/calendar`) to enforce canonical `/book`.
+  - Purged `/board` alias from client proposal and redirected to `app.polishmediaco.com/boards`.
 
 ---
 
@@ -202,6 +204,7 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Branch**: `main`
 * **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
+  * `refactor(routing): isolate Board Studio on app.polishmediaco.com, remove booking aliases, redirect main domain studio links`
   * `perf(auth): accelerate Studio & Admin login — strip firestore bloat, eliminate 1200ms delay, enable 0ms instant session hydration`
   * `feat(studio): deliver Miro-grade infinite whiteboard with offline persistence, 1-click theme toggle, starter templates, and official brand lockup`
   * `feat(notifications): integrate GREEN-API WhatsApp notification gateway & Calendly webhook listener`

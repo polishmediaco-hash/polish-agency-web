@@ -198,6 +198,19 @@ window.StudioCore = (function () {
     // 2. Instant render from local cache or built-in template (0ms Frame-1 render!)
     loadBoard(boardId);
 
+    // 2b. Auto-populate template if template param is present
+    const templateParam = params.get('template');
+    if (templateParam) {
+      setTimeout(() => {
+        loadTemplate(templateParam);
+        try {
+          const cleanUrl = new URL(window.location);
+          cleanUrl.searchParams.delete('template');
+          window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search);
+        } catch (_) {}
+      }, 80);
+    }
+
     // 3. Bind Keyboard Shortcuts & Title input
     bindKeyboardShortcuts();
     bindTitleInput();

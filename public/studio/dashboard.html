@@ -3,85 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>POLISH Studio — Executive Boards Hub</title>
+  <title>POLISH Board Studio — Strategy Boards</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
   <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
+
   <style>
+    /* ==========================================================================
+       HAUTE ATELIER DESIGN SYSTEM — LUXURY DASHBOARD
+       Default: Obsidian Noir (Dark Theme) | Toggleable to Haute Light
+       ========================================================================== */
     :root {
-      --brand-gold: #C5A880;
-      --brand-gold-bright: #E2C799;
+      /* Brand Palette */
+      --brand-gold: #E2C799;
+      --brand-gold-bright: #F3D382;
+      --brand-bronze: #C5A880;
+      --brand-platinum: #F5E6D3;
       --brand-noir: #080706;
-      --surface-alabaster: #FAF7F2;
-      --surface-white: #FFFFFF;
-      --surface-card: #FFFFFF;
-      --surface-subtle: #F5F1EB;
-      --surface-subtle-hover: #ECE6DD;
-      --text-ink: #1A1715;
-      --text-slate: #3F3C39;
-      --text-muted: #736D67;
-      --border-subtle: #E8E2D8;
-      --border-strong: #D5CEC4;
-      --font-heading: 'Plus Jakarta Sans', sans-serif;
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+      /* Dark Theme (Default) */
+      --bg-surface: #080706;
+      --bg-grid-dot: rgba(226, 199, 153, 0.14);
+      --card-surface: rgba(18, 16, 14, 0.92);
+      --card-surface-hover: rgba(26, 22, 18, 0.96);
+      --dock-surface: rgba(16, 14, 12, 0.92);
+      --border-subtle: rgba(226, 199, 153, 0.22);
+      --border-strong: rgba(226, 199, 153, 0.45);
+      --text-heading: #FFFFFF;
+      --text-primary: #F5E6D3;
+      --text-secondary: #C5A880;
+      --text-muted: #8E8271;
+      --pill-bg: rgba(226, 199, 153, 0.08);
+      --pill-border: rgba(226, 199, 153, 0.25);
+      --pill-text: #E2C799;
+      --input-bg: rgba(26, 23, 20, 0.7);
+      --input-border: rgba(226, 199, 153, 0.25);
+      --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.75);
+      --shadow-hover: 0 24px 50px rgba(0, 0, 0, 0.9), 0 0 24px rgba(226, 199, 153, 0.2);
+
+      --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Cormorant Garamond', Didot, Georgia, serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    /* Light Theme Override */
+    body:not(.theme-dark) {
+      --bg-surface: #FAF7F2;
+      --bg-grid-dot: rgba(197, 168, 128, 0.22);
+      --card-surface: rgba(255, 255, 255, 0.95);
+      --card-surface-hover: #FFFFFF;
+      --dock-surface: rgba(255, 255, 255, 0.96);
+      --border-subtle: rgba(197, 168, 128, 0.32);
+      --border-strong: rgba(197, 168, 128, 0.65);
+      --text-heading: #1A1715;
+      --text-primary: #24201D;
+      --text-secondary: #7A5E32;
+      --text-muted: #736D67;
+      --pill-bg: rgba(197, 168, 128, 0.1);
+      --pill-border: rgba(197, 168, 128, 0.35);
+      --pill-text: #7A5E32;
+      --input-bg: rgba(250, 247, 242, 0.9);
+      --input-border: rgba(197, 168, 128, 0.35);
+      --shadow-card: 0 12px 32px rgba(26, 23, 21, 0.05);
+      --shadow-hover: 0 24px 50px -8px rgba(26, 23, 21, 0.12), 0 0 24px rgba(197, 168, 128, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
 
     body {
-      background-color: var(--surface-alabaster);
-      background-image: radial-gradient(rgba(197, 168, 128, 0.22) 1.25px, transparent 1.25px);
+      background-color: var(--bg-surface);
+      background-image: radial-gradient(var(--bg-grid-dot) 1.25px, transparent 1.25px);
       background-size: 32px 32px;
       font-family: var(--font-heading);
-      color: var(--text-ink);
+      color: var(--text-primary);
       min-height: 100vh;
-      padding: 3rem 2rem;
+      padding: 24px;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     .dashboard-container {
-      max-width: 1240px;
+      max-width: 1320px;
       margin: 0 auto;
     }
 
-    /* Header Nav (Haute Atelier Light) */
+    /* ==========================================================
+       FLOATING EXECUTIVE HEADER DOCK
+       ========================================================== */
     .dash-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 3.5rem;
-      background: rgba(255, 255, 255, 0.94);
+      background: var(--dock-surface);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--border-subtle);
       border-radius: 9999px;
-      padding: 0.85rem 1.75rem;
-      box-shadow: 0 10px 30px rgba(26, 23, 21, 0.05);
-      gap: 1.5rem;
+      padding: 10px 20px;
+      box-shadow: var(--shadow-card), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      gap: 16px;
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      transition: all 0.25s ease;
     }
 
-    .brand-cluster {
+    .header-left {
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-capsule {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 14px 4px 6px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
       text-decoration: none;
-      color: var(--text-ink);
-      font-weight: 800;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-capsule:hover {
+      background: rgba(226, 199, 153, 0.16);
+      border-color: var(--brand-gold);
+      transform: translateY(-0.5px);
     }
 
     .brand-logo-mark {
-      width: 34px;
-      height: 34px;
+      width: 28px;
+      height: 28px;
       object-fit: contain;
+      flex-shrink: 0;
       filter: drop-shadow(0 0 10px rgba(226, 199, 153, 0.45));
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .brand-cluster:hover .brand-logo-mark {
+    .brand-capsule:hover .brand-logo-mark {
       transform: scale(1.06);
-      filter: drop-shadow(0 0 16px rgba(226, 199, 153, 0.75));
     }
 
     .brand-text-lockup {
@@ -95,114 +164,264 @@
     .brand-name {
       letter-spacing: 0.08em;
       font-weight: 900;
-      font-size: 1.05rem;
-      color: #1A1715;
+      font-size: 0.92rem;
+      color: var(--text-heading);
       line-height: 1.1;
     }
 
     .brand-subtitle {
-      font-size: 0.54rem;
+      font-size: 0.52rem;
       font-weight: 800;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #7A5E32;
+      color: var(--text-secondary);
       line-height: 1;
     }
 
-    .dash-actions {
+    /* Header Search */
+    .header-search-wrap {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 10px;
+      flex: 1;
+      max-width: 320px;
     }
 
-    .user-capsule {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 5px 12px 5px 6px;
-      border-radius: 30px;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border-subtle);
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-slate);
+    .header-search-input {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 999px;
+      padding: 7px 14px 7px 32px;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      outline: none;
+      transition: all 0.18s ease;
     }
 
-    .user-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: #080706;
-      color: #F5E6D3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-    }
-
-    .btn-signout {
-      background: transparent;
-      border: none;
+    .header-search-input::placeholder {
       color: var(--text-muted);
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 6px;
-      transition: color 0.15s, background 0.15s;
     }
-    .btn-signout:hover {
-      color: #BE123C;
-      background: #FFF1F2;
+
+    .header-search-input:focus {
+      border-color: var(--brand-gold);
+      box-shadow: 0 0 12px rgba(226, 199, 153, 0.25);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 11px;
+      pointer-events: none;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Header Actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
     }
 
     .btn {
-      padding: 9px 18px;
-      border-radius: 24px;
+      padding: 8px 16px;
+      border-radius: 9999px;
       font-family: var(--font-heading);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 800;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .btn:focus-visible {
-      outline: 2px solid var(--brand-gold);
-      outline-offset: 2px;
-    }
-
-    .btn-primary {
-      background: #080706;
-      color: #F5E6D3;
-      border: 1px solid #080706;
-    }
-
-    .btn-primary:hover {
-      background: #1A1715;
-      color: #FFFFFF;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(8, 7, 6, 0.2);
+      border: none;
+      white-space: nowrap;
     }
 
     .btn-secondary {
-      background: #FFFFFF;
-      color: var(--text-ink);
+      background: var(--pill-bg);
+      color: var(--text-primary);
       border: 1px solid var(--border-subtle);
     }
 
     .btn-secondary:hover {
-      background: var(--surface-subtle);
+      background: rgba(226, 199, 153, 0.18);
       border-color: var(--brand-gold);
+      color: var(--text-heading);
       transform: translateY(-1px);
     }
 
-    /* Page Titles */
+    /* Radiant Gold Hero Button */
+    .btn-hero-new {
+      background: linear-gradient(135deg, #FFF0D0 0%, #F3D382 28%, #E2C799 62%, #C5A880 100%);
+      color: #080706;
+      border: 1px solid #FFF5E2;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      box-shadow: 0 0 16px rgba(226, 199, 153, 0.45), 0 2px 8px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-hero-new:hover {
+      transform: translateY(-1.5px) scale(1.02);
+      box-shadow: 0 0 26px rgba(243, 211, 130, 0.75), 0 4px 14px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.18s ease;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn:hover {
+      background: rgba(226, 199, 153, 0.18);
+      border-color: var(--brand-gold);
+      color: var(--brand-gold);
+      transform: scale(1.05);
+    }
+
+    /* User Avatar Capsule & Dropdown */
+    .profile-capsule-wrap {
+      position: relative;
+    }
+
+    .user-profile-trigger {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px 4px 5px;
+      border-radius: 9999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 0.18s ease;
+    }
+
+    .user-profile-trigger:hover {
+      border-color: var(--brand-gold);
+      background: rgba(226, 199, 153, 0.15);
+    }
+
+    .user-avatar-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #181512;
+      border: 1px solid var(--brand-gold);
+      color: var(--brand-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .profile-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: rgba(18, 16, 14, 0.98);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+      padding: 8px;
+      min-width: 220px;
+      z-index: 1000;
+      display: none;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    body:not(.theme-dark) .profile-dropdown-menu {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(197, 168, 128, 0.4);
+      box-shadow: 0 16px 40px rgba(26, 23, 21, 0.15);
+    }
+
+    .profile-dropdown-menu.active {
+      display: block;
+      animation: fadeInMenu 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInMenu {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-user-header {
+      padding: 8px 12px 10px 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 6px;
+    }
+
+    .dropdown-user-name {
+      font-weight: 800;
+      font-size: 0.86rem;
+      color: var(--text-heading);
+    }
+
+    .dropdown-user-email {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.12s ease;
+      text-align: left;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(226, 199, 153, 0.16);
+      color: var(--text-heading);
+    }
+
+    .dropdown-item.item-danger:hover {
+      background: rgba(225, 29, 72, 0.18);
+      color: #FB7185;
+    }
+
+    /* ==========================================================
+       PAGE HEADER ROW & CONTROLS
+       ========================================================== */
     .title-row {
       margin-bottom: 2.5rem;
       display: flex;
@@ -213,63 +432,93 @@
     }
 
     .eyebrow {
-      font-size: 0.82rem;
+      font-size: 0.76rem;
       font-weight: 800;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--brand-gold);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .headline {
-      font-size: 2.25rem;
+      font-size: 2.3rem;
       font-weight: 900;
       letter-spacing: -0.03em;
-      color: var(--text-ink);
+      color: var(--text-heading);
+      line-height: 1.15;
     }
 
-    .headline .serif-accent {
-      font-family: var(--font-serif);
-      font-style: italic;
-      color: var(--brand-gold);
-      font-weight: 700;
+    .subheadline {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-weight: 500;
     }
 
-    .workspace-meta-capsule {
+    .title-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .workspace-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(197, 168, 128, 0.35);
-      font-size: 0.76rem;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      font-size: 0.78rem;
       font-weight: 700;
-      color: var(--text-slate);
-      box-shadow: 0 4px 14px rgba(26, 23, 21, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      color: var(--text-primary);
     }
 
-    .workspace-meta-capsule .meta-dot {
+    .meta-live-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: #10B981;
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+      flex-shrink: 0;
     }
 
-    /* Boards Grid */
+    .sort-select {
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      border-radius: 9999px;
+      padding: 6px 12px;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .sort-select option {
+      background: #181512;
+      color: #F5E6D3;
+    }
+
+    /* ==========================================================
+       BOARDS GRID & AWARD-WINNING LUXURY CARDS
+       ========================================================== */
     .boards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 1.75rem;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2rem;
     }
 
     .board-card {
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid rgba(197, 168, 128, 0.32);
+      background: var(--card-surface);
+      border: 1px solid var(--border-subtle);
       border-radius: 24px;
-      padding: 1.35rem;
-      box-shadow: 0 12px 32px rgba(26, 23, 21, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+      padding: 1.4rem;
+      box-shadow: var(--shadow-card), inset 0 1px 1px rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s, border-color 0.22s;
@@ -280,48 +529,61 @@
 
     .board-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 24px 50px -8px rgba(26, 23, 21, 0.12), 0 0 24px rgba(197, 168, 128, 0.16), inset 0 1px 2px rgba(255, 255, 255, 1);
-      border-color: rgba(197, 168, 128, 0.65);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--border-strong);
     }
 
-    /* Miniature Canvas Preview */
+    /* Miniature Procedural Canvas Preview */
     .card-canvas-preview {
       width: 100%;
-      height: 124px;
-      background: #FAF7F2;
-      background-image: radial-gradient(rgba(197, 168, 128, 0.25) 1px, transparent 1px);
-      background-size: 16px 16px;
-      border: 1px solid rgba(197, 168, 128, 0.25);
+      height: 140px;
+      background: #0D0C0A;
+      background-image: radial-gradient(rgba(226, 199, 153, 0.2) 1px, transparent 1px);
+      background-size: 14px 14px;
+      border: 1px solid var(--border-subtle);
       border-radius: 16px;
       position: relative;
       overflow: hidden;
-      margin-bottom: 1.15rem;
+      margin-bottom: 1.25rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 10px;
+      padding: 14px;
       transition: all 0.2s ease;
+    }
+
+    body:not(.theme-dark) .card-canvas-preview {
+      background: #FAF7F2;
+      background-image: radial-gradient(rgba(197, 168, 128, 0.25) 1px, transparent 1px);
     }
 
     .card-canvas-preview:hover {
       border-color: var(--brand-gold);
-      background-color: #F8F4EC;
     }
 
+    /* Procedural Wireframe Elements inside Preview */
     .mini-frame-box {
-      width: 95px;
-      height: 76px;
-      background: #FFFFFF;
-      border: 1px solid rgba(232, 226, 216, 0.95);
-      border-radius: 9px;
-      padding: 7px 9px;
-      box-shadow: 0 4px 10px rgba(26, 23, 21, 0.04);
+      width: 105px;
+      height: 88px;
+      background: rgba(22, 19, 16, 0.95);
+      border: 1px solid rgba(226, 199, 153, 0.3);
+      border-radius: 10px;
+      padding: 8px 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
       pointer-events: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    body:not(.theme-dark) .mini-frame-box {
+      background: #FFFFFF;
+      border-color: rgba(197, 168, 128, 0.35);
+      box-shadow: 0 4px 10px rgba(26, 23, 21, 0.05);
     }
 
     .mini-pill-tag {
@@ -334,39 +596,90 @@
     }
 
     .mini-bar-primary {
-      height: 4.5px;
+      height: 5px;
       border-radius: 2px;
-      background: #1A1715;
+      background: var(--brand-platinum);
       width: 82%;
     }
 
+    body:not(.theme-dark) .mini-bar-primary {
+      background: #1A1715;
+    }
+
     .mini-bar-subtle {
-      height: 3.5px;
+      height: 4px;
       border-radius: 2px;
-      background: #E8E2D8;
+      background: rgba(226, 199, 153, 0.3);
       width: 60%;
     }
 
-    .mini-card-block {
-      margin-top: 3px;
-      height: 16px;
-      border-radius: 4px;
-      background: #FAF7F2;
-      border: 1px solid #ECE6DD;
+    .mini-block-accent {
+      margin-top: auto;
+      height: 20px;
+      border-radius: 5px;
+      background: rgba(226, 199, 153, 0.1);
+      border: 1px solid rgba(226, 199, 153, 0.2);
     }
 
+    /* Mini Connector SVG */
+    .mini-connector-svg {
+      flex-shrink: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Mini Sticky Note Accent */
+    .mini-sticky-note {
+      width: 32px;
+      height: 32px;
+      background: #FFF275;
+      border-radius: 4px;
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      transform: rotate(-6deg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 3px;
+      padding: 5px 4px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .mini-sticky-tape {
+      width: 12px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.75);
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 1px;
+    }
+
+    .mini-sticky-line {
+      height: 2px;
+      background: rgba(180, 83, 9, 0.45);
+      border-radius: 1px;
+      width: 75%;
+    }
+
+    /* Hover Overlay */
     .preview-hover-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(8, 7, 6, 0.45);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
+      background: rgba(8, 7, 6, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       transition: opacity 0.2s ease;
       border-radius: 15px;
+      z-index: 10;
     }
 
     .card-canvas-preview:hover .preview-hover-overlay {
@@ -374,13 +687,13 @@
     }
 
     .preview-hover-pill {
-      background: #FFFFFF;
+      background: linear-gradient(135deg, #FFF0D0 0%, #F3D382 28%, #E2C799 62%, #C5A880 100%);
       color: #080706;
-      font-size: 0.74rem;
-      font-weight: 800;
-      padding: 5px 13px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      padding: 6px 16px;
       border-radius: 20px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
     }
 
     /* Card Top Header & Actions */
@@ -388,19 +701,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.65rem;
+      margin-bottom: 0.75rem;
       position: relative;
     }
 
-    .board-metric-pill {
+    .board-metric-badge {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border-subtle);
-      padding: 3px 9px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      padding: 3px 10px;
       border-radius: 20px;
-      color: var(--text-slate);
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
     }
 
     .card-menu-container {
@@ -408,8 +722,8 @@
     }
 
     .btn-card-menu {
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 8px;
       background: transparent;
       border: 1px solid transparent;
@@ -418,15 +732,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       line-height: 1;
-      transition: all 0.15s;
+      transition: all 0.15s ease;
     }
 
     .btn-card-menu:hover {
-      background: var(--surface-subtle);
+      background: var(--pill-bg);
       border-color: var(--border-subtle);
-      color: var(--text-ink);
+      color: var(--text-heading);
     }
 
     .card-menu-dropdown {
@@ -434,14 +748,22 @@
       top: 100%;
       right: 0;
       margin-top: 4px;
-      background: #FFFFFF;
-      border: 1px solid var(--border-subtle);
+      background: rgba(18, 16, 14, 0.98);
+      border: 1px solid var(--border-strong);
       border-radius: 14px;
-      box-shadow: 0 12px 32px rgba(26, 23, 21, 0.12);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
       padding: 6px;
-      min-width: 180px;
+      min-width: 190px;
       z-index: 100;
       display: none;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    body:not(.theme-dark) .card-menu-dropdown {
+      background: #FFFFFF;
+      border-color: var(--border-subtle);
+      box-shadow: 0 12px 32px rgba(26, 23, 21, 0.15);
     }
 
     .card-menu-dropdown.active {
@@ -449,51 +771,52 @@
       animation: fadeInMenu 0.15s ease;
     }
 
-    @keyframes fadeInMenu {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .menu-item-action {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       width: 100%;
-      padding: 7px 10px;
+      padding: 7px 11px;
       border-radius: 8px;
       background: transparent;
       border: none;
       font-family: var(--font-heading);
       font-size: 0.78rem;
       font-weight: 700;
-      color: var(--text-slate);
+      color: var(--text-primary);
       cursor: pointer;
       text-decoration: none;
       text-align: left;
-      transition: all 0.12s;
+      transition: all 0.12s ease;
     }
 
     .menu-item-action:hover {
-      background: var(--surface-subtle);
-      color: var(--text-ink);
+      background: rgba(226, 199, 153, 0.16);
+      color: var(--text-heading);
     }
 
     .menu-item-action.danger:hover {
-      background: #FFF1F2;
-      color: #BE123C;
+      background: rgba(225, 29, 72, 0.18);
+      color: #FB7185;
     }
 
     .board-card-title {
       font-size: 1.25rem;
       font-weight: 800;
-      color: var(--text-ink);
+      color: var(--text-heading);
       letter-spacing: -0.02em;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.4rem;
       line-height: 1.3;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .board-card-title:hover {
+      color: var(--brand-gold);
     }
 
     .board-card-client {
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
       font-weight: 600;
       display: flex;
@@ -502,15 +825,12 @@
       margin-bottom: 1.25rem;
     }
 
-    .client-bullet {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--brand-gold);
-      display: inline-block;
+    .client-diamond {
+      color: var(--brand-gold);
+      font-size: 0.65rem;
     }
 
-    /* Streamlined Footer */
+    /* Card Footer */
     .board-card-footer {
       display: flex;
       align-items: center;
@@ -523,7 +843,7 @@
 
     .board-date-label {
       font-family: var(--font-mono);
-      font-size: 0.71rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       font-weight: 600;
     }
@@ -534,25 +854,26 @@
       gap: 8px;
     }
 
-    .btn-card-share {
+    .btn-card-copy {
       display: inline-flex;
       align-items: center;
       gap: 5px;
       padding: 6px 12px;
-      border-radius: 20px;
+      border-radius: 9999px;
       font-family: var(--font-heading);
       font-size: 0.76rem;
       font-weight: 700;
-      background: #FAF7F2;
-      border: 1px solid rgba(197, 168, 128, 0.45);
-      color: #92400E;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
       cursor: pointer;
       transition: all 0.15s ease;
     }
 
-    .btn-card-share:hover {
-      background: #FEF8ED;
-      border-color: #C5A880;
+    .btn-card-copy:hover {
+      background: rgba(226, 199, 153, 0.18);
+      border-color: var(--brand-gold);
+      color: var(--text-heading);
       transform: translateY(-1px);
     }
 
@@ -560,117 +881,583 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 6px 15px;
-      border-radius: 20px;
+      padding: 6px 14px;
+      border-radius: 9999px;
       font-family: var(--font-heading);
       font-size: 0.78rem;
       font-weight: 800;
-      background: #080706;
-      color: #F5E6D3;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-strong);
+      color: var(--brand-gold);
       text-decoration: none;
-      border: 1px solid #080706;
       transition: all 0.15s ease;
     }
 
     .btn-card-open:hover {
-      background: #1A1715;
-      color: #FFFFFF;
+      background: var(--brand-gold);
+      color: #080706;
+      border-color: var(--brand-gold);
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(8, 7, 6, 0.2);
+      box-shadow: 0 4px 14px rgba(226, 199, 153, 0.35);
     }
 
-    /* Toast */
+    /* ==========================================================
+       EMPTY STATE CARD
+       ========================================================== */
+    .empty-state-card {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4.5rem 2rem;
+      background: var(--card-surface);
+      border-radius: 24px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .empty-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      color: var(--brand-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem auto;
+      box-shadow: 0 0 20px rgba(226, 199, 153, 0.15);
+    }
+
+    .empty-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--text-heading);
+    }
+
+    .empty-desc {
+      color: var(--text-muted);
+      max-width: 440px;
+      margin: 0 auto 1.75rem auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .empty-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================
+       TEMPLATE MODAL
+       ========================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 7, 6, 0.8);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .template-modal-card {
+      background: #100E0C;
+      border: 1px solid var(--border-strong);
+      border-radius: 24px;
+      max-width: 980px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(226, 199, 153, 0.15);
+      position: relative;
+    }
+
+    body:not(.theme-dark) .template-modal-card {
+      background: #FFFFFF;
+      border-color: var(--border-strong);
+      box-shadow: 0 24px 60px rgba(26, 23, 21, 0.2);
+    }
+
+    .modal-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.15s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(225, 29, 72, 0.2);
+      color: #FB7185;
+      border-color: #FB7185;
+    }
+
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .template-picker-card {
+      background: rgba(22, 19, 16, 0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 1.15rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    body:not(.theme-dark) .template-picker-card {
+      background: #FAF7F2;
+    }
+
+    .template-picker-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--brand-gold);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 16px rgba(226, 199, 153, 0.25);
+    }
+
+    .template-tag {
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .template-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin-bottom: 0.35rem;
+    }
+
+    .template-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .template-card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-use-template {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--brand-gold);
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    /* ==========================================================
+       DELETE CONFIRMATION MODAL
+       ========================================================== */
+    .delete-modal-box {
+      background: #141210;
+      border: 1px solid var(--border-strong);
+      border-radius: 24px;
+      max-width: 420px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+      text-align: center;
+    }
+
+    body:not(.theme-dark) .delete-modal-box {
+      background: #FFFFFF;
+      box-shadow: 0 24px 60px rgba(26, 23, 21, 0.25);
+    }
+
+    .delete-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(225, 29, 72, 0.15);
+      color: #FB7185;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem auto;
+      border: 1px solid rgba(225, 29, 72, 0.3);
+    }
+
+    /* ==========================================================
+       TOAST NOTIFICATION
+       ========================================================== */
     .dash-toast {
       position: fixed;
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(100px);
-      background: #080706;
+      background: rgba(18, 16, 14, 0.96);
+      border: 1px solid var(--brand-gold);
       color: #F5E6D3;
       padding: 10px 22px;
       border-radius: 30px;
       font-size: 0.84rem;
       font-weight: 700;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      z-index: 2000;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.8), 0 0 16px rgba(226, 199, 153, 0.3);
+      z-index: 4000;
       opacity: 0;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
       display: flex;
       align-items: center;
       gap: 8px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .dash-toast.visible {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
+
+    /* ==========================================================
+       RESPONSIVE ADAPTATIONS
+       ========================================================== */
+    @media (max-width: 860px) {
+      body { padding: 14px 12px; }
+      .dash-header {
+        border-radius: 20px;
+        padding: 10px 12px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .header-left {
+        order: 1;
+      }
+      .header-actions {
+        order: 2;
+        margin-left: auto;
+        gap: 6px;
+      }
+      .header-actions .btn {
+        padding: 6px 11px;
+        font-size: 0.76rem;
+      }
+      .theme-toggle-btn {
+        width: 32px;
+        height: 32px;
+      }
+      .user-name-label, .user-chevron-svg {
+        display: none !important;
+      }
+      .user-profile-trigger {
+        padding: 3px;
+      }
+      .header-search-wrap {
+        order: 3;
+        flex: 1 1 100%;
+        max-width: 100%;
+        width: 100%;
+      }
+      .headline { font-size: 1.8rem; }
+      .boards-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-<body>
+<body class="theme-dark">
 
   <div class="dashboard-container">
-    <!-- Header -->
+    <!-- Floating Executive Header Dock -->
     <header class="dash-header">
-      <a href="/boards" class="brand-cluster" title="POLISH Board Studio">
-        <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="34" height="34" />
-        <div class="brand-text-lockup">
-          <span class="brand-name">POLISH</span>
-          <span class="brand-subtitle">BOARD STUDIO</span>
-        </div>
-      </a>
+      <div class="header-left">
+        <a href="/boards" class="brand-capsule" title="POLISH Board Studio">
+          <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="28" height="28" />
+          <div class="brand-text-lockup">
+            <span class="brand-name">POLISH</span>
+            <span class="brand-subtitle">BOARD STUDIO</span>
+          </div>
+        </a>
+      </div>
 
-      <div class="dash-actions">
-        <!-- User Account Profile Capsule -->
-        <div id="userCapsule" class="user-capsule" style="display:none">
-          <div id="userAvatar" class="user-avatar">AD</div>
-          <span id="userName">Advisor</span>
-          <button class="btn-signout" onclick="signOut()" title="Log out of this workspace">Sign Out</button>
-        </div>
+      <!-- Search Input -->
+      <div class="header-search-wrap">
+        <span class="search-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span>
+        <input type="text" id="boardSearchInput" class="header-search-input" placeholder="Search boards... (Press /)" oninput="handleBoardSearch(event)" />
+      </div>
 
-        <button class="btn btn-secondary" onclick="createFromTemplate()">+ Strategy Template</button>
-        <button class="btn btn-primary" onclick="createBlankBoard()">+ Blank Canvas</button>
+      <div class="header-actions">
+        <!-- 1-Click Theme Switcher -->
+        <button type="button" id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleDashboardTheme()" title="Toggle Light / Dark Mode">
+          <svg id="themeIconDark" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+
+        <!-- Template Picker Trigger -->
+        <button type="button" class="btn btn-secondary" onclick="openTemplateModal()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Templates</span>
+        </button>
+
+        <!-- Hero + New Board Button -->
+        <button type="button" class="btn btn-hero-new" onclick="createBlankBoard()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>New</span>
+        </button>
+
+        <!-- User Profile Dropdown -->
+        <div class="profile-capsule-wrap">
+          <div class="user-profile-trigger" onclick="toggleProfileDropdown(event)">
+            <div id="userAvatar" class="user-avatar-circle">AD</div>
+            <span id="userName" class="user-name-label" style="max-width:90px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Advisor</span>
+            <svg class="user-chevron-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+
+          <div id="profileDropdown" class="profile-dropdown-menu">
+            <div class="dropdown-user-header">
+              <div id="dropdownUserName" class="dropdown-user-name">Executive Advisor</div>
+              <div id="dropdownUserEmail" class="dropdown-user-email">advisor@polishmediaco.com</div>
+            </div>
+            <a href="/studio" class="dropdown-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Launch Studio Editor</span>
+            </a>
+            <div style="height:1px; background:var(--border-subtle); margin:4px 0;"></div>
+            <button type="button" class="dropdown-item item-danger" onclick="signOut()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- Title -->
+    <!-- Workspace Header & Meta -->
     <div class="title-row">
       <div>
-        <div class="eyebrow">Atelier Whiteboards</div>
-        <h1 class="headline">Strategic Client <span class="serif-accent">Canvases & Boards</span></h1>
+        <div class="eyebrow">
+          <span>WORKSPACE</span>
+        </div>
+        <h1 class="headline">Strategy Boards</h1>
+        <p class="subheadline">Executive whiteboard blueprints and client presentation architectures.</p>
       </div>
-      <div class="workspace-meta-capsule">
-        <span class="meta-dot"></span>
-        <span id="workspaceStatsText">Private Haute Atelier Active</span>
+
+      <div class="title-controls">
+        <div class="workspace-badge">
+          <span class="meta-live-dot"></span>
+          <span id="workspaceStatsText">Loading boards...</span>
+        </div>
+
+        <select id="boardSortSelect" class="sort-select" onchange="handleSortChange(event)">
+          <option value="recent">Recently Updated</option>
+          <option value="title">Alphabetical</option>
+          <option value="elements">Most Elements</option>
+        </select>
       </div>
     </div>
 
-    <!-- Grid of Boards -->
+    <!-- Boards Grid -->
     <div id="boardsGrid" class="boards-grid">
-      <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">
-        Loading private workspace boards...
+      <div style="grid-column: 1 / -1; text-align: center; padding: 4rem; color: var(--text-muted);">
+        Loading workspace boards...
       </div>
     </div>
   </div>
 
-  <!-- Delete Confirmation Modal -->
-  <div id="deleteConfirmModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(8,7,6,0.65); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); z-index:3000; align-items:center; justify-content:center; padding:20px;">
-    <div style="background:#FFFFFF; border:1px solid var(--border-subtle); border-radius:24px; max-width:440px; width:100%; padding:2rem; box-shadow:0 24px 60px rgba(0,0,0,0.25); text-align:center;">
-      <div style="width:48px; height:48px; border-radius:50%; background:#FFF1F2; color:#BE123C; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem auto;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+  <!-- ==========================================================
+       TEMPLATE PICKER MODAL (12 Bespoke Starter Frameworks)
+       ========================================================== -->
+  <div id="templateModal" class="modal-backdrop" onclick="closeTemplateModal(event)">
+    <div class="template-modal-card" onclick="event.stopPropagation()">
+      <div class="modal-top-bar">
+        <div>
+          <div class="eyebrow">STRATEGY TEMPLATES</div>
+          <h2 style="font-size:1.4rem; font-weight:800; color:var(--text-heading);">Choose a Starting Framework</h2>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeTemplateModal()">✕</button>
       </div>
-      <h3 style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800; color:var(--text-ink); margin-bottom:0.5rem;">Delete Strategy Canvas?</h3>
-      <p id="deleteConfirmText" style="font-size:0.86rem; color:var(--text-slate); line-height:1.5; margin-bottom:1.75rem;">Are you sure you want to delete this board? This action is permanent and cannot be undone.</p>
+
+      <div class="templates-grid">
+        <!-- 1. DTC Brand Scaling Blueprint -->
+        <div class="template-picker-card" onclick="createFromTemplate('scaling-blueprint')">
+          <span class="template-tag">Acquisition</span>
+          <h3 class="template-title">DTC Scaling Blueprint</h3>
+          <p class="template-desc">Advantage+ paid media architecture, high-intent advertorials, and CRO testing loops.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 2. Beauty VIP Retention Flywheel -->
+        <div class="template-picker-card" onclick="createFromTemplate('retention-flywheel')">
+          <span class="template-tag">Retention</span>
+          <h3 class="template-title">VIP Retention Flywheel</h3>
+          <p class="template-desc">Post-purchase Klaviyo flows, SMS replenishment cadence, and VIP tier mechanics.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 3. Meta & TikTok Ads Performance Engine -->
+        <div class="template-picker-card" onclick="createFromTemplate('meta-tiktok-ads')">
+          <span class="template-tag">Paid Media</span>
+          <h3 class="template-title">Ads Performance Engine</h3>
+          <p class="template-desc">Dynamic creative testing (3:2:2), TikTok Spark hook retention, and catalog scaling.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 4. Luxury Hero SKU Product Launch -->
+        <div class="template-picker-card" onclick="createFromTemplate('product-launch')">
+          <span class="template-tag">Product Launch</span>
+          <h3 class="template-title">Hero SKU Launch</h3>
+          <p class="template-desc">Teaser waitlist funnel, VIP presale window, and press seeding momentum.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 5. High-Ticket Creator & UGC Engine -->
+        <div class="template-picker-card" onclick="createFromTemplate('influencer-collabs')">
+          <span class="template-tag">Creators</span>
+          <h3 class="template-title">Creator & UGC Engine</h3>
+          <p class="template-desc">Product seeding matrix, creator briefing docs, and paid usage whitelisting rights.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 6. Executive Personal Brand Engine -->
+        <div class="template-picker-card" onclick="createFromTemplate('personal-branding')">
+          <span class="template-tag">Advisory</span>
+          <h3 class="template-title">Personal Brand Engine</h3>
+          <p class="template-desc">Founder authority architecture, thought leadership pipeline, and high-ticket inbound funnel.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 7. Executive Strategy Blueprint -->
+        <div class="template-picker-card" onclick="createFromTemplate('strategy')">
+          <span class="template-tag">Strategy</span>
+          <h3 class="template-title">Executive Blueprint</h3>
+          <p class="template-desc">Boutique positioning, diagnostic friction audit, and high-ticket retainer tiers.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 8. Omnichannel Brand Diagnostic Audit -->
+        <div class="template-picker-card" onclick="createFromTemplate('audit')">
+          <span class="template-tag">Diagnostic</span>
+          <h3 class="template-title">Omnichannel Audit</h3>
+          <p class="template-desc">360° audit scoring acquisition leakage, LTV dropoff, and unit economics.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 9. Luxury Skincare Brand Architecture -->
+        <div class="template-picker-card" onclick="createFromTemplate('skincare')">
+          <span class="template-tag">Brand</span>
+          <h3 class="template-title">Skincare Architecture</h3>
+          <p class="template-desc">Cosmetic chemistry authority, clinical trial proof points, and luxury retail positioning.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 10. 90-Day Revenue Roadmap -->
+        <div class="template-picker-card" onclick="createFromTemplate('planner')">
+          <span class="template-tag">Roadmap</span>
+          <h3 class="template-title">90-Day Roadmap</h3>
+          <p class="template-desc">Sprint milestones, monthly revenue targets, and marketing resource allocation.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 11. Haute Aesthetic Moodboard -->
+        <div class="template-picker-card" onclick="createFromTemplate('moodboard')">
+          <span class="template-tag">Creative</span>
+          <h3 class="template-title">Visual Direction & Moodboard</h3>
+          <p class="template-desc">Art direction boards, typography pairings, packaging concepts, and editorial cues.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+
+        <!-- 12. Blank Canvas -->
+        <div class="template-picker-card" onclick="createFromTemplate('blank')">
+          <span class="template-tag">Custom</span>
+          <h3 class="template-title">Blank Canvas</h3>
+          <p class="template-desc">A clean, infinite strategy whiteboard to build your custom framework from scratch.</p>
+          <div class="template-card-footer">
+            <span class="btn-use-template">Use Template →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       DELETE CONFIRMATION MODAL
+       ========================================================== -->
+  <div id="deleteConfirmModal" class="modal-backdrop" onclick="closeDeleteModal(event)">
+    <div class="delete-modal-box" onclick="event.stopPropagation()">
+      <div class="delete-icon-box">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      </div>
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-heading); margin-bottom:0.5rem;">Delete Strategy Board?</h3>
+      <p id="deleteConfirmText" style="font-size:0.86rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.75rem;">Are you sure you want to permanently delete this board? This action cannot be undone.</p>
       <div style="display:flex; gap:10px; justify-content:center;">
-        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()" style="padding:10px 20px;">Keep Board</button>
-        <button type="button" class="btn" onclick="confirmDeleteBoard()" style="background:#BE123C; color:#FFF; border:none; padding:10px 22px; border-radius:9999px; font-weight:700; cursor:pointer;">Delete Forever</button>
+        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button type="button" class="btn" onclick="confirmDeleteBoard()" style="background:#E11D48; color:#FFF; border:none; padding:8px 22px;">Delete Board</button>
       </div>
     </div>
   </div>
 
   <!-- Toast Notification -->
   <div id="dashToast" class="dash-toast">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2C799" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
     <span>Notification</span>
   </div>
 
@@ -681,19 +1468,58 @@
 
   <script>
     let activeUser = null;
+    let loadedBoards = [];
+    let currentSearchTerm = '';
+    let currentSort = 'recent';
+
+    // Theme Engine Initialization
+    function initTheme() {
+      const saved = localStorage.getItem('polish_studio_theme') || 'dark';
+      if (saved === 'light') {
+        document.body.classList.remove('theme-dark');
+        updateThemeIcon('light');
+      } else {
+        document.body.classList.add('theme-dark');
+        updateThemeIcon('dark');
+      }
+    }
+
+    function toggleDashboardTheme() {
+      const isDark = document.body.classList.contains('theme-dark');
+      if (isDark) {
+        document.body.classList.remove('theme-dark');
+        localStorage.setItem('polish_studio_theme', 'light');
+        updateThemeIcon('light');
+      } else {
+        document.body.classList.add('theme-dark');
+        localStorage.setItem('polish_studio_theme', 'dark');
+        updateThemeIcon('dark');
+      }
+    }
+
+    function updateThemeIcon(mode) {
+      const btn = document.getElementById('themeToggleBtn');
+      if (!btn) return;
+      if (mode === 'light') {
+        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+      } else {
+        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+      }
+    }
 
     document.addEventListener('DOMContentLoaded', async () => {
+      initTheme();
+      bindKeyboardShortcuts();
       await PolishFirebase.init();
 
       if (!PolishFirebase.currentUser) {
-        // If unauthenticated, redirect to login cleanly
         window.location.replace('/login?redirect=/boards');
         return;
       }
 
       activeUser = PolishFirebase.currentUser;
       renderUserProfile(activeUser);
-      loadUserBoards(activeUser.uid);
+      await loadUserBoards(activeUser.uid);
 
       PolishFirebase.onAuthStateChanged((user) => {
         if (!user) {
@@ -705,16 +1531,33 @@
       });
     });
 
+    function bindKeyboardShortcuts() {
+      window.addEventListener('keydown', (e) => {
+        // Quick search focus on "/" or "Cmd+K"
+        if ((e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+          e.preventDefault();
+          const input = document.getElementById('boardSearchInput');
+          if (input) input.focus();
+        }
+        // Escape closes modals
+        if (e.key === 'Escape') {
+          closeTemplateModal();
+          closeDeleteModal();
+          closeAllCardMenus();
+        }
+      });
+    }
+
     function renderUserProfile(user) {
-      const capsule = document.getElementById('userCapsule');
       const avatar = document.getElementById('userAvatar');
       const name = document.getElementById('userName');
+      const dropName = document.getElementById('dropdownUserName');
+      const dropEmail = document.getElementById('dropdownUserEmail');
 
-      if (!capsule) return;
-      capsule.style.display = 'flex';
-
-      const displayName = user.displayName || user.email.split('@')[0];
-      name.textContent = displayName;
+      const displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'Advisor');
+      if (name) name.textContent = displayName;
+      if (dropName) dropName.textContent = displayName;
+      if (dropEmail) dropEmail.textContent = user.email || 'advisor@polishmediaco.com';
 
       const initials = displayName
         .split(' ')
@@ -722,7 +1565,7 @@
         .join('')
         .toUpperCase()
         .slice(0, 2) || 'AD';
-      avatar.textContent = initials;
+      if (avatar) avatar.textContent = initials;
     }
 
     async function signOut() {
@@ -734,118 +1577,209 @@
       try {
         const grid = document.getElementById('boardsGrid');
         const boards = await PolishFirebase.listBoards(userId);
-
-        const statsEl = document.getElementById('workspaceStatsText');
-        const count = boards ? boards.length : 0;
-        if (statsEl) {
-          statsEl.textContent = `${count} Active Blueprint${count === 1 ? '' : 's'}`;
-        }
-
-        if (!boards || boards.length === 0) {
-          grid.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background:rgba(255,255,255,0.95); border-radius:24px; border:1px solid var(--border-subtle); box-shadow: 0 10px 30px rgba(26,23,21,0.03); backdrop-filter: blur(20px);">
-              <div style="font-size:2.5rem; margin-bottom:1rem">✦</div>
-              <h3 style="font-size:1.35rem; font-weight:800; margin-bottom:0.5rem; color:var(--text-ink)">Your Workspace is Ready</h3>
-              <p style="color:var(--text-muted); max-width:440px; margin:0 auto 1.75rem auto; font-size:0.9rem">Create your first client strategy blueprint or start from our battle-tested executive template.</p>
-              <button class="btn btn-primary" onclick="createFromTemplate()">+ Create Executive Blueprint</button>
-            </div>
-          `;
-          return;
-        }
-
-        grid.innerHTML = boards.map(b => {
-          const elemCount = b.elementCount || (b.elements ? b.elements.length : 0);
-          const flowCount = b.connectionCount || (b.connections ? b.connections.length : 0);
-          const updatedDate = new Date(b.updatedAt || Date.now()).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-          const safeTitle = escapeHtml(b.title || 'Untitled Blueprint');
-          const safeClient = escapeHtml(b.client || 'Haute Advisory Client');
-          const boardId = b.id;
-
-          return `
-          <div class="board-card" data-board-id="${boardId}">
-            <!-- Interactive Visual Preview -->
-            <div class="card-canvas-preview" onclick="window.location.href='/studio?id=${encodeURIComponent(boardId)}'" title="Open canvas in studio">
-              <div class="mini-frame-box">
-                <span class="mini-pill-tag">FOUNDATION</span>
-                <div class="mini-bar-primary"></div>
-                <div class="mini-bar-subtle"></div>
-                <div class="mini-card-block"></div>
-              </div>
-              <div class="mini-frame-box">
-                <span class="mini-pill-tag">OFFER</span>
-                <div class="mini-bar-primary" style="width:70%"></div>
-                <div class="mini-bar-subtle" style="width:85%"></div>
-                <div class="mini-card-block" style="background:#FDFBF7"></div>
-              </div>
-              <div class="mini-frame-box" style="opacity:0.65">
-                <span class="mini-pill-tag">PRICING</span>
-                <div class="mini-bar-primary" style="width:60%"></div>
-                <div class="mini-bar-subtle" style="width:40%"></div>
-              </div>
-              <div class="preview-hover-overlay">
-                <span class="preview-hover-pill">Launch Editor →</span>
-              </div>
-            </div>
-
-            <!-- Top Header & Actions Menu -->
-            <div class="card-top-header">
-              <span class="board-metric-pill">${elemCount} Elements • ${flowCount} Flows</span>
-              <div class="card-menu-container">
-                <button class="btn-card-menu" onclick="toggleCardMenu(event, '${boardId}')" title="More options" aria-label="More options">···</button>
-                <div class="card-menu-dropdown" id="menu-${boardId}">
-                  <a href="/b/${encodeURIComponent(boardId)}" target="_blank" class="menu-item-action">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Client View ↗
-                  </a>
-                  <button class="menu-item-action" onclick="duplicateBoard('${boardId}')">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                    Duplicate Blueprint
-                  </button>
-                  <button class="menu-item-action danger" onclick="deleteBoard('${boardId}', '${safeTitle}')">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                    Delete Canvas
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Title & Client Meta -->
-            <h2 class="board-card-title">${safeTitle}</h2>
-            <div class="board-card-client">
-              <span class="client-bullet"></span>
-              ${safeClient}
-            </div>
-
-            <!-- Streamlined Footer CTAs -->
-            <div class="board-card-footer">
-              <span class="board-date-label">${updatedDate}</span>
-              <div class="card-footer-ctas">
-                <button class="btn-card-share" onclick="copyClientLink('${boardId}')" title="Copy public client link">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                  Copy Link
-                </button>
-                <a href="/studio?id=${encodeURIComponent(boardId)}" class="btn-card-open">Open Canvas →</a>
-              </div>
-            </div>
-          </div>
-          `;
-        }).join('');
+        loadedBoards = boards || [];
+        renderFilteredBoards();
       } catch (err) {
         console.error('Error loading boards:', err);
       }
     }
 
+    function renderFilteredBoards() {
+      const grid = document.getElementById('boardsGrid');
+      const statsEl = document.getElementById('workspaceStatsText');
+
+      let filtered = [...loadedBoards];
+
+      // 1. Search Filter
+      if (currentSearchTerm.trim()) {
+        const query = currentSearchTerm.toLowerCase();
+        filtered = filtered.filter(b => {
+          const title = (b.title || '').toLowerCase();
+          const client = (b.client || '').toLowerCase();
+          return title.includes(query) || client.includes(query);
+        });
+      }
+
+      // 2. Sort
+      if (currentSort === 'recent') {
+        filtered.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0));
+      } else if (currentSort === 'title') {
+        filtered.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+      } else if (currentSort === 'elements') {
+        filtered.sort((a, b) => (b.elementCount || 0) - (a.elementCount || 0));
+      }
+
+      const totalCount = loadedBoards.length;
+      if (statsEl) {
+        statsEl.textContent = `${totalCount} Board${totalCount === 1 ? '' : 's'}`;
+      }
+
+      // Empty State
+      if (filtered.length === 0) {
+        if (totalCount === 0) {
+          grid.innerHTML = `
+            <div class="empty-state-card">
+              <div class="empty-icon-wrap">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              </div>
+              <h3 class="empty-title">No Boards Yet</h3>
+              <p class="empty-desc">Create your first strategy board or choose an executive starter framework.</p>
+              <div class="empty-actions">
+                <button type="button" class="btn btn-hero-new" onclick="createBlankBoard()">+ Create Blank Board</button>
+                <button type="button" class="btn btn-secondary" onclick="openTemplateModal()">✦ Browse Templates</button>
+              </div>
+            </div>
+          `;
+        } else {
+          grid.innerHTML = `
+            <div class="empty-state-card">
+              <h3 class="empty-title">No Matching Boards</h3>
+              <p class="empty-desc">No boards matched your search query "${escapeHtml(currentSearchTerm)}".</p>
+              <button type="button" class="btn btn-secondary" onclick="clearSearch()">Clear Search</button>
+            </div>
+          `;
+        }
+        return;
+      }
+
+      grid.innerHTML = filtered.map(b => {
+        const elemCount = b.elementCount || (b.elements ? b.elements.length : 0);
+        const flowCount = b.connectionCount || (b.connections ? b.connections.length : 0);
+        const updatedDate = formatRelativeTime(b.updatedAt || Date.now());
+        const safeTitle = escapeHtml(b.title || 'Untitled Board');
+        const safeClient = escapeHtml(b.client || 'Private Workspace');
+        const boardId = b.id;
+
+        return `
+        <div class="board-card" data-board-id="${boardId}">
+          <!-- Interactive Visual Micro-Canvas Preview -->
+          <div class="card-canvas-preview" onclick="window.location.href='/studio?id=${encodeURIComponent(boardId)}'" title="Open in Studio">
+            <div class="mini-frame-box">
+              <span class="mini-pill-tag">01 • STRATEGY</span>
+              <div class="mini-bar-primary"></div>
+              <div class="mini-bar-subtle"></div>
+              <div class="mini-block-accent"></div>
+            </div>
+
+            <!-- Mini Connector Wire -->
+            <svg class="mini-connector-svg" width="32" height="24" viewBox="0 0 32 24" fill="none">
+              <path d="M 0 12 C 16 12, 16 12, 32 12" stroke="rgba(226, 199, 153, 0.45)" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <circle cx="2" cy="12" r="2.5" fill="#E2C799"/>
+              <circle cx="30" cy="12" r="2.5" fill="#E2C799"/>
+            </svg>
+
+            <div class="mini-frame-box">
+              <span class="mini-pill-tag">02 • EXECUTION</span>
+              <div class="mini-bar-primary" style="width:70%"></div>
+              <div class="mini-bar-subtle" style="width:85%"></div>
+              <div class="mini-block-accent" style="opacity:0.8"></div>
+            </div>
+
+            <!-- Mini Sticky Note Accent -->
+            <div class="mini-sticky-note">
+              <div class="mini-sticky-tape"></div>
+              <div class="mini-sticky-line"></div>
+              <div class="mini-sticky-line" style="width:60%"></div>
+            </div>
+
+            <div class="preview-hover-overlay">
+              <span class="preview-hover-pill">Open Board →</span>
+            </div>
+          </div>
+
+          <!-- Card Top Header & Actions Menu -->
+          <div class="card-top-header">
+            <span class="board-metric-badge">${elemCount} Elements${flowCount ? ` • ${flowCount} Flows` : ''}</span>
+            <div class="card-menu-container">
+              <button type="button" class="btn-card-menu" onclick="toggleCardMenu(event, '${boardId}')" title="More options" aria-label="More options">···</button>
+              <div class="card-menu-dropdown" id="menu-${boardId}">
+                <a href="/studio?id=${encodeURIComponent(boardId)}" class="menu-item-action">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <span>Open in Editor</span>
+                </a>
+                <a href="/b/${encodeURIComponent(boardId)}" target="_blank" class="menu-item-action">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <span>Client View ↗</span>
+                </a>
+                <button type="button" class="menu-item-action" onclick="duplicateBoard('${boardId}')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span>Duplicate Board</span>
+                </button>
+                <div style="height:1px; background:var(--border-subtle); margin:3px 0;"></div>
+                <button type="button" class="menu-item-action danger" onclick="deleteBoard('${boardId}', '${safeTitle}')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  <span>Delete Board</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Board Title & Client Tag -->
+          <h2 class="board-card-title" onclick="window.location.href='/studio?id=${encodeURIComponent(boardId)}'">${safeTitle}</h2>
+          <div class="board-card-client">
+            <span class="client-diamond">✦</span>
+            <span>${safeClient}</span>
+          </div>
+
+          <!-- Card Footer -->
+          <div class="board-card-footer">
+            <span class="board-date-label">${updatedDate}</span>
+            <div class="card-footer-ctas">
+              <button type="button" class="btn-card-copy" onclick="copyClientLink('${boardId}')" title="Copy public client view link">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <span>Share</span>
+              </button>
+              <a href="/studio?id=${encodeURIComponent(boardId)}" class="btn-card-open">Open →</a>
+            </div>
+          </div>
+        </div>
+        `;
+      }).join('');
+    }
+
+    function handleBoardSearch(e) {
+      currentSearchTerm = e.target.value || '';
+      renderFilteredBoards();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('boardSearchInput');
+      if (input) input.value = '';
+      currentSearchTerm = '';
+      renderFilteredBoards();
+    }
+
+    function handleSortChange(e) {
+      currentSort = e.target.value || 'recent';
+      renderFilteredBoards();
+    }
+
+    /* Template Modal Controls */
+    function openTemplateModal() {
+      const modal = document.getElementById('templateModal');
+      if (modal) modal.classList.add('is-open');
+    }
+
+    function closeTemplateModal(e) {
+      if (e && e.target !== e.currentTarget && !e.target.classList.contains('modal-close-btn')) return;
+      const modal = document.getElementById('templateModal');
+      if (modal) modal.classList.remove('is-open');
+    }
+
+    /* Board Creation Engines */
     async function createBlankBoard() {
       if (!activeUser) return;
-      const title = 'New Strategic Advisory Board';
+      const title = 'Untitled Strategy Board';
       const boardId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
       const newBoard = {
         id: boardId,
         slug: boardId,
         title: title,
-        client: 'Private Client',
+        client: 'Private Workspace',
         ownerId: activeUser.uid,
         ownerEmail: activeUser.email,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         viewport: { panX: 100, panY: 80, scale: 0.8 },
         elements: [
           {
@@ -857,13 +1791,13 @@
             height: 480,
             zIndex: 10,
             frameNumber: '01',
-            titlePill: '',
+            titlePill: 'STRATEGY',
             headline: 'Strategic Overview',
             serifAccent: '',
             description: '',
             boxes: [
               {
-                tag: 'PHASE 01',
+                tag: 'OBJECTIVE',
                 tagColor: 'gold',
                 title: 'Primary Strategic Objective',
                 content: ''
@@ -878,28 +1812,45 @@
       window.location.href = `/studio?id=${boardId}`;
     }
 
-    async function createFromTemplate() {
+    async function createFromTemplate(templateKey) {
       if (!activeUser) return;
-      const client = 'Executive Advisory Client';
-      const title = 'Executive Strategy Blueprint';
+      closeTemplateModal();
+
       const boardId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
-      
-      // Fetch starter template structure
-      let starterData;
+
+      // Fetch starter data if available
+      let starterData = null;
       try {
         const res = await fetch('/api/boards/starter-strategy-board');
         if (res.ok) {
           const data = await res.json();
           starterData = data.board;
         }
-      } catch (e) {}
+      } catch (_) {}
+
+      const templateTitles = {
+        'scaling-blueprint': 'DTC Brand Scaling Blueprint',
+        'retention-flywheel': 'Beauty VIP Retention Flywheel',
+        'meta-tiktok-ads': 'Meta & TikTok Ads Performance Engine',
+        'product-launch': 'Luxury Hero SKU Product Launch',
+        'influencer-collabs': 'High-Ticket Creator & UGC Engine',
+        'personal-branding': 'Executive Personal Brand Engine',
+        'strategy': 'Executive Strategy Blueprint',
+        'audit': '360° Omnichannel Brand Diagnostic Audit',
+        'skincare': 'Luxury Skincare Brand Architecture',
+        'planner': '90-Day Q1-Q4 Revenue Roadmap',
+        'moodboard': 'Haute Aesthetic Moodboard & Visual Direction',
+        'blank': 'Blank Strategy Canvas'
+      };
+
+      const title = templateTitles[templateKey] || 'Executive Strategy Board';
 
       const newBoard = {
         ...(starterData || {}),
         id: boardId,
         slug: boardId,
-        title: title.trim(),
-        client: (client || 'Private Client').trim(),
+        title: title,
+        client: 'Private Client',
         ownerId: activeUser.uid,
         ownerEmail: activeUser.email,
         createdAt: new Date().toISOString(),
@@ -907,11 +1858,13 @@
       };
 
       await PolishFirebase.saveBoard(newBoard, activeUser);
-      window.location.href = `/studio?id=${boardId}`;
+      // Navigate into Studio with template loaded
+      window.location.href = `/studio?id=${boardId}&template=${encodeURIComponent(templateKey)}`;
     }
 
     async function duplicateBoard(id) {
       if (!activeUser) return;
+      closeAllCardMenus();
       const original = await PolishFirebase.getBoard(id);
       if (!original) return;
 
@@ -928,39 +1881,45 @@
       };
 
       await PolishFirebase.saveBoard(copy, activeUser);
-      showToast('Board duplicated successfully!');
+      showToast('Board duplicated successfully');
       loadUserBoards(activeUser.uid);
     }
 
+    /* Delete Engine */
     let boardToDeleteId = null;
 
     function deleteBoard(id, title) {
+      closeAllCardMenus();
       boardToDeleteId = id;
       const modal = document.getElementById('deleteConfirmModal');
       const text = document.getElementById('deleteConfirmText');
-      if (text) text.textContent = `Are you sure you want to delete "${title || 'this board'}"? This action is permanent and cannot be undone.`;
-      if (modal) modal.style.display = 'flex';
+      if (text) text.textContent = `Are you sure you want to permanently delete "${title || 'this board'}"? This action cannot be undone.`;
+      if (modal) modal.classList.add('is-open');
     }
 
-    function closeDeleteModal() {
+    function closeDeleteModal(e) {
+      if (e && e.target !== e.currentTarget) return;
       const modal = document.getElementById('deleteConfirmModal');
-      if (modal) modal.style.display = 'none';
+      if (modal) modal.classList.remove('is-open');
       boardToDeleteId = null;
     }
 
     async function confirmDeleteBoard() {
       if (!boardToDeleteId) return;
       const id = boardToDeleteId;
-      closeDeleteModal();
+      const modal = document.getElementById('deleteConfirmModal');
+      if (modal) modal.classList.remove('is-open');
       await PolishFirebase.deleteBoard(id);
-      showToast('Board deleted successfully.');
+      showToast('Board deleted successfully');
       if (activeUser) loadUserBoards(activeUser.uid);
     }
 
+    /* Share & Toast Engine */
     function copyClientLink(id) {
+      closeAllCardMenus();
       const url = `${window.location.origin}/b/${encodeURIComponent(id)}`;
       navigator.clipboard.writeText(url).then(() => {
-        showToast('Client presentation link copied!');
+        showToast('Presentation link copied to clipboard');
       }).catch(() => {
         showToast('Link: ' + url);
       });
@@ -974,6 +1933,26 @@
       setTimeout(() => toast.classList.remove('visible'), 2800);
     }
 
+    function formatRelativeTime(dateStr) {
+      try {
+        const date = new Date(dateStr);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMins / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        if (diffMins < 2) return 'Just now';
+        if (diffMins < 60) return `${diffMins}m ago`;
+        if (diffHours < 24) return `${diffHours}h ago`;
+        if (diffDays === 1) return 'Yesterday';
+        if (diffDays < 7) return `${diffDays}d ago`;
+        return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+      } catch (_) {
+        return 'Recently';
+      }
+    }
+
     function escapeHtml(str) {
       return (str || '').replace(/[&<>"']/g, m => ({
         '&': '&amp;',
@@ -982,6 +1961,13 @@
         '"': '&quot;',
         "'": '&#39;'
       }[m]));
+    }
+
+    /* Dropdown UI Toggles */
+    function toggleProfileDropdown(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('profileDropdown');
+      if (menu) menu.classList.toggle('active');
     }
 
     function toggleCardMenu(e, id) {
@@ -996,6 +1982,8 @@
 
     function closeAllCardMenus() {
       document.querySelectorAll('.card-menu-dropdown.active').forEach(m => m.classList.remove('active'));
+      const prof = document.getElementById('profileDropdown');
+      if (prof) prof.classList.remove('active');
     }
 
     document.addEventListener('click', () => {

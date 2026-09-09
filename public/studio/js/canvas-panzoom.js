@@ -311,7 +311,7 @@ window.CanvasEngine = (function () {
     smoothPanTo(targetPanX, targetPanY, targetScale, 400);
   }
 
-  return {
+  const engine = {
     init,
     getScale: () => scale,
     getPan: () => ({ x: panX, y: panY }),
@@ -327,4 +327,27 @@ window.CanvasEngine = (function () {
     getTool: () => activeTool,
     getPendingShape: () => pendingShapeType
   };
+
+  Object.defineProperty(engine, 'scale', {
+    get: () => scale,
+    set: (v) => { scale = v; applyTransform(); },
+    enumerable: true,
+    configurable: true
+  });
+
+  Object.defineProperty(engine, 'panX', {
+    get: () => panX,
+    set: (v) => { panX = v; applyTransform(); },
+    enumerable: true,
+    configurable: true
+  });
+
+  Object.defineProperty(engine, 'panY', {
+    get: () => panY,
+    set: (v) => { panY = v; applyTransform(); },
+    enumerable: true,
+    configurable: true
+  });
+
+  return engine;
 })();

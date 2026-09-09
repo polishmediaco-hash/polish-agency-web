@@ -12,8 +12,62 @@
 (function () {
   'use strict';
 
+  // Mobile Thermal & Battery Guard Detection:
+  // Detects mobile viewports (<=768px), constrained CPU core count (<=4 cores), or touch-capable devices
+  function detectMobileThermalGuard() {
+    const isSmallScreen = window.innerWidth <= 768;
+    const isLowConcurrency = (typeof navigator !== 'undefined' && Number(navigator.hardwareConcurrency) <= 4);
+    const isTouchDevice = ('ontouchstart' in window || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0));
+    return isSmallScreen || isLowConcurrency || isTouchDevice;
+  }
+
+  let isMobileThermalGuard = detectMobileThermalGuard();
   const isTouch = ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth <= 768);
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // React dynamically to system reduced-motion preference changes
+  try {
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = (e) => {
+      prefersReducedMotion = e.matches;
+      applyReducedMotionPolicy();
+    };
+    if (motionQuery.addEventListener) {
+      motionQuery.addEventListener('change', handleMotionChange);
+    } else if (motionQuery.addListener) {
+      motionQuery.addListener(handleMotionChange);
+    }
+  } catch (e) {}
+
+  window.addEventListener('resize', () => {
+    isMobileThermalGuard = detectMobileThermalGuard();
+  }, { passive: true });
+
+  // Enforce prefers-reduced-motion: static hero flacon immediately, skip kinetic loops
+  function applyReducedMotionPolicy() {
+    if (!prefersReducedMotion) return;
+    const bottleWrap = document.getElementById('heroBottleWrap');
+    if (bottleWrap) {
+      bottleWrap.style.transform = 'none';
+      bottleWrap.style.opacity = '1';
+      bottleWrap.style.willChange = 'auto';
+    }
+    const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
+    if (heroTitle) {
+      heroTitle.style.transform = 'none';
+      heroTitle.style.willChange = 'auto';
+      heroTitle.classList.add('is-revealed', 'is-settled');
+      heroTitle.classList.remove('is-revealing');
+    }
+    document.querySelectorAll('.kinetic-title').forEach(t => {
+      t.classList.add('is-revealed', 'is-settled');
+      t.classList.remove('is-revealing');
+      t.style.willChange = 'auto';
+      t.querySelectorAll('.kinetic-line, .kinetic-text').forEach(el => {
+        el.style.willChange = 'auto';
+      });
+    });
+  }
 
   // =========================================================================
   // 1. PURE 120FPS NATIVE HARDWARE SCROLLING (ZERO INERTIA LAG)
@@ -38,6 +92,49 @@
   // =========================================================================
   // 4. EDITORIAL KINETIC TYPOGRAPHY MASK REVEALS
   // =========================================================================
+  function revealKineticTitle(titleEl) {
+    if (!titleEl || titleEl.classList.contains('is-revealed')) return;
+
+    const lines = titleEl.querySelectorAll('.kinetic-line, .kinetic-text');
+
+    if (prefersReducedMotion) {
+      titleEl.classList.add('is-revealed', 'is-settled');
+      titleEl.style.willChange = 'auto';
+      lines.forEach(el => {
+        el.style.willChange = 'auto';
+      });
+      return;
+    }
+
+    // Apply will-change: transform strictly during active entrance
+    titleEl.classList.add('is-revealing');
+    titleEl.style.willChange = 'transform';
+    lines.forEach(el => {
+      el.style.willChange = 'transform';
+    });
+
+    titleEl.classList.add('is-revealed');
+
+    // Once entrance animation has settled, strip will-change to eliminate GPU layer memory leaks
+    let settled = false;
+    const settleHandler = () => {
+      if (settled) return;
+      settled = true;
+      titleEl.classList.remove('is-revealing');
+      titleEl.classList.add('is-settled');
+      titleEl.style.willChange = 'auto';
+      lines.forEach(el => {
+        el.style.willChange = 'auto';
+      });
+    };
+
+    const settleTimer = setTimeout(settleHandler, 650);
+    titleEl.addEventListener('transitionend', () => {
+      clearTimeout(settleTimer);
+      settleHandler();
+    }, { once: true });
+  }
+
   function initKineticTypography() {
     const titles = document.querySelectorAll('.kinetic-title');
     if (titles.length === 0) return;
@@ -45,17 +142,17 @@
     // Immediately reveal top hero title for crisp above-the-fold entrance (or wait for intro if active)
     const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
     const introOverlay = document.getElementById('luxuryIntro');
-    const hasSeenIntro = sessionStorage.getItem('polish_intro_seen') === 'true';
+    const hasSeenIntro = sessionStorage.getItem('polish_intro_seen') === 'true' || sessionStorage.getItem('polish_formula_intro_seen') === 'true';
 
-    if (heroTitle && (!introOverlay || hasSeenIntro)) {
-      heroTitle.classList.add('is-revealed');
+    if (heroTitle && (!introOverlay || hasSeenIntro || prefersReducedMotion)) {
+      revealKineticTitle(heroTitle);
     }
 
     if ('IntersectionObserver' in window && !prefersReducedMotion) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-revealed');
+            revealKineticTitle(entry.target);
             observer.unobserve(entry.target);
           }
         });
@@ -65,7 +162,7 @@
         if (t !== heroTitle) observer.observe(t);
       });
     } else {
-      titles.forEach(t => t.classList.add('is-revealed'));
+      titles.forEach(t => revealKineticTitle(t));
     }
   }
 
@@ -75,7 +172,14 @@
     initKineticTypography();
   }
   window.addEventListener('polishLanguageChanged', () => {
-    document.querySelectorAll('.kinetic-title').forEach(t => t.classList.add('is-revealed'));
+    document.querySelectorAll('.kinetic-title').forEach(t => {
+      t.classList.add('is-revealed', 'is-settled');
+      t.classList.remove('is-revealing');
+      t.style.willChange = 'auto';
+      t.querySelectorAll('.kinetic-line, .kinetic-text').forEach(el => {
+        el.style.willChange = 'auto';
+      });
+    });
   });
 
   // =========================================================================
@@ -111,7 +215,7 @@
   // 5B. DYNAMIC CURSOR SPOTLIGHT TRACKING (120FPS RAF-THROTTLED)
   // =========================================================================
   function initSpotlightCards() {
-    if (isTouch || prefersReducedMotion) return;
+    if (isMobileThermalGuard || prefersReducedMotion) return;
     const cards = document.querySelectorAll('.pro-card, .hero-glass-card, .form-container-shell');
     if (cards.length === 0) return;
 
@@ -160,7 +264,7 @@
   // 5C. TACTILE MAGNETIC BUTTON PHYSICS (SPRING DAMPED ACCELERATION)
   // =========================================================================
   function initMagneticButtons() {
-    if (isTouch || prefersReducedMotion) return;
+    if (isMobileThermalGuard || prefersReducedMotion) return;
     const buttons = document.querySelectorAll('.btn-cta, .btn-cta-lg, .sticky-glowing-btn, .header-home-btn');
     if (buttons.length === 0) return;
 
@@ -220,7 +324,7 @@
   // 6. AMBIENT PARTICLES ENGINE (DESKTOP ONLY — 0MS OVERHEAD)
   // =========================================================================
   const bgContainer = document.querySelector('.bg-canvas-wrap');
-  if (bgContainer && !prefersReducedMotion && !isTouch) {
+  if (bgContainer && !prefersReducedMotion && !isMobileThermalGuard) {
     const canvas = document.createElement('canvas');
     canvas.className = 'ambient-particles-canvas';
     bgContainer.appendChild(canvas);
@@ -286,6 +390,7 @@
 
   // =========================================================================
   // =========================================================================
+  // =========================================================================
   // Direction 1: The Liquid Atelier — Scroll Velocity & Fluid Viscosity Physics
   // =========================================================================
   let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
@@ -294,40 +399,94 @@
   let velocityDecayRAF = null;
   let scrollStopTimer = null;
 
-  function applyFluidViscosity() {
-    const bgDepthFar = document.querySelector('.beauty-depth-far');
-    const bgDepthMid = document.querySelector('.beauty-depth-mid');
+  // Cached DOM elements for 0ms overhead scroll loop (avoids layout thrashing)
+  let domHeroSection = null;
+  let domBottleWrap = null;
+  let domBgDepthFar = null;
+  let domBgDepthMid = null;
+  let domPulseDot = null;
+  let domCoutureTitle = null;
+  let isHeroInView = true;
 
-    if (bgDepthMid && !prefersReducedMotion) {
+  function cacheScrollElements() {
+    domHeroSection = document.getElementById('heroCoutureSection');
+    domBottleWrap = document.getElementById('heroBottleWrap');
+    domBgDepthFar = document.querySelector('.beauty-depth-far');
+    domBgDepthMid = document.querySelector('.beauty-depth-mid');
+    domPulseDot = document.querySelector('.island-pulse-dot');
+    domCoutureTitle = document.querySelector('.couture-h1');
+    if (!domHeroSection && domBottleWrap) {
+      domHeroSection = domBottleWrap.closest('section');
+    }
+  }
+  cacheScrollElements();
+
+  // =========================================================================
+  // 6B. HERO INTERSECTION OBSERVER (BELOW-THE-FOLD CPU/GPU ZERO-CYCLE GUARD)
+  // =========================================================================
+  function initHeroIntersectionObserver() {
+    if (!domHeroSection && domBottleWrap) {
+      domHeroSection = domBottleWrap.closest('section') || document.getElementById('heroCoutureSection');
+    }
+    if (!domHeroSection) return;
+
+    if ('IntersectionObserver' in window) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isHeroInView = entry.isIntersecting;
+          if (isHeroInView) {
+            // Re-entering hero: resume smooth RAF transforms immediately
+            scheduleScrollUpdate();
+          }
+        });
+      }, { threshold: 0 });
+      heroObserver.observe(domHeroSection);
+    }
+  }
+
+  function applyFluidViscosity() {
+    // Mobile Thermal & Battery Guard: Bypass background parallax layers completely
+    // on mobile / low-core devices or reduced-motion to eliminate GPU heat & preserve battery
+    if (prefersReducedMotion || isMobileThermalGuard) {
+      return;
+    }
+
+    if (domBgDepthMid) {
       // Fluid aerodynamic tilt: subtle tilt with scroll velocity (capped at ±3.2deg)
       const tiltDeg = Math.max(-3.2, Math.min(3.2, -smoothVelocity * 0.14));
       // Fluid viscous drag: products lag slightly against scroll (capped at ±18px)
       const dragPx = Math.max(-18, Math.min(18, -smoothVelocity * 0.8));
-      bgDepthMid.style.setProperty('--fluid-drag-layer', `${dragPx.toFixed(1)}px`);
-      bgDepthMid.style.setProperty('--fluid-tilt-layer', `${tiltDeg.toFixed(2)}deg`);
+      domBgDepthMid.style.setProperty('--fluid-drag-layer', `${dragPx.toFixed(1)}px`);
+      domBgDepthMid.style.setProperty('--fluid-tilt-layer', `${tiltDeg.toFixed(2)}deg`);
     }
 
-    if (bgDepthFar && !prefersReducedMotion && window.innerWidth > 768) {
+    if (domBgDepthFar) {
       const farDragPx = Math.max(-10, Math.min(10, -smoothVelocity * 0.35));
-      bgDepthFar.style.setProperty('--fluid-drag-layer', `${farDragPx.toFixed(1)}px`);
+      domBgDepthFar.style.setProperty('--fluid-drag-layer', `${farDragPx.toFixed(1)}px`);
     }
 
-    // Dynamic Island subtle liquid pulse on scroll momentum
-    const pulseDot = document.querySelector('.island-pulse-dot');
-    if (pulseDot && !prefersReducedMotion) {
+    // Dynamic Island subtle liquid pulse on scroll momentum (GPU Compositor scale & opacity)
+    if (domPulseDot) {
       const energy = Math.min(1, Math.abs(smoothVelocity) / 10);
-      pulseDot.style.opacity = (0.7 + energy * 0.3).toFixed(2);
-      pulseDot.style.transform = `scale(${(1 + energy * 0.35).toFixed(2)})`;
+      domPulseDot.style.opacity = (0.7 + energy * 0.3).toFixed(2);
+      domPulseDot.style.transform = `scale(${(1 + energy * 0.35).toFixed(2)}) translateZ(0)`;
     }
 
-    // Kinetic Typography: Emulsion optical skew / refraction
-    if (!prefersReducedMotion) {
+    // Kinetic Typography: Emulsion optical skew / refraction ONLY when hero is in view
+    // Applied directly to hero title rather than documentElement to avoid full-DOM style invalidations
+    if (domCoutureTitle && isHeroInView) {
       const emulsionSkew = Math.max(-1.4, Math.min(1.4, -smoothVelocity * 0.08));
-      document.documentElement.style.setProperty('--emulsion-skew', `${emulsionSkew.toFixed(2)}deg`);
+      domCoutureTitle.style.transform = `skewX(${emulsionSkew.toFixed(2)}deg)`;
     }
   }
 
   function startVelocityDecay() {
+    // Mobile Thermal Guard: Skip velocity decay RAF loop entirely on mobile / constrained devices
+    if (isMobileThermalGuard || prefersReducedMotion) {
+      smoothVelocity = 0;
+      return;
+    }
+
     if (velocityDecayRAF) cancelAnimationFrame(velocityDecayRAF);
     function decay() {
       if (Math.abs(smoothVelocity) > 0.04) {
@@ -358,6 +517,8 @@
   window.addEventListener('resize', measureScrollMetrics, { passive: true });
   window.addEventListener('load', measureScrollMetrics, { passive: true });
 
+  let lastBottleProgress = -1;
+
   function updateScrollState() {
     const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
     const now = performance.now();
@@ -369,10 +530,12 @@
     lastScrollY = scrollY;
     const clampedVelocity = Math.max(-24, Math.min(24, rawVelocity));
     smoothVelocity += (clampedVelocity - smoothVelocity) * 0.24;
-    applyFluidViscosity();
 
-    clearTimeout(scrollStopTimer);
-    scrollStopTimer = setTimeout(startVelocityDecay, 90);
+    if (!isMobileThermalGuard && !prefersReducedMotion) {
+      applyFluidViscosity();
+      clearTimeout(scrollStopTimer);
+      scrollStopTimer = setTimeout(startVelocityDecay, 90);
+    }
     
     // Hysteresis threshold to prevent layout flutter near scroll boundary
     if (!isScrolled && scrollY > 45) {
@@ -383,58 +546,107 @@
       if (siteHeader) siteHeader.classList.remove('is-scrolled');
     }
 
+    // Dynamic Island Progress Bar (100% GPU Compositor scaleX)
     if (progressBar) {
       const progress = Math.min(1, Math.max(0, scrollY / cachedDocHeight));
-      progressBar.style.transform = `scaleX(${progress.toFixed(3)})`;
+      progressBar.style.transform = `scaleX(${progress.toFixed(3)}) translateZ(0)`;
     }
 
     // Dolly-Zoom Depth Inversion & Flacon Space Travel (Hero 0px -> 450px)
     // 100% GPU COMPOSITOR PROPERTIES ONLY (translate3d, scale, opacity)
     // ZERO dynamic filter blur = ZERO texture layer clipping / ZERO box shade cut out / 120FPS smooth on phone
-    const bottleWrap = document.getElementById('heroBottleWrap');
-    const bgDepthFar = document.querySelector('.beauty-depth-far');
-    const bgDepthMid = document.querySelector('.beauty-depth-mid');
-
-    if (bottleWrap) {
-      const maxScroll = 450;
-      const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
-
-      if (Math.abs(progress - lastBottleProgress) > 0.003 || (progress === 1 && lastBottleProgress !== 1) || (progress === 0 && lastBottleProgress !== 0)) {
-        lastBottleProgress = progress;
-
-        // 1. Centerpiece Serum Bottle recedes into distant background constellation
-        const scale = 1 - (progress * 0.65); // 1.0 -> 0.35
-        const isRTL = document.documentElement.dir === 'rtl';
-        const shiftX = (isRTL ? -1 : 1) * (progress * 110);
-        const shiftY = progress * -25;
-        const opacity = 1 - (progress * 0.65); // 1.0 -> 0.35
-
-        bottleWrap.style.transform = `translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
-        bottleWrap.style.opacity = opacity.toFixed(2);
-
-    // 2. Background Products gently come into focus via compositor opacity
-        const bgOpacity = 0.30 + (progress * 0.35); // 0.30 -> 0.65
-        if (bgDepthFar && window.innerWidth > 768) {
-          bgDepthFar.style.opacity = bgOpacity.toFixed(2);
+    if (domBottleWrap) {
+      if (prefersReducedMotion) {
+        // Enforce prefers-reduced-motion: static hero flacon immediately, skip all kinetic loops
+        if (lastBottleProgress !== 0) {
+          lastBottleProgress = 0;
+          domBottleWrap.style.transform = 'none';
+          domBottleWrap.style.opacity = '1';
+          domBottleWrap.style.willChange = 'auto';
         }
-        // On desktop only, apply subtle scale to mid layer; skip on mobile for maximum 120FPS fluidity
-        if (bgDepthMid && window.innerWidth > 768) {
-          const bgScale = 0.80 + (progress * 0.20);
-          bgDepthMid.style.transform = `scale(${bgScale.toFixed(3)})`;
+      } else if (!isHeroInView) {
+        // HERO IS OFF-SCREEN (below-the-fold reading):
+        // Pause bottle transforms completely to eliminate CPU/GPU cycles during below-the-fold reading
+        if (scrollY > 450 && lastBottleProgress !== 1) {
+          lastBottleProgress = 1;
+          if (isMobileThermalGuard) {
+            domBottleWrap.style.transform = 'translate3d(0, -20px, 0) scale(0.55)';
+            domBottleWrap.style.opacity = '0.45';
+          } else {
+            const isRTL = document.documentElement.dir === 'rtl';
+            const shiftX = (isRTL ? -1 : 1) * 110;
+            domBottleWrap.style.transform = `translate3d(${shiftX.toFixed(1)}px, -25px, 0) scale(0.350)`;
+            domBottleWrap.style.opacity = '0.35';
+          }
+        }
+      } else {
+        // HERO IS IN VIEW: Active GPU Compositor Transform
+        const maxScroll = 450;
+        const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+        const updateThreshold = isMobileThermalGuard ? 0.012 : 0.003;
+
+        if (Math.abs(progress - lastBottleProgress) > updateThreshold || (progress === 1 && lastBottleProgress !== 1) || (progress === 0 && lastBottleProgress !== 0)) {
+          lastBottleProgress = progress;
+
+          if (isMobileThermalGuard) {
+            // MOBILE THERMAL & BATTERY GUARD:
+            // Simplified centered bottle matrix transform (0 horizontal drift, locked vertical axis)
+            // Eliminates subpixel recomposition and viewport boundary overflow
+            const mScale = 1 - (progress * 0.45); // 1.0 -> 0.55
+            const mShiftY = progress * -20;
+            const mOpacity = 1 - (progress * 0.55); // 1.0 -> 0.45
+            domBottleWrap.style.transform = `translate3d(0, ${mShiftY.toFixed(1)}px, 0) scale(${mScale.toFixed(2)})`;
+            domBottleWrap.style.opacity = mOpacity.toFixed(2);
+            // Parallax layers bypassed on mobile
+          } else {
+            // DESKTOP: High-Fidelity 120FPS Space Travel (GPU Compositor translate3d, scale, opacity)
+            const scale = 1 - (progress * 0.65); // 1.0 -> 0.35
+            const isRTL = document.documentElement.dir === 'rtl';
+            const shiftX = (isRTL ? -1 : 1) * (progress * 110);
+            const shiftY = progress * -25;
+            const opacity = 1 - (progress * 0.65); // 1.0 -> 0.35
+
+            domBottleWrap.style.transform = `translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+            domBottleWrap.style.opacity = opacity.toFixed(2);
+
+            // Background products gently focus via compositor opacity & scale
+            const bgOpacity = 0.30 + (progress * 0.35); // 0.30 -> 0.65
+            if (domBgDepthFar) {
+              domBgDepthFar.style.opacity = bgOpacity.toFixed(2);
+            }
+            if (domBgDepthMid) {
+              const bgScale = 0.80 + (progress * 0.20);
+              domBgDepthMid.style.transform = `scale(${bgScale.toFixed(3)}) translateZ(0)`;
+            }
+          }
         }
       }
     }
 
-    updateStickyVisibility();
+    updateStickyVisibility(scrollY);
   }
 
-  let lastBottleProgress = -1;
   let islandRAF = null;
+  let lastScrollFrameTime = 0;
+  let mobileScrollTailTimer = null;
+
   function scheduleScrollUpdate() {
     if (islandRAF) return;
-    islandRAF = requestAnimationFrame(() => {
-      updateScrollState();
+    islandRAF = requestAnimationFrame((timestamp) => {
       islandRAF = null;
+
+      // Mobile Thermal Guard: Dampen RAF scroll updates (lock 60–90 FPS cadence, avoid GPU saturation)
+      if (isMobileThermalGuard) {
+        const delta = timestamp - lastScrollFrameTime;
+        if (delta < 14) { // Damps updates to ≤70Hz on 120Hz high-refresh mobile panels
+          clearTimeout(mobileScrollTailTimer);
+          mobileScrollTailTimer = setTimeout(updateScrollState, 20);
+          return;
+        }
+        lastScrollFrameTime = timestamp;
+      }
+
+      updateScrollState();
     });
   }
 
@@ -446,22 +658,27 @@
   const footer = document.querySelector('.site-footer');
   let heroCtaInView = true;
   let footerInView = false;
+  let isStickyDockVisible = false;
 
-  function updateStickyVisibility() {
+  function updateStickyVisibility(passedScrollY) {
     if (!stickyDock) return;
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const scrollY = typeof passedScrollY === 'number' ? passedScrollY : (window.pageYOffset || document.documentElement.scrollTop || 0);
     // 100% Layout-reflow-free: strictly uses off-thread IntersectionObserver states
     const heroPast = !heroCtaInView;
     const footerNear = footerInView;
+    const shouldBeVisible = (scrollY > 160 && heroPast && !footerNear);
 
-    if (scrollY > 160 && heroPast && !footerNear) {
-      stickyDock.classList.add('is-visible');
-      stickyDock.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('has-sticky-cta');
-    } else {
-      stickyDock.classList.remove('is-visible');
-      stickyDock.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('has-sticky-cta');
+    if (shouldBeVisible !== isStickyDockVisible) {
+      isStickyDockVisible = shouldBeVisible;
+      if (shouldBeVisible) {
+        stickyDock.classList.add('is-visible');
+        stickyDock.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('has-sticky-cta');
+      } else {
+        stickyDock.classList.remove('is-visible');
+        stickyDock.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('has-sticky-cta');
+      }
     }
   }
 
@@ -487,8 +704,22 @@
     }
   }
 
+  // Bind and initialize lifecycle observers
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      cacheScrollElements();
+      initHeroIntersectionObserver();
+      if (prefersReducedMotion) applyReducedMotionPolicy();
+      updateScrollState();
+    });
+  } else {
+    cacheScrollElements();
+    initHeroIntersectionObserver();
+    if (prefersReducedMotion) applyReducedMotionPolicy();
+    updateScrollState();
+  }
+
   window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
-  updateScrollState();
 
   // =========================================================================
   // 10. CONCEPT 2: THE FORMULA SYNTHESIS — Opening Cinematic
@@ -508,7 +739,7 @@
     if (hasSeen && !forceReplay) {
       introOverlay.remove();
       const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
-      if (heroTitle) heroTitle.classList.add('is-revealed');
+      if (heroTitle) revealKineticTitle(heroTitle);
       return;
     }
 
@@ -517,7 +748,7 @@
       sessionStorage.setItem('polish_formula_intro_seen', 'true');
       introOverlay.remove();
       const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
-      if (heroTitle) heroTitle.classList.add('is-revealed');
+      if (heroTitle) revealKineticTitle(heroTitle);
       return;
     }
 
@@ -549,7 +780,7 @@
       if (targetLogoImg) targetLogoImg.style.opacity = '1';
       introOverlay.remove();
       const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
-      if (heroTitle) heroTitle.classList.add('is-revealed');
+      if (heroTitle) revealKineticTitle(heroTitle);
       return;
     }
 
@@ -581,7 +812,7 @@
         if (targetLogoImg) targetLogoImg.style.opacity = '1';
         introOverlay.remove();
         const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
-        if (heroTitle) heroTitle.classList.add('is-revealed');
+        if (heroTitle) revealKineticTitle(heroTitle);
         return;
       }
 
@@ -598,7 +829,7 @@
         if (targetLogoImg) targetLogoImg.style.opacity = '1';
         introOverlay.remove();
         const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
-        if (heroTitle) heroTitle.classList.add('is-revealed');
+        if (heroTitle) revealKineticTitle(heroTitle);
         return;
       }
 
@@ -662,7 +893,7 @@
       // Hero text reveal 180ms into flight
       setTimeout(() => {
         const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
-        if (heroTitle) heroTitle.classList.add('is-revealed');
+        if (heroTitle) revealKineticTitle(heroTitle);
       }, 180);
     }
 
@@ -681,7 +912,7 @@
       } catch (e) {}
       introOverlay.remove();
       const heroTitle = document.querySelector('.couture-h1.kinetic-title, .hero-h1.kinetic-title');
-      if (heroTitle) heroTitle.classList.add('is-revealed');
+      if (heroTitle) revealKineticTitle(heroTitle);
     }
 
     // ─── MASTER FORMULA SYNTHESIS TIMELINE ─────────────────────────────────

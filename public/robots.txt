@@ -1,6 +1,56 @@
+# POLISH Media Co. — robots.txt
+# https://polishmediaco.com
+
+# -------------------------------------------------------------------
+# Dedicated AI Search & Retrieval Bots (Explicitly Welcomed)
+# -------------------------------------------------------------------
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# -------------------------------------------------------------------
+# General Web Crawlers
+# -------------------------------------------------------------------
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
 
+# Sitemaps
 Sitemap: https://polishmediaco.com/sitemap.xml

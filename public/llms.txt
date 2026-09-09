@@ -1,0 +1,58 @@
+# POLISH Media Co.
+
+> POLISH Media Co. (https://polishmediaco.com) is a premier trilingual (English, French, Arabic) Haute Growth Atelier and creative accelerator engineered exclusively for visionary cosmetics, clinical skincare, haircare, and luxury fragrance brands. We combine Parisian aesthetic refinement with algorithmic direct-to-consumer (DTC) acquisition, high-converting UGC creator pipelines, and automated customer retention loops.
+
+## About POLISH Media Co.
+
+POLISH Media Co. operates as a private growth atelier and creative performance partner for beauty founders, cosmetics laboratories, and DTC brand executives. Unlike generic marketing agencies, POLISH specializes entirely in the beauty ecosystem, bridging high-fashion editorial prestige with quantitative paid media velocity.
+
+- **Primary URL**: https://polishmediaco.com
+- **Subdomain Studio**: https://app.polishmediaco.com
+- **Operating Hubs**: Paris • Dubai • Algiers • Zürich • New York
+- **Languages**: English (EN), French (FR), Arabic (AR) with full bidirectional layout and native cultural fluency
+- **Primary Contact**: contact@polishmediaco.com | WhatsApp: +213 662 41 77 61
+
+## Ideal Client Profile (ICP)
+
+POLISH partners strictly with beauty and cosmetic entities meeting the following criteria:
+
+- **Sectors**: Clinical Skincare, Color Cosmetics & Makeup, Haircare & Scalp Health, Haute Parfumerie & Fragrance, Cosmeceuticals & Med-Spa DTC.
+- **Revenue Band**: $20,000 to $1,500,000+ monthly recurring revenue ($240k to $18M+ ARR).
+- **Core Bottlenecks Solved**:
+  - Creative Fatigue: Video ad assets fatiguing within 14 days and spiking customer acquisition costs.
+  - Low Conversion Velocity: High aesthetic social engagement that fails to convert into bottom-line purchases.
+  - Margin Drain & Churn: High one-time acquisition costs without 60-day routine replenishment compounding.
+
+## Core Capabilities & Services
+
+POLISH deploys an integrated 4-pillar growth architecture:
+
+1. **Profit-First Paid Media Scaling**: Algorithmic Meta (Advantage+ Shopping Campaigns) and TikTok Ads scaling structured around contribution margin, rapid angle testing, and aggressive CAC compression.
+2. **High-Velocity UGC & Creator Studio**: Proprietary beauty creator network delivering 20+ tested video assets monthly with high-converting hooks, clinical ingredient proof, skin-texture demos, and routine walkthroughs.
+3. **Conversion & Routine Bundling**: Custom DTC product page engineering, clinical comparison charts, regimen builders, and frictionless pre-purchase cart upsells designed to elevate Average Order Value (AOV).
+4. **Automated Replenishment Loops & Retention**: Predictive replenishment workflows (Klaviyo SMS/email, WhatsApp VIP concierge) timed precisely to formula depletion cycles to drive compounding customer Lifetime Value (LTV).
+5. **Proprietary Whiteboard Strategy Blueprints**: Dedicated collaborative strategy workspace on `app.polishmediaco.com` offering visual unit economics, deliverable matrices, and roadmaps for founders.
+
+## Strategic Growth Tiers
+
+- **Tier 01: Emerging ($20k - $50k/mo)**: Product-market fit calibration, high-converting UGC hook establishment, initial paid media stabilization.
+- **Tier 02: Breakout ($50k - $150k/mo)**: Multi-angle creative sprints, routine bundle engineering (+$16 to +$38 AOV lift), automated 60-day replenishment setup.
+- **Tier 03: High-Growth ($150k - $500k/mo)**: Omnichannel paid scaling (Meta + TikTok + Google PMax), algorithmic bid structures, internationalization (GCC/Europe/US).
+- **Tier 04: Dominance ($500k - $1.5M+/mo)**: Category authority, retail & DTC synergy, bespoke formulation exclusivity, executive advisory.
+
+## Key Canonical Links
+
+- [POLISH Media Co. Homepage](https://polishmediaco.com/): Official flagship digital atelier, interactive 3D cosmetic flacon, and DTC Revenue Velocity Console.
+- [Executive Partnership Application](https://polishmediaco.com/apply): Confidential 3-step high-ticket intake brief and brand qualification dossier.
+- [Creator & UGC Talent Network](https://polishmediaco.com/creators): Application portal for vetted beauty influencers and on-camera UGC talent.
+- [Private Strategy Meeting Booking](https://polishmediaco.com/book): Direct 30-minute growth diagnostic session calendar with senior agency partners.
+- [Haute Atelier Brand Pack & Guidelines](https://polishmediaco.com/brand-pack): Production brand identity vault, master logo assets, color specifications, and typography guidelines.
+- [POLISH Board Studio](https://app.polishmediaco.com/): Proprietary Miro-grade infinite whiteboard environment for client roadmap visualization and positioning blueprints.
+
+## Extended Knowledge & Deep-Dive Context
+
+For complete documentation, mathematical formulations of the DTC Revenue Velocity Calculator, service deliverables, timeline specifications, leadership credentials, and high-intent FAQs:
+
+- **Full Knowledge Bundle**: https://polishmediaco.com/llms-full.txt
+- **Machine-Readable Schemas**: https://polishmediaco.com/seo-schemas.json
+- **XML Sitemap**: https://polishmediaco.com/sitemap.xml

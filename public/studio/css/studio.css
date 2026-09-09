@@ -322,44 +322,96 @@ body.theme-dark .brand-subtitle {
   background: #262321;
 }
 
+/* Right Dock: Horizontal flexbox aligning theme toggle and user capsule */
+.dock-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+  height: 100% !important;
+}
+
+.theme-toggle-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  height: 32px !important;
+  padding: 0 11px !important;
+  border-radius: 16px !important;
+  border: 1px solid var(--border-subtle) !important;
+  background: var(--surface-subtle) !important;
+  color: var(--text-ink) !important;
+  font-family: var(--font-heading) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+.theme-toggle-btn:hover {
+  background: #FFFFFF !important;
+  border-color: var(--brand-gold) !important;
+  transform: translateY(-0.5px);
+}
+
+body.theme-dark .theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(226, 199, 153, 0.25) !important;
+  color: #F5E6D3 !important;
+}
+
+body.theme-dark .theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: #E2C799 !important;
+}
+
 /* User Profile Capsule & Dropdown */
 .profile-capsule-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 32px !important;
 }
 
 .avatar-trigger-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: transparent;
-  border: 1px solid transparent;
-  padding: 2px 4px 2px 2px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.15s ease;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  padding: 0 4px 0 0 !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  height: 32px !important;
+  transition: all 0.15s ease !important;
 }
 
 .avatar-trigger-btn:hover {
-  background: var(--surface-subtle);
-  border-color: var(--border-subtle);
+  background: var(--surface-subtle) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+body.theme-dark .avatar-trigger-btn:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(226, 199, 153, 0.25) !important;
 }
 
 .user-avatar-circle {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #080706;
-  color: #F5E6D3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 800;
-  overflow: hidden;
-  border: 1px solid rgba(197, 168, 128, 0.4);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: #080706 !important;
+  color: #F5E6D3 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.75rem !important;
+  font-weight: 800 !important;
+  overflow: hidden !important;
+  border: 1.5px solid rgba(197, 168, 128, 0.5) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14) !important;
+  flex-shrink: 0 !important;
 }
 
 .avatar-chevron {
@@ -1214,4 +1266,129 @@ kbd {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* ========================================================== */
+/* CAMERA SNAPSHOT MODAL & SHUTTER FLASH                      */
+/* ========================================================== */
+.camera-shutter-flash {
+  position: fixed;
+  inset: 0;
+  background: #FFFFFF;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0.95;
+  animation: cameraFlash 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cameraFlash {
+  0% { opacity: 0.95; }
+  100% { opacity: 0; }
+}
+
+.camera-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 7, 6, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  padding: 1.5rem;
+}
+
+.camera-modal-card {
+  width: 100%;
+  max-width: 780px;
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  padding: 1.75rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+body.theme-dark .camera-modal-card {
+  background: #141210;
+  border-color: rgba(226, 199, 153, 0.3);
+  color: #F5E6D3;
+}
+
+.camera-preview-container {
+  width: 100%;
+  max-height: 52vh;
+  overflow: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  background: #080706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.camera-preview-img {
+  max-width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  display: block;
+}
+
+.camera-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.camera-btn-primary {
+  background: #080706;
+  color: #F5E6D3;
+  border: 1px solid rgba(197, 168, 128, 0.45);
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.camera-btn-primary:hover {
+  background: #1A1715;
+  border-color: var(--brand-gold-bright);
+  transform: translateY(-1px);
+}
+
+.camera-btn-secondary {
+  background: var(--surface-subtle);
+  color: var(--text-ink);
+  border: 1px solid var(--border-subtle);
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.camera-btn-secondary:hover {
+  background: #FFFFFF;
+  border-color: var(--brand-gold);
 }

@@ -89,14 +89,27 @@ app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 // High-performance intelligent caching policy
 app.use((req, res, next) => {
-  // HTML documents & dynamic boards: never cache so updates appear immediately
-  if (req.path === '/' || !req.path.includes('.') || req.path.endsWith('.html')) {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  const p = req.path;
+  const isStaticAsset = (
+    p.startsWith('/assets/') ||
+    p.startsWith('/css/') ||
+    p.startsWith('/js/') ||
+    p.startsWith('/studio/css/') ||
+    p.startsWith('/studio/js/') ||
+    p.startsWith('/studio/assets/') ||
+    p.startsWith('/studio/icons/')
+  );
+
+  if (isStaticAsset) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  } else if (p === '/' || !p.includes('.') || p.endsWith('.html')) {
+    // HTML documents & dynamic routes: no-cache, must-revalidate
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     res.setHeader('Pragma', 'no-cache');
     res.setHeader('Expires', '0');
   } else {
-    // Static assets (CSS, JS, WebP, PNG, SVG): cache on edge CDN and browser with stale-while-revalidate
-    res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+    // Other assets
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
   }
   next();
 });
@@ -165,24 +178,24 @@ app.use((req, res, next) => {
 
     // 1. Board Studio Management Dashboard
     if (req.path === '/dashboard' || req.path === '/boards') {
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
       return res.sendFile(path.join(__dirname, '../public/studio/dashboard.html'));
     }
 
     // 2. Studio Workspace Authentication
     if (req.path === '/login') {
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
       return res.sendFile(path.join(__dirname, '../public/studio/login.html'));
     }
 
     // 3. Client Read-Only Board Presentation Mode
     if (req.path.startsWith('/b/') || req.path.startsWith('/view/') || req.path === '/view') {
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
       return res.sendFile(path.join(__dirname, '../public/studio/view.html'));
     }
 
     // 4. Infinite Whiteboard Canvas (Root & all builder aliases)
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     return res.sendFile(path.join(__dirname, '../public/studio/index.html'));
   }
   next();
@@ -199,7 +212,7 @@ app.get(['/login', '/studio/login'], (req, res) => {
     const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
     return res.redirect(301, `https://app.${DOMAIN}/login${query}`);
   }
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/studio/login.html'));
 });
 
@@ -208,53 +221,75 @@ app.get(['/boards', '/dashboard'], (req, res) => {
     const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
     return res.redirect(301, `https://app.${DOMAIN}/boards${query}`);
   }
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/studio/dashboard.html'));
 });
 
-// Serve static assets with Edge & browser caching
+// Serve static assets with Edge & browser caching (immutable 1 year for static assets, no-cache for html)
 app.use(
   express.static(path.join(__dirname, '../public'), {
-    maxAge: '1d',
-    etag: true
+    maxAge: 31536000000,
+    immutable: true,
+    etag: true,
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+      } else if (
+        filePath.includes('/assets/') ||
+        filePath.includes('/css/') ||
+        filePath.includes('/js/') ||
+        filePath.includes('/studio/')
+      ) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+    }
   })
 );
 
 // ── Canonical Main Website Pages ─────────────────────────────────────────────
+app.get(['/b/:id', '/b', '/view/:id', '/view', '/studio/view'], (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  res.sendFile(path.join(__dirname, '../public/studio/view.html'));
+});
+
 app.get('/', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.get('/apply', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/apply.html'));
 });
 
 app.get('/creators', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/creators.html'));
 });
 
 app.get('/book', (req, res) => {
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/book.html'));
 });
 
 app.get('/admin', (req, res) => {
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/admin.html'));
 });
 
 app.get('/brand-pack', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/brand-pack.html'));
 });
 
 // ── Client Proposal & Intake ──────────────────────────────────────────────────
 app.get('/eman-alkatheeri', (req, res) => {
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/eman-alkatheeri.html'));
 });
 
 app.get('/intake', (req, res) => {
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/intake.html'));
 });
 

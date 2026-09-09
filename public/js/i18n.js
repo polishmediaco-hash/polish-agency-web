@@ -562,11 +562,11 @@ class PolishI18n {
     containers.forEach(slot => {
       slot.innerHTML = `
         <div class="lang-toggle" role="group" aria-label="Language Selector">
-          <button type="button" class="lang-btn ${this.currentLang === 'en' ? 'active' : ''}" aria-pressed="${this.currentLang === 'en' ? 'true' : 'false'}" onclick="window.polishI18n.setLanguage('en')">EN</button>
-          <span class="lang-sep">|</span>
-          <button type="button" class="lang-btn ${this.currentLang === 'fr' ? 'active' : ''}" aria-pressed="${this.currentLang === 'fr' ? 'true' : 'false'}" onclick="window.polishI18n.setLanguage('fr')">FR</button>
-          <span class="lang-sep">|</span>
-          <button type="button" class="lang-btn ${this.currentLang === 'ar' ? 'active' : ''}" aria-pressed="${this.currentLang === 'ar' ? 'true' : 'false'}" onclick="window.polishI18n.setLanguage('ar')">AR</button>
+          <button type="button" class="lang-btn ${this.currentLang === 'en' ? 'active' : ''}" aria-pressed="${this.currentLang === 'en' ? 'true' : 'false'}" aria-label="Switch to English" onclick="window.polishI18n.setLanguage('en')">EN</button>
+          <span class="lang-sep" aria-hidden="true">|</span>
+          <button type="button" class="lang-btn ${this.currentLang === 'fr' ? 'active' : ''}" aria-pressed="${this.currentLang === 'fr' ? 'true' : 'false'}" aria-label="Passer au Français" onclick="window.polishI18n.setLanguage('fr')">FR</button>
+          <span class="lang-sep" aria-hidden="true">|</span>
+          <button type="button" class="lang-btn ${this.currentLang === 'ar' ? 'active' : ''}" aria-pressed="${this.currentLang === 'ar' ? 'true' : 'false'}" aria-label="التحويل إلى العربية" onclick="window.polishI18n.setLanguage('ar')">AR</button>
         </div>
       `;
     });

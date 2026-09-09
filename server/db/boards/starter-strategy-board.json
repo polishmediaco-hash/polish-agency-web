@@ -4,7 +4,7 @@
   "title": "Executive Strategy Blueprint",
   "client": "Private Advisory Client",
   "createdAt": "2026-09-08T17:49:58.326Z",
-  "updatedAt": "2026-09-08T18:41:01.008Z",
+  "updatedAt": "2026-09-09T02:35:30.042Z",
   "viewport": {
     "panX": 80,
     "panY": -320,
@@ -201,5 +201,6 @@
       "color": "slate",
       "label": "1. Foundation Positioning → Informs Haute Offer"
     }
-  ]
+  ],
+  "comments": []
 }

@@ -381,6 +381,43 @@ function sanitizeBoardId(id) {
   return clean;
 }
 
+// Helper: Resolve a board file path by ID or slug
+function resolveBoardPath(safeId) {
+  let filePath = path.join(BOARDS_DIR, `${safeId}.json`);
+
+  // Also support finding by slug
+  if (!fs.existsSync(filePath)) {
+    const files = fs.readdirSync(BOARDS_DIR).filter(f => f.endsWith('.json'));
+    for (const file of files) {
+      const b = readBoardFile(path.join(BOARDS_DIR, file));
+      if (b && (b.slug === safeId || b.id === safeId)) {
+        return path.join(BOARDS_DIR, file);
+      }
+    }
+  }
+
+  if (!fs.existsSync(filePath)) {
+    if (safeId === 'starter-strategy-board' || safeId === 'executive-strategy-template') {
+      const starter = getStarterBoard();
+      writeBoardFile(path.join(BOARDS_DIR, `${starter.id}.json`), starter);
+      return path.join(BOARDS_DIR, `${starter.id}.json`);
+    }
+
+    // Fallback check in bundled boards
+    const bundledPath = path.join(BUNDLED_BOARDS_DIR, `${safeId}.json`);
+    if (fs.existsSync(bundledPath)) {
+      const bundledBoard = readBoardFile(bundledPath);
+      if (bundledBoard) {
+        writeBoardFile(path.join(BOARDS_DIR, `${safeId}.json`), bundledBoard);
+        return path.join(BOARDS_DIR, `${safeId}.json`);
+      }
+    }
+    return null;
+  }
+
+  return filePath;
+}
+
 // GET /api/boards/:id (Get single board data)
 router.get('/:id', (req, res) => {
   try {
@@ -390,37 +427,8 @@ router.get('/:id', (req, res) => {
       return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
     }
 
-    let filePath = path.join(BOARDS_DIR, `${safeId}.json`);
-
-    // Also support finding by slug
-    if (!fs.existsSync(filePath)) {
-      const files = fs.readdirSync(BOARDS_DIR).filter(f => f.endsWith('.json'));
-      for (const file of files) {
-        const b = readBoardFile(path.join(BOARDS_DIR, file));
-        if (b && (b.slug === safeId || b.id === safeId)) {
-          filePath = path.join(BOARDS_DIR, file);
-          break;
-        }
-      }
-    }
-
-    if (!fs.existsSync(filePath)) {
-      if (safeId === 'starter-strategy-board' || safeId === 'executive-strategy-template') {
-        const starter = getStarterBoard();
-        writeBoardFile(path.join(BOARDS_DIR, `${starter.id}.json`), starter);
-        return res.json({ success: true, board: starter });
-      }
-
-      // Fallback check in bundled boards
-      const bundledPath = path.join(BUNDLED_BOARDS_DIR, `${safeId}.json`);
-      if (fs.existsSync(bundledPath)) {
-        const bundledBoard = readBoardFile(bundledPath);
-        if (bundledBoard) {
-          writeBoardFile(path.join(BOARDS_DIR, `${safeId}.json`), bundledBoard);
-          return res.json({ success: true, board: bundledBoard });
-        }
-      }
-
+    const filePath = resolveBoardPath(safeId);
+    if (!filePath || !fs.existsSync(filePath)) {
       return res.status(404).json({ success: false, error: 'Board not found.' });
     }
 
@@ -429,6 +437,154 @@ router.get('/:id', (req, res) => {
   } catch (err) {
     console.error('Error loading board:', err);
     res.status(500).json({ success: false, error: 'Could not load board.' });
+  }
+});
+
+// GET /api/boards/:id/comments (Get all comments for a board)
+router.get('/:id/comments', (req, res) => {
+  try {
+    ensureBoardsSeeded();
+    const safeId = sanitizeBoardId(req.params.id);
+    if (!safeId) {
+      return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
+    }
+
+    const filePath = resolveBoardPath(safeId);
+    if (!filePath || !fs.existsSync(filePath)) {
+      return res.status(404).json({ success: false, error: 'Board not found.' });
+    }
+
+    const board = readBoardFile(filePath);
+    if (!board) {
+      return res.status(404).json({ success: false, error: 'Board not found.' });
+    }
+
+    const comments = Array.isArray(board.comments) ? board.comments : [];
+    res.json({ success: true, count: comments.length, comments });
+  } catch (err) {
+    console.error('Error fetching board comments:', err);
+    res.status(500).json({ success: false, error: 'Could not load comments.' });
+  }
+});
+
+// POST /api/boards/:id/comments (Add, update, or resolve a comment)
+router.post('/:id/comments', (req, res) => {
+  try {
+    ensureBoardsSeeded();
+    const safeId = sanitizeBoardId(req.params.id);
+    if (!safeId) {
+      return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
+    }
+
+    const filePath = resolveBoardPath(safeId);
+    if (!filePath || !fs.existsSync(filePath)) {
+      return res.status(404).json({ success: false, error: 'Board not found.' });
+    }
+
+    const board = readBoardFile(filePath);
+    if (!board) {
+      return res.status(404).json({ success: false, error: 'Board not found.' });
+    }
+
+    if (!Array.isArray(board.comments)) {
+      board.comments = [];
+    }
+
+    const payload = req.body || {};
+
+    // Support deletion action
+    if (payload.action === 'delete' && payload.commentId) {
+      board.comments = board.comments.filter(c => c.id !== payload.commentId);
+      writeBoardFile(filePath, board);
+      return res.json({
+        success: true,
+        message: 'Comment deleted.',
+        count: board.comments.length,
+        comments: board.comments
+      });
+    }
+
+    // Support batch replace if passed an array of comments
+    if (Array.isArray(payload.comments)) {
+      board.comments = payload.comments;
+      writeBoardFile(filePath, board);
+      return res.json({
+        success: true,
+        message: 'Comments updated.',
+        count: board.comments.length,
+        comments: board.comments
+      });
+    }
+
+    // Single comment add or update
+    const commentData = payload.comment || payload;
+    const commentId = commentData.id || `pin-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+    
+    // Find existing comment index
+    const existingIndex = board.comments.findIndex(c => c.id === commentId);
+
+    // Compute pin number
+    let pinNumber = Number(commentData.number);
+    if (!pinNumber || isNaN(pinNumber)) {
+      if (existingIndex >= 0 && board.comments[existingIndex].number) {
+        pinNumber = board.comments[existingIndex].number;
+      } else {
+        pinNumber = board.comments.length + 1;
+      }
+    }
+
+    const newComment = {
+      id: commentId,
+      x: typeof commentData.x === 'number' ? commentData.x : 100,
+      y: typeof commentData.y === 'number' ? commentData.y : 100,
+      number: pinNumber,
+      type: commentData.type === 'approval' ? 'approval' : 'feedback',
+      author: String(commentData.author || 'Client').trim().slice(0, 100),
+      content: String(commentData.content || commentData.text || '').trim().slice(0, 3000),
+      resolved: Boolean(commentData.resolved),
+      createdAt: (existingIndex >= 0 && board.comments[existingIndex].createdAt) || commentData.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      replies: Array.isArray(commentData.replies)
+        ? commentData.replies.slice(0, 50)
+        : (existingIndex >= 0 ? (board.comments[existingIndex].replies || []) : [])
+    };
+
+    // If a reply was sent
+    if (payload.action === 'reply' && payload.reply) {
+      const replyObj = {
+        id: `reply-${Date.now().toString(36)}`,
+        author: String(payload.reply.author || 'Advisor').trim().slice(0, 100),
+        content: String(payload.reply.content || payload.reply.text || '').trim().slice(0, 1000),
+        createdAt: new Date().toISOString()
+      };
+      if (existingIndex >= 0) {
+        board.comments[existingIndex].replies = board.comments[existingIndex].replies || [];
+        board.comments[existingIndex].replies.push(replyObj);
+        newComment.replies = board.comments[existingIndex].replies;
+      }
+    }
+
+    if (existingIndex >= 0) {
+      board.comments[existingIndex] = { ...board.comments[existingIndex], ...newComment };
+    } else {
+      board.comments.push(newComment);
+    }
+
+    const saved = writeBoardFile(filePath, board);
+    if (!saved) {
+      return res.status(500).json({ success: false, error: 'Failed to persist comments.' });
+    }
+
+    res.json({
+      success: true,
+      message: existingIndex >= 0 ? 'Comment updated.' : 'Comment dropped.',
+      count: board.comments.length,
+      comment: existingIndex >= 0 ? board.comments[existingIndex] : newComment,
+      comments: board.comments
+    });
+  } catch (err) {
+    console.error('Error saving board comment:', err);
+    res.status(500).json({ success: false, error: 'Could not save comment.' });
   }
 });
 

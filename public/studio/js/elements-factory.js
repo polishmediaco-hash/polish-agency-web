@@ -45,9 +45,85 @@ window.ElementsFactory = (function () {
     }
 
     el.classList.add('studio-element');
+    applyElementStyles(el, data);
     container.appendChild(el);
     attachElementInteractions(el, data);
     return el;
+  }
+
+  function applyElementStyles(el, data) {
+    if (!el || !data) return;
+
+    // 1. Font Family
+    if (data.fontFamily) {
+      el.classList.remove('font-sans', 'font-serif', 'font-mono', 'font-arabic');
+      el.classList.add(`font-${data.fontFamily}`);
+      const fontMap = {
+        sans: "'Plus Jakarta Sans', -apple-system, sans-serif",
+        serif: "'Cormorant Garamond', Georgia, serif",
+        mono: "'JetBrains Mono', monospace",
+        arabic: "'Tajawal', sans-serif"
+      };
+      if (fontMap[data.fontFamily]) {
+        el.style.setProperty('--card-font-family', fontMap[data.fontFamily]);
+        el.querySelectorAll('*').forEach(c => {
+          c.style.fontFamily = fontMap[data.fontFamily];
+        });
+      }
+    }
+
+    // 2. Font Size Scale
+    if (data.fontSizeScale) {
+      el.classList.remove('font-scale-xs', 'font-scale-sm', 'font-scale-md', 'font-scale-lg', 'font-scale-xl', 'font-scale-2xl');
+      el.classList.add(`font-scale-${data.fontSizeScale}`);
+    }
+
+    // 3. Bold & Italic
+    if (data.isBold) {
+      el.classList.add('format-bold');
+    } else {
+      el.classList.remove('format-bold');
+    }
+
+    if (data.isItalic) {
+      el.classList.add('format-italic');
+    } else {
+      el.classList.remove('format-italic');
+    }
+
+    // 4. Text Alignment
+    if (data.textAlign) {
+      el.classList.remove('align-left', 'align-center', 'align-right');
+      el.classList.add(`align-${data.textAlign}`);
+    }
+
+    // 5. Background Color
+    if (data.bgColor) {
+      el.style.backgroundColor = data.bgColor;
+      if (data.type === 'shape') {
+        const svgFill = el.querySelector('.shape-svg [fill]');
+        if (svgFill) svgFill.setAttribute('fill', data.bgColor);
+      }
+    }
+
+    // 6. Text Color
+    if (data.textColor) {
+      el.style.color = data.textColor;
+      el.querySelectorAll('h1, h2, h3, h4, p, span, div, th, td, input, textarea, .sticky-header, .sticky-content, .sticky-footer, .shape-content-text').forEach(child => {
+        if (!child.classList.contains('box-tag') && !child.classList.contains('frame-number') && !child.classList.contains('frame-title-pill') && !child.classList.contains('field-badge') && !child.classList.contains('price-badge')) {
+          child.style.color = data.textColor;
+        }
+      });
+    }
+
+    // 7. Border Color
+    if (data.borderColor) {
+      el.style.borderColor = data.borderColor;
+      if (data.type === 'shape') {
+        const svgStroke = el.querySelector('.shape-svg [stroke]');
+        if (svgStroke) svgStroke.setAttribute('stroke', data.borderColor);
+      }
+    }
   }
 
   // 1. Board Frame DOM

@@ -956,6 +956,21 @@
   font-family: var(--font-arabic) !important;
 }
 
+/* Font Scale Utilities */
+.font-scale-xs, .font-scale-xs * { font-size: 0.82em !important; }
+.font-scale-sm, .font-scale-sm * { font-size: 0.90em !important; }
+.font-scale-md, .font-scale-md * { font-size: 1.00em !important; }
+.font-scale-lg, .font-scale-lg * { font-size: 1.15em !important; }
+.font-scale-xl, .font-scale-xl * { font-size: 1.32em !important; }
+.font-scale-2xl, .font-scale-2xl * { font-size: 1.55em !important; }
+
+/* Text Formatting & Alignment Utilities */
+.format-bold, .format-bold * { font-weight: 800 !important; }
+.format-italic, .format-italic * { font-style: italic !important; }
+.align-left, .align-left * { text-align: left !important; }
+.align-center, .align-center * { text-align: center !important; }
+.align-right, .align-right * { text-align: right !important; }
+
 /* ========================================================== */
 /* BASIC SHAPES (RECT, CIRCLE, DIAMOND, TRIANGLE, ARROW)      */
 /* ========================================================== */

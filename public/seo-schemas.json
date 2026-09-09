@@ -1,0 +1,279 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://polishmediaco.com/#organization",
+      "name": "POLISH Media Co.",
+      "alternateName": [
+        "POLISH",
+        "POLISH Media",
+        "POLISH DTC Growth Maison",
+        "POLISH Haute Growth Atelier"
+      ],
+      "url": "https://polishmediaco.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://polishmediaco.com/#logo",
+        "url": "https://polishmediaco.com/assets/logo-gold.png",
+        "caption": "POLISH Media Co. Golden Ratio Pipette Mark",
+        "inLanguage": "en"
+      },
+      "image": "https://polishmediaco.com/brand-pack/03_social_assets/og-social-card-1200x630.png",
+      "description": "Haute Growth Atelier and creative accelerator engineered exclusively for visionary cosmetics, clinical skincare, haircare, and luxury fragrance brands.",
+      "email": "contact@polishmediaco.com",
+      "telephone": "+213662417761",
+      "foundingDate": "2024",
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Executive Leadership Atelier",
+          "jobTitle": "Founding Managing Partners",
+          "worksFor": {
+            "@id": "https://polishmediaco.com/#organization"
+          }
+        }
+      ],
+      "foundingLocation": [
+        {
+          "@type": "Place",
+          "name": "Paris, France"
+        },
+        {
+          "@type": "Place",
+          "name": "Dubai, United Arab Emirates"
+        }
+      ],
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Paris",
+          "addressCountry": "FR"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Dubai",
+          "addressRegion": "DIFC",
+          "addressCountry": "AE"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Algiers",
+          "addressCountry": "DZ"
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "telephone": "+213662417761",
+          "email": "contact@polishmediaco.com",
+          "availableLanguage": ["English", "French", "Arabic"],
+          "areaServed": [
+            "Global",
+            "United States",
+            "European Union",
+            "United Arab Emirates",
+            "Saudi Arabia"
+          ]
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "url": "https://polishmediaco.com/apply",
+          "availableLanguage": ["English", "French", "Arabic"]
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/polishmedia.co/",
+        "https://app.polishmediaco.com/"
+      ],
+      "knowsAbout": [
+        "DTC Growth Marketing",
+        "Cosmetics Advertising",
+        "Clinical Skincare Formulation Marketing",
+        "TikTok UGC Creation",
+        "Meta Advantage+ Shopping Campaigns",
+        "E-Commerce Customer Retention & Replenishment",
+        "Haute Parfumerie & Fragrance Scaling",
+        "Cosmeceuticals & Med-Spa Direct-to-Consumer Strategy"
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://polishmediaco.com/#service-growth-acceleration",
+      "name": "Beauty Brand Growth Acceleration",
+      "serviceType": "Algorithmic Paid Media & DTC Scale",
+      "provider": {
+        "@id": "https://polishmediaco.com/#organization"
+      },
+      "description": "Full-funnel paid media scaling and algorithmic campaign architecture across Meta (Advantage+ Shopping Campaigns) and TikTok for high-growth cosmetics, skincare, and fragrance brands.",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Global"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Cosmetics, Skincare, Haircare, and Fragrance Founders & CMOs"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://polishmediaco.com/apply",
+        "availability": "https://schema.org/LimitedAvailability",
+        "category": "Private Cohort Retainer"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://polishmediaco.com/#service-ugc-production",
+      "name": "High-Velocity Beauty UGC Production",
+      "serviceType": "Creative Lab & Creator Campaigns",
+      "provider": {
+        "@id": "https://polishmediaco.com/#organization"
+      },
+      "description": "Vetted beauty creator casting, direct-response scripting, 4K macro texture capture, and clinical before-and-after demonstrations delivering 20+ tested video variations monthly.",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Global"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "DTC Beauty Brands Scaling Paid Acquisition"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://polishmediaco.com/creators",
+        "category": "Creator Network & UGC Production"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://polishmediaco.com/#service-retention-engineering",
+      "name": "Retention & Replenishment Engineering",
+      "serviceType": "Customer Lifetime Value Optimization",
+      "provider": {
+        "@id": "https://polishmediaco.com/#organization"
+      },
+      "description": "Predictive customer replenishment flows, routine regimen bundling, and automated VIP concierge messaging timed precisely to formula depletion cycles to elevate 60-day repurchase rates.",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Global"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Cosmetics & Skincare E-Commerce Brands with Repeat Purchase Potential"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://polishmediaco.com/apply",
+        "category": "LTV & Replenishment Architecture"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://polishmediaco.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes POLISH Media Co. different from generic DTC agencies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "POLISH specializes exclusively in beauty, cosmetics, clinical skincare, and luxury fragrance. Unlike generic e-commerce agencies that recycle mass templates, POLISH combines Parisian editorial luxury with clinical scientific validation, 20+ monthly UGC hook variations, and mathematical 60-day replenishment engineering."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What minimum revenue is required to partner with POLISH Media Co.?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "POLISH requires partner brands to generate a verified minimum of $20,000 per month (approx. $240,000 ARR) with proven product-market fit. Our primary acceleration cohort focuses on brands generating between $50,000 and $500,000 per month aiming to break through creative ad fatigue and scale to eight figures."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the POLISH Creator & UGC Network work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "POLISH operates a private, vetted network of on-camera beauty creators. In-house creative directors write direct-response scripts, direct 4K macro texture demonstrations, verify dermatological claims, and deliver 20+ modular video variations per sprint to prevent ad fatigue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What ad platforms and marketing channels does POLISH manage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "POLISH manages Meta Ads (Advantage+ Shopping Campaigns), TikTok Ads & TikTok Shop, Google Performance Max (PMax) & high-intent Search, and Klaviyo/SMS/WhatsApp automated replenishment retention loops."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the proprietary POLISH Whiteboard Studio work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All partner brands receive a private interactive strategy canvas on app.polishmediaco.com. During calibration, founders and agency partners map unit economics, creative hook roadmaps, and sprint deliverables on a GPU-accelerated collaborative whiteboard with read-only executive presentation modes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast can campaigns launch after onboarding?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The onboarding and calibration sprint takes 10 to 14 business days, covering historical ad audits, custom strategy board deployment, creator casting, and initial asset production. Live campaign scaling commences in Week 3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does POLISH support international expansion across the US, Europe, and GCC?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. POLISH is natively trilingual (English, French, Arabic) with operating hubs in Paris, Dubai (DIFC), and Algiers. The atelier regularly scales brands expanding from the US and Europe into the UAE and Saudi Arabia, as well as European beauty houses launching into North America."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can brands apply for a partnership?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Brands submit a confidential 2-minute brand brief at polishmediaco.com/apply or schedule a direct 30-minute private diagnostic session at polishmediaco.com/book. Applications are evaluated by a senior partner within 24 hours under strict NDA."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://polishmediaco.com/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://polishmediaco.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Apply for Partnership",
+          "item": "https://polishmediaco.com/apply"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Creator Network",
+          "item": "https://polishmediaco.com/creators"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Book Strategy Call",
+          "item": "https://polishmediaco.com/book"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Brand Pack & Identity Vault",
+          "item": "https://polishmediaco.com/brand-pack"
+        }
+      ]
+    }
+  ]
+}

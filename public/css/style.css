@@ -980,6 +980,7 @@ a {
 }
 
 .lang-btn {
+  position: relative;
   background: transparent;
   border: none;
   color: var(--text-dim);
@@ -997,6 +998,20 @@ a {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   line-height: 1;
+}
+
+/* Accessible 44x44px Touch Target via Invisible Touch Pseudo-Element (WCAG 2.5.8 / Apple HIG) */
+.lang-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
 }
 
 .lang-btn:hover {
@@ -2252,7 +2267,14 @@ body.is-rtl .whatsapp-float-container {
   border: none;
   color: var(--text-dim);
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .wa-message-bubble {
@@ -2525,6 +2547,14 @@ body.is-rtl .wa-micro-label.is-visible {
   direction: ltr !important;
 }
 
+.footer-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
 .footer-link-item {
   display: inline-flex;
   align-items: center;
@@ -2533,6 +2563,8 @@ body.is-rtl .wa-micro-label.is-visible {
   transition: all 0.2s ease;
   text-decoration: none;
   font-weight: 500;
+  min-height: 44px;
+  padding: 4px 6px;
   direction: ltr !important;
 }
 
@@ -2628,7 +2660,7 @@ body.is-rtl .wa-micro-label.is-visible {
 .couture-h1 {
   margin-bottom: 6px;
   max-width: 960px;
-  will-change: transform;
+  will-change: auto; /* Dynamic compositor allocation: managed in RAF scroll loop only when hero is in viewport */
   transform: skewX(var(--emulsion-skew, 0deg));
   transition: transform 0.12s ease-out;
 }
@@ -3267,6 +3299,9 @@ body.is-rtl .wa-micro-label.is-visible {
   .beauty-depth-mid {
     display: block !important;
     opacity: 0.65;
+    /* Mobile Thermal Guard: bypass dynamic scroll parallax transforms */
+    transform: none !important;
+    will-change: auto !important;
   }
   .roam-serum-primary {
     top: 26%;
@@ -3993,6 +4028,21 @@ html.lenis, html.lenis body {
   opacity: 1 !important;
 }
 
+/* GPU Compositor Layer Lifecycle Management:
+   Apply will-change: transform strictly during active entrance reveal,
+   and release layer immediately upon settling to eliminate GPU layer memory leaks */
+.kinetic-title.is-revealing,
+.kinetic-title.is-revealing .kinetic-line,
+.kinetic-title.is-revealing .kinetic-text {
+  will-change: transform;
+}
+
+.kinetic-title.is-settled,
+.kinetic-title.is-settled .kinetic-line,
+.kinetic-title.is-settled .kinetic-text {
+  will-change: auto !important;
+}
+
 /* Razor-Sharp Specular Metallic Accents on Gradient Headlines */
 .gradient-accent,
 .gradient-text {
@@ -4024,10 +4074,26 @@ html.lenis, html.lenis body {
     animation: none !important;
     transform: none !important;
   }
+  /* Enforce static hero flacon immediately on reduced-motion */
+  .hero-scroll-bottle-wrap {
+    transform: none !important;
+    opacity: 1 !important;
+    will-change: auto !important;
+  }
+  .hero-scroll-bottle {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  .couture-h1 {
+    transform: none !important;
+    will-change: auto !important;
+  }
   .kinetic-text {
     transform: none !important;
     opacity: 1 !important;
     transition: none !important;
+    will-change: auto !important;
   }
   .pro-card {
     opacity: 1 !important;

@@ -54,12 +54,13 @@
 
     <div class="dock-right">
       <!-- 1-Click Theme Toggle -->
-      <button id="themeToggleBtn" class="dock-btn" onclick="StudioCore.toggleTheme()" title="Switch Light/Dark Theme">
-        <span class="dock-theme-icon">☾</span> Dark
+      <button type="button" id="themeToggleBtn" class="theme-toggle-btn" onclick="StudioCore.toggleTheme()" title="Switch Light/Dark Theme">
+        <span class="dock-theme-icon">☾</span>
+        <span class="dock-theme-label">Dark</span>
       </button>
 
       <!-- User Profile Capsule & Dropdown Menu -->
-      <div id="studioUserCapsule" class="profile-capsule-wrap" style="position:relative;">
+      <div id="studioUserCapsule" class="profile-capsule-wrap">
         <button type="button" id="studioUserAvatarBtn" class="avatar-trigger-btn" onclick="toggleProfileDropdown(event)" title="Account & Tools Menu">
           <div id="studioUserAvatar" class="user-avatar-circle">AD</div>
           <svg class="avatar-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -494,11 +495,43 @@
   </div>
 
   <!-- ========================================================== -->
+  <!-- CAMERA SNAPSHOT PREVIEW MODAL                              -->
+  <!-- ========================================================== -->
+  <div id="cameraSnapshotModal" class="camera-modal" style="display:none">
+    <div class="camera-modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Camera Snapshot Captured</h3>
+          <p class="modal-subtitle">High-resolution canvas view ready for presentation or export.</p>
+        </div>
+        <button class="modal-close-btn" onclick="StudioCore.closeCameraModal()">✕</button>
+      </div>
+      <div class="camera-preview-container">
+        <img id="cameraPreviewImage" class="camera-preview-img" alt="Canvas Snapshot Preview" />
+      </div>
+      <div class="camera-actions-row">
+        <button type="button" class="camera-btn-secondary" onclick="StudioCore.copySnapshotToClipboard()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="btnCopySnapshotText">Copy to Clipboard</span>
+        </button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button type="button" class="camera-btn-secondary" onclick="StudioCore.closeCameraModal()">Close</button>
+          <button type="button" id="btnDownloadSnapshot" class="camera-btn-primary" onclick="StudioCore.downloadSnapshot()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download High-Res PNG
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================== -->
   <!-- JAVASCRIPT MODULES                                         -->
   <!-- ========================================================== -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="/studio/js/firebase-config.js?v=20260909_v2"></script>
+  <script src="/studio/js/html2canvas.min.js"></script>
 
   <script src="/studio/js/canvas-panzoom.js?v=20260909_v2"></script>
   <script src="/studio/js/drawing-engine.js?v=20260909_v2"></script>

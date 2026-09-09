@@ -66,23 +66,24 @@ router.get('/admin/verify', requireAdminAuth, (req, res) => {
   });
 });
 
-// POST /api/apply (Multi-Step Lead Intake - Email removed as requested)
+// POST /api/apply (Multi-Step Brand Partnership Dossier Intake)
 router.post('/apply', async (req, res) => {
   try {
     const {
       fullName,
       brandName,
+      email,
+      phone,
       websiteUrl,
       socialLink,
       role,
       businessCategory,
       marketingHistory,
-      primaryGoal,
-      email
+      primaryGoal
     } = req.body;
 
     // Validate Required Fields for 3-Step Intake
-    if (!fullName || !brandName || !socialLink || !role || !businessCategory || !marketingHistory) {
+    if (!fullName || !brandName || !email || !socialLink || !role || !businessCategory || !marketingHistory) {
       return res.status(400).json({
         success: false,
         error: 'Please complete all required fields.'
@@ -92,8 +93,9 @@ router.post('/apply', async (req, res) => {
     const newLead = {
       id: `POLISH-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`,
       fullName: fullName.trim(),
-      email: email ? email.trim().toLowerCase() : 'Not provided',
       brandName: brandName.trim(),
+      email: email ? email.trim().toLowerCase() : 'Not provided',
+      phone: phone ? phone.trim() : 'Not provided',
       websiteUrl: websiteUrl ? websiteUrl.trim() : 'Not provided',
       socialLink: socialLink.trim(),
       role: role.trim(),

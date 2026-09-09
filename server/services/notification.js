@@ -105,6 +105,8 @@ async function notifyNewLead(lead) {
     waText = `*POLISH — New Brand Application* 💼\n\n` +
       `*Brand:* ${lead.brandName}\n` +
       `*Contact:* ${lead.fullName} (${lead.role})\n` +
+      `*Email:* ${lead.email || 'None'}\n` +
+      `*Phone/WA:* ${lead.phone || 'None'}\n` +
       `*Category:* ${lead.businessCategory}\n` +
       `*Website:* ${lead.websiteUrl || 'None'}\n` +
       `*Social:* ${lead.socialLink || 'None'}\n` +
@@ -142,6 +144,8 @@ async function notifyNewLead(lead) {
         tgText = `💼 *POLISH — New Brand Application!*\n\n` +
           `🏢 *Brand:* ${escapeTg(lead.brandName)}\n` +
           `👤 *Contact:* ${escapeTg(lead.fullName)} (${escapeTg(lead.role)})\n` +
+          `✉️ *Email:* ${escapeTg(lead.email || 'None')}\n` +
+          `📞 *Phone/WA:* ${escapeTg(lead.phone || 'None')}\n` +
           `💄 *Category:* ${escapeTg(lead.businessCategory)}\n` +
           `🌐 *Website:* ${escapeTg(lead.websiteUrl || 'None')}\n` +
           `📱 *Social:* ${escapeTg(lead.socialLink || 'None')}\n` +
@@ -179,7 +183,9 @@ async function notifyNewLead(lead) {
         body: JSON.stringify({
           content: isCreator
             ? `🚨 **New POLISH Creator Application!**\n**Name:** ${lead.name}\n**Social:** ${lead.socialLink}\n**Phone:** ${lead.phone}\n**Portfolio:** ${lead.portfolio}\n**ID:** \`${lead.id}\``
-            : `🚨 **New POLISH Growth Application!**\n**Brand:** ${lead.brandName} (${lead.businessCategory})\n**Contact:** ${lead.fullName} (${lead.role})\n**Website:** ${lead.websiteUrl}\n**Social:** ${lead.socialLink}\n**Goal:** ${lead.primaryGoal}\n**ID:** \`${lead.id}\``
+            : isIntake
+            ? `📋 **New POLISH Strategy Intake!**\n**Client:** ${lead.fullName}\n**Container:** ${lead.brandName}\n**Phone:** ${lead.phone}\n**ID:** \`${lead.id}\``
+            : `🚨 **New POLISH Growth Application!**\n**Brand:** ${lead.brandName} (${lead.businessCategory})\n**Contact:** ${lead.fullName} (${lead.role})\n**Email:** ${lead.email || 'None'}\n**Phone:** ${lead.phone || 'None'}\n**Website:** ${lead.websiteUrl}\n**Social:** ${lead.socialLink}\n**Goal:** ${lead.primaryGoal}\n**ID:** \`${lead.id}\``
         })
       });
       console.log('[Notification Service] Webhook alert dispatched successfully.');

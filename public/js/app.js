@@ -165,29 +165,46 @@ document.addEventListener('DOMContentLoaded', () => {
   function validateCurrentStep() {
     hideAlert();
     const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
+    const isAr = window.polishI18n && window.polishI18n.currentLang === 'ar';
 
     if (currentStep === 1) {
       const nameInput = document.getElementById('fullName');
       const brandInput = document.getElementById('brandName');
+      const emailInput = document.getElementById('workEmail');
+      const phoneInput = document.getElementById('phoneWhatsapp');
       const socialInput = document.getElementById('socialLink');
 
       const name = nameInput ? nameInput.value.trim() : '';
       const brand = brandInput ? brandInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
       const social = socialInput ? socialInput.value.trim() : '';
 
       if (!name) {
         markFieldError(nameInput);
-        showAlert(isFr ? 'Veuillez renseigner votre nom et prénom.' : 'Please enter your full name.', nameInput);
+        showAlert(isFr ? 'Veuillez renseigner votre nom et prénom.' : (isAr ? 'يرجى إدخال اسمك الكامل.' : 'Please enter your full name.'), nameInput);
         return false;
       }
       if (!brand) {
         markFieldError(brandInput);
-        showAlert(isFr ? 'Veuillez indiquer le nom de votre marque.' : 'Please enter your company or brand name.', brandInput);
+        showAlert(isFr ? 'Veuillez indiquer le nom de votre marque.' : (isAr ? 'يرجى إدخال اسم العلامة التجارية.' : 'Please enter your company or brand name.'), brandInput);
+        return false;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        markFieldError(emailInput);
+        showAlert(isFr ? 'Veuillez renseigner une adresse email professionnelle valide.' : (isAr ? 'يرجى إدخال بريد إلكتروني مهني صحيح.' : 'Please enter a valid work email address.'), emailInput);
+        return false;
+      }
+      const cleanPhone = phone.replace(/[^0-9+]/g, '');
+      if (!phone || cleanPhone.length < 7) {
+        markFieldError(phoneInput);
+        showAlert(isFr ? 'Veuillez indiquer votre numéro WhatsApp direct ou téléphone (avec indicatif pays).' : (isAr ? 'يرجى إدخال رقم واتساب أو هاتف مباشر مع رمز الدولة.' : 'Please enter your direct WhatsApp or phone number with country code.'), phoneInput);
         return false;
       }
       if (!social) {
         markFieldError(socialInput);
-        showAlert(isFr ? 'Veuillez indiquer le lien vers votre réseau social (Instagram / TikTok).' : 'Please enter your Instagram, TikTok, or brand social handle.', socialInput);
+        showAlert(isFr ? 'Veuillez indiquer le lien vers votre réseau social (Instagram / TikTok).' : (isAr ? 'يرجى إدخال حساب التواصل الاجتماعي (Instagram / TikTok).' : 'Please enter your Instagram, TikTok, or brand social handle.'), socialInput);
         return false;
       }
     } else if (currentStep === 2) {
@@ -272,6 +289,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const payload = {
       fullName: formData.get('fullName')?.toString().trim() || '',
       brandName: formData.get('brandName')?.toString().trim() || '',
+      email: formData.get('email')?.toString().trim().toLowerCase() || '',
+      phone: formData.get('phone')?.toString().trim() || '',
       websiteUrl: formData.get('websiteUrl')?.toString().trim() || '',
       socialLink: formData.get('socialLink')?.toString().trim() || '',
       role: formData.get('role')?.toString().trim() || '',
@@ -329,9 +348,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const bookBtn = document.getElementById('successBookDirectBtn');
         if (bookBtn) {
           const bookParams = new URLSearchParams({
-            name: formData.fullName || '',
-            brand: formData.brandName || '',
-            social: formData.socialLink || ''
+            name: payload.fullName || '',
+            brand: payload.brandName || '',
+            email: payload.email || '',
+            phone: payload.phone || '',
+            social: payload.socialLink || ''
           });
           bookBtn.href = `/book?${bookParams.toString()}`;
         }

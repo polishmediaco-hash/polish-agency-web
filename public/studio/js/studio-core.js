@@ -1223,6 +1223,251 @@ window.StudioCore = (function () {
       title = 'Blank Canvas';
       newElements = [];
       newConnections = [];
+    } else if (templateKey === 'scaling-blueprint') {
+      title = '90-Day Luxury Beauty Scaling Blueprint';
+      const f1Id = `frame-sb-1-${Date.now()}`;
+      const f2Id = `frame-sb-2-${Date.now()}`;
+      const priceId = `pricing-sb-${Date.now()}`;
+      const scriptId = `script-sb-${Date.now()}`;
+      const tblId = `table-sb-${Date.now()}`;
+      const s1Id = `sticky-sb-1-${Date.now()}`;
+      const s2Id = `sticky-sb-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '01',
+          titlePill: 'PAID MEDIA ACQUISITION',
+          headline: 'Advantage+ & Creator',
+          serifAccent: 'Liquidity Architecture',
+          description: 'Engineering a predictable net-new customer acquisition machine via Meta Advantage+ ASC and whitelisted TikTok Spark ads without resetting algorithmic learning.',
+          boxes: [
+            { tag: 'PROSPECTING SANDBOX', tagColor: 'gold', title: 'Dynamic Creative Testing (DCT)', content: '3 video thumbstop variations x 2 body messaging angles tested in isolated sandbox campaigns before graduation to ASC core budget.' },
+            { tag: 'LANDING PAGE LIFT', tagColor: 'blue', title: 'Dedicated Advertorial Presell', content: 'Directing high-intent prospecting clicks to editorial advertorials explaining clinical formulation science, lifting conversion velocity by 34%.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'OFFER & BUNDLE MECHANICS',
+          headline: 'Regimen Architecture &',
+          serifAccent: 'AOV Expansion',
+          description: 'Transitioning single-SKU purchasers into 3-step clinical routine buyers, lifting first-order average order value from AED 180 to AED 420+.',
+          boxes: [
+            { tag: 'CORE REGIMEN', tagColor: 'green', title: '3-Step Daily Protocol', content: 'Packaging Cleanser + Peptide Serum + Barrier Cream with exclusive collector travel pouch, making single-product checkout obsolete.' },
+            { tag: 'SLIDE CART UPSELL', tagColor: 'rose', title: 'One-Click Post-Purchase Bump', content: 'Micro-dose travel mini and silk sleeping mask upsell triggers before final payment authorization, maintaining 22% uptake rate.' }
+          ]
+        },
+        {
+          id: priceId,
+          type: 'pricing',
+          x: 1540,
+          y: 120,
+          width: 380,
+          isFeatured: true,
+          badge: '90-DAY SCALING ACCELERATOR',
+          currency: 'AED',
+          figure: '28,000',
+          period: '/ Month + 8% Growth',
+          features: [
+            'Meta ASC & TikTok Spark Media Buying ($25k-$100k Spend)',
+            'Bi-Weekly UGC & Creator Direction (12 High-Res Cuts)',
+            'Klaviyo Routine Replenishment & SMS Concierge Buildout',
+            'Weekly Executive Unit Economics & MER Review',
+            'Full Access to POLISH Whiteboard Strategy Studio'
+          ]
+        },
+        {
+          id: scriptId,
+          type: 'script',
+          x: 1540,
+          y: 470,
+          width: 380,
+          height: 190,
+          content: '"Scale in luxury beauty is not achieved by shouting louder. It is engineered through formulation transparency, frictionless routine bundling, and relentless replenishment cadence."'
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 720,
+          width: 880,
+          title: '90-Day Scaling Trajectory & Quarterly Milestones',
+          badge: 'EXECUTION TIMELINE',
+          headers: ['Phase', 'Focus Area', 'Target Blended MER', 'Key Deliverable', 'Expected Lift'],
+          rows: [
+            ['Month 01', 'Baseline Audit & Creative Sandbox', '2.8x - 3.2x', '3:2:2 DCT Ads + Advertorial Bridge', '+35% First-Order AOV'],
+            ['Month 02', 'Advantage+ ASC Scale & Creator Seeding', '3.4x - 3.8x', '12 Whitelisted Creator Spark Ads', '+75% Net Prospecting Volume'],
+            ['Month 03', 'Klaviyo Replenishment & LTV Flywheel', '4.2x - 4.6x', '42-Day Automated Routine Refill Loop', '+110% Unlocked Monthly GMV']
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1020,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'yellow',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'UNIT ECONOMICS',
+          content: 'Target a minimum 78% Gross Margin. Without healthy gross margins, rising paid media customer acquisition costs will erode your scaling runway.',
+          footer: 'MARGIN MANDATE'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1340,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'mint',
+          rotation: 2,
+          hasTape: true,
+          header: 'CASH CONVERSION',
+          content: 'Negotiate 60-day supplier payment terms with your cosmetic laboratory once monthly order volume exceeds 3,000 units to unlock free cash flow.',
+          footer: 'TREASURY GOVERNANCE'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-sb-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' },
+        { id: `conn-sb-2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '' }
+      ];
+    } else if (templateKey === 'retention-flywheel') {
+      title = 'DTC Skincare Retention & Replenishment Flywheel';
+      const f1Id = `frame-rf-1-${Date.now()}`;
+      const f2Id = `frame-rf-2-${Date.now()}`;
+      const priceId = `pricing-rf-${Date.now()}`;
+      const scriptId = `script-rf-${Date.now()}`;
+      const tblId = `table-rf-${Date.now()}`;
+      const s1Id = `sticky-rf-1-${Date.now()}`;
+      const s2Id = `sticky-rf-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '01',
+          titlePill: 'POST-PURCHASE INDUCTION',
+          headline: 'Sensory Unboxing &',
+          serifAccent: 'Skin Protocol Coaching',
+          description: 'Transforming first delivery from a postal transaction into an editorial unboxing ritual that drives immediate Day 1 product adoption and application compliance.',
+          boxes: [
+            { tag: 'UNBOXING RITUAL', tagColor: 'rose', title: 'QR Ritual Companion', content: 'Embossed foil card linking to 90-second video tutorial with the brand founder explaining application technique and active ingredient synergy.' },
+            { tag: 'DAY 3 CHECK-IN', tagColor: 'gold', title: 'Non-Promotional SMS Care', content: 'Conversational SMS asking: "How does your skin feel after your first 48 hours with the Active Serum?" Zero marketing pitch, 92% positive sentiment.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'PREDICTIVE REPLENISHMENT',
+          headline: 'Jar Burn Calculations &',
+          serifAccent: '1-Click Refill Loops',
+          description: 'Triggering refill opportunities precisely when bottle volume reaches 15%, before the consumer lapses into competitor browsing or drugstore substitutes.',
+          boxes: [
+            { tag: 'BURN RATE ENGINE', tagColor: 'green', title: '42-Day Dynamic SMS Refill Prompt', content: 'Smart algorithm calculates expected usage cadence. Delivers 1-click Apple Pay refill link with subscriber pricing benefit 10 days before bottom-of-jar.' },
+            { tag: 'SUBSCRIPTION LADDER', tagColor: 'blue', title: 'Haute Atelier Refill Club', content: 'Eco-luxury aluminum refill pouches discounted 18% with quarterly curated chemist lab samples included free.' }
+          ]
+        },
+        {
+          id: priceId,
+          type: 'pricing',
+          x: 1540,
+          y: 120,
+          width: 380,
+          isFeatured: true,
+          badge: 'RETENTION VALUE PROJECTION',
+          currency: 'AED',
+          figure: '185,000',
+          period: 'Unlocked 12-Mo LTV',
+          features: [
+            '60-Day Repeat Purchase Rate Lift: +48%',
+            'Active Replenishment Subscriber Retention: 84%',
+            'Blended Customer Lifetime Value: 3.4x CAC',
+            'Lapsed Customer Win-Back Conversion: 16.2%',
+            'VIP Laboratory Community Engagement Score: 92/100'
+          ]
+        },
+        {
+          id: scriptId,
+          type: 'script',
+          x: 1540,
+          y: 470,
+          width: 380,
+          height: 190,
+          content: '"The second sale is never made on product utility alone; it is earned through how intensely the brand respected the ritual between Day 1 and Day 45."'
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 720,
+          width: 880,
+          title: 'Klaviyo & SMS Automated Retention Journey Matrix',
+          badge: 'JOURNEY CADENCE',
+          headers: ['Day Interval', 'Channel', 'Strategic Purpose', 'Trigger Condition', 'Observed CVR'],
+          rows: [
+            ['Day 0 (Delivery)', 'Email + SMS', 'Sensory Unboxing & QR Routine Guide', 'Carrier "Delivered" webhook', '68% Open / 34% Click'],
+            ['Day 07', 'Editorial Email', '"What to expect in Week 2" (Cell turnover)', 'Opened Day 0 message', '54% Open / 18% Click'],
+            ['Day 28', 'Conversational SMS', 'Progress Check-In & Companion Booster', 'No support ticket opened', '46% Reply Rate'],
+            ['Day 42', 'SMS + VIP Email', '1-Click Predictive Replenishment Link', 'Jar 85% depleted threshold', '31% Repeat Purchase CVR']
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1020,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'rose',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'RETENTION AXIOM',
+          content: 'Never offer discounts on first reorder. Offer formulation upgrades, deluxe mini travel formats, or exclusive founder notes to preserve brand prestige.',
+          footer: 'PRESTIGE INTEGRITY'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1340,
+          y: 720,
+          width: 280,
+          height: 190,
+          color: 'mint',
+          rotation: 2,
+          hasTape: true,
+          header: 'CHURN INTERCEPT',
+          content: 'If a customer skips a delivery, send a bespoke SMS asking if they would like to adjust delivery frequency rather than cancelling outright.',
+          footer: 'CHURN DEFENSE'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-rf-1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'rose', label: '' },
+        { id: `conn-rf-2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '' }
+      ];
     } else if (templateKey === 'personal-branding') {
       title = 'Personal Branding & Sovereign Authority Blueprint';
       const f1Id = `frame-pb-1-${Date.now()}`;

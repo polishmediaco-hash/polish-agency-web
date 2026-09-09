@@ -4,15 +4,32 @@ const path = require('path');
 
 const router = express.Router();
 
+const BUNDLED_BOARDS_DIR = path.join(__dirname, '../db/boards');
 const IS_VERCEL = process.env.VERCEL === '1' || process.env.VERCEL_ENV !== undefined;
 const BOARDS_DIR = IS_VERCEL
   ? path.join('/tmp', 'boards')
-  : path.join(__dirname, '../db/boards');
+  : BUNDLED_BOARDS_DIR;
 
-// Ensure directory exists
-if (!fs.existsSync(BOARDS_DIR)) {
-  fs.mkdirSync(BOARDS_DIR, { recursive: true });
+// Ensure directory exists and seed bundled boards
+function ensureBoardsSeeded() {
+  try {
+    if (!fs.existsSync(BOARDS_DIR)) {
+      fs.mkdirSync(BOARDS_DIR, { recursive: true });
+    }
+    if (fs.existsSync(BUNDLED_BOARDS_DIR) && BOARDS_DIR !== BUNDLED_BOARDS_DIR) {
+      const bundled = fs.readdirSync(BUNDLED_BOARDS_DIR).filter(f => f.endsWith('.json'));
+      for (const f of bundled) {
+        const dest = path.join(BOARDS_DIR, f);
+        if (!fs.existsSync(dest)) {
+          fs.copyFileSync(path.join(BUNDLED_BOARDS_DIR, f), dest);
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('[Boards] Seeding warning:', err.message);
+  }
 }
+ensureBoardsSeeded();
 
 // Helper: Get starter board template
 function getStarterBoard() {
@@ -236,6 +253,7 @@ function writeBoardFile(filePath, data) {
 // GET /api/boards (List all boards)
 router.get('/', (req, res) => {
   try {
+    ensureBoardsSeeded();
     const files = fs.readdirSync(BOARDS_DIR).filter(f => f.endsWith('.json'));
 
     // If no boards exist, seed starter template
@@ -366,6 +384,7 @@ function sanitizeBoardId(id) {
 // GET /api/boards/:id (Get single board data)
 router.get('/:id', (req, res) => {
   try {
+    ensureBoardsSeeded();
     const safeId = sanitizeBoardId(req.params.id);
     if (!safeId) {
       return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
@@ -386,6 +405,22 @@ router.get('/:id', (req, res) => {
     }
 
     if (!fs.existsSync(filePath)) {
+      if (safeId === 'starter-strategy-board' || safeId === 'executive-strategy-template') {
+        const starter = getStarterBoard();
+        writeBoardFile(path.join(BOARDS_DIR, `${starter.id}.json`), starter);
+        return res.json({ success: true, board: starter });
+      }
+
+      // Fallback check in bundled boards
+      const bundledPath = path.join(BUNDLED_BOARDS_DIR, `${safeId}.json`);
+      if (fs.existsSync(bundledPath)) {
+        const bundledBoard = readBoardFile(bundledPath);
+        if (bundledBoard) {
+          writeBoardFile(path.join(BOARDS_DIR, `${safeId}.json`), bundledBoard);
+          return res.json({ success: true, board: bundledBoard });
+        }
+      }
+
       return res.status(404).json({ success: false, error: 'Board not found.' });
     }
 

@@ -4,150 +4,112 @@
   "title": "Executive Advisory Client — Strategy Whiteboard",
   "client": "Executive Advisory Client",
   "createdAt": "2026-09-08T20:36:01.140Z",
-  "updatedAt": "2026-09-09T04:29:55.072Z",
+  "updatedAt": "2026-09-09T04:31:19.852Z",
   "viewport": {
-    "panX": 952.777482745049,
-    "panY": 185.9781599755663,
-    "scale": 0.350097795078881
+    "panX": -38.35224447624887,
+    "panY": -77.26240450070236,
+    "scale": 0.6335790444559389
   },
   "elements": [
     {
-      "id": "frame-offer",
+      "id": "frame-ai-1788928257818-383",
       "type": "frame",
-      "x": 832,
-      "y": 339,
-      "width": 680,
-      "height": 580,
-      "zIndex": 10,
-      "frameNumber": "02",
-      "titlePill": "HAUTE OFFER LADDER",
-      "headline": "Two-Tier Retainer Architecture",
-      "serifAccent": "Retainer Architecture",
-      "description": "A structured conversion bridge converting friction into ongoing partnership retainers.",
+      "x": 548,
+      "y": 232,
+      "width": 440,
+      "height": 340,
+      "zIndex": 15,
+      "frameNumber": "01",
+      "titlePill": "STRATEGY",
+      "headline": "Positioning: Executive Life Architecture",
+      "serifAccent": "",
+      "description": "",
       "boxes": [
         {
-          "tag": "TIER 1 • DIAGNOSTIC",
-          "tagColor": "blue",
-          "title": "The 60-Min Life Friction Audit",
-          "content": "One-time diagnostic mapping pace fatigue, decision paralysis, and boundary erosion. Delivers a custom 1-page blueprint."
-        },
-        {
-          "tag": "TIER 2 • CORE RETAINER",
-          "tagColor": "green",
-          "title": "30-Day Executive Reset Container",
-          "content": "Weekly private calibrations in-person or Zoom + VIP async WhatsApp audio notes access. Roster capped at 5 active clients."
+          "tag": "STRATEGY",
+          "tagColor": "gold",
+          "title": "Actionable Blueprint",
+          "content": "Rebrand from general coaching to specialized life architecture targeting founders and C-suite executives with $12k-$35k retainer anchors.",
+          "isWhite": true
         }
       ]
     },
     {
-      "id": "sticky-1",
-      "type": "sticky",
-      "x": 770,
-      "y": 40,
-      "width": 260,
-      "height": 180,
-      "zIndex": 25,
-      "color": "rose",
-      "rotation": -2,
-      "hasTape": true,
-      "header": "STRATEGIC NOTE",
-      "content": "Never pitch retainers cold. The Tier 1 diagnostic audit filters out non-serious leads and converts at 60%+ into Tier 2.",
-      "footer": "REF: POLISH-PROTO"
-    },
-    {
-      "id": "sticky-2",
-      "type": "sticky",
-      "x": 1966,
-      "y": 288,
-      "width": 260,
-      "height": 180,
-      "zIndex": 25,
-      "color": "rose",
-      "rotation": 1.5,
-      "hasTape": true,
-      "header": "EXECUTION RULE",
-      "content": "Cap roster strictly at 5–6 clients to maintain impeccable aura, bespoke focus, and uncompromising pricing leverage.",
-      "footer": "REF: POLISH-LADDER"
-    },
-    {
-      "id": "pricing-1",
-      "type": "pricing",
-      "x": 1600,
-      "y": 120,
-      "width": 320,
-      "zIndex": 15,
-      "isFeatured": true,
-      "badge": "HAUTE ADVISORY RETAINER",
-      "currency": "AED",
-      "figure": "18,500",
-      "period": "Quarterly Private Retainer",
-      "features": [
-        "Bi-weekly In-Person or Private Zoom Calibrations",
-        "Direct VIP WhatsApp Async Voice Hotline",
-        "End-to-End Retention Architecture Blueprint",
-        "Complete Team Protocols & Governance Handover"
-      ]
-    },
-    {
-      "id": "table-1",
-      "type": "table",
-      "x": 840,
-      "y": 780,
-      "width": 640,
-      "zIndex": 12,
-      "title": "Strategic Deliverables Matrix",
-      "badge": "EXECUTION ROADMAP",
-      "headers": [
-        "Phase",
-        "Deliverable Output",
-        "Timeline",
-        "Target Metric"
-      ],
-      "rows": [
-        [
-          "Phase 01: Audit",
-          "Conversion & Retention Diagnostic",
-          "Weeks 1–2",
-          "+18% CVR"
-        ],
-        [
-          "Phase 02: Architecture",
-          "VIP Advisory Retainer Launch",
-          "Weeks 3–6",
-          "$45k ARR Added"
-        ],
-        [
-          "Phase 03: Scaling",
-          "Autonomous Systems & Handover",
-          "Months 2–3",
-          "Zero Founder Fatigue"
-        ]
-      ]
-    },
-    {
-      "id": "frame-1788899836659",
+      "id": "frame-ai-1788928257821-53",
       "type": "frame",
-      "x": -1768,
-      "y": -397,
-      "width": 620,
-      "height": 480,
-      "zIndex": 10,
+      "x": 1488,
+      "y": 232,
+      "width": 440,
+      "height": 340,
+      "zIndex": 15,
       "frameNumber": "03",
-      "titlePill": "STRATEGY MODULE",
-      "headline": "New Strategic Container",
-      "serifAccent": "Strategic Container",
-      "description": "Double-click to customize the strategy and pillars of this frame.",
+      "titlePill": "SALES",
+      "headline": "Funnel: Diagnostic Audit Entry",
+      "serifAccent": "",
+      "description": "",
       "boxes": [
         {
-          "tag": "CORE LEVER",
+          "tag": "SALES",
           "tagColor": "gold",
-          "title": "Section Objective",
-          "content": "Add high-impact points and rationale here..."
+          "title": "Actionable Blueprint",
+          "content": "$500 non-refundable diagnostic application that filters out low-intent prospects and credits directly into the core retainer upon enrollment.",
+          "isWhite": true
+        }
+      ]
+    },
+    {
+      "id": "frame-ai-1788928257822-53",
+      "type": "frame",
+      "x": 1958,
+      "y": 282,
+      "width": 440,
+      "height": 340,
+      "zIndex": 15,
+      "frameNumber": "04",
+      "titlePill": "COPY",
+      "headline": "Content: Pattern-Interrupt Ad Hook Stack",
+      "serifAccent": "",
+      "description": "",
+      "boxes": [
+        {
+          "tag": "COPY",
+          "tagColor": "gold",
+          "title": "Actionable Blueprint",
+          "content": "'Why 8-figure founders build 7-figure lifestyle deficits—and the 3 vitality metrics that fix it before burnout forces an exit.'",
+          "isWhite": true
+        }
+      ]
+    },
+    {
+      "id": "frame-ai-1788928257822-490",
+      "type": "frame",
+      "x": 2428,
+      "y": 232,
+      "width": 440,
+      "height": 340,
+      "zIndex": 15,
+      "frameNumber": "05",
+      "titlePill": "CONTENT",
+      "headline": "Distribution: Authority Content Engine",
+      "serifAccent": "",
+      "description": "",
+      "boxes": [
+        {
+          "tag": "CONTENT",
+          "tagColor": "gold",
+          "title": "Actionable Blueprint",
+          "content": "Bi-weekly breakdown videos and LinkedIn case studies analyzing high-performer fatigue cycles, decision optimization, and lifestyle ROI.",
+          "isWhite": true
         }
       ]
     }
   ],
-  "connections": [],
+  "connections": [
+    "frame-ai-1788928257818-383",
+    "frame-ai-1788928257820-196",
+    "frame-ai-1788928257821-53",
+    "frame-ai-1788928257822-53"
+  ],
   "ownerId": "pehGzFZBv8Z2Q9N6U9KoncSFMC22",
   "ownerEmail": "polishmediaco@gmail.com",
   "isPublished": true,

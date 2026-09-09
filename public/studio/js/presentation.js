@@ -11,7 +11,9 @@ window.StudioPresentation = (function () {
   function start() {
     slides = Array.from(document.querySelectorAll('.board-frame'));
     if (slides.length === 0) {
-      alert('Add at least one Frame to enter Presentation Mode.');
+      if (window.StudioCore && window.StudioCore.showToast) {
+        window.StudioCore.showToast('Add at least one Frame to enter Presentation Mode', 'warning');
+      }
       return;
     }
 

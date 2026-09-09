@@ -1071,6 +1071,18 @@ window.StudioCore = (function () {
     URL.revokeObjectURL(url);
   }
 
+  function showToast(msg, type = 'info') {
+    const toast = document.getElementById('studioToast');
+    if (!toast) return;
+    const text = toast.querySelector('.toast-text');
+    if (text) text.textContent = msg;
+    toast.className = 'studio-toast visible' + (type === 'warning' ? ' toast-warning' : type === 'error' ? ' toast-error' : '');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
+      toast.classList.remove('visible');
+    }, 2800);
+  }
+
   function importJSON(file) {
     if (!file) return;
     const reader = new FileReader();
@@ -1078,7 +1090,7 @@ window.StudioCore = (function () {
       try {
         const imported = JSON.parse(e.target.result);
         if (!imported || !Array.isArray(imported.elements)) {
-          alert('Invalid canvas JSON: missing elements array.');
+          showToast('Invalid canvas JSON: missing elements array.', 'error');
           return;
         }
         pushHistory();
@@ -1088,6 +1100,7 @@ window.StudioCore = (function () {
         renderBoard();
         saveLocally();
         triggerAutoSave();
+        showToast('Board imported successfully!');
         if (window.CanvasEngine && currentBoard.viewport) {
           window.CanvasEngine.setTransform(
             currentBoard.viewport.scale || 0.75,
@@ -1096,7 +1109,7 @@ window.StudioCore = (function () {
           );
         }
       } catch (err) {
-        alert('Could not parse board JSON file: ' + err.message);
+        showToast('Could not parse board JSON file: ' + err.message, 'error');
       }
     };
     reader.readAsText(file);
@@ -1386,6 +1399,7 @@ window.StudioCore = (function () {
     findElement,
     findConnection,
     reRenderElement,
-    getCurrentBoardId: () => (currentBoard ? currentBoard.id : null)
+    getCurrentBoardId: () => (currentBoard ? currentBoard.id : null),
+    showToast
   };
 })();

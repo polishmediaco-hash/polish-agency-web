@@ -9,9 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
   <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
-  <link rel="stylesheet" href="/studio/css/board-elements.css">
-  <link rel="stylesheet" href="/studio/css/studio.css">
-  <link rel="stylesheet" href="/studio/css/inspector.css">
+  <link rel="stylesheet" href="/studio/css/board-elements.css?v=20260909_v2">
+  <link rel="stylesheet" href="/studio/css/studio.css?v=20260909_v2">
+  <link rel="stylesheet" href="/studio/css/inspector.css?v=20260909_v2">
 </head>
 <body>
 
@@ -62,6 +62,7 @@
       <button class="dock-btn" onclick="document.getElementById('importFileInput').click()" title="Import board JSON from hard drive">
         <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         Import
+      </button>
       <button class="dock-btn" onclick="StudioCore.exportPNG()" title="Export board as high-res PNG">
         <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         PNG
@@ -71,6 +72,10 @@
       </button>
 
       <div class="dock-divider"></div>
+      <a id="btnClientView" href="/view" target="_blank" class="dock-btn" style="text-decoration:none; color:var(--brand-gold); font-weight:700" title="Open Client Presentation View (↗)">
+        <svg class="dock-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Client View ↗
+      </a>
       <a href="/boards" class="dock-btn" style="text-decoration:none" title="All Boards Dashboard">
         Boards
       </a>
@@ -269,6 +274,83 @@
   </div>
 
   <!-- ========================================================== -->
+  <!-- FRAME COVER BANNER MODAL                                   -->
+  <!-- ========================================================== -->
+  <div id="coverModal" class="template-modal" style="display:none">
+    <div class="template-modal-card" style="max-width: 580px;">
+      <div class="modal-header" style="margin-bottom: 1.25rem;">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; font-weight: 800; color: var(--brand-gold); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 4px;">HAUTE ATELIER</div>
+          <h3 class="modal-title" style="font-size: 1.25rem;">Frame Cover Banner</h3>
+          <p class="modal-subtitle" style="font-size: 0.82rem;">Select a curated editorial aesthetic or enter an image URL.</p>
+        </div>
+        <button class="modal-close-btn" onclick="StudioInspector.closeCoverModal()">✕</button>
+      </div>
+
+      <!-- Presets Gallery -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px;">Curated Editorial Presets</div>
+        <div class="cover-presets-grid" id="coverPresetsGrid">
+          <div class="cover-preset-card" onclick="StudioInspector.pickPreset('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=300&auto=format&fit=crop" alt="Haute Formulation" loading="lazy" />
+            <span class="preset-title">Haute Formulation</span>
+          </div>
+          <div class="cover-preset-card" onclick="StudioInspector.pickPreset('https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=300&auto=format&fit=crop" alt="Rose Alabaster" loading="lazy" />
+            <span class="preset-title">Rose Alabaster</span>
+          </div>
+          <div class="cover-preset-card" onclick="StudioInspector.pickPreset('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300&auto=format&fit=crop" alt="Obsidian Noir" loading="lazy" />
+            <span class="preset-title">Obsidian Noir</span>
+          </div>
+          <div class="cover-preset-card" onclick="StudioInspector.pickPreset('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=300&auto=format&fit=crop" alt="Architectural" loading="lazy" />
+            <span class="preset-title">Architectural</span>
+          </div>
+          <div class="cover-preset-card" onclick="StudioInspector.pickPreset('https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=300&auto=format&fit=crop" alt="Amber Atelier" loading="lazy" />
+            <span class="preset-title">Amber Atelier</span>
+          </div>
+          <div class="cover-preset-card" onclick="StudioInspector.pickPreset('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=300&auto=format&fit=crop" alt="Cosmetic Lab" loading="lazy" />
+            <span class="preset-title">Cosmetic Lab</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- URL Input Field -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px;">Image Web Address</div>
+        <input type="url" id="coverUrlInput" placeholder="https://images.unsplash.com/photo-..." style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border-subtle); background: var(--surface-subtle); color: var(--text-ink); font-size: 0.82rem; font-family: var(--font-mono);" oninput="StudioInspector.updateCoverPreview()" />
+      </div>
+
+      <!-- Live Preview -->
+      <div id="coverPreviewContainer" style="height: 110px; border-radius: 12px; overflow: hidden; background: #12100E; border: 1px solid var(--border-subtle); margin-bottom: 1.4rem; display: none;">
+        <img id="coverPreviewImg" src="" style="width: 100%; height: 100%; object-fit: cover;" alt="Preview" />
+      </div>
+
+      <!-- Modal Actions -->
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+        <button type="button" id="btnRemoveCover" class="btn btn-secondary" style="color: #BE123C; border-color: rgba(190, 18, 60, 0.3); background: transparent;" onclick="StudioInspector.removeCoverBanner()">Remove Banner</button>
+        <div style="display: flex; gap: 8px; margin-left: auto;">
+          <button type="button" class="btn btn-secondary" onclick="StudioInspector.closeCoverModal()">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="StudioInspector.applyCoverBanner()">Apply Cover</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- LUXURY FLOATING TOAST NOTIFICATION                         -->
+  <!-- ========================================================== -->
+  <div id="studioToast" class="studio-toast">
+    <div class="toast-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <span class="toast-text">Notification</span>
+  </div>
+
+  <!-- ========================================================== -->
   <!-- INFINITE WORKSPACE VIEWPORT                                -->
   <!-- ========================================================== -->
   <div id="viewport">
@@ -309,17 +391,17 @@
   <!-- ========================================================== -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="/studio/js/firebase-config.js?v=20260909_fast"></script>
+  <script src="/studio/js/firebase-config.js?v=20260909_v2"></script>
 
-  <script src="/studio/js/canvas-panzoom.js?v=20260909_fast"></script>
-  <script src="/studio/js/drawing-engine.js?v=20260909_fast"></script>
-  <script src="/studio/js/marquee-selection.js?v=20260909_fast"></script>
-  <script src="/studio/js/minimap.js?v=20260909_fast"></script>
-  <script src="/studio/js/elements-factory.js?v=20260909_fast"></script>
-  <script src="/studio/js/connector-engine.js?v=20260909_fast"></script>
-  <script src="/studio/js/inspector.js?v=20260909_fast"></script>
-  <script src="/studio/js/presentation.js?v=20260909_fast"></script>
-  <script src="/studio/js/studio-core.js?v=20260909_fast"></script>
+  <script src="/studio/js/canvas-panzoom.js?v=20260909_v2"></script>
+  <script src="/studio/js/drawing-engine.js?v=20260909_v2"></script>
+  <script src="/studio/js/marquee-selection.js?v=20260909_v2"></script>
+  <script src="/studio/js/minimap.js?v=20260909_v2"></script>
+  <script src="/studio/js/elements-factory.js?v=20260909_v2"></script>
+  <script src="/studio/js/connector-engine.js?v=20260909_v2"></script>
+  <script src="/studio/js/inspector.js?v=20260909_v2"></script>
+  <script src="/studio/js/presentation.js?v=20260909_v2"></script>
+  <script src="/studio/js/studio-core.js?v=20260909_v2"></script>
 
   <script>
     // Initialize Studio on DOM Load
@@ -443,9 +525,9 @@
       const curId = StudioCore.getCurrentBoardId ? StudioCore.getCurrentBoardId() : new URLSearchParams(window.location.search).get('id') || 'starter-strategy-board';
       const clientUrl = `${window.location.origin}/b/${encodeURIComponent(curId)}`;
       navigator.clipboard.writeText(clientUrl).then(() => {
-        alert('Public Client Presentation Link Copied!\n' + clientUrl + '\n\nClients will see this clean presentation board with zero editing tools.');
+        StudioCore.showToast('Client presentation link copied to clipboard!');
       }).catch(() => {
-        prompt('Copy client presentation link:', clientUrl);
+        StudioCore.showToast('Link: ' + clientUrl);
       });
     }
   </script>

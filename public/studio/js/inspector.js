@@ -341,16 +341,95 @@ window.StudioInspector = (function () {
     }
   }
 
-  function setFrameBanner(id) {
+  let currentBannerFrameId = null;
+
+  function openCoverModal(id) {
+    currentBannerFrameId = id;
     const data = window.StudioCore.findElement(id);
+    const modal = document.getElementById('coverModal');
+    const input = document.getElementById('coverUrlInput');
+    const previewContainer = document.getElementById('coverPreviewContainer');
+    const previewImg = document.getElementById('coverPreviewImg');
+    const btnRemove = document.getElementById('btnRemoveCover');
+
+    if (!modal) return;
+    const existingUrl = data?.image || '';
+    if (input) input.value = existingUrl;
+
+    if (existingUrl && previewContainer && previewImg) {
+      previewImg.src = existingUrl;
+      previewContainer.style.display = 'block';
+      if (btnRemove) btnRemove.style.display = 'inline-block';
+    } else {
+      if (previewContainer) previewContainer.style.display = 'none';
+      if (btnRemove) btnRemove.style.display = 'none';
+    }
+
+    modal.style.display = 'flex';
+  }
+
+  function closeCoverModal() {
+    const modal = document.getElementById('coverModal');
+    if (modal) modal.style.display = 'none';
+    currentBannerFrameId = null;
+  }
+
+  function pickPreset(url) {
+    const input = document.getElementById('coverUrlInput');
+    if (input) input.value = url;
+    updateCoverPreview();
+  }
+
+  function updateCoverPreview() {
+    const input = document.getElementById('coverUrlInput');
+    const previewContainer = document.getElementById('coverPreviewContainer');
+    const previewImg = document.getElementById('coverPreviewImg');
+    const btnRemove = document.getElementById('btnRemoveCover');
+
+    if (!input) return;
+    const url = input.value.trim();
+    if (url) {
+      if (previewImg) previewImg.src = url;
+      if (previewContainer) previewContainer.style.display = 'block';
+      if (btnRemove) btnRemove.style.display = 'inline-block';
+    } else {
+      if (previewContainer) previewContainer.style.display = 'none';
+      if (btnRemove) btnRemove.style.display = 'none';
+    }
+  }
+
+  function applyCoverBanner() {
+    if (!currentBannerFrameId) return;
+    const input = document.getElementById('coverUrlInput');
+    const url = input ? input.value.trim() : '';
+    const data = window.StudioCore.findElement(currentBannerFrameId);
     if (data) {
-      const url = prompt('Enter Image URL for Frame Banner (or leave blank to remove):', data.image || 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop');
-      if (url !== null) {
-        data.image = url.trim();
-        window.StudioCore.reRenderElement(id);
-        window.StudioCore.triggerAutoSave();
+      data.image = url;
+      window.StudioCore.reRenderElement(currentBannerFrameId);
+      window.StudioCore.triggerAutoSave();
+      if (window.StudioCore.showToast) {
+        window.StudioCore.showToast(url ? 'Frame cover banner updated' : 'Frame cover removed');
       }
     }
+    closeCoverModal();
+  }
+
+  function removeCoverBanner() {
+    if (!currentBannerFrameId) return;
+    const data = window.StudioCore.findElement(currentBannerFrameId);
+    if (data) {
+      data.image = '';
+      window.StudioCore.reRenderElement(currentBannerFrameId);
+      window.StudioCore.triggerAutoSave();
+      if (window.StudioCore.showToast) {
+        window.StudioCore.showToast('Frame cover removed');
+      }
+    }
+    closeCoverModal();
+  }
+
+  function setFrameBanner(id) {
+    openCoverModal(id);
   }
 
   function startConnect(id) {
@@ -376,6 +455,12 @@ window.StudioInspector = (function () {
     setConnStyle,
     addBoxToFrame,
     setFrameBanner,
+    openCoverModal,
+    closeCoverModal,
+    pickPreset,
+    updateCoverPreview,
+    applyCoverBanner,
+    removeCoverBanner,
     startConnect
   };
 })();

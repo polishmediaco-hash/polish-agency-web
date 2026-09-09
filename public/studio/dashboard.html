@@ -33,8 +33,8 @@
 
     body {
       background-color: var(--surface-alabaster);
-      background-image: radial-gradient(var(--border-strong) 1.5px, transparent 1.5px);
-      background-size: 34px 34px;
+      background-image: radial-gradient(rgba(197, 168, 128, 0.22) 1.25px, transparent 1.25px);
+      background-size: 32px 32px;
       font-family: var(--font-heading);
       color: var(--text-ink);
       min-height: 100vh;
@@ -102,8 +102,8 @@
 
     .brand-subtitle {
       font-size: 0.54rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
+      font-weight: 800;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #7A5E32;
       line-height: 1;
@@ -208,12 +208,14 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
     .eyebrow {
       font-size: 0.82rem;
       font-weight: 800;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--brand-gold);
       margin-bottom: 0.5rem;
@@ -233,6 +235,28 @@
       font-weight: 700;
     }
 
+    .workspace-meta-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(197, 168, 128, 0.35);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-slate);
+      box-shadow: 0 4px 14px rgba(26, 23, 21, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .workspace-meta-capsule .meta-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+    }
+
     /* Boards Grid */
     .boards-grid {
       display: grid;
@@ -241,152 +265,318 @@
     }
 
     .board-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(197, 168, 128, 0.32);
       border-radius: 24px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(26, 23, 21, 0.05);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
+      padding: 1.35rem;
+      box-shadow: 0 12px 32px rgba(26, 23, 21, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s, border-color 0.22s;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 250px;
+      position: relative;
     }
 
     .board-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 45px -8px rgba(26, 23, 21, 0.12);
-      border-color: rgba(197, 168, 128, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px -8px rgba(26, 23, 21, 0.12), 0 0 24px rgba(197, 168, 128, 0.16), inset 0 1px 2px rgba(255, 255, 255, 1);
+      border-color: rgba(197, 168, 128, 0.65);
     }
 
-    .card-top {
-      margin-bottom: 1.5rem;
+    /* Miniature Canvas Preview */
+    .card-canvas-preview {
+      width: 100%;
+      height: 124px;
+      background: #FAF7F2;
+      background-image: radial-gradient(rgba(197, 168, 128, 0.25) 1px, transparent 1px);
+      background-size: 16px 16px;
+      border: 1px solid rgba(197, 168, 128, 0.25);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.15rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      transition: all 0.2s ease;
     }
 
-    .badge-row {
+    .card-canvas-preview:hover {
+      border-color: var(--brand-gold);
+      background-color: #F8F4EC;
+    }
+
+    .mini-frame-box {
+      width: 95px;
+      height: 76px;
+      background: #FFFFFF;
+      border: 1px solid rgba(232, 226, 216, 0.95);
+      border-radius: 9px;
+      padding: 7px 9px;
+      box-shadow: 0 4px 10px rgba(26, 23, 21, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      pointer-events: none;
+    }
+
+    .mini-pill-tag {
+      font-size: 0.48rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--brand-gold);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .mini-bar-primary {
+      height: 4.5px;
+      border-radius: 2px;
+      background: #1A1715;
+      width: 82%;
+    }
+
+    .mini-bar-subtle {
+      height: 3.5px;
+      border-radius: 2px;
+      background: #E8E2D8;
+      width: 60%;
+    }
+
+    .mini-card-block {
+      margin-top: 3px;
+      height: 16px;
+      border-radius: 4px;
+      background: #FAF7F2;
+      border: 1px solid #ECE6DD;
+    }
+
+    .preview-hover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 7, 6, 0.45);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      border-radius: 15px;
+    }
+
+    .card-canvas-preview:hover .preview-hover-overlay {
+      opacity: 1;
+    }
+
+    .preview-hover-pill {
+      background: #FFFFFF;
+      color: #080706;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 5px 13px;
+      border-radius: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    /* Card Top Header & Actions */
+    .card-top-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      margin-bottom: 0.65rem;
+      position: relative;
     }
 
-    .board-badge {
+    .board-metric-pill {
       font-family: var(--font-mono);
-      font-size: 0.74rem;
+      font-size: 0.68rem;
       font-weight: 700;
       background: var(--surface-subtle);
       border: 1px solid var(--border-subtle);
-      padding: 4px 10px;
-      border-radius: 6px;
+      padding: 3px 9px;
+      border-radius: 20px;
       color: var(--text-slate);
     }
 
-    .badge-status {
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 20px;
-      background: #ECFDF5;
-      color: #065F46;
-      border: 1px solid #A7F3D0;
+    .card-menu-container {
+      position: relative;
     }
 
-    .board-card-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--text-ink);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
-      line-height: 1.3;
-    }
-
-    .board-card-client {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .board-card-footer {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .footer-meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .board-meta-stat {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .footer-buttons-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .btn-client-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 12px;
-      border-radius: 14px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      background: #FAF7F2;
-      border: 1px solid rgba(197, 168, 128, 0.4);
-      color: #92400E;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .btn-client-link:hover {
-      background: #FEF8ED;
-      border-color: #C5A880;
-      transform: translateY(-1px);
-    }
-
-    .board-card-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .card-action-btn {
+    .btn-card-menu {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
       background: transparent;
       border: 1px solid transparent;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-slate);
+      color: var(--text-muted);
       cursor: pointer;
-      padding: 5px 8px;
-      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      line-height: 1;
       transition: all 0.15s;
     }
 
-    .card-action-btn:hover {
+    .btn-card-menu:hover {
       background: var(--surface-subtle);
       border-color: var(--border-subtle);
       color: var(--text-ink);
     }
 
-    .card-action-btn.btn-delete:hover {
+    .card-menu-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 4px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      box-shadow: 0 12px 32px rgba(26, 23, 21, 0.12);
+      padding: 6px;
+      min-width: 180px;
+      z-index: 100;
+      display: none;
+    }
+
+    .card-menu-dropdown.active {
+      display: block;
+      animation: fadeInMenu 0.15s ease;
+    }
+
+    @keyframes fadeInMenu {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .menu-item-action {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-slate);
+      cursor: pointer;
+      text-decoration: none;
+      text-align: left;
+      transition: all 0.12s;
+    }
+
+    .menu-item-action:hover {
+      background: var(--surface-subtle);
+      color: var(--text-ink);
+    }
+
+    .menu-item-action.danger:hover {
       background: #FFF1F2;
       color: #BE123C;
-      border-color: #FDA4AF;
+    }
+
+    .board-card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .board-card-client {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 1.25rem;
+    }
+
+    .client-bullet {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--brand-gold);
+      display: inline-block;
+    }
+
+    /* Streamlined Footer */
+    .board-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: auto;
+      gap: 10px;
+    }
+
+    .board-date-label {
+      font-family: var(--font-mono);
+      font-size: 0.71rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .card-footer-ctas {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-card-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      background: #FAF7F2;
+      border: 1px solid rgba(197, 168, 128, 0.45);
+      color: #92400E;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-card-share:hover {
+      background: #FEF8ED;
+      border-color: #C5A880;
+      transform: translateY(-1px);
+    }
+
+    .btn-card-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: #080706;
+      color: #F5E6D3;
+      text-decoration: none;
+      border: 1px solid #080706;
+      transition: all 0.15s ease;
+    }
+
+    .btn-card-open:hover {
+      background: #1A1715;
+      color: #FFFFFF;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(8, 7, 6, 0.2);
     }
 
     /* Toast */
@@ -449,12 +639,31 @@
         <div class="eyebrow">Atelier Whiteboards</div>
         <h1 class="headline">Strategic Client <span class="serif-accent">Canvases & Boards</span></h1>
       </div>
+      <div class="workspace-meta-capsule">
+        <span class="meta-dot"></span>
+        <span id="workspaceStatsText">Private Haute Atelier Active</span>
+      </div>
     </div>
 
     <!-- Grid of Boards -->
     <div id="boardsGrid" class="boards-grid">
       <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">
         Loading private workspace boards...
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteConfirmModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(8,7,6,0.65); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); z-index:3000; align-items:center; justify-content:center; padding:20px;">
+    <div style="background:#FFFFFF; border:1px solid var(--border-subtle); border-radius:24px; max-width:440px; width:100%; padding:2rem; box-shadow:0 24px 60px rgba(0,0,0,0.25); text-align:center;">
+      <div style="width:48px; height:48px; border-radius:50%; background:#FFF1F2; color:#BE123C; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem auto;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+      </div>
+      <h3 style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800; color:var(--text-ink); margin-bottom:0.5rem;">Delete Strategy Canvas?</h3>
+      <p id="deleteConfirmText" style="font-size:0.86rem; color:var(--text-slate); line-height:1.5; margin-bottom:1.75rem;">Are you sure you want to delete this board? This action is permanent and cannot be undone.</p>
+      <div style="display:flex; gap:10px; justify-content:center;">
+        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()" style="padding:10px 20px;">Keep Board</button>
+        <button type="button" class="btn" onclick="confirmDeleteBoard()" style="background:#BE123C; color:#FFF; border:none; padding:10px 22px; border-radius:9999px; font-weight:700; cursor:pointer;">Delete Forever</button>
       </div>
     </div>
   </div>
@@ -468,7 +677,7 @@
   <!-- Firebase Web SDK (Compat) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="/studio/js/firebase-config.js?v=20260909_fast"></script>
+  <script src="/studio/js/firebase-config.js?v=20260909_v2"></script>
 
   <script>
     let activeUser = null;
@@ -526,11 +735,17 @@
         const grid = document.getElementById('boardsGrid');
         const boards = await PolishFirebase.listBoards(userId);
 
+        const statsEl = document.getElementById('workspaceStatsText');
+        const count = boards ? boards.length : 0;
+        if (statsEl) {
+          statsEl.textContent = `${count} Active Blueprint${count === 1 ? '' : 's'}`;
+        }
+
         if (!boards || boards.length === 0) {
           grid.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background:#fff; border-radius:24px; border:1px solid var(--border-subtle); box-shadow: 0 10px 30px rgba(26,23,21,0.03)">
+            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background:rgba(255,255,255,0.95); border-radius:24px; border:1px solid var(--border-subtle); box-shadow: 0 10px 30px rgba(26,23,21,0.03); backdrop-filter: blur(20px);">
               <div style="font-size:2.5rem; margin-bottom:1rem">✦</div>
-              <h3 style="font-size:1.35rem; font-weight:800; margin-bottom:0.5rem">Your Workspace is Ready</h3>
+              <h3 style="font-size:1.35rem; font-weight:800; margin-bottom:0.5rem; color:var(--text-ink)">Your Workspace is Ready</h3>
               <p style="color:var(--text-muted); max-width:440px; margin:0 auto 1.75rem auto; font-size:0.9rem">Create your first client strategy blueprint or start from our battle-tested executive template.</p>
               <button class="btn btn-primary" onclick="createFromTemplate()">+ Create Executive Blueprint</button>
             </div>
@@ -538,37 +753,83 @@
           return;
         }
 
-        grid.innerHTML = boards.map(b => `
-          <div class="board-card">
-            <div class="card-top">
-              <div class="badge-row">
-                <span class="board-badge">${b.elementCount || 0} Elements • ${b.connectionCount || 0} Flows</span>
-                <span class="badge-status">Active Proposal</span>
+        grid.innerHTML = boards.map(b => {
+          const elemCount = b.elementCount || (b.elements ? b.elements.length : 0);
+          const flowCount = b.connectionCount || (b.connections ? b.connections.length : 0);
+          const updatedDate = new Date(b.updatedAt || Date.now()).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+          const safeTitle = escapeHtml(b.title || 'Untitled Blueprint');
+          const safeClient = escapeHtml(b.client || 'Haute Advisory Client');
+          const boardId = b.id;
+
+          return `
+          <div class="board-card" data-board-id="${boardId}">
+            <!-- Interactive Visual Preview -->
+            <div class="card-canvas-preview" onclick="window.location.href='/studio?id=${encodeURIComponent(boardId)}'" title="Open canvas in studio">
+              <div class="mini-frame-box">
+                <span class="mini-pill-tag">FOUNDATION</span>
+                <div class="mini-bar-primary"></div>
+                <div class="mini-bar-subtle"></div>
+                <div class="mini-card-block"></div>
               </div>
-              <h2 class="board-card-title">${escapeHtml(b.title || 'Untitled Board')}</h2>
-              <div class="board-card-client">${escapeHtml(b.client || 'Private Advisory')}</div>
+              <div class="mini-frame-box">
+                <span class="mini-pill-tag">OFFER</span>
+                <div class="mini-bar-primary" style="width:70%"></div>
+                <div class="mini-bar-subtle" style="width:85%"></div>
+                <div class="mini-card-block" style="background:#FDFBF7"></div>
+              </div>
+              <div class="mini-frame-box" style="opacity:0.65">
+                <span class="mini-pill-tag">PRICING</span>
+                <div class="mini-bar-primary" style="width:60%"></div>
+                <div class="mini-bar-subtle" style="width:40%"></div>
+              </div>
+              <div class="preview-hover-overlay">
+                <span class="preview-hover-pill">Launch Editor →</span>
+              </div>
             </div>
 
-            <div class="board-card-footer">
-              <div class="footer-meta-row">
-                <div class="board-meta-stat">Updated ${new Date(b.updatedAt || Date.now()).toLocaleDateString()}</div>
-                <button class="btn-client-link" onclick="copyClientLink('${b.id}')" title="Copy public client presentation link">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                  Copy Client Link
-                </button>
-              </div>
-
-              <div class="footer-buttons-row">
-                <div class="board-card-actions">
-                  <a href="/b/${encodeURIComponent(b.id)}" target="_blank" class="card-action-btn" title="Preview client presentation view">View Client ↗</a>
-                  <button class="card-action-btn" onclick="duplicateBoard('${b.id}')" title="Duplicate board">⧉ Copy</button>
-                  <button class="card-action-btn btn-delete" onclick="deleteBoard('${b.id}', '${escapeHtml(b.title)}')" title="Delete board">✕</button>
+            <!-- Top Header & Actions Menu -->
+            <div class="card-top-header">
+              <span class="board-metric-pill">${elemCount} Elements • ${flowCount} Flows</span>
+              <div class="card-menu-container">
+                <button class="btn-card-menu" onclick="toggleCardMenu(event, '${boardId}')" title="More options" aria-label="More options">···</button>
+                <div class="card-menu-dropdown" id="menu-${boardId}">
+                  <a href="/b/${encodeURIComponent(boardId)}" target="_blank" class="menu-item-action">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Client View ↗
+                  </a>
+                  <button class="menu-item-action" onclick="duplicateBoard('${boardId}')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Duplicate Blueprint
+                  </button>
+                  <button class="menu-item-action danger" onclick="deleteBoard('${boardId}', '${safeTitle}')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    Delete Canvas
+                  </button>
                 </div>
-                <a href="/studio?id=${encodeURIComponent(b.id)}" class="btn btn-primary" style="padding:6px 16px; font-size:0.8rem">Edit Canvas →</a>
+              </div>
+            </div>
+
+            <!-- Title & Client Meta -->
+            <h2 class="board-card-title">${safeTitle}</h2>
+            <div class="board-card-client">
+              <span class="client-bullet"></span>
+              ${safeClient}
+            </div>
+
+            <!-- Streamlined Footer CTAs -->
+            <div class="board-card-footer">
+              <span class="board-date-label">${updatedDate}</span>
+              <div class="card-footer-ctas">
+                <button class="btn-card-share" onclick="copyClientLink('${boardId}')" title="Copy public client link">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  Copy Link
+                </button>
+                <a href="/studio?id=${encodeURIComponent(boardId)}" class="btn-card-open">Open Canvas →</a>
               </div>
             </div>
           </div>
-        `).join('');
+          `;
+        }).join('');
       } catch (err) {
         console.error('Error loading boards:', err);
       }
@@ -671,10 +932,28 @@
       loadUserBoards(activeUser.uid);
     }
 
-    async function deleteBoard(id, title) {
-      if (!confirm(`Are you sure you want to delete "${title}"? This cannot be undone.`)) return;
+    let boardToDeleteId = null;
+
+    function deleteBoard(id, title) {
+      boardToDeleteId = id;
+      const modal = document.getElementById('deleteConfirmModal');
+      const text = document.getElementById('deleteConfirmText');
+      if (text) text.textContent = `Are you sure you want to delete "${title || 'this board'}"? This action is permanent and cannot be undone.`;
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeDeleteModal() {
+      const modal = document.getElementById('deleteConfirmModal');
+      if (modal) modal.style.display = 'none';
+      boardToDeleteId = null;
+    }
+
+    async function confirmDeleteBoard() {
+      if (!boardToDeleteId) return;
+      const id = boardToDeleteId;
+      closeDeleteModal();
       await PolishFirebase.deleteBoard(id);
-      showToast('Board deleted.');
+      showToast('Board deleted successfully.');
       if (activeUser) loadUserBoards(activeUser.uid);
     }
 
@@ -683,7 +962,7 @@
       navigator.clipboard.writeText(url).then(() => {
         showToast('Client presentation link copied!');
       }).catch(() => {
-        prompt('Copy client link:', url);
+        showToast('Link: ' + url);
       });
     }
 
@@ -704,6 +983,24 @@
         "'": '&#39;'
       }[m]));
     }
+
+    function toggleCardMenu(e, id) {
+      e.stopPropagation();
+      const menu = document.getElementById(`menu-${id}`);
+      const wasActive = menu && menu.classList.contains('active');
+      closeAllCardMenus();
+      if (menu && !wasActive) {
+        menu.classList.add('active');
+      }
+    }
+
+    function closeAllCardMenus() {
+      document.querySelectorAll('.card-menu-dropdown.active').forEach(m => m.classList.remove('active'));
+    }
+
+    document.addEventListener('click', () => {
+      closeAllCardMenus();
+    });
   </script>
 </body>
 </html>

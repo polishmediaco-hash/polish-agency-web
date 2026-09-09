@@ -289,6 +289,23 @@ window.StudioCore = (function () {
   function renderBoard() {
     if (!currentBoard || !canvasContainer) return;
 
+    // Universal sanitizer: Eliminate duplicate titles and filler texts
+    (currentBoard.elements || []).forEach(el => {
+      if (el.type === 'frame') {
+        if (el.headline && el.serifAccent && el.headline.trim().toLowerCase() === el.serifAccent.trim().toLowerCase()) {
+          el.serifAccent = '';
+        }
+        if (el.description && (el.description.includes('Double-click') || el.description.includes('begin editing'))) {
+          el.description = '';
+        }
+      }
+      if (el.type === 'sticky') {
+        if (el.content && el.content.includes('Drag frames, sticky notes')) {
+          el.content = '';
+        }
+      }
+    });
+
     // Clear existing DOM elements
     canvasContainer.querySelectorAll('.studio-element').forEach(el => el.remove());
 

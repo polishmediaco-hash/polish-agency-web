@@ -4,26 +4,26 @@
   "title": "New Strategic Advisory Board",
   "client": "Private Client",
   "createdAt": "2026-09-08T18:00:27.119Z",
-  "updatedAt": "2026-09-08T18:21:48.314Z",
+  "updatedAt": "2026-09-09T05:12:00.000Z",
   "viewport": {
-    "panX": 384.9398123196508,
-    "panY": -20.21211138315215,
-    "scale": 0.6971389086509802
+    "panX": 80,
+    "panY": 60,
+    "scale": 0.75
   },
   "elements": [
     {
       "id": "frame-1",
       "type": "frame",
-      "x": -341,
-      "y": 102,
+      "x": 100,
+      "y": 100,
       "width": 912.4041131507627,
       "height": 593.9814985420385,
       "zIndex": 10,
       "frameNumber": "01",
       "titlePill": "FOUNDATION",
       "headline": "Strategic Overview",
-      "serifAccent": "Strategic Overview",
-      "description": "Double-click any text on this board to begin editing.",
+      "serifAccent": "",
+      "description": "",
       "boxes": [
         {
           "tag": "PHASE 01",

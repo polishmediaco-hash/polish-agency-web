@@ -1,5 +1,47 @@
 [
   {
+    "id": "MEET-MTTJ60PV-EGPM",
+    "type": "CALENDLY_MEETING",
+    "eventUri": "https://api.calendly.com/scheduled_events/76f64c97-8705-4064-8d9c-c295128b9111",
+    "fullName": "Eman",
+    "email": "e.b.alkatheeri@gmail.com",
+    "brand": "Not specified",
+    "eventName": "Strategy meeting",
+    "startTime": "2026-08-24T15:00:00.000000Z",
+    "joinUrl": "https://calendly.com/events/76f64c97-8705-4064-8d9c-c295128b9111/google_meet",
+    "notes": "",
+    "submittedAt": "2026-08-24T08:52:08.799953Z",
+    "status": "SCHEDULED"
+  },
+  {
+    "id": "MEET-MTTJ60C9-IMMN",
+    "type": "CALENDLY_MEETING",
+    "eventUri": "https://api.calendly.com/scheduled_events/b0ba340e-89bc-44b8-84e1-be27e7972b9e",
+    "fullName": "Eman",
+    "email": "e.b.alkatheeri@gmail.com",
+    "brand": "Not specified",
+    "eventName": "Strategy meeting",
+    "startTime": "2026-08-27T16:30:00.000000Z",
+    "joinUrl": "https://calendly.com/events/b0ba340e-89bc-44b8-84e1-be27e7972b9e/google_meet",
+    "notes": "",
+    "submittedAt": "2026-08-27T12:17:34.443800Z",
+    "status": "SCHEDULED"
+  },
+  {
+    "id": "MEET-MTTJ604D-79AY",
+    "type": "CALENDLY_MEETING",
+    "eventUri": "https://api.calendly.com/scheduled_events/273f5544-487b-4ce6-a682-5e056d817492",
+    "fullName": "eman",
+    "email": "e.b.alkatheeri@gmail.com",
+    "brand": "Not specified",
+    "eventName": "Strategy meeting",
+    "startTime": "2026-09-08T16:00:00.000000Z",
+    "joinUrl": "https://calendly.com/events/273f5544-487b-4ce6-a682-5e056d817492/google_meet",
+    "notes": "",
+    "submittedAt": "2026-09-08T14:34:09.700666Z",
+    "status": "SCHEDULED"
+  },
+  {
     "id": "POLISH-MTI59TW2-EX6N",
     "fullName": "Sarah Jenkins",
     "email": "Not provided",

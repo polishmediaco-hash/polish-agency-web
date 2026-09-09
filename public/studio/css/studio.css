@@ -740,16 +740,17 @@ body.theme-dark .tool-item.active {
 /* ========================================================== */
 body.theme-dark {
   --surface-alabaster: #080706;
-  --surface-card: #12100E;
+  --surface-card: #141210;
   --surface-subtle: #1C1917;
   --surface-subtle-hover: #262320;
-  --text-ink: #F5E6D3;
-  --text-slate: #C5BAAD;
-  --text-muted: #8E8478;
-  --border-subtle: rgba(226, 199, 153, 0.18);
-  --border-strong: rgba(226, 199, 153, 0.35);
+  --text-ink: #FFFFFF;
+  --text-slate: #E2DBD2;
+  --text-muted: #B8B0A4;
+  --border-subtle: rgba(226, 199, 153, 0.22);
+  --border-strong: rgba(226, 199, 153, 0.38);
   --brand-noir: #F5E6D3;
-  --bg-dots: rgba(226, 199, 153, 0.15);
+  --bg-dots: rgba(226, 199, 153, 0.16);
+  --brand-gold: #E2C799;
 }
 
 body.theme-dark #viewport {
@@ -770,7 +771,7 @@ body.theme-dark .shortcuts-card {
 }
 
 body.theme-dark .board-title-input {
-  color: #F5E6D3;
+  color: #FFFFFF;
 }
 
 body.theme-dark .board-title-input:focus {
@@ -778,12 +779,12 @@ body.theme-dark .board-title-input:focus {
 }
 
 body.theme-dark .dock-btn {
-  color: #C5BAAD;
+  color: #E2DBD2;
 }
 
 body.theme-dark .dock-btn:hover {
   background: #262320;
-  color: #F5E6D3;
+  color: #FFFFFF;
 }
 
 body.theme-dark .board-frame,
@@ -792,8 +793,8 @@ body.theme-dark .pricing-card,
 body.theme-dark .form-field-card,
 body.theme-dark .script-bubble {
   background: #141210 !important;
-  border-color: rgba(226, 199, 153, 0.22) !important;
-  color: #F5E6D3 !important;
+  border-color: rgba(226, 199, 153, 0.28) !important;
+  color: #FFFFFF !important;
 }
 
 body.theme-dark .board-frame h2,
@@ -801,7 +802,7 @@ body.theme-dark .frame-headline,
 body.theme-dark .table-title,
 body.theme-dark .price-figure,
 body.theme-dark .form-card-title {
-  color: #F5E6D3 !important;
+  color: #FFFFFF !important;
 }
 
 body.theme-dark .content-box {

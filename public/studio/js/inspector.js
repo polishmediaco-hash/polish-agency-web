@@ -70,7 +70,12 @@ window.StudioInspector = (function () {
     }
 
     // Center horizontally with viewport safety margin
-    const centerX = Math.max(170, Math.min(window.innerWidth - 170, rect.left + rect.width / 2));
+    const inspWidth = inspectorEl.offsetWidth || 560;
+    const halfWidth = inspWidth / 2;
+    const minX = 74 + halfWidth + 12; // 74px left toolbar + half width + safety margin
+    const maxX = window.innerWidth - halfWidth - 16;
+    const rawCenter = rect.left + rect.width / 2;
+    const centerX = Math.max(minX, Math.min(maxX, rawCenter));
 
     // Determine if placing above or below
     // If rect.top < 130 (near top header dock), place below the element

@@ -9,10 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
   <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
-  <link rel="stylesheet" href="/studio/css/board-elements.css?v=20260909_v2">
-  <link rel="stylesheet" href="/studio/css/studio.css?v=20260909_v2">
-  <link rel="stylesheet" href="/studio/css/inspector.css?v=20260909_v2">
-  <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v3">
+  <link rel="stylesheet" href="/studio/css/board-elements.css?v=20260909_v4">
+  <link rel="stylesheet" href="/studio/css/studio.css?v=20260909_v4">
+  <link rel="stylesheet" href="/studio/css/inspector.css?v=20260909_v4">
+  <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v4">
 </head>
 <body>
 
@@ -514,11 +514,11 @@
   <script src="/studio/js/drawing-engine.js?v=20260909_v2"></script>
   <script src="/studio/js/marquee-selection.js?v=20260909_v2"></script>
   <script src="/studio/js/minimap.js?v=20260909_v2"></script>
-  <script src="/studio/js/elements-factory.js?v=20260909_v2"></script>
-  <script src="/studio/js/connector-engine.js?v=20260909_v2"></script>
-  <script src="/studio/js/inspector.js?v=20260909_v2"></script>
-  <script src="/studio/js/presentation.js?v=20260909_v2"></script>
-  <script src="/studio/js/studio-core.js?v=20260909_v2"></script>
+  <script src="/studio/js/elements-factory.js?v=20260909_v4"></script>
+  <script src="/studio/js/connector-engine.js?v=20260909_v4"></script>
+  <script src="/studio/js/inspector.js?v=20260909_v4"></script>
+  <script src="/studio/js/presentation.js?v=20260909_v4"></script>
+  <script src="/studio/js/studio-core.js?v=20260909_v4"></script>
 
   <script>
     // Initialize Studio on DOM Load
@@ -590,7 +590,8 @@
       if (e) e.stopPropagation();
       const dropdown = document.getElementById('userProfileDropdown');
       if (!dropdown) return;
-      dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+      const isVisible = dropdown.style.display === 'block' || (!dropdown.style.display && window.getComputedStyle(dropdown).display === 'block');
+      dropdown.style.display = isVisible ? 'none' : 'block';
     }
 
     function closeProfileDropdown() {

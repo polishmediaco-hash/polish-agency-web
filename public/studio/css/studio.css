@@ -158,13 +158,26 @@ header.studio-dock {
 .brand-mark-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
-  transition: opacity 0.15s, transform 0.15s;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.brand-mark-btn:hover {
-  opacity: 0.9;
+.brand-capsule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 4px 6px;
+  border-radius: 999px;
+  background: rgba(226, 199, 153, 0.08);
+  border: 1px solid rgba(197, 168, 128, 0.28);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-mark-btn:hover .brand-capsule {
+  background: rgba(226, 199, 153, 0.16);
+  border-color: rgba(197, 168, 128, 0.55);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 4px 14px rgba(226, 199, 153, 0.25);
   transform: translateY(-0.5px);
 }
 
@@ -194,7 +207,7 @@ header.studio-dock {
 .brand-name {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   letter-spacing: 0.08em;
   color: var(--brand-noir);
   line-height: 1.1;
@@ -209,6 +222,22 @@ header.studio-dock {
   color: #7A5E32;
   line-height: 1;
   white-space: nowrap;
+}
+
+body.theme-dark .brand-capsule {
+  background: rgba(22, 19, 16, 0.85);
+  border: 1px solid rgba(226, 199, 153, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 240, 210, 0.08), 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-dark .brand-mark-btn:hover .brand-capsule {
+  background: rgba(32, 26, 20, 0.95);
+  border-color: rgba(226, 199, 153, 0.6);
+  box-shadow: 0 0 16px rgba(226, 199, 153, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+}
+
+body.theme-dark .brand-name {
+  color: #FFFFFF;
 }
 
 body.theme-dark .brand-subtitle {
@@ -310,35 +339,36 @@ body.theme-dark .brand-subtitle {
 }
 
 .dock-btn.btn-present {
-  background: #110F0D;
-  color: #FFFFFF;
-  border: 1px solid #110F0D;
+  background: rgba(26, 23, 21, 0.05);
+  color: var(--brand-noir);
+  border: 1px solid rgba(197, 168, 128, 0.35);
   padding: 0 14px;
   border-radius: 20px;
-  font-weight: 800;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: all 0.15s ease;
+  font-weight: 700;
+  box-shadow: none;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dock-btn.btn-present:hover {
-  background: #2A2522;
-  border-color: #2A2522;
-  color: #FFFFFF;
+  background: rgba(197, 168, 128, 0.18);
+  border-color: var(--brand-gold);
+  color: var(--brand-noir);
   transform: translateY(-1px);
 }
 
 body.theme-dark .dock-btn.btn-present {
-  background: #E2C799 !important;
-  color: #080706 !important;
-  border: 1px solid #E2C799 !important;
-  font-weight: 800 !important;
-  box-shadow: 0 2px 14px rgba(226, 199, 153, 0.4) !important;
+  background: rgba(226, 199, 153, 0.09) !important;
+  color: #F5E6D3 !important;
+  border: 1px solid rgba(226, 199, 153, 0.3) !important;
+  font-weight: 700 !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06) !important;
 }
 
 body.theme-dark .dock-btn.btn-present:hover {
-  background: #F5E6D3 !important;
-  border-color: #F5E6D3 !important;
-  color: #080706 !important;
+  background: rgba(226, 199, 153, 0.22) !important;
+  border-color: #E2C799 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 12px rgba(226, 199, 153, 0.25) !important;
   transform: translateY(-1px);
 }
 
@@ -576,11 +606,12 @@ body.theme-dark .dropdown-item.item-signout:hover {
 /* ========================================================== */
 aside.creation-toolbar {
   position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
+  top: 88px;
+  left: 18px;
+  transform: none;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(197, 168, 128, 0.32);
   border-radius: 24px;
   padding: 8px 6px;
@@ -589,6 +620,13 @@ aside.creation-toolbar {
   gap: 6px;
   box-shadow: 0 12px 36px rgba(26, 23, 21, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.95);
   z-index: 1000;
+  max-height: calc(100vh - 104px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+aside.creation-toolbar::-webkit-scrollbar {
+  display: none;
 }
 
 .tool-item {

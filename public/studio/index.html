@@ -23,10 +23,12 @@
   <header class="studio-dock">
     <div class="dock-left">
       <a href="/boards" class="brand-mark-btn" title="Go to Boards Dashboard">
-        <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="30" height="30" />
-        <div class="brand-text-lockup">
-          <span class="brand-name">POLISH</span>
-          <span class="brand-subtitle">BOARD STUDIO</span>
+        <div class="brand-capsule">
+          <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="28" height="28" />
+          <div class="brand-text-lockup">
+            <span class="brand-name">POLISH</span>
+            <span class="brand-subtitle">BOARD STUDIO</span>
+          </div>
         </div>
       </a>
       <div class="dock-divider"></div>
@@ -53,9 +55,16 @@
         Present
       </button>
       <div class="dock-divider"></div>
-      <button type="button" id="btnAiCopilot" class="dock-btn btn-ai-copilot" onclick="StudioAI.toggleWindow()" title="POLISH AI (Cmd+J)">
-        <img src="/assets/logo-gold-mark.svg?v=22.0" alt="" width="14" height="14" />
+      <button type="button" id="btnAiCopilot" class="dock-btn btn-ai-copilot" onclick="StudioAI.toggleWindow()" title="POLISH AI Copilot (Cmd+J)">
+        <span class="ai-sparkle-icon-wrap" aria-hidden="true">
+          <svg class="ai-sparkle-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
+            <circle cx="19.5" cy="4.5" r="2.5" fill="currentColor"/>
+            <circle cx="4.5" cy="19.5" r="1.5" fill="currentColor"/>
+          </svg>
+        </span>
         <span class="ai-btn-text">POLISH AI</span>
+        <span class="ai-kbd-badge">⌘J</span>
       </button>
     </div>
 
@@ -119,7 +128,7 @@
     <!-- Select Tool (V) -->
     <button class="tool-item active" data-tool="select" onclick="CanvasEngine.setTool('select')" data-tooltip="Select & Marquee (V)">
       <span class="tool-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3l13 10.5-6 .6 3.6 7.4-2.8 1.4-3.6-7.4L4 19V3z" fill="currentColor"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l7.07 17 2.51-7.39L21 11.07 4 4z"/></svg>
       </span>
       <span class="tool-label">Select</span>
     </button>

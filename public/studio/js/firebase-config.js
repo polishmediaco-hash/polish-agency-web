@@ -18,40 +18,34 @@
     currentUser: null,
     authListeners: [],
 
-    // Initialize Firebase
-    async init() {
-      if (this.isReady && this.hasLiveFirebase && this.isAuthResolved) return;
+    // Initialize Firebase — instant, zero-blocking, zero-overhead
+    init() {
+      if (this.isReady && this.hasLiveFirebase) return;
+
+      // 1. Immediately hydrate currentUser synchronously from localStorage (0ms)
+      const storedUser = localStorage.getItem('polish_studio_user');
+      if (storedUser) {
+        try {
+          this.currentUser = JSON.parse(storedUser);
+        } catch (_) {
+          this.currentUser = null;
+        }
+      }
+
+      // 2. Direct client configuration (zero network blocking)
+      const config = {
+        apiKey: 'AIzaSyAdtvlrJwmTGMe6JbMCSdEQCKC7eAle-TM',
+        authDomain: 'polishmediacocom.firebaseapp.com',
+        projectId: 'polishmediacocom',
+        storageBucket: 'polishmediacocom.firebasestorage.app',
+        messagingSenderId: '70668280388',
+        appId: '1:70668280388:web:455f906c6fbca8ce701211',
+        measurementId: 'G-7MGW2YG98L',
+        isConfigured: true
+      };
 
       try {
-        let config = null;
-        try {
-          const res = await fetch('/api/config/firebase');
-          if (res.ok) {
-            const data = await res.json();
-            if (data && data.isConfigured && data.apiKey) {
-              config = data;
-            }
-          }
-        } catch (e) {
-          console.warn('[PolishFirebase] Dynamic config fetch failed:', e.message);
-        }
-
-        // Project client configuration fallback for zero-downtime authentication
-        if (!config || !config.apiKey) {
-          config = {
-            apiKey: 'AIzaSyAdtvlrJwmTGMe6JbMCSdEQCKC7eAle-TM',
-            authDomain: 'polishmediacocom.firebaseapp.com',
-            projectId: 'polishmediacocom',
-            storageBucket: 'polishmediacocom.firebasestorage.app',
-            messagingSenderId: '70668280388',
-            appId: '1:70668280388:web:455f906c6fbca8ce701211',
-            measurementId: 'G-7MGW2YG98L',
-            isConfigured: true
-          };
-        }
-
-        // Initialize Firebase with config
-        if (config && typeof firebase !== 'undefined' && firebase.initializeApp) {
+        if (typeof firebase !== 'undefined' && firebase.initializeApp) {
           if (!firebase.apps.length) {
             this.app = firebase.initializeApp(config);
           } else {
@@ -61,17 +55,8 @@
           this.db = typeof firebase.firestore === 'function' ? firebase.firestore() : null;
           this.hasLiveFirebase = !!this.auth;
 
-          // Await initial auth state resolution so currentUser is known before init() completes
-          await new Promise((resolve) => {
-            let resolved = false;
-            const timeout = setTimeout(() => {
-              if (!resolved) {
-                resolved = true;
-                this.isAuthResolved = true;
-                resolve();
-              }
-            }, 1200);
-
+          if (this.auth) {
+            // Non-blocking background listener — resolves in background without blocking UI
             this.auth.onAuthStateChanged((user) => {
               if (user) {
                 this.currentUser = {
@@ -83,54 +68,38 @@
                 try {
                   localStorage.setItem('polish_studio_user', JSON.stringify(this.currentUser));
                 } catch (_) {}
-              } else {
-                // If offline or disconnected, check if we have a valid cached user in localStorage before clearing
+              } else if (navigator.onLine && (!this.currentUser || !this.currentUser.isOffline)) {
+                // Do not wipe cached credentials if working offline
                 const cachedUser = localStorage.getItem('polish_studio_user');
-                if (cachedUser && !navigator.onLine) {
-                  try {
-                    this.currentUser = JSON.parse(cachedUser);
-                  } catch (_) {
-                    this.currentUser = null;
-                  }
-                } else if (!cachedUser) {
+                if (!cachedUser) {
                   this.currentUser = null;
                 }
               }
 
+              this.isAuthResolved = true;
               this._notifyAuthListeners(this.currentUser);
-
-              if (!resolved) {
-                resolved = true;
-                clearTimeout(timeout);
-                this.isAuthResolved = true;
-                resolve();
-              }
             });
-          });
 
-          // Non-blocking check for redirect result (from signInWithRedirect)
-          if (this.auth.getRedirectResult) {
-            this.auth.getRedirectResult().then((result) => {
-              if (result && result.user) {
-                console.log('[PolishFirebase] Redirect sign-in success:', result.user.email);
-              }
-            }).catch(() => {});
+            // Non-blocking redirect check
+            if (this.auth.getRedirectResult) {
+              this.auth.getRedirectResult().then((result) => {
+                if (result && result.user) {
+                  console.log('[PolishFirebase] Redirect sign-in success:', result.user.email);
+                }
+              }).catch(() => {});
+            }
           }
-
-          console.log('[PolishFirebase] Connected to project:', config.projectId, 'User:', this.currentUser ? this.currentUser.email : 'None');
         } else {
-          // Fallback: Local Session & API Storage Adapter
           this._initLocalFallback();
-          this.isAuthResolved = true;
         }
-
-        this.isReady = true;
       } catch (err) {
-        console.error('[PolishFirebase] Init error, falling back to local adapter:', err);
+        console.error('[PolishFirebase] Init error, using local fallback:', err);
         this._initLocalFallback();
-        this.isAuthResolved = true;
-        this.isReady = true;
       }
+
+      this.isAuthResolved = true;
+      this.isReady = true;
+      this._notifyAuthListeners(this.currentUser);
     },
 
     _initLocalFallback() {
@@ -239,7 +208,6 @@
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('profile');
         provider.addScope('email');
-        provider.setCustomParameters({ prompt: 'select_account' });
 
         try {
           const cred = await this.auth.signInWithPopup(provider);

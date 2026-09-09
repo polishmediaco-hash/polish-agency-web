@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>POLISH Studio — Executive Workspace Login</title>
+  <script>
+    // Instant 0ms session recovery: redirect immediately if already logged in
+    try {
+      var u = JSON.parse(localStorage.getItem('polish_studio_user') || 'null');
+      if (u && (u.uid || u.email)) {
+        var r = new URLSearchParams(window.location.search).get('redirect') || '/boards';
+        if (r === '/login' || r.startsWith('/login')) r = '/boards';
+        window.location.replace(r);
+      }
+    } catch (_) {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -230,17 +241,16 @@
     </div>
   </div>
 
-  <!-- Firebase Web SDK (Compat) -->
+  <!-- Firebase Web SDK (Lightweight Auth Only — zero firestore overhead) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="/studio/js/firebase-config.js?v=20260908_live"></script>
+  <script src="/studio/js/firebase-config.js?v=20260909_fast"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      await PolishFirebase.init();
+    document.addEventListener('DOMContentLoaded', () => {
+      // Instant zero-delay initialization
+      PolishFirebase.init();
 
-      // If user is already logged in, redirect to /boards
       if (PolishFirebase.currentUser) {
         let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
         if (redirect === '/login' || redirect.startsWith('/login')) redirect = '/boards';

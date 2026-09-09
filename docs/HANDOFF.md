@@ -202,6 +202,7 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Branch**: `main`
 * **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
+  * `perf(auth): accelerate Studio & Admin login — strip firestore bloat, eliminate 1200ms delay, enable 0ms instant session hydration`
   * `feat(studio): deliver Miro-grade infinite whiteboard with offline persistence, 1-click theme toggle, starter templates, and official brand lockup`
   * `feat(notifications): integrate GREEN-API WhatsApp notification gateway & Calendly webhook listener`
   * `feat(booking): launch luxury minimal /book Calendly scheduling page & apply.html bridge`

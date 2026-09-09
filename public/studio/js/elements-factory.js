@@ -682,6 +682,7 @@ window.ElementsFactory = (function () {
   }
 
   return {
-    renderElement
+    renderElement,
+    applyElementStyles
   };
 })();

@@ -78,7 +78,7 @@ const ALLOWED_ORIGINS = [
 app.use(cors({
   origin: (origin, callback) => {
     // Allow same-origin / server-to-server (no Origin header) and whitelisted origins
-    if (!origin || ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+    if (!origin || ALLOWED_ORIGINS.includes(origin) || origin.includes('localhost') || origin.includes('127.0.0.1')) return callback(null, true);
     callback(new Error('CORS: Origin not allowed'));
   },
   credentials: true,
@@ -223,6 +223,15 @@ app.get(['/boards', '/dashboard'], (req, res) => {
   }
   res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/studio/dashboard.html'));
+});
+
+app.get(['/canvas', '/studio', '/miro', '/whiteboard'], (req, res) => {
+  if (isProdEnv(req)) {
+    const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
+    return res.redirect(301, `https://app.${DOMAIN}/${query}`);
+  }
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  res.sendFile(path.join(__dirname, '../public/studio/index.html'));
 });
 
 // Serve static assets with Edge & browser caching (immutable 1 year for static assets, no-cache for html)

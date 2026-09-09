@@ -328,6 +328,7 @@ body.theme-dark .brand-subtitle {
   align-items: center !important;
   gap: 8px !important;
   flex-shrink: 0 !important;
+  flex-wrap: nowrap !important;
   height: 100% !important;
 }
 

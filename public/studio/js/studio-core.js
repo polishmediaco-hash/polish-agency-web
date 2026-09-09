@@ -1205,12 +1205,126 @@ window.StudioCore = (function () {
     a.remove();
   }
 
-  function takeCameraSnapshot() {
+  let lastSnapshotDataUrl = null;
+
+  async function takeCameraSnapshot() {
     showToast('Capturing studio camera snapshot...');
-    setTimeout(() => {
+
+    // Trigger visual shutter flash
+    try {
+      const flash = document.createElement('div');
+      flash.className = 'camera-shutter-flash';
+      document.body.appendChild(flash);
+      setTimeout(() => { if (flash.parentNode) flash.remove(); }, 500);
+    } catch (_) {}
+
+    try {
+      const isDark = document.body.classList.contains('theme-dark');
+      const viewportEl = document.getElementById('viewport');
+
+      if (window.html2canvas && viewportEl) {
+        // Deselect any active element before snapshot so no blue selection border appears in output
+        deselectAll();
+
+        const canvas = await window.html2canvas(viewportEl, {
+          backgroundColor: isDark ? '#080706' : '#FAF7F2',
+          scale: 2,
+          logging: false,
+          useCORS: true,
+          allowTaint: true,
+          ignoreElements: (el) => {
+            return !!(
+              el.classList && (
+                el.classList.contains('studio-dock') ||
+                el.classList.contains('creation-toolbar') ||
+                el.classList.contains('viewport-tools') ||
+                el.classList.contains('floating-mini-toolbar') ||
+                el.classList.contains('minimap-hud') ||
+                el.classList.contains('camera-modal') ||
+                el.classList.contains('template-modal') ||
+                el.classList.contains('shortcuts-modal') ||
+                el.classList.contains('cover-modal') ||
+                el.classList.contains('user-dropdown') ||
+                el.classList.contains('camera-shutter-flash') ||
+                el.classList.contains('presentation-bar') ||
+                el.classList.contains('toast-notification')
+              )
+            );
+          }
+        });
+
+        lastSnapshotDataUrl = canvas.toDataURL('image/png');
+        openCameraModal(lastSnapshotDataUrl);
+        showToast('Camera snapshot ready!');
+      } else {
+        exportPNG();
+        showToast('Camera snapshot saved as PNG!');
+      }
+    } catch (err) {
+      console.warn('html2canvas snapshot failed, using vector canvas fallback:', err);
       exportPNG();
       showToast('Camera snapshot saved as PNG!');
-    }, 120);
+    }
+  }
+
+  function openCameraModal(dataUrl) {
+    const modal = document.getElementById('cameraSnapshotModal');
+    const previewImg = document.getElementById('cameraPreviewImage');
+    const btnText = document.getElementById('btnCopySnapshotText');
+    if (btnText) btnText.textContent = 'Copy to Clipboard';
+    if (previewImg && dataUrl) {
+      previewImg.src = dataUrl;
+    }
+    if (modal) {
+      modal.style.display = 'flex';
+    }
+  }
+
+  function closeCameraModal() {
+    const modal = document.getElementById('cameraSnapshotModal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  function downloadSnapshot() {
+    const targetUrl = lastSnapshotDataUrl;
+    if (!targetUrl) {
+      exportPNG();
+      return;
+    }
+    const a = document.createElement('a');
+    const slug = (currentBoard && currentBoard.title) ? currentBoard.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') : 'studio';
+    a.download = `${slug}-snapshot-${Date.now()}.png`;
+    a.href = targetUrl;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    showToast('High-res snapshot downloaded!');
+  }
+
+  async function copySnapshotToClipboard() {
+    if (!lastSnapshotDataUrl) return;
+    const btnText = document.getElementById('btnCopySnapshotText');
+    try {
+      const res = await fetch(lastSnapshotDataUrl);
+      const blob = await res.blob();
+      if (navigator.clipboard && navigator.clipboard.write) {
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob })
+        ]);
+        if (btnText) btnText.textContent = 'Copied to Clipboard!';
+        showToast('Snapshot copied to clipboard!');
+        setTimeout(() => {
+          if (btnText) btnText.textContent = 'Copy to Clipboard';
+        }, 3000);
+      } else {
+        showToast('Direct clipboard copy not supported. Please use Download PNG.');
+      }
+    } catch (err) {
+      console.error('Clipboard copy error:', err);
+      showToast('Could not copy to clipboard. Please use Download PNG.');
+    }
   }
 
   function loadTemplate(templateKey) {
@@ -2112,6 +2226,10 @@ window.StudioCore = (function () {
     importJSON,
     exportPNG,
     takeCameraSnapshot,
+    openCameraModal,
+    closeCameraModal,
+    downloadSnapshot,
+    copySnapshotToClipboard,
     loadTemplate,
     toggleTheme,
     toggleShortcutsModal,

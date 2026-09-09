@@ -32,11 +32,15 @@ window.StudioInspector = (function () {
     if (!inspectorEl) init();
     if (!inspectorEl || !el) return;
 
+    if (!data && window.StudioCore) {
+      data = window.StudioCore.findElement(el.id) || window.StudioCore.findConnection(el.id) || {};
+    }
+
     activeElement = el;
-    activeData = data;
+    activeData = data || {};
 
     inspectorEl.classList.add('active');
-    renderControls(el, data);
+    renderControls(el, activeData);
     updatePosition(el);
   }
 
@@ -81,7 +85,11 @@ window.StudioInspector = (function () {
 
   function renderControls(el, data) {
     if (!inspectorEl) return;
-    const type = data.type || el.dataset.type || 'card';
+    if (!data && window.StudioCore && el) {
+      data = window.StudioCore.findElement(el.id) || window.StudioCore.findConnection(el.id) || {};
+    }
+    data = data || {};
+    const type = data.type || (el && el.dataset ? el.dataset.type : '') || 'card';
 
     let html = '';
 
@@ -93,40 +101,88 @@ window.StudioInspector = (function () {
       pricing: 'HIGH-TICKET OFFER',
       form: 'INTAKE WORKSHEET',
       script: 'TALKING TRACK',
+      shape: 'CANVAS SHAPE',
+      text: 'TEXT NOTE',
       connection: 'FLOW CONNECTOR'
     };
     html += `<span class="insp-type-badge">${typeLabels[type] || 'ELEMENT'}</span>`;
     html += `<div class="insp-divider" aria-hidden="true"></div>`;
 
-    // 2. Universal Typography Selector (for all textual cards)
+    // 2. Universal Typography & Sizing Group (for all non-connection cards)
     if (type !== 'connection') {
       const currentFont = data.fontFamily || 'sans';
+      const sizeScale = (data.fontSizeScale || 'md').toUpperCase();
+
       html += `
-        <div class="insp-group">
+        <div class="insp-group" title="Typography & Sizing">
           <select class="insp-select" aria-label="Typography Font Family" onchange="StudioInspector.setFont('${data.id}', this.value)" title="Typography Archetype">
             <option value="sans" ${currentFont === 'sans' ? 'selected' : ''}>Sans (Jakarta)</option>
             <option value="serif" ${currentFont === 'serif' ? 'selected' : ''}>Serif (Cormorant)</option>
             <option value="mono" ${currentFont === 'mono' ? 'selected' : ''}>Mono (Technical)</option>
             <option value="arabic" ${currentFont === 'arabic' ? 'selected' : ''}>Arabic (Tajawal)</option>
           </select>
+
+          <button class="insp-btn" onclick="StudioInspector.stepFontSize('${data.id}', -1)" title="Smaller Text (A−)">A−</button>
+          <span class="insp-size-pill" title="Current Size">${sizeScale}</span>
+          <button class="insp-btn" onclick="StudioInspector.stepFontSize('${data.id}', 1)" title="Larger Text (A+)">A+</button>
+
+          <button class="insp-btn ${data.isBold ? 'active' : ''}" onclick="StudioInspector.toggleBold('${data.id}')" title="Bold (B)"><strong>B</strong></button>
+          <button class="insp-btn ${data.isItalic ? 'active' : ''}" onclick="StudioInspector.toggleItalic('${data.id}')" title="Italic (I)"><em>I</em></button>
+          <button class="insp-btn ${data.textAlign ? 'active' : ''}" onclick="StudioInspector.cycleAlign('${data.id}')" title="Text Alignment">
+            ${data.textAlign === 'center' ? '⫶' : data.textAlign === 'right' ? '≣' : '≡'}
+          </button>
+        </div>
+        <div class="insp-divider" aria-hidden="true"></div>
+      `;
+
+      // 3. Universal Background & Card Color Palette (9 curated swatches + native color picker)
+      const curBg = (data.bgColor || '').toLowerCase();
+      html += `
+        <div class="insp-group" title="Background & Fill Color">
+          <div class="insp-swatch-row" role="radiogroup" aria-label="Background Color">
+            <button type="button" class="insp-swatch swatch-white ${curBg === '#ffffff' ? 'active' : ''}" style="background:#ffffff" title="White / Alabaster" onclick="StudioInspector.setElementBgColor('${data.id}', '#ffffff')"></button>
+            <button type="button" class="insp-swatch swatch-noir ${curBg === '#141210' || curBg === '#080706' ? 'active' : ''}" style="background:#141210" title="Obsidian Noir" onclick="StudioInspector.setElementBgColor('${data.id}', '#141210')"></button>
+            <button type="button" class="insp-swatch swatch-gold ${curBg === '#faf5ee' || curBg === '#e2c799' ? 'active' : ''}" style="background:#FAF5EE; border-color:#C5A880" title="Champagne Gold" onclick="StudioInspector.setElementBgColor('${data.id}', '#FAF5EE')"></button>
+            <button type="button" class="insp-swatch swatch-yellow ${curBg === '#fef08a' ? 'active' : ''}" style="background:#FEF08A" title="Canary Yellow" onclick="StudioInspector.setElementBgColor('${data.id}', '#FEF08A')"></button>
+            <button type="button" class="insp-swatch swatch-rose ${curBg === '#fff1f2' || curBg === '#fecdd3' ? 'active' : ''}" style="background:#FFF1F2; border-color:#FDA4AF" title="Rose Silk" onclick="StudioInspector.setElementBgColor('${data.id}', '#FFF1F2')"></button>
+            <button type="button" class="insp-swatch swatch-green ${curBg === '#ecfdf5' || curBg === '#bbf7d0' ? 'active' : ''}" style="background:#ECFDF5; border-color:#86EFAC" title="Sage Green" onclick="StudioInspector.setElementBgColor('${data.id}', '#ECFDF5')"></button>
+            <button type="button" class="insp-swatch swatch-blue ${curBg === '#eff6ff' || curBg === '#bae6fd' ? 'active' : ''}" style="background:#EFF6FF; border-color:#93C5FD" title="Azure Blue" onclick="StudioInspector.setElementBgColor('${data.id}', '#EFF6FF')"></button>
+            
+            <label class="insp-color-input-label" title="Custom Hex Background Color">
+              <input type="color" value="${data.bgColor || '#ffffff'}" oninput="StudioInspector.setElementBgColor('${data.id}', this.value)" onchange="StudioInspector.setElementBgColor('${data.id}', this.value)" class="insp-native-color-picker" />
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m12 2 2 10-10 2"/></svg>
+            </label>
+          </div>
+        </div>
+        <div class="insp-divider" aria-hidden="true"></div>
+      `;
+
+      // 4. Universal Text Color Palette (6 curated swatches + native color picker)
+      const curText = (data.textColor || '').toLowerCase();
+      html += `
+        <div class="insp-group" title="Text Color">
+          <div class="insp-swatch-row" role="radiogroup" aria-label="Text Color">
+            <span style="font-size:0.68rem; font-weight:800; color:var(--text-muted); margin-right:2px;">T:</span>
+            <button type="button" class="insp-swatch ${curText === '#1a1715' || curText === '#080706' ? 'active' : ''}" style="background:#1A1715; border-color:#080706" title="Dark Ink" onclick="StudioInspector.setElementTextColor('${data.id}', '#1A1715')"></button>
+            <button type="button" class="insp-swatch ${curText === '#ffffff' ? 'active' : ''}" style="background:#FFFFFF; border-color:#E8E2D8" title="White Text" onclick="StudioInspector.setElementTextColor('${data.id}', '#FFFFFF')"></button>
+            <button type="button" class="insp-swatch ${curText === '#c5a880' ? 'active' : ''}" style="background:#C5A880; border-color:#8C6D3F" title="Gold Accent" onclick="StudioInspector.setElementTextColor('${data.id}', '#C5A880')"></button>
+            <button type="button" class="insp-swatch ${curText === '#be123c' ? 'active' : ''}" style="background:#BE123C; border-color:#9F1239" title="Rose Red" onclick="StudioInspector.setElementTextColor('${data.id}', '#BE123C')"></button>
+            <button type="button" class="insp-swatch ${curText === '#059669' ? 'active' : ''}" style="background:#059669; border-color:#047857" title="Emerald Green" onclick="StudioInspector.setElementTextColor('${data.id}', '#059669')"></button>
+            <button type="button" class="insp-swatch ${curText === '#2563eb' ? 'active' : ''}" style="background:#2563EB; border-color:#1D4ED8" title="Cobalt Blue" onclick="StudioInspector.setElementTextColor('${data.id}', '#2563EB')"></button>
+            
+            <label class="insp-color-input-label" title="Custom Hex Text Color">
+              <input type="color" value="${data.textColor || '#1A1715'}" oninput="StudioInspector.setElementTextColor('${data.id}', this.value)" onchange="StudioInspector.setElementTextColor('${data.id}', this.value)" class="insp-native-color-picker" />
+              <span style="font-size:9px; font-weight:900; color:#fff;">T</span>
+            </label>
+          </div>
         </div>
         <div class="insp-divider" aria-hidden="true"></div>
       `;
     }
 
-    // 3. Type-Specific Customization Controls
+    // 5. Type-Specific Customization Controls
     if (type === 'sticky') {
-      const currentColor = data.color || 'yellow';
       html += `
-        <div class="insp-swatch-row" role="radiogroup" aria-label="Sticky Note Color">
-          <button type="button" role="radio" aria-label="Canary Yellow" aria-checked="${currentColor === 'yellow'}" class="insp-swatch swatch-yellow ${currentColor === 'yellow' ? 'active' : ''}" title="Canary Yellow" onclick="StudioInspector.setStickyColor('${data.id}', 'yellow')"></button>
-          <button type="button" role="radio" aria-label="Rose Silk" aria-checked="${currentColor === 'rose'}" class="insp-swatch swatch-rose ${currentColor === 'rose' ? 'active' : ''}" title="Rose Silk" onclick="StudioInspector.setStickyColor('${data.id}', 'rose')"></button>
-          <button type="button" role="radio" aria-label="Sky Azure" aria-checked="${currentColor === 'blue'}" class="insp-swatch swatch-blue ${currentColor === 'blue' ? 'active' : ''}" title="Sky Azure" onclick="StudioInspector.setStickyColor('${data.id}', 'blue')"></button>
-          <button type="button" role="radio" aria-label="Sage Formulation" aria-checked="${currentColor === 'green'}" class="insp-swatch swatch-green ${currentColor === 'green' ? 'active' : ''}" title="Sage Formulation" onclick="StudioInspector.setStickyColor('${data.id}', 'green')"></button>
-          <button type="button" role="radio" aria-label="Champagne Gold" aria-checked="${currentColor === 'gold'}" class="insp-swatch swatch-gold ${currentColor === 'gold' ? 'active' : ''}" title="Champagne Gold" onclick="StudioInspector.setStickyColor('${data.id}', 'gold')"></button>
-          <button type="button" role="radio" aria-label="Obsidian Noir" aria-checked="${currentColor === 'noir'}" class="insp-swatch swatch-noir ${currentColor === 'noir' ? 'active' : ''}" title="Obsidian Noir" onclick="StudioInspector.setStickyColor('${data.id}', 'noir')"></button>
-        </div>
-        <div class="insp-divider" aria-hidden="true"></div>
         <button class="insp-btn ${data.hasTape !== false ? 'active' : ''}" onclick="StudioInspector.toggleTape('${data.id}')" title="Toggle Analog Masking Tape">
           <svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l16-4v12l-16 4z"/><line x1="9" y1="6.7" x2="9" y2="18.7"/><line x1="15" y1="5.2" x2="15" y2="17.2"/></svg>
           Tape
@@ -175,8 +231,24 @@ window.StudioInspector = (function () {
     } else if (type === 'form') {
       html += `
         <div class="insp-group">
-          <button class="insp-btn" onclick="StudioCore.addFormField('${data.id}', 'textarea')" title="Add Diagnostic Long Question">+ Question (Long)</button>
-          <button class="insp-btn" onclick="StudioCore.addFormField('${data.id}', 'input')" title="Add Metric Input">+ Input (Short)</button>
+          <button class="insp-btn" onclick="StudioCore.addFormField('${data.id}', 'textarea')" title="Add Diagnostic Long Question">+ Question</button>
+          <button class="insp-btn" onclick="StudioCore.addFormField('${data.id}', 'input')" title="Add Metric Input">+ Input</button>
+        </div>
+        <div class="insp-divider" aria-hidden="true"></div>
+      `;
+    } else if (type === 'shape') {
+      const curShape = data.shapeType || 'rect';
+      html += `
+        <div class="insp-group">
+          <select class="insp-select" aria-label="Shape Type" onchange="StudioInspector.setShapeType('${data.id}', this.value)" title="Change Shape Geometry">
+            <option value="rect" ${curShape === 'rect' ? 'selected' : ''}>Rectangle</option>
+            <option value="rounded-rect" ${curShape === 'rounded-rect' ? 'selected' : ''}>Rounded</option>
+            <option value="circle" ${curShape === 'circle' ? 'selected' : ''}>Circle</option>
+            <option value="diamond" ${curShape === 'diamond' ? 'selected' : ''}>Diamond</option>
+            <option value="triangle" ${curShape === 'triangle' ? 'selected' : ''}>Triangle</option>
+            <option value="arrow" ${curShape === 'arrow' ? 'selected' : ''}>Arrow</option>
+            <option value="line" ${curShape === 'line' ? 'selected' : ''}>Line</option>
+          </select>
         </div>
         <div class="insp-divider" aria-hidden="true"></div>
       `;
@@ -208,7 +280,7 @@ window.StudioInspector = (function () {
       `;
     }
 
-    // 4. Common Global Actions: Duplicate & Delete
+    // 6. Common Global Actions: Duplicate & Delete
     html += `
       <button class="insp-btn" onclick="StudioCore.duplicateSelected()" title="Duplicate Element (Cmd+D)">
         <svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -226,36 +298,122 @@ window.StudioInspector = (function () {
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
-      el.classList.remove('font-sans', 'font-serif', 'font-mono', 'font-arabic');
-      el.classList.add(`font-${font}`);
       data.fontFamily = font;
-
-      const fontCssVars = {
-        sans: "var(--font-body)",
-        serif: "var(--font-serif)",
-        mono: "var(--font-mono)",
-        arabic: "var(--font-arabic)"
-      };
-      if (fontCssVars[font]) {
-        el.style.setProperty('--card-font-family', fontCssVars[font]);
+      if (window.ElementsFactory && window.ElementsFactory.applyElementStyles) {
+        window.ElementsFactory.applyElementStyles(el, data);
       }
-
       window.StudioCore.triggerAutoSave();
+      renderControls(el, data);
+      updatePosition();
+    }
+  }
+
+  function stepFontSize(id, delta) {
+    const el = document.getElementById(id);
+    const data = window.StudioCore.findElement(id);
+    if (el && data) {
+      const scales = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
+      let curIdx = scales.indexOf(data.fontSizeScale || 'md');
+      if (curIdx === -1) curIdx = 2;
+      curIdx = Math.max(0, Math.min(scales.length - 1, curIdx + delta));
+      data.fontSizeScale = scales[curIdx];
+      if (window.ElementsFactory && window.ElementsFactory.applyElementStyles) {
+        window.ElementsFactory.applyElementStyles(el, data);
+      }
+      window.StudioCore.triggerAutoSave();
+      renderControls(el, data);
+      updatePosition();
+    }
+  }
+
+  function toggleBold(id) {
+    const el = document.getElementById(id);
+    const data = window.StudioCore.findElement(id);
+    if (el && data) {
+      data.isBold = !data.isBold;
+      if (window.ElementsFactory && window.ElementsFactory.applyElementStyles) {
+        window.ElementsFactory.applyElementStyles(el, data);
+      }
+      window.StudioCore.triggerAutoSave();
+      renderControls(el, data);
+      updatePosition();
+    }
+  }
+
+  function toggleItalic(id) {
+    const el = document.getElementById(id);
+    const data = window.StudioCore.findElement(id);
+    if (el && data) {
+      data.isItalic = !data.isItalic;
+      if (window.ElementsFactory && window.ElementsFactory.applyElementStyles) {
+        window.ElementsFactory.applyElementStyles(el, data);
+      }
+      window.StudioCore.triggerAutoSave();
+      renderControls(el, data);
+      updatePosition();
+    }
+  }
+
+  function cycleAlign(id) {
+    const el = document.getElementById(id);
+    const data = window.StudioCore.findElement(id);
+    if (el && data) {
+      const aligns = ['left', 'center', 'right'];
+      let curIdx = aligns.indexOf(data.textAlign || 'left');
+      curIdx = (curIdx + 1) % aligns.length;
+      data.textAlign = aligns[curIdx];
+      if (window.ElementsFactory && window.ElementsFactory.applyElementStyles) {
+        window.ElementsFactory.applyElementStyles(el, data);
+      }
+      window.StudioCore.triggerAutoSave();
+      renderControls(el, data);
+      updatePosition();
+    }
+  }
+
+  function setElementBgColor(id, hex) {
+    const el = document.getElementById(id);
+    const data = window.StudioCore.findElement(id);
+    if (el && data) {
+      data.bgColor = hex;
+      if (data.type === 'sticky') data.color = 'custom';
+      if (window.ElementsFactory && window.ElementsFactory.applyElementStyles) {
+        window.ElementsFactory.applyElementStyles(el, data);
+      }
+      window.StudioCore.triggerAutoSave();
+      renderControls(el, data);
+      updatePosition();
+    }
+  }
+
+  function setElementTextColor(id, hex) {
+    const el = document.getElementById(id);
+    const data = window.StudioCore.findElement(id);
+    if (el && data) {
+      data.textColor = hex;
+      if (window.ElementsFactory && window.ElementsFactory.applyElementStyles) {
+        window.ElementsFactory.applyElementStyles(el, data);
+      }
+      window.StudioCore.triggerAutoSave();
+      renderControls(el, data);
+      updatePosition();
+    }
+  }
+
+  function setShapeType(id, shapeType) {
+    const data = window.StudioCore.findElement(id);
+    if (data) {
+      data.shapeType = shapeType;
+      window.StudioCore.reRenderElement(id);
+      window.StudioCore.triggerAutoSave();
+      const newEl = document.getElementById(id);
+      if (newEl) renderControls(newEl, data);
       updatePosition();
     }
   }
 
   function setStickyColor(id, color) {
-    const el = document.getElementById(id);
-    const data = window.StudioCore.findElement(id);
-    if (el && data) {
-      const fontClass = data.fontFamily ? ` font-${data.fontFamily}` : '';
-      el.className = `sticky-note sticky-${color} is-selected${fontClass}`;
-      data.color = color;
-      window.StudioCore.triggerAutoSave();
-      renderControls(el, data);
-      updatePosition();
-    }
+    setElementBgColor(id, color === 'yellow' ? '#FEF08A' : color === 'rose' ? '#FFF1F2' : color === 'blue' ? '#EFF6FF' : color === 'green' ? '#ECFDF5' : color === 'gold' ? '#FAF5EE' : '#141210');
   }
 
   function toggleTape(id) {
@@ -469,6 +627,13 @@ window.StudioInspector = (function () {
     hide,
     updatePosition,
     setFont,
+    stepFontSize,
+    toggleBold,
+    toggleItalic,
+    cycleAlign,
+    setElementBgColor,
+    setElementTextColor,
+    setShapeType,
     setStickyColor,
     toggleTape,
     setPricingCurrency,

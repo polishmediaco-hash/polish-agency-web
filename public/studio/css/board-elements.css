@@ -956,20 +956,27 @@
   font-family: var(--font-arabic) !important;
 }
 
-/* Font Scale Utilities */
-.font-scale-xs, .font-scale-xs * { font-size: 0.82em !important; }
-.font-scale-sm, .font-scale-sm * { font-size: 0.90em !important; }
-.font-scale-md, .font-scale-md * { font-size: 1.00em !important; }
-.font-scale-lg, .font-scale-lg * { font-size: 1.15em !important; }
-.font-scale-xl, .font-scale-xl * { font-size: 1.32em !important; }
-.font-scale-2xl, .font-scale-2xl * { font-size: 1.55em !important; }
+/* Font Scale Utilities - Clean proportional scaling without compounding */
+.font-scale-xs { font-size: 0.82rem !important; }
+.font-scale-sm { font-size: 0.90rem !important; }
+.font-scale-md { font-size: 1.00rem !important; }
+.font-scale-lg { font-size: 1.15rem !important; }
+.font-scale-xl { font-size: 1.32rem !important; }
+.font-scale-2xl { font-size: 1.55rem !important; }
+
+.font-scale-xs .frame-headline, .font-scale-xs .shape-content-text, .font-scale-xs .sticky-content, .font-scale-xs .floating-text-inner { font-size: 0.85em !important; }
+.font-scale-sm .frame-headline, .font-scale-sm .shape-content-text, .font-scale-sm .sticky-content, .font-scale-sm .floating-text-inner { font-size: 0.92em !important; }
+.font-scale-md .frame-headline, .font-scale-md .shape-content-text, .font-scale-md .sticky-content, .font-scale-md .floating-text-inner { font-size: 1.00em !important; }
+.font-scale-lg .frame-headline, .font-scale-lg .shape-content-text, .font-scale-lg .sticky-content, .font-scale-lg .floating-text-inner { font-size: 1.18em !important; }
+.font-scale-xl .frame-headline, .font-scale-xl .shape-content-text, .font-scale-xl .sticky-content, .font-scale-xl .floating-text-inner { font-size: 1.38em !important; }
+.font-scale-2xl .frame-headline, .font-scale-2xl .shape-content-text, .font-scale-2xl .sticky-content, .font-scale-2xl .floating-text-inner { font-size: 1.65em !important; }
 
 /* Text Formatting & Alignment Utilities */
-.format-bold, .format-bold * { font-weight: 800 !important; }
-.format-italic, .format-italic * { font-style: italic !important; }
-.align-left, .align-left * { text-align: left !important; }
-.align-center, .align-center * { text-align: center !important; }
-.align-right, .align-right * { text-align: right !important; }
+.format-bold, .format-bold p, .format-bold span, .format-bold div, .format-bold input, .format-bold textarea { font-weight: 800 !important; }
+.format-italic, .format-italic p, .format-italic span, .format-italic div, .format-italic input, .format-italic textarea { font-style: italic !important; }
+.align-left, .align-left p, .align-left span, .align-left div, .align-left textarea { text-align: left !important; }
+.align-center, .align-center p, .align-center span, .align-center div, .align-center textarea { text-align: center !important; }
+.align-right, .align-right p, .align-right span, .align-right div, .align-right textarea { text-align: right !important; }
 
 /* ========================================================== */
 /* BASIC SHAPES (RECT, CIRCLE, DIAMOND, TRIANGLE, ARROW)      */

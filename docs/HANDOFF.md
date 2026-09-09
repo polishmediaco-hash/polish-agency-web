@@ -76,11 +76,7 @@ The application has successfully completed a luxury atelier rebranding and typog
   3. **Inbound Dossiers (CRM)**: Executive prospect pipeline with stage movement (New, Reviewing, Qualified, Closed), internal notes, and one-click contact.
   4. **Alert Channels**: Notification dispatch settings.
 
-### E. Theme & Typography Studios
-* `public/palette-preview.html` (`/palette-preview`): Interactive palette switcher and live visual preview.
-* `public/font-preview.html` (`/font-preview`): Live interactive Haute Atelier Typography Studio featuring 5 typography archetypes, real-time live preview of all sections, side-by-side comparison matrix, and trilingual toggling (EN/FR/AR).
-
-### F. Brand Asset Vault & Guidelines (`public/brand-pack.html` / `/brand-pack`)
+### E. Brand Asset Vault & Guidelines (`public/brand-pack.html` / `/brand-pack`)
 * **Live Interactive Brand Portal**: Direct web interface for previewing, inspecting, and downloading all vector and raster assets.
 * **Master Brand Pack Archive**: `/brand-pack/POLISH_Media_Co_Brand_Pack.zip` (834 KB) containing 75 curated production-ready files:
   * `01_logos/`: 32 logo assets (Horizontal, Vertical, Standalone Marks, Squircles in Gold, Dark, White, Black in SVG and 1000px, 2000px, 4000px retina PNGs).
@@ -89,20 +85,8 @@ The application has successfully completed a luxury atelier rebranding and typog
   * `04_color_palette/`: `polish-colors.json`, `polish-colors.css`, and vector/raster swatch palettes.
   * `05_typography/`: `TYPOGRAPHY_SPECIFICATIONS.md` (Font pairings, optical scales, tabular numbers).
   * `06_guidelines/`: `POLISH_BRAND_GUIDELINES.md` (Full 10-chapter Brand Standards Bible).
-* **Routes Registered**: `GET /brand-pack`, `GET /brand-guidelines`.
-
-### G. Logo Exploration & Redesign Studio (`public/logo-preview.html` / `/logo-preview`)
-* **5 Curated Haute Atelier Redesign Concepts**:
-  1. *Concept 1: The Golden Ratio Pipette* (**OFFICIALLY SELECTED BRAND IDENTITY**) — Precision aerodynamic geometry with golden ratio ($\phi \approx 1.618$) fillets and optically locked diamond droplet.
-  2. *Concept 2: The Maison 'P' Crest* — Parisian fashion house monogram fusing 'P' + ascending arrow + suspended drop.
-  3. *Concept 3: The Solitaire Facet & Flacon* — High-jewelry crystalline refraction & French perfume stopper.
-  4. *Concept 4: The Liquid Silk Möbius* — Continuous 3D metallic ribbon capturing sensory cosmetic cream & compounding scale.
-  5. *Concept 5: The Celestial Eclipse* — Concentric crescent blades around diamond core; quiet luxury & clinical cosmeceuticals.
-* **Master Assets Updated**:
-  * `public/assets/logo-gold.svg` (Official Vector Mark)
-  * `public/assets/logo-gold.png` (1200px High-Res Raster Mark)
-  * `public/assets/favicon.svg` & `public/brand-pack/02_favicons_and_icons/`
-  * Complete 75-asset suite in `public/brand-pack/` + Master ZIP (`POLISH_Media_Co_Brand_Pack.zip`).
+* **Routes Registered**: `GET /brand-pack`.
+*(Note: Dev preview tools `palette-preview.html`, `font-preview.html`, `logo-preview.html`, and `_template.html` have been permanently retired and purged.)*
 
 ### H. Award-Winning Luxury Cards & Tactile Micro-Interactions
 * **Dynamic Cursor Spotlight (120FPS RAF-Throttled Tracking)**:
@@ -193,9 +177,11 @@ The application has successfully completed a luxury atelier rebranding and typog
   - Resolved COOP isolation (`crossOriginOpenerPolicy: false` in Helmet) allowing the Google OAuth popup to communicate with the opener window, and implemented automatic fallback to `signInWithRedirect` with `getRedirectResult()`.
 * **Subdomain Isolation for Board Studio (`app.polishmediaco.com`)**:
   - All whiteboard canvas, dashboard, view, and studio login pages are strictly hosted on `app.polishmediaco.com`.
-  - Main domain (`polishmediaco.com`) now 301 redirects `/login`, `/boards`, `/canvas`, `/studio`, and `/view/:id` cleanly to `app.polishmediaco.com`.
-  - Purged old booking aliases (`/schedule`, `/meeting`, `/call`, `/calendar`) to enforce canonical `/book`.
-  - Purged `/board` alias from client proposal and redirected to `app.polishmediaco.com/boards`.
+* **Purge of Dead Routes & Unused Aliases**:
+  - Permanently deleted all dead preview routes (`/palette-preview`, `/font-preview`, `/logo-preview`, `/_template`, `/makeup-filmmaking`, `/brand-guidelines`).
+  - Purged redundant client proposal aliases (`/eman`, `/dubai`, `/strategy`, `/p/eman-alkatheeri`, `/calibration`, `/eman-intake`, `/discovery`, `/makeup`, `/filmmaking`, `/eman-pdf`, etc.).
+  - Purged dead HTML files from `public/` repository tree.
+  - Strict canonical routing across main domain and `app.` subdomain.
 
 ---
 
@@ -204,6 +190,7 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Branch**: `main`
 * **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
+  * `refactor(routes): purge all unused links, dead preview tools, and legacy aliases for strict canonical routing`
   * `refactor(routing): isolate Board Studio on app.polishmediaco.com, remove booking aliases, redirect main domain studio links`
   * `perf(auth): accelerate Studio & Admin login — strip firestore bloat, eliminate 1200ms delay, enable 0ms instant session hydration`
   * `feat(studio): deliver Miro-grade infinite whiteboard with offline persistence, 1-click theme toggle, starter templates, and official brand lockup`

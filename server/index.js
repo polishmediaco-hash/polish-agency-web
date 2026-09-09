@@ -188,13 +188,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// ── Main Domain Redirects: Move ALL Board Studio Pages to app.polishmediaco.com ─
+// ── Main Domain Redirects: Forward Board Access to app.polishmediaco.com ─────
 const isProdEnv = (req) => {
   const host = (req.headers.host || '').toLowerCase();
   return !host.includes('localhost') && !host.includes('127.0.0.1');
 };
 
-// Studio Login -> app.polishmediaco.com/login
 app.get(['/login', '/studio/login'], (req, res) => {
   if (isProdEnv(req)) {
     const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
@@ -204,51 +203,13 @@ app.get(['/login', '/studio/login'], (req, res) => {
   res.sendFile(path.join(__dirname, '../public/studio/login.html'));
 });
 
-// Board Studio Dashboard -> app.polishmediaco.com/boards
-app.get(['/boards', '/dashboard', '/studio/dashboard', '/app/dashboard'], (req, res) => {
+app.get(['/boards', '/dashboard'], (req, res) => {
   if (isProdEnv(req)) {
     const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
     return res.redirect(301, `https://app.${DOMAIN}/boards${query}`);
   }
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/studio/dashboard.html'));
-});
-
-// Infinite Canvas & Aliases -> app.polishmediaco.com/
-app.get(['/canvas', '/studio', '/miro', '/whiteboard', '/app', '/builder', '/board-builder'], (req, res) => {
-  if (isProdEnv(req)) {
-    const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
-    return res.redirect(301, `https://app.${DOMAIN}/${query}`);
-  }
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.sendFile(path.join(__dirname, '../public/studio/index.html'));
-});
-
-// Client Board Presentation Route -> app.polishmediaco.com/view/:id
-app.get(['/b/:id', '/view/:id'], (req, res) => {
-  if (isProdEnv(req)) {
-    const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
-    return res.redirect(301, `https://app.${DOMAIN}/view/${encodeURIComponent(req.params.id)}${query}`);
-  }
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.sendFile(path.join(__dirname, '../public/studio/view.html'));
-});
-
-app.get('/view', (req, res) => {
-  if (isProdEnv(req)) {
-    const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
-    return res.redirect(301, `https://app.${DOMAIN}/view${query}`);
-  }
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.sendFile(path.join(__dirname, '../public/studio/view.html'));
-});
-
-// Legacy /board singular alias -> app.polishmediaco.com/boards
-app.get('/board', (req, res) => {
-  if (isProdEnv(req)) {
-    return res.redirect(301, `https://app.${DOMAIN}/boards`);
-  }
-  res.redirect(301, '/boards');
 });
 
 // Serve static assets with Edge & browser caching
@@ -259,6 +220,7 @@ app.use(
   })
 );
 
+// ── Canonical Main Website Pages ─────────────────────────────────────────────
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
@@ -267,19 +229,13 @@ app.get('/apply', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/apply.html'));
 });
 
-// Canonical Booking Route (Only /book, no aliases)
+app.get('/creators', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/creators.html'));
+});
+
 app.get('/book', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/book.html'));
-});
-
-// Component Catalog & Standard Page Template
-app.get(['/template', '/_template'], (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/_template.html'));
-});
-
-app.get('/creators', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/creators.html'));
 });
 
 app.get('/admin', (req, res) => {
@@ -287,48 +243,22 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/admin.html'));
 });
 
-app.get('/palette-preview', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/palette-preview.html'));
-});
-
-app.get('/font-preview', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/font-preview.html'));
-});
-
 app.get('/brand-pack', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/brand-pack.html'));
 });
 
-app.get('/brand-guidelines', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/brand-pack.html'));
-});
-
-app.get('/logo-preview', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/logo-preview.html'));
-});
-
-// Strategic Client Proposal Routes
-app.get(['/p/eman-alkatheeri', '/eman', '/eman-alkatheeri', '/dubai', '/strategy'], (req, res) => {
+// ── Client Proposal & Intake ──────────────────────────────────────────────────
+app.get('/eman-alkatheeri', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/eman-alkatheeri.html'));
 });
 
-// Standalone Executive Discovery & Offer Calibration Portal (Dual Night / Day Mode)
-app.get(['/intake', '/calibration', '/eman-intake', '/discovery', '/intake.html'], (req, res) => {
+app.get('/intake', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/intake.html'));
 });
 
-app.get(['/p/makeup-filmmaking', '/makeup-filmmaking'], (req, res) => {
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.sendFile(path.join(__dirname, '../public/makeup-filmmaking.html'));
-});
-
-app.get(['/makeup', '/filmmaking'], (req, res) => {
-  res.redirect(301, '/p/makeup-filmmaking');
-});
-
-app.get(['/pdf', '/eman-pdf', '/options-pdf', '/partnership-options'], (req, res) => {
+app.get('/pdf', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/POLISH_MEDIA_Eman_Partnership_Options.pdf'));
 });
 

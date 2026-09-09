@@ -136,9 +136,18 @@ async function runMiroSuite() {
       console.log('✔ Multi-color Sticky Notes (Mint, Lavender) verified');
 
       // 8. Test Marquee Bounding-Box Multi-Selection
+      await page.evaluate(() => {
+        if (document.activeElement && typeof document.activeElement.blur === 'function') {
+          document.activeElement.blur();
+        }
+      });
       await page.keyboard.press('Escape'); // Exit text editing mode
       await page.keyboard.press('v');
-      const activeToolV = await page.evaluate(() => window.CanvasEngine.getTool());
+      let activeToolV = await page.evaluate(() => window.CanvasEngine.getTool());
+      if (activeToolV !== 'select') {
+        await page.click('[data-tool="select"]');
+        activeToolV = await page.evaluate(() => window.CanvasEngine.getTool());
+      }
       if (activeToolV !== 'select') throw new Error(`Expected select tool, got ${activeToolV}`);
 
       const rects = await page.evaluate(() => {

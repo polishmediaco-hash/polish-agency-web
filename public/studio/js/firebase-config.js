@@ -214,8 +214,14 @@
           return cred.user;
         } catch (err) {
           console.warn('[PolishFirebase] Popup attempt returned:', err.code, err.message);
-          if (err.code === 'auth/popup-blocked') {
-            console.log('[PolishFirebase] Popup blocked, switching to signInWithRedirect for reliability...');
+          // If popup is closed, blocked, or fails cross-origin handshake, automatically switch to full-page redirect
+          if (
+            err.code === 'auth/popup-blocked' ||
+            err.code === 'auth/popup-closed-by-user' ||
+            err.code === 'auth/cancelled-popup-request' ||
+            err.code === 'auth/internal-error'
+          ) {
+            console.log('[PolishFirebase] Popup failed/closed, seamlessly switching to signInWithRedirect...');
             await this.auth.signInWithRedirect(provider);
             return null;
           }
@@ -224,6 +230,23 @@
       }
 
       throw new Error('Google Sign-In requires active Firebase credentials.');
+    },
+
+    // Authentication: Instant Offline Advisor Mode
+    loginOffline(displayName = 'Advisor') {
+      const user = {
+        uid: 'advisor_' + Math.random().toString(36).slice(2, 9),
+        displayName: displayName || 'Advisor',
+        email: 'advisor@polishmediaco.com',
+        photoURL: null,
+        isOffline: true
+      };
+      this.currentUser = user;
+      try {
+        localStorage.setItem('polish_studio_user', JSON.stringify(user));
+      } catch (_) {}
+      this._notifyAuthListeners(user);
+      return user;
     },
 
     // Authentication: Logout

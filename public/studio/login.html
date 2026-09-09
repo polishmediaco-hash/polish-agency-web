@@ -194,24 +194,12 @@
 
   <div class="auth-card">
     <div class="auth-brand">
-      <div class="brand-squircle">
-        <svg viewBox="0 0 512 512">
-          <defs>
-            <linearGradient id="goldGradAuth" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#C5A880"/>
-              <stop offset="50%" stop-color="#E2C799"/>
-              <stop offset="100%" stop-color="#F5E6D3"/>
-            </linearGradient>
-          </defs>
-          <g transform="translate(256, 256) scale(3.2) translate(-50, -50)">
-            <path d="M 34 68 C 30 64 30 58 34 54 L 56 32 L 48 32 C 45 32 43 30 43 27 C 43 24 45 22 48 22 L 75 22 C 77 22 79 24 79 26 L 79 53 C 79 56 77 58 74 58 C 71 58 69 56 69 53 L 69 45 L 47 68 C 43 72 38 72 34 68 Z" fill="url(#goldGradAuth)"/>
-            <path d="M 24 72 C 27 75 29 79 28 83 C 27 87 23 89 19 88 C 15 87 13 83 14 79 C 15 75 21 69 24 72 Z" fill="url(#goldGradAuth)" opacity="0.95"/>
-            <rect x="18.5" y="77.5" width="5.5" height="5.5" rx="1.2" transform="rotate(45 21.25 80.25)" fill="#F5E6D3"/>
-          </g>
-        </svg>
+      <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="brand-logo-mark" width="46" height="46" style="filter: drop-shadow(0 0 12px rgba(226, 199, 153, 0.45)); margin-bottom: 12px;" />
+      <div class="brand-text-lockup" style="display: flex; flex-direction: column; align-items: center; gap: 3px; line-height: 1;">
+        <span class="brand-name" style="font-size: 1.25rem; font-weight: 800; letter-spacing: 0.10em; color: var(--brand-noir);">POLISH</span>
+        <span class="brand-subtitle" style="font-size: 0.58rem; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: #7A5E32;">BOARD STUDIO</span>
       </div>
-      <h1 class="auth-title">POLISH Studio</h1>
-      <p class="auth-subtitle">Executive Strategy Workspace</p>
+      <p class="auth-subtitle" style="margin-top: 8px;">Executive Strategy Workspace</p>
     </div>
 
     <div id="authError" class="auth-error"></div>
@@ -226,6 +214,16 @@
         </svg>
       </div>
       <span id="btnGoogleText">Continue with Google</span>
+    </button>
+
+    <div style="margin: 1.25rem 0 0.85rem; text-align: center; position: relative;">
+      <div style="height: 1px; background: var(--border-subtle); width: 100%;"></div>
+      <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #FFFFFF; padding: 0 12px; font-size: 0.68rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.10em;">OR</span>
+    </div>
+
+    <button type="button" class="btn-offline-entry" onclick="handleOfflineEntry()" style="width: 100%; padding: 12px 18px; border-radius: 14px; background: #FAF7F2; color: #1A1715; border: 1px solid var(--border-subtle); font-family: var(--font-heading); font-size: 0.86rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s ease;" onmouseover="this.style.background='#F5EFE6'" onmouseout="this.style.background='#FAF7F2'">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+      1-Click Direct Access (Offline Mode)
     </button>
 
     <div class="auth-footer-notice">
@@ -247,9 +245,24 @@
   <script src="/studio/js/firebase-config.js?v=20260909_fast"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       // Instant zero-delay initialization
       PolishFirebase.init();
+
+      // Check if arriving from full-page redirect
+      if (PolishFirebase.auth && PolishFirebase.auth.getRedirectResult) {
+        try {
+          const res = await PolishFirebase.auth.getRedirectResult();
+          if (res && res.user) {
+            let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
+            if (redirect === '/login' || redirect.startsWith('/login')) redirect = '/boards';
+            window.location.replace(redirect);
+            return;
+          }
+        } catch (e) {
+          console.warn('[Login] Redirect check:', e);
+        }
+      }
 
       if (PolishFirebase.currentUser) {
         let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
@@ -257,6 +270,13 @@
         window.location.replace(redirect);
       }
     });
+
+    function handleOfflineEntry() {
+      PolishFirebase.loginOffline('Executive Advisor');
+      let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
+      if (redirect === '/login' || redirect.startsWith('/login')) redirect = '/boards';
+      window.location.href = redirect;
+    }
 
     async function handleGoogleSignIn() {
       const authError = document.getElementById('authError');
@@ -269,7 +289,11 @@
       text.textContent = 'Connecting to Google...';
 
       try {
-        await PolishFirebase.loginWithGoogle();
+        const user = await PolishFirebase.loginWithGoogle();
+        if (!user) {
+          text.textContent = 'Redirecting to Google...';
+          return;
+        }
         const redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
         window.location.href = redirect;
       } catch (err) {
@@ -279,12 +303,8 @@
         console.error('[Login] Google auth error:', err);
 
         let msg = err.message || 'Google Sign-In could not be completed.';
-        if (err.code === 'auth/popup-closed-by-user') {
-          msg = 'Sign-in popup was closed before completing.';
-        } else if (err.code === 'auth/cancelled-popup-request') {
-          msg = 'Only one sign-in window can be open at a time.';
-        } else if (err.code === 'auth/unauthorized-domain') {
-          msg = 'This domain is not authorized in Firebase Auth settings. Please add localhost or your custom domain.';
+        if (err.code === 'auth/unauthorized-domain') {
+          msg = 'Domain not authorized in Firebase Auth. You can use 1-Click Direct Access below.';
         }
         authError.textContent = msg;
         authError.style.display = 'block';

@@ -61,20 +61,9 @@
   pointer-events: none;
 }
 
-/* Element Type Badge Pill */
+/* Element Type Badge Pill (Deprecated & Removed) */
 .insp-type-badge {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #92400E;
-  background: #FEF8ED;
-  border: 1px solid rgba(197, 168, 128, 0.4);
-  padding: 3px 8px;
-  border-radius: 999px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  flex-shrink: 0;
+  display: none !important;
 }
 
 .insp-group {

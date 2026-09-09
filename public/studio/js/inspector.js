@@ -93,22 +93,7 @@ window.StudioInspector = (function () {
 
     let html = '';
 
-    // 1. Element Type Identifier Badge
-    const typeLabels = {
-      sticky: 'STICKY NOTE',
-      frame: 'STRATEGY FRAME',
-      table: 'ROADMAP TABLE',
-      pricing: 'HIGH-TICKET OFFER',
-      form: 'INTAKE WORKSHEET',
-      script: 'TALKING TRACK',
-      shape: 'CANVAS SHAPE',
-      text: 'TEXT NOTE',
-      connection: 'FLOW CONNECTOR'
-    };
-    html += `<span class="insp-type-badge">${typeLabels[type] || 'ELEMENT'}</span>`;
-    html += `<div class="insp-divider" aria-hidden="true"></div>`;
-
-    // 2. Universal Typography & Sizing Group (for all non-connection cards)
+    // 1. Universal Typography & Sizing Group (for all non-connection cards)
     if (type !== 'connection') {
       const currentFont = data.fontFamily || 'sans';
       const sizeScale = (data.fontSizeScale || 'md').toUpperCase();

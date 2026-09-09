@@ -630,10 +630,10 @@ body.theme-dark .tool-item.active {
   content: attr(data-tooltip);
   position: absolute;
   left: 56px;
-  background: var(--brand-noir);
+  background: #110F0D;
   color: #FFFFFF;
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 5px 11px;
+  border-radius: 8px;
   font-size: 0.72rem;
   font-weight: 700;
   white-space: nowrap;
@@ -642,7 +642,8 @@ body.theme-dark .tool-item.active {
   transition: opacity 0.15s, transform 0.15s;
   transform: translateX(-4px);
   z-index: 2000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: 1px solid rgba(197, 168, 128, 0.28);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 .tool-item[data-tooltip]:hover::after {
@@ -820,11 +821,194 @@ body.theme-dark aside.creation-toolbar,
 body.theme-dark .viewport-tools,
 body.theme-dark .tool-flyout,
 body.theme-dark .template-modal-card,
-body.theme-dark .shortcuts-card {
-  background: rgba(18, 16, 14, 0.94);
-  border-color: rgba(226, 199, 153, 0.22);
+body.theme-dark .shortcuts-card,
+body.theme-dark .minimap-hud {
+  background: rgba(18, 16, 14, 0.95);
+  border-color: rgba(226, 199, 153, 0.28);
   color: #F5E6D3;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+}
+
+/* Tooltip: High-contrast Dark Obsidian Pill with Gold Specular Border */
+body.theme-dark .tool-item[data-tooltip]::after {
+  background: #181512 !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(226, 199, 153, 0.45) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.9), 0 0 14px rgba(226, 199, 153, 0.15) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Left Creation Toolbar: Vibrant Saturation & Crisp Contrast */
+body.theme-dark aside.creation-toolbar .tool-item {
+  color: #E2DBD2 !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.theme-dark aside.creation-toolbar .tool-item .tool-icon svg {
+  stroke: #E2DBD2 !important;
+  stroke-width: 1.9 !important;
+  transition: stroke 0.18s ease, transform 0.18s ease;
+}
+
+body.theme-dark aside.creation-toolbar .tool-item .tool-label {
+  color: #D1C7BA !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+}
+
+body.theme-dark aside.creation-toolbar .tool-item:hover {
+  background: rgba(226, 199, 153, 0.16) !important;
+  color: #FFFFFF !important;
+  transform: scale(1.08);
+}
+
+body.theme-dark aside.creation-toolbar .tool-item:hover .tool-icon svg {
+  stroke: #E2C799 !important;
+  filter: drop-shadow(0 0 6px rgba(226, 199, 153, 0.6)) !important;
+}
+
+body.theme-dark aside.creation-toolbar .tool-item:hover .tool-label {
+  color: #FFFFFF !important;
+}
+
+body.theme-dark aside.creation-toolbar .tool-item.active {
+  background: #E2C799 !important;
+  color: #080706 !important;
+  box-shadow: 0 4px 18px rgba(226, 199, 153, 0.5) !important;
+}
+
+body.theme-dark aside.creation-toolbar .tool-item.active .tool-icon svg {
+  stroke: #080706 !important;
+  stroke-width: 2 !important;
+}
+
+body.theme-dark aside.creation-toolbar .tool-item.active .tool-label {
+  color: #080706 !important;
+  font-weight: 900 !important;
+}
+
+/* Flyout Menus High-Contrast Hover & Typography */
+body.theme-dark .tool-flyout {
+  background: rgba(18, 16, 14, 0.96) !important;
+  border: 1px solid rgba(226, 199, 153, 0.3) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.theme-dark .flyout-title {
+  color: #E2C799 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+}
+
+body.theme-dark .flyout-btn {
+  color: #E2DBD2 !important;
+}
+
+body.theme-dark .flyout-btn svg {
+  stroke: #E2DBD2 !important;
+}
+
+body.theme-dark .flyout-btn:hover,
+body.theme-dark .sticky-opt:hover {
+  background: #E2C799 !important;
+  color: #080706 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-dark .flyout-btn:hover svg {
+  stroke: #080706 !important;
+}
+
+body.theme-dark .stroke-size-btn {
+  background: #201C19 !important;
+  color: #E2DBD2 !important;
+  border: 1px solid rgba(226, 199, 153, 0.22) !important;
+}
+
+body.theme-dark .stroke-size-btn:hover {
+  background: #E2C799 !important;
+  color: #080706 !important;
+  font-weight: 800 !important;
+}
+
+/* Minimap HUD: Dark Obsidian Container with Saturated Champagne Header */
+body.theme-dark .minimap-hud {
+  background: rgba(18, 16, 14, 0.95) !important;
+  border: 1px solid rgba(226, 199, 153, 0.3) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
+}
+
+body.theme-dark .minimap-header {
+  border-bottom: 1px solid rgba(226, 199, 153, 0.15) !important;
+  padding-bottom: 4px;
+}
+
+body.theme-dark .minimap-title {
+  color: #E2C799 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+}
+
+body.theme-dark .minimap-toggle {
+  color: #E2DBD2 !important;
+}
+
+body.theme-dark .minimap-toggle:hover {
+  color: #FFFFFF !important;
+}
+
+body.theme-dark .minimap-body {
+  border: 1px solid rgba(226, 199, 153, 0.18) !important;
+  background: #080706 !important;
+}
+
+/* Viewport Zoom HUD */
+body.theme-dark .viewport-tools {
+  background: rgba(18, 16, 14, 0.95) !important;
+  border: 1px solid rgba(226, 199, 153, 0.3) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.theme-dark .zoom-label {
+  color: #F5E6D3 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-dark .vp-btn {
+  color: #E2DBD2 !important;
+}
+
+body.theme-dark .vp-btn:hover {
+  background: rgba(226, 199, 153, 0.16) !important;
+  color: #FFFFFF !important;
+}
+
+/* Template Modal Dark Mode Typography */
+body.theme-dark .modal-title {
+  color: #FFFFFF !important;
+}
+
+body.theme-dark .modal-subtitle {
+  color: #C5BCB0 !important;
+}
+
+body.theme-dark .template-option-card h4 {
+  color: #FFFFFF !important;
+}
+
+body.theme-dark .template-option-card p {
+  color: #C5BCB0 !important;
+}
+
+body.theme-dark .modal-close-btn {
+  background: #24201D !important;
+  color: #E2DBD2 !important;
+}
+
+body.theme-dark .modal-close-btn:hover {
+  background: #332D29 !important;
+  color: #FFFFFF !important;
 }
 
 body.theme-dark .board-title-input {

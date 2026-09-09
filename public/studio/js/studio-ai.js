@@ -72,12 +72,11 @@
       if (container) {
         container.innerHTML = `
           <div class="ai-message assistant">
-            <div class="ai-msg-avatar">✨</div>
+            <div class="ai-msg-avatar">AI</div>
             <div class="ai-msg-body">
               <div class="ai-msg-bubble">
-                <p><strong>Bonjour, Advisor.</strong></p>
-                <p>I am your Board Studio Strategy Copilot. I specialize in luxury cosmetics positioning, high-AOV offer architectures, CAC compression, visceral direct-response copy, and high-ticket sales decks.</p>
-                <p>What strategy pillar shall we architect for your canvas today?</p>
+                <p><strong>Polish AI Active.</strong></p>
+                <p>Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board.</p>
               </div>
             </div>
           </div>
@@ -109,7 +108,7 @@
       const boardTitleInput = document.getElementById('boardTitleInput');
       const boardContext = {
         title: boardTitleInput ? boardTitleInput.value : 'Strategy Board',
-        elementCount: window.StudioCore && window.StudioCore.elements ? window.StudioCore.elements.length : 0
+        elementCount: window.StudioCore && window.StudioCore.getElements ? window.StudioCore.getElements().length : 0
       };
 
       try {
@@ -130,11 +129,11 @@
           this.history.push({ role: 'model', text: data.rawReply || data.reply });
           this.appendMessage('assistant', data.reply, data.boardCards);
         } else {
-          this.appendMessage('assistant', `⚠️ **Advisor Notice:** ${data.error || 'Unable to connect to AI engine.'}`);
+          this.appendMessage('assistant', `**System Notice:** ${data.error || 'Unable to connect to AI engine.'}`);
         }
       } catch (err) {
         this.removeTypingIndicator(typingId);
-        this.appendMessage('assistant', `⚠️ **Connection Error:** Could not reach the Strategy Engine (${err.message}).`);
+        this.appendMessage('assistant', `**Connection Error:** Could not reach the Strategy Engine (${err.message}).`);
       } finally {
         this.isThinking = false;
         this.setSendButtonState(false);
@@ -150,7 +149,7 @@
 
       const avatar = document.createElement('div');
       avatar.className = 'ai-msg-avatar';
-      avatar.innerHTML = role === 'user' ? 'ME' : '✨';
+      avatar.innerHTML = role === 'user' ? 'YOU' : 'AI';
 
       const body = document.createElement('div');
       body.className = 'ai-msg-body';
@@ -167,15 +166,15 @@
 
         const info = document.createElement('div');
         info.className = 'ai-cards-count-info';
-        info.innerHTML = `<span>💎</span> ${boardCards.length} Strategy ${boardCards.length === 1 ? 'Card' : 'Cards'} Ready`;
+        info.textContent = `${boardCards.length} Strategy ${boardCards.length === 1 ? 'Card' : 'Cards'} Available`;
 
         const addBtn = document.createElement('button');
         addBtn.className = 'btn-add-to-canvas';
-        addBtn.innerHTML = `<span>+</span> Add to Canvas`;
+        addBtn.textContent = 'Add to Canvas';
         addBtn.onclick = () => {
           this.insertCardsToCanvas(boardCards);
           addBtn.disabled = true;
-          addBtn.innerHTML = `<span>✓</span> Added to Board`;
+          addBtn.textContent = 'Added to Canvas';
           addBtn.style.filter = 'grayscale(0.6)';
         };
 
@@ -201,7 +200,7 @@
       typingEl.id = id;
       typingEl.className = 'ai-message assistant';
       typingEl.innerHTML = `
-        <div class="ai-msg-avatar">✨</div>
+        <div class="ai-msg-avatar">AI</div>
         <div class="ai-msg-body">
           <div class="ai-msg-bubble ai-typing-indicator">
             <div class="ai-typing-dot"></div>
@@ -276,7 +275,7 @@
       // Mark dirty and trigger auto-save
       window.StudioCore.markDirty();
       if (typeof window.StudioCore.showToast === 'function') {
-        window.StudioCore.showToast(`✨ Added ${cards.length} strategy cards to canvas!`);
+        window.StudioCore.showToast(`Added ${cards.length} strategy cards to canvas.`);
       }
 
       // Briefly close drawer on mobile so user sees the new cards immediately

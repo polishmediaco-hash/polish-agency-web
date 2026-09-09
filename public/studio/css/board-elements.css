@@ -1156,6 +1156,15 @@
    WCAG AAA Compliant Legibility (Contrast > 7:1)
    ========================================================================== */
 
+body.theme-dark {
+  --text-ink: #FFFFFF;
+  --text-slate: #E2DBD2;
+  --text-muted: #C5BCB0;
+  --text-light: #B8B0A4;
+  --border-subtle: rgba(226, 199, 153, 0.22);
+  --border-strong: rgba(226, 199, 153, 0.38);
+}
+
 body.theme-dark .board-frame {
   background: #141210 !important;
   border-color: rgba(226, 199, 153, 0.28) !important;
@@ -1214,37 +1223,49 @@ body.theme-dark .content-box h4 {
 
 body.theme-dark .content-box p {
   color: #E2DBD2 !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
 }
 
-/* Dark Mode Tag Badges */
-body.theme-dark .tag-gold {
-  background: rgba(226, 199, 153, 0.16) !important;
-  color: #E2C799 !important;
-  border: 1px solid rgba(226, 199, 153, 0.38) !important;
+/* Dark Mode Tag Badges: Punchy & Saturated */
+body.theme-dark .tag-gold,
+body.theme-dark .box-tag.tag-gold {
+  background: rgba(226, 199, 153, 0.22) !important;
+  color: #F5E6D3 !important;
+  border: 1px solid rgba(226, 199, 153, 0.45) !important;
+  font-weight: 800 !important;
 }
 
-body.theme-dark .tag-rose {
-  background: rgba(244, 63, 94, 0.16) !important;
-  color: #FDA4AF !important;
-  border: 1px solid rgba(244, 63, 94, 0.38) !important;
+body.theme-dark .tag-rose,
+body.theme-dark .box-tag.tag-rose {
+  background: rgba(244, 63, 94, 0.22) !important;
+  color: #FFE4E6 !important;
+  border: 1px solid rgba(244, 63, 94, 0.45) !important;
+  font-weight: 800 !important;
 }
 
-body.theme-dark .tag-blue {
-  background: rgba(59, 130, 246, 0.16) !important;
-  color: #93C5FD !important;
-  border: 1px solid rgba(59, 130, 246, 0.38) !important;
+body.theme-dark .tag-blue,
+body.theme-dark .box-tag.tag-blue {
+  background: rgba(59, 130, 246, 0.22) !important;
+  color: #DBEAFE !important;
+  border: 1px solid rgba(59, 130, 246, 0.45) !important;
+  font-weight: 800 !important;
 }
 
-body.theme-dark .tag-green {
-  background: rgba(16, 185, 129, 0.16) !important;
-  color: #6EE7B7 !important;
-  border: 1px solid rgba(16, 185, 129, 0.38) !important;
+body.theme-dark .tag-green,
+body.theme-dark .box-tag.tag-green {
+  background: rgba(16, 185, 129, 0.22) !important;
+  color: #D1FAE5 !important;
+  border: 1px solid rgba(16, 185, 129, 0.45) !important;
+  font-weight: 800 !important;
 }
 
-body.theme-dark .tag-noir {
-  background: rgba(255, 255, 255, 0.12) !important;
+body.theme-dark .tag-noir,
+body.theme-dark .box-tag.tag-noir {
+  background: rgba(255, 255, 255, 0.15) !important;
   color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  font-weight: 800 !important;
 }
 
 /* Dark Mode Tables */
@@ -1289,15 +1310,19 @@ body.theme-dark .luxury-table tr:nth-child(even) td {
 }
 
 body.theme-dark .table-btn {
-  background: #1E1B18 !important;
-  color: #E2DBD2 !important;
-  border-color: rgba(226, 199, 153, 0.25) !important;
+  background: rgba(226, 199, 153, 0.12) !important;
+  color: #F5E6D3 !important;
+  border: 1px solid rgba(226, 199, 153, 0.35) !important;
+  font-weight: 700 !important;
+  transition: all 0.18s ease !important;
 }
 
 body.theme-dark .table-btn:hover {
-  background: #282420 !important;
-  color: #FFFFFF !important;
+  background: #E2C799 !important;
+  color: #080706 !important;
   border-color: #E2C799 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 14px rgba(226, 199, 153, 0.35) !important;
 }
 
 /* Dark Mode Pricing Cards */
@@ -1313,9 +1338,10 @@ body.theme-dark .pricing-card.featured {
 }
 
 body.theme-dark .price-badge {
-  background: rgba(226, 199, 153, 0.16) !important;
-  color: #E2C799 !important;
-  border: 1px solid rgba(226, 199, 153, 0.35) !important;
+  background: rgba(226, 199, 153, 0.22) !important;
+  color: #F5E6D3 !important;
+  border: 1px solid rgba(226, 199, 153, 0.45) !important;
+  font-weight: 800 !important;
 }
 
 body.theme-dark .price-currency {
@@ -1327,7 +1353,7 @@ body.theme-dark .price-figure {
 }
 
 body.theme-dark .price-period {
-  color: #B8B0A4 !important;
+  color: #C5BCB0 !important;
 }
 
 body.theme-dark .clean-list li {
@@ -1339,9 +1365,19 @@ body.theme-dark .clean-list li .feature-text::before {
 }
 
 body.theme-dark .pricing-add-btn {
-  background: #1E1B18 !important;
-  color: #E2DBD2 !important;
-  border-color: rgba(226, 199, 153, 0.25) !important;
+  background: rgba(226, 199, 153, 0.12) !important;
+  color: #F5E6D3 !important;
+  border: 1px solid rgba(226, 199, 153, 0.35) !important;
+  font-weight: 700 !important;
+  transition: all 0.18s ease !important;
+}
+
+body.theme-dark .pricing-add-btn:hover {
+  background: #E2C799 !important;
+  color: #080706 !important;
+  border-color: #E2C799 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 14px rgba(226, 199, 153, 0.35) !important;
 }
 
 /* Dark Mode Forms */
@@ -1356,13 +1392,15 @@ body.theme-dark .form-card-title {
 }
 
 body.theme-dark .form-card-badge {
-  background: rgba(226, 199, 153, 0.16) !important;
-  color: #E2C799 !important;
-  border-color: rgba(226, 199, 153, 0.35) !important;
+  background: rgba(226, 199, 153, 0.22) !important;
+  color: #F5E6D3 !important;
+  border-color: rgba(226, 199, 153, 0.45) !important;
+  font-weight: 800 !important;
 }
 
 body.theme-dark .form-card-desc {
-  color: #B8B0A4 !important;
+  color: #C5BCB0 !important;
+  font-weight: 500 !important;
 }
 
 body.theme-dark .form-field-item {
@@ -1372,35 +1410,54 @@ body.theme-dark .form-field-item {
 
 body.theme-dark .field-label {
   color: #FFFFFF !important;
+  font-weight: 700 !important;
 }
 
 body.theme-dark .field-badge {
-  background: rgba(226, 199, 153, 0.16) !important;
-  color: #E2C799 !important;
-  border-color: rgba(226, 199, 153, 0.35) !important;
+  background: rgba(226, 199, 153, 0.22) !important;
+  color: #F5E6D3 !important;
+  border-color: rgba(226, 199, 153, 0.45) !important;
+  font-weight: 800 !important;
 }
 
 body.theme-dark .field-instructions {
-  color: #B8B0A4 !important;
+  color: #C5BCB0 !important;
+  font-weight: 500 !important;
 }
 
 body.theme-dark .field-input,
 body.theme-dark .field-textarea {
   background: #12100E !important;
   color: #FFFFFF !important;
-  border-color: rgba(226, 199, 153, 0.25) !important;
+  border-color: rgba(226, 199, 153, 0.28) !important;
+}
+
+body.theme-dark .field-input::placeholder,
+body.theme-dark .field-textarea::placeholder {
+  color: rgba(245, 230, 211, 0.48) !important;
 }
 
 body.theme-dark .field-input:focus,
 body.theme-dark .field-textarea:focus {
   background: #181513 !important;
   border-color: #E2C799 !important;
+  box-shadow: 0 0 0 2px rgba(226, 199, 153, 0.22) !important;
 }
 
 body.theme-dark .form-add-btn {
-  background: #1E1B18 !important;
-  color: #E2DBD2 !important;
-  border-color: rgba(226, 199, 153, 0.25) !important;
+  background: rgba(226, 199, 153, 0.12) !important;
+  color: #F5E6D3 !important;
+  border: 1px solid rgba(226, 199, 153, 0.35) !important;
+  font-weight: 700 !important;
+  transition: all 0.18s ease !important;
+}
+
+body.theme-dark .form-add-btn:hover {
+  background: #E2C799 !important;
+  color: #080706 !important;
+  border-color: #E2C799 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 14px rgba(226, 199, 153, 0.35) !important;
 }
 
 /* Dark Mode Script Bubble & Floating Text */

@@ -53,9 +53,9 @@
         Present
       </button>
       <div class="dock-divider"></div>
-      <button type="button" id="btnAiCopilot" class="dock-btn btn-ai-copilot" onclick="StudioAI.toggleDrawer()" title="POLISH Strategy Copilot (Cmd+J)">
-        <span class="ai-sparkle-icon">✨</span>
-        <span class="ai-btn-text">Strategy Copilot</span>
+      <button type="button" id="btnAiCopilot" class="dock-btn btn-ai-copilot" onclick="StudioAI.toggleDrawer()" title="Polish AI (Cmd+J)">
+        <svg class="dock-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="ai-btn-text">Polish AI</span>
       </button>
     </div>
 
@@ -440,7 +440,7 @@
       <!-- Device Upload Area -->
       <div style="margin-bottom: 1.25rem;">
         <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px;">Upload Image from Device</div>
-        <div class="cover-dropzone" onclick="document.getElementById('coverDeviceFileInput').click()" style="border: 2px dashed rgba(197, 168, 128, 0.4); border-radius: 14px; padding: 16px; text-align: center; cursor: pointer; background: var(--surface-subtle); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--brand-gold)'; this.style.background='rgba(197, 168, 128, 0.08)'" onmouseout="this.style.borderColor='rgba(197, 168, 128, 0.4)'; this.style.background='var(--surface-subtle)'">
+        <div class="cover-dropzone" onclick="document.getElementById('coverDeviceFileInput').click()" style="border: 2px dashed rgba(197, 168, 128, 0.4); border-radius: 14px; padding: 16px; text-align: center; cursor: pointer; background: var(--surface-subtle); transition: all 0.2s;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--brand-gold); margin-bottom: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-ink);">Choose Image from Mac / Device</div>
           <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 2px;">PNG, JPG, WebP up to 10MB</div>
@@ -735,59 +735,58 @@
   </script>
 
   <!-- ========================================================== -->
-  <!-- POLISH BOARD STUDIO — AI STRATEGY COPILOT DRAWER           -->
+  <!-- POLISH BOARD STUDIO — POLISH AI DRAWER                     -->
   <!-- ========================================================== -->
   <div id="aiCopilotBackdrop" class="ai-copilot-backdrop" onclick="StudioAI.toggleDrawer(false)"></div>
 
-  <aside id="aiCopilotDrawer" class="ai-copilot-drawer" aria-label="POLISH Strategy Copilot">
+  <aside id="aiCopilotDrawer" class="ai-copilot-drawer" aria-label="Polish AI">
     <!-- Header -->
     <div class="ai-drawer-header">
       <div class="ai-header-brand">
-        <div class="ai-brand-crest">✨</div>
+        <div class="ai-brand-crest">AI</div>
         <div class="ai-header-titles">
-          <span class="ai-header-title">Strategy Copilot</span>
-          <span class="ai-header-badge">Luxury Growth Atelier</span>
+          <span class="ai-header-title">Polish AI</span>
+          <span class="ai-header-badge">Growth Intelligence</span>
         </div>
       </div>
       <div class="ai-header-actions">
         <button type="button" class="ai-icon-btn" onclick="StudioAI.clearChat()" title="Reset Chat">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
         </button>
-        <button type="button" class="ai-icon-btn" onclick="StudioAI.toggleDrawer(false)" title="Close (Esc)">✕</button>
+        <button type="button" id="aiCloseBtn" class="ai-icon-btn" onclick="StudioAI.toggleDrawer(false)" title="Close (Esc)">✕</button>
       </div>
     </div>
 
-    <!-- Quick Strategy Presets -->
+    <!-- Strategy Presets (Clean, Zero Emojis) -->
     <div class="ai-presets-wrap">
       <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('Engineer a high-AOV replenishment routine offer ($150+) with GWP and VIP refills.')">
-        🏷️ High-AOV Offer
+        High-AOV Offer
       </button>
       <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('Write 3 visceral 3-second ad hooks for TikTok & Meta targeting skincare routine fatigue.')">
-        ✍️ Visceral Hooks
+        Ad Hooks
       </button>
       <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('How do I elevate brand prestige and pricing without alienating our emerging customers?')">
-        💎 Luxury Brand
+        Luxury Positioning
       </button>
       <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('Outline a 3-step CAC compression strategy for Meta and TikTok beauty ads.')">
-        📈 CAC Compression
+        CAC Compression
       </button>
       <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('Give me an elite UGC video brief for creators demonstrating our formulation texture.')">
-        🎬 Creator Brief
+        Creator Brief
       </button>
       <button type="button" class="ai-preset-chip" onclick="StudioAI.sendPreset('What is the ideal diagnostic pitch script to present this board to a beauty founder?')">
-        🤝 Pitch Script
+        Sales Script
       </button>
     </div>
 
     <!-- Messages Scroll View -->
     <div id="aiMessagesContainer" class="ai-messages-container">
       <div class="ai-message assistant">
-        <div class="ai-msg-avatar">✨</div>
+        <div class="ai-msg-avatar">AI</div>
         <div class="ai-msg-body">
           <div class="ai-msg-bubble">
-            <p><strong>Bonjour, Advisor.</strong></p>
-            <p>I am your Board Studio Strategy Copilot — specialized in luxury beauty branding, high-AOV offer architectures, CAC compression, visceral direct-response copy, and high-ticket sales decks.</p>
-            <p>Ask me any strategy question, or click a preset above. You can spawn recommended cards directly onto your whiteboard with 1 click!</p>
+            <p><strong>Polish AI Active.</strong></p>
+            <p>Define an offer structure, ad angle, CAC constraint, or client presentation challenge to architect for your board.</p>
           </div>
         </div>
       </div>
@@ -796,13 +795,13 @@
     <!-- Input Area -->
     <div class="ai-input-area">
       <div class="ai-input-wrapper">
-        <textarea id="aiPromptInput" class="ai-textarea" rows="1" placeholder="Ask about offers, copy, positioning, or ad angles..."></textarea>
+        <textarea id="aiPromptInput" class="ai-textarea" rows="1" placeholder="Specify an offer, copy angle, positioning, or ad strategy..."></textarea>
         <button type="button" id="aiSendBtn" class="ai-send-btn" onclick="StudioAI.sendMessage()" title="Send Prompt (Enter)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
       </div>
       <div class="ai-input-footer">
-        <span>Powered by Gemini Intelligence • Studio Only</span>
+        <span>Polish AI • Studio Exclusive</span>
         <span class="ai-shortcut-hint"><kbd>Cmd</kbd>+<kbd>J</kbd> to toggle</span>
       </div>
     </div>

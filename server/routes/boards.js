@@ -328,14 +328,14 @@ router.post('/', (req, res) => {
             frameNumber: '01',
             titlePill: 'FOUNDATION',
             headline: 'Strategic Overview',
-            serifAccent: 'Strategic Overview',
-            description: 'Double-click any text on this board to begin editing.',
+            serifAccent: '',
+            description: '',
             boxes: [
               {
                 tag: 'PHASE 01',
                 tagColor: 'gold',
                 title: 'Primary Strategic Objective',
-                content: 'Describe the core objective and methodology for this client container.'
+                content: 'Core objective and methodology for this client engagement.'
               }
             ]
           },
@@ -351,7 +351,7 @@ router.post('/', (req, res) => {
             rotation: -1.5,
             hasTape: true,
             header: 'FIRST NOTE',
-            content: 'Drag frames, sticky notes, and connecting arrows from the left palette to build your board.',
+            content: 'Client strategy priorities and actionable milestones.',
             footer: 'POLISH STUDIO'
           }
         ],

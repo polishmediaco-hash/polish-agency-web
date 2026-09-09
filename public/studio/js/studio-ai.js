@@ -194,6 +194,9 @@
       if (windowEl) windowEl.classList.add('is-open');
       if (dockBtn) dockBtn.classList.add('active-pulse');
 
+      // Refresh selection context badge immediately
+      this.updateSelectionBadge(this.getSelectionContext());
+
       setTimeout(() => {
         const input = document.getElementById('aiPromptInput');
         if (input) input.focus();
@@ -561,8 +564,14 @@
 
     // Reads currently selected canvas elements and builds a structured context array.
     getSelectionContext() {
-      const ids = (window.MarqueeEngine && window.MarqueeEngine.getSelectedIds())
+      let ids = (window.MarqueeEngine && window.MarqueeEngine.getSelectedIds())
         || (window.StudioCore && window.StudioCore._multiSelectedIds ? Array.from(window.StudioCore._multiSelectedIds) : []);
+
+      // If no multi-selection, check single selection
+      if ((!ids || ids.length === 0) && window.StudioCore && window.StudioCore.getSelectedElementData) {
+        const single = window.StudioCore.getSelectedElementData();
+        if (single && single.id) ids = [single.id];
+      }
 
       if (!ids || ids.length === 0) {
         this._selectionContext = null;
@@ -575,19 +584,46 @@
         if (!data) return;
 
         const type = (data.type || 'element').toUpperCase();
-        const title = data.title || data.headline || data.header || data.text || '(Untitled)';
-        const content = data.content || data.body || data.description || data.footer || '';
+        let title = data.title || data.headline || data.header || data.text || '(Untitled)';
+        let content = '';
 
-        items.push({ type, title: title.slice(0, 120), content: content.slice(0, 300) });
+        if (data.type === 'pricing') {
+          title = `${data.tier || 'Pricing Tier'} (${data.currency || '$'}${data.price || '0'}${data.period ? ' / ' + data.period : ''})`;
+          content = Array.isArray(data.features) ? 'Features: ' + data.features.join(' • ') : '';
+        } else if (data.type === 'frame') {
+          title = `${data.headline || 'Frame'} ${data.serifAccent ? '— ' + data.serifAccent : ''}`;
+          const boxSummaries = (data.boxes || []).map(b => `[${b.tag || 'BOX'}] ${b.title}: ${b.content}`).join(' | ');
+          content = `${data.description || ''} ${boxSummaries}`.trim();
+        } else if (data.type === 'table') {
+          title = data.title || 'Data Table';
+          const headers = (data.headers || []).join(' | ');
+          const rowSample = (data.rows || []).slice(0, 3).map(r => r.join(' | ')).join(' \n ');
+          content = `Headers: ${headers} \n Sample Rows: ${rowSample}`;
+        } else if (data.type === 'sticky') {
+          title = data.header || 'Sticky Note';
+          content = `${data.content || ''} ${data.footer ? '(' + data.footer + ')' : ''}`.trim();
+        } else {
+          content = data.content || data.body || data.description || data.text || '';
+        }
+
+        items.push({ type, title: String(title).slice(0, 140), content: String(content).slice(0, 400) });
       });
 
       this._selectionContext = items.length > 0 ? items : null;
       return this._selectionContext;
     },
 
-    clearSelectionContext() {
+    clearSelectionContext(deselectCanvas = true) {
       this._selectionContext = null;
       this.updateSelectionBadge(null);
+      if (deselectCanvas) {
+        if (window.StudioCore && window.StudioCore.deselectAll) {
+          window.StudioCore.deselectAll();
+        }
+        if (window.MarqueeEngine && window.MarqueeEngine.clearMultiSelection) {
+          window.MarqueeEngine.clearMultiSelection();
+        }
+      }
     },
 
     // Updates the #aiSelectionBadge UI element.
@@ -607,7 +643,7 @@
     // Hook called from marquee-selection / studio-core when selection changes.
     onCanvasSelectionChange(ids) {
       if (!ids || ids.length === 0) {
-        this.clearSelectionContext();
+        this.clearSelectionContext(false); // Do not recurse into StudioCore.deselectAll
         return;
       }
       const ctx = this.getSelectionContext();

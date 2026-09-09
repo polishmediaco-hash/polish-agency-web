@@ -332,6 +332,7 @@ window.StudioCore = (function () {
 
   // Selection Handling
   function selectElement(el, data) {
+    if (selectedElement === el) return;
     deselectAll();
     selectedElement = el;
     selectedElementData = data;
@@ -339,6 +340,9 @@ window.StudioCore = (function () {
 
     if (window.StudioInspector) {
       window.StudioInspector.show(el, data);
+    }
+    if (window.StudioAI && window.StudioAI.onCanvasSelectionChange) {
+      window.StudioAI.onCanvasSelectionChange(data && data.id ? [data.id] : []);
     }
   }
 
@@ -356,6 +360,7 @@ window.StudioCore = (function () {
   }
 
   function deselectAll() {
+    const hadSelected = !!(selectedElement || selectedConnection);
     if (selectedElement) {
       selectedElement.classList.remove('is-selected');
       selectedElement = null;
@@ -367,6 +372,12 @@ window.StudioCore = (function () {
     }
     if (window.StudioInspector) {
       window.StudioInspector.hide();
+    }
+    if (hadSelected && window.StudioAI && window.StudioAI.onCanvasSelectionChange) {
+      const marqueeIds = (window.MarqueeEngine && window.MarqueeEngine.getSelectedIds) ? window.MarqueeEngine.getSelectedIds() : [];
+      if (marqueeIds.length === 0) {
+        window.StudioAI.onCanvasSelectionChange([]);
+      }
     }
   }
 
@@ -2511,6 +2522,7 @@ window.StudioCore = (function () {
     findConnection,
     reRenderElement,
     getCurrentBoardId: () => (currentBoard ? currentBoard.id : null),
+    getSelectedElementData: () => selectedElementData,
     showToast
   };
 })();

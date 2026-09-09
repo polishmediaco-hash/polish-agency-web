@@ -196,6 +196,7 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Branch**: `main`
 * **Commit Author**: `POLISH Media Co <contact@polishmediaco.com>` (verified on GitHub & active on Vercel deployment pipeline)
 * **Latest Milestones**:
+  * `feat(studio): lasso & selection context for Polish AI, 1-click frame-by-frame PNG export, webhook E2E suite, and Vercel edge security headers`
   * `feat(studio-ai): full redesign of Polish AI into non-blocking floating luxury glassmorphic window with draggable controls, ambient minimize pill, and strategy card deck spawner`
   * `fix(studio-ai): purge all filler captions, subtitles, and badges; integrate official POLISH brand mark & direct markdown flow`
   * `feat(studio-ai): launch Polish AI — zero-emoji, operator-grade growth intelligence engine with direct canvas card injection, grounded in DTC beauty economics`

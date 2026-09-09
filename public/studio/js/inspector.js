@@ -208,18 +208,7 @@ window.StudioInspector = (function () {
       `;
     }
 
-    // 4. Quick-Connect Arrow Trigger (for cards)
-    if (type !== 'connection') {
-      html += `
-        <button class="insp-btn btn-connect" onclick="StudioInspector.startConnect('${data.id}')" title="Draw Connection Arrow (Miro-style)">
-          <svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Connect
-        </button>
-        <div class="insp-divider" aria-hidden="true"></div>
-      `;
-    }
-
-    // 5. Common Global Actions: Duplicate & Delete
+    // 4. Common Global Actions: Duplicate & Delete
     html += `
       <button class="insp-btn" onclick="StudioCore.duplicateSelected()" title="Duplicate Element (Cmd+D)">
         <svg class="insp-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -240,6 +229,17 @@ window.StudioInspector = (function () {
       el.classList.remove('font-sans', 'font-serif', 'font-mono', 'font-arabic');
       el.classList.add(`font-${font}`);
       data.fontFamily = font;
+
+      const fontCssVars = {
+        sans: "var(--font-body)",
+        serif: "var(--font-serif)",
+        mono: "var(--font-mono)",
+        arabic: "var(--font-arabic)"
+      };
+      if (fontCssVars[font]) {
+        el.style.setProperty('--card-font-family', fontCssVars[font]);
+      }
+
       window.StudioCore.triggerAutoSave();
       updatePosition();
     }
@@ -398,6 +398,28 @@ window.StudioInspector = (function () {
     }
   }
 
+  function handleDeviceCoverUpload(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      if (window.StudioCore && window.StudioCore.showToast) {
+        window.StudioCore.showToast('Please select a valid image file (PNG, JPG, WebP)', 'error');
+      }
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const dataUrl = e.target.result;
+      const input = document.getElementById('coverUrlInput');
+      if (input) input.value = dataUrl;
+      updateCoverPreview();
+      if (window.StudioCore && window.StudioCore.showToast) {
+        window.StudioCore.showToast('Image loaded! Click "Apply Cover" to update frame.');
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
   function applyCoverBanner() {
     if (!currentBannerFrameId) return;
     const input = document.getElementById('coverUrlInput');
@@ -459,6 +481,7 @@ window.StudioInspector = (function () {
     closeCoverModal,
     pickPreset,
     updateCoverPreview,
+    handleDeviceCoverUpload,
     applyCoverBanner,
     removeCoverBanner,
     startConnect

@@ -63,7 +63,7 @@ window.StudioCore = (function () {
           zIndex: 10,
           frameNumber: '01',
           titlePill: 'EXECUTIVE FOUNDATION',
-          headline: 'Positioning & Strategic Reality',
+          headline: 'Positioning &',
           serifAccent: 'Strategic Reality',
           description: 'Establishing elite category authority and pricing power before entering the market.',
           boxes: [
@@ -81,7 +81,7 @@ window.StudioCore = (function () {
           zIndex: 10,
           frameNumber: '02',
           titlePill: 'HAUTE OFFER LADDER',
-          headline: 'Two-Tier Retainer Architecture',
+          headline: 'Two-Tier',
           serifAccent: 'Retainer Architecture',
           description: 'A structured conversion bridge converting friction into ongoing partnership retainers.',
           boxes: [
@@ -179,7 +179,7 @@ window.StudioCore = (function () {
           toAnchor: 'left',
           style: 'dashed',
           color: 'slate',
-          label: '1. Foundation Positioning → Informs Haute Offer'
+          label: ''
         }
       ]
     };
@@ -369,8 +369,8 @@ window.StudioCore = (function () {
       zIndex: 10,
       frameNumber: count,
       titlePill: 'STRATEGY MODULE',
-      headline: 'New Strategic Container',
-      serifAccent: 'Strategic Container',
+      headline: 'Strategic Architecture',
+      serifAccent: 'Framework',
       description: 'Double-click to customize the strategy and pillars of this frame.',
       boxes: [
         {
@@ -1205,6 +1205,14 @@ window.StudioCore = (function () {
     a.remove();
   }
 
+  function takeCameraSnapshot() {
+    showToast('Capturing studio camera snapshot...');
+    setTimeout(() => {
+      exportPNG();
+      showToast('Camera snapshot saved as PNG!');
+    }, 120);
+  }
+
   function loadTemplate(templateKey) {
     if (!currentBoard) return;
     pushHistory();
@@ -1217,6 +1225,479 @@ window.StudioCore = (function () {
       title = 'Blank Canvas';
       newElements = [];
       newConnections = [];
+    } else if (templateKey === 'strategy') {
+      title = 'Executive Strategy Blueprint';
+      const starter = getBuiltinStarterBoard();
+      newElements = starter.elements;
+      newConnections = starter.connections;
+    } else if (templateKey === 'audit') {
+      title = 'Beauty Brand Friction Diagnostic Audit';
+      const f1Id = `frame-audit-1-${Date.now()}`;
+      const f2Id = `frame-audit-2-${Date.now()}`;
+      const s1Id = `sticky-audit-1-${Date.now()}`;
+      const s2Id = `sticky-audit-2-${Date.now()}`;
+      const tblId = `table-audit-${Date.now()}`;
+      const formId = `form-audit-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 120,
+          y: 120,
+          width: 640,
+          height: 520,
+          frameNumber: '01',
+          titlePill: 'CONVERSION DIAGNOSTIC',
+          headline: 'Acquisition & CAC',
+          serifAccent: 'Erosion',
+          description: 'Diagnosing media spend dropoff, landing page friction, and high customer acquisition cost leaks.',
+          boxes: [
+            { tag: 'TRAFFIC LEAK', tagColor: 'rose', title: 'Top-of-Funnel Dropoff', content: 'Paid Meta & TikTok video hooks converting at under 1.4% due to generic category positioning.' },
+            { tag: 'HOOK REMEDIATION', tagColor: 'gold', title: 'Micro-Batch Proof Angles', content: 'Laboratory formulation & dermatologist reaction assets outperforming polished studio ads 3:1.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 840,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'RETENTION & LTV',
+          headline: '90-Day Cohort',
+          serifAccent: 'Preservation',
+          description: 'Eliminating post-purchase silent churn and engineering predictable automated re-order velocity.',
+          boxes: [
+            { tag: 'CHURN VULNERABILITY', tagColor: 'rose', title: 'Single-Purchase Abandonment', content: '64% of first-time buyers do not re-order within 60 days without dedicated replenishment flow.' },
+            { tag: 'VIP MEMBERSHIP', tagColor: 'green', title: 'Private Concierge Replenishment', content: 'Automated 45-day SMS + async WhatsApp refill reminders with exclusive gift-with-purchase tier.' }
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 770,
+          y: 40,
+          width: 270,
+          height: 180,
+          color: 'yellow',
+          rotation: -1.5,
+          hasTape: true,
+          header: 'AUDIT ACTION',
+          content: 'Audit unboxing collateral immediately. Insert gold-embossed QR card linking directly to private VIP loyalty tier.',
+          footer: 'PRIORITY: HIGH'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1530,
+          y: 240,
+          width: 270,
+          height: 180,
+          color: 'rose',
+          rotation: 1.8,
+          hasTape: true,
+          header: 'CHURN DRIVER',
+          content: 'Replenishment emails are firing on day 14 instead of day 42. Customers feel spammed before the bottle is half empty.',
+          footer: 'FIX: CADENCE'
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 120,
+          y: 720,
+          width: 660,
+          title: 'Brand Friction & Remediation Matrix',
+          badge: 'DIAGNOSTIC MATRIX',
+          headers: ['Funnel Stage', 'Identified Friction', 'Remediation Protocol', 'Projected Lift'],
+          rows: [
+            ['Top of Funnel', 'High CAC ($48/order)', 'Deploy 6 Micro-Batch UGC Angles', '-35% Blended CAC'],
+            ['Cart & Checkout', '22% Abandonment', 'Express 1-Click Apple Pay & Klarna', '+14% CVR Lift'],
+            ['Post-Purchase', 'Single-Order Churn', 'Haute WhatsApp Replenishment', '+42% 90-Day LTV']
+          ]
+        },
+        {
+          id: formId,
+          type: 'form',
+          x: 840,
+          y: 720,
+          width: 580,
+          title: 'Client Intake Calibration Worksheet',
+          badge: 'INTAKE AUDIT',
+          desc: 'Parameters to calibrate before presenting audit roadmap to founders.',
+          fields: [
+            { id: 'f-1', type: 'input', label: '01. Current Monthly Gross Media Spend (AED / $)', badge: 'METRIC', instructions: 'Average across Meta, TikTok, and Google Ads:', value: '$45,000 / mo' },
+            { id: 'f-2', type: 'textarea', label: '02. Primary Operational Growth Bottleneck', badge: 'DEEP', instructions: 'Where does founder fatigue or supply friction bottleneck scale?', value: 'Custom formulation lead times require 8-week inventory forecasting.' }
+          ]
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-a1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' }
+      ];
+    } else if (templateKey === 'launch') {
+      title = 'Haute Product Launch Matrix';
+      const f1Id = `frame-launch-1-${Date.now()}`;
+      const f2Id = `frame-launch-2-${Date.now()}`;
+      const priceId = `pricing-launch-${Date.now()}`;
+      const tblId = `table-launch-${Date.now()}`;
+      const s1Id = `sticky-launch-1-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 640,
+          height: 520,
+          frameNumber: '01',
+          titlePill: 'PRE-LAUNCH TEASE',
+          headline: 'Anticipation & VIP',
+          serifAccent: 'Waitlist Sprint',
+          description: 'Building intense demand and exclusivity before public cart opening.',
+          boxes: [
+            { tag: 'SEEDING', tagColor: 'gold', title: 'Discreet Editor & Chemist Drop', content: 'Private delivery of 50 serialized wax-sealed sample vials to top dermatology and beauty editors under embargo.' },
+            { tag: 'WAITLIST PORTAL', tagColor: 'blue', title: 'Password-Gated Early Access', content: 'Pre-launch password unlocks 24-hour private shopping window with numbered certificate of authenticity.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 540,
+          frameNumber: '02',
+          titlePill: 'PUBLIC DROP DAY',
+          headline: 'Multi-Channel Global',
+          serifAccent: 'Activation',
+          description: 'Coordinated omnichannel launch sprint across digital flagship and private client channels.',
+          boxes: [
+            { tag: 'PUBLIC RELEASE', tagColor: 'green', title: 'Omnichannel Cart Open', content: 'Digital flagship live, SMS broadcast to 12k VIP list, and 3-part documentary drop on Instagram & TikTok.' },
+            { tag: 'SCARCITY CONTROL', tagColor: 'rose', title: 'Batch Allocation Cap', content: 'Initial batch strictly capped at 2,500 units to engineer genuine high-ticket sellout momentum.' }
+          ]
+        },
+        {
+          id: priceId,
+          type: 'pricing',
+          x: 1540,
+          y: 120,
+          width: 330,
+          isFeatured: true,
+          badge: 'LIMITED FOUNDER EDITION',
+          currency: 'AED',
+          figure: '1,250',
+          period: 'Collector Box Set',
+          features: [
+            'Hand-Numbered Collector Presentation Box',
+            'Full Active Barrier Repair Serum (50ml)',
+            'Anodized Rose-Gold Micro-Sculpt Device',
+            'Complimentary Concierge Refill Cartridge',
+            'Private Masterclass with Lead Biochemist'
+          ]
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 720,
+          width: 780,
+          title: 'Launch Master Countdown Schedule',
+          badge: 'EXECUTION TIMELINE',
+          headers: ['T-Minus', 'Milestone Deliverable', 'Execution Channel', 'Success Benchmark'],
+          rows: [
+            ['T-30 Days', 'Editor & Chemist NDA Seeding', 'Concierge White-Glove Mailer', '80%+ Organic Stories'],
+            ['T-14 Days', 'Teaser Campaign & Waitlist Open', 'Meta Dark Ads + Reels', '15,000 Verified Emails'],
+            ['T-24 Hours', 'Private VIP Password Cart Open', 'Exclusive SMS Drop', '$65k Gross in 24h'],
+            ['Day 0', 'Full Public Global Launch', 'Omnichannel Flagship', 'Batch Sellout in 72h']
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 930,
+          y: 720,
+          width: 290,
+          height: 200,
+          color: 'gold',
+          rotation: -2,
+          hasTape: true,
+          header: 'INVENTORY PROTOCOL',
+          content: 'Keep 150 serialized units held back in reserve for VIP replacements and celebrity stylist emergency requests.',
+          footer: 'LOGISTICS SPRINT'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-l1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' },
+        { id: `conn-l2`, from: f2Id, fromAnchor: 'right', to: priceId, toAnchor: 'left', style: 'dashed', color: 'green', label: '' }
+      ];
+    } else if (templateKey === 'creator') {
+      title = 'Creator & UGC Talent Roster Accelerator';
+      const f1Id = `frame-cr-1-${Date.now()}`;
+      const f2Id = `frame-cr-2-${Date.now()}`;
+      const tblId = `table-cr-${Date.now()}`;
+      const scriptId = `script-cr-${Date.now()}`;
+      const s1Id = `sticky-cr-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 640,
+          height: 500,
+          frameNumber: '01',
+          titlePill: 'TALENT ARCHETYPES',
+          headline: 'Creator Selection &',
+          serifAccent: 'Brand Affinity',
+          description: 'Categorizing creator talent by trust credibility rather than superficial vanity follower metrics.',
+          boxes: [
+            { tag: 'ARCHETYPE 1', tagColor: 'gold', title: 'Cosmetic Chemists & Derms', content: 'High-authority ingredient breakdowns, clinical claim validation, and microscopic skin texture testing.' },
+            { tag: 'ARCHETYPE 2', tagColor: 'rose', title: 'Haute Parisian Stylists', content: 'Luxury morning vanity routines, tactile textures, and natural light French girl aesthetic.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 500,
+          frameNumber: '02',
+          titlePill: 'USAGE & LICENSING',
+          headline: 'Paid Amplification &',
+          serifAccent: 'Rights Governance',
+          description: 'Maximizing asset longevity through 12-month paid whitelisting and dark-post syndication.',
+          boxes: [
+            { tag: 'WHITELISTING', tagColor: 'blue', title: 'Meta & TikTok Spark Authorization', content: 'Creators grant direct advertising permissions; ads run natively from creator handles with brand sponsor tag.' },
+            { tag: 'PERFORMANCE BONUS', tagColor: 'green', title: 'Tiered RoAS Royalties', content: 'Base flat delivery fee + 4% gross revenue bonus when creative sustains > 3.2x blended RoAS over 30 days.' }
+          ]
+        },
+        {
+          id: scriptId,
+          type: 'script',
+          x: 1540,
+          y: 120,
+          width: 360,
+          height: 180,
+          content: '"We admire your scientific integrity. Our Parisian lab is releasing a barrier formulation and we would love to send you an unreleased batch for honest skin calibration — no mandatory post required."'
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1540,
+          y: 350,
+          width: 290,
+          height: 180,
+          color: 'mint',
+          hasTape: true,
+          header: 'BRIEFING MANDATE',
+          content: 'No scripted bullet points. Creators must wear the formula for 10 consecutive days before recording raw b-roll.',
+          footer: 'UGC PROTOCOL'
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 680,
+          width: 900,
+          title: 'Active Creator Roster & Content Deliverables Pipeline',
+          badge: 'TALENT ROSTER',
+          headers: ['Creator Handle', 'Niche Archetype', 'Format', 'Deliverable Due', 'Fee (AED)', 'Status'],
+          rows: [
+            ['@camille.beaute', 'Haute Editorial', '3x 9:16 Reels', 'Oct 12', '4,500', 'Contract Signed'],
+            ['@dr.nour.derma', 'Dermatologist', '2x Deep Dive Video', 'Oct 15', '8,000', 'Product Seeded'],
+            ['@skinchem.atelier', 'Formulation Chemist', '1x Lab Breakdown', 'Oct 18', '6,200', 'In Production'],
+            ['@leila.dubai', 'Lifestyle Luxury', '4x Story Sets', 'Oct 22', '5,000', 'Outreach Sent']
+          ]
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-c1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' }
+      ];
+    } else if (templateKey === 'skincare') {
+      title = 'Skincare Formulation & Packaging Sprint';
+      const f1Id = `frame-skin-1-${Date.now()}`;
+      const f2Id = `frame-skin-2-${Date.now()}`;
+      const tblId = `table-skin-${Date.now()}`;
+      const s1Id = `sticky-skin-1-${Date.now()}`;
+      const s2Id = `sticky-skin-2-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 640,
+          height: 520,
+          frameNumber: '01',
+          titlePill: 'FORMULATION LAB',
+          headline: 'Active Molecule',
+          serifAccent: 'Architecture',
+          description: 'Designing clinical potency ratios, liposomal delivery vehicles, and active stability profiles.',
+          boxes: [
+            { tag: 'HERO ACTIVE', tagColor: 'gold', title: '5.2% Bio-Identical Peptide Complex', content: 'Precision micro-encapsulated copper peptides stimulating cellular collagen synthesis without irritation.' },
+            { tag: 'LIPID CARRIER', tagColor: 'green', title: 'Botanical Olive Squalane Carrier', content: 'Biocompatible lipid bilayer mimicking natural skin sebum for rapid trans-epidermal absorption.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 820,
+          y: 120,
+          width: 660,
+          height: 520,
+          frameNumber: '02',
+          titlePill: 'HAUTE PACKAGING',
+          headline: 'Tactile Vessel & Glass',
+          serifAccent: 'Engineering',
+          image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop',
+          description: 'Bespoke industrial design shielding active chemistry while delivering luxurious tactile haptics.',
+          boxes: [
+            { tag: 'GLASS VESSEL', tagColor: 'noir', title: 'Frosted French Flint Glass', content: 'Heavy 40% recycled glass with UV-opaque interior glaze to prevent photo-chemical degradation.' },
+            { tag: 'DISPENSER', tagColor: 'gold', title: 'Anodized Champagne Gold Pipette', content: '0.5ml precision metered dose dropper with airtight silicone gasket seal.' }
+          ]
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1540,
+          y: 120,
+          width: 280,
+          height: 190,
+          color: 'yellow',
+          hasTape: true,
+          header: 'CLINICAL TRIAL',
+          content: '56-day double-blind clinical study required for "Clinically Proven 42% Reduction in Fine Lines" claim.',
+          footer: 'REGULATORY COMPLIANCE'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1540,
+          y: 350,
+          width: 280,
+          height: 190,
+          color: 'mint',
+          hasTape: true,
+          header: 'SUSTAINABILITY',
+          content: '100% Forest Stewardship Council (FSC) certified uncoated paper for folding cartons with vegetable dye inks.',
+          footer: 'ECO PROTOCOL'
+        },
+        {
+          id: tblId,
+          type: 'table',
+          x: 100,
+          y: 700,
+          width: 860,
+          title: 'Stability, Safety & Regulatory Testing Protocols',
+          badge: 'LAB TESTING MATRIX',
+          headers: ['Testing Phase', 'Protocol Parameter', 'Duration', 'Regulatory Standard', 'Status'],
+          rows: [
+            ['Phase 01: Microbiology', 'Preservative Efficacy Testing (PET)', '28 Days', 'ISO 11930', 'Passed'],
+            ['Phase 02: Thermal Stability', 'Accelerated Aging at 45°C / 75% RH', '12 Weeks', 'EU Cosmetics Reg 1223/2009', 'Week 8 In Progress'],
+            ['Phase 03: Dermatological', 'Human Repeat Insult Patch Test (HRIPT)', '6 Weeks', 'Dermatologist Hypoallergenic', 'Recruiting Cohort'],
+            ['Phase 04: Packaging Leak', 'Vacuum Decay & Inversion Chamber', '7 Days', 'ASTM D4991', 'Approved']
+          ]
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-s1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' }
+      ];
+    } else if (templateKey === 'moodboard') {
+      title = 'Haute Brand Identity Moodboard';
+      const f1Id = `frame-mb-1-${Date.now()}`;
+      const f2Id = `frame-mb-2-${Date.now()}`;
+      const s1Id = `sticky-mb-1-${Date.now()}`;
+      const s2Id = `sticky-mb-2-${Date.now()}`;
+      const shapeId = `shape-mb-${Date.now()}`;
+
+      newElements = [
+        {
+          id: f1Id,
+          type: 'frame',
+          x: 100,
+          y: 120,
+          width: 620,
+          height: 520,
+          frameNumber: '01',
+          titlePill: 'VISUAL UNIVERSE',
+          headline: 'Haute Atelier',
+          serifAccent: 'Aesthetic Palette',
+          image: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=1200&auto=format&fit=crop',
+          description: 'Core design tokens, tactile paper materiality, and editorial color swatches.',
+          boxes: [
+            { tag: 'COLOR TOKENS', tagColor: 'gold', title: 'Champagne Gold & Noir', content: '#E2C799 (Warm Champagne), #C5A880 (Atelier Bronze), #FAF7F2 (Alabaster), #080706 (Obsidian Noir).' },
+            { tag: 'TYPOGRAPHY PAIRING', tagColor: 'rose', title: 'Cormorant Garamond + Plus Jakarta', content: 'Graceful high-contrast serifs for editorial headlines anchored by modern geometric grotesk for UI & body.' }
+          ]
+        },
+        {
+          id: f2Id,
+          type: 'frame',
+          x: 780,
+          y: 120,
+          width: 620,
+          height: 520,
+          frameNumber: '02',
+          titlePill: 'EDITORIAL DIRECTION',
+          headline: 'Architectural Raking',
+          serifAccent: 'Light & Shadows',
+          image: 'https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=1200&auto=format&fit=crop',
+          description: 'Art direction guidelines for photography, packaging flatlays, and tactile textures.',
+          boxes: [
+            { tag: 'LIGHTING', tagColor: 'blue', title: 'Low Sun Raking Light', content: 'Natural directional morning light casting long soft architectural shadows across limestone and travertine.' },
+            { tag: 'MATERIALITY', tagColor: 'gold', title: 'Uncoated Cotton & Cold Bronze', content: 'Rich heavy card stocks with blind debossing paired with brushed architectural metallic accents.' }
+          ]
+        },
+        {
+          id: shapeId,
+          type: 'shape',
+          shapeType: 'circle',
+          x: 1460,
+          y: 140,
+          width: 200,
+          height: 200,
+          text: 'POLISH\nPARIS • DUBAI\nATELIER',
+          zIndex: 20
+        },
+        {
+          id: s1Id,
+          type: 'sticky',
+          x: 1450,
+          y: 380,
+          width: 270,
+          height: 180,
+          color: 'noir',
+          hasTape: true,
+          header: 'BRAND RULE',
+          content: 'No synthetic rainbow gradients or harsh primary colors. Every asset must feel museum-grade and bespoke.',
+          footer: 'HAUTE ATELIER'
+        },
+        {
+          id: s2Id,
+          type: 'sticky',
+          x: 1450,
+          y: 600,
+          width: 270,
+          height: 180,
+          color: 'rose',
+          hasTape: true,
+          header: 'TACTILE DETAIL',
+          content: 'Blind embossing on thick Alabaster paper stock. Gold foil accents used sparingly at < 5% surface area.',
+          footer: 'PRINT SPEC'
+        }
+      ];
+
+      newConnections = [
+        { id: `conn-mb1`, from: f1Id, fromAnchor: 'right', to: f2Id, toAnchor: 'left', style: 'dashed', color: 'gold', label: '' }
+      ];
     } else if (templateKey === 'mindmap') {
       title = 'Personal Mind Map';
       const rootId = `shape-root-${Date.now()}`;
@@ -1284,10 +1765,10 @@ window.StudioCore = (function () {
       ];
 
       newConnections = [
-        { id: `conn-1`, from: rootId, fromAnchor: 'right', to: branch1Id, toAnchor: 'left', style: 'curved', color: 'rose', label: 'Positioning' },
-        { id: `conn-2`, from: rootId, fromAnchor: 'bottom', to: branch2Id, toAnchor: 'left', style: 'curved', color: 'gold', label: 'Monetization' },
-        { id: `conn-3`, from: rootId, fromAnchor: 'bottom', to: branch3Id, toAnchor: 'right', style: 'curved', color: 'blue', label: 'Traffic' },
-        { id: `conn-4`, from: rootId, fromAnchor: 'left', to: branch4Id, toAnchor: 'right', style: 'curved', color: 'green', label: 'Delivery' }
+        { id: `conn-1`, from: rootId, fromAnchor: 'right', to: branch1Id, toAnchor: 'left', style: 'curved', color: 'rose', label: '' },
+        { id: `conn-2`, from: rootId, fromAnchor: 'bottom', to: branch2Id, toAnchor: 'left', style: 'curved', color: 'gold', label: '' },
+        { id: `conn-3`, from: rootId, fromAnchor: 'bottom', to: branch3Id, toAnchor: 'right', style: 'curved', color: 'blue', label: '' },
+        { id: `conn-4`, from: rootId, fromAnchor: 'left', to: branch4Id, toAnchor: 'right', style: 'curved', color: 'green', label: '' }
       ];
     } else if (templateKey === 'planner') {
       title = 'Weekly Project Planner';
@@ -1330,8 +1811,10 @@ window.StudioCore = (function () {
         });
       });
     } else {
-      window.location.href = '/studio?id=starter-strategy-board';
-      return;
+      const starter = getBuiltinStarterBoard();
+      title = starter.title;
+      newElements = starter.elements;
+      newConnections = starter.connections;
     }
 
     currentBoard.title = title;
@@ -1392,6 +1875,7 @@ window.StudioCore = (function () {
     exportJSON,
     importJSON,
     exportPNG,
+    takeCameraSnapshot,
     loadTemplate,
     toggleTheme,
     toggleShortcutsModal,

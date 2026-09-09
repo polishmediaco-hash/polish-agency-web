@@ -58,30 +58,55 @@
         <span class="dock-theme-icon">☾</span> Dark
       </button>
 
-      <!-- Import & Export -->
-      <button class="dock-btn" onclick="document.getElementById('importFileInput').click()" title="Import board JSON from hard drive">
-        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        Import
-      </button>
-      <button class="dock-btn" onclick="StudioCore.exportPNG()" title="Export board as high-res PNG">
-        <svg class="dock-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        PNG
-      </button>
-      <button class="dock-btn" onclick="StudioCore.toggleShortcutsModal()" title="Keyboard Shortcuts (?)">
-        ?
-      </button>
+      <!-- User Profile Capsule & Dropdown Menu -->
+      <div id="studioUserCapsule" class="profile-capsule-wrap" style="position:relative;">
+        <button type="button" id="studioUserAvatarBtn" class="avatar-trigger-btn" onclick="toggleProfileDropdown(event)" title="Account & Tools Menu">
+          <div id="studioUserAvatar" class="user-avatar-circle">AD</div>
+          <svg class="avatar-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
 
-      <div class="dock-divider"></div>
-      <a id="btnClientView" href="/view" target="_blank" class="dock-btn" style="text-decoration:none; color:var(--brand-gold); font-weight:700" title="Open Client Presentation View (↗)">
-        <svg class="dock-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        Client View ↗
-      </a>
-      <a href="/boards" class="dock-btn" style="text-decoration:none" title="All Boards Dashboard">
-        Boards
-      </a>
-      <!-- User Account Avatar -->
-      <div id="studioUserCapsule" style="display:flex; align-items:center; gap:6px; margin-left:4px">
-        <div id="studioUserAvatar" style="width:28px; height:28px; border-radius:50%; background:#080706; color:#F5E6D3; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:800; cursor:pointer" title="Workspace Profile">AD</div>
+        <!-- Profile & Tools Dropdown Menu -->
+        <div id="userProfileDropdown" class="profile-dropdown-menu" style="display:none;">
+          <div class="dropdown-header">
+            <div id="dropdownUserName" class="dropdown-user-name">Executive Advisor</div>
+            <div id="dropdownUserEmail" class="dropdown-user-email">advisor@polishmediaco.com</div>
+          </div>
+          <div class="dropdown-divider"></div>
+
+          <a href="/boards" class="dropdown-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>My Boards Dashboard</span>
+          </a>
+
+          <a id="btnClientView" href="/view" target="_blank" class="dropdown-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Client Presentation View ↗</span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <button type="button" class="dropdown-item" onclick="StudioCore.exportPNG(); closeProfileDropdown();">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>Export High-Res PNG</span>
+          </button>
+
+          <button type="button" class="dropdown-item" onclick="document.getElementById('importFileInput').click(); closeProfileDropdown();">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Import Board (JSON)</span>
+          </button>
+
+          <button type="button" class="dropdown-item" onclick="StudioCore.toggleShortcutsModal(); closeProfileDropdown();">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Keyboard Shortcuts (?)</span>
+          </button>
+
+          <div class="dropdown-divider"></div>
+
+          <button type="button" class="dropdown-item item-signout" onclick="handleStudioSignOut()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Sign Out</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -211,37 +236,69 @@
         <button class="modal-close-btn" onclick="toggleTemplateModal()">✕</button>
       </div>
 
-      <div class="template-grid">
-        <!-- 1. Blank Canvas -->
-        <div class="template-option-card" onclick="StudioCore.loadTemplate('blank'); toggleTemplateModal();">
-          <div class="template-badge">CLEAN SLATE</div>
-          <h4>Blank Canvas</h4>
-          <p>An empty infinite dot grid. Zero pre-populated objects, pure creative space.</p>
-          <span class="template-action-link">Open Canvas →</span>
+      <div class="template-grid" style="grid-template-columns: repeat(2, 1fr); max-height: 60vh; overflow-y: auto; padding-right: 4px;">
+        <!-- 1. High-Ticket Strategy Blueprint -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('strategy'); toggleTemplateModal();">
+          <div class="template-badge">AGENCY BLUEPRINT</div>
+          <h4>Executive Strategy Blueprint</h4>
+          <p>3-phase master framework: positioning foundation, two-tier retainer architecture, matrix table, and diagnostic worksheet.</p>
+          <span class="template-action-link">Load Blueprint →</span>
         </div>
 
-        <!-- 2. Personal Mind Map -->
-        <div class="template-option-card" onclick="StudioCore.loadTemplate('mindmap'); toggleTemplateModal();">
-          <div class="template-badge">IDEATION</div>
-          <h4>Personal Mind Map</h4>
-          <p>Central concept hub with 4 color-coded thematic branch clusters and bezier links.</p>
-          <span class="template-action-link">Load Mind Map →</span>
+        <!-- 2. Brand & Creative Audit -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('audit'); toggleTemplateModal();">
+          <div class="template-badge">GROWTH DIAGNOSTIC</div>
+          <h4>Brand & Creative Audit</h4>
+          <p>Full DTC diagnostic: packaging critique, TikTok/Reels hook teardown, CVR friction map, and retention review.</p>
+          <span class="template-action-link">Load Audit →</span>
         </div>
 
-        <!-- 3. Weekly Project Planner -->
+        <!-- 3. Omnichannel DTC Launch Roadmap -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('launch'); toggleTemplateModal();">
+          <div class="template-badge">GO-TO-MARKET</div>
+          <h4>Omnichannel DTC Launch Roadmap</h4>
+          <p>Phased product launch roadmap: formulation testing, VIP waitlist drops, PR seeding, and Sephora/retail expansion.</p>
+          <span class="template-action-link">Load Roadmap →</span>
+        </div>
+
+        <!-- 4. Creator & UGC Growth Engine -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('creator'); toggleTemplateModal();">
+          <div class="template-badge">INFLUENCER ENGINE</div>
+          <h4>Creator & UGC Growth Engine</h4>
+          <p>Talent seeding tiers, paid whitelisting funnel, performance creative iterations, and rights-licensing matrices.</p>
+          <span class="template-action-link">Load Engine →</span>
+        </div>
+
+        <!-- 5. Luxury Skincare Product Lineup -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('skincare'); toggleTemplateModal();">
+          <div class="template-badge">PRODUCT ARCHITECTURE</div>
+          <h4>Luxury Skincare Lineup & Offer Ladder</h4>
+          <p>Product architecture mapping Hero Serum, Night Repair Elixir, Cleanser, and high-margin VIP subscription bundles.</p>
+          <span class="template-action-link">Load Lineup →</span>
+        </div>
+
+        <!-- 6. Weekly Sprint & Kanban Planner -->
         <div class="template-option-card" onclick="StudioCore.loadTemplate('planner'); toggleTemplateModal();">
-          <div class="template-badge">EXECUTION</div>
-          <h4>Weekly Project Planner</h4>
-          <p>Monday–Friday sprint frames, prioritized daily outcomes, and action stickies.</p>
+          <div class="template-badge">OPERATIONS</div>
+          <h4>Weekly Sprint & Production Kanban</h4>
+          <p>Agile production board with Backlog, Creative Production, Executive Review, and Deployed containers.</p>
           <span class="template-action-link">Load Planner →</span>
         </div>
 
-        <!-- 4. High-Ticket Strategy -->
-        <div class="template-option-card" onclick="StudioCore.loadTemplate('strategy'); toggleTemplateModal();">
-          <div class="template-badge">AGENCY BLUEPRINT</div>
-          <h4>High-Ticket Strategy</h4>
-          <p>Elite positioning foundation, two-tier offer ladder, and execution matrix table.</p>
-          <span class="template-action-link">Load Strategy →</span>
+        <!-- 7. Haute Brand Identity Moodboard -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('moodboard'); toggleTemplateModal();">
+          <div class="template-badge">CREATIVE DIRECTION</div>
+          <h4>Haute Brand Identity Moodboard</h4>
+          <p>Editorial visual curation board with aesthetic guidelines, luxury typography pairings, and tactile color swatches.</p>
+          <span class="template-action-link">Load Moodboard →</span>
+        </div>
+
+        <!-- 8. Blank Canvas -->
+        <div class="template-option-card" onclick="StudioCore.loadTemplate('blank'); toggleTemplateModal();">
+          <div class="template-badge">CLEAN SLATE</div>
+          <h4>Blank Infinite Canvas</h4>
+          <p>Pure infinite dot grid with zero pre-populated items. Absolute freedom for custom bespoke strategy sessions.</p>
+          <span class="template-action-link">Open Blank Canvas →</span>
         </div>
       </div>
     </div>
@@ -318,9 +375,20 @@
         </div>
       </div>
 
+      <!-- Device Upload Area -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px;">Upload Image from Device</div>
+        <div class="cover-dropzone" onclick="document.getElementById('coverDeviceFileInput').click()" style="border: 2px dashed rgba(197, 168, 128, 0.4); border-radius: 14px; padding: 16px; text-align: center; cursor: pointer; background: var(--surface-subtle); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--brand-gold)'; this.style.background='rgba(197, 168, 128, 0.08)'" onmouseout="this.style.borderColor='rgba(197, 168, 128, 0.4)'; this.style.background='var(--surface-subtle)'">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--brand-gold); margin-bottom: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-ink);">Choose Image from Mac / Device</div>
+          <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 2px;">PNG, JPG, WebP up to 10MB</div>
+        </div>
+        <input type="file" id="coverDeviceFileInput" accept="image/*" style="display:none" onchange="StudioInspector.handleDeviceCoverUpload(event)" />
+      </div>
+
       <!-- URL Input Field -->
       <div style="margin-bottom: 1.25rem;">
-        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px;">Image Web Address</div>
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px;">Or Image Web Address</div>
         <input type="url" id="coverUrlInput" placeholder="https://images.unsplash.com/photo-..." style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border-subtle); background: var(--surface-subtle); color: var(--text-ink); font-size: 0.82rem; font-family: var(--font-mono);" oninput="StudioInspector.updateCoverPreview()" />
       </div>
 
@@ -355,8 +423,26 @@
   <!-- ========================================================== -->
   <div id="viewport">
     <div id="board-canvas">
-      <!-- Dynamic SVG Connectors -->
-      <svg id="svg-connections"></svg>
+      <!-- Dynamic SVG Connectors Layer with Directional Arrowheads -->
+      <svg id="svg-connections" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowhead-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#E2C799" />
+          </marker>
+          <marker id="arrowhead-noir" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#1A1715" />
+          </marker>
+          <marker id="arrowhead-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#64748B" />
+          </marker>
+          <marker id="arrowhead-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#E11D48" />
+          </marker>
+          <marker id="arrowhead-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#047857" />
+          </marker>
+        </defs>
+      </svg>
 
       <!-- Elements dynamically injected here by ElementsFactory -->
     </div>
@@ -373,7 +459,12 @@
     <div id="zoomLabel" class="zoom-label">75%</div>
     <button class="vp-btn" onclick="CanvasEngine.zoomDelta(0.15)" title="Zoom In">+</button>
     <div class="dock-divider" style="height:14px; margin:0 2px"></div>
+    <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Center Camera (100%)">⌖</button>
     <button class="vp-btn" onclick="CanvasEngine.fitToContent()" title="Fit to Content">⊡</button>
+    <div class="dock-divider" style="height:14px; margin:0 2px"></div>
+    <button class="vp-btn" onclick="StudioCore.takeCameraSnapshot()" title="Capture Camera Snapshot (PNG)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    </button>
   </div>
 
   <!-- ========================================================== -->
@@ -425,10 +516,26 @@
         return;
       }
 
-      const avatar = document.getElementById('studioUserAvatar');
-      if (avatar && activeUser) {
-        const name = activeUser.displayName || activeUser.email.split('@')[0];
-        avatar.textContent = (name.slice(0, 2) || 'AD').toUpperCase();
+      function renderUserAvatar(user) {
+        const avatar = document.getElementById('studioUserAvatar');
+        const nameEl = document.getElementById('dropdownUserName');
+        const emailEl = document.getElementById('dropdownUserEmail');
+        if (!avatar || !user) return;
+
+        const displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'Advisor');
+        const email = user.email || 'advisor@polishmediaco.com';
+        if (nameEl) nameEl.textContent = displayName;
+        if (emailEl) emailEl.textContent = email;
+
+        if (user.photoURL) {
+          avatar.innerHTML = `<img src="${user.photoURL}" alt="${displayName}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;" onerror="this.parentElement.textContent='${(displayName.slice(0,2)||'AD').toUpperCase()}'" />`;
+        } else {
+          avatar.textContent = (displayName.slice(0, 2) || 'AD').toUpperCase();
+        }
+      }
+
+      if (activeUser) {
+        renderUserAvatar(activeUser);
       }
 
       // Initialize all engines
@@ -451,6 +558,27 @@
         setTimeout(() => StudioPresentation.start(), 500);
       }
     });
+
+    // Profile Dropdown Controls
+    function toggleProfileDropdown(e) {
+      if (e) e.stopPropagation();
+      const dropdown = document.getElementById('userProfileDropdown');
+      if (!dropdown) return;
+      dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function closeProfileDropdown() {
+      const dropdown = document.getElementById('userProfileDropdown');
+      if (dropdown) dropdown.style.display = 'none';
+    }
+
+    async function handleStudioSignOut() {
+      closeProfileDropdown();
+      if (window.PolishFirebase) {
+        await PolishFirebase.logout();
+      }
+      window.location.replace('/login');
+    }
 
     // Toolbar Flyout Helpers
     function toggleShapeMenu(e) {
@@ -513,6 +641,7 @@
 
     window.addEventListener('click', () => {
       closeAllFlyouts();
+      closeProfileDropdown();
     });
 
     function toggleTemplateModal() {

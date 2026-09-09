@@ -43,7 +43,7 @@ window.ConnectorEngine = (function () {
             fromAnchor: activeStartPort.dataset.port,
             to: toParent,
             toAnchor: targetPort.dataset.port,
-            label: 'Connection Step',
+            label: '',
             style: 'dashed',
             color: 'slate'
           };
@@ -66,6 +66,7 @@ window.ConnectorEngine = (function () {
     if (!tempLine) {
       tempLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       tempLine.setAttribute('class', 'temp-flow-line');
+      tempLine.setAttribute('marker-end', 'url(#arrowhead-gold)');
       svgLayer.appendChild(tempLine);
     }
   }
@@ -103,9 +104,11 @@ window.ConnectorEngine = (function () {
       g.setAttribute('class', 'flow-group');
       g.dataset.id = conn.id;
 
+      const strokeClass = conn.style === 'solid' ? 'flow-line-solid' : 'flow-line-dashed';
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('class', `flow-line color-${conn.color || 'slate'}`);
+      path.setAttribute('class', `flow-line color-${conn.color || 'slate'} ${strokeClass}`);
       path.setAttribute('d', d);
+      path.setAttribute('marker-end', `url(#arrowhead-${conn.color || 'slate'})`);
 
       path.addEventListener('click', (e) => {
         if (window.StudioCore) {
@@ -117,8 +120,8 @@ window.ConnectorEngine = (function () {
       g.appendChild(path);
       svgLayer.appendChild(g);
 
-      // Midpoint Label Pill
-      if (conn.label) {
+      // Midpoint Label Pill only if explicitly given
+      if (conn.label && conn.label.trim() !== '') {
         const midX = (start.x + end.x) / 2;
         const midY = (start.y + end.y) / 2;
 
@@ -163,7 +166,10 @@ window.ConnectorEngine = (function () {
       const g = svgLayer.querySelector(`.flow-group[data-id="${conn.id}"]`);
       if (g) {
         const path = g.querySelector('path');
-        if (path) path.setAttribute('d', d);
+        if (path) {
+          path.setAttribute('d', d);
+          path.setAttribute('marker-end', `url(#arrowhead-${conn.color || 'slate'})`);
+        }
       }
 
       // Update Pill Position
@@ -183,14 +189,14 @@ window.ConnectorEngine = (function () {
 
     switch (anchor) {
       case 'right':
-        return { x: left + width, y: top + height * 0.45 };
+        return { x: left + width, y: top + height * 0.5 };
       case 'bottom':
-        return { x: left + width / 2, y: top + height };
+        return { x: left + width * 0.5, y: top + height };
       case 'top':
-        return { x: left + width / 2, y: top };
+        return { x: left + width * 0.5, y: top };
       case 'left':
       default:
-        return { x: left, y: top + height * 0.45 };
+        return { x: left, y: top + height * 0.5 };
     }
   }
 
@@ -207,25 +213,81 @@ window.ConnectorEngine = (function () {
     let cp1x = sx, cp1y = sy, cp2x = ex, cp2y = ey;
 
     if (sAnchor === 'right' && eAnchor === 'left') {
-      cp1x = sx + Math.max(dx * 0.55, 60);
-      cp1y = sy;
-      cp2x = ex - Math.max(dx * 0.55, 60);
-      cp2y = ey;
+      if (ex >= sx) {
+        const curvature = Math.max(dx * 0.5, 40);
+        cp1x = sx + curvature;
+        cp1y = sy;
+        cp2x = ex - curvature;
+        cp2y = ey;
+      } else {
+        const curvature = Math.max(60, dy * 0.4);
+        cp1x = sx + 60;
+        cp1y = sy + (ey >= sy ? curvature : -curvature);
+        cp2x = ex - 60;
+        cp2y = ey + (ey >= sy ? -curvature : curvature);
+      }
+    } else if (sAnchor === 'left' && eAnchor === 'right') {
+      if (ex <= sx) {
+        const curvature = Math.max(dx * 0.5, 40);
+        cp1x = sx - curvature;
+        cp1y = sy;
+        cp2x = ex + curvature;
+        cp2y = ey;
+      } else {
+        const curvature = Math.max(60, dy * 0.4);
+        cp1x = sx - 60;
+        cp1y = sy + (ey >= sy ? curvature : -curvature);
+        cp2x = ex + 60;
+        cp2y = ey + (ey >= sy ? -curvature : curvature);
+      }
     } else if (sAnchor === 'bottom' && eAnchor === 'top') {
-      cp1x = sx;
-      cp1y = sy + Math.max(dy * 0.55, 60);
-      cp2x = ex;
-      cp2y = ey - Math.max(dy * 0.55, 60);
-    } else if (sAnchor === 'right' && eAnchor === 'top') {
-      cp1x = sx + Math.max(dx * 0.6, 60);
+      if (ey >= sy) {
+        const curvature = Math.max(dy * 0.5, 40);
+        cp1x = sx;
+        cp1y = sy + curvature;
+        cp2x = ex;
+        cp2y = ey - curvature;
+      } else {
+        const curvature = Math.max(60, dx * 0.4);
+        cp1x = sx + (ex >= sx ? curvature : -curvature);
+        cp1y = sy + 60;
+        cp2x = ex + (ex >= sx ? -curvature : curvature);
+        cp2y = ey - 60;
+      }
+    } else if (sAnchor === 'top' && eAnchor === 'bottom') {
+      if (ey <= sy) {
+        const curvature = Math.max(dy * 0.5, 40);
+        cp1x = sx;
+        cp1y = sy - curvature;
+        cp2x = ex;
+        cp2y = ey + curvature;
+      } else {
+        const curvature = Math.max(60, dx * 0.4);
+        cp1x = sx + (ex >= sx ? curvature : -curvature);
+        cp1y = sy - 60;
+        cp2x = ex + (ex >= sx ? -curvature : curvature);
+        cp2y = ey + 60;
+      }
+    } else if (sAnchor === 'right') {
+      cp1x = sx + Math.max(dx * 0.5, 50);
       cp1y = sy;
-      cp2x = ex;
-      cp2y = ey - Math.max(dy * 0.6, 60);
-    } else if (sAnchor === 'bottom' && eAnchor === 'left') {
-      cp1x = sx;
-      cp1y = sy + Math.max(dy * 0.6, 60);
-      cp2x = ex - Math.max(dx * 0.6, 60);
+      cp2x = ex + (eAnchor === 'left' ? -Math.max(dx * 0.5, 50) : 0);
       cp2y = ey;
+    } else if (sAnchor === 'left') {
+      cp1x = sx - Math.max(dx * 0.5, 50);
+      cp1y = sy;
+      cp2x = ex + (eAnchor === 'right' ? Math.max(dx * 0.5, 50) : 0);
+      cp2y = ey;
+    } else if (sAnchor === 'bottom') {
+      cp1x = sx;
+      cp1y = sy + Math.max(dy * 0.5, 50);
+      cp2x = ex;
+      cp2y = ey + (eAnchor === 'top' ? -Math.max(dy * 0.5, 50) : 0);
+    } else if (sAnchor === 'top') {
+      cp1x = sx;
+      cp1y = sy - Math.max(dy * 0.5, 50);
+      cp2x = ex;
+      cp2y = ey + (eAnchor === 'bottom' ? Math.max(dy * 0.5, 50) : 0);
     } else {
       cp1x = sx + (ex - sx) * 0.5;
       cp1y = sy;

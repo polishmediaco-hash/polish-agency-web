@@ -33,9 +33,10 @@ async function runTest() {
     await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 2 });
 
     // ── Test 1: Load Page with Dynamic Parameters ──
-    const testUrl = 'http://localhost:3000/presentation?client=Celestia%20Cosmetics&name=Yasmine&board=polish-cosmetics-launch&video=dQw4w9WgXcQ&title=Haute%20Formulation%20%26%20DTC%20Growth%20Blueprint';
+    const testUrl = 'http://127.0.0.1:3000/presentation?client=Celestia%20Cosmetics&name=Yasmine&board=polish-cosmetics-launch&video=dQw4w9WgXcQ&title=90-Day%20Growth%20Roadmap';
     console.log(`[Test 1] Navigating to: ${testUrl}`);
-    await page.goto(testUrl, { waitUntil: 'networkidle2', timeout: 15000 });
+    await page.goto(testUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await new Promise(r => setTimeout(r, 800));
 
     const pageTitle = await page.title();
     console.log(`✓ Page Title: "${pageTitle}"`);
@@ -49,14 +50,19 @@ async function runTest() {
     const heroClient = await page.$eval('#heroClientName', el => el.textContent.trim());
     const heroTitle = await page.$eval('#heroPresentationTitle', el => el.textContent.trim());
     const signoffClient = await page.$eval('#signoffClientName', el => el.textContent.trim());
+    const headerCtaText = await page.$eval('.pres-btn-header-cta', el => el.textContent.trim());
 
     console.log(`✓ Header Client: "${headerClient}"`);
     console.log(`✓ Hero Client: "${heroClient}"`);
     console.log(`✓ Hero Title: "${heroTitle}"`);
     console.log(`✓ Signoff Client: "${signoffClient}"`);
+    console.log(`✓ Header CTA Text: "${headerCtaText}"`);
 
     if (headerClient !== 'Celestia Cosmetics' || heroClient !== 'Celestia Cosmetics') {
       throw new Error('Client name mismatch in DOM');
+    }
+    if (headerCtaText !== 'Book') {
+      throw new Error(`Expected header CTA to be "Book", got "${headerCtaText}"`);
     }
 
     // ── Test 3: Video Stage & YouTube Iframe Mounting ──
@@ -153,8 +159,8 @@ async function runTest() {
 
     // Re-navigate with &admin=1 to verify admin mode
     console.log('Navigating with &admin=1...');
-    await page.goto(testUrl + '&admin=1', { waitUntil: 'networkidle2' });
-    await delay(400);
+    await page.goto(testUrl + '&admin=1', { waitUntil: 'domcontentloaded' });
+    await new Promise(r => setTimeout(r, 600));
 
     const isConfigVisibleAdmin = await page.$eval('#btnOpenConfig', el => window.getComputedStyle(el).display !== 'none');
     console.log(`✓ Admin Config Button Visible for Admin (?admin=1): ${isConfigVisibleAdmin}`);
@@ -169,7 +175,7 @@ async function runTest() {
 
     // Update client name in input and save
     await page.$eval('#modalInputClient', el => el.value = 'Aurora Skincare');
-    await page.$eval('#modalInputTitle', el => el.value = 'Lamellar Barrier Regimen Strategy');
+    await page.$eval('#modalInputTitle', el => el.value = '90-Day Growth Roadmap');
     await page.click('#btnSaveModal');
     await delay(500);
 
@@ -179,10 +185,11 @@ async function runTest() {
       throw new Error('Modal save did not dynamically update page state');
     }
 
-    // ── Test 9: Mobile Viewport (iPhone 15 Pro 393x852) ──
+    // ── Test 9: Mobile Viewport & Touch Targets ──
     console.log('\n[Test 9] Verifying Mobile Layout (393px)...');
-    await page.setViewport({ width: 393, height: 852, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
-    await page.goto('http://localhost:3000/presentation?client=Celestia%20Cosmetics&video=dQw4w9WgXcQ', { waitUntil: 'networkidle2' });
+    await page.setViewport({ width: 393, height: 852, isMobile: true, hasTouch: true });
+    await page.goto('http://127.0.0.1:3000/presentation?client=Celestia%20Cosmetics&video=dQw4w9WgXcQ', { waitUntil: 'domcontentloaded' });
+    await new Promise(r => setTimeout(r, 600));
     await delay(600);
 
     const mobileMetrics = await page.evaluate(() => {

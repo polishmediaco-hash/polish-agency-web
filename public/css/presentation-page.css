@@ -203,21 +203,17 @@ body.presentation-body {
 .pres-btn-header-cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 16px;
+  justify-content: center;
+  padding: 6px 18px;
   border-radius: var(--radius-full);
   background: linear-gradient(135deg, #F5E6D3 0%, #E2C799 60%, #C5A880 100%);
   color: #080706;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-decoration: none;
   box-shadow: 0 2px 14px rgba(226, 199, 153, 0.35);
   transition: all 0.2s ease;
-}
-
-.pres-btn-header-cta .pres-btn-text-short {
-  display: none;
 }
 
 .pres-btn-header-cta:hover {
@@ -992,26 +988,13 @@ video.pres-native-video {
   }
 
   .pres-btn-header-cta {
-    padding: 0 14px;
+    padding: 0 16px;
     min-height: 44px;
-    font-size: 0.76rem;
+    font-size: 0.8rem;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .pres-btn-header-cta .pres-btn-text-full {
-    display: none;
-  }
-
-  .pres-btn-header-cta .pres-btn-text-short {
-    display: inline;
-    font-weight: 700;
-  }
-
-  .pres-btn-header-cta .pres-btn-arrow-icon {
-    display: none;
   }
   
   .pres-main-wrapper {

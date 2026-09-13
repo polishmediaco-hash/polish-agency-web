@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const path = require("path");
 const fs = require("fs");
 
-const TARGET_URL = process.env.TARGET_URL || "http://localhost:3000/presentation?client=Celestia%20Cosmetics&name=Yasmine&board=polish-cosmetics-launch&video=dQw4w9WgXcQ&title=Haute%20Formulation%20%26%20DTC%20Growth%20Blueprint";
+const TARGET_URL = process.env.TARGET_URL || "http://127.0.0.1:3000/presentation?client=Celestia%20Cosmetics&name=Yasmine&board=polish-cosmetics-launch&video=dQw4w9WgXcQ&title=90-Day%20Growth%20Roadmap";
 const OUT_DIR = process.env.OUT_DIR || "/Users/Macbook Pro/.gemini/antigravity/brain/da97ccae-cb9e-43f8-9f14-90c244781201";
 
 const VIEWPORTS = [
@@ -28,8 +28,8 @@ async function capture() {
   for (const vp of VIEWPORTS) {
     const page = await browser.newPage();
     await page.setViewport({ width: vp.width, height: vp.height, isMobile: vp.isMobile });
-    await page.goto(TARGET_URL, { waitUntil: "networkidle2", timeout: 20000 });
-    await new Promise(r => setTimeout(r, 600));
+    await page.goto(TARGET_URL, { waitUntil: "domcontentloaded", timeout: 15000 });
+    await new Promise(r => setTimeout(r, 1200));
 
     const filename = `pres_${vp.id}_${vp.width}.png`;
     const filepath = path.join(OUT_DIR, filename);

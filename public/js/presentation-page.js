@@ -12,7 +12,7 @@
     client: 'Celestia Cosmetics',
     name: 'Yasmine',
     board: 'polish-cosmetics-launch',
-    title: 'Strategic Walkthrough & Board Review',
+    title: 'Growth Strategy',
     // Default video recording ID (Unlisted YouTube ID or MP4)
     video: '', // Safe clean default; provided via ?video=
     chapters: [
@@ -43,7 +43,7 @@
   // ── 2. DOM Hydration ─────────────────────────────────────────────────────────
   function hydratePage(state) {
     // Document Title
-    document.title = `POLISH Media Co. × ${state.client} — Executive Strategy Walkthrough`;
+    document.title = `POLISH Media Co. × ${state.client} — Strategy Walkthrough`;
 
     // Header Lockup
     const headerClientEl = document.getElementById('headerClientName');
@@ -54,11 +54,13 @@
     if (heroClientEl) heroClientEl.textContent = state.client;
 
     const heroTitleEl = document.getElementById('heroPresentationTitle');
-    if (heroTitleEl) heroTitleEl.textContent = state.title;
+    if (heroTitleEl) {
+      heroTitleEl.textContent = state.title || 'Growth strategy walkthrough and interactive whiteboard.';
+    }
 
     // Board Header Title
     const boardTitleEl = document.getElementById('boardHeaderTitle');
-    if (boardTitleEl) boardTitleEl.textContent = `${state.client} • Strategic Whiteboard Blueprint`;
+    if (boardTitleEl) boardTitleEl.textContent = `${state.client} • Strategy Board`;
 
     // Signoff Section
     const signoffClientEl = document.getElementById('signoffClientName');
@@ -72,7 +74,7 @@
     // External Bridges: WhatsApp Founder Line (+213 662 41 77 61)
     const waButtons = document.querySelectorAll('.js-btn-wa');
     const waText = encodeURIComponent(
-      `Hi Faycal, I just watched the strategic walkthrough for ${state.client} (${state.title}). Let's discuss deploying the blueprint.`
+      `Hi Faycal, I just watched the strategy walkthrough for ${state.client}. Let's discuss deploying the blueprint.`
     );
     const waUrl = `https://wa.me/213662417761?text=${waText}`;
     waButtons.forEach(btn => btn.setAttribute('href', waUrl));

@@ -584,6 +584,25 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
 6. ✅ **Automated Visual Verification & Artifacts**:
    - Captured 10 high-resolution Retina screenshots in `docs/assets/invoices/` across Desktop Studio, Alabaster Sheet, Banking Details, Arabic RTL, Obsidian VIP, Print Emulation, and Mobile Phone Viewports.
 
+### Sprint 18: Laser Pointer Stacking Context & Direct Click-Toggle Engine (Completed September 2026)
+1. ✅ **Root Cause Discovery & Resolution**:
+   - In `studio.css`, an older definition of `.presentation-bar` assigned `z-index: 2000;`. Because `studio.css` is loaded after `board-elements.css`, it overrode `z-index: 10000000;`.
+   - When laser mode was activated, `.presentation-laser-canvas` (`z-index: 9999998;` with `pointer-events: auto;`) covered the entire screen, including the presentation bar.
+   - Consequently, all mouse clicks on `.btn-laser` (and next/prev/timer buttons) were intercepted by the transparent canvas at z-index 9999998, drawing laser points instead of clicking the buttons. The user was trapped in laser mode and could not turn it off without exiting presentation.
+2. ✅ **Architectural Stacking Fix**:
+   - Raised `.presentation-bar` to `z-index: 10000005 !important;` with explicit `pointer-events: auto !important;` in both `board-elements.css` and `studio.css`.
+   - Assigned `.presentation-laser-canvas` to `z-index: 9999990;`.
+   - Set `.presentation-laser-dot` to `z-index: 9999995;` with `pointer-events: none !important;`.
+   - Elevated `#presentationOrderModal` to `z-index: 10000020 !important;`.
+3. ✅ **Interactive Refinements & Fallback Safeguards**:
+   - **Direct Button Click Toggle**: Clicking `.btn-laser` toggles the laser ON and OFF seamlessly.
+   - **Escape Key Fallback**: If the laser pointer is active, pressing `Escape` deactivates the laser first while remaining in presentation mode. Pressing `Escape` again exits presentation mode.
+   - **Sequencer Clean Transition**: Opening the slide sequencer (`openSequencer`) automatically deactivates the laser pointer.
+   - **Smart Cursor & Dot Dimming**: When hovering over `.presentation-bar` or modal controls, `.presentation-laser-dot` fades out smoothly (`opacity: 0`), and the native cursor is displayed cleanly (`cursor: pointer`). When returning to the canvas, the glowing laser dot smoothly fades back in.
+4. ✅ **Rigorous Verification**:
+   - Expanded `tests/test_laser_and_branding.js` with direct UI button click activation, second-click deactivation, Escape key fallbacks, and control clicks while laser is active.
+   - Both test suites (`test_laser_and_branding.js` and `test_sequencer_e2e.js`) passed 100%.
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat

@@ -444,6 +444,47 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
 6. ✅ **Full E2E Headless Browser Testing**:
    - Verified via Puppeteer with 100% test pass rate across zero-frame and mixed-frame board configurations with 0 runtime errors.
 
+### Sprint 10: Presentation Slide Sequencer & Custom Pitch Order Screen (Completed September 2026)
+1. ✅ **Dedicated Slide Sequencer Modal (`#presentationOrderModal`)**:
+   - Touching the dock presentation button (`Present Board (P)`) or pressing <kbd>P</kbd> opens a high-prestige Slide Sequencer dialog.
+   - Displays every frame, child strategy card, and standalone board element with its hierarchical badge (`FRAME`, `CARD`, `SLIDE`), title, and parent frame context.
+   - Live counter pill displays active slides count and estimated pitch duration (e.g. `11 Active · ~9 min pitch`).
+2. ✅ **Tactile Dual Reordering Engine**:
+   - **Touch & Accessibility Friendly**: Each row features dedicated `▲` / `▼` step movement buttons for instant 1-tap reordering on iPads, tablets, and laptops.
+   - **Desktop Drag & Drop**: Tactile drag handle with visual `.is-dragging` state and reorder drop indicator.
+3. ✅ **Non-Destructive Slide Skipping (Eye Toggle)**:
+   - Dedicated visibility toggle (`.pom-toggle-btn`) allowing advisors to hide secondary or sensitive cards from the presentation sequence without deleting them from the canvas.
+   - Skipped slides display with strikethrough typography, reduced opacity, and an amber/red off indicator.
+4. ✅ **Atomic Sequence Persistence**:
+   - Custom sequence is atomically saved to `currentBoard.presentationOrder` with `{ id, skipped }` payloads.
+   - Automatically synchronizes across browser reloads via `localStorage` (`polish_pitch_order_<boardId>`) and cloud auto-save.
+   - "Auto Order" button allows 1-click reset back to natural spatial reading order (left-to-right, top-to-bottom).
+5. ✅ **Live Presentation Bar Integration**:
+   - Added `☰ Order` navigation button to the floating presentation bar and <kbd>O</kbd> keybinding during active presentations to open the sequencer on the fly.
+   - Direct <kbd>Shift+P</kbd> shortcut bypasses sequencer for instant pitch launch when needed.
+6. ✅ **Full E2E Automated Verification**:
+   - Validated in `tests/test_sequencer_e2e.js` using headless Puppeteer: confirmed modal visibility, item population, reordering via arrows, visibility toggling, pitch mode launch, and presentation bar reopening.
+
+### Sprint 11: Favicon, Social Link Preview & Brand Card Overhaul (Completed September 2026)
+1. ✅ **Website Favicon Upgrade & Optical Parity**:
+   - Replaced legacy squircle-boxed `/assets/favicon.svg` with the full-bleed standalone Golden Ratio Pipette mark with faceted diamond core (`#F5E6D3`) and 4-stop Champagne Gold gradient on transparent background.
+   - Built native multi-resolution `public/favicon.ico` (16×16, 32×32, 48×48) for direct legacy queries.
+   - Updated HTML headers across all site pages (`index.html`, `apply.html`, `book.html`, `creators.html`, `intake.html`, `brand-pack.html`, `eman-alkatheeri.html`, and `studio/*.html`) with `logo-gold-mark.png` fallbacks and cache-buster `?v=23.0`.
+2. ✅ **Open Graph & Social Link Preview Clean Architecture**:
+   - Discovered and completely purged unauthorized placeholder city names (`PARIS • NEW YORK • DUBAI • TOKYO • ZÜRICH`) from all SVG templates, scripts, and social assets.
+   - Designed and rendered the official minimalist 1200×630 social card (`/assets/og-card.png` & `/assets/og-card.svg`):
+     - Deep Obsidian Noir (`#080706`) canvas with subtle ambient champagne luminescence.
+     - Hairline beveled gold specular rim (`rgba(226, 199, 153, 0.22)`).
+     - Centered high-definition Golden Ratio mark in Champagne Gold.
+     - Pure architectural `POLISH MEDIA CO.` typography lockup. Zero filler, zero fake locations.
+3. ✅ **Platform-Wide Preview Testing & Simulation**:
+   - Simulated and validated rich card behavior across **Instagram Direct Messages** and **WhatsApp** in both Dark Mode and Light Mode.
+   - Verified that the solid Obsidian Noir card completely eliminates the "white background washed-out transparency" bug on iOS iMessage and Apple Mail.
+4. ✅ **Live Production Verification (Vercel)**:
+   - Verified live deployment responses on `https://polishmediaco.com/` (HTTP 200).
+   - Confirmed `https://polishmediaco.com/assets/og-card.png` returns HTTP 200 (132 KB, live on edge CDN).
+   - Confirmed `https://polishmediaco.com/assets/favicon.svg` returns HTTP 200 (1.6 KB, live on edge CDN).
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat

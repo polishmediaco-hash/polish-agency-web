@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 84 files · ~627,516 words
+- 85 files · ~640,160 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 971 nodes · 1604 edges · 74 communities (67 shown, 5 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.85)
+- 989 nodes · 1642 edges · 73 communities (66 shown, 5 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 40 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0bb2d00d`
+- Built from commit: `2bdb31ad`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -34,7 +34,6 @@
 - PolishI18n
 - connector-engine.js
 - marquee-selection.js
-- capture-live-views.js
 - dependencies
 - drawing-engine.js
 - presentation.js
@@ -107,7 +106,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (74 total, 5 thin omitted)
+## Communities (73 total, 5 thin omitted)
 
 ### Community 0 - "studio-core.js"
 Cohesion: 0.10
@@ -118,8 +117,8 @@ Cohesion: 0.16
 Nodes (31): addBoxToFrame(), applyCoverBanner(), closeCoverModal(), cycleAlign(), handleDeviceCoverUpload(), hide(), init(), openCoverModal() (+23 more)
 
 ### Community 2 - "boards.js"
-Cohesion: 0.18
-Nodes (11): { boardsService }, BUNDLED_BOARDS_DIR, express, fs, getStarterBoard(), path, readBoardFile(), { requireUserOrAdminAuth } (+3 more)
+Cohesion: 0.15
+Nodes (13): express, { boardsService }, BUNDLED_BOARDS_DIR, express, fs, getStarterBoard(), path, readBoardFile() (+5 more)
 
 ### Community 3 - "comments-engine.js"
 Cohesion: 0.20
@@ -146,12 +145,12 @@ Cohesion: 0.30
 Nodes (16): BASE_DIR, CONCEPTS_DIR, createDropperBottleMockupSvg(), createHorizontalLockupSvg(), createStandaloneMarkSvg(), createVerticalLockupSvg(), fs, generateAllConcepts() (+8 more)
 
 ### Community 9 - "generate-social-avatars.js"
-Cohesion: 0.15
-Nodes (16): ASSET_SPECS, AVATAR_DIR, COLORS, createAvatarSvg(), EDITIONS_DIR, { execSync }, fs, generateAll() (+8 more)
+Cohesion: 0.07
+Nodes (30): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, ASSET_SPECS, AVATAR_DIR (+22 more)
 
 ### Community 10 - "package.json"
 Cohesion: 0.10
-Nodes (20): author, description, devDependencies, puppeteer, license, main, name, overrides (+12 more)
+Nodes (19): author, description, devDependencies, puppeteer, license, main, name, overrides (+11 more)
 
 ### Community 11 - "index.js"
 Cohesion: 0.11
@@ -181,10 +180,6 @@ Nodes (7): calculateBezierPath(), endDrawing(), getAnchorCoords(), getPortCenter
 Cohesion: 0.31
 Nodes (5): clearMultiSelection(), handlePointerMove(), handlePointerUp(), init(), startMarquee()
 
-### Community 19 - "capture-live-views.js"
-Cohesion: 0.14
-Nodes (11): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, fs, http (+3 more)
-
 ### Community 20 - "dependencies"
 Cohesion: 0.25
 Nodes (8): dependencies, compression, cors, dotenv, express, express-rate-limit, helmet, @supabase/supabase-js
@@ -194,12 +189,12 @@ Cohesion: 0.48
 Nodes (5): attachStrokeEvents(), bindEvents(), getSmoothSvgPath(), init(), renderAllStrokes()
 
 ### Community 22 - "presentation.js"
-Cohesion: 0.20
-Nodes (18): applySpotlight(), clearSpotlight(), findFrameChildren(), flyToSlide(), initLaser(), next(), nextSpotlight(), onLaserMove() (+10 more)
+Cohesion: 0.13
+Nodes (32): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+24 more)
 
 ### Community 23 - "api.js"
 Cohesion: 0.10
-Nodes (17): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+9 more)
+Nodes (16): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+8 more)
 
 ### Community 24 - "app.js"
 Cohesion: 0.67
@@ -370,7 +365,7 @@ Cohesion: 1.00
 Nodes (3): initKineticTypography(), isReducedMotion(), revealKineticTitle()
 
 ### Community 75 - "invoice.js"
-Cohesion: 0.18
+Cohesion: 0.19
 Nodes (33): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), closeArchiveDrawer(), computeTotals(), escapeHTML(), filterArchiveList(), formatAmount() (+25 more)
 
 ### Community 76 - "POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)"
@@ -378,21 +373,21 @@ Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
 ## Knowledge Gaps
-- **333 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+328 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 408 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **336 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+331 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 411 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `puppeteer` connect `capture-live-views.js` to `generate-social-avatars.js`, `package.json`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **Why does `express` connect `package.json` to `boards.js`, `index.js`, `api.js`?**
+- **Why does `puppeteer` connect `generate-social-avatars.js` to `package.json`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _333 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _336 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

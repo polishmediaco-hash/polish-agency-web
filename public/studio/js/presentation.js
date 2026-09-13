@@ -1,15 +1,17 @@
 /**
  * POLISH Board Studio — Presentation & Pitch Engine 2.0
- * Universal 60fps camera sequencing for client closing meetings.
+ * Universal 60fps camera sequencing with custom pitch deck slide ordering.
  * Features:
- *  - Universal slide sequence: presents frames, internal cards, AND standalone elements.
- *  - Never blocks if no frames exist: seamlessly presents all canvas elements in sequence.
+ *  - Slide Order Sequencer Modal: Drag or tap ▲/▼ to order frames & elements.
+ *  - Persistent custom pitch deck sequence per board.
+ *  - Slide visibility toggle (skip secondary elements from pitch without deleting).
+ *  - Universal slide sequence: presents frames, child cards, and standalone elements.
  *  - Interactive champagne gold laser pointer (L)
  *  - Live pitch presentation timer with emerald status dot
  *  - Progressive card spotlighting with golden halo luminescence
- *  - Macro God View overview (G / O)
+ *  - Macro God View overview (G)
  *  - Fullscreen immersive pitch mode (F)
- *  - Jump-to-step dropdown selector with hierarchy tree
+ *  - Hierarchical step selector with tree markers
  */
 
 window.StudioPresentation = (function () {
@@ -17,6 +19,8 @@ window.StudioPresentation = (function () {
   let currentStepIndex = 0;
   let steps = [];
   let isGodView = false;
+  let sequencerItems = [];
+  let draggedIndex = null;
 
   // Laser Pointer State
   let isLaserActive = false;
@@ -25,6 +29,15 @@ window.StudioPresentation = (function () {
   // Pitch Timer State
   let timerInterval = null;
   let timerSeconds = 0;
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
 
   function initLaser() {
     if (!laserDotEl) {
@@ -179,7 +192,7 @@ window.StudioPresentation = (function () {
     return 'Strategy Element';
   }
 
-  function buildPresentationSequence() {
+  function buildPresentationSequence(forceAuto = false) {
     const frameEls = Array.from(document.querySelectorAll('.board-frame')).filter(isValidSlideElement);
 
     // Compute bounding boxes of frames
@@ -250,72 +263,353 @@ window.StudioPresentation = (function () {
       }
     });
 
-    const sequence = [];
+    const candidateSteps = [];
 
     if (framesWithBounds.length > 0) {
       framesWithBounds.forEach((fb, fIdx) => {
-        sequence.push({
+        const frameId = fb.el.id || `frame-${fIdx}`;
+        fb.el.id = frameId;
+        candidateSteps.push({
+          id: frameId,
           type: 'frame',
           el: fb.el,
           title: getSlideTitle(fb.el),
+          subtitle: `${fb.children.length} enclosed cards`,
           frameIndex: fIdx,
           hasChildren: fb.children.length > 0,
-          childrenCount: fb.children.length
+          childrenCount: fb.children.length,
+          skipped: false
         });
 
         fb.children.forEach((childEl, cIdx) => {
-          sequence.push({
+          const childId = childEl.id || `child-${fIdx}-${cIdx}`;
+          childEl.id = childId;
+          candidateSteps.push({
+            id: childId,
             type: 'element',
             el: childEl,
             parentFrame: fb.el,
             siblings: fb.children,
             title: getSlideTitle(childEl),
+            subtitle: `Inside: ${getSlideTitle(fb.el)}`,
             frameIndex: fIdx,
-            childIndex: cIdx
+            childIndex: cIdx,
+            skipped: false
           });
         });
       });
 
-      // Also append standalone elements
-      standaloneElements.forEach(el => {
-        sequence.push({
+      standaloneElements.forEach((el, sIdx) => {
+        const elId = el.id || `standalone-${sIdx}`;
+        el.id = elId;
+        candidateSteps.push({
+          id: elId,
           type: 'element',
           el: el,
           parentFrame: null,
           siblings: standaloneElements,
           title: getSlideTitle(el),
+          subtitle: 'Standalone Canvas Element',
           frameIndex: -1,
-          childIndex: -1
+          childIndex: -1,
+          skipped: false
         });
       });
     } else {
       // No frames exist: Every element is a presentable slide
       standaloneElements.forEach((el, idx) => {
-        sequence.push({
+        const elId = el.id || `elem-${idx}`;
+        el.id = elId;
+        candidateSteps.push({
+          id: elId,
           type: 'element',
           el: el,
           parentFrame: null,
           siblings: standaloneElements,
           title: getSlideTitle(el),
+          subtitle: 'Standalone Canvas Element',
           frameIndex: -1,
-          childIndex: idx
+          childIndex: idx,
+          skipped: false
         });
       });
     }
 
-    return sequence;
+    if (forceAuto) {
+      return candidateSteps;
+    }
+
+    // Reconcile with saved custom order if present
+    let savedOrder = null;
+    if (window.StudioCore && window.StudioCore.getCurrentBoard) {
+      const board = window.StudioCore.getCurrentBoard();
+      if (board && Array.isArray(board.presentationOrder) && board.presentationOrder.length > 0) {
+        savedOrder = board.presentationOrder;
+      }
+    }
+
+    if (!savedOrder) {
+      try {
+        const boardId = (window.StudioCore && window.StudioCore.getCurrentBoardId) ?
+          window.StudioCore.getCurrentBoardId() : 'starter-strategy-board';
+        const cached = localStorage.getItem(`polish_pitch_order_${boardId}`);
+        if (cached) savedOrder = JSON.parse(cached);
+      } catch (_) {}
+    }
+
+    if (savedOrder && Array.isArray(savedOrder)) {
+      const stepMap = new Map();
+      candidateSteps.forEach(s => stepMap.set(s.id, s));
+
+      const reconciled = [];
+      savedOrder.forEach(entry => {
+        const step = stepMap.get(entry.id);
+        if (step) {
+          step.skipped = !!entry.skipped;
+          reconciled.push(step);
+          stepMap.delete(entry.id);
+        }
+      });
+
+      stepMap.forEach(newStep => {
+        reconciled.push(newStep);
+      });
+
+      return reconciled;
+    }
+
+    return candidateSteps;
   }
 
-  function start() {
-    steps = buildPresentationSequence();
+  // ==========================================================
+  // SLIDE SEQUENCER & ORDERING MODAL
+  // ==========================================================
 
-    if (steps.length === 0) {
+  function openSequencer() {
+    sequencerItems = buildPresentationSequence(false);
+    renderSequencerList();
+
+    const modal = document.getElementById('presentationOrderModal');
+    if (modal) {
+      modal.style.display = 'flex';
+    }
+
+    window.addEventListener('keydown', onSequencerKeydown);
+  }
+
+  function closeSequencer() {
+    const modal = document.getElementById('presentationOrderModal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+    window.removeEventListener('keydown', onSequencerKeydown);
+  }
+
+  function onSequencerKeydown(e) {
+    const modal = document.getElementById('presentationOrderModal');
+    if (!modal || modal.style.display === 'none') return;
+
+    if (e.key === 'Escape') {
+      closeSequencer();
+      e.preventDefault();
+    } else if (e.key === 'Enter') {
+      startFromSequencer();
+      e.preventDefault();
+    }
+  }
+
+  function renderSequencerList() {
+    const listEl = document.getElementById('pomList');
+    const totalPill = document.getElementById('pomTotalSteps');
+    const durSub = document.getElementById('pomTotalDuration');
+    if (!listEl) return;
+
+    listEl.innerHTML = '';
+
+    const activeCount = sequencerItems.filter(i => !i.skipped).length;
+    const skippedCount = sequencerItems.length - activeCount;
+
+    if (totalPill) {
+      totalPill.textContent = `${activeCount} Active ${skippedCount > 0 ? `(${skippedCount} Hidden)` : ''}`;
+    }
+    if (durSub) {
+      durSub.textContent = `~${Math.max(1, Math.ceil(activeCount * 0.75))} min pitch`;
+    }
+
+    if (sequencerItems.length === 0) {
+      listEl.innerHTML = `
+        <li style="padding: 2.2rem; text-align: center; color: #8C827A; font-size: 0.85rem;">
+          No frames or cards found on canvas.<br>Add strategy cards from the dock to sequence your pitch deck.
+        </li>
+      `;
+      return;
+    }
+
+    sequencerItems.forEach((item, idx) => {
+      const li = document.createElement('li');
+      li.className = `pom-item ${item.skipped ? 'is-skipped' : ''}`;
+      li.draggable = true;
+      li.dataset.id = item.id;
+      li.dataset.index = idx;
+
+      const badgeType = item.type === 'frame' ? 'FRAME' : (item.parentFrame ? 'CARD' : 'SLIDE');
+      const badgeClass = item.type === 'frame' ? 'badge-frame' : (item.parentFrame ? 'badge-card' : 'badge-slide');
+
+      li.innerHTML = `
+        <div class="pom-drag-handle" title="Drag to reorder">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg>
+        </div>
+
+        <div class="pom-reorder-arrows">
+          <button type="button" class="pom-arrow-btn pom-btn-up" onclick="StudioPresentation.moveStep(${idx}, -1)" title="Move up" ${idx === 0 ? 'disabled' : ''}>▲</button>
+          <button type="button" class="pom-arrow-btn pom-btn-down" onclick="StudioPresentation.moveStep(${idx}, 1)" title="Move down" ${idx === sequencerItems.length - 1 ? 'disabled' : ''}>▼</button>
+        </div>
+
+        <span class="pom-step-num">${String(idx + 1).padStart(2, '0')}</span>
+
+        <span class="pom-badge-pill ${badgeClass}">${badgeType}</span>
+
+        <div class="pom-item-content">
+          <div class="pom-item-title">${escapeHtml(item.title)}</div>
+          <div class="pom-item-sub">${escapeHtml(item.subtitle)}</div>
+        </div>
+
+        <button type="button" class="pom-toggle-btn ${item.skipped ? 'is-off' : 'is-on'}" onclick="StudioPresentation.toggleStepVisibility('${item.id}')" title="${item.skipped ? 'Include in pitch' : 'Skip during pitch'}">
+          ${item.skipped ?
+            `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>` :
+            `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`
+          }
+        </button>
+      `;
+
+      // Drag and Drop listeners
+      li.addEventListener('dragstart', (e) => {
+        draggedIndex = idx;
+        li.classList.add('is-dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', idx);
+      });
+
+      li.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+      });
+
+      li.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if (draggedIndex === null || draggedIndex === idx) return;
+        const movedItem = sequencerItems.splice(draggedIndex, 1)[0];
+        sequencerItems.splice(idx, 0, movedItem);
+        saveCustomOrder();
+        renderSequencerList();
+      });
+
+      li.addEventListener('dragend', () => {
+        li.classList.remove('is-dragging');
+        draggedIndex = null;
+      });
+
+      listEl.appendChild(li);
+    });
+  }
+
+  function moveStep(fromIdx, delta) {
+    const toIdx = fromIdx + delta;
+    if (toIdx < 0 || toIdx >= sequencerItems.length) return;
+    const item = sequencerItems.splice(fromIdx, 1)[0];
+    sequencerItems.splice(toIdx, 0, item);
+    saveCustomOrder();
+    renderSequencerList();
+  }
+
+  function toggleStepVisibility(id) {
+    const item = sequencerItems.find(i => i.id === id);
+    if (!item) return;
+    item.skipped = !item.skipped;
+    saveCustomOrder();
+    renderSequencerList();
+  }
+
+  function resetToAutoOrder() {
+    if (window.StudioCore && window.StudioCore.getCurrentBoard) {
+      const board = window.StudioCore.getCurrentBoard();
+      if (board) {
+        delete board.presentationOrder;
+        if (window.StudioCore.triggerAutoSave) window.StudioCore.triggerAutoSave();
+      }
+    }
+
+    try {
+      const boardId = (window.StudioCore && window.StudioCore.getCurrentBoardId) ?
+        window.StudioCore.getCurrentBoardId() : 'starter-strategy-board';
+      localStorage.removeItem(`polish_pitch_order_${boardId}`);
+    } catch (_) {}
+
+    sequencerItems = buildPresentationSequence(true);
+    renderSequencerList();
+
+    if (window.StudioCore && window.StudioCore.showToast) {
+      window.StudioCore.showToast('Pitch deck reset to natural reading order', 'info');
+    }
+  }
+
+  function saveCustomOrder() {
+    const orderData = sequencerItems.map(item => ({
+      id: item.id,
+      skipped: !!item.skipped
+    }));
+
+    if (window.StudioCore && window.StudioCore.getCurrentBoard) {
+      const board = window.StudioCore.getCurrentBoard();
+      if (board) {
+        board.presentationOrder = orderData;
+        if (window.StudioCore.triggerAutoSave) {
+          window.StudioCore.triggerAutoSave();
+        }
+      }
+    }
+
+    try {
+      const boardId = (window.StudioCore && window.StudioCore.getCurrentBoardId) ?
+        window.StudioCore.getCurrentBoardId() : 'starter-strategy-board';
+      localStorage.setItem(`polish_pitch_order_${boardId}`, JSON.stringify(orderData));
+    } catch (_) {}
+  }
+
+  function startFromSequencer() {
+    saveCustomOrder();
+    closeSequencer();
+
+    const activeSteps = sequencerItems.filter(s => !s.skipped);
+    if (activeSteps.length === 0) {
+      if (window.StudioCore && window.StudioCore.showToast) {
+        window.StudioCore.showToast('All slides are hidden. Click the eye icon to enable at least one slide.', 'warning');
+      }
+      return;
+    }
+
+    startWithSteps(activeSteps);
+  }
+
+  // ==========================================================
+  // PRESENTATION RUNTIME ENGINE
+  // ==========================================================
+
+  function start() {
+    const activeSteps = buildPresentationSequence(false).filter(s => !s.skipped);
+
+    if (activeSteps.length === 0) {
       if (window.StudioCore && window.StudioCore.showToast) {
         window.StudioCore.showToast('Add strategy cards or frames to enter Presentation Mode', 'warning');
       }
       return;
     }
 
+    startWithSteps(activeSteps);
+  }
+
+  function startWithSteps(newSteps) {
+    steps = newSteps;
     isPresenting = true;
     document.body.classList.add('is-presenting');
     currentStepIndex = 0;
@@ -548,9 +842,19 @@ window.StudioPresentation = (function () {
       return;
     }
 
+    // Modal open check
+    const modal = document.getElementById('presentationOrderModal');
+    if (modal && modal.style.display === 'flex') {
+      return;
+    }
+
     if (!isPresenting) {
-      if (e.key === 'P' && e.shiftKey) {
-        start();
+      if (e.key === 'p' || e.key === 'P') {
+        if (e.shiftKey) {
+          start();
+        } else {
+          openSequencer();
+        }
         e.preventDefault();
       }
       return;
@@ -582,8 +886,11 @@ window.StudioPresentation = (function () {
     } else if (e.key === 'f' || e.key === 'F') {
       toggleFullscreen();
       e.preventDefault();
-    } else if (e.key === 'g' || e.key === 'G' || e.key === 'o' || e.key === 'O') {
+    } else if (e.key === 'g' || e.key === 'G') {
       toggleGodView();
+      e.preventDefault();
+    } else if (e.key === 'o' || e.key === 'O') {
+      openSequencer();
       e.preventDefault();
     } else if (e.key === 'Escape') {
       stop();
@@ -599,11 +906,18 @@ window.StudioPresentation = (function () {
     nextMajorSection,
     prevMajorSection,
     goToStep,
+    openSequencer,
+    closeSequencer,
+    moveStep,
+    toggleStepVisibility,
+    resetToAutoOrder,
+    startFromSequencer,
     toggleGodView,
     toggleLaser,
     toggleFullscreen,
     clearSpotlight,
     isPresenting: () => isPresenting,
-    getSteps: () => steps
+    getSteps: () => steps,
+    getSequencerItems: () => sequencerItems
   };
 })();

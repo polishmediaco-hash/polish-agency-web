@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "public/studio/js/presentation.js": {
-    "mtime": 1789265822.19877,
-    "seen": 1789265844.021648,
-    "ast_hash": "f1e857fa4d4f9b6980f4da4fa1a888ad",
+    "mtime": 1789266977.6474502,
+    "seen": 1789267113.324,
+    "ast_hash": "c636ac90482047ded31722fb6a54bef3",
     "semantic_hash": ""
   },
   "public/studio/js/studio-ai.js": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789266013.904681,
-    "seen": 1789266024.947426,
-    "ast_hash": "bfe6c4a5c7a9d2d9affa5db4503d3ab5",
+    "mtime": 1789266374.1439424,
+    "seen": 1789266377.438611,
+    "ast_hash": "6f1fb6cfa50bed54a6064c38459ea449",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789265483.6924062,
-    "seen": 1789265554.335181,
-    "ast_hash": "4dc133ddcb10cbf1602b15d67dee4dde",
+    "mtime": 1789266811.578095,
+    "seen": 1789266877.550451,
+    "ast_hash": "46bd2dec62ebc4b980dee852cdbab9a5",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -486,9 +486,9 @@
     "semantic_hash": ""
   },
   "public/studio/index.html": {
-    "mtime": 1789265737.0042682,
-    "seen": 1789265844.022356,
-    "ast_hash": "f560d72584aecba9f76f34f26b48c8a9",
+    "mtime": 1789266935.1293523,
+    "seen": 1789267113.324826,
+    "ast_hash": "fdb68f02fa16167073d1458bc8018b76",
     "semantic_hash": ""
   },
   "public/studio/login.html": {
@@ -1830,9 +1830,9 @@
     "semantic_hash": ""
   },
   "public/js/invoice.js": {
-    "mtime": 1789263917.2987635,
-    "seen": 1789265459.612441,
-    "ast_hash": "21f33525ff08d8e8d48edd9e2965648d",
+    "mtime": 1789266735.466617,
+    "seen": 1789266877.550421,
+    "ast_hash": "b3fc9290885c21aa23e8240a7c94d7db",
     "semantic_hash": ""
   },
   "docs/INVOICE_GUIDELINES.md": {
@@ -1860,9 +1860,9 @@
     "semantic_hash": ""
   },
   "public/admin-preview.html": {
-    "mtime": 1789264958.9959612,
-    "seen": 1789265459.613207,
-    "ast_hash": "a840504cfe03f0cdbb811c9de4d781c6",
+    "mtime": 1789266817.2659593,
+    "seen": 1789266877.5504498,
+    "ast_hash": "367d12e6c213cfd73373707eeb1294ab",
     "semantic_hash": ""
   },
   "public/assets/logo-dark.svg": {
@@ -1953,6 +1953,24 @@
     "mtime": 1789265984.9244661,
     "seen": 1789266024.948166,
     "ast_hash": "02d5cb0cd23523099199b2bcaceb9ea7",
+    "semantic_hash": ""
+  },
+  "scripts/supabase-schema.sql": {
+    "mtime": 1789261507.1780927,
+    "seen": 1789266877.550433,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "tests/test_sequencer_e2e.js": {
+    "mtime": 1789267070.9655743,
+    "seen": 1789267113.324246,
+    "ast_hash": "b7fa2e0abe7fc5e264e92b3e63641278",
+    "semantic_hash": ""
+  },
+  "tests/screenshots/slide-sequencer-modal.png": {
+    "mtime": 1789267074.4266505,
+    "seen": 1789267113.327641,
+    "ast_hash": "70a3bf7f3c7a5a438df6cf0148f4fdb0",
     "semantic_hash": ""
   }
 }

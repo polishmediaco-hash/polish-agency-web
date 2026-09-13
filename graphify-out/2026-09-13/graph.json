@@ -1997,30 +1997,6 @@
       "source_location": "L32"
     },
     {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_captureliveviews",
-      "label": "captureLiveViews()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "captureliveviews()",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L17"
-    },
-    {
-      "id": "scripts_test_miro_suite_runmirosuite",
-      "label": "runMiroSuite()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "runmirosuite()",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L6"
-    },
-    {
       "id": "server_routes_boards_ensureboardsseeded",
       "label": "ensureBoardsSeeded()",
       "_callable": true,
@@ -2165,16 +2141,16 @@
       "source_location": "L189"
     },
     {
-      "id": "public_studio_js_presentation_applyspotlight",
-      "label": "applySpotlight()",
+      "id": "public_studio_js_presentation_buildpresentationsequence",
+      "label": "buildPresentationSequence()",
       "_callable": true,
       "_origin": "ast",
       "community": 22,
       "community_name": "presentation.js",
       "file_type": "code",
-      "norm_label": "applyspotlight()",
+      "norm_label": "buildpresentationsequence()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L345"
+      "source_location": "L195"
     },
     {
       "id": "public_studio_js_presentation_clearspotlight",
@@ -2186,31 +2162,67 @@
       "file_type": "code",
       "norm_label": "clearspotlight()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L364"
+      "source_location": "L808"
     },
     {
-      "id": "public_studio_js_presentation_findframechildren",
-      "label": "findFrameChildren()",
+      "id": "public_studio_js_presentation_closesequencer",
+      "label": "closeSequencer()",
       "_callable": true,
       "_origin": "ast",
       "community": 22,
       "community_name": "presentation.js",
       "file_type": "code",
-      "norm_label": "findframechildren()",
+      "norm_label": "closesequencer()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L278"
+      "source_location": "L400"
     },
     {
-      "id": "public_studio_js_presentation_flytoslide",
-      "label": "flyToSlide()",
+      "id": "public_studio_js_presentation_escapehtml",
+      "label": "escapeHtml()",
       "_callable": true,
       "_origin": "ast",
       "community": 22,
       "community_name": "presentation.js",
       "file_type": "code",
-      "norm_label": "flytoslide()",
+      "norm_label": "escapehtml()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L205"
+      "source_location": "L33"
+    },
+    {
+      "id": "public_studio_js_presentation_focusonelement",
+      "label": "focusOnElement()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "focusonelement()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L713"
+    },
+    {
+      "id": "public_studio_js_presentation_getslidetitle",
+      "label": "getSlideTitle()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "getslidetitle()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L141"
+    },
+    {
+      "id": "public_studio_js_presentation_gotostep",
+      "label": "goToStep()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "gotostep()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L745"
     },
     {
       "id": "public_studio_js_presentation_initlaser",
@@ -2222,7 +2234,31 @@
       "file_type": "code",
       "norm_label": "initlaser()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L30"
+      "source_location": "L42"
+    },
+    {
+      "id": "public_studio_js_presentation_isvalidslideelement",
+      "label": "isValidSlideElement()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "isvalidslideelement()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L125"
+    },
+    {
+      "id": "public_studio_js_presentation_movestep",
+      "label": "moveStep()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "movestep()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L516"
     },
     {
       "id": "public_studio_js_presentation_next",
@@ -2234,19 +2270,19 @@
       "file_type": "code",
       "norm_label": "next()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L168"
+      "source_location": "L650"
     },
     {
-      "id": "public_studio_js_presentation_nextspotlight",
-      "label": "nextSpotlight()",
+      "id": "public_studio_js_presentation_nextmajorsection",
+      "label": "nextMajorSection()",
       "_callable": true,
       "_origin": "ast",
       "community": 22,
       "community_name": "presentation.js",
       "file_type": "code",
-      "norm_label": "nextspotlight()",
+      "norm_label": "nextmajorsection()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L315"
+      "source_location": "L664"
     },
     {
       "id": "public_studio_js_presentation_onlasermove",
@@ -2258,7 +2294,31 @@
       "file_type": "code",
       "norm_label": "onlasermove()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L44"
+      "source_location": "L56"
+    },
+    {
+      "id": "public_studio_js_presentation_onsequencerkeydown",
+      "label": "onSequencerKeydown()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "onsequencerkeydown()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L408"
+    },
+    {
+      "id": "public_studio_js_presentation_opensequencer",
+      "label": "openSequencer()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "opensequencer()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L388"
     },
     {
       "id": "public_studio_js_presentation_populateslideselect",
@@ -2270,7 +2330,7 @@
       "file_type": "code",
       "norm_label": "populateslideselect()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L184"
+      "source_location": "L686"
     },
     {
       "id": "public_studio_js_presentation_prev",
@@ -2282,19 +2342,55 @@
       "file_type": "code",
       "norm_label": "prev()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L176"
+      "source_location": "L657"
     },
     {
-      "id": "public_studio_js_presentation_prevspotlight",
-      "label": "prevSpotlight()",
+      "id": "public_studio_js_presentation_prevmajorsection",
+      "label": "prevMajorSection()",
       "_callable": true,
       "_origin": "ast",
       "community": 22,
       "community_name": "presentation.js",
       "file_type": "code",
-      "norm_label": "prevspotlight()",
+      "norm_label": "prevmajorsection()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L329"
+      "source_location": "L675"
+    },
+    {
+      "id": "public_studio_js_presentation_rendersequencerlist",
+      "label": "renderSequencerList()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "rendersequencerlist()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L421"
+    },
+    {
+      "id": "public_studio_js_presentation_resettoautoorder",
+      "label": "resetToAutoOrder()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "resettoautoorder()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L533"
+    },
+    {
+      "id": "public_studio_js_presentation_savecustomorder",
+      "label": "saveCustomOrder()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "savecustomorder()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L556"
     },
     {
       "id": "public_studio_js_presentation_start",
@@ -2306,7 +2402,19 @@
       "file_type": "code",
       "norm_label": "start()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L113"
+      "source_location": "L598"
+    },
+    {
+      "id": "public_studio_js_presentation_startfromsequencer",
+      "label": "startFromSequencer()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "startfromsequencer()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L579"
     },
     {
       "id": "public_studio_js_presentation_starttimer",
@@ -2318,7 +2426,19 @@
       "file_type": "code",
       "norm_label": "starttimer()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L69"
+      "source_location": "L81"
+    },
+    {
+      "id": "public_studio_js_presentation_startwithsteps",
+      "label": "startWithSteps()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "startwithsteps()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L611"
     },
     {
       "id": "public_studio_js_presentation_stop",
@@ -2330,7 +2450,7 @@
       "file_type": "code",
       "norm_label": "stop()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L148"
+      "source_location": "L628"
     },
     {
       "id": "public_studio_js_presentation_stoptimer",
@@ -2342,7 +2462,7 @@
       "file_type": "code",
       "norm_label": "stoptimer()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L79"
+      "source_location": "L91"
     },
     {
       "id": "public_studio_js_presentation_togglefullscreen",
@@ -2354,7 +2474,7 @@
       "file_type": "code",
       "norm_label": "togglefullscreen()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L94"
+      "source_location": "L106"
     },
     {
       "id": "public_studio_js_presentation_togglegodview",
@@ -2366,7 +2486,7 @@
       "file_type": "code",
       "norm_label": "togglegodview()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L253"
+      "source_location": "L814"
     },
     {
       "id": "public_studio_js_presentation_togglelaser",
@@ -2378,7 +2498,19 @@
       "file_type": "code",
       "norm_label": "togglelaser()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L50"
+      "source_location": "L62"
+    },
+    {
+      "id": "public_studio_js_presentation_togglestepvisibility",
+      "label": "toggleStepVisibility()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "togglestepvisibility()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L525"
     },
     {
       "id": "public_studio_js_presentation_updatefullscreenbtn",
@@ -2390,7 +2522,19 @@
       "file_type": "code",
       "norm_label": "updatefullscreenbtn()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L104"
+      "source_location": "L116"
+    },
+    {
+      "id": "public_studio_js_presentation_updateslideinfo",
+      "label": "updateSlideInfo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "presentation.js",
+      "file_type": "code",
+      "norm_label": "updateslideinfo()",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L790"
     },
     {
       "id": "public_studio_js_presentation_updatetimerdisplay",
@@ -2402,7 +2546,7 @@
       "file_type": "code",
       "norm_label": "updatetimerdisplay()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L86"
+      "source_location": "L98"
     },
     {
       "id": "server_routes_api_getdefaultcontent",
@@ -5138,7 +5282,7 @@
       "file_type": "code",
       "norm_label": "closearchivedrawer()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1316"
+      "source_location": "L1342"
     },
     {
       "id": "public_js_invoice_computetotals",
@@ -5174,7 +5318,7 @@
       "file_type": "code",
       "norm_label": "filterarchivelist()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1323"
+      "source_location": "L1349"
     },
     {
       "id": "public_js_invoice_formatamount",
@@ -5258,7 +5402,7 @@
       "file_type": "code",
       "norm_label": "init()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1338"
+      "source_location": "L1364"
     },
     {
       "id": "public_js_invoice_loadcloudinvoiceslist",
@@ -5270,7 +5414,7 @@
       "file_type": "code",
       "norm_label": "loadcloudinvoiceslist()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1185"
+      "source_location": "L1207"
     },
     {
       "id": "public_js_invoice_loadfromlocalstorage",
@@ -5306,7 +5450,7 @@
       "file_type": "code",
       "norm_label": "logoutadmin()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1089"
+      "source_location": "L1111"
     },
     {
       "id": "public_js_invoice_openarchivedrawer",
@@ -5318,7 +5462,7 @@
       "file_type": "code",
       "norm_label": "openarchivedrawer()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1308"
+      "source_location": "L1334"
     },
     {
       "id": "public_js_invoice_renderarchivecards",
@@ -5330,7 +5474,7 @@
       "file_type": "code",
       "norm_label": "renderarchivecards()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1206"
+      "source_location": "L1232"
     },
     {
       "id": "public_js_invoice_renderinvoicesheet",
@@ -5366,7 +5510,7 @@
       "file_type": "code",
       "norm_label": "saveinvoicetocloud()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1115"
+      "source_location": "L1137"
     },
     {
       "id": "public_js_invoice_savetolocalstorage",
@@ -5474,7 +5618,7 @@
       "file_type": "code",
       "norm_label": "unlockstudio()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1015"
+      "source_location": "L1030"
     },
     {
       "id": "public_js_invoice_updatedocumenttitle",
@@ -5609,6 +5753,18 @@
       "source_location": "L238"
     },
     {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_captureliveviews",
+      "label": "captureLiveViews()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "captureliveviews()",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L17"
+    },
+    {
       "id": "scripts_generate_social_avatars_createavatarsvg",
       "label": "createAvatarSvg()",
       "_callable": true,
@@ -5679,6 +5835,18 @@
       "norm_label": "updatemasterzip()",
       "source_file": "scripts/generate-social-avatars.js",
       "source_location": "L472"
+    },
+    {
+      "id": "scripts_test_miro_suite_runmirosuite",
+      "label": "runMiroSuite()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "runmirosuite()",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L6"
     },
     {
       "id": "public_studio_js_studio_core",
@@ -5899,17 +6067,6 @@
       "norm_label": "dotenv",
       "source_file": "package.json",
       "source_location": "L15"
-    },
-    {
-      "id": "ref_express",
-      "label": "express",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "package.json",
-      "file_type": "concept",
-      "norm_label": "express",
-      "source_file": "package.json",
-      "source_location": "L16"
     },
     {
       "id": "ref_express_rate_limit",
@@ -6605,138 +6762,6 @@
       "source_location": "L1"
     },
     {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views",
-      "label": "capture-live-views.js",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "capture-live-views.js",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_audit_viewports",
-      "label": "AUDIT_VIEWPORTS",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "audit_viewports",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L8"
-    },
-    {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_fs",
-      "label": "fs",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_languages",
-      "label": "LANGUAGES",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "languages",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L15"
-    },
-    {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_path",
-      "label": "path",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "puppeteer",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "scripts_test_miro_suite",
-      "label": "test-miro-suite.js",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "test-miro-suite.js",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "scripts_test_miro_suite_fs",
-      "label": "fs",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L4"
-    },
-    {
-      "id": "scripts_test_miro_suite_http",
-      "label": "http",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "http",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "scripts_test_miro_suite_path",
-      "label": "path",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "scripts_test_miro_suite_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "code",
-      "norm_label": "puppeteer",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "ref_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "capture-live-views.js",
-      "file_type": "concept",
-      "norm_label": "puppeteer",
-      "source_file": "package.json",
-      "source_location": "L23"
-    },
-    {
       "id": "server_routes_boards",
       "label": "boards.js",
       "_origin": "ast",
@@ -6823,6 +6848,28 @@
       "norm_label": "router",
       "source_file": "server/routes/boards.js",
       "source_location": "L7"
+    },
+    {
+      "id": "server_services_supabase_boardsservice",
+      "label": "boardsService",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "boards.js",
+      "file_type": "code",
+      "norm_label": "boardsservice",
+      "source_file": "server/services/supabase.js",
+      "source_location": "L250"
+    },
+    {
+      "id": "ref_express",
+      "label": "express",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "boards.js",
+      "file_type": "concept",
+      "norm_label": "express",
+      "source_file": "package.json",
+      "source_location": "L16"
     },
     {
       "id": "package_dependencies",
@@ -7032,17 +7079,6 @@
       "norm_label": "supabase.js",
       "source_file": "server/services/supabase.js",
       "source_location": "L1"
-    },
-    {
-      "id": "server_services_supabase_boardsservice",
-      "label": "boardsService",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "boardsservice",
-      "source_file": "server/services/supabase.js",
-      "source_location": "L250"
     },
     {
       "id": "server_services_supabase_cmsservice",
@@ -7635,7 +7671,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L447"
+      "source_location": "L449"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -11421,6 +11457,72 @@
       "source_location": "L9"
     },
     {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views",
+      "label": "capture-live-views.js",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "capture-live-views.js",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_audit_viewports",
+      "label": "AUDIT_VIEWPORTS",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "audit_viewports",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_languages",
+      "label": "LANGUAGES",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "languages",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L15"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L1"
+    },
+    {
       "id": "scripts_generate_social_avatars",
       "label": "generate-social-avatars.js",
       "_origin": "ast",
@@ -11540,9 +11642,131 @@
       "norm_label": "social_dir",
       "source_file": "scripts/generate-social-avatars.js",
       "source_location": "L14"
+    },
+    {
+      "id": "scripts_test_miro_suite",
+      "label": "test-miro-suite.js",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "test-miro-suite.js",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_test_miro_suite_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "scripts_test_miro_suite_http",
+      "label": "http",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "http",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "scripts_test_miro_suite_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "scripts_test_miro_suite_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_sequencer_e2e",
+      "label": "test_sequencer_e2e.js",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "test_sequencer_e2e.js",
+      "source_file": "tests/test_sequencer_e2e.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_sequencer_e2e_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_sequencer_e2e.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_test_sequencer_e2e_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_sequencer_e2e.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "tests_test_sequencer_e2e_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_sequencer_e2e.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "ref_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "concept",
+      "norm_label": "puppeteer",
+      "source_file": "package.json",
+      "source_location": "L23"
     }
   ],
   "links": [
+    {
+      "source": "public_studio_js_presentation_onsequencerkeydown",
+      "target": "public_studio_js_presentation_closesequencer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L413",
+      "weight": 1.0
+    },
     {
       "source": "public_js_app_markfielderror",
       "target": "public_js_app_hidealert",
@@ -12145,6 +12369,30 @@
     },
     {
       "source": "public_js_invoice_checkadminauth",
+      "target": "public_js_invoice_showautherror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/invoice.js",
+      "source_location": "L1013",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_invoice_checkadminauth",
+      "target": "public_js_invoice_loadcloudinvoiceslist",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/invoice.js",
+      "source_location": "L966",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_invoice_checkadminauth",
       "target": "public_js_invoice_unlockstudio",
       "relation": "calls",
       "_origin": "ast",
@@ -12152,7 +12400,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L971",
+      "source_location": "L986",
       "weight": 1.0
     },
     {
@@ -12164,19 +12412,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L984",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_invoice_checkadminauth",
-      "target": "public_js_invoice_showautherror",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/invoice.js",
-      "source_location": "L998",
+      "source_location": "L999",
       "weight": 1.0
     },
     {
@@ -12188,7 +12424,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1326",
+      "source_location": "L1352",
       "weight": 1.0
     },
     {
@@ -12224,7 +12460,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1339",
+      "source_location": "L1365",
       "weight": 1.0
     },
     {
@@ -12236,7 +12472,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1340",
+      "source_location": "L1366",
       "weight": 1.0
     },
     {
@@ -12248,7 +12484,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1341",
+      "source_location": "L1367",
       "weight": 1.0
     },
     {
@@ -12260,7 +12496,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1342",
+      "source_location": "L1368",
       "weight": 1.0
     },
     {
@@ -12272,7 +12508,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1343",
+      "source_location": "L1369",
       "weight": 1.0
     },
     {
@@ -12284,7 +12520,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1190",
+      "source_location": "L1212",
       "weight": 1.0
     },
     {
@@ -12296,7 +12532,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1196",
+      "source_location": "L1218",
       "weight": 1.0
     },
     {
@@ -12380,7 +12616,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1109",
+      "source_location": "L1131",
       "weight": 1.0
     },
     {
@@ -12392,7 +12628,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1313",
+      "source_location": "L1339",
       "weight": 1.0
     },
     {
@@ -12404,7 +12640,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1216",
+      "source_location": "L1242",
       "weight": 1.0
     },
     {
@@ -12500,7 +12736,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1126",
+      "source_location": "L1148",
       "weight": 1.0
     },
     {
@@ -12512,7 +12748,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1128",
+      "source_location": "L1150",
       "weight": 1.0
     },
     {
@@ -12524,7 +12760,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1129",
+      "source_location": "L1151",
       "weight": 1.0
     },
     {
@@ -12536,7 +12772,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1153",
+      "source_location": "L1175",
       "weight": 1.0
     },
     {
@@ -12548,7 +12784,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1165",
+      "source_location": "L1187",
       "weight": 1.0
     },
     {
@@ -12560,7 +12796,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1172",
+      "source_location": "L1194",
       "weight": 1.0
     },
     {
@@ -12800,7 +13036,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1028",
+      "source_location": "L1044",
       "weight": 1.0
     },
     {
@@ -15600,7 +15836,19 @@
       "weight": 1.0
     },
     {
-      "source": "public_studio_js_presentation_flytoslide",
+      "source": "public_studio_js_presentation_buildpresentationsequence",
+      "target": "public_studio_js_presentation_getslidetitle",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L276",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_gotostep",
       "target": "public_studio_js_presentation_clearspotlight",
       "relation": "calls",
       "_origin": "ast",
@@ -15608,151 +15856,259 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L210",
+      "source_location": "L750",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_gotostep",
+      "target": "public_studio_js_presentation_focusonelement",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L762",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_gotostep",
+      "target": "public_studio_js_presentation_updateslideinfo",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L787",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_movestep",
+      "target": "public_studio_js_presentation_savecustomorder",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L521",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_movestep",
+      "target": "public_studio_js_presentation_rendersequencerlist",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L522",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation_next",
-      "target": "public_studio_js_presentation_flytoslide",
+      "target": "public_studio_js_presentation_gotostep",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L172",
+      "source_location": "L653",
       "weight": 1.0
     },
     {
-      "source": "public_studio_js_presentation_nextspotlight",
-      "target": "public_studio_js_presentation_findframechildren",
+      "source": "public_studio_js_presentation_nextmajorsection",
+      "target": "public_studio_js_presentation_gotostep",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L320",
+      "source_location": "L668",
       "weight": 1.0
     },
     {
-      "source": "public_studio_js_presentation_nextspotlight",
-      "target": "public_studio_js_presentation_applyspotlight",
+      "source": "public_studio_js_presentation_onsequencerkeydown",
+      "target": "public_studio_js_presentation_startfromsequencer",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L325",
+      "source_location": "L416",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_opensequencer",
+      "target": "public_studio_js_presentation_buildpresentationsequence",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L389",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_opensequencer",
+      "target": "public_studio_js_presentation_rendersequencerlist",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L390",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation_populateslideselect",
-      "target": "public_studio_js_presentation_flytoslide",
+      "target": "public_studio_js_presentation_gotostep",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L200",
+      "source_location": "L708",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation_prev",
-      "target": "public_studio_js_presentation_flytoslide",
+      "target": "public_studio_js_presentation_gotostep",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L180",
+      "source_location": "L660",
       "weight": 1.0
     },
     {
-      "source": "public_studio_js_presentation_prevspotlight",
-      "target": "public_studio_js_presentation_findframechildren",
+      "source": "public_studio_js_presentation_prevmajorsection",
+      "target": "public_studio_js_presentation_gotostep",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L334",
+      "source_location": "L679",
       "weight": 1.0
     },
     {
-      "source": "public_studio_js_presentation_prevspotlight",
-      "target": "public_studio_js_presentation_applyspotlight",
+      "source": "public_studio_js_presentation_rendersequencerlist",
+      "target": "public_studio_js_presentation_escapehtml",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L339",
+      "source_location": "L473",
       "weight": 1.0
     },
     {
-      "source": "public_studio_js_presentation_prevspotlight",
-      "target": "public_studio_js_presentation_clearspotlight",
+      "source": "public_studio_js_presentation_rendersequencerlist",
+      "target": "public_studio_js_presentation_savecustomorder",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L341",
+      "source_location": "L503",
       "weight": 1.0
     },
     {
-      "source": "public_studio_js_presentation_start",
-      "target": "public_studio_js_presentation_initlaser",
+      "source": "public_studio_js_presentation_resettoautoorder",
+      "target": "public_studio_js_presentation_buildpresentationsequence",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L138",
+      "source_location": "L548",
       "weight": 1.0
     },
     {
-      "source": "public_studio_js_presentation_start",
-      "target": "public_studio_js_presentation_starttimer",
+      "source": "public_studio_js_presentation_resettoautoorder",
+      "target": "public_studio_js_presentation_rendersequencerlist",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L139",
-      "weight": 1.0
-    },
-    {
-      "source": "public_studio_js_presentation_start",
-      "target": "public_studio_js_presentation_populateslideselect",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/studio/js/presentation.js",
-      "source_location": "L144",
+      "source_location": "L549",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation_start",
-      "target": "public_studio_js_presentation_flytoslide",
+      "target": "public_studio_js_presentation_buildpresentationsequence",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L145",
+      "source_location": "L599",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_start",
+      "target": "public_studio_js_presentation_startwithsteps",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L608",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_startfromsequencer",
+      "target": "public_studio_js_presentation_savecustomorder",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L580",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_startfromsequencer",
+      "target": "public_studio_js_presentation_closesequencer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L581",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_startfromsequencer",
+      "target": "public_studio_js_presentation_startwithsteps",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L591",
       "weight": 1.0
     },
     {
@@ -15764,7 +16120,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L70",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -15776,7 +16132,55 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L72",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_startwithsteps",
+      "target": "public_studio_js_presentation_initlaser",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L618",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_startwithsteps",
+      "target": "public_studio_js_presentation_starttimer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L619",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_startwithsteps",
+      "target": "public_studio_js_presentation_populateslideselect",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L624",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_startwithsteps",
+      "target": "public_studio_js_presentation_gotostep",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L625",
       "weight": 1.0
     },
     {
@@ -15788,7 +16192,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L152",
+      "source_location": "L632",
       "weight": 1.0
     },
     {
@@ -15800,7 +16204,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L153",
+      "source_location": "L633",
       "weight": 1.0
     },
     {
@@ -15812,7 +16216,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L156",
+      "source_location": "L636",
       "weight": 1.0
     },
     {
@@ -15824,19 +16228,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L258",
+      "source_location": "L819",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation_togglegodview",
-      "target": "public_studio_js_presentation_flytoslide",
+      "target": "public_studio_js_presentation_gotostep",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L272",
+      "source_location": "L835",
       "weight": 1.0
     },
     {
@@ -15848,7 +16252,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L53",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_togglestepvisibility",
+      "target": "public_studio_js_presentation_savecustomorder",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L529",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_togglestepvisibility",
+      "target": "public_studio_js_presentation_rendersequencerlist",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L530",
       "weight": 1.0
     },
     {
@@ -19944,6 +20372,18 @@
       "weight": 1.0
     },
     {
+      "source": "tests_test_sequencer_e2e",
+      "target": "ref_puppeteer",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_sequencer_e2e.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "agents",
       "target": "agents_polish_media_co_agent_guidelines_context",
       "relation": "contains",
@@ -22261,7 +22701,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L447",
+      "source_location": "L449",
       "weight": 1.0
     },
     {
@@ -23867,18 +24307,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1015",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_invoice",
-      "target": "public_js_invoice_logoutadmin",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/invoice.js",
-      "source_location": "L1089",
+      "source_location": "L1030",
       "weight": 1.0
     },
     {
@@ -23894,13 +24323,24 @@
     },
     {
       "source": "public_js_invoice",
+      "target": "public_js_invoice_logoutadmin",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/invoice.js",
+      "source_location": "L1111",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_invoice",
       "target": "public_js_invoice_saveinvoicetocloud",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1115",
+      "source_location": "L1137",
       "weight": 1.0
     },
     {
@@ -23911,7 +24351,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1185",
+      "source_location": "L1207",
       "weight": 1.0
     },
     {
@@ -23922,7 +24362,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1206",
+      "source_location": "L1232",
       "weight": 1.0
     },
     {
@@ -23933,7 +24373,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1308",
+      "source_location": "L1334",
       "weight": 1.0
     },
     {
@@ -23944,7 +24384,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1316",
+      "source_location": "L1342",
       "weight": 1.0
     },
     {
@@ -23955,7 +24395,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1323",
+      "source_location": "L1349",
       "weight": 1.0
     },
     {
@@ -23966,7 +24406,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1338",
+      "source_location": "L1364",
       "weight": 1.0
     },
     {
@@ -26270,101 +26710,101 @@
     },
     {
       "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_togglefullscreen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
       "target": "public_studio_js_presentation_updatefullscreenbtn",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L104",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_start",
+      "target": "public_studio_js_presentation_isvalidslideelement",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L113",
+      "source_location": "L125",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_stop",
+      "target": "public_studio_js_presentation_getslidetitle",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L148",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_next",
+      "target": "public_studio_js_presentation_buildpresentationsequence",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L168",
+      "source_location": "L195",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_prev",
+      "target": "public_studio_js_presentation_escapehtml",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L176",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_populateslideselect",
+      "target": "public_studio_js_presentation_opensequencer",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L184",
+      "source_location": "L388",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_flytoslide",
+      "target": "public_studio_js_presentation_closesequencer",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L205",
+      "source_location": "L400",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_togglegodview",
+      "target": "public_studio_js_presentation_onsequencerkeydown",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L253",
-      "weight": 1.0
-    },
-    {
-      "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_findframechildren",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/studio/js/presentation.js",
-      "source_location": "L278",
+      "source_location": "L408",
       "weight": 1.0
     },
     {
@@ -26375,51 +26815,62 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L30",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_nextspotlight",
+      "target": "public_studio_js_presentation_rendersequencerlist",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L315",
+      "source_location": "L421",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_prevspotlight",
+      "target": "public_studio_js_presentation_movestep",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L329",
+      "source_location": "L516",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_applyspotlight",
+      "target": "public_studio_js_presentation_togglestepvisibility",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L345",
+      "source_location": "L525",
       "weight": 1.0
     },
     {
       "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_clearspotlight",
+      "target": "public_studio_js_presentation_resettoautoorder",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L364",
+      "source_location": "L533",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_savecustomorder",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L556",
       "weight": 1.0
     },
     {
@@ -26430,7 +26881,40 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L44",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_startfromsequencer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L579",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_start",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L598",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_startwithsteps",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L611",
       "weight": 1.0
     },
     {
@@ -26441,7 +26925,117 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L50",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_stop",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L628",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_next",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L650",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_prev",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L657",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_nextmajorsection",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L664",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_prevmajorsection",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L675",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_populateslideselect",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L686",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_focusonelement",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L713",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_gotostep",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L745",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_updateslideinfo",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L790",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_clearspotlight",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L808",
       "weight": 1.0
     },
     {
@@ -26452,7 +27046,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L69",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation",
+      "target": "public_studio_js_presentation_togglegodview",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L814",
       "weight": 1.0
     },
     {
@@ -26463,7 +27068,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L79",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -26474,18 +27079,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L86",
-      "weight": 1.0
-    },
-    {
-      "source": "public_studio_js_presentation",
-      "target": "public_studio_js_presentation_togglefullscreen",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/studio/js/presentation.js",
-      "source_location": "L94",
+      "source_location": "L98",
       "weight": 1.0
     },
     {
@@ -29338,6 +29932,39 @@
       "weight": 1.0
     },
     {
+      "source": "tests_test_sequencer_e2e",
+      "target": "tests_test_sequencer_e2e_puppeteer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_sequencer_e2e.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_sequencer_e2e",
+      "target": "tests_test_sequencer_e2e_path",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_sequencer_e2e.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_sequencer_e2e",
+      "target": "tests_test_sequencer_e2e_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_sequencer_e2e.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "vercel",
       "target": "vercel_version",
       "relation": "contains",
@@ -29806,6 +30433,18 @@
       "weight": 1.0
     },
     {
+      "source": "public_studio_js_presentation_buildpresentationsequence",
+      "target": "public_studio_js_presentation_isvalidslideelement",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L196",
+      "weight": 1.0
+    },
+    {
       "source": "public_studio_js_presentation_initlaser",
       "target": "public_studio_js_presentation_onlasermove",
       "relation": "indirect_call",
@@ -29814,7 +30453,19 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L40",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_opensequencer",
+      "target": "public_studio_js_presentation_onsequencerkeydown",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L397",
       "weight": 1.0
     },
     {
@@ -29927,5 +30578,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0bb2d00d7885c5f913ec96309d67aa3f5325406c"
+  "built_at_commit": "2bdb31adffa7f5a49c30ace268536d07ad78d5cc"
 }

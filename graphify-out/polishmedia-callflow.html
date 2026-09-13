@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>polishmedia — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 974 nodes, 1609 edges, 74 communities. Commit: 0bb2d00</p>
+<p class="subtitle">Generated from graphify knowledge graph: 990 nodes, 1643 edges, 73 communities. Commit: 2bdb31a</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -72,12 +72,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     <a href="#security-global">Security &amp; Global Graph</a>
     <a href="#tests-fixtures">Tests &amp; Fixtures</a>
     <a href="#studio-core-js">studio-core.js</a>
+    <a href="#presentation-js">presentation.js</a>
     <a href="#invoice-js">invoice.js</a>
     <a href="#inspector-js">inspector.js</a>
     <a href="#elements-factory-js">elements-factory.js</a>
     <a href="#luxury-effects-js">luxury-effects.js</a>
     <a href="#comments-engine-js">comments-engine.js</a>
-    <a href="#studio-ai-js">studio-ai.js</a>
     <a href="#other">Other</a>
 </div>
 
@@ -88,22 +88,24 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    BUILD_GRAPH_321CBB04("Graph Build<br/><small>35 nodes</small>")
+    BUILD_GRAPH_321CBB04("Graph Build<br/><small>34 nodes</small>")
     class BUILD_GRAPH_321CBB04 module;
     ANALYSIS_CLUSTERING_C79796DA("Analysis &amp; Clustering<br/><small>24 nodes</small>")
     class ANALYSIS_CLUSTERING_C79796DA module;
-    OUTPUTS_DOCS_ED82387C("Outputs &amp; Docs<br/><small>49 nodes</small>")
+    OUTPUTS_DOCS_ED82387C("Outputs &amp; Docs<br/><small>50 nodes</small>")
     class OUTPUTS_DOCS_ED82387C module;
     CLI_SKILLS_9964CBB8("CLI &amp; Skill Installers<br/><small>100 nodes</small>")
     class CLI_SKILLS_9964CBB8 module;
-    SERVE_API_35EC8E86("Serving API<br/><small>25 nodes</small>")
+    SERVE_API_35EC8E86("Serving API<br/><small>24 nodes</small>")
     class SERVE_API_35EC8E86 module;
     SECURITY_GLOBAL_5B9C6A04("Security &amp; Global Graph<br/><small>82 nodes</small>")
     class SECURITY_GLOBAL_5B9C6A04 module;
-    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>14 nodes</small>")
+    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>35 nodes</small>")
     class TESTS_FIXTURES_B84B1DCC module;
     STUDIO_CORE_JS_962D5B3D("studio-core.js<br/><small>74 nodes</small>")
     class STUDIO_CORE_JS_962D5B3D module;
+    PRESENTATION_JS_B7BAE638("presentation.js<br/><small>35 nodes</small>")
+    class PRESENTATION_JS_B7BAE638 module;
     INVOICE_JS_F9AFBCE5("invoice.js<br/><small>34 nodes</small>")
     class INVOICE_JS_F9AFBCE5 module;
     INSPECTOR_JS_AAA884F5("inspector.js<br/><small>33 nodes</small>")
@@ -114,18 +116,14 @@ flowchart LR
     class LUXURY_EFFECTS_JS_FB489F07 module;
     COMMENTS_ENGINE_JS_35A49B5F("comments-engine.js<br/><small>30 nodes</small>")
     class COMMENTS_ENGINE_JS_35A49B5F module;
-    STUDIO_AI_JS_D480E683("studio-ai.js<br/><small>29 nodes</small>")
-    class STUDIO_AI_JS_D480E683 module;
-    OTHER_D0941E68("Other<br/><small>380 nodes</small>")
+    OTHER_D0941E68("Other<br/><small>370 nodes</small>")
     class OTHER_D0941E68 module;
-    SERVE_API_35EC8E86 -->|imports x8| OTHER_D0941E68
-    OTHER_D0941E68 -->|imports x6| SERVE_API_35EC8E86
-    OTHER_D0941E68 -->|imports x6| BUILD_GRAPH_321CBB04
+    SERVE_API_35EC8E86 -->|imports x10| OTHER_D0941E68
+    OTHER_D0941E68 -->|imports x5| SERVE_API_35EC8E86
+    OTHER_D0941E68 -->|imports x4| BUILD_GRAPH_321CBB04
+    BUILD_GRAPH_321CBB04 -->|imports x2| OTHER_D0941E68
     TESTS_FIXTURES_B84B1DCC -->|imports| OTHER_D0941E68
-    BUILD_GRAPH_321CBB04 -->|imports| OTHER_D0941E68
     BUILD_GRAPH_321CBB04 -->|imports| TESTS_FIXTURES_B84B1DCC
-    SERVE_API_35EC8E86 -->|imports| BUILD_GRAPH_321CBB04
-    OTHER_D0941E68 -->|imports| TESTS_FIXTURES_B84B1DCC
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -142,20 +140,20 @@ flowchart LR
     <h4>Architecture Layers</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
-      <tr><td>Graph Build</td><td>35</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>49</td><td><code>31, 15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>100</td><td><code>32, 36, 37, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Serving API</td><td>25</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>14</td><td><code>19</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>invoice.js</td><td>34</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>comments-engine.js</td><td>30</td><td><code>3</code></td></tr><tr><td>studio-ai.js</td><td>29</td><td><code>5</code></td></tr><tr><td>Other</td><td>380</td><td><code>22, 6, 11, 33, 34, 35, 8, 9, 12, 2, 60, 68, 61, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 70, 76, 24, 65, 71, 72, 26, 57, 66, 73, 67, 74, 29, 58, 59</code></td></tr>
+      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>50</td><td><code>31, 15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>100</td><td><code>32, 36, 37, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Serving API</td><td>24</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>35</td><td><code>9</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>35</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>34</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>comments-engine.js</td><td>30</td><td><code>3</code></td></tr><tr><td>Other</td><td>370</td><td><code>5, 6, 11, 33, 34, 35, 8, 2, 12, 60, 68, 61, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 70, 76, 24, 65, 71, 72, 26, 57, 66, 73, 67, 74, 29, 58, 59</code></td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Core Flow</h4>
-    <div class="arrow-chain">Analysis &amp; Clustering -&gt; Graph Build -&gt; Tests &amp; Fixtures -&gt; Other -&gt; Serving API -&gt; Outputs &amp; Docs -&gt; CLI &amp; Skill Installers</div>
+    <div class="arrow-chain">Analysis &amp; Clustering -&gt; Graph Build -&gt; Other -&gt; Serving API -&gt; Outputs &amp; Docs -&gt; CLI &amp; Skill Installers -&gt; Security &amp; Global Graph</div>
   </div>
 </div>
 <div class="grid">
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>974 nodes · 1609 edges · 74 communities (67 shown, 5 thin omitted)</li>
-      <li>Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.85)</li>
+      <li>990 nodes · 1643 edges · 73 communities (66 shown, 5 thin omitted)</li>
+      <li>Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 40 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `triggerAutoSave()` - 45 edges</li>
       <li>2. `pushHistory()` - 36 edges</li>
@@ -166,17 +164,16 @@ flowchart LR
 <hr>
 <!-- ====== 2. Graph Build ====== -->
 <h2 id="build-graph">2. Graph Build</h2>
-<p>Graph Build groups implementation around packagejson, verceljson, express, version, mostly in package.json, vercel.json. This section covers 35 nodes and 33 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Graph Build groups implementation around packagejson, verceljson, express, version, mostly in package.json, vercel.json. This section covers 34 nodes and 32 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Graph Build (35 nodes, 33 edges)
+    %% Section: Graph Build (34 nodes, 32 edges)
     package_582681c2("package.json")
     ref_compression_de97cb75("compression<br/><small>package.json</small>")
     ref_cors_c3ba69b0("cors<br/><small>package.json</small>")
     ref_dotenv_f23d7946("dotenv<br/><small>package.json</small>")
-    ref_express_54e0f975("express<br/><small>package.json</small>")
     ref_express_rate_limit_1fe37bae("express-rate-limit<br/><small>package.json</small>")
     ref_helmet_9c0fcbe2("helmet<br/><small>package.json</small>")
     package_dependencies_supabase_supabase_js_5f3eefaf("@supabase/supabase-js<br/><small>package.json</small>")
@@ -190,18 +187,17 @@ flowchart LR
     package_dependencies_dotenv_27698e94("dotenv<br/><small>package.json</small>")
     package_dependencies_express_ada56cce("express<br/><small>package.json</small>")
     package_dependencies_express_rate_limit_6d4b9ea5("express-rate-limit<br/><small>package.json</small>")
+    package_dependencies_helmet_e324e650("helmet<br/><small>package.json</small>")
     package_582681c2 -->|imports| ref_compression_de97cb75
     package_582681c2 -->|imports| ref_cors_c3ba69b0
     package_582681c2 -->|imports| ref_dotenv_f23d7946
-    package_582681c2 -->|imports| ref_express_54e0f975
     package_582681c2 -->|imports| ref_express_rate_limit_1fe37bae
     package_582681c2 -->|imports| ref_helmet_9c0fcbe2
-    %% Omitted for readability: 17 nodes, 0 edges
+    %% Omitted for readability: 16 nodes, 0 edges
     class package_582681c2 function;
     class ref_compression_de97cb75 function;
     class ref_cors_c3ba69b0 function;
     class ref_dotenv_f23d7946 function;
-    class ref_express_54e0f975 function;
     class ref_express_rate_limit_1fe37bae function;
     class ref_helmet_9c0fcbe2 function;
     class package_dependencies_supabase_supabase_js_5f3eefaf function;
@@ -215,6 +211,7 @@ flowchart LR
     class package_dependencies_dotenv_27698e94 function;
     class package_dependencies_express_ada56cce function;
     class package_dependencies_express_rate_limit_6d4b9ea5 function;
+    class package_dependencies_helmet_e324e650 function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -382,14 +379,6 @@ flowchart LR
 </tr>
 <tr>
   <td>19</td>
-  <td><code>express</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>boards.js</code><br><small style="color:var(--muted)">server/routes/boards.js</small><br><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small><br>+1 more</td>
-  <td>No direct outbound edge</td>
-  <td>express node in package.json.</td>
-</tr>
-<tr>
-  <td>20</td>
   <td><code>express-rate-limit</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small><br><code>package.json</code><br><small style="color:var(--muted)">package.json</small></td>
@@ -397,7 +386,7 @@ flowchart LR
   <td>express-rate-limit node in package.json.</td>
 </tr>
 <tr>
-  <td>21</td>
+  <td>20</td>
   <td><code>helmet</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small><br><code>package.json</code><br><small style="color:var(--muted)">package.json</small></td>
@@ -405,7 +394,7 @@ flowchart LR
   <td>helmet node in package.json.</td>
 </tr>
 <tr>
-  <td>22</td>
+  <td>21</td>
   <td><code>dependencies</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -413,7 +402,7 @@ flowchart LR
   <td>dependencies node in package.json.</td>
 </tr>
 <tr>
-  <td>23</td>
+  <td>22</td>
   <td><code>compression</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -421,7 +410,7 @@ flowchart LR
   <td>compression node in package.json.</td>
 </tr>
 <tr>
-  <td>24</td>
+  <td>23</td>
   <td><code>cors</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -429,7 +418,7 @@ flowchart LR
   <td>cors node in package.json.</td>
 </tr>
 <tr>
-  <td>25</td>
+  <td>24</td>
   <td><code>dotenv</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -437,7 +426,7 @@ flowchart LR
   <td>dotenv node in package.json.</td>
 </tr>
 <tr>
-  <td>26</td>
+  <td>25</td>
   <td><code>express</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -445,7 +434,7 @@ flowchart LR
   <td>express node in package.json.</td>
 </tr>
 <tr>
-  <td>27</td>
+  <td>26</td>
   <td><code>express-rate-limit</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -453,7 +442,7 @@ flowchart LR
   <td>express-rate-limit node in package.json.</td>
 </tr>
 <tr>
-  <td>28</td>
+  <td>27</td>
   <td><code>helmet</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -461,7 +450,7 @@ flowchart LR
   <td>helmet node in package.json.</td>
 </tr>
 <tr>
-  <td>29</td>
+  <td>28</td>
   <td><code>@supabase/supabase-js</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -469,12 +458,20 @@ flowchart LR
   <td>@supabase/supabase-js node in package.json.</td>
 </tr>
 <tr>
-  <td>30</td>
+  <td>29</td>
   <td><code>vercel.json</code><br><small style="color:var(--muted)">vercel.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>vercel.json node in vercel.json.</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>builds</code><br><small style="color:var(--muted)">vercel.json</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>builds node in vercel.json.</td>
 </tr>
 </table>
 
@@ -483,13 +480,13 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>package.json</code></td><td>29 nodes</td></tr>
+      <tr><td><code>package.json</code></td><td>28 nodes</td></tr>
 <tr><td><code>vercel.json</code></td><td>6 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x27, imports x6. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x27, imports x5. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -788,12 +785,12 @@ flowchart LR
 
 <!-- ====== 4. Outputs & Docs ====== -->
 <h2 id="outputs-docs">4. Outputs &amp; Docs</h2>
-<p>Outputs &amp; Docs groups implementation around handoffmd, docs, public, studio, mostly in docs/HANDOFF.md, studio/js/canvas-panzoom.js, js/effects/particle-canvas.js. This section covers 49 nodes and 58 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Outputs &amp; Docs groups implementation around handoffmd, docs, public, studio, mostly in docs/HANDOFF.md, studio/js/canvas-panzoom.js, js/effects/particle-canvas.js. This section covers 50 nodes and 59 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Outputs &amp; Docs (49 nodes, 58 edges)
+    %% Section: Outputs &amp; Docs (50 nodes, 59 edges)
     subgraph outputs_docs_studio_js_canvas_panzoom_js_85f97aef["studio/js/canvas-panzoom.js"]
         public_studio_js_canvas_panzoom_init_07bc1ff3("init()<br/><small>studio/js/canvas-panzoom.js</small>")
         public_studio_js_canvas_panzoom_fittocontent_5e019de5("fitToContent()<br/><small>studio/js/canvas-panzoom.js</small>")
@@ -826,7 +823,7 @@ flowchart LR
     public_studio_js_canvas_panzoom_zoomdelta_dc195a1e -->|calls| public_studio_js_canvas_panzoom_applytransform_a7c39078
     public_js_effects_particle_canvas_animateparticl_2c52bf14 -->|calls| public_js_effects_particle_canvas_getscrollveloc_ee243907
     public_js_effects_particle_canvas_initparticleca_9d11a828 -->|calls| public_js_effects_particle_canvas_isguardactive_f3fa967e
-    %% Omitted for readability: 31 nodes, 0 edges
+    %% Omitted for readability: 32 nodes, 0 edges
     class public_studio_js_canvas_panzoom_init_07bc1ff3 function;
     class public_studio_js_canvas_panzoom_fittocontent_5e019de5 function;
     class public_studio_js_canvas_panzoom_resetview_8c815beb function;
@@ -1036,6 +1033,14 @@ flowchart LR
 </tr>
 <tr>
   <td>22</td>
+  <td><code>Sprint 10: Presentation Slide Sequencer &amp; Custom Pitch Order Screen (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 10: Presentation Slide Sequencer &amp; Custom Pitch Order Screen (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>23</td>
   <td><code>Sprint 1: Critical Hotfixes (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -1043,7 +1048,7 @@ flowchart LR
   <td>Documentation node describing Sprint 1: Critical Hotfixes (Completed September 2026).</td>
 </tr>
 <tr>
-  <td>23</td>
+  <td>24</td>
   <td><code>Sprint 2: Security &amp; Performance Hardening (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -1051,7 +1056,7 @@ flowchart LR
   <td>Documentation node describing Sprint 2: Security &amp; Performance Hardening (Completed September 2026).</td>
 </tr>
 <tr>
-  <td>24</td>
+  <td>25</td>
   <td><code>Sprint 3: Architectural Decoupling &amp; Conversion Polish (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -1059,7 +1064,7 @@ flowchart LR
   <td>Documentation node describing Sprint 3: Architectural Decoupling &amp; Conversion Polish (Completed September 2026).</td>
 </tr>
 <tr>
-  <td>25</td>
+  <td>26</td>
   <td><code>Sprint 4: Visual Physics Modularization &amp; Studio Event Bus (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -1067,7 +1072,7 @@ flowchart LR
   <td>Documentation node describing Sprint 4: Visual Physics Modularization &amp; Studio Event Bus (Completed September 2026).</td>
 </tr>
 <tr>
-  <td>26</td>
+  <td>27</td>
   <td><code>Sprint 5: Luxury Invoicing Atelier &amp; Commercial Rebrand (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -1075,7 +1080,7 @@ flowchart LR
   <td>Documentation node describing Sprint 5: Luxury Invoicing Atelier &amp; Commercial Rebrand (Completed September 2026).</td>
 </tr>
 <tr>
-  <td>27</td>
+  <td>28</td>
   <td><code>Sprint 6: Supabase Auth, Subdomain Verification &amp; Executive Header Overhaul (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -1083,7 +1088,7 @@ flowchart LR
   <td>Documentation node describing Sprint 6: Supabase Auth, Subdomain Verification &amp; Executive Header Overhaul (Completed September 2026).</td>
 </tr>
 <tr>
-  <td>28</td>
+  <td>29</td>
   <td><code>Sprint 7: Executive Invoicing Atelier &amp; Cloud CMS Persistence (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -1091,20 +1096,12 @@ flowchart LR
   <td>Documentation node describing Sprint 7: Executive Invoicing Atelier &amp; Cloud CMS Persistence (Completed September 2026).</td>
 </tr>
 <tr>
-  <td>29</td>
+  <td>30</td>
   <td><code>Sprint 8: Luxury Arabic (RTL) &amp; Unicode BiDi Typography Architecture (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>Documentation node describing Sprint 8: Luxury Arabic (RTL) &amp; Unicode BiDi Typography Architecture (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>30</td>
-  <td><code>Sprint 9: Haute Beauté Cosmetic Blueprints &amp; Presentation Engine 2.0 (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 9: Haute Beauté Cosmetic Blueprints &amp; Presentation Engine 2.0 (Completed September 2026).</td>
 </tr>
 </table>
 
@@ -1113,14 +1110,14 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>docs/HANDOFF.md</code></td><td>30 nodes</td></tr>
+      <tr><td><code>docs/HANDOFF.md</code></td><td>31 nodes</td></tr>
 <tr><td><code>studio/js/canvas-panzoom.js</code></td><td>12 nodes</td></tr>
 <tr><td><code>js/effects/particle-canvas.js</code></td><td>7 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x45, calls x10, indirect call x3. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x46, calls x10, indirect call x3. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -1475,12 +1472,12 @@ flowchart LR
 
 <!-- ====== 6. Serving API ====== -->
 <h2 id="serve-api">6. Serving API</h2>
-<p>Serving API groups implementation around server, supabasejs, services, apijs, mostly in server/services/supabase.js, server/routes/api.js. This section covers 25 nodes and 29 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Serving API groups implementation around server, supabasejs, services, apijs, mostly in server/services/supabase.js, server/routes/api.js. This section covers 24 nodes and 28 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Serving API (25 nodes, 29 edges)
+    %% Section: Serving API (24 nodes, 28 edges)
     subgraph serve_api_server_routes_api_js_65a7595a["server/routes/api.js"]
         server_routes_api_38dd1944("api.js")
         server_routes_api_readcontent_cf076324("readContent()<br/><small>server/routes/api.js</small>")
@@ -1500,8 +1497,8 @@ flowchart LR
         server_services_supabase_keepaliveservice_e4109ecb("keepAliveService<br/><small>server/services/supabase.js</small>")
         server_services_supabase_leadsservice_9328bb0b("leadsService<br/><small>server/services/supabase.js</small>")
         server_services_supabase_d73bfd86("supabase.js")
-        server_services_supabase_boardsservice_6b918838("boardsService<br/><small>server/services/supabase.js</small>")
         server_services_supabase_fs_14212ca7("fs<br/><small>server/services/supabase.js</small>")
+        server_services_supabase_mapboardtodbrow_73f54afa("mapBoardToDbRow()<br/><small>server/services/supabase.js</small>")
     end
     server_routes_api_readcontent_cf076324 -->|calls| server_routes_api_getdefaultcontent_d88080fe
     server_routes_api_38dd1944 -->|imports| server_services_supabase_cmsservice_444a4c27
@@ -1509,7 +1506,7 @@ flowchart LR
     server_routes_api_38dd1944 -->|imports| server_services_supabase_keepaliveservice_e4109ecb
     server_routes_api_38dd1944 -->|imports| server_services_supabase_leadsservice_9328bb0b
     server_routes_api_38dd1944 -->|imports| server_services_supabase_d73bfd86
-    %% Omitted for readability: 7 nodes, 0 edges
+    %% Omitted for readability: 6 nodes, 0 edges
     class server_routes_api_38dd1944 api;
     class server_routes_api_readcontent_cf076324 function;
     class server_routes_api_getdefaultcontent_d88080fe function;
@@ -1526,8 +1523,8 @@ flowchart LR
     class server_services_supabase_keepaliveservice_e4109ecb function;
     class server_services_supabase_leadsservice_9328bb0b async;
     class server_services_supabase_d73bfd86 module;
-    class server_services_supabase_boardsservice_6b918838 async;
     class server_services_supabase_fs_14212ca7 function;
+    class server_services_supabase_mapboardtodbrow_73f54afa function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -1687,14 +1684,6 @@ flowchart LR
 </tr>
 <tr>
   <td>18</td>
-  <td><code>boardsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
-  <td><span class="tag tag-async">Async</span></td>
-  <td><code>boards.js</code><br><small style="color:var(--muted)">server/routes/boards.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>boardsService node in server/services/supabase.js.</td>
-</tr>
-<tr>
-  <td>19</td>
   <td><code>cmsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-async">Async</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
@@ -1702,7 +1691,7 @@ flowchart LR
   <td>cmsService node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>20</td>
+  <td>19</td>
   <td><code>{ createClient }</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-cmd">Entry</span></td>
   <td>External entry / no inbound edge</td>
@@ -1710,7 +1699,7 @@ flowchart LR
   <td>{ createClient } node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>21</td>
+  <td>20</td>
   <td><code>fs</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1718,7 +1707,7 @@ flowchart LR
   <td>fs node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>22</td>
+  <td>21</td>
   <td><code>invoicesService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-async">Async</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
@@ -1726,7 +1715,7 @@ flowchart LR
   <td>invoicesService node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>23</td>
+  <td>22</td>
   <td><code>keepAliveService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
@@ -1734,7 +1723,7 @@ flowchart LR
   <td>keepAliveService node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>24</td>
+  <td>23</td>
   <td><code>leadsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-async">Async</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
@@ -1742,7 +1731,7 @@ flowchart LR
   <td>leadsService node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>25</td>
+  <td>24</td>
   <td><code>path</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1756,13 +1745,13 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>server/services/supabase.js</code></td><td>14 nodes</td></tr>
+      <tr><td><code>server/services/supabase.js</code></td><td>13 nodes</td></tr>
 <tr><td><code>server/routes/api.js</code></td><td>11 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x23, imports x4, calls x1, imports x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x22, imports x4, calls x1, imports x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -2113,12 +2102,22 @@ flowchart LR
 
 <!-- ====== 8. Tests & Fixtures ====== -->
 <h2 id="tests-fixtures">8. Tests &amp; Fixtures</h2>
-<p>Tests &amp; Fixtures groups implementation around live, scripts, capture, viewsjs, mostly in live-visual-design-critic/scripts/capture-live-views.js, scripts/test-miro-suite.js, package.json. This section covers 14 nodes and 13 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Tests &amp; Fixtures groups implementation around scripts, social, generate, avatarsjs, mostly in scripts/generate-social-avatars.js, live-visual-design-critic/scripts/capture-live-views.js, scripts/test-miro-suite.js. This section covers 35 nodes and 39 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Tests &amp; Fixtures (14 nodes, 13 edges)
+    %% Section: Tests &amp; Fixtures (35 nodes, 39 edges)
+    subgraph tests_fixtures_scripts_generate_social_avatars_j_997ea3e2["scripts/generate-social-avatars.js"]
+        scripts_generate_social_avatars_generateall_4ed76c31("generateAll()<br/><small>scripts/generate-social-avatars.js</small>")
+        scripts_generate_social_avatars_createavatarsvg_7ed936cd("createAvatarSvg()<br/><small>scripts/generate-social-avatars.js</small>")
+        scripts_generate_social_avatars_72d7cb5e("generate-social-avatars.js")
+        scripts_generate_social_avatars_getsvgdefs_56361a8c("getSvgDefs()<br/><small>scripts/generate-social-avatars.js</small>")
+        scripts_generate_social_avatars_getpipettemark_7be98819("getPipetteMark()<br/><small>scripts/generate-social-avatars.js</small>")
+        scripts_generate_social_avatars_generatereadme_b7ea5720("generateReadme()<br/><small>scripts/generate-social-avatars.js</small>")
+        scripts_generate_social_avatars_updatemasterzip_c44a77ce("updateMasterZip()<br/><small>scripts/generate-social-avatars.js</small>")
+        scripts_generate_social_avatars_asset_specs_fc5b5c31("ASSET_SPECS<br/><small>scripts/generate-social-avatars.js</small>")
+    end
     subgraph tests_fixtures_live_visual_design_critic_scripts_690f209c["live-visual-design-critic/scripts/capture-live-views.js"]
         agents_skills_live_visual_design_critic_scripts_abd92f05("capture-live-views.js")
         agents_skills_live_visual_design_critic_scripts_1ec9cc2e("AUDIT_VIEWPORTS<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
@@ -2128,17 +2127,27 @@ flowchart LR
         agents_skills_live_visual_design_critic_scripts_355e8131("path<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
         agents_skills_live_visual_design_critic_scripts_cb89dcbf("puppeteer<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
     end
-    subgraph tests_fixtures_scripts_test_miro_suite_js_d3388c70["scripts/test-miro-suite.js"]
-        scripts_test_miro_suite_ba6aec94("test-miro-suite.js")
-        scripts_test_miro_suite_fs_10a0136d("fs<br/><small>scripts/test-miro-suite.js</small>")
-        scripts_test_miro_suite_http_98f034b3("http<br/><small>scripts/test-miro-suite.js</small>")
-        scripts_test_miro_suite_path_9152793c("path<br/><small>scripts/test-miro-suite.js</small>")
-        scripts_test_miro_suite_puppeteer_9741a028("puppeteer<br/><small>scripts/test-miro-suite.js</small>")
-        scripts_test_miro_suite_runmirosuite_ccb3b9cb("runMiroSuite()<br/><small>scripts/test-miro-suite.js</small>")
-    end
     ref_puppeteer_8ead168e("puppeteer<br/><small>package.json</small>")
+    scripts_test_miro_suite_ba6aec94("test-miro-suite.js")
+    tests_test_sequencer_e2e_a6da4f8e("test_sequencer_e2e.js")
+    scripts_generate_social_avatars_createavatarsvg_7ed936cd -->|calls| scripts_generate_social_avatars_getsvgdefs_56361a8c
+    scripts_generate_social_avatars_createavatarsvg_7ed936cd -->|calls| scripts_generate_social_avatars_getpipettemark_7be98819
+    scripts_generate_social_avatars_generateall_4ed76c31 -->|calls| scripts_generate_social_avatars_createavatarsvg_7ed936cd
+    scripts_generate_social_avatars_generateall_4ed76c31 -->|calls| scripts_generate_social_avatars_generatereadme_b7ea5720
+    scripts_generate_social_avatars_generateall_4ed76c31 -->|calls| scripts_generate_social_avatars_updatemasterzip_c44a77ce
     agents_skills_live_visual_design_critic_scripts_abd92f05 -->|imports| ref_puppeteer_8ead168e
+    scripts_generate_social_avatars_72d7cb5e -->|imports| ref_puppeteer_8ead168e
     scripts_test_miro_suite_ba6aec94 -->|imports| ref_puppeteer_8ead168e
+    tests_test_sequencer_e2e_a6da4f8e -->|imports| ref_puppeteer_8ead168e
+    %% Omitted for readability: 17 nodes, 0 edges
+    class scripts_generate_social_avatars_generateall_4ed76c31 function;
+    class scripts_generate_social_avatars_createavatarsvg_7ed936cd function;
+    class scripts_generate_social_avatars_72d7cb5e module;
+    class scripts_generate_social_avatars_getsvgdefs_56361a8c function;
+    class scripts_generate_social_avatars_getpipettemark_7be98819 function;
+    class scripts_generate_social_avatars_generatereadme_b7ea5720 function;
+    class scripts_generate_social_avatars_updatemasterzip_c44a77ce function;
+    class scripts_generate_social_avatars_asset_specs_fc5b5c31 async;
     class agents_skills_live_visual_design_critic_scripts_abd92f05 module;
     class agents_skills_live_visual_design_critic_scripts_1ec9cc2e klass;
     class agents_skills_live_visual_design_critic_scripts_cd532171 klass;
@@ -2146,13 +2155,9 @@ flowchart LR
     class agents_skills_live_visual_design_critic_scripts_1ddc4352 function;
     class agents_skills_live_visual_design_critic_scripts_355e8131 function;
     class agents_skills_live_visual_design_critic_scripts_cb89dcbf function;
-    class scripts_test_miro_suite_ba6aec94 test;
-    class scripts_test_miro_suite_fs_10a0136d test;
-    class scripts_test_miro_suite_http_98f034b3 test;
-    class scripts_test_miro_suite_path_9152793c test;
-    class scripts_test_miro_suite_puppeteer_9741a028 test;
-    class scripts_test_miro_suite_runmirosuite_ccb3b9cb test;
     class ref_puppeteer_8ead168e function;
+    class scripts_test_miro_suite_ba6aec94 test;
+    class tests_test_sequencer_e2e_a6da4f8e test;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -2184,6 +2189,54 @@ flowchart LR
 </tr>
 <tr>
   <td>2</td>
+  <td><code>createAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>generateAll()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><code>getPipetteMark()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br><code>getSvgDefs()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td>createAvatarSvg() node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>generateAll()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>createAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br><code>generateReadme()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br><code>updateMasterZip()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td>generateAll() node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>generateReadme()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>generateAll()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>generateReadme() node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>getPipetteMark()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>createAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>getPipetteMark() node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>getSvgDefs()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>createAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>getSvgDefs() node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>updateMasterZip()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>generateAll()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>updateMasterZip() node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>8</td>
   <td><code>runMiroSuite()</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2191,7 +2244,7 @@ flowchart LR
   <td>runMiroSuite() node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>3</td>
+  <td>9</td>
   <td><code>capture-live-views.js</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-class">Module</span></td>
   <td>External entry / no inbound edge</td>
@@ -2199,7 +2252,7 @@ flowchart LR
   <td>capture-live-views.js node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>4</td>
+  <td>10</td>
   <td><code>AUDIT_VIEWPORTS</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -2207,7 +2260,7 @@ flowchart LR
   <td>AUDIT_VIEWPORTS node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>5</td>
+  <td>11</td>
   <td><code>fs</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2215,7 +2268,7 @@ flowchart LR
   <td>fs node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>6</td>
+  <td>12</td>
   <td><code>LANGUAGES</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -2223,7 +2276,7 @@ flowchart LR
   <td>LANGUAGES node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>7</td>
+  <td>13</td>
   <td><code>path</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2231,7 +2284,7 @@ flowchart LR
   <td>path node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>8</td>
+  <td>14</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2239,7 +2292,95 @@ flowchart LR
   <td>puppeteer node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>9</td>
+  <td>15</td>
+  <td><code>generate-social-avatars.js</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>generate-social-avatars.js node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>ASSET_SPECS</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-async">Async</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>ASSET_SPECS node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>AVATAR_DIR</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>AVATAR_DIR node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>COLORS</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>COLORS node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>EDITIONS_DIR</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>EDITIONS_DIR node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>{ execSync }</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>{ execSync } node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>path</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>path node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>PLATFORM_DIR</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>PLATFORM_DIR node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>SOCIAL_DIR</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>SOCIAL_DIR node in scripts/generate-social-avatars.js.</td>
+</tr>
+<tr>
+  <td>26</td>
   <td><code>test-miro-suite.js</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2247,7 +2388,7 @@ flowchart LR
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>10</td>
+  <td>27</td>
   <td><code>fs</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2255,7 +2396,7 @@ flowchart LR
   <td>fs node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>11</td>
+  <td>28</td>
   <td><code>http</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2263,7 +2404,7 @@ flowchart LR
   <td>http node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>12</td>
+  <td>29</td>
   <td><code>path</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2271,20 +2412,12 @@ flowchart LR
   <td>path node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>13</td>
+  <td>30</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>puppeteer node in scripts/test-miro-suite.js.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>capture-live-views.js</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small><br><code>generate-social-avatars.js</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br><code>package.json</code><br><small style="color:var(--muted)">package.json</small><br>+1 more</td>
-  <td>No direct outbound edge</td>
-  <td>puppeteer node in package.json.</td>
 </tr>
 </table>
 
@@ -2293,14 +2426,16 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>live-visual-design-critic/scripts/capture-live-views.js</code></td><td>7 nodes</td></tr>
+      <tr><td><code>scripts/generate-social-avatars.js</code></td><td>17 nodes</td></tr>
+<tr><td><code>live-visual-design-critic/scripts/capture-live-views.js</code></td><td>7 nodes</td></tr>
 <tr><td><code>scripts/test-miro-suite.js</code></td><td>6 nodes</td></tr>
+<tr><td><code>tests/test_sequencer_e2e.js</code></td><td>4 nodes</td></tr>
 <tr><td><code>package.json</code></td><td>1 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x11, imports x2. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x30, calls x5, imports x4. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -2652,14 +2787,356 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 10. invoice.js ====== -->
-<h2 id="invoice-js">10. invoice.js</h2>
-<p>invoice.js groups implementation around invoicejs, public, addserviceitem, attachinlineeditlisteners, mostly in public/js/invoice.js. This section covers 34 nodes and 103 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<!-- ====== 10. presentation.js ====== -->
+<h2 id="presentation-js">10. presentation.js</h2>
+<p>presentation.js groups implementation around presentationjs, public, studio, buildpresentationsequence, mostly in studio/js/presentation.js. This section covers 35 nodes and 75 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: invoice.js (34 nodes, 103 edges)
+    %% Section: presentation.js (35 nodes, 75 edges)
+    public_studio_js_presentation_stop_25f87de6("stop()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_startwithsteps_ea20c857("startWithSteps()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_startfromsequencer_3126d584("startFromSequencer()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_movestep_2f7b688d("moveStep()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_onsequencerkeydown_f5a9ffd4("onSequencerKeydown()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_opensequencer_31435b28("openSequencer()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_buildpresentations_f105ecef("buildPresentationSequence()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_getslidetitle_4cab19ce("getSlideTitle()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_gotostep_6d2feb82("goToStep()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_clearspotlight_73add608("clearSpotlight()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_focusonelement_a087b832("focusOnElement()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_updateslideinfo_c25b49cf("updateSlideInfo()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_savecustomorder_f14f3667("saveCustomOrder()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_rendersequencerlis_82c44423("renderSequencerList()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_next_14042dd3("next()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_nextmajorsection_83c02de3("nextMajorSection()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_populateslideselec_38dc0427("populateSlideSelect()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_prev_21163c49("prev()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_buildpresentations_f105ecef -->|calls| public_studio_js_presentation_getslidetitle_4cab19ce
+    public_studio_js_presentation_gotostep_6d2feb82 -->|calls| public_studio_js_presentation_clearspotlight_73add608
+    public_studio_js_presentation_gotostep_6d2feb82 -->|calls| public_studio_js_presentation_focusonelement_a087b832
+    public_studio_js_presentation_gotostep_6d2feb82 -->|calls| public_studio_js_presentation_updateslideinfo_c25b49cf
+    public_studio_js_presentation_movestep_2f7b688d -->|calls| public_studio_js_presentation_savecustomorder_f14f3667
+    public_studio_js_presentation_movestep_2f7b688d -->|calls| public_studio_js_presentation_rendersequencerlis_82c44423
+    public_studio_js_presentation_next_14042dd3 -->|calls| public_studio_js_presentation_gotostep_6d2feb82
+    public_studio_js_presentation_nextmajorsection_83c02de3 -->|calls| public_studio_js_presentation_gotostep_6d2feb82
+    public_studio_js_presentation_onsequencerkeydown_f5a9ffd4 -->|calls| public_studio_js_presentation_startfromsequencer_3126d584
+    public_studio_js_presentation_opensequencer_31435b28 -->|calls| public_studio_js_presentation_buildpresentations_f105ecef
+    public_studio_js_presentation_opensequencer_31435b28 -->|calls| public_studio_js_presentation_rendersequencerlis_82c44423
+    public_studio_js_presentation_populateslideselec_38dc0427 -->|calls| public_studio_js_presentation_gotostep_6d2feb82
+    public_studio_js_presentation_prev_21163c49 -->|calls| public_studio_js_presentation_gotostep_6d2feb82
+    public_studio_js_presentation_rendersequencerlis_82c44423 -->|calls| public_studio_js_presentation_savecustomorder_f14f3667
+    public_studio_js_presentation_startfromsequencer_3126d584 -->|calls| public_studio_js_presentation_savecustomorder_f14f3667
+    public_studio_js_presentation_startfromsequencer_3126d584 -->|calls| public_studio_js_presentation_startwithsteps_ea20c857
+    public_studio_js_presentation_startwithsteps_ea20c857 -->|calls| public_studio_js_presentation_populateslideselec_38dc0427
+    public_studio_js_presentation_startwithsteps_ea20c857 -->|calls| public_studio_js_presentation_gotostep_6d2feb82
+    public_studio_js_presentation_stop_25f87de6 -->|calls| public_studio_js_presentation_clearspotlight_73add608
+    %% Omitted for readability: 17 nodes, 0 edges
+    class public_studio_js_presentation_stop_25f87de6 function;
+    class public_studio_js_presentation_startwithsteps_ea20c857 function;
+    class public_studio_js_presentation_startfromsequencer_3126d584 function;
+    class public_studio_js_presentation_movestep_2f7b688d function;
+    class public_studio_js_presentation_onsequencerkeydown_f5a9ffd4 function;
+    class public_studio_js_presentation_opensequencer_31435b28 function;
+    class public_studio_js_presentation_buildpresentations_f105ecef function;
+    class public_studio_js_presentation_getslidetitle_4cab19ce function;
+    class public_studio_js_presentation_gotostep_6d2feb82 function;
+    class public_studio_js_presentation_clearspotlight_73add608 function;
+    class public_studio_js_presentation_focusonelement_a087b832 function;
+    class public_studio_js_presentation_updateslideinfo_c25b49cf function;
+    class public_studio_js_presentation_savecustomorder_f14f3667 function;
+    class public_studio_js_presentation_rendersequencerlis_82c44423 function;
+    class public_studio_js_presentation_next_14042dd3 function;
+    class public_studio_js_presentation_nextmajorsection_83c02de3 function;
+    class public_studio_js_presentation_populateslideselec_38dc0427 function;
+    class public_studio_js_presentation_prev_21163c49 function;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>openSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>resetToAutoOrder()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>start()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>getSlideTitle()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>isValidSlideElement()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>buildPresentationSequence() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>clearSpotlight()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>stop()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>toggleGodView()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>clearSpotlight() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>closeSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>onSequencerKeydown()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>startFromSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>closeSequencer() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>escapeHtml()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>renderSequencerList()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>Exports documentation data to a target format.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>focusOnElement()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>focusOnElement() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>getSlideTitle()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>getSlideTitle() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>next()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>nextMajorSection()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>populateSlideSelect()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br>+4 more</td>
+  <td><code>clearSpotlight()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>focusOnElement()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>updateSlideInfo()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>goToStep() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>initLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>startWithSteps()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>toggleLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>onLaserMove()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>initLaser() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>isValidSlideElement()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>isValidSlideElement() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>moveStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>renderSequencerList()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>saveCustomOrder()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>moveStep() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>next()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>next() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>nextMajorSection()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>nextMajorSection() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>onLaserMove()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>initLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>onLaserMove() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>onSequencerKeydown()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>openSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>closeSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>startFromSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>onSequencerKeydown() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>openSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>onSequencerKeydown()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>renderSequencerList()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>openSequencer() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>populateSlideSelect()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>startWithSteps()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>populateSlideSelect() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>prev()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>prev() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>prevMajorSection()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>prevMajorSection() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>renderSequencerList()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>moveStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>openSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>resetToAutoOrder()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br>+1 more</td>
+  <td><code>escapeHtml()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>saveCustomOrder()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>renderSequencerList() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>resetToAutoOrder()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>renderSequencerList()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>resetToAutoOrder() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>saveCustomOrder()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>moveStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>renderSequencerList()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>startFromSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br>+1 more</td>
+  <td>No direct outbound edge</td>
+  <td>saveCustomOrder() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>start()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>startWithSteps()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>start() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>startFromSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>onSequencerKeydown()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>closeSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>saveCustomOrder()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>startWithSteps()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>startFromSequencer() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>startTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>startWithSteps()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>stopTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>updateTimerDisplay()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>startTimer() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>startWithSteps()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>start()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>startFromSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>initLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>populateSlideSelect()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br>+1 more</td>
+  <td>startWithSteps() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>stop()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>clearSpotlight()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>stopTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>toggleLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>stop() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>stopTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>startTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>stop()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>stopTimer() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>toggleFullscreen()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>toggleFullscreen() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>toggleGodView()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>clearSpotlight()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>toggleGodView() node in studio/js/presentation.js.</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>toggleLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>stop()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>initLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td>toggleLaser() node in studio/js/presentation.js.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>studio/js/presentation.js</code></td><td>35 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x38, contains x34, indirect call x3. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 11. invoice.js ====== -->
+<h2 id="invoice-js">11. invoice.js</h2>
+<p>invoice.js groups implementation around invoicejs, public, addserviceitem, attachinlineeditlisteners, mostly in public/js/invoice.js. This section covers 34 nodes and 104 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: invoice.js (34 nodes, 104 edges)
     public_js_invoice_setuptoolbar_1d5f1c84("setupToolbar()<br/><small>public/js/invoice.js</small>")
     public_js_invoice_setupformlisteners_cd333670("setupFormListeners()<br/><small>public/js/invoice.js</small>")
     public_js_invoice_saveinvoicetocloud_aac5a899("saveInvoiceToCloud()<br/><small>public/js/invoice.js</small>")
@@ -2674,10 +3151,10 @@ flowchart LR
     public_js_invoice_formatserialcode_4399dc06("formatSerialCode()<br/><small>public/js/invoice.js</small>")
     public_js_invoice_syncstatetoform_9b807c11("syncStateToForm()<br/><small>public/js/invoice.js</small>")
     public_js_invoice_checkadminauth_aa830359("checkAdminAuth()<br/><small>public/js/invoice.js</small>")
-    public_js_invoice_unlockstudio_a2450f16("unlockStudio()<br/><small>public/js/invoice.js</small>")
     public_js_invoice_showautherror_12a14369("showAuthError()<br/><small>public/js/invoice.js</small>")
+    public_js_invoice_loadcloudinvoiceslist_286aee66("loadCloudInvoicesList()<br/><small>public/js/invoice.js</small>")
+    public_js_invoice_unlockstudio_a2450f16("unlockStudio()<br/><small>public/js/invoice.js</small>")
     public_js_invoice_filterarchivelist_2ccca747("filterArchiveList()<br/><small>public/js/invoice.js</small>")
-    public_js_invoice_renderarchivecards_c65a198d("renderArchiveCards()<br/><small>public/js/invoice.js</small>")
     public_js_invoice_addserviceitem_d0b3c343 -->|calls| public_js_invoice_renderserviceformrows_260a3e3c
     public_js_invoice_addserviceitem_d0b3c343 -->|calls| public_js_invoice_renderinvoicesheet_4a790094
     public_js_invoice_addserviceitem_d0b3c343 -->|calls| public_js_invoice_savetolocalstorage_681b7152
@@ -2687,10 +3164,10 @@ flowchart LR
     public_js_invoice_attachinlineeditlisteners_212b9dd7 -->|calls| public_js_invoice_syncstatetoform_9b807c11
     public_js_invoice_attachinlineeditlisteners_212b9dd7 -->|calls| public_js_invoice_renderinvoicesheet_4a790094
     public_js_invoice_attachinlineeditlisteners_212b9dd7 -->|calls| public_js_invoice_savetolocalstorage_681b7152
+    public_js_invoice_checkadminauth_aa830359 -->|calls| public_js_invoice_showautherror_12a14369
+    public_js_invoice_checkadminauth_aa830359 -->|calls| public_js_invoice_loadcloudinvoiceslist_286aee66
     public_js_invoice_checkadminauth_aa830359 -->|calls| public_js_invoice_unlockstudio_a2450f16
     public_js_invoice_checkadminauth_aa830359 -->|calls| public_js_invoice_init_3e45c558
-    public_js_invoice_checkadminauth_aa830359 -->|calls| public_js_invoice_showautherror_12a14369
-    public_js_invoice_filterarchivelist_2ccca747 -->|calls| public_js_invoice_renderarchivecards_c65a198d
     public_js_invoice_init_3e45c558 -->|calls| public_js_invoice_syncstatetoform_9b807c11
     public_js_invoice_init_3e45c558 -->|calls| public_js_invoice_renderinvoicesheet_4a790094
     public_js_invoice_init_3e45c558 -->|calls| public_js_invoice_setupformlisteners_cd333670
@@ -2699,10 +3176,10 @@ flowchart LR
     public_js_invoice_renderserviceformrows_260a3e3c -->|calls| public_js_invoice_savetolocalstorage_681b7152
     public_js_invoice_saveinvoicetocloud_aac5a899 -->|calls| public_js_invoice_formatserialcode_4399dc06
     public_js_invoice_saveinvoicetocloud_aac5a899 -->|calls| public_js_invoice_showtoast_3755d034
+    public_js_invoice_saveinvoicetocloud_aac5a899 -->|calls| public_js_invoice_loadcloudinvoiceslist_286aee66
     public_js_invoice_setupformlisteners_cd333670 -->|calls| public_js_invoice_renderinvoicesheet_4a790094
     public_js_invoice_setupformlisteners_cd333670 -->|calls| public_js_invoice_savetolocalstorage_681b7152
-    public_js_invoice_setupformlisteners_cd333670 -->|calls| public_js_invoice_formatserialcode_4399dc06
-    %% Omitted for readability: 16 nodes, 9 edges
+    %% Omitted for readability: 16 nodes, 11 edges
     class public_js_invoice_setuptoolbar_1d5f1c84 function;
     class public_js_invoice_setupformlisteners_cd333670 function;
     class public_js_invoice_saveinvoicetocloud_aac5a899 function;
@@ -2717,10 +3194,10 @@ flowchart LR
     class public_js_invoice_formatserialcode_4399dc06 function;
     class public_js_invoice_syncstatetoform_9b807c11 function;
     class public_js_invoice_checkadminauth_aa830359 function;
-    class public_js_invoice_unlockstudio_a2450f16 function;
     class public_js_invoice_showautherror_12a14369 function;
+    class public_js_invoice_loadcloudinvoiceslist_286aee66 function;
+    class public_js_invoice_unlockstudio_a2450f16 function;
     class public_js_invoice_filterarchivelist_2ccca747 function;
-    class public_js_invoice_renderarchivecards_c65a198d function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -2763,7 +3240,7 @@ flowchart LR
   <td><code>checkAdminAuth()</code><br><small style="color:var(--muted)">public/js/invoice.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td><code>init()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>showAuthError()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>unlockStudio()</code><br><small style="color:var(--muted)">public/js/invoice.js</small></td>
+  <td><code>init()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>loadCloudInvoicesList()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>showAuthError()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br>+1 more</td>
   <td>checkAdminAuth() node in public/js/invoice.js.</td>
 </tr>
 <tr>
@@ -2858,7 +3335,7 @@ flowchart LR
   <td>15</td>
   <td><code>loadCloudInvoicesList()</code><br><small style="color:var(--muted)">public/js/invoice.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td><code>openArchiveDrawer()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>saveInvoiceToCloud()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>unlockStudio()</code><br><small style="color:var(--muted)">public/js/invoice.js</small></td>
+  <td><code>checkAdminAuth()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>openArchiveDrawer()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>saveInvoiceToCloud()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br>+1 more</td>
   <td><code>getAuthHeaders()</code><br><small style="color:var(--muted)">public/js/invoice.js</small><br><code>renderArchiveCards()</code><br><small style="color:var(--muted)">public/js/invoice.js</small></td>
   <td>loadCloudInvoicesList() node in public/js/invoice.js.</td>
 </tr>
@@ -2994,13 +3471,13 @@ flowchart LR
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: calls x65, contains x33, indirect call x5. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x66, contains x33, indirect call x5. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
 
-<!-- ====== 11. inspector.js ====== -->
-<h2 id="inspector-js">11. inspector.js</h2>
+<!-- ====== 12. inspector.js ====== -->
+<h2 id="inspector-js">12. inspector.js</h2>
 <p>inspector.js groups implementation around inspectorjs, public, studio, addboxtoframe, mostly in studio/js/inspector.js. This section covers 33 nodes and 86 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -3346,8 +3823,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 12. elements-factory.js ====== -->
-<h2 id="elements-factory-js">12. elements-factory.js</h2>
+<!-- ====== 13. elements-factory.js ====== -->
+<h2 id="elements-factory-js">13. elements-factory.js</h2>
 <p>elements-factory.js groups implementation around elements, factoryjs, public, studio, mostly in studio/js/elements-factory.js. This section covers 33 nodes and 63 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -3686,8 +4163,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 13. luxury-effects.js ====== -->
-<h2 id="luxury-effects-js">13. luxury-effects.js</h2>
+<!-- ====== 14. luxury-effects.js ====== -->
+<h2 id="luxury-effects-js">14. luxury-effects.js</h2>
 <p>luxury-effects.js groups implementation around luxury, effectsjs, public, animateparticles, mostly in public/js/luxury-effects.js. This section covers 32 nodes and 75 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -4032,8 +4509,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 14. comments-engine.js ====== -->
-<h2 id="comments-engine-js">14. comments-engine.js</h2>
+<!-- ====== 15. comments-engine.js ====== -->
+<h2 id="comments-engine-js">15. comments-engine.js</h2>
 <p>comments-engine.js groups implementation around comments, enginejs, public, studio, mostly in studio/js/comments-engine.js. This section covers 30 nodes and 86 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -4379,70 +4856,71 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 15. studio-ai.js ====== -->
-<h2 id="studio-ai-js">15. studio-ai.js</h2>
-<p>studio-ai.js groups implementation around studio, aijs, public, appendmessage, mostly in studio/js/studio-ai.js. This section covers 29 nodes and 59 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<!-- ====== 16. Other ====== -->
+<h2 id="other">16. Other</h2>
+<p>Other groups implementation around public, studio, brand, server, mostly in studio/js/studio-ai.js, scripts/generate-brand-pack.js, server/index.js. This section covers 370 nodes and 530 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: studio-ai.js (29 nodes, 59 edges)
+    %% Section: Other (370 nodes, 530 edges)
+    subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
+        public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_detectlanguage_d4213613("detectLanguage()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_init_509e1b43("init()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e("renderLanguageToggles()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_setlanguage_c0fb6d07("setLanguage()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_applylanguage_757a2a9f("applyLanguage()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_t_98627983("t()<br/><small>public/js/i18n.js</small>")
+    end
+    subgraph other_studio_js_firebase_config_js_1083d1f9["studio/js/firebase-config.js"]
+        public_studio_js_firebase_config_deleteboard_1dc02471("deleteBoard()<br/><small>studio/js/firebase-config.js</small>")
+        public_studio_js_firebase_config_getauthheaders_838705ea("getAuthHeaders()<br/><small>studio/js/firebase-config.js</small>")
+        public_studio_js_firebase_config_init_114423c3("init()<br/><small>studio/js/firebase-config.js</small>")
+        public_studio_js_firebase_config_notifyauthliste_5ea65e48("_notifyAuthListeners()<br/><small>studio/js/firebase-config.js</small>")
+        public_studio_js_firebase_config_initlocalfallba_501deb4a("_initLocalFallback()<br/><small>studio/js/firebase-config.js</small>")
+    end
+    public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54("initLuxuryScroll()<br/><small>js/effects/luxury-scroll.js</small>")
+    scripts_generate_brand_pack_buildbrandpack_7048962a("buildBrandPack()<br/><small>scripts/generate-brand-pack.js</small>")
+    scripts_generate_logo_concepts_generateallconcep_90ccce43("generateAllConcepts()<br/><small>scripts/generate-logo-concepts.js</small>")
+    public_studio_js_connector_engine_init_92aa4b6a("init()<br/><small>studio/js/connector-engine.js</small>")
     public_studio_js_studio_ai_init_a56126fc("init()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_sendmessage_f937f3c8("sendMessage()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_oncanvasselectionchan_12bfcb50("onCanvasSelectionChange()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_open_a04d8304("open()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_togglewindow_e5907aa0("toggleWindow()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_appendmessage_f5d09448("appendMessage()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_rendermarkdown_c3f48615("renderMarkdown()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_insertcardstocanvas_2ec771bd("insertCardsToCanvas()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_applycreatorpersona_0b2ed3c2("applyCreatorPersona()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_sendpreset_a75f1424("sendPreset()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_auditcurrentboard_fcc8b77b("auditCurrentBoard()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_clearchat_e50c7446("clearChat()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_updatepillcardscount_48138b4c("updatePillCardsCount()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_clearselectioncontext_2341f941("clearSelectionContext()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_updateselectionbadge_24ebd00a("updateSelectionBadge()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_applysavedstate_653e517a("applySavedState()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_initdraggable_77f15998("initDraggable()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_minimize_23d9c7ab("minimize()<br/><small>studio/js/studio-ai.js</small>")
-    public_studio_js_studio_ai_appendmessage_f5d09448 -->|calls| public_studio_js_studio_ai_rendermarkdown_c3f48615
-    public_studio_js_studio_ai_appendmessage_f5d09448 -->|calls| public_studio_js_studio_ai_insertcardstocanvas_2ec771bd
-    public_studio_js_studio_ai_applycreatorpersona_0b2ed3c2 -->|calls| public_studio_js_studio_ai_sendpreset_a75f1424
-    public_studio_js_studio_ai_auditcurrentboard_fcc8b77b -->|calls| public_studio_js_studio_ai_sendmessage_f937f3c8
-    public_studio_js_studio_ai_clearchat_e50c7446 -->|calls| public_studio_js_studio_ai_updatepillcardscount_48138b4c
-    public_studio_js_studio_ai_clearselectioncontext_2341f941 -->|calls| public_studio_js_studio_ai_updateselectionbadge_24ebd00a
-    public_studio_js_studio_ai_init_a56126fc -->|calls| public_studio_js_studio_ai_applysavedstate_653e517a
-    public_studio_js_studio_ai_init_a56126fc -->|calls| public_studio_js_studio_ai_initdraggable_77f15998
-    public_studio_js_studio_ai_init_a56126fc -->|calls| public_studio_js_studio_ai_applycreatorpersona_0b2ed3c2
-    public_studio_js_studio_ai_init_a56126fc -->|calls| public_studio_js_studio_ai_togglewindow_e5907aa0
-    public_studio_js_studio_ai_init_a56126fc -->|calls| public_studio_js_studio_ai_minimize_23d9c7ab
-    public_studio_js_studio_ai_init_a56126fc -->|calls| public_studio_js_studio_ai_sendmessage_f937f3c8
-    public_studio_js_studio_ai_oncanvasselectionchan_12bfcb50 -->|calls| public_studio_js_studio_ai_clearselectioncontext_2341f941
-    public_studio_js_studio_ai_oncanvasselectionchan_12bfcb50 -->|calls| public_studio_js_studio_ai_updateselectionbadge_24ebd00a
-    public_studio_js_studio_ai_open_a04d8304 -->|calls| public_studio_js_studio_ai_updateselectionbadge_24ebd00a
-    public_studio_js_studio_ai_sendmessage_f937f3c8 -->|calls| public_studio_js_studio_ai_appendmessage_f5d09448
-    public_studio_js_studio_ai_sendmessage_f937f3c8 -->|calls| public_studio_js_studio_ai_updatepillcardscount_48138b4c
-    public_studio_js_studio_ai_sendpreset_a75f1424 -->|calls| public_studio_js_studio_ai_sendmessage_f937f3c8
-    public_studio_js_studio_ai_togglewindow_e5907aa0 -->|calls| public_studio_js_studio_ai_minimize_23d9c7ab
-    %% Omitted for readability: 11 nodes, 0 edges
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_constructor_34fce30d
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_detectlanguage_d4213613
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_init_509e1b43
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_setlanguage_c0fb6d07
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_applylanguage_757a2a9f
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_t_98627983
+    public_studio_js_firebase_config_deleteboard_1dc02471 -->|calls| public_studio_js_firebase_config_getauthheaders_838705ea
+    public_studio_js_firebase_config_init_114423c3 -->|calls| public_studio_js_firebase_config_notifyauthliste_5ea65e48
+    public_studio_js_firebase_config_init_114423c3 -->|calls| public_studio_js_firebase_config_initlocalfallba_501deb4a
+    public_studio_js_firebase_config_initlocalfallba_501deb4a -->|calls| public_studio_js_firebase_config_notifyauthliste_5ea65e48
+    public_js_i18n_polishi18n_constructor_34fce30d -->|calls| public_js_i18n_polishi18n_detectlanguage_d4213613
+    public_js_i18n_polishi18n_constructor_34fce30d -->|calls| public_js_i18n_polishi18n_init_509e1b43
+    public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
+    public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
+    public_js_i18n_polishi18n_setlanguage_c0fb6d07 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
+    %% Omitted for readability: 352 nodes, 0 edges
+    class public_js_i18n_polishi18n_72987c12 klass;
+    class public_js_i18n_polishi18n_constructor_34fce30d function;
+    class public_js_i18n_polishi18n_detectlanguage_d4213613 function;
+    class public_js_i18n_polishi18n_init_509e1b43 function;
+    class public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e function;
+    class public_js_i18n_polishi18n_setlanguage_c0fb6d07 function;
+    class public_js_i18n_polishi18n_applylanguage_757a2a9f function;
+    class public_js_i18n_polishi18n_t_98627983 function;
+    class public_studio_js_firebase_config_deleteboard_1dc02471 function;
+    class public_studio_js_firebase_config_getauthheaders_838705ea function;
+    class public_studio_js_firebase_config_init_114423c3 function;
+    class public_studio_js_firebase_config_notifyauthliste_5ea65e48 function;
+    class public_studio_js_firebase_config_initlocalfallba_501deb4a function;
+    class public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54 function;
+    class scripts_generate_brand_pack_buildbrandpack_7048962a function;
+    class scripts_generate_logo_concepts_generateallconcep_90ccce43 function;
+    class public_studio_js_connector_engine_init_92aa4b6a function;
     class public_studio_js_studio_ai_init_a56126fc function;
-    class public_studio_js_studio_ai_sendmessage_f937f3c8 function;
-    class public_studio_js_studio_ai_oncanvasselectionchan_12bfcb50 async;
-    class public_studio_js_studio_ai_open_a04d8304 function;
-    class public_studio_js_studio_ai_togglewindow_e5907aa0 function;
-    class public_studio_js_studio_ai_appendmessage_f5d09448 function;
-    class public_studio_js_studio_ai_rendermarkdown_c3f48615 function;
-    class public_studio_js_studio_ai_insertcardstocanvas_2ec771bd function;
-    class public_studio_js_studio_ai_applycreatorpersona_0b2ed3c2 function;
-    class public_studio_js_studio_ai_sendpreset_a75f1424 function;
-    class public_studio_js_studio_ai_auditcurrentboard_fcc8b77b function;
-    class public_studio_js_studio_ai_clearchat_e50c7446 function;
-    class public_studio_js_studio_ai_updatepillcardscount_48138b4c function;
-    class public_studio_js_studio_ai_clearselectioncontext_2341f941 function;
-    class public_studio_js_studio_ai_updateselectionbadge_24ebd00a function;
-    class public_studio_js_studio_ai_applysavedstate_653e517a function;
-    class public_studio_js_studio_ai_initdraggable_77f15998 function;
-    class public_studio_js_studio_ai_minimize_23d9c7ab function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -4696,6 +5174,14 @@ flowchart LR
   <td>No direct outbound edge</td>
   <td>studio-ai.js node in studio/js/studio-ai.js.</td>
 </tr>
+<tr>
+  <td>30</td>
+  <td><code>buildBrandPack()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>createHorizontalLogoSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br><code>createInstagramAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br><code>createLinkedInBannerSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br>+7 more</td>
+  <td>buildBrandPack() node in scripts/generate-brand-pack.js.</td>
+</tr>
 </table>
 
 <div class="grid">
@@ -4704,361 +5190,18 @@ flowchart LR
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
       <tr><td><code>studio/js/studio-ai.js</code></td><td>29 nodes</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: calls x31, contains x28. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
-  </div>
-</div>
-<hr>
-
-<!-- ====== 16. Other ====== -->
-<h2 id="other">16. Other</h2>
-<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/presentation.js, scripts/generate-brand-pack.js, server/index.js. This section covers 380 nodes and 536 internal edges; the diagram shows only representative relationships to stay readable.</p>
-
-<div class="mermaid">
-%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
-flowchart LR
-    %% Section: Other (380 nodes, 536 edges)
-    subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
-        public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_detectlanguage_d4213613("detectLanguage()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_init_509e1b43("init()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e("renderLanguageToggles()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_setlanguage_c0fb6d07("setLanguage()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_applylanguage_757a2a9f("applyLanguage()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_t_98627983("t()<br/><small>public/js/i18n.js</small>")
-    end
-    subgraph other_studio_js_firebase_config_js_1083d1f9["studio/js/firebase-config.js"]
-        public_studio_js_firebase_config_deleteboard_1dc02471("deleteBoard()<br/><small>studio/js/firebase-config.js</small>")
-        public_studio_js_firebase_config_getauthheaders_838705ea("getAuthHeaders()<br/><small>studio/js/firebase-config.js</small>")
-        public_studio_js_firebase_config_init_114423c3("init()<br/><small>studio/js/firebase-config.js</small>")
-        public_studio_js_firebase_config_notifyauthliste_5ea65e48("_notifyAuthListeners()<br/><small>studio/js/firebase-config.js</small>")
-        public_studio_js_firebase_config_initlocalfallba_501deb4a("_initLocalFallback()<br/><small>studio/js/firebase-config.js</small>")
-    end
-    public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54("initLuxuryScroll()<br/><small>js/effects/luxury-scroll.js</small>")
-    scripts_generate_brand_pack_buildbrandpack_7048962a("buildBrandPack()<br/><small>scripts/generate-brand-pack.js</small>")
-    scripts_generate_logo_concepts_generateallconcep_90ccce43("generateAllConcepts()<br/><small>scripts/generate-logo-concepts.js</small>")
-    public_studio_js_connector_engine_init_92aa4b6a("init()<br/><small>studio/js/connector-engine.js</small>")
-    public_studio_js_presentation_start_e2d29d87("start()<br/><small>studio/js/presentation.js</small>")
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_constructor_34fce30d
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_detectlanguage_d4213613
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_init_509e1b43
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_setlanguage_c0fb6d07
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_t_98627983
-    public_studio_js_firebase_config_deleteboard_1dc02471 -->|calls| public_studio_js_firebase_config_getauthheaders_838705ea
-    public_studio_js_firebase_config_init_114423c3 -->|calls| public_studio_js_firebase_config_notifyauthliste_5ea65e48
-    public_studio_js_firebase_config_init_114423c3 -->|calls| public_studio_js_firebase_config_initlocalfallba_501deb4a
-    public_studio_js_firebase_config_initlocalfallba_501deb4a -->|calls| public_studio_js_firebase_config_notifyauthliste_5ea65e48
-    public_js_i18n_polishi18n_constructor_34fce30d -->|calls| public_js_i18n_polishi18n_detectlanguage_d4213613
-    public_js_i18n_polishi18n_constructor_34fce30d -->|calls| public_js_i18n_polishi18n_init_509e1b43
-    public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
-    public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    public_js_i18n_polishi18n_setlanguage_c0fb6d07 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    %% Omitted for readability: 362 nodes, 0 edges
-    class public_js_i18n_polishi18n_72987c12 klass;
-    class public_js_i18n_polishi18n_constructor_34fce30d function;
-    class public_js_i18n_polishi18n_detectlanguage_d4213613 function;
-    class public_js_i18n_polishi18n_init_509e1b43 function;
-    class public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e function;
-    class public_js_i18n_polishi18n_setlanguage_c0fb6d07 function;
-    class public_js_i18n_polishi18n_applylanguage_757a2a9f function;
-    class public_js_i18n_polishi18n_t_98627983 function;
-    class public_studio_js_firebase_config_deleteboard_1dc02471 function;
-    class public_studio_js_firebase_config_getauthheaders_838705ea function;
-    class public_studio_js_firebase_config_init_114423c3 function;
-    class public_studio_js_firebase_config_notifyauthliste_5ea65e48 function;
-    class public_studio_js_firebase_config_initlocalfallba_501deb4a function;
-    class public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54 function;
-    class scripts_generate_brand_pack_buildbrandpack_7048962a function;
-    class scripts_generate_logo_concepts_generateallconcep_90ccce43 function;
-    class public_studio_js_connector_engine_init_92aa4b6a function;
-    class public_studio_js_presentation_start_e2d29d87 function;
-    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
-    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
-    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
-    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
-    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
-    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
-    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
-    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
-    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
-</div>
-
-<h3>Call Details</h3>
-<table class="call-table">
-<tr>
-  <th style="width:5%">#</th>
-  <th style="width:28%">Node</th>
-  <th style="width:10%">Type</th>
-  <th style="width:17%">Caller</th>
-  <th style="width:20%">Callees</th>
-  <th style="width:20%">Description</th>
-</tr>
-<tr>
-  <td>1</td>
-  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>start()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><code>getSlideTitle()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>isValidSlideElement()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>buildPresentationSequence() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>2</td>
-  <td><code>clearSpotlight()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>stop()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>toggleGodView()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>clearSpotlight() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>3</td>
-  <td><code>focusOnElement()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>focusOnElement() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>4</td>
-  <td><code>getSlideTitle()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>getSlideTitle() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>5</td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>next()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>nextMajorSection()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>populateSlideSelect()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br>+4 more</td>
-  <td><code>clearSpotlight()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>focusOnElement()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>updateSlideInfo()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>goToStep() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>6</td>
-  <td><code>initLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>start()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>toggleLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><code>onLaserMove()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>initLaser() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>7</td>
-  <td><code>isValidSlideElement()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>isValidSlideElement() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>8</td>
-  <td><code>next()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>next() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>9</td>
-  <td><code>nextMajorSection()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>nextMajorSection() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>10</td>
-  <td><code>onLaserMove()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>initLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>onLaserMove() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>11</td>
-  <td><code>populateSlideSelect()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>start()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>populateSlideSelect() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>12</td>
-  <td><code>prev()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>prev() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>prevMajorSection()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>prevMajorSection() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>start()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>initLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br>+2 more</td>
-  <td>start() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>startTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>start()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><code>stopTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>updateTimerDisplay()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>startTimer() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>16</td>
-  <td><code>stop()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>clearSpotlight()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>stopTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>toggleLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>stop() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>17</td>
-  <td><code>stopTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>startTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>stop()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>stopTimer() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>18</td>
-  <td><code>toggleFullscreen()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>toggleFullscreen() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>19</td>
-  <td><code>toggleGodView()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>clearSpotlight()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>toggleGodView() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>20</td>
-  <td><code>toggleLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>stop()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><code>initLaser()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>toggleLaser() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>21</td>
-  <td><code>updateFullscreenBtn()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>updateFullscreenBtn() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>22</td>
-  <td><code>updateSlideInfo()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>goToStep()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>updateSlideInfo() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>23</td>
-  <td><code>updateTimerDisplay()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>startTimer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>updateTimerDisplay() node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>24</td>
-  <td><code>presentation.js</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>presentation.js node in studio/js/presentation.js.</td>
-</tr>
-<tr>
-  <td>25</td>
-  <td><code>buildBrandPack()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>createHorizontalLogoSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br><code>createInstagramAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br><code>createLinkedInBannerSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br>+7 more</td>
-  <td>buildBrandPack() node in scripts/generate-brand-pack.js.</td>
-</tr>
-<tr>
-  <td>26</td>
-  <td><code>createHorizontalLogoSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>buildBrandPack()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><code>getMarkSnippet()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td>createHorizontalLogoSvg() node in scripts/generate-brand-pack.js.</td>
-</tr>
-<tr>
-  <td>27</td>
-  <td><code>createInstagramAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>buildBrandPack()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><code>getMarkSnippet()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td>createInstagramAvatarSvg() node in scripts/generate-brand-pack.js.</td>
-</tr>
-<tr>
-  <td>28</td>
-  <td><code>createLinkedInBannerSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>buildBrandPack()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><code>getMarkSnippet()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td>createLinkedInBannerSvg() node in scripts/generate-brand-pack.js.</td>
-</tr>
-<tr>
-  <td>29</td>
-  <td><code>createMarkSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>buildBrandPack()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><code>getMarkSnippet()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td>createMarkSvg() node in scripts/generate-brand-pack.js.</td>
-</tr>
-<tr>
-  <td>30</td>
-  <td><code>createOpenGraphCardSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>buildBrandPack()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><code>getMarkSnippet()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td>Builds dependency relationships and graph data.</td>
-</tr>
-</table>
-
-<div class="grid">
-  <div class="card">
-    <h4>Key Files</h4>
-    <table style="width:100%;font-size:0.85rem;">
-      <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>studio/js/presentation.js</code></td><td>24 nodes</td></tr>
 <tr><td><code>scripts/generate-brand-pack.js</code></td><td>24 nodes</td></tr>
 <tr><td><code>server/index.js</code></td><td>19 nodes</td></tr>
 <tr><td><code>HANDOFF_EMAN_AL_KATHEERI.md</code></td><td>18 nodes</td></tr>
 <tr><td><code>docs/brand-guidelines.md</code></td><td>17 nodes</td></tr>
 <tr><td><code>brand-pack/06_guidelines/POLISH_BRAND_GUIDELINES.md</code></td><td>17 nodes</td></tr>
 <tr><td><code>scripts/generate-logo-concepts.js</code></td><td>17 nodes</td></tr>
-<tr><td><code>scripts/generate-social-avatars.js</code></td><td>17 nodes</td></tr>
+<tr><td><code>studio/js/firebase-config.js</code></td><td>15 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x318, calls x178, indirect call x24, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x307, calls x182, indirect call x22, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -5069,18 +5212,18 @@ flowchart LR
   <div class="card">
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>Nodes</td><td>974</td></tr>
-      <tr><td>Edges</td><td>1609</td></tr>
+      <tr><td>Nodes</td><td>990</td></tr>
+      <tr><td>Edges</td><td>1643</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
-      <tr><td>Communities</td><td>74</td></tr>
+      <tr><td>Communities</td><td>73</td></tr>
       <tr><td>Documented Sections</td><td>15</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>1570</td></tr>
-      <tr><td>INFERRED</td><td>39</td></tr>
+      <tr><td>EXTRACTED</td><td>1603</td></tr>
+      <tr><td>INFERRED</td><td>40</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
   </div>
@@ -5088,7 +5231,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>polishmedia — Architecture Documentation</p>
-  <p>Generated: 2026-09-13 02:26 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 02:51 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

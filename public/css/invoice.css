@@ -655,31 +655,43 @@ body.invoice-studio-body {
 }
 
 .stage-toolbar {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 16px;
-  background: var(--studio-surface);
-  border: 1px solid var(--studio-border);
-  padding: 4px 12px;
-  border-radius: 20px;
+  background: rgba(18, 16, 14, 0.88);
+  border: 1px solid rgba(226, 199, 153, 0.2);
+  padding: 5px 14px;
+  border-radius: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .stage-hint {
   font-size: 11px;
-  color: var(--studio-text-muted);
-  display: flex;
+  font-weight: 600;
+  color: #A39682;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.stage-toolbar-divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
 }
 
 /* Editable Pill Indicator */
 .edit-mode-pill {
   font-size: 10.5px;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 3px 9px;
   border-radius: 12px;
   background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
   color: #10B981;
   display: inline-flex;
   align-items: center;
@@ -687,8 +699,9 @@ body.invoice-studio-body {
 }
 
 .edit-mode-pill.inactive {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--studio-text-muted);
+  background: rgba(226, 199, 153, 0.08);
+  border: 1px solid rgba(226, 199, 153, 0.18);
+  color: #C5A880;
 }
 
 /* ==========================================================================
@@ -1498,17 +1511,19 @@ body.edit-mode-active [contenteditable="true"]:focus {
 .archive-drawer-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 99998;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
 }
 
 .archive-drawer-backdrop.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -1526,11 +1541,15 @@ body.edit-mode-active [contenteditable="true"]:focus {
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
 }
 
 .archive-drawer.active {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .archive-drawer-header {
@@ -1783,16 +1802,76 @@ body.theme-light #invoicesTabPane .studio-stage {
   background: #ECE8E1;
 }
 
-body.theme-light #invoicesTabPane .stage-hint {
-  background: #FFFFFF;
-  border-color: var(--card-border);
-  color: #5E5549;
+/* Native Tab Integration Inside Admin Dashboard */
+#invoicesTabPane .studio-container {
+  min-height: calc(100vh - 180px);
+  height: calc(100vh - 180px);
+  border: 1px solid var(--studio-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 0;
 }
 
-body.theme-light #invoicesTabPane .edit-mode-pill {
-  background: #FFFFFF;
+#invoicesTabPane .studio-editor-panel {
+  max-height: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 40px;
+}
+
+#invoicesTabPane .studio-stage {
+  max-height: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 60px;
+}
+
+body.theme-light #invoicesTabPane .studio-container {
   border-color: var(--card-border);
-  color: #5E5549;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+body.theme-light .stage-toolbar,
+body.theme-light #invoicesTabPane .stage-toolbar {
+  background: #FFFFFF !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(120, 86, 39, 0.06) !important;
+}
+
+body.theme-light .stage-hint,
+body.theme-light #invoicesTabPane .stage-hint {
+  background: transparent !important;
+  border: none !important;
+  color: #5E5549 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .stage-toolbar-divider,
+body.theme-light #invoicesTabPane .stage-toolbar-divider {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.theme-light .edit-mode-pill,
+body.theme-light #invoicesTabPane .edit-mode-pill {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  color: #047857 !important;
+}
+
+body.theme-light .edit-mode-pill.inactive,
+body.theme-light #invoicesTabPane .edit-mode-pill.inactive {
+  background: rgba(120, 86, 39, 0.08) !important;
+  border: 1px solid rgba(120, 86, 39, 0.2) !important;
+  color: #785627 !important;
+}
+
+/* Invoice Sheet Footer Contact Pill High Contrast Guarantee */
+.inv-footer-pill,
+.inv-footer-pill * {
+  color: #FAF7F2 !important;
+}
+.inv-footer-contact-item svg {
+  color: #E2C799 !important;
 }
 
 body.theme-light .archive-drawer {

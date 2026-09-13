@@ -7777,7 +7777,7 @@
       "node_kind": "heading",
       "norm_label": "3. backend architecture (`server/index.js`)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L123"
+      "source_location": "L133"
     },
     {
       "id": "docs_handoff_4_git_repository_status",
@@ -7789,7 +7789,7 @@
       "node_kind": "heading",
       "norm_label": "4. git & repository status",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L214"
+      "source_location": "L224"
     },
     {
       "id": "docs_handoff_5_major_milestones_integrations_september_2026_session",
@@ -7801,7 +7801,7 @@
       "node_kind": "heading",
       "norm_label": "5. major milestones & integrations (september 2026 session)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L247"
+      "source_location": "L257"
     },
     {
       "id": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
@@ -7813,7 +7813,7 @@
       "node_kind": "heading",
       "norm_label": "6. next priority roadmap (ready for next conversation)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L308"
+      "source_location": "L318"
     },
     {
       "id": "docs_handoff_7_how_to_start_a_fresh_antigravity_chat",
@@ -7825,7 +7825,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L632"
+      "source_location": "L657"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -7837,7 +7837,7 @@
       "node_kind": "heading",
       "norm_label": "a. agent reach & internet capabilities (`agent-reach`)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L249"
+      "source_location": "L259"
     },
     {
       "id": "docs_handoff_a_main_experience_public_index_html",
@@ -7873,7 +7873,7 @@
       "node_kind": "heading",
       "norm_label": "b. graphify codebase knowledge graph (`graphify`)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L261"
+      "source_location": "L271"
     },
     {
       "id": "docs_handoff_b_polish_board_studio_public_studio_boards_hub_boards_app_polishmediaco_com",
@@ -7885,7 +7885,7 @@
       "node_kind": "heading",
       "norm_label": "b. polish board studio (`public/studio/`) & boards hub (`/boards`, `app.polishmediaco.com`)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L160"
+      "source_location": "L170"
     },
     {
       "id": "docs_handoff_c_creator_ugc_portal_public_creators_html",
@@ -7909,7 +7909,7 @@
       "node_kind": "heading",
       "norm_label": "c. the four comprehensive audits conducted",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L274"
+      "source_location": "L284"
     },
     {
       "id": "docs_handoff_d_admin_portal_live_cms_public_admin_html",
@@ -7933,7 +7933,7 @@
       "node_kind": "heading",
       "norm_label": "e. brand asset vault & guidelines (`public/brand-pack.html` / `/brand-pack`)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L83"
+      "source_location": "L93"
     },
     {
       "id": "docs_handoff_f_executive_invoicing_atelier_generator_public_invoice_html_admin_invoice",
@@ -7945,7 +7945,7 @@
       "node_kind": "heading",
       "norm_label": "f. executive invoicing atelier & generator (`public/invoice.html` / `/admin/invoice`)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L95"
+      "source_location": "L105"
     },
     {
       "id": "docs_handoff_h_award_winning_luxury_cards_tactile_micro_interactions",
@@ -7957,7 +7957,7 @@
       "node_kind": "heading",
       "norm_label": "h. award-winning luxury cards & tactile micro-interactions",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L107"
+      "source_location": "L117"
     },
     {
       "id": "docs_handoff_i_logo_optical_sizing_multi_format_vector_lockups_resolved_september_2026",
@@ -7969,7 +7969,7 @@
       "node_kind": "heading",
       "norm_label": "i. logo optical sizing & multi-format vector lockups (resolved september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L135"
+      "source_location": "L145"
     },
     {
       "id": "docs_handoff_polish_media_co_project_state_handoff_document",
@@ -7993,7 +7993,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 10: presentation slide sequencer & custom pitch order screen (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L450"
+      "source_location": "L460"
     },
     {
       "id": "docs_handoff_sprint_11_favicon_social_link_preview_brand_card_overhaul_completed_september_2026",
@@ -8005,7 +8005,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 11: favicon, social link preview & brand card overhaul (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L471"
+      "source_location": "L481"
     },
     {
       "id": "docs_handoff_sprint_12_presentation_executive_branding_laser_engine_overhaul_completed_september_2026",
@@ -8017,7 +8017,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 12: presentation executive branding & laser engine overhaul (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L491"
+      "source_location": "L501"
     },
     {
       "id": "docs_handoff_sprint_13_executive_admin_invoicing_atelier_contrast_shadow_bleed_layout_polish_completed_september_2026",
@@ -8029,7 +8029,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 13: executive admin invoicing atelier contrast, shadow bleed & layout polish (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L509"
+      "source_location": "L519"
     },
     {
       "id": "docs_handoff_sprint_14_minimalist_luxury_presentation_engine_zero_clutter_architecture_completed_september_2026",
@@ -8041,7 +8041,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 14: minimalist luxury presentation engine & zero-clutter architecture (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L520"
+      "source_location": "L530"
     },
     {
       "id": "docs_handoff_sprint_16_inbound_crm_dossiers_executive_lead_management_overhaul_completed_september_2026",
@@ -8053,7 +8053,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 16: inbound crm dossiers & executive lead management overhaul (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L555"
+      "source_location": "L565"
     },
     {
       "id": "docs_handoff_sprint_16_official_brand_watermark_silk_sheen_zero_distortion_presentation_mode_completed_september_2026",
@@ -8065,7 +8065,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 16: official brand watermark, silk sheen & zero-distortion presentation mode (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L539"
+      "source_location": "L549"
     },
     {
       "id": "docs_handoff_sprint_17_invoicing_atelier_redesign_trilingual_optimization_completed_september_2026",
@@ -8077,7 +8077,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 17: invoicing atelier redesign & trilingual optimization (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L570"
+      "source_location": "L580"
     },
     {
       "id": "docs_handoff_sprint_18_laser_pointer_stacking_context_direct_click_toggle_engine_completed_september_2026",
@@ -8089,7 +8089,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 18: laser pointer stacking context & direct click-toggle engine (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L590"
+      "source_location": "L600"
     },
     {
       "id": "docs_handoff_sprint_19_admin_authentication_leads_pipeline_zero_buzzword_overhaul_completed_september_2026",
@@ -8101,7 +8101,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 19: admin authentication, leads pipeline & zero-buzzword overhaul (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L609"
+      "source_location": "L619"
     },
     {
       "id": "docs_handoff_sprint_1_critical_hotfixes_completed_september_2026",
@@ -8113,7 +8113,19 @@
       "node_kind": "heading",
       "norm_label": "sprint 1: critical hotfixes (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L310"
+      "source_location": "L320"
+    },
+    {
+      "id": "docs_handoff_sprint_20_production_admin_oauth_relay_cookie_partitioning_defense_whitelist_sanitization_completed_september_2026",
+      "label": "Sprint 20: Production Admin OAuth Relay, Cookie-Partitioning Defense & Whitelist Sanitization (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 20: production admin oauth relay, cookie-partitioning defense & whitelist sanitization (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L635"
     },
     {
       "id": "docs_handoff_sprint_2_security_performance_hardening_completed_september_2026",
@@ -8125,7 +8137,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 2: security & performance hardening (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L318"
+      "source_location": "L328"
     },
     {
       "id": "docs_handoff_sprint_3_architectural_decoupling_conversion_polish_completed_september_2026",
@@ -8137,7 +8149,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 3: architectural decoupling & conversion polish (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L326"
+      "source_location": "L336"
     },
     {
       "id": "docs_handoff_sprint_4_visual_physics_modularization_studio_event_bus_completed_september_2026",
@@ -8149,7 +8161,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 4: visual physics modularization & studio event bus (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L333"
+      "source_location": "L343"
     },
     {
       "id": "docs_handoff_sprint_5_luxury_invoicing_atelier_commercial_rebrand_completed_september_2026",
@@ -8161,7 +8173,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 5: luxury invoicing atelier & commercial rebrand (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L340"
+      "source_location": "L350"
     },
     {
       "id": "docs_handoff_sprint_6_supabase_auth_subdomain_verification_executive_header_overhaul_completed_september_2026",
@@ -8173,7 +8185,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 6: supabase auth, subdomain verification & executive header overhaul (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L351"
+      "source_location": "L361"
     },
     {
       "id": "docs_handoff_sprint_7_executive_invoicing_atelier_cloud_cms_persistence_completed_september_2026",
@@ -8185,7 +8197,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 7: executive invoicing atelier & cloud cms persistence (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L362"
+      "source_location": "L372"
     },
     {
       "id": "docs_handoff_sprint_8_luxury_arabic_rtl_unicode_bidi_typography_architecture_completed_september_2026",
@@ -8197,7 +8209,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 8: luxury arabic (rtl) & unicode bidi typography architecture (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L395"
+      "source_location": "L405"
     },
     {
       "id": "docs_handoff_sprint_9_haute_beaut\u00e9_cosmetic_blueprints_presentation_engine_2_0_completed_september_2026",
@@ -8209,7 +8221,7 @@
       "node_kind": "heading",
       "norm_label": "sprint 9: haute beaute cosmetic blueprints & presentation engine 2.0 (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L418"
+      "source_location": "L428"
     },
     {
       "id": "agents_skills_cybersecurity_web_skill",
@@ -11970,6 +11982,50 @@
       "file_type": "code",
       "norm_label": "puppeteer",
       "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_auth_flow",
+      "label": "test_auth_flow.js",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "test_auth_flow.js",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_auth_flow_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_test_auth_flow_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "tests_test_auth_flow_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_auth_flow.js",
       "source_location": "L1"
     },
     {
@@ -20854,6 +20910,18 @@
       "weight": 1.0
     },
     {
+      "source": "tests_test_auth_flow",
+      "target": "ref_puppeteer",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "tests_test_laser_and_branding",
       "target": "ref_puppeteer",
       "relation": "imports_from",
@@ -22915,13 +22983,24 @@
     },
     {
       "source": "docs_handoff_2_core_pages_component_architecture",
+      "target": "docs_handoff_f_executive_invoicing_atelier_generator_public_invoice_html_admin_invoice",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_handoff_2_core_pages_component_architecture",
       "target": "docs_handoff_h_award_winning_luxury_cards_tactile_micro_interactions",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L107",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -22976,18 +23055,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L83",
-      "weight": 1.0
-    },
-    {
-      "source": "docs_handoff_2_core_pages_component_architecture",
-      "target": "docs_handoff_f_executive_invoicing_atelier_generator_public_invoice_html_admin_invoice",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/HANDOFF.md",
-      "source_location": "L95",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -22998,7 +23066,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L135",
+      "source_location": "L145",
       "weight": 1.0
     },
     {
@@ -23009,7 +23077,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L160",
+      "source_location": "L170",
       "weight": 1.0
     },
     {
@@ -23020,7 +23088,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L249",
+      "source_location": "L259",
       "weight": 1.0
     },
     {
@@ -23031,7 +23099,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L261",
+      "source_location": "L271",
       "weight": 1.0
     },
     {
@@ -23042,7 +23110,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L274",
+      "source_location": "L284",
       "weight": 1.0
     },
     {
@@ -23053,7 +23121,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L310",
+      "source_location": "L320",
       "weight": 1.0
     },
     {
@@ -23064,7 +23132,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L318",
+      "source_location": "L328",
       "weight": 1.0
     },
     {
@@ -23075,7 +23143,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L326",
+      "source_location": "L336",
       "weight": 1.0
     },
     {
@@ -23086,7 +23154,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L333",
+      "source_location": "L343",
       "weight": 1.0
     },
     {
@@ -23097,7 +23165,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L340",
+      "source_location": "L350",
       "weight": 1.0
     },
     {
@@ -23108,7 +23176,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L351",
+      "source_location": "L361",
       "weight": 1.0
     },
     {
@@ -23119,7 +23187,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L362",
+      "source_location": "L372",
       "weight": 1.0
     },
     {
@@ -23130,7 +23198,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L395",
+      "source_location": "L405",
       "weight": 1.0
     },
     {
@@ -23141,7 +23209,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L418",
+      "source_location": "L428",
       "weight": 1.0
     },
     {
@@ -23152,7 +23220,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L450",
+      "source_location": "L460",
       "weight": 1.0
     },
     {
@@ -23163,7 +23231,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L471",
+      "source_location": "L481",
       "weight": 1.0
     },
     {
@@ -23174,7 +23242,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L491",
+      "source_location": "L501",
       "weight": 1.0
     },
     {
@@ -23185,7 +23253,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L509",
+      "source_location": "L519",
       "weight": 1.0
     },
     {
@@ -23196,7 +23264,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L520",
+      "source_location": "L530",
       "weight": 1.0
     },
     {
@@ -23207,7 +23275,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L539",
+      "source_location": "L549",
       "weight": 1.0
     },
     {
@@ -23218,7 +23286,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L555",
+      "source_location": "L565",
       "weight": 1.0
     },
     {
@@ -23229,7 +23297,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L570",
+      "source_location": "L580",
       "weight": 1.0
     },
     {
@@ -23240,7 +23308,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L590",
+      "source_location": "L600",
       "weight": 1.0
     },
     {
@@ -23251,7 +23319,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L609",
+      "source_location": "L619",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_20_production_admin_oauth_relay_cookie_partitioning_defense_whitelist_sanitization_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L635",
       "weight": 1.0
     },
     {
@@ -23262,7 +23341,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L123",
+      "source_location": "L133",
       "weight": 1.0
     },
     {
@@ -23273,7 +23352,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L214",
+      "source_location": "L224",
       "weight": 1.0
     },
     {
@@ -23284,7 +23363,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L247",
+      "source_location": "L257",
       "weight": 1.0
     },
     {
@@ -23295,7 +23374,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L308",
+      "source_location": "L318",
       "weight": 1.0
     },
     {
@@ -23317,7 +23396,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L632",
+      "source_location": "L657",
       "weight": 1.0
     },
     {
@@ -30680,6 +30759,39 @@
       "weight": 1.0
     },
     {
+      "source": "tests_test_auth_flow",
+      "target": "tests_test_auth_flow_puppeteer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_auth_flow",
+      "target": "tests_test_auth_flow_path",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_auth_flow",
+      "target": "tests_test_auth_flow_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "tests_test_laser_and_branding",
       "target": "tests_test_laser_and_branding_puppeteer",
       "relation": "contains",
@@ -31452,5 +31564,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "20db68b31e1356e92afd8d10975f4da644d34013"
+  "built_at_commit": "e07d8dc6e19f8e4bbe0d36ebc2923f0354337411"
 }

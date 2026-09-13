@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789275944.398146,
-    "seen": 1789275948.364032,
-    "ast_hash": "c316989491bef50d54656239a1dfa649",
+    "mtime": 1789276717.4796252,
+    "seen": 1789276724.0794911,
+    "ast_hash": "3caa33cce700b36aeb002209c6006782",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789275892.93148,
-    "seen": 1789275948.364067,
-    "ast_hash": "3887e865db931168b403c4b1bb83e72a",
+    "mtime": 1789276703.759426,
+    "seen": 1789276724.0795321,
+    "ast_hash": "9db0072ec543164acfd968f3d1bca5e1",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -450,9 +450,9 @@
     "semantic_hash": ""
   },
   "public/index.html": {
-    "mtime": 1789265679.1401024,
-    "seen": 1789265713.932739,
-    "ast_hash": "a916b6bdbe9ccc7656337956cb970090",
+    "mtime": 1789276203.650428,
+    "seen": 1789276236.9175029,
+    "ast_hash": "fb563b2193fa849fd3b4d2905725106f",
     "semantic_hash": ""
   },
   "public/intake.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789274364.670721,
+    "seen": 1789276236.9174762,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -2055,6 +2055,12 @@
     "mtime": 1789275522.1389825,
     "seen": 1789275948.363528,
     "ast_hash": "82eac8703c68dbcad5ab6b1f1ea4132e",
+    "semantic_hash": ""
+  },
+  "tests/test_auth_flow.js": {
+    "mtime": 1789276657.3981237,
+    "seen": 1789276724.079131,
+    "ast_hash": "2bd4e1e49f8c5e5d77551df53fe5b66e",
     "semantic_hash": ""
   }
 }

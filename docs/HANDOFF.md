@@ -632,9 +632,24 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Instant 0ms URL auto-login via `https://polishmediaco.com/admin?key=polish_admin_secure_key_2026`.
 4. ✅ **Supabase Localhost Redirect Resolution**:
    - Diagnosed root cause in Supabase dashboard `rkbddfdevgcwqjoshpex`: **Site URL** was set to `http://localhost:3000`.
-   - Set Site URL to `https://polishmediaco.com` and added `https://polishmediaco.com/admin` to Redirect URLs.
-5. ✅ **Production Verification & Deployment**:
-   - Verified via Puppeteer screenshots: `admin_clean_signin_verified.png` and `admin_clean_leads_verified.png`.
+### Sprint 20: Production Admin OAuth Relay, Cookie-Partitioning Defense & Whitelist Sanitization (Completed September 2026)
+1. ✅ **Root Cause Diagnoses**:
+   - **Issue 1 (Localhost Connection Refused)**: When clicking *"Sign In with Google"*, Supabase redirected to `http://localhost:3000/#access_token=...` resulting in `ERR_CONNECTION_REFUSED` because the user was browsing live production and did not have the local Node server running on port 3000. Supabase's **Site URL** was pointing to `http://localhost:3000` and `polishmediaco.com` was not in the Redirect URLs whitelist.
+   - **Issue 2 (Homepage Redirect Loop)**: After setting Site URL to `https://polishmediaco.com`, Supabase redirected to `https://polishmediaco.com/#access_token=...` (the root homepage) rather than `/admin`. This happens because Chrome's cross-site cookie partitioning drops Supabase's temporary `redirect_to` session cookie during the cross-origin OAuth return flow, causing Supabase GoTrue to fall back to the project's root Site URL.
+2. ✅ **Instant 0ms OAuth Token Relay Engine (`public/index.html`)**:
+   - Mounted a zero-dependency synchronous relay script at the very top of `<head>` in `public/index.html`.
+   - Checks `window.location.hash` before DOM parsing. If `#access_token=` or `#error=` is present, it instantly executes `window.location.replace('/admin' + window.location.hash)`.
+   - Delivers seamless 1-click Google authentication even when Supabase defaults to the root domain.
+3. ✅ **Security Whitelist Sanitization**:
+   - Discovered that an unauthorized address (`choulifaycal10@gmail.com`) was inadvertently hallucinated by an earlier AI session earlier that morning.
+   - Permanently purged from `.env`, `server/middleware/auth.js`, and documentation. Whitelist strictly enforced to verified founders (`polishmediaco@gmail.com`, `choulif.work@gmail.com`) plus the master emergency key (`polish_admin_secure_key_2026`).
+4. ✅ **End-to-End Puppeteer Test Suite (`tests/test_auth_flow.js`)**:
+   - Built a comprehensive automated E2E test suite covering:
+     - **Test 1**: OAuth hash relay from `https://polishmediaco.com/#access_token=...` to `https://polishmediaco.com/admin#access_token=...` (Passed 100%).
+     - **Test 2**: Master security key unlock via URL query parameter `?key=polish_admin_secure_key_2026` on live production (Passed 100%).
+     - **Test 3**: Backend API authentication gate `/api/admin/verify` (Valid key returns 200, bogus key returns 401, Passed 100%).
+   - Verification screenshot saved to `tests/screenshots/admin_live_unlocked_verified.png`.
+5. ✅ **Production Deployment**:
    - Deployed live to Vercel production (`https://polishmediaco.com/admin`).
 
 ---

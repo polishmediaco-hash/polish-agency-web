@@ -40,11 +40,13 @@
     html.is-authenticated #dashboardAppView {
       display: block !important;
     }
-    html.is-authenticated #mainNavTabs {
-      display: flex !important;
-    }
-    html.is-authenticated #navActions {
-      display: flex !important;
+    @media (min-width: 769px) {
+      html.is-authenticated #mainNavTabs {
+        display: flex !important;
+      }
+      html.is-authenticated #navActions {
+        display: flex !important;
+      }
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -639,7 +641,7 @@
     }
 
     /* Responsive Adaptation: 2-Tier Header for Laptops & Tablets */
-    @media (max-width: 1180px) {
+    @media (min-width: 769px) and (max-width: 1180px) {
       .admin-nav {
         padding: 8px 16px;
       }
@@ -2132,27 +2134,63 @@
         display: block !important;
       }
 
-      /* Clean 48px Top Status Header */
+      /* Strict Mobile Nav: 100% Hide Desktop Nav Tabs & Overflow */
+      html.is-authenticated #mainNavTabs,
+      #mainNavTabs,
+      .nav-tabs,
+      .admin-nav .nav-tabs {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute !important;
+      }
+
+      /* Clean 52px Top Status Header */
       .admin-nav {
-        padding: 0 14px !important;
-        height: 48px !important;
-        background: rgba(8, 7, 6, 0.9) !important;
+        padding: 0 16px !important;
+        height: 52px !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+        background: rgba(8, 7, 6, 0.94) !important;
         backdrop-filter: blur(24px) saturate(180%) !important;
         -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
         border-bottom: 1px solid rgba(226, 199, 153, 0.15) !important;
+        display: flex !important;
+        align-items: center !important;
       }
       body.theme-light .admin-nav {
-        background: rgba(255, 255, 255, 0.92) !important;
+        background: rgba(255, 255, 255, 0.96) !important;
         border-bottom-color: rgba(120, 86, 39, 0.15) !important;
       }
       .admin-nav-inner {
+        width: 100% !important;
         height: 100% !important;
+        display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
+        flex-direction: row !important;
         flex-wrap: nowrap !important;
+        gap: 0 !important;
       }
-      .admin-nav .nav-tabs {
-        display: none !important;
+      .admin-brand-col {
+        order: 1 !important;
+        flex: 0 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+      .nav-actions {
+        order: 2 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin-left: auto !important;
+        flex: 0 0 auto !important;
       }
       .admin-nav .nav-actions .btn-nav,
       .admin-nav .nav-actions .theme-switch,
@@ -2169,14 +2207,18 @@
         padding: 4px 10px !important;
         font-size: 11px !important;
         gap: 4px !important;
+        border-radius: 999px !important;
+        cursor: pointer !important;
       }
       .admin-user-pill .user-email-text {
         display: none !important;
       }
 
-      /* Main Viewport Padding for Dock */
+      /* Main Viewport Padding for Dock & Floating Action Capsule */
       .admin-main {
-        padding: 16px 14px calc(80px + env(safe-area-inset-bottom, 12px)) !important;
+        padding: 14px 14px calc(140px + env(safe-area-inset-bottom, 16px)) !important;
+        min-height: calc(100vh - 52px) !important;
+        min-height: calc(100dvh - 52px) !important;
       }
       .page-header {
         margin-bottom: 16px !important;
@@ -2276,21 +2318,95 @@
         font-size: 15px !important;
       }
       
+      /* Phone-Native Floating Save Action Capsule (Zero Obscuration) */
+      .publish-bar-wrap {
+        position: fixed !important;
+        bottom: calc(64px + env(safe-area-inset-bottom, 8px)) !important;
+        left: 12px !important;
+        right: 12px !important;
+        margin: 0 !important;
+        z-index: 9500 !important;
+        pointer-events: none !important;
+      }
       .publish-bar {
-        border-radius: 20px !important;
-        padding: 14px 16px !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        text-align: center !important;
-        gap: 12px !important;
-        bottom: calc(70px + env(safe-area-inset-bottom, 12px)) !important;
+        pointer-events: auto !important;
+        border-radius: 999px !important;
+        padding: 7px 12px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+        background: rgba(18, 15, 12, 0.95) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        border: 1px solid rgba(226, 199, 153, 0.35) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+      }
+      body.theme-light .publish-bar {
+        background: rgba(255, 255, 255, 0.97) !important;
+        border-color: rgba(120, 86, 39, 0.25) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+      }
+      .publish-info {
+        display: none !important;
       }
       .publish-btns {
         width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+      }
+      .publish-btns .btn-ghost {
+        flex: 0 0 auto !important;
+        padding: 7px 12px !important;
+        font-size: 12px !important;
+        border-radius: 999px !important;
+        white-space: nowrap !important;
       }
       .publish-btns .btn-cta {
         flex: 1 !important;
+        padding: 7px 14px !important;
+        font-size: 12.5px !important;
+        border-radius: 999px !important;
         justify-content: center !important;
+        white-space: nowrap !important;
+      }
+
+      /* iOS Safari Add to Home Screen Banner */
+      .pwa-safari-tip {
+        background: rgba(226, 199, 153, 0.12);
+        border: 1px solid rgba(226, 199, 153, 0.35);
+        border-radius: 14px;
+        padding: 10px 14px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 12px;
+        color: var(--text);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      }
+      body.theme-light .pwa-safari-tip {
+        background: #F8F5EE;
+        border-color: rgba(120, 86, 39, 0.25);
+        color: #383025;
+      }
+      .pwa-safari-tip-text {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        line-height: 1.35;
+      }
+      .pwa-safari-tip-close {
+        background: none;
+        border: none;
+        color: var(--dim);
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0 4px;
+        line-height: 1;
       }
     }
   </style>
@@ -2478,6 +2594,15 @@
 <!-- ================= MAIN DASHBOARD VIEWS ================= -->
 <div id="dashboardAppView" style="display: none;">
   <main class="admin-main">
+
+    <!-- iOS Safari Full-Screen App Banner (Shown only inside browser view, dismissible) -->
+    <div id="pwaSafariTip" class="pwa-safari-tip no-print" style="display: none;">
+      <div class="pwa-safari-tip-text">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2" style="flex-shrink:0;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        <span>To use <strong>full screen without browser bars</strong>: Tap <strong>Share</strong> ⎋ below &rarr; <strong>Add to Home Screen</strong>.</span>
+      </div>
+      <button type="button" class="pwa-safari-tip-close" onclick="dismissPwaTip()" aria-label="Dismiss">&times;</button>
+    </div>
 
     <!-- ================= TAB 1: WEBSITE TEXT CMS (EN / FR / AR) ================= -->
     <section id="cmsTabPane" class="tab-pane active">
@@ -3420,7 +3545,7 @@
 
 <!-- ================= PHONE-NATIVE FROSTED BOTTOM DOCK ================= -->
 <nav class="mobile-bottom-dock no-print" id="mobileBottomDock">
-  <button type="button" class="dock-tab active" data-pane="leadsTabPane" onclick="switchMainTab('leadsTabPane')">
+  <button type="button" class="dock-tab" data-pane="leadsTabPane" onclick="switchMainTab('leadsTabPane')">
     <div class="dock-tab-icon-wrap">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10"/><path d="M7 12h10"/><path d="M7 16h6"/></svg>
       <span class="dock-badge" id="dockLeadsCount" style="display:none;">0</span>
@@ -3710,10 +3835,15 @@
 
     document.getElementById('authGateView').style.display = 'none';
     document.getElementById('dashboardAppView').style.display = 'block';
-    document.getElementById('mainNavTabs').style.display = 'flex';
+    if (window.innerWidth > 768) {
+      document.getElementById('mainNavTabs').style.display = 'flex';
+    } else {
+      document.getElementById('mainNavTabs').style.display = 'none';
+    }
     document.getElementById('navActions').style.display = 'flex';
 
     handleHashRoute();
+    checkPwaBanner();
     await loadCmsData();
     initCmsAccordions();
     loadWaConfig();
@@ -3909,6 +4039,11 @@
 
     // Check Biometrics / Quick PIN availability
     checkBiometricSupport();
+    checkPwaBanner();
+
+    if (document.documentElement.classList.contains('is-authenticated')) {
+      handleHashRoute();
+    }
 
     // Initialize default light theme mode and high-contrast logo
     const savedAdminTheme = localStorage.getItem('polish_admin_theme') || 'light';
@@ -3997,14 +4132,51 @@
 
   function handleHashRoute() {
     const hash = (window.location.hash || '').toLowerCase().replace('#', '');
-    if (hash === 'leads' || hash === 'dossiers') switchMainTab('leadsTabPane');
-    else if (hash === 'whatsapp' || hash === 'wa') switchMainTab('waTabPane');
-    else if (hash === 'cms' || hash === 'text') switchMainTab('cmsTabPane');
-    else if (hash === 'invoices' || hash === 'invoice') switchMainTab('invoicesTabPane');
-    else if (hash === 'alerts' || hash === 'notif' || hash === 'system') switchMainTab('notifTabPane');
-    else if (hash === 'studio' || hash === 'settings') switchMainTab('studioTabPane');
+    const urlTab = (new URLSearchParams(window.location.search).get('tab') || '').toLowerCase();
+    const target = hash || urlTab;
+
+    if (target === 'leads' || target === 'dossiers') {
+      switchMainTab('leadsTabPane');
+    } else if (target === 'whatsapp' || target === 'wa') {
+      switchMainTab('waTabPane');
+    } else if (target === 'cms' || target === 'text' || target === 'content') {
+      switchMainTab('cmsTabPane');
+    } else if (target === 'invoices' || target === 'invoice') {
+      switchMainTab('invoicesTabPane');
+    } else if (target === 'alerts' || target === 'notif' || target === 'system') {
+      switchMainTab('notifTabPane');
+    } else if (target === 'studio' || target === 'settings') {
+      switchMainTab('studioTabPane');
+    } else {
+      // Default: on phone viewports (<= 768px), land directly on the clean Leads CRM
+      if (window.innerWidth <= 768) {
+        switchMainTab('leadsTabPane');
+      } else {
+        switchMainTab('cmsTabPane');
+      }
+    }
   }
   window.addEventListener('hashchange', handleHashRoute);
+
+  function checkPwaBanner() {
+    const isMobile = window.innerWidth <= 768;
+    const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+    const isDismissed = localStorage.getItem('polish_pwa_tip_dismissed') === 'true';
+    const banner = document.getElementById('pwaSafariTip');
+    if (banner) {
+      if (isMobile && !isStandalone && !isDismissed) {
+        banner.style.display = 'flex';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+  }
+
+  function dismissPwaTip() {
+    localStorage.setItem('polish_pwa_tip_dismissed', 'true');
+    const banner = document.getElementById('pwaSafariTip');
+    if (banner) banner.style.display = 'none';
+  }
 
   // ── Phone-Native Mobile Filters & Relative Time ─────────────
   function formatRelativeTime(dateInput) {

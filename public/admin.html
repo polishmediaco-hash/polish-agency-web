@@ -1356,10 +1356,12 @@
       inset: 0;
       width: 100vw;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px 20px;
+      padding: max(24px, env(safe-area-inset-top, 24px)) 20px max(24px, env(safe-area-inset-bottom, 24px));
+      box-sizing: border-box;
       z-index: 99999;
       background: radial-gradient(circle at 50% 30%, rgba(226, 199, 153, 0.09) 0%, rgba(12, 10, 8, 0.96) 65%, #080706 100%) !important;
       overflow-y: auto;
@@ -2157,10 +2159,13 @@
         position: absolute !important;
       }
 
-      /* Clean 52px Top Status Header */
+      /* Clean Top Status Header with Dynamic Safe Area Handling */
       .admin-nav {
-        padding: 0 16px !important;
-        height: 52px !important;
+        height: calc(48px + env(safe-area-inset-top, 0px)) !important;
+        padding-top: env(safe-area-inset-top, 0px) !important;
+        padding-bottom: 0 !important;
+        padding-left: max(16px, env(safe-area-inset-left, 0px)) !important;
+        padding-right: max(16px, env(safe-area-inset-right, 0px)) !important;
         position: sticky !important;
         top: 0 !important;
         z-index: 1000 !important;
@@ -2169,7 +2174,8 @@
         -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
         border-bottom: 1px solid rgba(226, 199, 153, 0.15) !important;
         display: flex !important;
-        align-items: center !important;
+        align-items: flex-end !important;
+        box-sizing: border-box !important;
       }
       body.theme-light .admin-nav {
         background: rgba(255, 255, 255, 0.96) !important;
@@ -2177,7 +2183,7 @@
       }
       .admin-nav-inner {
         width: 100% !important;
-        height: 100% !important;
+        height: 48px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
@@ -2223,21 +2229,25 @@
 
       /* Main Viewport Padding for Dock & Floating Action Capsule */
       .admin-main {
-        padding: 14px 14px calc(140px + env(safe-area-inset-bottom, 16px)) !important;
-        min-height: calc(100vh - 52px) !important;
-        min-height: calc(100dvh - 52px) !important;
+        padding: 12px 14px calc(140px + env(safe-area-inset-bottom, 16px)) !important;
+        min-height: calc(100vh - 48px - env(safe-area-inset-top, 0px)) !important;
+        min-height: calc(100dvh - 48px - env(safe-area-inset-top, 0px)) !important;
       }
       .page-header {
-        margin-bottom: 16px !important;
+        margin-bottom: 12px !important;
       }
       .page-header h1 {
-        font-size: 22px !important;
+        font-size: 20px !important;
+        letter-spacing: -0.02em !important;
       }
       .page-header p {
-        font-size: 12.5px !important;
+        display: none !important;
       }
 
-      /* Declutter Leads: Hide bulky 5 KPI grid & desktop toolbar */
+      /* Declutter Leads: Hide redundant desktop header & 5 KPI grid */
+      #leadsTabPane .page-header {
+        display: none !important;
+      }
       #leadsMetrics {
         display: none !important;
       }

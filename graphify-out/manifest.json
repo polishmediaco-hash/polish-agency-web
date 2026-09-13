@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789276728.6822746,
-    "seen": 1789276730.439508,
-    "ast_hash": "771b2594a8c2cd0507ef3a2105fffc86",
+    "mtime": 1789277212.5136092,
+    "seen": 1789277226.510777,
+    "ast_hash": "00c364662934825e41707285da1f068c",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -1830,9 +1830,9 @@
     "semantic_hash": ""
   },
   "public/js/invoice.js": {
-    "mtime": 1789271969.4480615,
-    "seen": 1789272027.507713,
-    "ast_hash": "83c1e646e1b13f695539f29bdc6620e0",
+    "mtime": 1789277196.1594756,
+    "seen": 1789277226.5107431,
+    "ast_hash": "9624388b4032eeb46d6d5d5b16389b05",
     "semantic_hash": ""
   },
   "docs/INVOICE_GUIDELINES.md": {

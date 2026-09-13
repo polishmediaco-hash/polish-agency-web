@@ -7279,17 +7279,6 @@
       "source_location": "L470"
     },
     {
-      "id": "server_services_supabase_isconfigured",
-      "label": "isConfigured",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "isconfigured",
-      "source_file": "server/services/supabase.js",
-      "source_location": "L16"
-    },
-    {
       "id": "server_services_supabase_keepaliveservice",
       "label": "keepAliveService",
       "_origin": "ast",
@@ -7836,7 +7825,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L642"
+      "source_location": "L657"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -8125,6 +8114,18 @@
       "norm_label": "sprint 1: critical hotfixes (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L320"
+    },
+    {
+      "id": "docs_handoff_sprint_20_production_admin_oauth_relay_cookie_partitioning_defense_whitelist_sanitization_completed_september_2026",
+      "label": "Sprint 20: Production Admin OAuth Relay, Cookie-Partitioning Defense & Whitelist Sanitization (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 20: production admin oauth relay, cookie-partitioning defense & whitelist sanitization (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L635"
     },
     {
       "id": "docs_handoff_sprint_2_security_performance_hardening_completed_september_2026",
@@ -11394,6 +11395,17 @@
       "source_location": "L15"
     },
     {
+      "id": "server_services_supabase_isconfigured",
+      "label": "isConfigured",
+      "_origin": "ast",
+      "community": 64,
+      "community_name": "auth.js",
+      "file_type": "code",
+      "norm_label": "isconfigured",
+      "source_file": "server/services/supabase.js",
+      "source_location": "L16"
+    },
+    {
       "id": "scripts_seed_supabase",
       "label": "seed-supabase.js",
       "_origin": "ast",
@@ -11970,6 +11982,50 @@
       "file_type": "code",
       "norm_label": "puppeteer",
       "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_auth_flow",
+      "label": "test_auth_flow.js",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "test_auth_flow.js",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_auth_flow_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_test_auth_flow_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "tests_test_auth_flow_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_auth_flow.js",
       "source_location": "L1"
     },
     {
@@ -20398,6 +20454,42 @@
       "weight": 1.0
     },
     {
+      "source": "server_index",
+      "target": "server_services_calendlysync_startcalendlypoller",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/index.js",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "server_index",
+      "target": "server_services_supabase_keepaliveservice",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/index.js",
+      "source_location": "L483",
+      "weight": 1.0
+    },
+    {
+      "source": "server_middleware_auth",
+      "target": "server_services_supabase_isconfigured",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/middleware/auth.js",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
       "source": "server_routes_api",
       "target": "server_services_notification_notifynewlead",
       "relation": "imports",
@@ -20815,6 +20907,18 @@
       "context": "import",
       "source_file": "server/services/supabase.js",
       "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_auth_flow",
+      "target": "ref_puppeteer",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L1",
       "weight": 1.0
     },
     {
@@ -23219,6 +23323,17 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_20_production_admin_oauth_relay_cookie_partitioning_defense_whitelist_sanitization_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L635",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -23281,7 +23396,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L642",
+      "source_location": "L657",
       "weight": 1.0
     },
     {
@@ -30641,6 +30756,39 @@
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
       "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_auth_flow",
+      "target": "tests_test_auth_flow_puppeteer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_auth_flow",
+      "target": "tests_test_auth_flow_path",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_auth_flow",
+      "target": "tests_test_auth_flow_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L3",
       "weight": 1.0
     },
     {

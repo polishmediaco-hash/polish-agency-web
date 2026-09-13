@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789275956.9199064,
-    "seen": 1789276236.9174972,
-    "ast_hash": "aea4a8eab808500ee21c653bbd3ff1f6",
+    "mtime": 1789276717.4796252,
+    "seen": 1789276724.0794911,
+    "ast_hash": "3caa33cce700b36aeb002209c6006782",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789275892.93148,
-    "seen": 1789275948.364067,
-    "ast_hash": "3887e865db931168b403c4b1bb83e72a",
+    "mtime": 1789276728.6822746,
+    "seen": 1789276730.439508,
+    "ast_hash": "771b2594a8c2cd0507ef3a2105fffc86",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789276236.9174762,
+    "seen": 1789276730.439488,
     "ast_hash": "9d679501ccc8722f71c8d90ebd230e69",
     "semantic_hash": ""
   },
@@ -2052,9 +2052,15 @@
     "semantic_hash": ""
   },
   "public/sw-admin.js": {
-    "mtime": 1789275522.1389825,
-    "seen": 1789275948.363528,
-    "ast_hash": "82eac8703c68dbcad5ab6b1f1ea4132e",
+    "mtime": 1789276781.1577504,
+    "seen": 1789276786.789527,
+    "ast_hash": "0fb8619d13b2d74827fedbe767b05ad5",
+    "semantic_hash": ""
+  },
+  "tests/test_auth_flow.js": {
+    "mtime": 1789276657.3981237,
+    "seen": 1789276724.079131,
+    "ast_hash": "2bd4e1e49f8c5e5d77551df53fe5b66e",
     "semantic_hash": ""
   }
 }

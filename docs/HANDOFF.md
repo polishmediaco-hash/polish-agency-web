@@ -729,7 +729,8 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - **Reduced Visual Clutter**: Eradicated redundant badges, artificial eyecatchers, and excessive status pills based on direct founder feedback.
    - **Video Loading Shimmer**: Added an instant CSS skeleton shimmer placeholder (`.video-stage-shimmer`) to eliminate empty black containers prior to YouTube player hydration.
    - **Ultra-Wide Canvas Stage**: Upgraded board container height to `780px` on widescreen displays (>=1920px) for deep, high-resolution strategic reviews.
-   - **Admin Quick Links**: Added instant launcher buttons for the Presentation Portal in Tab 5 ("Studio & Settings") of the Admin Hub.
+   - **Admin Quick Links**: Added instant launcher buttons for the Presentation Portal and Strategy Boards Hub in Tab 5 ("Studio & Settings") of the Admin Hub.
+   - **Boards Navigation Link Correction**: Corrected the Boards link in the top navigation of `public/admin.html` from `/studio/dashboard` to the canonical `/boards` route, and aliased `/studio/dashboard` in `server/index.js` so both URLs resolve directly to `public/studio/dashboard.html`.
 
 2. ✅ **Studio Camera Bubble Permissions & UI Architecture (`server/index.js`, `public/presentation.html`)**:
    - **Root Cause Identified**: The camera bubble feature failed because Express Helmet was transmitting `Permissions-Policy: camera=(), microphone=()`, blocking user media devices at the browser HTTP header level.

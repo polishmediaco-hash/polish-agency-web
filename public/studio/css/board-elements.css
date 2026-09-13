@@ -3877,7 +3877,9 @@ body.theme-dark .op-tier-name {
    PRESENTATION 2.0: BRAND HUD, LASER POINTER, TIMER & SPOTLIGHT
    ========================================================== */
 
-/* Top Presentation Floating Brand Watermark */
+/* ==========================================================
+   TOP PRESENTATION FLOATING BRAND WATERMARK (SHINY & SMOOTH)
+   ========================================================== */
 .presentation-floating-logo {
   position: fixed;
   top: 2rem;
@@ -3892,39 +3894,13 @@ body.theme-dark .op-tier-name {
 
 body.is-presenting .presentation-floating-logo {
   display: flex !important;
-  animation: logoLevitate 5s ease-in-out infinite;
-}
-
-/* Luminous Breathing Champagne Halo */
-.presentation-logo-halo {
-  position: absolute;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(226, 199, 153, 0.45) 0%,
-    rgba(226, 199, 153, 0.15) 50%,
-    transparent 72%
-  );
-  filter: blur(8px);
-  pointer-events: none;
-  animation: logoAuraPulse 3.8s ease-in-out infinite;
-}
-
-body:not(.theme-dark) .presentation-logo-halo {
-  background: radial-gradient(
-    circle,
-    rgba(197, 168, 128, 0.5) 0%,
-    rgba(197, 168, 128, 0.2) 45%,
-    transparent 72%
-  );
+  animation: logoSoftFloat 5.4s cubic-bezier(0.42, 0, 0.58, 1) infinite;
 }
 
 .presentation-logo-container {
   position: relative;
-  width: 56px;
-  height: 56px;
+  width: 165px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3932,73 +3908,101 @@ body:not(.theme-dark) .presentation-logo-halo {
 
 .presentation-logo-img {
   display: block;
-  width: 56px;
-  height: 56px;
-  /* Crystal-clear specular definition: subtle clean rim, zero muddy blur */
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 16px rgba(226, 199, 153, 0.5));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  width: 165px;
+  height: 50px;
+  object-fit: contain;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Light Mode: High-contrast rich antique gold definition */
-body:not(.theme-dark) .presentation-logo-img {
-  filter: drop-shadow(0 2px 8px rgba(70, 45, 15, 0.28)) brightness(0.45) contrast(1.5) sepia(0.25) saturate(1.6);
+/* Dark Mode (default): Official Champagne Gold Logo */
+.presentation-floating-logo .logo-gold {
+  display: block;
+  filter: drop-shadow(0 4px 16px rgba(226, 199, 153, 0.4)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+}
+.presentation-floating-logo .logo-dark {
+  display: none;
 }
 
-/* Animated Continuous Specular Light Gleam Sweep */
-.presentation-logo-gleam {
+/* Light Mode: Official Obsidian Noir Logo (100% High Contrast on Alabaster #FAF7F2) */
+body:not(.theme-dark) .presentation-floating-logo .logo-gold {
+  display: none;
+}
+body:not(.theme-dark) .presentation-floating-logo .logo-dark {
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
+}
+
+/* Smooth Metallic Sheen Sweep directly across the vector logo */
+.presentation-logo-sheen {
   position: absolute;
-  inset: -6px;
+  inset: 0;
   pointer-events: none;
-  mask: url('/assets/logo-gold-mark.svg?v=23.0') no-repeat center / 56px 56px;
-  -webkit-mask: url('/assets/logo-gold-mark.svg?v=23.0') no-repeat center / 56px 56px;
+  overflow: hidden;
+  -webkit-mask: url('/assets/logo-gold.svg') no-repeat center / contain;
+  mask: url('/assets/logo-gold.svg') no-repeat center / contain;
+}
+
+body:not(.theme-dark) .presentation-logo-sheen {
+  -webkit-mask: url('/assets/logo-dark.svg') no-repeat center / contain;
+  mask: url('/assets/logo-dark.svg') no-repeat center / contain;
+}
+
+.presentation-logo-sheen::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -140%;
+  width: 280%;
+  height: 220%;
+  transform: rotate(20deg);
+  animation: logoSoftShine 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   background: linear-gradient(
     115deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.95) 48%,
-    rgba(245, 230, 211, 0.9) 53%,
-    rgba(226, 199, 153, 0.7) 58%,
-    transparent 80%
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(245, 230, 211, 0.85) 53%,
+    transparent 62%,
+    transparent 100%
   );
-  background-size: 260% 100%;
-  animation: logoGleamSweep 3.2s ease-in-out infinite;
-  mix-blend-mode: screen;
 }
 
-@keyframes logoGleamSweep {
+body:not(.theme-dark) .presentation-logo-sheen::after {
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(226, 199, 153, 0.8) 53%,
+    transparent 62%,
+    transparent 100%
+  );
+}
+
+@keyframes logoSoftShine {
   0% {
-    background-position: 200% 0;
+    transform: translateX(-100%) rotate(20deg);
     opacity: 0;
   }
   12% {
     opacity: 1;
   }
-  50% {
-    background-position: -100% 0;
+  44% {
+    transform: translateX(100%) rotate(20deg);
     opacity: 1;
   }
-  65%, 100% {
-    background-position: -100% 0;
+  52%, 100% {
+    transform: translateX(100%) rotate(20deg);
     opacity: 0;
   }
 }
 
-@keyframes logoAuraPulse {
-  0%, 100% {
-    transform: scale(0.92);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.18);
-    opacity: 0.9;
-  }
-}
-
-@keyframes logoLevitate {
+@keyframes logoSoftFloat {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-3.5px);
   }
 }
 

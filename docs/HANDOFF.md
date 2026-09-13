@@ -533,25 +533,37 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Laser wand SVG emitting rays with cursor suppression, incandescent white-hot core, and glowing dissipating champagne light trail.
    - Complete suppression of card selection, drag locks, and marquee selection during laser actions.
 6. ✅ **Automated Verification**:
-### Sprint 15: Presentation Logo Visibility, Active Gleam Animation & Laser Logic Overhaul (Completed September 2026)
-1. ✅ **Presentation Floating Brand Mark Visibility & Scaled Optics**:
-   - Upgraded `#presentationFloatingLogo` standalone Golden Ratio mark (`/assets/logo-gold-mark.svg?v=23.0`) from 36px to 56px (`width: 56px; height: 56px;`), delivering bold visual presence and pristine vector clarity without any filler text.
-   - Removed blurry drop-shadows that muddied fine vector details of the 45° chevron and diamond core.
-   - Calibrated high-contrast Light Mode filter (`brightness(0.45) contrast(1.5) sepia(0.25) saturate(1.6)`) converting pale gold to rich burnished antique bronze on the warm Alabaster canvas (`#FAF7F2`), achieving 100% WCAG AAA visibility.
-2. ✅ **Active Luxury Animations**:
-   - Engineered continuous specular light gleam sweep (`.presentation-logo-gleam` with `@keyframes logoGleamSweep`) traveling across the gold metal pipette every 3.2s via CSS masking.
-   - Integrated breathing ambient champagne halo (`.presentation-logo-halo` with `@keyframes logoAuraPulse`) rhythmically expanding and pulsing light behind the mark.
-   - Smooth harmonic levitation float (`@keyframes logoLevitate`).
-3. ✅ **Complete Laser Pointer Logic Re-engineering**:
-   - **Hover vs Drawing Separation**: Hovering moves the laser beacon dot (`.presentation-laser-dot`) across cards with hardware-accelerated GPU transforms (`translate3d`) without scribbling unwanted lines across slides.
-   - **Disappearing Ink Ribbon**: Clicking and dragging draws luminous champagne gold ribbons (`#E2C799` with incandescent white core `#FFFFFF`).
-   - **Quadratic Bézier Smoothing**: Interpolates points using midpoint quadratic Bézier curves (`quadraticCurveTo`), completely eliminating jagged polygonal segments and angular bends.
-   - **Discrete Stroke Segmentation**: Multi-stroke architecture (`strokes = []`) ensures separate strokes are completely independent; lifting the pen and clicking elsewhere never draws an accidental connecting line across the canvas.
-   - **Direct Canvas Pointer Handling**: Assigned `pointer-events: auto` to `.presentation-laser-canvas` and removed event cancellation in `elements-factory.js`, guaranteeing drawing works seamlessly directly over cards, frames, equations, and tables.
-   - **Organic Dissipation**: Smooth exponential fade (`Math.pow(1 - age / LIFETIME, 1.4)`) and stroke-width tapering over 1.1s.
-4. ✅ **Full E2E Automated Verification**:
-   - Verified via Puppeteer in `tests/test_laser_and_branding.js` and `tests/test_sequencer_e2e.js`: 100% pass rate.
-   - Verified screenshots captured: `tests/screenshots/presentation-branded-laser-dark.png` and `tests/screenshots/presentation-branded-laser-light.png`.
+### Sprint 16: Official Brand Watermark, Silk Sheen & Zero-Distortion Presentation Mode (Completed September 2026)
+1. ✅ **Official POLISH Media Co Brand Logo Integration**:
+   - Reverted all experimental vector modifications: `public/assets/logo-gold-mark.svg` is 100% restored to the pristine official Golden Ratio Pipette vector.
+   - Deployed the authentic **Full Brand Logo** in presentation mode:
+     - **Dark Mode**: `/assets/logo-gold.svg` (Official Haute Atelier Champagne Gold `#E2C799` / `#C5A880` / `#F5E6D3`).
+     - **Light Mode**: `/assets/logo-dark.svg` (Official Obsidian Noir `#080706` / `#3A342D`), matching the platform standard used across the main landing page, admin portal, and invoice maker.
+   - Sized at `165px x 50px` for balanced executive presence in the top-left corner.
+2. ✅ **Soft, Smooth Luxury Animations**:
+   - **Metallic Silk Sheen**: Smooth animated light sheen (`@keyframes logoSoftShine` on a 4.6s loop) gliding cleanly across the brand vector using SVG alpha masking (`mask: url(...)`).
+   - **Sinusoidal Levitation**: Gentle 3.5px floating float (`@keyframes logoSoftFloat` over 5.4s) using GPU transforms with zero jitter.
+   - **Clean Drop Shadows**: Removed all blurry gaussian clouds. Applied a crisp contact shadow in dark mode and subtle depth in light mode.
+3. ✅ **Rigorous Verification**:
+   - `tests/test_laser_and_branding.js`: 100% pass rate.
+   - `tests/test_sequencer_e2e.js`: 100% pass rate.
+   - Verified live screenshots in Dark Mode (`tests/screenshots/presentation-branded-laser-dark.png`) and Light Mode (`tests/screenshots/presentation-branded-laser-light.png`).
+
+### Sprint 16: Inbound CRM Dossiers & Executive Lead Management Overhaul (Completed September 2026)
+1. ✅ **Expanded Executive Width & Layout Structure**:
+   - Upgraded `.admin-main-crm` container to an expansive `1540px` width with `28px 24px 80px` padding, completely preventing column wrapping, crushed text, and clipped timestamps.
+   - Styled responsive mobile card fallback for viewports under 900px, transforming wide table rows into organized executive dossier cards.
+2. ✅ **Modal Stacking Context & Headroom Elevation**:
+   - Re-architected `#prospectModal` by moving it from nested inside `<main>` out to top-level `<body>` with `z-index: 100000;`, `align-items: flex-start;`, and `padding: 48px 24px 60px;`.
+   - Eliminated top header overlap entirely (computed top clearance of 162.8px vs navbar bottom at 74px, providing 88.8px clear margin).
+3. ✅ **100% WCAG AAA Light & Dark Contrast Parity**:
+   - Removed all hardcoded inline `#FFFFFF` and `#E2E8F0` text styles.
+   - Introduced semantic classes `.crm-lead-title`, `.crm-lead-subtitle`, `.crm-diagnostic-text`, `.crm-stage-select`, `.crm-stat-card`.
+   - Verified Light Mode text contrast reaches 19.8:1 (`rgb(13, 11, 10)`) and 13.5:1 (`rgb(42, 37, 32)`).
+4. ✅ **Native Calendly Strategy Call Support**:
+   - Added `.crm-tag-meet` badge and 1-click `.crm-meet-btn` (`Join Google Meet`).
+   - Updated `server/services/supabase.js` (`mapDbLeadToLead` / `mapLeadToDbRow`) to preserve `startTime`, `joinUrl`, `eventName`, `brand`, `eventUri`, and `portfolio`.
+   - Synchronized existing Supabase database records so Calendly meetings display scheduled times, invitee details, and direct video links in both the table and modal dialog.
 
 ---
 

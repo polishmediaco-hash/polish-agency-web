@@ -44,8 +44,8 @@ const fs = require('fs');
 
     console.log('Floating Logo Check:', logoInfo);
     if (!logoInfo.logoVisible) throw new Error('Floating logo is not visible during presentation mode!');
-    if (!logoInfo.imgSrc || !logoInfo.imgSrc.includes('logo-gold-mark.svg')) {
-      throw new Error('Floating logo mark image source is incorrect!');
+    if (!logoInfo.imgSrc || (!logoInfo.imgSrc.includes('logo-gold') && !logoInfo.imgSrc.includes('logo-dark'))) {
+      throw new Error('Floating logo image source is not an official POLISH brand logo: ' + logoInfo.imgSrc);
     }
     if (logoInfo.hasOldHud || logoInfo.oldPillCount > 0) {
       throw new Error('Old bulky text pills were not removed!');

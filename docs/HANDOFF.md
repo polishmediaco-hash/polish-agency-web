@@ -68,14 +68,17 @@ The application has successfully completed a luxury atelier rebranding and typog
 * Tailored for beauty influencers and cosmetic UGC creators applying to the POLISH talent network.
 * Gold branded header, localized form, serif accent heading, and conversion tracking.
 
-### D. Executive Admin Portal & Live CMS (`public/admin.html`)
-* **Security**: Key-gated access (Default: `polish_admin_secure_key_2026`).
-* **Visual Overhaul**: Matches the champagne gold aesthetic (`--cyan: #E2C799`, obsidian backgrounds, gold glows).
-* **Four Management Hubs**:
+### D. Admin Portal & Live CMS (`public/admin.html`)
+* **Authentication**: Dual-path authentication with zero filler text:
+  * Google OAuth via Supabase (`Continue with Google`).
+  * Master Security Key fallback (`Security key` input, default: `polish_admin_secure_key_2026`), also supported via URL param `?key=...`.
+* **Clean UI & Design**: Champagne gold & obsidian styling (`--cyan: #E2C799`), zero artificial buzzwords or theatrical labels.
+* **Management Hubs**:
   1. **Website Text (Live CMS)**: Trilingual in-place editor updating strings without redeploy.
-  2. **WhatsApp Flows**: Pre-filled templates and conversion copy.
-  3. **Inbound Dossiers (CRM)**: Executive prospect pipeline with stage movement (New, Reviewing, Qualified, Closed), internal notes, and one-click contact.
-  4. **Alert Channels**: Notification dispatch settings.
+  2. **WhatsApp**: Flow templates and quick outreach triggers.
+  3. **Leads & Inquiries**: Real-time inbound applications from DTC brands, UGC creators, and scheduled Calendly calls with pipeline stage updates and internal notes.
+  4. **Invoices**: Multi-currency billing generator with vector PDF export.
+  5. **Alerts**: Push notifications and webhook triggers.
 
 ### E. Brand Asset Vault & Guidelines (`public/brand-pack.html` / `/brand-pack`)
 * **Live Interactive Brand Portal**: Direct web interface for previewing, inspecting, and downloading all vector and raster assets.

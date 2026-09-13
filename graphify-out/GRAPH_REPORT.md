@@ -1,7 +1,7 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 87 files · ~708,171 words
+- 87 files · ~708,213 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `86b6df55`
+- Built from commit: `8a59de0f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -91,13 +91,13 @@
 1. `triggerAutoSave()` - 45 edges
 2. `pushHistory()` - 36 edges
 3. `renderElement()` - 32 edges
-4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 19 edges
+4. `pushHistory()` - 19 edges
 5. `selectElement()` - 19 edges
-6. `pushHistory()` - 19 edges
-7. `bindKeyboardShortcuts()` - 16 edges
-8. `getCanvasCenter()` - 16 edges
-9. `renderControls()` - 15 edges
-10. `updatePosition()` - 15 edges
+6. `6. Next Priority Roadmap (Ready for Next Conversation)` - 19 edges
+7. `getCanvasCenter()` - 16 edges
+8. `bindKeyboardShortcuts()` - 16 edges
+9. `renderInvoiceSheet()` - 15 edges
+10. `setupToolbar()` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `checkNewCalendlyMeetings()` --calls--> `notifyNewMeeting()`  [EXTRACTED]
@@ -373,7 +373,7 @@ Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
 ## Knowledge Gaps
-- **351 isolated node(s):** `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)`, `C. Creator & UGC Portal (`public/creators.html`)`, `D. Executive Admin Portal & Live CMS (`public/admin.html`)` (+346 more)
+- **351 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+346 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 427 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -381,12 +381,12 @@ Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Prof
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `generate-social-avatars.js` to `package.json`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
-  _High betweenness centrality (0.003) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **What connects `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)` to the rest of the system?**
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
   _351 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._

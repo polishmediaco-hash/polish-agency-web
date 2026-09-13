@@ -15,7 +15,7 @@ const { supabase, isConfigured } = require('../services/supabase');
 const tokenCache = new Map(); // token -> { user, expiresAt }
 
 function getAdminEmails() {
-  const envEmails = process.env.ADMIN_EMAILS || 'polishmediaco@gmail.com,choulif.work@gmail.com,choulifaycal10@gmail.com';
+  const envEmails = process.env.ADMIN_EMAILS || 'polishmediaco@gmail.com,choulif.work@gmail.com';
   return envEmails
     .split(',')
     .map(e => e.trim().toLowerCase())

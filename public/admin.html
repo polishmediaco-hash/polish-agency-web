@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>POLISH Admin</title>
+  <link rel="manifest" href="/manifest-admin.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="POLISH Admin">
+  <meta name="theme-color" content="#080706">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=23.0">
   <link rel="alternate icon" type="image/png" sizes="32x32" href="/assets/logo-gold-mark.png?v=23.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
@@ -664,62 +669,346 @@
       }
     }
 
-    /* Mobile Phones (< 680px) */
-    @media (max-width: 680px) {
-      .admin-nav {
-        padding: 8px 12px;
-      }
-      .admin-logo-img {
-        height: 22px;
-      }
-      .admin-badge {
-        display: none;
-      }
-      .user-email-text {
-        display: none;
-      }
-      .admin-user-pill {
-        padding: 4px 7px;
-        gap: 0;
-      }
-      .btn-nav span {
-        display: none;
-      }
-      .btn-nav .ext-arrow {
-        display: none;
-      }
-      .btn-nav {
-        padding: 6px 8px;
-      }
-      .nav-tabs {
-        width: 100%;
-        margin: 4px 0 0;
-        justify-content: flex-start;
-        padding: 3px;
-        gap: 2px;
-      }
-      .nav-tab {
-        flex: 1 0 auto;
-        padding: 6px 8px;
-        font-size: 11px;
-        gap: 4px;
-        justify-content: center;
-      }
-      .tab-label-full {
-        display: none;
-      }
-      .tab-label-short {
-        display: inline;
-      }
-      #toast {
-        bottom: 16px;
-        right: 16px;
-        left: 16px;
-        max-width: none;
-        justify-content: center;
-        font-size: 12px;
-        padding: 9px 14px;
-      }
+    /* ================= PHONE-NATIVE MOBILE BOTTOM DOCK & TOUCH TOKENS ================= */
+    .mobile-bottom-dock {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      height: calc(58px + env(safe-area-inset-bottom, 0px));
+      padding: 6px 12px max(10px, env(safe-area-inset-bottom, 10px));
+      background: rgba(14, 12, 10, 0.94);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border-top: 1px solid rgba(226, 199, 153, 0.2);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.6);
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    body.theme-light .mobile-bottom-dock {
+      background: rgba(255, 255, 255, 0.94);
+      border-top-color: rgba(120, 86, 39, 0.2);
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .dock-tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 6px 4px;
+      background: transparent;
+      border: none;
+      color: var(--dim);
+      font-family: var(--font);
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.15s ease;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .dock-tab:active {
+      transform: scale(0.92);
+    }
+
+    .dock-tab-icon-wrap {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dock-tab-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .dock-tab.active {
+      color: var(--cyan);
+    }
+
+    .dock-tab.active .dock-tab-icon-wrap svg {
+      stroke: var(--cyan);
+      stroke-width: 2.3;
+      filter: drop-shadow(0 0 8px var(--cyan-glow));
+    }
+
+    .dock-badge {
+      position: absolute;
+      top: -4px;
+      right: -8px;
+      background: #E2C799;
+      color: #080706;
+      font-size: 9.5px;
+      font-weight: 800;
+      line-height: 1;
+      padding: 2px 5px;
+      border-radius: 9999px;
+      box-shadow: 0 0 10px rgba(226, 199, 153, 0.5);
+    }
+
+    /* Pull to Refresh Zone */
+    #pullToRefreshZone {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 10px;
+      gap: 8px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+    #pullToRefreshZone.pulling {
+      display: flex;
+    }
+    .pull-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(226, 199, 153, 0.25);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Mobile Leads Header & Pulse */
+    .mobile-leads-header {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .mobile-leads-pulse {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(226, 199, 153, 0.08);
+      border: 1px solid rgba(226, 199, 153, 0.22);
+      border-radius: 9999px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .pulse-dot-green {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+      animation: pulseGreen 2s infinite;
+      margin-right: 6px;
+    }
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    .mobile-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 2px;
+    }
+    .mobile-filter-bar::-webkit-scrollbar { display: none; }
+
+    .mob-pill {
+      flex: 0 0 auto;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 9999px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--dim);
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+    .mob-pill.active {
+      background: rgba(226, 199, 153, 0.15);
+      border-color: var(--cyan);
+      color: var(--cyan);
+      font-weight: 700;
+    }
+    .mob-search-btn {
+      margin-left: auto;
+      flex: 0 0 auto;
+      padding: 7px 10px;
+      border-radius: 9999px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Minimalist Mobile Lead Card */
+    .lead-mob-clean-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+      touch-action: manipulation;
+    }
+    .lead-mob-clean-card:active {
+      transform: scale(0.985);
+      border-color: var(--card-border-hover);
+    }
+    .lead-mob-clean-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .lead-mob-clean-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+    }
+    .lead-mob-clean-sub {
+      font-size: 12px;
+      color: var(--dim);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .lead-mob-clean-obj {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .lead-mob-clean-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 12px;
+    }
+    body.theme-light .lead-mob-clean-actions {
+      border-top-color: rgba(0, 0, 0, 0.05);
+    }
+    .btn-wa-direct {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid rgba(37, 211, 102, 0.35);
+      color: #25D366;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+    .btn-wa-direct:active {
+      background: rgba(37, 211, 102, 0.25);
+    }
+    .btn-dossier-clean {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn-dossier-clean:active {
+      background: rgba(226, 199, 153, 0.1);
+      border-color: var(--cyan);
+    }
+
+    /* Fluid Bottom Sheet Drawer Grabber */
+    .bottom-sheet-grabber {
+      display: none;
+      width: 40px;
+      height: 4px;
+      border-radius: 9999px;
+      background: rgba(226, 199, 153, 0.4);
+      margin: 10px auto 4px;
+      cursor: grab;
+    }
+
+    /* Luxury PIN Keypad */
+    .pin-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid rgba(226, 199, 153, 0.4);
+      background: transparent;
+      transition: all 0.15s ease;
+    }
+    .pin-dot.filled {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan-glow);
+    }
+    .pin-num-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin: 0 auto;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+      user-select: none;
+    }
+    body.theme-light .pin-num-btn {
+      border-color: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.03);
+    }
+    .pin-num-btn:active {
+      transform: scale(0.92);
+      background: rgba(226, 199, 153, 0.2);
+      border-color: var(--cyan);
     }
 
     /* Main Container */
@@ -1830,81 +2119,178 @@
     .cms-lang-pane { display: none; }
     .cms-lang-pane.active { display: block; }
 
-    /* ================= MOBILE RESPONSIVENESS (< 768px) ================= */
+    /* ================= MOBILE PHONE-NATIVE ERGONOMICS (< 768px) ================= */
     @media (max-width: 768px) {
+      /* Bottom Dock Active */
+      .mobile-bottom-dock {
+        display: flex !important;
+      }
+      .mobile-leads-header {
+        display: flex !important;
+      }
+      .bottom-sheet-grabber {
+        display: block !important;
+      }
+
+      /* Clean 48px Top Status Header */
+      .admin-nav {
+        padding: 0 14px !important;
+        height: 48px !important;
+        background: rgba(8, 7, 6, 0.9) !important;
+        backdrop-filter: blur(24px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+        border-bottom: 1px solid rgba(226, 199, 153, 0.15) !important;
+      }
+      body.theme-light .admin-nav {
+        background: rgba(255, 255, 255, 0.92) !important;
+        border-bottom-color: rgba(120, 86, 39, 0.15) !important;
+      }
+      .admin-nav-inner {
+        height: 100% !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+      }
+      .admin-nav .nav-tabs {
+        display: none !important;
+      }
+      .admin-nav .nav-actions .btn-nav,
+      .admin-nav .nav-actions .theme-switch,
+      .admin-nav .nav-actions .nav-divider {
+        display: none !important;
+      }
+      .admin-nav .admin-badge {
+        display: none !important;
+      }
+      .admin-logo-img {
+        height: 20px !important;
+      }
+      .admin-user-pill {
+        padding: 4px 10px !important;
+        font-size: 11px !important;
+        gap: 4px !important;
+      }
+      .admin-user-pill .user-email-text {
+        display: none !important;
+      }
+
+      /* Main Viewport Padding for Dock */
       .admin-main {
-        padding: 20px 14px 100px;
+        padding: 16px 14px calc(80px + env(safe-area-inset-bottom, 12px)) !important;
+      }
+      .page-header {
+        margin-bottom: 16px !important;
       }
       .page-header h1 {
-        font-size: 22px;
+        font-size: 22px !important;
       }
-      .grid-2 {
-        grid-template-columns: 1fr;
-        gap: 12px;
+      .page-header p {
+        font-size: 12.5px !important;
       }
-      .admin-card {
-        padding: 18px 16px;
+
+      /* Declutter Leads: Hide bulky 5 KPI grid & desktop toolbar */
+      #leadsMetrics {
+        display: none !important;
       }
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+      #leadsControlsBar {
+        display: none !important;
       }
-      .stat-card {
-        padding: 14px 12px;
+      .leads-table-card {
+        display: none !important;
       }
-      .stat-val {
-        font-size: 24px;
+      .leads-mobile-list {
+        display: flex !important;
+        flex-direction: column !important;
       }
-      .stat-lbl {
-        font-size: 10px;
-        letter-spacing: 0.05em;
+
+      /* Fluid iOS-Style Bottom Sheet Modal */
+      .prospect-modal-overlay {
+        align-items: flex-end !important;
+        padding: 0 !important;
       }
-      .leads-controls-bar {
-        flex-direction: column;
-        align-items: stretch;
+      .prospect-dialog {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 88vh !important;
+        border-radius: 24px 24px 0 0 !important;
+        border-bottom: none !important;
+        padding-bottom: max(16px, env(safe-area-inset-bottom, 16px)) !important;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.75) !important;
+        animation: sheetSlideUp 0.3s cubic-bezier(0.32, 0.72, 0, 1) !important;
       }
-      .leads-filter-pills {
-        overflow-x: auto;
-        padding-bottom: 4px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .leads-filter-pills::-webkit-scrollbar { display: none; }
-      .search-input-wrap {
-        width: 100%;
-        max-width: none;
-      }
-      .prospect-dialog-body {
-        grid-template-columns: 1fr;
-        padding: 18px;
-        gap: 16px;
+      @keyframes sheetSlideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
       }
       .prospect-dialog-header {
-        padding: 16px 18px;
+        padding: 14px 18px 10px !important;
+      }
+      .prospect-dialog-body {
+        grid-template-columns: 1fr !important;
+        padding: 14px 18px 24px !important;
+        gap: 14px !important;
+        max-height: calc(88vh - 110px) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      /* Mobile Invoices Adjustments */
+      .studio-container {
+        display: block !important;
+      }
+      .studio-editor-panel {
+        width: 100% !important;
+        margin-bottom: 24px !important;
+      }
+      .form-grid-2 {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Mobile CMS Collapsible Accordion Cards */
+      .cms-accordion-head {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .cms-accordion-toggle-icon {
+        transition: transform 0.2s ease;
+        color: var(--dim);
+      }
+      .cms-card-collapsed .cms-accordion-body {
+        display: none !important;
+      }
+      .cms-card-collapsed .cms-accordion-toggle-icon {
+        transform: rotate(-90deg);
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .admin-card {
+        padding: 16px 14px !important;
+        margin-bottom: 14px !important;
       }
       .form-input, .form-textarea {
-        font-size: 16px;
+        font-size: 15px !important;
       }
-      .leads-table-card { display: none; }
-      .leads-mobile-list { display: flex; }
       
       .publish-bar {
-        border-radius: 20px;
-        padding: 14px 16px;
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-        gap: 12px;
+        border-radius: 20px !important;
+        padding: 14px 16px !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        text-align: center !important;
+        gap: 12px !important;
+        bottom: calc(70px + env(safe-area-inset-bottom, 12px)) !important;
       }
       .publish-btns {
-        width: 100%;
+        width: 100% !important;
       }
       .publish-btns .btn-cta {
-        flex: 1;
-        justify-content: center;
-      }
-      .publish-btns .btn-ghost {
-        flex: 0 0 auto;
+        flex: 1 !important;
+        justify-content: center !important;
       }
     }
   </style>
@@ -1998,6 +2384,18 @@
 
       <h2>Sign In</h2>
 
+      <!-- 1-Tap Biometric / Face ID Unlock Button (Phone-Native) -->
+      <button type="button" class="btn-ghost" id="btnBiometricUnlock" onclick="handleBiometricUnlock()" style="display:none; width: 100%; margin-bottom: 12px; padding: 12px; font-size: 13px; justify-content: center; gap: 8px; border-color: rgba(226, 199, 153, 0.4); color: var(--cyan); background: rgba(226, 199, 153, 0.08);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        <span>Unlock with Face ID / Biometrics</span>
+      </button>
+
+      <!-- 4-Digit Quick PIN Button (Phone-Native) -->
+      <button type="button" class="btn-ghost" id="btnQuickPinUnlock" onclick="openQuickPinModal()" style="display:none; width: 100%; margin-bottom: 12px; padding: 10px; font-size: 13px; justify-content: center; gap: 8px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Unlock with 4-Digit PIN</span>
+      </button>
+
       <!-- Primary Google 1-Click Sign-In -->
       <button type="button" class="btn-google-auth" id="btnGoogleSignIn" onclick="handleGoogleAdminSignIn()">
         <svg width="18" height="18" viewBox="0 0 24 24">
@@ -2041,6 +2439,39 @@
         <a href="/" class="auth-return-link">&larr; Back to website</a>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ================= QUICK 4-DIGIT PIN KEYPAD MODAL ================= -->
+<div id="quickPinModal" class="prospect-modal-overlay" style="display: none;" onclick="if(event.target===this) closeQuickPinModal()">
+  <div class="auth-box" style="max-width: 320px; text-align: center;">
+    <h3 style="font-size: 18px; margin-bottom: 6px; color: var(--text);">Enter 4-Digit PIN</h3>
+    <p style="font-size: 12px; color: var(--dim); margin-bottom: 16px;">Fast phone unlock for POLISH Admin</p>
+    
+    <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 22px;">
+      <span class="pin-dot" id="pinDot0"></span>
+      <span class="pin-dot" id="pinDot1"></span>
+      <span class="pin-dot" id="pinDot2"></span>
+      <span class="pin-dot" id="pinDot3"></span>
+    </div>
+
+    <!-- Keypad Grid -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 230px; margin: 0 auto 16px;">
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('1')">1</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('2')">2</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('3')">3</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('4')">4</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('5')">5</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('6')">6</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('7')">7</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('8')">8</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('9')">9</button>
+      <button type="button" class="pin-num-btn" onclick="clearPin()" style="font-size: 11px; font-weight: 700;">CLR</button>
+      <button type="button" class="pin-num-btn" onclick="enterPinDigit('0')">0</button>
+      <button type="button" class="pin-num-btn" onclick="deletePinDigit()">⌫</button>
+    </div>
+
+    <button type="button" class="btn-ghost" onclick="closeQuickPinModal()" style="font-size: 12px; padding: 6px 14px; margin-top: 4px;">Cancel</button>
   </div>
 </div>
 
@@ -2469,6 +2900,40 @@
         </div>
       </div>
 
+      <!-- Phone-Native Pull-to-Refresh Indicator -->
+      <div id="pullToRefreshZone">
+        <div class="pull-spinner"></div>
+        <span>Refreshing Inquiries...</span>
+      </div>
+
+      <!-- Phone-Native Clean Pulse Summary & Filters (Visible on Mobile) -->
+      <div class="mobile-leads-header no-print" id="mobileLeadsHeader">
+        <div class="mobile-leads-pulse">
+          <div style="display:flex; align-items:center;">
+            <span class="pulse-dot-green"></span>
+            <span id="mobileSummaryText">Active Pipeline</span>
+          </div>
+          <button class="btn-ghost" style="padding: 3px 8px; font-size: 11px; height: 24px;" onclick="refreshLeads()">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Sync
+          </button>
+        </div>
+
+        <div class="mobile-filter-bar">
+          <button class="mob-pill active" id="mobFilterAll" onclick="setMobileLeadsFilter('ALL')">All</button>
+          <button class="mob-pill" id="mobFilterNew" onclick="setMobileLeadsFilter('NEW')">New</button>
+          <button class="mob-pill" id="mobFilterQualified" onclick="setMobileLeadsFilter('QUALIFIED')">Qualified</button>
+          <button class="mob-pill" id="mobFilterCalls" onclick="setMobileLeadsFilter('CALL_SCHEDULED')">Calls</button>
+          <button class="mob-search-btn" onclick="toggleMobileSearch()" title="Search">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+
+        <div id="mobileSearchWrap" style="display: none; margin-top: 4px;">
+          <input type="text" class="form-input" id="mobileSearchInput" placeholder="Filter applicants, brands, or notes..." oninput="handleLeadsSearch(this.value)" style="font-size: 13.5px; padding: 9px 14px; border-radius: 12px;">
+        </div>
+      </div>
+
       <!-- Pipeline Metric KPI Cards -->
       <div class="stats-grid" id="leadsMetrics" style="display: none;">
         <div class="stat-card">
@@ -2587,6 +3052,12 @@
           <button type="button" class="btn-primary-action" id="btnPrintInvoice" style="font-size: 11.5px; padding: 5px 14px; height: 28px; display: inline-flex; align-items: center; gap: 6px;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
             Print / PDF
+          </button>
+
+          <!-- Mobile 1-Tap Share to WhatsApp -->
+          <button type="button" class="btn-primary-action btn-share-wa" id="btnShareWhatsApp" onclick="shareCurrentInvoiceWhatsApp()" style="font-size: 11.5px; padding: 5px 14px; height: 28px; display: inline-flex; align-items: center; gap: 6px; background: rgba(37, 211, 102, 0.2); border: 1px solid rgba(37, 211, 102, 0.4); color: #25D366;" title="Share Invoice to Client via WhatsApp">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            <span>Share WA</span>
           </button>
         </div>
       </div>
@@ -2859,8 +3330,122 @@
       </div>
     </section>
 
+    <!-- ================= TAB 5: MOBILE STUDIO & SYSTEM SETTINGS ================= -->
+    <section id="studioTabPane" class="tab-pane">
+      <div class="page-header">
+        <div>
+          <h1>Studio &amp; Settings</h1>
+          <p>Executive controls, security keys, theme preference, and quick tools.</p>
+        </div>
+      </div>
+
+      <!-- Quick Session & Lock Card -->
+      <div class="admin-card" style="border-color: rgba(226, 199, 153, 0.28);">
+        <div class="card-head">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Executive Security &amp; Session
+          </div>
+          <span class="badge-pill" style="background: rgba(16, 185, 129, 0.12); color: #10B981;">● Active</span>
+        </div>
+        <p style="color: var(--muted); font-size: 13.5px; margin-bottom: 14px;">
+          Authenticated as <strong id="studioUserEmail" style="color: var(--text);">Admin</strong>
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button type="button" class="btn-ghost" onclick="handleBiometricEnrollment()" id="btnEnrollBiometric" style="font-size: 12px; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            Enable Face ID / Touch ID
+          </button>
+          <button type="button" class="btn-ghost" onclick="promptSetQuickPin()" style="font-size: 12px; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Set 4-Digit PIN
+          </button>
+          <button type="button" class="btn-primary-action" onclick="lockConsoleNow()" style="font-size: 12px; padding: 8px 14px; height: auto;">
+            Lock Console
+          </button>
+        </div>
+      </div>
+
+      <!-- Theme Selector Card -->
+      <div class="admin-card">
+        <div class="card-head">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            Display Theme
+          </div>
+        </div>
+        <p style="color: var(--muted); font-size: 13.5px; margin-bottom: 12px;">
+          Choose between dark Haute Obsidian and light Haute Alabaster styling.
+        </p>
+        <div style="display: inline-flex; background: var(--bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 3px; gap: 4px;">
+          <button type="button" id="btnStudioThemeDark" onclick="setAdminTheme('dark')" style="padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 6px; border: none; cursor: pointer; background: transparent; color: var(--dim);">Haute Obsidian (Dark)</button>
+          <button type="button" id="btnStudioThemeLight" onclick="setAdminTheme('light')" style="padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 6px; border: none; cursor: pointer; background: var(--card-bg); color: var(--text);">Haute Alabaster (Light)</button>
+        </div>
+      </div>
+
+      <!-- Quick Navigation Shortcuts -->
+      <div class="admin-card">
+        <div class="card-head">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            Quick Utilities &amp; Channels
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
+          <button type="button" class="btn-ghost" onclick="switchMainTab('waTabPane')" style="justify-content: flex-start; padding: 12px 16px; font-size: 13px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>WhatsApp Automated Flows &amp; Templates</span>
+            <span style="margin-left: auto; color: var(--dim);">→</span>
+          </button>
+          <button type="button" class="btn-ghost" onclick="switchMainTab('notifTabPane')" style="justify-content: flex-start; padding: 12px 16px; font-size: 13px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span>Alert Channels &amp; Webhook Health</span>
+            <span style="margin-left: auto; color: var(--dim);">→</span>
+          </button>
+          <a href="/" target="_blank" class="btn-ghost" style="justify-content: flex-start; padding: 12px 16px; font-size: 13px; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span>Preview Live Public Website</span>
+            <span style="margin-left: auto; color: var(--dim);">↗</span>
+          </a>
+          <button type="button" class="btn-danger" onclick="logoutAdmin()" style="justify-content: flex-start; padding: 12px 16px; font-size: 13px; margin-top: 10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Log Out Completely</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
   </main>
 </div>
+
+<!-- ================= PHONE-NATIVE FROSTED BOTTOM DOCK ================= -->
+<nav class="mobile-bottom-dock no-print" id="mobileBottomDock">
+  <button type="button" class="dock-tab active" data-pane="leadsTabPane" onclick="switchMainTab('leadsTabPane')">
+    <div class="dock-tab-icon-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10"/><path d="M7 12h10"/><path d="M7 16h6"/></svg>
+      <span class="dock-badge" id="dockLeadsCount" style="display:none;">0</span>
+    </div>
+    <span class="dock-tab-label">Leads</span>
+  </button>
+  <button type="button" class="dock-tab" data-pane="invoicesTabPane" onclick="switchMainTab('invoicesTabPane')">
+    <div class="dock-tab-icon-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+    </div>
+    <span class="dock-tab-label">Invoices</span>
+  </button>
+  <button type="button" class="dock-tab" data-pane="cmsTabPane" onclick="switchMainTab('cmsTabPane')">
+    <div class="dock-tab-icon-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    </div>
+    <span class="dock-tab-label">Content</span>
+  </button>
+  <button type="button" class="dock-tab" data-pane="studioTabPane" onclick="switchMainTab('studioTabPane')">
+    <div class="dock-tab-icon-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+    </div>
+    <span class="dock-tab-label">Studio</span>
+  </button>
+</nav>
 
 <!-- Invoices Archive Slide-Out Drawer -->
 <div class="archive-drawer-backdrop no-print" id="archiveDrawerBackdrop"></div>
@@ -2885,6 +3470,7 @@
 <!-- ================= LEAD DETAIL MODAL ================= -->
 <div id="prospectModal" class="prospect-modal-overlay" onclick="handleModalOverlayClick(event)">
   <div class="prospect-dialog" role="dialog" aria-modal="true" aria-labelledby="modalProspectTitle">
+    <div class="bottom-sheet-grabber"></div>
     
     <!-- Modal Header -->
     <div class="prospect-dialog-header">
@@ -3129,8 +3715,10 @@
 
     handleHashRoute();
     await loadCmsData();
+    initCmsAccordions();
     loadWaConfig();
     await refreshLeads();
+    checkBiometricSupport();
     notifyToast(`Signed in${user && user.email ? ': ' + user.email : ''}.`);
   }
 
@@ -3312,6 +3900,16 @@
 
   // ── Initialization on Page Load ───────────────────────────
   window.addEventListener('DOMContentLoaded', async () => {
+    // Service Worker Registration for Phone PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw-admin.js', { scope: '/' })
+        .then(reg => console.log('[SW] Admin Service Worker registered:', reg.scope))
+        .catch(err => console.warn('[SW] Admin Service Worker registration failed:', err));
+    }
+
+    // Check Biometrics / Quick PIN availability
+    checkBiometricSupport();
+
     // Initialize default light theme mode and high-contrast logo
     const savedAdminTheme = localStorage.getItem('polish_admin_theme') || 'light';
     setAdminTheme(savedAdminTheme);
@@ -3359,6 +3957,16 @@
 
     document.querySelectorAll(`.nav-tab[data-pane="${paneId}"]`).forEach(t => t.classList.add('active'));
 
+    // Synchronize phone-native bottom dock
+    document.querySelectorAll('.dock-tab').forEach(t => {
+      if (t.dataset.pane === paneId) t.classList.add('active');
+      else t.classList.remove('active');
+    });
+
+    if (navigator.vibrate) {
+      try { navigator.vibrate(8); } catch(e) {}
+    }
+
     const mainEl = document.querySelector('.admin-main');
     if (mainEl) {
       if (paneId === 'invoicesTabPane') {
@@ -3379,6 +3987,11 @@
       if (typeof window.refreshInvoiceStudio === 'function') {
         window.refreshInvoiceStudio();
       }
+    } else if (paneId === 'cmsTabPane') {
+      initCmsAccordions();
+    } else if (paneId === 'studioTabPane') {
+      const emailEl = document.getElementById('studioUserEmail');
+      if (emailEl) emailEl.textContent = (activeAdminUser && activeAdminUser.email) || 'Master Key';
     }
   }
 
@@ -3389,8 +4002,369 @@
     else if (hash === 'cms' || hash === 'text') switchMainTab('cmsTabPane');
     else if (hash === 'invoices' || hash === 'invoice') switchMainTab('invoicesTabPane');
     else if (hash === 'alerts' || hash === 'notif' || hash === 'system') switchMainTab('notifTabPane');
+    else if (hash === 'studio' || hash === 'settings') switchMainTab('studioTabPane');
   }
   window.addEventListener('hashchange', handleHashRoute);
+
+  // ── Phone-Native Mobile Filters & Relative Time ─────────────
+  function formatRelativeTime(dateInput) {
+    if (!dateInput) return 'Recently';
+    const d = new Date(dateInput);
+    if (isNaN(d.getTime())) return 'Recently';
+    const diffSec = Math.floor((Date.now() - d.getTime()) / 1000);
+    if (diffSec < 60) return 'Just now';
+    if (diffSec < 3600) return `${Math.floor(diffSec / 60)}m ago`;
+    if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}h ago`;
+    if (diffSec < 604800) return `${Math.floor(diffSec / 86400)}d ago`;
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+  }
+
+  function setMobileLeadsFilter(filterKey) {
+    document.querySelectorAll('.mob-pill').forEach(p => p.classList.remove('active'));
+    const btn = document.getElementById('mobFilter' + (filterKey === 'ALL' ? 'All' : filterKey === 'NEW' ? 'New' : filterKey === 'QUALIFIED' ? 'Qualified' : 'Calls'));
+    if (btn) btn.classList.add('active');
+    setLeadsFilter(filterKey);
+    if (navigator.vibrate) {
+      try { navigator.vibrate(6); } catch(e) {}
+    }
+  }
+
+  function toggleMobileSearch() {
+    const wrap = document.getElementById('mobileSearchWrap');
+    if (!wrap) return;
+    if (wrap.style.display === 'none' || !wrap.style.display) {
+      wrap.style.display = 'block';
+      const inp = document.getElementById('mobileSearchInput');
+      if (inp) inp.focus();
+    } else {
+      wrap.style.display = 'none';
+      handleLeadsSearch('');
+    }
+  }
+
+  // ── Pull-to-Refresh Gesture Engine ────────────────────────
+  (function initPullToRefresh() {
+    const pullZone = document.getElementById('pullToRefreshZone');
+    let startY = 0;
+    let currentY = 0;
+    let isPulling = false;
+
+    window.addEventListener('touchstart', (e) => {
+      if (window.scrollY <= 2 && e.touches.length === 1) {
+        startY = e.touches[0].clientY;
+        isPulling = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isPulling) return;
+      currentY = e.touches[0].clientY;
+      const diff = currentY - startY;
+      if (diff > 25 && window.scrollY <= 2) {
+        if (pullZone) {
+          pullZone.classList.add('pulling');
+          pullZone.style.opacity = Math.min(diff / 80, 1);
+        }
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      if (!isPulling) return;
+      const diff = currentY - startY;
+      isPulling = false;
+      if (diff > 65 && window.scrollY <= 2) {
+        if (navigator.vibrate) navigator.vibrate(12);
+        refreshLeads().finally(() => {
+          setTimeout(() => {
+            if (pullZone) {
+              pullZone.classList.remove('pulling');
+              pullZone.style.opacity = '';
+            }
+          }, 350);
+        });
+      } else {
+        if (pullZone) {
+          pullZone.classList.remove('pulling');
+          pullZone.style.opacity = '';
+        }
+      }
+    }, { passive: true });
+  })();
+
+  // ── Fluid iOS Bottom Sheet Gestures ───────────────────────
+  (function initBottomSheetGestures() {
+    const overlay = document.getElementById('prospectModal');
+    if (!overlay) return;
+    const dialog = overlay.querySelector('.prospect-dialog');
+    const grabber = overlay.querySelector('.bottom-sheet-grabber');
+    if (!dialog || !grabber) return;
+
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+
+    grabber.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        startY = e.touches[0].clientY;
+        isDragging = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      currentY = e.touches[0].clientY;
+      const diff = currentY - startY;
+      if (diff > 0) {
+        dialog.style.transform = `translateY(${diff}px)`;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      const diff = currentY - startY;
+      isDragging = false;
+      dialog.style.transform = '';
+      if (diff > 90) {
+        if (navigator.vibrate) navigator.vibrate(8);
+        closeProspectModal();
+      }
+    }, { passive: true });
+  })();
+
+  // ── Mobile CMS Section Accordions ─────────────────────────
+  function initCmsAccordions() {
+    document.querySelectorAll('.cms-lang-pane .admin-card').forEach((card, index) => {
+      const head = card.querySelector('.card-head');
+      if (!head || head.dataset.accInit) return;
+      head.dataset.accInit = 'true';
+      head.classList.add('cms-accordion-head');
+
+      if (!head.querySelector('.cms-accordion-toggle-icon')) {
+        const chevron = document.createElement('span');
+        chevron.className = 'cms-accordion-toggle-icon';
+        chevron.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+        head.appendChild(chevron);
+      }
+
+      let bodyWrap = card.querySelector('.cms-accordion-body');
+      if (!bodyWrap) {
+        bodyWrap = document.createElement('div');
+        bodyWrap.className = 'cms-accordion-body';
+        const children = Array.from(card.childNodes).filter(node => node !== head);
+        children.forEach(node => bodyWrap.appendChild(node));
+        card.appendChild(bodyWrap);
+      }
+
+      if (window.innerWidth <= 768 && index > 0) {
+        card.classList.add('cms-card-collapsed');
+      }
+
+      head.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          card.classList.toggle('cms-card-collapsed');
+          if (navigator.vibrate) navigator.vibrate(5);
+        }
+      });
+    });
+  }
+
+  // ── Share Invoice to Client via WhatsApp ──────────────────
+  async function shareCurrentInvoiceWhatsApp() {
+    const invNumber = (document.getElementById('inputInvoiceNumber')?.value || 'POL-2026').trim();
+    const clientName = (document.getElementById('inputClientName')?.value || 'Valued Partner').trim();
+    const clientPhone = (document.getElementById('inputClientPhone')?.value || '').replace(/[^0-9]/g, '');
+    const currency = document.getElementById('inputCurrency')?.value || 'DA';
+    
+    const totalEl = document.getElementById('sheetTotalAmount') || document.getElementById('invoiceGrandTotal');
+    const totalText = totalEl ? totalEl.textContent.trim() : '';
+
+    const shareText = `Hello ${clientName},\n\nHere is your official POLISH Media Co invoice reference *${invNumber}* for ${totalText} ${currency}.\n\nPayable to: Faycal Chouli / Polish Media Co.\nThank you for your partnership!`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `POLISH Invoice ${invNumber}`,
+          text: shareText
+        });
+        notifyToast('Invoice shared successfully!');
+        return;
+      } catch (e) {
+        if (e.name === 'AbortError') return;
+      }
+    }
+
+    if (clientPhone) {
+      window.open(`https://wa.me/${clientPhone}?text=${encodeURIComponent(shareText)}`, '_blank');
+    } else {
+      window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+    }
+    notifyToast('Opening WhatsApp...');
+  }
+
+  // ── Biometric & Quick PIN Authentication Engine ───────────
+  let enteredPin = '';
+
+  function checkBiometricSupport() {
+    const btnBio = document.getElementById('btnBiometricUnlock');
+    const btnPin = document.getElementById('btnQuickPinUnlock');
+
+    const hasSavedPin = Boolean(localStorage.getItem('polish_admin_pin'));
+    if (btnPin) {
+      btnPin.style.display = hasSavedPin ? 'inline-flex' : 'none';
+    }
+
+    const hasBioCred = Boolean(localStorage.getItem('polish_admin_bio_cred'));
+    if (window.PublicKeyCredential && hasBioCred && btnBio) {
+      btnBio.style.display = 'inline-flex';
+    }
+  }
+
+  async function handleBiometricEnrollment() {
+    if (!window.PublicKeyCredential) {
+      notifyToast('Biometrics not supported on this browser.', true);
+      return;
+    }
+    try {
+      const challenge = new Uint8Array(32);
+      window.crypto.getRandomValues(challenge);
+
+      const credential = await navigator.credentials.create({
+        publicKey: {
+          challenge,
+          rp: { name: "POLISH Media Co." },
+          user: {
+            id: Uint8Array.from("polish-admin-user", c => c.charCodeAt(0)),
+            name: "admin@polishmediaco.com",
+            displayName: "POLISH Executive"
+          },
+          pubKeyCredParams: [{ alg: -7, type: "public-key" }, { alg: -257, type: "public-key" }],
+          authenticatorSelection: {
+            authenticatorAttachment: "platform",
+            userVerification: "required"
+          },
+          timeout: 60000
+        }
+      });
+
+      if (credential) {
+        localStorage.setItem('polish_admin_bio_cred', credential.id);
+        notifyToast('Face ID / Touch ID enabled for this device!');
+        checkBiometricSupport();
+      }
+    } catch (err) {
+      if (err.name !== 'NotAllowedError') {
+        notifyToast('Biometric setup failed: ' + err.message, true);
+      }
+    }
+  }
+
+  async function handleBiometricUnlock() {
+    if (!window.PublicKeyCredential) return;
+    try {
+      const challenge = new Uint8Array(32);
+      window.crypto.getRandomValues(challenge);
+
+      const assertion = await navigator.credentials.get({
+        publicKey: {
+          challenge,
+          timeout: 60000,
+          userVerification: "required"
+        }
+      });
+
+      if (assertion) {
+        if (navigator.vibrate) navigator.vibrate([15]);
+        const savedKey = localStorage.getItem('polish_admin_key') || 'polish_admin_secure_key_2026';
+        await unlockDashboard(activeAdminUser, savedKey);
+      }
+    } catch (err) {
+      if (err.name !== 'NotAllowedError') {
+        notifyToast('Biometric unlock failed: ' + err.message, true);
+      }
+    }
+  }
+
+  function promptSetQuickPin() {
+    const pin = prompt('Enter a new 4-digit PIN for instant phone unlock:');
+    if (!pin) return;
+    if (!/^\d{4}$/.test(pin)) {
+      notifyToast('PIN must be exactly 4 numeric digits.', true);
+      return;
+    }
+    localStorage.setItem('polish_admin_pin', btoa(pin));
+    notifyToast('4-Digit Quick PIN configured successfully!');
+    checkBiometricSupport();
+  }
+
+  function openQuickPinModal() {
+    enteredPin = '';
+    updatePinDots();
+    const modal = document.getElementById('quickPinModal');
+    if (modal) modal.style.display = 'flex';
+  }
+
+  function closeQuickPinModal() {
+    enteredPin = '';
+    updatePinDots();
+    const modal = document.getElementById('quickPinModal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  function updatePinDots() {
+    for (let i = 0; i < 4; i++) {
+      const dot = document.getElementById('pinDot' + i);
+      if (dot) {
+        if (i < enteredPin.length) dot.classList.add('filled');
+        else dot.classList.remove('filled');
+      }
+    }
+  }
+
+  async function enterPinDigit(digit) {
+    if (enteredPin.length >= 4) return;
+    enteredPin += digit;
+    if (navigator.vibrate) navigator.vibrate(6);
+    updatePinDots();
+
+    if (enteredPin.length === 4) {
+      setTimeout(async () => {
+        const stored = localStorage.getItem('polish_admin_pin');
+        if (stored && atob(stored) === enteredPin) {
+          if (navigator.vibrate) navigator.vibrate([10, 20]);
+          closeQuickPinModal();
+          const savedKey = localStorage.getItem('polish_admin_key') || 'polish_admin_secure_key_2026';
+          await unlockDashboard(activeAdminUser, savedKey);
+        } else {
+          if (navigator.vibrate) navigator.vibrate([40, 40, 40]);
+          notifyToast('Incorrect PIN. Try again.', true);
+          enteredPin = '';
+          updatePinDots();
+        }
+      }, 150);
+    }
+  }
+
+  function deletePinDigit() {
+    if (enteredPin.length > 0) {
+      enteredPin = enteredPin.slice(0, -1);
+      if (navigator.vibrate) navigator.vibrate(5);
+      updatePinDots();
+    }
+  }
+
+  function clearPin() {
+    enteredPin = '';
+    updatePinDots();
+  }
+
+  function lockConsoleNow() {
+    localStorage.removeItem('polish_admin_session');
+    document.documentElement.classList.remove('is-authenticated');
+    document.getElementById('dashboardAppView').style.display = 'none';
+    document.getElementById('authGateView').style.display = 'block';
+    notifyToast('Console locked.');
+    checkBiometricSupport();
+  }
 
   // ── CMS Language Switcher (EN / FR / AR) ───────────────────
   function switchCmsLanguage(lang) {
@@ -4304,6 +5278,17 @@
     document.getElementById('statBrandCount').textContent = brandsCount;
     document.getElementById('statCreatorCount').textContent = creatorsCount;
 
+    // Update bottom dock badge & mobile summary pulse
+    const dockBadge = document.getElementById('dockLeadsCount');
+    if (dockBadge) {
+      dockBadge.textContent = totalCount;
+      dockBadge.style.display = totalCount > 0 ? 'inline-block' : 'none';
+    }
+    const mobSummary = document.getElementById('mobileSummaryText');
+    if (mobSummary) {
+      mobSummary.textContent = `${totalCount} Inquiries • ${qualifiedCount} Qualified${callsCount > 0 ? ' • ' + callsCount + ' Calls' : ''}`;
+    }
+
     const filtered = getFilteredLeads();
 
     if (!filtered.length) {
@@ -4493,81 +5478,61 @@
       `;
     }).join('');
 
-    // Mobile Responsive Card List
+    // Mobile Responsive Clean Luxury Card List
     mobileList.innerHTML = filtered.map(lead => {
-      const d = new Date(lead.submittedAt);
-      const dateStr = !isNaN(d.getTime()) ? d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '—';
+      const relTime = formatRelativeTime(lead.submittedAt);
       const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
       const isMeeting = lead.type === 'CALENDLY_MEETING';
-      const cleanSocial = formatSocialUrl(lead.socialLink);
+      const isStrategy = lead.type === 'STRATEGY_INTAKE';
       const phone = (lead.phone || '').replace(/[^0-9]/g, '');
 
       let title = '';
       let subtitle = '';
-      let categoryBadge = '';
-      let objectiveContent = '';
+      let snippet = '';
 
       if (isMeeting) {
-        title = lead.fullName || 'Strategy Call Prospect';
-        subtitle = `<div class="crm-lead-subtitle">${esc(lead.eventName || 'Strategy Session')} • <span style="color: var(--dim); font-weight: 500;">Calendly</span></div>`;
-        categoryBadge = `<span class="crm-tag-meet"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Strategy Call</span>`;
-        const meetTime = lead.startTime ? new Date(lead.startTime) : null;
-        const meetTimeStr = meetTime && !isNaN(meetTime.getTime()) 
-          ? meetTime.toLocaleString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) 
-          : 'Scheduled Call';
-        objectiveContent = `
-          <div class="crm-diagnostic-text"><strong>Session:</strong> ${meetTimeStr}</div>
-          ${lead.joinUrl ? `<a href="${esc(lead.joinUrl)}" target="_blank" rel="noopener" class="crm-meet-btn" style="margin-top: 6px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> Join Google Meet</a>` : ''}
-        `;
+        title = lead.fullName || 'Strategy Consultation';
+        subtitle = `<span>${esc(lead.eventName || 'Meeting')}</span> • <span style="color:var(--cyan);">Calendly</span> • <span>${relTime}</span>`;
+        snippet = lead.startTime ? `Scheduled: ${new Date(lead.startTime).toLocaleString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}` : 'Consultation Call Scheduled';
       } else if (isCreator) {
         title = lead.name || 'UGC Creator';
-        subtitle = `<span class="badge-pill" style="background: rgba(192, 132, 252, 0.15); color: #C084FC; margin-top: 4px; display: inline-block;">Creator Network</span>`;
-        categoryBadge = `<span class="badge-pill" style="background: rgba(192, 132, 252, 0.15); color: #C084FC;">UGC</span>`;
-        objectiveContent = lead.portfolio && lead.portfolio !== 'Not provided' 
-          ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color: #60A5FA; text-decoration: underline;">Showreel Portfolio</a>` 
-          : '<span style="color:var(--dim);">No portfolio</span>';
+        subtitle = `<span>UGC Talent</span> • <span style="color: #C084FC;">Creator Network</span> • <span>${relTime}</span>`;
+        snippet = lead.portfolio && lead.portfolio !== 'Not provided' ? 'Portfolio reel attached' : 'Direct creator application';
+      } else if (isStrategy) {
+        title = lead.brandName || `${lead.fullName || 'Brand'} (Strategy)`;
+        subtitle = `<span>${esc(lead.fullName || 'Partner')}</span> • <span>Strategy Intake</span> • <span>${relTime}</span>`;
+        snippet = lead.primaryGoal || 'Strategy Brief Logged';
       } else {
         const cleanBrand = (lead.brandName && lead.brandName !== 'Brand') ? lead.brandName : '';
-        title = cleanBrand || (lead.fullName ? `${lead.fullName}'s Brand` : 'Direct Application');
-        subtitle = `<div class="crm-lead-subtitle">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">${esc(lead.role || 'Founder')}</span></div>`;
-        categoryBadge = `<span class="badge-pill" style="background: rgba(226, 199, 153, 0.1); color: var(--cyan);">${esc(lead.businessCategory || 'Brand')}</span>`;
-        objectiveContent = `<div><strong>Objective:</strong> ${esc(lead.primaryGoal || lead.marketingHistory || '—')}</div>`;
+        title = cleanBrand || (lead.fullName ? `${lead.fullName}'s Brand` : 'Direct Brand Intake');
+        subtitle = `<span>${esc(lead.fullName || 'Founder')}</span> • <span>${esc(lead.businessCategory || 'Cosmetics')}</span> • <span>${relTime}</span>`;
+        snippet = lead.primaryGoal || lead.marketingHistory || 'Brand scaling dossier';
       }
 
+      const waUrl = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(`Hello ${lead.fullName || lead.name || 'there'}, this is POLISH Media Co regarding your application.`)}` : '';
+
       return `
-        <div class="lead-mobile-card">
-          <div class="lead-mobile-head">
-            <div>
-              <span class="crm-ref-code">${esc(lead.id)}</span>
-              <span class="crm-time-text" style="margin-left: 6px;">${dateStr}</span>
-            </div>
-            <div>
-              ${renderStageSelect(lead.id, lead.status || (isMeeting ? 'CALL_SCHEDULED' : 'NEW'))}
-            </div>
+        <div class="lead-mob-clean-card" onclick="openProspectModal('${esc(lead.id)}')">
+          <div class="lead-mob-clean-head">
+            <div class="lead-mob-clean-title">${esc(title)}</div>
+            <div onclick="event.stopPropagation()">${renderStageSelect(lead.id, lead.status || (isMeeting ? 'CALL_SCHEDULED' : 'NEW'))}</div>
           </div>
-          
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px;">
-            <div>
-              <div class="crm-lead-title" style="font-size: 16px;">${esc(title)}</div>
-              ${subtitle}
-            </div>
-            ${categoryBadge}
-          </div>
-
-          <div class="crm-diagnostic-text" style="margin: 8px 0; line-height: 1.4;">
-            ${objectiveContent}
-          </div>
-
-          ${lead.notes ? `<div class="note-logged-badge" style="margin-bottom: 10px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 35))}${lead.notes.length > 35 ? '...' : ''}</div>` : ''}
-
-          <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
-            <button class="btn-ghost" style="padding: 7px 14px; font-size: 12px; flex: 1; text-align: center; justify-content: center;" onclick="openProspectModal('${esc(lead.id)}')">
+          <div class="lead-mob-clean-sub">${subtitle}</div>
+          <div class="lead-mob-clean-obj">${esc(snippet)}</div>
+          <div class="lead-mob-clean-actions" onclick="event.stopPropagation()">
+            ${phone ? `
+              <a href="${waUrl}" target="_blank" rel="noopener" class="btn-wa-direct">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="tel:${phone}" class="btn-ghost" style="padding: 8px 12px;" title="Call"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+            ` : ''}
+            <button type="button" class="btn-dossier-clean" onclick="openProspectModal('${esc(lead.id)}')">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-              View Details
+              <span>Details</span>
             </button>
-            ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 7px 14px; font-size: 12px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
-            <button class="btn-danger" style="padding: 7px 12px;" onclick="deleteLead('${esc(lead.id)}')">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            <button type="button" class="btn-danger" style="padding: 8px 10px; border-radius: 8px;" onclick="deleteLead('${esc(lead.id)}')" title="Delete">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </button>
           </div>
         </div>

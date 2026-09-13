@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 87 files · ~708,213 words
+- 89 files · ~712,608 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1017 nodes · 1685 edges · 73 communities (66 shown, 5 thin omitted)
+- 1020 nodes · 1687 edges · 74 communities (66 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8a59de0f`
+- Built from commit: `20db68b3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -34,6 +34,7 @@
 - PolishI18n
 - connector-engine.js
 - marquee-selection.js
+- sw-admin.js
 - dependencies
 - drawing-engine.js
 - presentation.js
@@ -91,9 +92,9 @@
 1. `triggerAutoSave()` - 45 edges
 2. `pushHistory()` - 36 edges
 3. `renderElement()` - 32 edges
-4. `pushHistory()` - 19 edges
-5. `selectElement()` - 19 edges
-6. `6. Next Priority Roadmap (Ready for Next Conversation)` - 19 edges
+4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 20 edges
+5. `pushHistory()` - 19 edges
+6. `selectElement()` - 19 edges
 7. `getCanvasCenter()` - 16 edges
 8. `bindKeyboardShortcuts()` - 16 edges
 9. `renderInvoiceSheet()` - 15 edges
@@ -106,7 +107,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (73 total, 5 thin omitted)
+## Communities (74 total, 6 thin omitted)
 
 ### Community 0 - "studio-core.js"
 Cohesion: 0.10
@@ -218,7 +219,7 @@ Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects
 
 ### Community 31 - "6. Next Priority Roadmap (Ready for Next Conversation)"
 Cohesion: 0.05
-Nodes (38): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+30 more)
+Nodes (39): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+31 more)
 
 ### Community 32 - "OWASP Top 10 — Audit Checklist"
 Cohesion: 0.11
@@ -373,9 +374,9 @@ Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
 ## Knowledge Gaps
-- **351 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+346 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 427 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **353 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+348 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 430 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -387,7 +388,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _351 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _353 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

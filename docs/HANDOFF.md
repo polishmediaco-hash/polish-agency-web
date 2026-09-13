@@ -69,16 +69,26 @@ The application has successfully completed a luxury atelier rebranding and typog
 * Gold branded header, localized form, serif accent heading, and conversion tracking.
 
 ### D. Admin Portal & Live CMS (`public/admin.html`)
-* **Authentication**: Dual-path authentication with zero filler text:
+* **Phone-Native Reactive Mobile App & PWA Foundation**:
+  * **PWA Standalone Engine**: Dedicated `manifest-admin.json` + `sw-admin.js` providing full-screen home screen installation, `viewport-fit=cover`, safe-area insets (`env(safe-area-inset-bottom)`), and offline snapshot caching.
+  * **Ergonomic Bottom Dock**: Floating 4-tab thumb navigation (`Leads`, `Invoices`, `Content`, `Studio`) with haptic feedback (`navigator.vibrate`), eliminating cluttered desktop top headers on mobile.
+  * **Minimalist "Action-First" CRM**: Replaces bulky desktop table grids and 7 filter pills with an ultra-clean mobile summary bar, 3-pill filter (`All`, `New`, `Qualified`), and high-touch lead cards featuring one-tap direct WhatsApp outreach (`btn-wa-direct`), lead stage dropdowns, and relative timestamps (`formatRelativeTime`).
+  * **Interactive Bottom Sheet Drawer**: Lead details dialog smoothly adapts into a native iOS bottom sheet on mobile screens (<= 768px) with swipe-down dismiss gestures and top drag grabber.
+  * **Biometric & Quick PIN Vault**: WebAuthn Face ID / Touch ID hardware authentication + luxury 4-digit numeric keypad for instant sub-second unlocking on mobile without typing master passwords.
+  * **One-Tap WhatsApp Invoice Sharing**: Native Web Share API integration (`navigator.share`) + deep-link fallback to instantly route formatted invoices and payment details to clients on WhatsApp.
+  * **Focused CMS Accordion**: Progressively discloses multilingual copy cards one section at a time on mobile to eliminate endless scrolling.
+* **Authentication**: Multi-tier authentication with zero filler text:
+  * Hardware Biometric Unlock (Face ID / Touch ID via WebAuthn).
+  * 4-Digit Quick PIN Keypad (stored securely in browser vault).
   * Google OAuth via Supabase (`Continue with Google`).
   * Master Security Key fallback (`Security key` input, default: `polish_admin_secure_key_2026`), also supported via URL param `?key=...`.
 * **Clean UI & Design**: Champagne gold & obsidian styling (`--cyan: #E2C799`), zero artificial buzzwords or theatrical labels.
 * **Management Hubs**:
-  1. **Website Text (Live CMS)**: Trilingual in-place editor updating strings without redeploy.
+  1. **Website Text (Live CMS)**: Trilingual in-place editor updating strings without redeploy with mobile accordion disclosure.
   2. **WhatsApp**: Flow templates and quick outreach triggers.
   3. **Leads & Inquiries**: Real-time inbound applications from DTC brands, UGC creators, and scheduled Calendly calls with pipeline stage updates and internal notes.
-  4. **Invoices**: Multi-currency billing generator with vector PDF export.
-  5. **Alerts**: Push notifications and webhook triggers.
+  4. **Invoices**: Multi-currency billing generator with vector PDF export and 1-tap WhatsApp sharing.
+  5. **Studio & Settings**: Quick session lock, biometric/PIN configuration, light/dark luxury theme toggling, and webhook health checks.
 
 ### E. Brand Asset Vault & Guidelines (`public/brand-pack.html` / `/brand-pack`)
 * **Live Interactive Brand Portal**: Direct web interface for previewing, inspecting, and downloading all vector and raster assets.
@@ -365,7 +375,7 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Mounted 302 redirect directly before static file middleware to guarantee `/invoice*` requests redirect to `/admin/invoice`.
    - Protected `/admin/invoice` with strict headers (`X-Frame-Options: DENY`, `X-Robots-Tag: noindex, nofollow, noarchive`, `Cache-Control: no-cache, no-store, must-revalidate`).
 2. ✅ **Executive Auth Gate Integration (`public/invoice.html`)**:
-   - Integrated Supabase Google 1-Click Sign-In gated to verified executive directors (`polishmediaco@gmail.com`, `choulif.work@gmail.com`, `choulifaycal10@gmail.com`).
+   - Integrated Supabase Google 1-Click Sign-In gated to verified executive directors (`polishmediaco@gmail.com`, `choulif.work@gmail.com`).
    - Integrated master emergency key unlock (`adminSecurityKey` + Enter keydown).
    - Dynamic user profile pill with email display and 1-click logout in header.
 3. ✅ **Supabase Cloud Persistence Layer (`invoicesService`)**:
@@ -605,6 +615,27 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
 4. ✅ **Rigorous Verification**:
    - Expanded `tests/test_laser_and_branding.js` with direct UI button click activation, second-click deactivation, Escape key fallbacks, and control clicks while laser is active.
    - Both test suites (`test_laser_and_branding.js` and `test_sequencer_e2e.js`) passed 100%.
+
+### Sprint 19: Admin Authentication, Leads Pipeline & Zero-Buzzword Overhaul (Completed September 2026)
+1. ✅ **Zero-Buzzword Copy Elimination**:
+   - Stripped all AI theatrical filler labels across `public/admin.html` (login card, top navigation, leads dashboard, metric KPI pills, table headers, mobile cards, lead detail modal, and invoices section).
+   - Removed: `SECURE EXECUTIVE GATEWAY`, *"Private administrative atelier & CRM dossiers..."*, `Executive Portal`, `OR MASTER SECURITY KEY`, `Unlock Executive Hub`, `EXECUTIVE HUB` badge, `Inbound Dossiers`, `Executive Invoicing Atelier`, `Executive Prospects CRM`, `Commercial DNA`, `Intake Growth Diagnostic`, `Founder Action Center`, `Executive CRM Note`.
+   - Replaced with direct, professional, minimalist terminology: `Sign In`, `Continue with Google`, `or`, `Security key`, `Sign In`, `ADMIN`, `Leads`, `Invoices`, `Leads & Inquiries`, `Lead Details`, `Contact & Details`, `Application Information`, `Actions`.
+   - Cleaned database sample notes in `server/db/leads.json` and synchronized with Supabase cloud.
+2. ✅ **Login Auth View Overhaul & Theme Isolation**:
+   - Fixed white-on-white text bug where Light Mode `.btn-google-auth` previously inherited `#FFFFFF` onto an unstyled white box.
+   - Scoped `#authGateView` overrides to completely isolate the login gate card from global body light-mode rules.
+   - Designed a centered, minimal obsidian card with champagne glow, gold agency mark, high-contrast button, and responsive padding.
+3. ✅ **Dual-Path Authentication (Google OAuth + Master Key)**:
+   - Google OAuth via Supabase with dynamic origin callback (`window.location.origin + '/admin'`).
+   - Master Security Key (`polish_admin_secure_key_2026`) with password eye visibility toggle and keyboard `Enter` submission.
+   - Instant 0ms URL auto-login via `https://polishmediaco.com/admin?key=polish_admin_secure_key_2026`.
+4. ✅ **Supabase Localhost Redirect Resolution**:
+   - Diagnosed root cause in Supabase dashboard `rkbddfdevgcwqjoshpex`: **Site URL** was set to `http://localhost:3000`.
+   - Set Site URL to `https://polishmediaco.com` and added `https://polishmediaco.com/admin` to Redirect URLs.
+5. ✅ **Production Verification & Deployment**:
+   - Verified via Puppeteer screenshots: `admin_clean_signin_verified.png` and `admin_clean_leads_verified.png`.
+   - Deployed live to Vercel production (`https://polishmediaco.com/admin`).
 
 ---
 

@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- Instant OAuth Token Relay: Automatically forward Supabase auth callbacks to Admin Suite -->
+  <script>
+    (function() {
+      var hash = window.location.hash;
+      if (hash && (hash.indexOf('access_token=') !== -1 || hash.indexOf('error=') !== -1)) {
+        window.location.replace('/admin' + hash);
+      }
+    })();
+  </script>
+  
   <title>POLISH | High-Performance Beauty &amp; Cosmetic Acceleration Agency</title>
   <meta name="title" content="POLISH | High-Performance Beauty &amp; Cosmetic Acceleration Agency">
   <meta name="description" content="We don't just launch beauty brands. We polish them for dominance. Full-funnel growth marketing, viral UGC creative labs, and algorithmic paid media for cosmetic manufacturers &amp; brands.">

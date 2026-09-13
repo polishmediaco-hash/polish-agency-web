@@ -1286,7 +1286,7 @@
       "file_type": "code",
       "norm_label": "isprodenv()",
       "source_file": "server/index.js",
-      "source_location": "L309"
+      "source_location": "L311"
     },
     {
       "id": "public_studio_js_firebase_config_deleteboard",
@@ -6242,7 +6242,7 @@
       "file_type": "code",
       "norm_label": "ailimiter",
       "source_file": "server/index.js",
-      "source_location": "L174"
+      "source_location": "L176"
     },
     {
       "id": "server_index_allowed_origins",
@@ -6253,7 +6253,7 @@
       "file_type": "code",
       "norm_label": "allowed_origins",
       "source_file": "server/index.js",
-      "source_location": "L122"
+      "source_location": "L124"
     },
     {
       "id": "server_index_apiroutes",
@@ -6297,7 +6297,7 @@
       "file_type": "code",
       "norm_label": "boardswritelimiter",
       "source_file": "server/index.js",
-      "source_location": "L201"
+      "source_location": "L203"
     },
     {
       "id": "server_index_compression",
@@ -6319,7 +6319,7 @@
       "file_type": "code",
       "norm_label": "configlimiter",
       "source_file": "server/index.js",
-      "source_location": "L183"
+      "source_location": "L185"
     },
     {
       "id": "server_index_cors",
@@ -6352,7 +6352,7 @@
       "file_type": "code",
       "norm_label": "globalapilimiter",
       "source_file": "server/index.js",
-      "source_location": "L156"
+      "source_location": "L158"
     },
     {
       "id": "server_index_helmet",
@@ -6374,7 +6374,7 @@
       "file_type": "code",
       "norm_label": "intakelimiter",
       "source_file": "server/index.js",
-      "source_location": "L165"
+      "source_location": "L167"
     },
     {
       "id": "server_index_path",
@@ -6418,7 +6418,7 @@
       "file_type": "code",
       "norm_label": "webhooklimiter",
       "source_file": "server/index.js",
-      "source_location": "L192"
+      "source_location": "L194"
     },
     {
       "id": "public_studio_js_firebase_config",
@@ -6892,6 +6892,28 @@
       "norm_label": "marquee-selection.js",
       "source_file": "public/studio/js/marquee-selection.js",
       "source_location": "L1"
+    },
+    {
+      "id": "public_sw_admin",
+      "label": "sw-admin.js",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "sw-admin.js",
+      "file_type": "code",
+      "norm_label": "sw-admin.js",
+      "source_file": "public/sw-admin.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_sw_admin_app_shell",
+      "label": "APP_SHELL",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "sw-admin.js",
+      "file_type": "code",
+      "norm_label": "app_shell",
+      "source_file": "public/sw-admin.js",
+      "source_location": "L7"
     },
     {
       "id": "server_routes_boards",
@@ -7803,7 +7825,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L611"
+      "source_location": "L632"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -8068,6 +8090,18 @@
       "norm_label": "sprint 18: laser pointer stacking context & direct click-toggle engine (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L590"
+    },
+    {
+      "id": "docs_handoff_sprint_19_admin_authentication_leads_pipeline_zero_buzzword_overhaul_completed_september_2026",
+      "label": "Sprint 19: Admin Authentication, Leads Pipeline & Zero-Buzzword Overhaul (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 19: admin authentication, leads pipeline & zero-buzzword overhaul (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L609"
     },
     {
       "id": "docs_handoff_sprint_1_critical_hotfixes_completed_september_2026",
@@ -20384,7 +20418,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "server/index.js",
-      "source_location": "L481",
+      "source_location": "L483",
       "weight": 1.0
     },
     {
@@ -20684,7 +20718,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "server/index.js",
-      "source_location": "L481",
+      "source_location": "L483",
       "weight": 1.0
     },
     {
@@ -23210,6 +23244,17 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_19_admin_authentication_leads_pipeline_zero_buzzword_overhaul_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L609",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -23272,7 +23317,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L611",
+      "source_location": "L632",
       "weight": 1.0
     },
     {
@@ -29128,6 +29173,17 @@
       "weight": 1.0
     },
     {
+      "source": "public_sw_admin",
+      "target": "public_sw_admin_app_shell",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/sw-admin.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
       "source": "readme",
       "target": "readme_polish_media_agency_web_lead_engine_polishmediaco_com",
       "relation": "contains",
@@ -29960,7 +30016,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L122",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -29993,7 +30049,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L156",
+      "source_location": "L158",
       "weight": 1.0
     },
     {
@@ -30015,7 +30071,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L165",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -30037,7 +30093,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L174",
+      "source_location": "L176",
       "weight": 1.0
     },
     {
@@ -30048,7 +30104,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L183",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -30070,7 +30126,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L192",
+      "source_location": "L194",
       "weight": 1.0
     },
     {
@@ -30081,7 +30137,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L201",
+      "source_location": "L203",
       "weight": 1.0
     },
     {
@@ -30092,7 +30148,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L309",
+      "source_location": "L311",
       "weight": 1.0
     },
     {
@@ -31396,5 +31452,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "8a59de0f5ee4d1f485eb9be1f449aadc0ad29abf"
+  "built_at_commit": "20db68b31e1356e92afd8d10975f4da644d34013"
 }

@@ -88,6 +88,8 @@ app.use(
           "https://*.supabase.co"
         ],
         objectSrc: ["'none'"],
+        workerSrc: ["'self'"],
+        manifestSrc: ["'self'"],
         baseUri: ["'self'"],
         formAction: ["'self'"],
         upgradeInsecureRequests: IS_PROD ? [] : null,

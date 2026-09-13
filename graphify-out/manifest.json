@@ -186,15 +186,15 @@
     "semantic_hash": "acfe4ba5bf5cca5ee6948950496ce55a"
   },
   "server/index.js": {
-    "mtime": 1789261859.7842507,
-    "seen": 1789262038.3901062,
-    "ast_hash": "cdb74047de843ecbc15f9b737695837d",
+    "mtime": 1789275919.4245615,
+    "seen": 1789275948.3636322,
+    "ast_hash": "cceb057a690b430fe0f1842fb9d1fcff",
     "semantic_hash": ""
   },
   "server/middleware/auth.js": {
-    "mtime": 1789261897.853121,
-    "seen": 1789262038.390107,
-    "ast_hash": "8b535d04859a7cd967e4b147eacb71d2",
+    "mtime": 1789275927.2192814,
+    "seen": 1789275948.3636322,
+    "ast_hash": "986c9d931c4d626e831e0373ce6e96cc",
     "semantic_hash": ""
   },
   "server/routes/api.js": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789274449.0857532,
-    "seen": 1789274454.022518,
-    "ast_hash": "2835bef49cc4d35093511b352b0de79b",
+    "mtime": 1789275944.398146,
+    "seen": 1789275948.364032,
+    "ast_hash": "c316989491bef50d54656239a1dfa649",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789274170.3186812,
-    "seen": 1789274312.624131,
-    "ast_hash": "9158219ed7c8032d13c2f3916885cd2d",
+    "mtime": 1789275892.93148,
+    "seen": 1789275948.364067,
+    "ast_hash": "3887e865db931168b403c4b1bb83e72a",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -2043,6 +2043,18 @@
     "mtime": 1789273989.9247537,
     "seen": 1789274052.84226,
     "ast_hash": "de1aafa6b21301f91ec5a7970753e0a3",
+    "semantic_hash": ""
+  },
+  "public/manifest-admin.json": {
+    "mtime": 1789275516.9159088,
+    "seen": 1789275948.363311,
+    "ast_hash": "59928a91f8a79bf8f7c0fcc34cf91871",
+    "semantic_hash": ""
+  },
+  "public/sw-admin.js": {
+    "mtime": 1789275522.1389825,
+    "seen": 1789275948.363528,
+    "ast_hash": "82eac8703c68dbcad5ab6b1f1ea4132e",
     "semantic_hash": ""
   }
 }

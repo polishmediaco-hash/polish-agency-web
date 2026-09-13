@@ -670,6 +670,39 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
      - Standalone invoice view parity (`/invoice`).
    - All tests passed 100%.
 
+### Sprint 22: Phone-Native Admin Dashboard Ergonomics, Standalone PWA & Safe-Area Header Architecture (Completed September 2026)
+1. ✅ **Problem & Requirements**:
+   - The user required a clean, reactive, phone-native mobile admin app that avoids clutter, feels native, respects the physical screen viewport, eliminates browser address bar intrusions, and prevents header overflow onto the mobile status bar / notch.
+   - Fixed page title pollution where `public/js/invoice.js` was altering `document.title` on the admin dashboard to the Celestia invoice name and date even on the login screen or initial load.
+2. ✅ **Architecture & Implementation**:
+   - **Progressive Web App (PWA) Foundation**:
+     - Created `public/manifest-admin.json` with `display: "standalone"`, `orientation: "portrait"`, and high-res champagne gold iconography.
+     - Registered Service Worker `public/sw-admin.js` (bumped cache to `polish-admin-v1.5`) enabling offline snapshot access and instant shell hydration.
+     - Configured mobile meta tags: `<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">`, `<meta name="apple-mobile-web-app-capable" content="yes">`, `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">`.
+   - **Safe-Area Inset Ergonomics & Header Height Fix**:
+     - Applied `padding-top: max(16px, env(safe-area-inset-top))` to the admin header and top navigation containers.
+     - Fixed mobile header collision with iPhone Dynamic Island and Android punch-hole cameras.
+     - Lowered header footprint on mobile to `64px` and relocated tab navigation to an ergonomic bottom dock (`.admin-mobile-nav`) with tactile tap states.
+   - **Page Title Isolation & Lock**:
+     - Guarded `document.title` mutations in `public/js/invoice.js` with `window.__POLISH_ADMIN__` check, ensuring `/admin` retains `POLISH Admin — Executive Hub` rather than overwriting with active invoice client details.
+   - **Mobile CRM Decluttering**:
+     - Replaced cumbersome desktop tables with mobile-first card stream (`.admin-lead-card`).
+     - Added 1-tap WhatsApp quick actions, status pills (`New`, `Reviewing`, `Accepted`, `Declined`), and modal bottom sheets.
+
+### Sprint 23: Invoicing Atelier — Single-Page Vector PDF Hardening & Agency Phone Number Synchronization (Completed September 2026)
+1. ✅ **A4 Vector PDF Download Engine Overhaul**:
+   - **Defect 1 (Blank Second Page)**: `html2pdf.js` appended a blank `Page 1 of 2` due to a microscopic `0.11px` (0.015mm) subpixel rounding overflow (`2246px` vs `2245.88px`). Fixed by temporarily clamping `#invoiceSheet` to `296mm` during export, setting `pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }`, and updating `min-height: 296mm` in `public/css/invoice.css`. Verified exactly 1 single vector page.
+   - **Defect 2 (Left Logo Clipping)**: The "P" in the "POLISH" brandmark was clipped off in exports due to a hardcoded `windowWidth: 1200` setting that forced `#invoiceSheet` (794px) into a 720px stage. Removed synthetic window constraints, enabling unconstrained natural width rendering in `html2canvas`.
+   - **Direct 1-Click Vector PDF Download**: Embedded dedicated `#btnDirectPdfDownload` in both `public/admin.html` and `public/invoice.html` providing instant, client-side, 300+ DPI vector PDF downloads without server roundtrips.
+2. ✅ **Agency Official Contact Number Correction**:
+   - Corrected official agency phone number to **`+213 662 41 77 61`** (`https://wa.me/213662417761`) across all invoice templates, default state, and input placeholders (`#inputPayablePhone`).
+   - Implemented automatic cache migration in `loadFromLocalStorage()` in `public/js/invoice.js`: detects any legacy cached state (`polish_invoice_state_v4`) containing the old number `+213 661 41 77 62` or empty phone strings and automatically upgrades it to `+213 662 41 77 61`.
+   - Updated credentials in `docs/INVOICE_GUIDELINES.md` and `docs/HANDOFF.md`.
+3. ✅ **Verification & Deployment**:
+   - End-to-end headless Puppeteer tests verified single-page PDF output (`pageMatches.length === 1`), unclipped logo mark, and phone number rendering in both LTR and Arabic RTL modes.
+   - Graphify knowledge graph synchronized (`graphify update .`).
+   - Commits pushed to `origin main` and deployed live to Vercel production.
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat

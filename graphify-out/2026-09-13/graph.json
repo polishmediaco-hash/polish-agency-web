@@ -5354,7 +5354,7 @@
       "file_type": "code",
       "norm_label": "checkadminauth()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1337"
+      "source_location": "L1340"
     },
     {
       "id": "public_js_invoice_cleancontactname",
@@ -5378,7 +5378,7 @@
       "file_type": "code",
       "norm_label": "closearchivedrawer()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1728"
+      "source_location": "L1731"
     },
     {
       "id": "public_js_invoice_computetotals",
@@ -5402,7 +5402,7 @@
       "file_type": "code",
       "norm_label": "downloadcurrentinvoicepdf()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1017"
+      "source_location": "L1020"
     },
     {
       "id": "public_js_invoice_escapehtml",
@@ -5438,7 +5438,7 @@
       "file_type": "code",
       "norm_label": "filterarchivelist()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1735"
+      "source_location": "L1738"
     },
     {
       "id": "public_js_invoice_formatamount",
@@ -5498,7 +5498,7 @@
       "file_type": "code",
       "norm_label": "getauthheaders()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1304"
+      "source_location": "L1307"
     },
     {
       "id": "public_js_invoice_getformattedinvoicefilename",
@@ -5546,7 +5546,7 @@
       "file_type": "code",
       "norm_label": "init()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1750"
+      "source_location": "L1753"
     },
     {
       "id": "public_js_invoice_isstandaloneinvoicepage",
@@ -5570,7 +5570,7 @@
       "file_type": "code",
       "norm_label": "loadcloudinvoiceslist()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1593"
+      "source_location": "L1596"
     },
     {
       "id": "public_js_invoice_loadfromlocalstorage",
@@ -5606,7 +5606,7 @@
       "file_type": "code",
       "norm_label": "logoutadmin()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1497"
+      "source_location": "L1500"
     },
     {
       "id": "public_js_invoice_openarchivedrawer",
@@ -5618,7 +5618,7 @@
       "file_type": "code",
       "norm_label": "openarchivedrawer()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1720"
+      "source_location": "L1723"
     },
     {
       "id": "public_js_invoice_printcurrentinvoice",
@@ -5630,7 +5630,7 @@
       "file_type": "code",
       "norm_label": "printcurrentinvoice()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1124"
+      "source_location": "L1127"
     },
     {
       "id": "public_js_invoice_renderarchivecards",
@@ -5642,7 +5642,7 @@
       "file_type": "code",
       "norm_label": "renderarchivecards()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1618"
+      "source_location": "L1621"
     },
     {
       "id": "public_js_invoice_renderinvoicesheet",
@@ -5678,7 +5678,7 @@
       "file_type": "code",
       "norm_label": "saveinvoicetocloud()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1523"
+      "source_location": "L1526"
     },
     {
       "id": "public_js_invoice_savetolocalstorage",
@@ -5750,7 +5750,7 @@
       "file_type": "code",
       "norm_label": "sharecurrentinvoicewhatsapp()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1131"
+      "source_location": "L1134"
     },
     {
       "id": "public_js_invoice_showautherror",
@@ -5762,7 +5762,7 @@
       "file_type": "code",
       "norm_label": "showautherror()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1329"
+      "source_location": "L1332"
     },
     {
       "id": "public_js_invoice_showtoast",
@@ -5774,7 +5774,7 @@
       "file_type": "code",
       "norm_label": "showtoast()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L999"
+      "source_location": "L1002"
     },
     {
       "id": "public_js_invoice_syncstatetoform",
@@ -5798,7 +5798,7 @@
       "file_type": "code",
       "norm_label": "unlockstudio()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1416"
+      "source_location": "L1419"
     },
     {
       "id": "public_js_invoice_updatedocumenttitle",
@@ -12854,7 +12854,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1352",
+      "source_location": "L1355",
       "weight": 1.0
     },
     {
@@ -12866,7 +12866,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1372",
+      "source_location": "L1375",
       "weight": 1.0
     },
     {
@@ -12878,7 +12878,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1385",
+      "source_location": "L1388",
       "weight": 1.0
     },
     {
@@ -12890,7 +12890,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1399",
+      "source_location": "L1402",
       "weight": 1.0
     },
     {
@@ -12902,7 +12902,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1050",
+      "source_location": "L1053",
       "weight": 1.0
     },
     {
@@ -12914,7 +12914,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1073",
+      "source_location": "L1076",
       "weight": 1.0
     },
     {
@@ -12926,7 +12926,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1109",
+      "source_location": "L1112",
       "weight": 1.0
     },
     {
@@ -12950,7 +12950,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1738",
+      "source_location": "L1741",
       "weight": 1.0
     },
     {
@@ -12986,7 +12986,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1751",
+      "source_location": "L1754",
       "weight": 1.0
     },
     {
@@ -12998,7 +12998,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1752",
+      "source_location": "L1755",
       "weight": 1.0
     },
     {
@@ -13010,7 +13010,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1753",
+      "source_location": "L1756",
       "weight": 1.0
     },
     {
@@ -13022,7 +13022,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1754",
+      "source_location": "L1757",
       "weight": 1.0
     },
     {
@@ -13034,7 +13034,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1755",
+      "source_location": "L1758",
       "weight": 1.0
     },
     {
@@ -13046,7 +13046,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1598",
+      "source_location": "L1601",
       "weight": 1.0
     },
     {
@@ -13058,7 +13058,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1604",
+      "source_location": "L1607",
       "weight": 1.0
     },
     {
@@ -13082,7 +13082,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L992",
+      "source_location": "L995",
       "weight": 1.0
     },
     {
@@ -13142,7 +13142,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1517",
+      "source_location": "L1520",
       "weight": 1.0
     },
     {
@@ -13154,7 +13154,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1725",
+      "source_location": "L1728",
       "weight": 1.0
     },
     {
@@ -13166,7 +13166,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1125",
+      "source_location": "L1128",
       "weight": 1.0
     },
     {
@@ -13178,7 +13178,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1126",
+      "source_location": "L1129",
       "weight": 1.0
     },
     {
@@ -13190,7 +13190,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1628",
+      "source_location": "L1631",
       "weight": 1.0
     },
     {
@@ -13322,7 +13322,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1534",
+      "source_location": "L1537",
       "weight": 1.0
     },
     {
@@ -13334,7 +13334,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1536",
+      "source_location": "L1539",
       "weight": 1.0
     },
     {
@@ -13346,7 +13346,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1537",
+      "source_location": "L1540",
       "weight": 1.0
     },
     {
@@ -13358,7 +13358,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1561",
+      "source_location": "L1564",
       "weight": 1.0
     },
     {
@@ -13370,7 +13370,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1573",
+      "source_location": "L1576",
       "weight": 1.0
     },
     {
@@ -13382,7 +13382,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1580",
+      "source_location": "L1583",
       "weight": 1.0
     },
     {
@@ -13634,7 +13634,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1155",
+      "source_location": "L1158",
       "weight": 1.0
     },
     {
@@ -13646,7 +13646,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1156",
+      "source_location": "L1159",
       "weight": 1.0
     },
     {
@@ -13658,7 +13658,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1172",
+      "source_location": "L1175",
       "weight": 1.0
     },
     {
@@ -13670,7 +13670,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1215",
+      "source_location": "L1218",
       "weight": 1.0
     },
     {
@@ -13706,7 +13706,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1430",
+      "source_location": "L1433",
       "weight": 1.0
     },
     {
@@ -25223,13 +25223,24 @@
     },
     {
       "source": "public_js_invoice",
+      "target": "public_js_invoice_showtoast",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/invoice.js",
+      "source_location": "L1002",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_invoice",
       "target": "public_js_invoice_downloadcurrentinvoicepdf",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1017",
+      "source_location": "L1020",
       "weight": 1.0
     },
     {
@@ -25251,7 +25262,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1124",
+      "source_location": "L1127",
       "weight": 1.0
     },
     {
@@ -25262,7 +25273,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1131",
+      "source_location": "L1134",
       "weight": 1.0
     },
     {
@@ -25273,7 +25284,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1304",
+      "source_location": "L1307",
       "weight": 1.0
     },
     {
@@ -25284,7 +25295,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1329",
+      "source_location": "L1332",
       "weight": 1.0
     },
     {
@@ -25295,7 +25306,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1337",
+      "source_location": "L1340",
       "weight": 1.0
     },
     {
@@ -25306,7 +25317,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1416",
+      "source_location": "L1419",
       "weight": 1.0
     },
     {
@@ -25317,7 +25328,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1497",
+      "source_location": "L1500",
       "weight": 1.0
     },
     {
@@ -25328,7 +25339,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1523",
+      "source_location": "L1526",
       "weight": 1.0
     },
     {
@@ -25339,7 +25350,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1593",
+      "source_location": "L1596",
       "weight": 1.0
     },
     {
@@ -25350,7 +25361,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1618",
+      "source_location": "L1621",
       "weight": 1.0
     },
     {
@@ -25361,7 +25372,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1720",
+      "source_location": "L1723",
       "weight": 1.0
     },
     {
@@ -25372,7 +25383,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1728",
+      "source_location": "L1731",
       "weight": 1.0
     },
     {
@@ -25383,7 +25394,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1735",
+      "source_location": "L1738",
       "weight": 1.0
     },
     {
@@ -25394,7 +25405,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1750",
+      "source_location": "L1753",
       "weight": 1.0
     },
     {
@@ -25659,17 +25670,6 @@
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
       "source_location": "L99",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_invoice",
-      "target": "public_js_invoice_showtoast",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/invoice.js",
-      "source_location": "L999",
       "weight": 1.0
     },
     {
@@ -31835,5 +31835,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "745f1f83a58b789870dbe1f4a0860966dd670132"
+  "built_at_commit": "ce68c57b3001153f792ed0f14f1ebf0945b76876"
 }

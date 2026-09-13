@@ -4020,11 +4020,12 @@ body:not(.theme-dark) .presentation-logo-sheen::after {
     0 0 10px 3px rgba(255, 229, 163, 0.95),
     0 0 28px 8px rgba(226, 199, 153, 0.8),
     0 0 55px 16px rgba(226, 199, 153, 0.45);
-  pointer-events: none;
-  z-index: 9999999;
+  pointer-events: none !important;
+  z-index: 9999995;
   transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
   display: none;
-  will-change: transform;
+  will-change: transform, opacity;
+  transition: opacity 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .presentation-laser-dot.is-active {
@@ -4041,6 +4042,7 @@ body:not(.theme-dark) .presentation-logo-sheen::after {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(226, 199, 153, 0.25) 60%, transparent 100%);
   animation: laserPulse 1.2s infinite ease-in-out;
+  pointer-events: none !important;
 }
 
 @keyframes laserPulse {
@@ -4056,7 +4058,7 @@ body:not(.theme-dark) .presentation-logo-sheen::after {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 9999998;
+  z-index: 9999990;
   display: none;
 }
 
@@ -4075,7 +4077,10 @@ body.is-presenting.is-laser-active canvas:not(.presentation-laser-canvas) {
   cursor: none !important;
 }
 
-body.is-presenting.is-laser-active .presentation-bar,
+body.is-presenting.is-laser-active .presentation-bar {
+  cursor: default !important;
+}
+
 body.is-presenting.is-laser-active .presentation-bar *,
 body.is-presenting.is-laser-active .presentation-brand-hud,
 body.is-presenting.is-laser-active .presentation-brand-hud *,
@@ -4100,7 +4105,8 @@ body.is-presenting.is-laser-active #presentationOrderModal * {
   border-radius: 40px;
   padding: 0.35rem 0.6rem;
   box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.85), 0 0 24px rgba(226, 199, 153, 0.15);
-  z-index: 10000000;
+  z-index: 10000005 !important;
+  pointer-events: auto !important;
   align-items: center;
   gap: 0.4rem;
   user-select: none;
@@ -4291,7 +4297,8 @@ body:not(.theme-dark) .present-timer-capsule {
   background: rgba(8, 7, 6, 0.75);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  z-index: 99999;
+  z-index: 10000020 !important;
+  pointer-events: auto !important;
   display: flex;
   align-items: center;
   justify-content: center;

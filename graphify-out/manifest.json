@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789274047.69153,
-    "seen": 1789274052.842626,
-    "ast_hash": "85e8648f15fc7e18b9b9f810bbc5f9f7",
+    "mtime": 1789274170.3186812,
+    "seen": 1789274312.624131,
+    "ast_hash": "9158219ed7c8032d13c2f3916885cd2d",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789273658.664223,
+    "seen": 1789274085.296396,
     "ast_hash": "",
     "semantic_hash": ""
   },

@@ -2882,7 +2882,7 @@
   </div>
 </aside>
 
-<!-- ================= EXECUTIVE PROSPECT DETAIL DOSSIER MODAL ================= -->
+<!-- ================= LEAD DETAIL MODAL ================= -->
 <div id="prospectModal" class="prospect-modal-overlay" onclick="handleModalOverlayClick(event)">
   <div class="prospect-dialog" role="dialog" aria-modal="true" aria-labelledby="modalProspectTitle">
     
@@ -2890,7 +2890,7 @@
     <div class="prospect-dialog-header">
       <div>
         <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); display: flex; align-items: center; gap: 8px;">
-          <span>EXECUTIVE DOSSIER</span>
+          <span>LEAD DETAILS</span>
           <span style="color: var(--dim);">•</span>
           <span id="modalProspectId" style="color: var(--muted); font-family: monospace;"></span>
         </div>
@@ -2898,7 +2898,7 @@
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <div id="modalStageWrapper"></div>
-        <button class="modal-close-btn" onclick="closeProspectModal()" title="Close Dossier (Esc)">
+        <button class="modal-close-btn" onclick="closeProspectModal()" title="Close (Esc)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
@@ -2907,13 +2907,13 @@
     <!-- Modal 2-Column Body -->
     <div class="prospect-dialog-body">
       
-      <!-- Column 1: Commercial DNA & Intake Diagnostic -->
+      <!-- Column 1: Contact & Details -->
       <div>
         <!-- Identity & Links Card -->
         <div class="prospect-section-card">
           <div class="prospect-section-title">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Commercial DNA &amp; Contact
+            Contact &amp; Details
           </div>
           <div class="prospect-info-row">
             <span class="prospect-info-label">Applicant Name</span>
@@ -2953,11 +2953,11 @@
           </div>
         </div>
 
-        <!-- Application Diagnostic Card -->
+        <!-- Application Details Card -->
         <div class="prospect-section-card">
           <div class="prospect-section-title">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            Intake Growth Diagnostic
+            Application Information
           </div>
           
           <!-- Dedicated Calendly Meeting Block (Toggled dynamically) -->
@@ -2980,29 +2980,29 @@
 
           <div id="modalStandardDiag">
             <div style="margin-bottom: 14px;">
-              <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">Current Marketing History &amp; Baseline</div>
+              <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">Current Marketing &amp; Growth History</div>
               <div id="modalMarketingHistory" class="prospect-diagnostic-box" style="font-size: 13px; line-height: 1.6; padding: 12px 14px; border-radius: 12px;"></div>
             </div>
             <div>
-              <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">90-Day Revenue &amp; Growth Objective</div>
+              <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">Growth Objective</div>
               <div id="modalPrimaryGoal" class="prospect-diagnostic-box" style="font-size: 13px; line-height: 1.6; padding: 12px 14px; border-radius: 12px;"></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Column 2: Founder Strategic Notes & Direct Action Center -->
+      <!-- Column 2: Private Notes & Actions -->
       <div>
-        <!-- Founder Private Strategy Notes -->
+        <!-- Private Notes -->
         <div class="prospect-section-card">
           <div class="prospect-section-title" style="color: #F59E0B;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            Founder Private Strategy Notes
+            Private Notes
           </div>
           <p style="font-size: 12px; color: var(--dim); margin-bottom: 10px;">
-            Record confidential call insights, audit findings, retainer quotes, or next steps. Saved permanently to the database.
+            Internal notes, proposal quotes, or follow-up details.
           </p>
-          <textarea id="modalNotesInput" class="prospect-notes-area" placeholder="e.g., Call completed. Retainer proposal sent for 450,000 DA/mo. Target launch Nov 1st..."></textarea>
+          <textarea id="modalNotesInput" class="prospect-notes-area" placeholder="Add internal notes or next steps..."></textarea>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
             <span id="modalNotesSaveStatus" style="font-size: 11.5px; color: var(--dim);"></span>
             <button class="btn-ghost" style="padding: 6px 14px; font-size: 12px; color: #F59E0B; border-color: rgba(245, 158, 11, 0.35);" onclick="saveModalFounderNotes()">
@@ -3012,11 +3012,11 @@
           </div>
         </div>
 
-        <!-- Direct Outreach Action Center -->
+        <!-- Quick Actions -->
         <div class="prospect-section-card">
           <div class="prospect-section-title">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            Founder Action Center
+            Actions
           </div>
           <div style="display: flex; flex-direction: column; gap: 10px;">
             <a id="modalMeetingActionBtn" href="#" target="_blank" rel="noopener" class="crm-meet-btn" style="padding: 10px 16px; font-size: 13px; justify-content: center; display: none;">
@@ -3029,11 +3029,11 @@
             </a>
             <a id="modalWhatsAppBtn" href="#" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 10px 16px; font-size: 13px; justify-content: center;">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-              <span>Launch WhatsApp Outreach</span>
+              <span>Chat on WhatsApp</span>
             </a>
             <button class="btn-danger" style="padding: 9px 16px; font-size: 12.5px; justify-content: center; width: 100%; border-radius: 20px;" onclick="deleteModalProspect()">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-              <span>Delete Application from CRM</span>
+              <span>Delete Application</span>
             </button>
           </div>
         </div>
@@ -3104,7 +3104,7 @@
     if (user) {
       activeAdminUser = user;
       const emailEl = document.getElementById('adminUserEmail');
-      if (emailEl) emailEl.textContent = user.email || 'Executive Admin';
+      if (emailEl) emailEl.textContent = user.email || 'Admin';
       const iconEl = document.getElementById('adminUserIcon');
       if (iconEl && (user.photoUrl || user.photoURL)) {
         iconEl.innerHTML = `<img src="${esc(user.photoUrl || user.photoURL)}" alt="Avatar" style="width:18px;height:18px;border-radius:50%;vertical-align:middle;">`;
@@ -3286,7 +3286,7 @@
     document.getElementById('mainNavTabs').style.display = 'none';
     document.getElementById('navActions').style.display = 'none';
     if (document.getElementById('adminSecurityKey')) document.getElementById('adminSecurityKey').value = '';
-    notifyToast('Signed out of Executive Hub.');
+    notifyToast('Signed out.');
   }
 
   // ── Theme Switcher (Haute Alabaster Light vs Haute Obsidian Dark) ──
@@ -4094,10 +4094,10 @@
     if (isMeeting) {
       outreachMsg = `Hi ${lead.fullName || 'there'}, this is POLISH Media Co confirming our strategy session on ${meetDateFormatted || 'our scheduled call'}. Looking forward to speaking with you!`;
     } else if (isCreator) {
-      outreachMsg = `Hi ${lead.name}, this is POLISH Media Co. We reviewed your UGC creator dossier (Ref: ${lead.id}) and would love to discuss casting for our upcoming beauty and cosmetics partner campaigns.`;
+      outreachMsg = `Hi ${lead.name}, this is POLISH Media Co. We reviewed your creator application (Ref: ${lead.id}) and would love to discuss casting for our upcoming beauty partner campaigns.`;
     } else {
       const bName = (lead.brandName && lead.brandName !== 'Brand') ? lead.brandName : 'your brand';
-      outreachMsg = `Hi ${lead.fullName || 'there'}, this is POLISH Media Co. I reviewed your ${bName} growth dossier (Ref: ${lead.id}) and would love to discuss accelerating your acquisition loops. When are you available for a brief call?`;
+      outreachMsg = `Hi ${lead.fullName || 'there'}, this is POLISH Media Co. I reviewed your application for ${bName} (Ref: ${lead.id}) and would love to discuss next steps. When are you available for a brief call?`;
     }
     const targetPhone = cleanPhone || '213662417761';
     waBtn.href = `https://wa.me/${targetPhone}?text=${encodeURIComponent(outreachMsg)}`;
@@ -4275,13 +4275,13 @@
     if (!rawLeadsData.length) {
       const emptyHtml = `<tr><td colspan="6" style="text-align:center; padding: 60px 20px; color: var(--dim);">
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom:12px; opacity:0.8;"><path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7z"/><path d="M5.45 5.11L2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-        <div class="crm-lead-title" style="font-size:15px;">No prospects logged yet</div>
-        <div style="font-size:12.5px; margin-top:4px; color: var(--dim);">New brand and creator dossiers will appear here in real-time.</div>
+        <div class="crm-lead-title" style="font-size:15px;">No leads yet</div>
+        <div style="font-size:12.5px; margin-top:4px; color: var(--dim);">New inquiries and applications will appear here.</div>
       </td></tr>`;
       tbody.innerHTML = emptyHtml;
       mobileList.innerHTML = `<div style="text-align:center; padding: 50px 20px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom:8px; opacity:0.8;"><path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7z"/><path d="M5.45 5.11L2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-        <div class="crm-lead-title">No prospects logged yet</div>
+        <div class="crm-lead-title">No leads yet</div>
       </div>`;
       metricsRow.style.display = 'none';
       controlsBar.style.display = 'none';
@@ -4355,10 +4355,10 @@
               <div style="display: inline-flex; align-items: center; gap: 6px;">
                 <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-                  Dossier
+                  Details
                 </button>
                 ${lead.email ? `<a href="mailto:${esc(lead.email)}" class="btn-ghost" style="padding: 5px 8px;" title="Email Invitee"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>` : ''}
-                <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
+                <button class="btn-danger" title="Delete lead" onclick="deleteLead('${esc(lead.id)}')">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                 </button>
               </div>
@@ -4396,10 +4396,10 @@
               <div style="display: inline-flex; align-items: center; gap: 6px;">
                 <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-                  Dossier
+                  Details
                 </button>
                 ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 5px 10px; font-size: 11px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
-                <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
+                <button class="btn-danger" title="Delete lead" onclick="deleteLead('${esc(lead.id)}')">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                 </button>
               </div>
@@ -4412,19 +4412,19 @@
         return `
           <tr onclick="openProspectModal('${esc(lead.id)}')">
             <td>
-              <div class="crm-lead-title">${esc(lead.brandName || 'Executive Advisory Container')}</div>
-              <div class="crm-lead-subtitle">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">Executive Consultant</span></div>
+              <div class="crm-lead-title">${esc(lead.brandName || 'Strategy Inquiry')}</div>
+              <div class="crm-lead-subtitle">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">Strategy Consultation</span></div>
               <div class="crm-lead-meta">${esc(lead.phone || 'No phone')}</div>
             </td>
             <td>
-              <span class="badge-pill" style="background: rgba(226, 199, 153, 0.18); color: var(--cyan); border: 1px solid rgba(226, 199, 153, 0.4);">Executive Intake</span>
+              <span class="badge-pill" style="background: rgba(226, 199, 153, 0.18); color: var(--cyan); border: 1px solid rgba(226, 199, 153, 0.4);">Strategy</span>
             </td>
             <td onclick="event.stopPropagation()">
               ${renderStageSelect(lead.id, lead.status)}
             </td>
             <td>
               <div class="crm-diagnostic-text" style="font-weight: 600; line-height: 1.35; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(lead.primaryGoal || '')}">
-                ${esc(lead.primaryGoal || '10-Pillar Strategy Brief Logged')}
+                ${esc(lead.primaryGoal || 'Strategy Brief Logged')}
               </div>
               ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
             </td>
@@ -4437,10 +4437,10 @@
               <div style="display: inline-flex; align-items: center; gap: 6px;">
                 <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-                  Dossier
+                  Details
                 </button>
                 ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 5px 10px; font-size: 11px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
-                <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
+                <button class="btn-danger" title="Delete lead" onclick="deleteLead('${esc(lead.id)}')">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                 </button>
               </div>
@@ -4480,11 +4480,11 @@
             <div style="display: inline-flex; align-items: center; gap: 6px;">
               <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-                Dossier
+                Details
               </button>
               ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 5px 8px;" title="Social profile"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>` : ''}
               ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 5px 10px; font-size: 11px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
-              <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
+              <button class="btn-danger" title="Delete lead" onclick="deleteLead('${esc(lead.id)}')">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
               </button>
             </div>
@@ -4563,7 +4563,7 @@
           <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
             <button class="btn-ghost" style="padding: 7px 14px; font-size: 12px; flex: 1; text-align: center; justify-content: center;" onclick="openProspectModal('${esc(lead.id)}')">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-              View Dossier
+              View Details
             </button>
             ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 7px 14px; font-size: 12px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
             <button class="btn-danger" style="padding: 7px 12px;" onclick="deleteLead('${esc(lead.id)}')">

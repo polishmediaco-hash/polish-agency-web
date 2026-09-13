@@ -28,7 +28,6 @@
 
   <!-- Presentation Stylesheet -->
   <link rel="stylesheet" href="/css/presentation-page.css">
-  <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v6">
 </head>
 <body class="presentation-body">
 
@@ -84,21 +83,11 @@
         <!-- Chapters Populated Dynamically -->
       </div>
 
-      <!-- Subbar Tools -->
+      <!-- Subbar Info -->
       <div class="pres-video-subbar">
         <div class="pres-video-info-tag">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>Executive Walkthrough & Narrative Overview</span>
-        </div>
-        <div class="pres-video-tools">
-          <button type="button" class="pres-tool-btn" id="btnOpenConfig">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            <span>Customize Video / Client Link</span>
-          </button>
-          <button type="button" class="pres-tool-btn" id="btnCopyShareLink">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span>Copy Client Link</span>
-          </button>
+          <span>Executive Walkthrough &amp; Strategy Blueprint</span>
         </div>
       </div>
     </section>
@@ -113,18 +102,10 @@
           <span class="pres-board-title-text" id="boardHeaderTitle">Strategic Whiteboard Blueprint</span>
         </div>
         <div class="pres-board-actions">
-          <button type="button" class="pres-board-action-btn js-camera-btn" id="btnPresentationCamera" onclick="StudioCamera.toggle()" title="Toggle Camera Bubble" aria-label="Toggle Camera Bubble">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            <span>Camera</span>
-          </button>
           <button type="button" class="pres-board-action-btn" id="btnToggleFullscreen" title="Toggle Full Screen View" aria-label="Toggle Full Screen View">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
             <span>Full Screen Board</span>
           </button>
-          <a href="#" class="pres-board-action-btn" id="btnOpenStudio" target="_blank" rel="noopener noreferrer" title="Open directly in Studio" aria-label="Open directly in Studio">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span>Open in Studio</span>
-          </a>
         </div>
       </div>
 
@@ -201,49 +182,6 @@
 
   </main>
 
-  <!-- ========================================================== -->
-  <!-- 7. QUICK VIDEO SWITCHER / SHARE MODAL                      -->
-  <!-- ========================================================== -->
-  <div class="pres-config-modal" id="configModal" role="dialog" aria-modal="true" aria-labelledby="configModalTitle">
-    <div class="pres-config-card">
-      <h3 class="pres-config-title" id="configModalTitle">Customize Walkthrough Link</h3>
-      <p class="pres-config-desc">
-        Enter your Unlisted YouTube video link, client brand name, and board ID. The page updates instantly and creates a custom shareable link.
-      </p>
-
-      <div class="pres-form-group">
-        <label class="pres-form-label" for="modalInputClient">Client Brand Name</label>
-        <input type="text" class="pres-form-input" id="modalInputClient" placeholder="e.g. Celestia Cosmetics, Aurora Skincare">
-      </div>
-
-      <div class="pres-form-group">
-        <label class="pres-form-label" for="modalInputVideo">YouTube Recording Link or ID</label>
-        <input type="text" class="pres-form-input" id="modalInputVideo" placeholder="e.g. https://youtu.be/... or video ID or MP4 URL">
-        <p class="pres-form-hint">Paste an Unlisted YouTube link for zero-cost, instant global streaming without buffering.</p>
-      </div>
-
-      <div class="pres-form-group">
-        <label class="pres-form-label" for="modalInputBoard">Strategy Board ID</label>
-        <input type="text" class="pres-form-input" id="modalInputBoard" placeholder="e.g. polish-cosmetics-launch, polish-skincare-regimen">
-      </div>
-
-      <div class="pres-form-group">
-        <label class="pres-form-label" for="modalInputTitle">Presentation Title</label>
-        <input type="text" class="pres-form-input" id="modalInputTitle" placeholder="e.g. 90-Day DTC Growth Roadmap">
-      </div>
-
-      <div class="pres-config-actions">
-        <button type="button" class="pres-btn-cancel" id="btnCloseModal">Cancel</button>
-        <button type="button" class="pres-btn-save" id="btnSaveModal">Save &amp; Generate Link</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Client Link Copied Toast -->
-  <div class="pres-toast" id="presToast">✓ Client Presentation Link Copied</div>
-
-  <!-- Studio Camera Bubble Engine -->
-  <script src="/studio/js/camera-bubble.js?v=20260909_v3"></script>
   <!-- Page Logic Engine -->
   <script src="/js/presentation-page.js"></script>
 </body>

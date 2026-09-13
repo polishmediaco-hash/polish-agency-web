@@ -2471,15 +2471,20 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         <span>Alerts</span>
       </button>
+      <button class="nav-tab" data-pane="presentationsTabPane" onclick="switchMainTab('presentationsTabPane')" title="Client Proposals & Presentations">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span class="tab-label-full">Presentations</span>
+        <span class="tab-label-short">Proposals</span>
+      </button>
     </div>
 
     <!-- Zone 3: Utilities & User Profile -->
     <div class="nav-actions" id="navActions" style="display: none;">
-      <a href="/presentation?admin=1" target="_blank" class="btn-nav" title="Executive Client Presentation Portal & Link Generator">
+      <a href="/presentation" target="_blank" class="btn-nav" title="View Client Presentation Page">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
-        <span>Presentations</span>
+        <span>Client View</span>
         <span class="ext-arrow">↗</span>
       </a>
       <a href="/boards" target="_blank" class="btn-nav" title="Strategy Boards Hub & Studio">
@@ -3631,6 +3636,180 @@
       </div>
     </section>
 
+    <!-- ================= TAB 6: CLIENT PRESENTATION GENERATOR & HUB ================= -->
+    <section id="presentationsTabPane" class="tab-pane">
+      <div class="page-header">
+        <div>
+          <h1>Client Presentation &amp; Proposal Hub</h1>
+          <p>Generate personalized client walkthrough links pairing executive video recordings with interactive strategy boards.</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <a href="/presentation" target="_blank" class="btn-ghost" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Live Client View</span>
+            <span style="color: var(--dim);">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: minmax(320px, 1.2fr) minmax(320px, 1fr); gap: 20px; align-items: start;">
+        
+        <!-- Generator Form Card -->
+        <div class="admin-card">
+          <div class="card-head">
+            <div class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Customize Client Proposal
+            </div>
+            <span class="badge-pill" style="background: rgba(226,199,153,0.15); color: var(--cyan); border: 1px solid rgba(226,199,153,0.3);">Link Builder</span>
+          </div>
+
+          <form id="presGenForm" onsubmit="event.preventDefault(); onPresGenFormSubmit();">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+              <div class="form-group">
+                <label for="presGenBrand" style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); margin-bottom: 6px;">Client Brand Name *</label>
+                <input type="text" id="presGenBrand" class="input-field" placeholder="e.g. Celestia Cosmetics" required style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13.5px;" oninput="updatePresGenOutput()">
+              </div>
+              <div class="form-group">
+                <label for="presGenContact" style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); margin-bottom: 6px;">Contact Person Name</label>
+                <input type="text" id="presGenContact" class="input-field" placeholder="e.g. Yasmine" style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13.5px;" oninput="updatePresGenOutput()">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="presGenTitle" style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); margin-bottom: 6px;">Proposal / Walkthrough Title</label>
+              <input type="text" id="presGenTitle" class="input-field" placeholder="e.g. 90-Day DTC Growth Roadmap & Creative Strategy" style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13.5px;" oninput="updatePresGenOutput()">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label for="presGenVideo" style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim);">Video Recording (YouTube Link / ID or MP4)</label>
+                <span style="font-size: 11px; color: var(--muted);">Unlisted YouTube Recommended</span>
+              </div>
+              <input type="text" id="presGenVideo" class="input-field" placeholder="Paste YouTube link (e.g. https://youtu.be/... or 11-char ID)" style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13.5px;" oninput="updatePresGenOutput()">
+              <p style="font-size: 11.5px; color: var(--muted); margin-top: 5px; margin-bottom: 0;">Supports: standard YouTube links, shortened <code>youtu.be</code>, embed URLs, raw IDs, or MP4 URLs.</p>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 18px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label for="presGenBoardSelect" style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim);">Interactive Strategy Board</label>
+                <a href="/boards" target="_blank" style="font-size: 11.5px; color: var(--cyan); text-decoration: underline;">Open Board Studio ↗</a>
+              </div>
+              <select id="presGenBoardSelect" class="input-field" style="width: 100%; padding: 10px 12px; background: #12100E; border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13px;" onchange="onBoardSelectChange()">
+                <option value="polish-cosmetics-launch">POLISH Cosmetics Launch Blueprint (Default)</option>
+              </select>
+              <div id="presGenCustomBoardWrap" style="margin-top: 8px; display: none;">
+                <input type="text" id="presGenCustomBoard" class="input-field" placeholder="Enter custom Board ID" style="width: 100%; padding: 8px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13px;" oninput="updatePresGenOutput()">
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button type="button" class="btn-cta" onclick="saveCurrentPresentation()" style="padding: 10px 20px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Save to Archive</span>
+              </button>
+              <button type="button" class="btn-ghost" onclick="resetPresGenForm()" style="padding: 10px 16px;">
+                <span>Reset Form</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Output & Distribution Card -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <div class="admin-card" style="border-color: rgba(226,199,153,0.35); background: linear-gradient(180deg, rgba(226,199,153,0.06) 0%, rgba(18, 16, 14, 0.95) 100%);">
+            <div class="card-head">
+              <div class="card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Generated Client Walkthrough Link
+              </div>
+              <span id="presGenStatusBadge" class="badge-pill" style="background: rgba(37,211,102,0.15); color: #25D366;">Ready to Send</span>
+            </div>
+
+            <p style="color: var(--muted); font-size: 13px; margin-bottom: 12px;">
+              This URL delivers a co-branded, distraction-free proposal experience to the client. No edit controls or camera recording tools are visible.
+            </p>
+
+            <div style="position: relative; margin-bottom: 14px;">
+              <input type="text" id="presGenOutputUrl" readonly style="width: 100%; padding: 12px 14px; background: rgba(0,0,0,0.65); border: 1px solid rgba(226,199,153,0.3); border-radius: 8px; color: var(--cyan); font-family: monospace; font-size: 12px; outline: none;" onclick="this.select()">
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 8px;">
+                <button type="button" class="btn-cta" id="btnPresCopyLink" onclick="copyPresGenLink()" style="flex: 1; justify-content: center; padding: 11px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span>Copy Client Link</span>
+                </button>
+                <a id="btnPresPreviewLink" href="/presentation" target="_blank" class="btn-ghost" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 11px 16px; text-decoration: none;">
+                  <span>Preview ↗</span>
+                </a>
+              </div>
+
+              <a id="btnPresWhatsAppShare" href="#" target="_blank" class="btn-ghost" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 11px; text-decoration: none; border-color: rgba(37,211,102,0.3); color: #25D366; background: rgba(37,211,102,0.06);">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.981.534 1.895.814 2.8.814 3.182 0 5.768-2.587 5.768-5.766.001-3.181-2.586-5.766-5.772-5.766zm9.969 5.766c0 5.485-4.464 9.949-9.969 9.949-1.637 0-3.176-.402-4.536-1.109l-5.495 1.442 1.468-5.364c-.815-1.424-1.282-3.076-1.282-4.838 0-5.485 4.465-9.949 9.969-9.949 5.505 0 9.969 4.464 9.969 9.949z"/></svg>
+                <span>Share Directly via WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Tips Card -->
+          <div class="admin-card">
+            <div class="card-head">
+              <div class="card-title" style="font-size: 13.5px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                High-Ticket Walkthrough Workflow
+              </div>
+            </div>
+            <ol style="font-size: 12.5px; color: var(--muted); margin: 0 0 0 16px; padding: 0; line-height: 1.65;">
+              <li>Open your strategy board in <a href="/boards" target="_blank" style="color: var(--cyan);">Board Studio</a> and record your Loom / camera walkthrough.</li>
+              <li>Upload recording to YouTube as <strong>Unlisted</strong> (instant worldwide CDN streaming).</li>
+              <li>Paste the link above, pick the board, and copy the client URL or click WhatsApp Share.</li>
+            </ol>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Saved Proposals Archive -->
+      <div class="admin-card" style="margin-top: 24px;">
+        <div class="card-head">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Saved Proposals &amp; Presentations Vault
+          </div>
+          <span id="presSavedCountBadge" class="badge-pill" style="background: rgba(255,255,255,0.08); color: var(--dim);">0 Saved</span>
+        </div>
+        <p style="color: var(--muted); font-size: 13px; margin-bottom: 14px;">
+          Persistently stored client proposals for quick re-copying, review, or status follow-up.
+        </p>
+
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--card-border); color: var(--dim); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em;">
+                <th style="padding: 10px 12px;">Client Brand</th>
+                <th style="padding: 10px 12px;">Contact</th>
+                <th style="padding: 10px 12px;">Title</th>
+                <th style="padding: 10px 12px;">Board</th>
+                <th style="padding: 10px 12px;">Created</th>
+                <th style="padding: 10px 12px; text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="presSavedTableBody">
+              <tr>
+                <td colspan="6" style="padding: 30px; text-align: center; color: var(--dim);">
+                  No saved presentations yet. Build one above and click "Save to Archive".
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
   </main>
 </div>
 
@@ -3821,6 +4000,10 @@
             Actions
           </div>
           <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button id="modalProposalActionBtn" type="button" class="btn-cta" style="padding: 10px 16px; font-size: 13px; justify-content: center;" onclick="createPresentationFromModal()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Build Client Proposal</span>
+            </button>
             <a id="modalMeetingActionBtn" href="#" target="_blank" rel="noopener" class="crm-meet-btn" style="padding: 10px 16px; font-size: 13px; justify-content: center; display: none;">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
               <span>Join Google Meet Call</span>
@@ -4222,6 +4405,10 @@
     } else if (paneId === 'studioTabPane') {
       const emailEl = document.getElementById('studioUserEmail');
       if (emailEl) emailEl.textContent = (activeAdminUser && activeAdminUser.email) || 'Master Key';
+    } else if (paneId === 'presentationsTabPane') {
+      if (typeof initPresentationsHub === 'function') {
+        initPresentationsHub();
+      }
     }
   }
 
@@ -4242,6 +4429,8 @@
       switchMainTab('notifTabPane');
     } else if (target === 'studio' || target === 'settings') {
       switchMainTab('studioTabPane');
+    } else if (target === 'presentations' || target === 'presentation' || target === 'proposals' || target === 'proposal') {
+      switchMainTab('presentationsTabPane');
     } else {
       // Default: on phone viewports (<= 768px), land directly on the clean Leads CRM
       if (window.innerWidth <= 768) {
@@ -5706,6 +5895,10 @@
             </td>
             <td onclick="event.stopPropagation()" style="text-align: right;">
               <div style="display: inline-flex; align-items: center; gap: 6px;">
+                <button class="btn-ghost" style="padding: 5px 8px; font-size: 11px; color: var(--cyan);" title="Build Proposal Walkthrough" onclick="createPresentationForLead('${esc(lead.brandName || 'Strategy Client')}', '${esc(lead.fullName || '')}', '${esc(phone || '')}')">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Proposal
+                </button>
                 <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
                   Details
@@ -5749,6 +5942,10 @@
           </td>
           <td onclick="event.stopPropagation()" style="text-align: right;">
             <div style="display: inline-flex; align-items: center; gap: 6px;">
+              <button class="btn-ghost" style="padding: 5px 8px; font-size: 11px; color: var(--cyan);" title="Build Proposal Walkthrough" onclick="createPresentationForLead('${esc(brandDisplayName)}', '${esc(lead.fullName || '')}', '${esc(phone || '')}')">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Proposal
+              </button>
               <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
                 Details
@@ -5806,6 +6003,10 @@
           <div class="lead-mob-clean-sub">${subtitle}</div>
           <div class="lead-mob-clean-obj">${esc(snippet)}</div>
           <div class="lead-mob-clean-actions" onclick="event.stopPropagation()">
+            <button type="button" class="btn-ghost" style="padding: 7px 10px; font-size: 11.5px; border-radius: 8px; color: var(--cyan);" onclick="createPresentationForLead('${esc(title)}', '${esc(lead.fullName || lead.name || '')}', '${esc(phone || '')}')">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Proposal</span>
+            </button>
             ${phone ? `
               <a href="${waUrl}" target="_blank" rel="noopener" class="btn-wa-direct">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
@@ -5948,6 +6149,300 @@
   function esc(str) {
     if (!str) return '';
     return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+  }
+
+  // ── Client Presentation Generator & Proposals Hub ──────────
+  let presHubBoardsLoaded = false;
+  let currentPresLeadPhone = '';
+
+  async function initPresentationsHub() {
+    if (!presHubBoardsLoaded) {
+      await populatePresBoardSelect();
+    }
+    const brandInput = document.getElementById('presGenBrand');
+    if (brandInput && !brandInput.value.trim()) {
+      brandInput.value = 'Celestia Cosmetics';
+    }
+    const contactInput = document.getElementById('presGenContact');
+    if (contactInput && !contactInput.value.trim()) {
+      contactInput.value = 'Yasmine';
+    }
+    const titleInput = document.getElementById('presGenTitle');
+    if (titleInput && !titleInput.value.trim()) {
+      titleInput.value = '90-Day DTC Growth Roadmap & Whiteboard';
+    }
+    updatePresGenOutput();
+    renderSavedPresentations();
+  }
+
+  async function populatePresBoardSelect() {
+    const sel = document.getElementById('presGenBoardSelect');
+    if (!sel) return;
+    try {
+      const res = await fetch('/api/boards');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data || !data.boards || !Array.isArray(data.boards)) return;
+
+      const currentVal = sel.value;
+      sel.innerHTML = '';
+      data.boards.forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b.id;
+        const titleStr = b.title ? (b.title.length > 45 ? b.title.slice(0, 45) + '…' : b.title) : b.id;
+        const clientStr = b.client ? ` [${b.client}]` : '';
+        opt.textContent = `${titleStr}${clientStr}`;
+        sel.appendChild(opt);
+      });
+
+      const customOpt = document.createElement('option');
+      customOpt.value = '__custom__';
+      customOpt.textContent = '+ Enter Custom Board ID...';
+      sel.appendChild(customOpt);
+
+      if (currentVal && [...sel.options].some(o => o.value === currentVal)) {
+        sel.value = currentVal;
+      }
+      presHubBoardsLoaded = true;
+    } catch (err) {
+      console.warn('[Presentations Hub] Failed to load boards:', err.message);
+    }
+  }
+
+  function onBoardSelectChange() {
+    const sel = document.getElementById('presGenBoardSelect');
+    const customWrap = document.getElementById('presGenCustomBoardWrap');
+    if (sel && customWrap) {
+      if (sel.value === '__custom__') {
+        customWrap.style.display = 'block';
+        document.getElementById('presGenCustomBoard')?.focus();
+      } else {
+        customWrap.style.display = 'none';
+      }
+    }
+    updatePresGenOutput();
+  }
+
+  function parseVideoInput(raw) {
+    if (!raw) return '';
+    const clean = raw.trim();
+    const ytMatch = clean.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+    if (ytMatch && ytMatch[1]) return ytMatch[1];
+    if (/^[a-zA-Z0-9_-]{11}$/.test(clean)) return clean;
+    return clean;
+  }
+
+  function getPresFormValues() {
+    const brand = (document.getElementById('presGenBrand')?.value || '').trim();
+    const contact = (document.getElementById('presGenContact')?.value || '').trim();
+    const title = (document.getElementById('presGenTitle')?.value || '').trim();
+    const rawVideo = (document.getElementById('presGenVideo')?.value || '').trim();
+    const video = parseVideoInput(rawVideo);
+    
+    let board = document.getElementById('presGenBoardSelect')?.value || 'polish-cosmetics-launch';
+    if (board === '__custom__') {
+      board = (document.getElementById('presGenCustomBoard')?.value || '').trim() || 'polish-cosmetics-launch';
+    }
+    return { brand, contact, title, video, board };
+  }
+
+  function updatePresGenOutput() {
+    const { brand, contact, title, video, board } = getPresFormValues();
+    const origin = window.location.origin;
+    const url = new URL('/presentation', origin);
+
+    if (brand) url.searchParams.set('client', brand);
+    if (contact) url.searchParams.set('name', contact);
+    if (title) url.searchParams.set('title', title);
+    if (board) url.searchParams.set('board', board);
+    if (video) url.searchParams.set('video', video);
+
+    const fullUrl = url.toString();
+    const outInput = document.getElementById('presGenOutputUrl');
+    if (outInput) outInput.value = fullUrl;
+
+    const previewLink = document.getElementById('btnPresPreviewLink');
+    if (previewLink) previewLink.href = fullUrl;
+
+    const waLink = document.getElementById('btnPresWhatsAppShare');
+    if (waLink) {
+      const recipientName = contact || (brand ? `${brand} Team` : 'there');
+      const waMsg = encodeURIComponent(
+        `Hi ${recipientName}, here is your private strategy walkthrough and interactive roadmap:\n${fullUrl}`
+      );
+      const cleanPhone = (currentPresLeadPhone || '').replace(/[^0-9]/g, '');
+      waLink.href = cleanPhone ? `https://wa.me/${cleanPhone}?text=${waMsg}` : `https://wa.me/?text=${waMsg}`;
+    }
+  }
+
+  function copyPresGenLink() {
+    const outInput = document.getElementById('presGenOutputUrl');
+    const url = outInput ? outInput.value : '';
+    if (!url) return;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        notifyToast('✓ Client presentation link copied to clipboard.');
+      }).catch(() => fallbackPresCopy(url));
+    } else {
+      fallbackPresCopy(url);
+    }
+  }
+
+  function fallbackPresCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      notifyToast('✓ Client presentation link copied.');
+    } catch (_) {
+      prompt('Copy Client Presentation Link:', text);
+    }
+    document.body.removeChild(textArea);
+  }
+
+  function onPresGenFormSubmit() {
+    saveCurrentPresentation();
+  }
+
+  function saveCurrentPresentation() {
+    const { brand, contact, title, video, board } = getPresFormValues();
+    if (!brand) {
+      notifyToast('Please enter a client brand name.', true);
+      document.getElementById('presGenBrand')?.focus();
+      return;
+    }
+
+    const item = {
+      id: 'pres_' + Date.now(),
+      brand,
+      contact,
+      title: title || 'Growth Strategy Walkthrough',
+      video,
+      board,
+      url: document.getElementById('presGenOutputUrl')?.value || '',
+      phone: currentPresLeadPhone || '',
+      savedAt: new Date().toISOString()
+    };
+
+    let list = [];
+    try {
+      list = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
+    } catch (_) { list = []; }
+
+    list.unshift(item);
+    if (list.length > 50) list = list.slice(0, 50);
+
+    localStorage.setItem('polish_saved_presentations', JSON.stringify(list));
+    renderSavedPresentations();
+    notifyToast(`✓ Saved presentation for ${brand}.`);
+  }
+
+  function renderSavedPresentations() {
+    const tbody = document.getElementById('presSavedTableBody');
+    const badge = document.getElementById('presSavedCountBadge');
+    if (!tbody) return;
+
+    let list = [];
+    try {
+      list = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
+    } catch (_) { list = []; }
+
+    if (badge) badge.textContent = `${list.length} Saved`;
+
+    if (!list.length) {
+      tbody.innerHTML = `<tr><td colspan="6" style="padding: 30px; text-align: center; color: var(--dim);">No saved presentations yet. Build one above and click "Save to Archive".</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = list.map(item => {
+      const d = new Date(item.savedAt);
+      const dateStr = !isNaN(d.getTime()) ? d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '—';
+      const cleanPhone = (item.phone || '').replace(/[^0-9]/g, '');
+      const waShareUrl = cleanPhone 
+        ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi ' + (item.contact || item.brand) + ', here is your private strategy walkthrough: ' + item.url)}` 
+        : `https://wa.me/?text=${encodeURIComponent('Hi ' + (item.contact || item.brand) + ', here is your private strategy walkthrough: ' + item.url)}`;
+
+      return `
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+          <td style="padding: 12px; font-weight: 700; color: #FFFFFF;">${esc(item.brand)}</td>
+          <td style="padding: 12px; color: var(--dim);">${esc(item.contact || '—')}</td>
+          <td style="padding: 12px; color: var(--muted); max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(item.title)}">${esc(item.title)}</td>
+          <td style="padding: 12px;"><code style="font-size: 11px; color: var(--cyan); background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">${esc(item.board)}</code></td>
+          <td style="padding: 12px; color: var(--dim); font-size: 12px;">${dateStr}</td>
+          <td style="padding: 12px; text-align: right;">
+            <div style="display: inline-flex; align-items: center; gap: 6px;">
+              <button type="button" class="btn-ghost" style="padding: 4px 8px; font-size: 11px;" title="Copy Presentation Link" onclick="navigator.clipboard.writeText('${esc(item.url)}'); notifyToast('✓ Link copied for ${esc(item.brand)}');">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy
+              </button>
+              <a href="${esc(item.url)}" target="_blank" class="btn-ghost" style="padding: 4px 8px; font-size: 11px; text-decoration: none;" title="Open Client View">
+                ↗
+              </a>
+              <a href="${esc(waShareUrl)}" target="_blank" class="btn-ghost" style="padding: 4px 8px; font-size: 11px; text-decoration: none; color: #25D366;" title="Share via WhatsApp">
+                WA
+              </a>
+              <button type="button" class="btn-danger" style="padding: 4px 8px; font-size: 11px;" title="Delete" onclick="deleteSavedPresentation('${esc(item.id)}')">
+                &times;
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function deleteSavedPresentation(id) {
+    let list = [];
+    try {
+      list = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
+    } catch (_) { list = []; }
+    list = list.filter(item => item.id !== id);
+    localStorage.setItem('polish_saved_presentations', JSON.stringify(list));
+    renderSavedPresentations();
+    notifyToast('Presentation removed from vault.');
+  }
+
+  function resetPresGenForm() {
+    fillVal('presGenBrand', 'Celestia Cosmetics');
+    fillVal('presGenContact', 'Yasmine');
+    fillVal('presGenTitle', '90-Day DTC Growth Roadmap & Whiteboard');
+    fillVal('presGenVideo', '');
+    currentPresLeadPhone = '';
+    const sel = document.getElementById('presGenBoardSelect');
+    if (sel && sel.options.length > 0) sel.selectedIndex = 0;
+    const customWrap = document.getElementById('presGenCustomBoardWrap');
+    if (customWrap) customWrap.style.display = 'none';
+    updatePresGenOutput();
+    notifyToast('Form reset to default.');
+  }
+
+  function createPresentationFromModal() {
+    if (!activeModalLeadId) return;
+    const lead = rawLeadsData.find(l => l.id === activeModalLeadId);
+    if (!lead) return;
+    const brand = (lead.brandName && lead.brandName !== 'Brand') ? lead.brandName : (lead.brand || lead.fullName || 'Client Brand');
+    const contact = lead.fullName || lead.name || 'Founder';
+    const phone = (lead.phone || '').replace(/[^0-9]/g, '');
+    closeProspectModal();
+    createPresentationForLead(brand, contact, phone);
+  }
+
+  function createPresentationForLead(brandName, contactName, phone) {
+    switchMainTab('presentationsTabPane');
+    const brandInput = document.getElementById('presGenBrand');
+    const contactInput = document.getElementById('presGenContact');
+    const titleInput = document.getElementById('presGenTitle');
+
+    if (brandInput && brandName) brandInput.value = brandName;
+    if (contactInput && contactName) contactInput.value = contactName;
+    if (titleInput && brandName) titleInput.value = `${brandName} • 90-Day DTC Growth Blueprint`;
+    currentPresLeadPhone = phone || '';
+
+    updatePresGenOutput();
+    notifyToast(`Proposal builder loaded for ${brandName || 'Prospect'}.`);
   }
 </script>
 

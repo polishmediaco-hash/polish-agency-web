@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 95 files · ~723,899 words
+- 95 files · ~724,570 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1083 nodes · 1782 edges · 79 communities (71 shown, 6 thin omitted)
+- 1084 nodes · 1781 edges · 79 communities (71 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 55 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `470f1155`
+- Built from commit: `61e38842`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -97,7 +97,7 @@
 1. `triggerAutoSave()` - 45 edges
 2. `pushHistory()` - 36 edges
 3. `renderElement()` - 32 edges
-4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 25 edges
+4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 26 edges
 5. `selectElement()` - 19 edges
 6. `pushHistory()` - 19 edges
 7. `renderInvoiceSheet()` - 18 edges
@@ -228,7 +228,7 @@ Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects
 
 ### Community 31 - "6. Next Priority Roadmap (Ready for Next Conversation)"
 Cohesion: 0.04
-Nodes (44): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+36 more)
+Nodes (45): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+37 more)
 
 ### Community 32 - "OWASP Top 10 — Audit Checklist"
 Cohesion: 0.11
@@ -399,8 +399,8 @@ Cohesion: 0.33
 Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy Standard, 4. Output Structure, Zero-Fluff & Anti-Filler Rule
 
 ## Knowledge Gaps
-- **382 isolated node(s):** `express`, `fs`, `path`, `{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }`, `{ requireAdminAuth }` (+377 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 464 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **384 isolated node(s):** `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)`, `C. Creator & UGC Portal (`public/creators.html`)`, `D. Admin Portal & Live CMS (`public/admin.html`)` (+379 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 466 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -409,11 +409,11 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `express` connect `api.js` to `boards.js`, `package.json`, `index.js`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
-- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `supabase.js`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `dependencies` to `package.json`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **What connects `express`, `fs`, `path` to the rest of the system?**
-  _382 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)` to the rest of the system?**
+  _384 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>polishmedia — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 1084 nodes, 1783 edges, 79 communities. Commit: 8d30807</p>
+<p class="subtitle">Generated from graphify knowledge graph: 1079 nodes, 1770 edges, 78 communities. Commit: 61e3884</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -96,9 +96,9 @@ flowchart LR
     class OUTPUTS_DOCS_ED82387C module;
     CLI_SKILLS_9964CBB8("CLI &amp; Skill Installers<br/><small>110 nodes</small>")
     class CLI_SKILLS_9964CBB8 module;
-    INGEST_CACHE_UPDATE_FF457338("Ingestion &amp; Updates<br/><small>46 nodes</small>")
+    INGEST_CACHE_UPDATE_FF457338("Ingestion &amp; Updates<br/><small>47 nodes</small>")
     class INGEST_CACHE_UPDATE_FF457338 module;
-    SERVE_API_35EC8E86("Serving API<br/><small>12 nodes</small>")
+    SERVE_API_35EC8E86("Serving API<br/><small>24 nodes</small>")
     class SERVE_API_35EC8E86 module;
     SECURITY_GLOBAL_5B9C6A04("Security &amp; Global Graph<br/><small>82 nodes</small>")
     class SECURITY_GLOBAL_5B9C6A04 module;
@@ -116,14 +116,13 @@ flowchart LR
     class ELEMENTS_FACTORY_JS_7A50F465 module;
     LUXURY_EFFECTS_JS_FB489F07("luxury-effects.js<br/><small>32 nodes</small>")
     class LUXURY_EFFECTS_JS_FB489F07 module;
-    OTHER_D0941E68("Other<br/><small>460 nodes</small>")
+    OTHER_D0941E68("Other<br/><small>442 nodes</small>")
     class OTHER_D0941E68 module;
-    SERVE_API_35EC8E86 -->|imports x6| OTHER_D0941E68
+    SERVE_API_35EC8E86 -->|imports x10| OTHER_D0941E68
+    OTHER_D0941E68 -->|imports x5| SERVE_API_35EC8E86
     OTHER_D0941E68 -->|imports x4| BUILD_GRAPH_321CBB04
-    OTHER_D0941E68 -->|imports x3| SERVE_API_35EC8E86
+    BUILD_GRAPH_321CBB04 -->|imports x2| OTHER_D0941E68
     TESTS_FIXTURES_B84B1DCC -->|imports| OTHER_D0941E68
-    BUILD_GRAPH_321CBB04 -->|imports| OTHER_D0941E68
-    BUILD_GRAPH_321CBB04 -->|imports| SERVE_API_35EC8E86
     BUILD_GRAPH_321CBB04 -->|imports| TESTS_FIXTURES_B84B1DCC
     OTHER_D0941E68 -->|imports| TESTS_FIXTURES_B84B1DCC
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
@@ -142,20 +141,20 @@ flowchart LR
     <h4>Architecture Layers</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
-      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>19</td><td><code>15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>110</td><td><code>32, 36, 37, 81, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>46</td><td><code>31</code></td></tr><tr><td>Serving API</td><td>12</td><td><code>63</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>41</td><td><code>62</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>Other</td><td>460</td><td><code>3, 5, 6, 28, 11, 33, 34, 35, 8, 9, 12, 2, 61, 60, 68, 14, 23, 16, 17, 18, 39, 40, 64, 25, 21, 46, 70, 76, 24, 65, 71, 72, 82, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
+      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>19</td><td><code>15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>110</td><td><code>32, 36, 37, 81, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>47</td><td><code>31</code></td></tr><tr><td>Serving API</td><td>24</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>41</td><td><code>62</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>Other</td><td>442</td><td><code>3, 5, 6, 11, 33, 34, 35, 8, 9, 2, 12, 61, 28, 60, 68, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 70, 76, 24, 65, 71, 72, 82, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Core Flow</h4>
-    <div class="arrow-chain">Analysis &amp; Clustering -&gt; Graph Build -&gt; Tests &amp; Fixtures -&gt; Other -&gt; Serving API -&gt; Outputs &amp; Docs -&gt; CLI &amp; Skill Installers</div>
+    <div class="arrow-chain">Analysis &amp; Clustering -&gt; Graph Build -&gt; Other -&gt; Serving API -&gt; Outputs &amp; Docs -&gt; CLI &amp; Skill Installers -&gt; Ingestion &amp; Updates</div>
   </div>
 </div>
 <div class="grid">
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>1084 nodes · 1783 edges · 79 communities (71 shown, 6 thin omitted)</li>
-      <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 55 edges (avg confidence: 0.85)</li>
+      <li>1079 nodes · 1770 edges · 78 communities (70 shown, 6 thin omitted)</li>
+      <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `triggerAutoSave()` - 45 edges</li>
       <li>2. `pushHistory()` - 36 edges</li>
@@ -1385,12 +1384,12 @@ flowchart LR
 
 <!-- ====== 6. Ingestion & Updates ====== -->
 <h2 id="ingest-cache-update">6. Ingestion &amp; Updates</h2>
-<p>Ingestion &amp; Updates groups implementation around handoffmd, docs, september, 2026, mostly in docs/HANDOFF.md. This section covers 46 nodes and 45 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Ingestion &amp; Updates groups implementation around handoffmd, docs, september, 2026, mostly in docs/HANDOFF.md. This section covers 47 nodes and 46 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Ingestion &amp; Updates (46 nodes, 45 edges)
+    %% Section: Ingestion &amp; Updates (47 nodes, 46 edges)
     docs_handoff_6_next_priority_roadmap_ready_for_n_dd9d04e1("6. Next Priority Roadmap (Ready for Nex...<br/><small>docs/HANDOFF.md</small>")
     docs_handoff_2_core_pages_component_architecture_f0da1d17("2. Core Pages &amp; Component Architecture<br/><small>docs/HANDOFF.md</small>")
     docs_handoff_polish_media_co_project_state_hando_48b5771d("POLISH Media Co — Project State &amp; Hando...<br/><small>docs/HANDOFF.md</small>")
@@ -1426,7 +1425,7 @@ flowchart LR
     docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_2_core_pages_component_architecture_f0da1d17
     docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_7_how_to_start_a_fresh_antigravity_2c55029e
     docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_1_executive_summary_brand_shift_de1bc60a
-    %% Omitted for readability: 28 nodes, 0 edges
+    %% Omitted for readability: 29 nodes, 0 edges
     class docs_handoff_6_next_priority_roadmap_ready_for_n_dd9d04e1 concept;
     class docs_handoff_2_core_pages_component_architecture_f0da1d17 concept;
     class docs_handoff_polish_media_co_project_state_hando_48b5771d concept;
@@ -1713,24 +1712,24 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>docs/HANDOFF.md</code></td><td>46 nodes</td></tr>
+      <tr><td><code>docs/HANDOFF.md</code></td><td>47 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x45. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x46. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
 
 <!-- ====== 7. Serving API ====== -->
 <h2 id="serve-api">7. Serving API</h2>
-<p>Serving API groups implementation around apijs, server, routes, express, mostly in server/routes/api.js, package.json. This section covers 12 nodes and 12 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Serving API groups implementation around server, supabasejs, services, apijs, mostly in server/services/supabase.js, server/routes/api.js. This section covers 24 nodes and 28 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Serving API (12 nodes, 12 edges)
+    %% Section: Serving API (24 nodes, 28 edges)
     subgraph serve_api_server_routes_api_js_65a7595a["server/routes/api.js"]
         server_routes_api_38dd1944("api.js")
         server_routes_api_readcontent_cf076324("readContent()<br/><small>server/routes/api.js</small>")
@@ -1744,9 +1743,22 @@ flowchart LR
         server_routes_api_notifynewlead_notifynewmeeting_a7041441("notifyNewLead, notifyNewMeeting, send...<br/><small>server/routes/api.js</small>")
         server_routes_api_requireadminauth_fb58ac11("requireAdminAuth<br/><small>server/routes/api.js</small>")
     end
-    ref_express_54e0f975("express<br/><small>package.json</small>")
+    subgraph serve_api_server_services_supabase_js_2403d937["server/services/supabase.js"]
+        server_services_supabase_cmsservice_444a4c27("cmsService<br/><small>server/services/supabase.js</small>")
+        server_services_supabase_invoicesservice_db455f35("invoicesService<br/><small>server/services/supabase.js</small>")
+        server_services_supabase_keepaliveservice_e4109ecb("keepAliveService<br/><small>server/services/supabase.js</small>")
+        server_services_supabase_leadsservice_9328bb0b("leadsService<br/><small>server/services/supabase.js</small>")
+        server_services_supabase_d73bfd86("supabase.js")
+        server_services_supabase_fs_14212ca7("fs<br/><small>server/services/supabase.js</small>")
+        server_services_supabase_mapboardtodbrow_73f54afa("mapBoardToDbRow()<br/><small>server/services/supabase.js</small>")
+    end
     server_routes_api_readcontent_cf076324 -->|calls| server_routes_api_getdefaultcontent_d88080fe
-    server_routes_api_38dd1944 -->|imports| ref_express_54e0f975
+    server_routes_api_38dd1944 -->|imports| server_services_supabase_cmsservice_444a4c27
+    server_routes_api_38dd1944 -->|imports| server_services_supabase_invoicesservice_db455f35
+    server_routes_api_38dd1944 -->|imports| server_services_supabase_keepaliveservice_e4109ecb
+    server_routes_api_38dd1944 -->|imports| server_services_supabase_leadsservice_9328bb0b
+    server_routes_api_38dd1944 -->|imports| server_services_supabase_d73bfd86
+    %% Omitted for readability: 6 nodes, 0 edges
     class server_routes_api_38dd1944 api;
     class server_routes_api_readcontent_cf076324 function;
     class server_routes_api_getdefaultcontent_d88080fe function;
@@ -1758,7 +1770,13 @@ flowchart LR
     class server_routes_api_leadsservice_cmsservice_keepal_13dfa868 async;
     class server_routes_api_notifynewlead_notifynewmeeting_a7041441 function;
     class server_routes_api_requireadminauth_fb58ac11 function;
-    class ref_express_54e0f975 function;
+    class server_services_supabase_cmsservice_444a4c27 async;
+    class server_services_supabase_invoicesservice_db455f35 async;
+    class server_services_supabase_keepaliveservice_e4109ecb function;
+    class server_services_supabase_leadsservice_9328bb0b async;
+    class server_services_supabase_d73bfd86 module;
+    class server_services_supabase_fs_14212ca7 function;
+    class server_services_supabase_mapboardtodbrow_73f54afa function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -1806,14 +1824,54 @@ flowchart LR
 </tr>
 <tr>
   <td>4</td>
-  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
-  <td><span class="tag tag-endpoint">API</span></td>
-  <td><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
-  <td><code>auth.js</code><br><small style="color:var(--muted)">server/middleware/auth.js</small><br><code>express</code><br><small style="color:var(--muted)">package.json</small><br><code>notification.js</code><br><small style="color:var(--muted)">server/services/notification.js</small><br>+4 more</td>
-  <td>api.js node in server/routes/api.js.</td>
+  <td><code>mapBoardToDbRow()</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>mapBoardToDbRow() node in server/services/supabase.js.</td>
 </tr>
 <tr>
   <td>5</td>
+  <td><code>mapDbBoardToBoard()</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>mapDbBoardToBoard() node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>mapDbLeadToLead()</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>mapDbLeadToLead() node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>mapDbRowToInvoice()</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>mapDbRowToInvoice() node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>mapLeadToDbRow()</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>mapLeadToDbRow() node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
+  <td><span class="tag tag-endpoint">API</span></td>
+  <td><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
+  <td><code>auth.js</code><br><small style="color:var(--muted)">server/middleware/auth.js</small><br><code>cmsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small><br><code>express</code><br><small style="color:var(--muted)">package.json</small><br>+9 more</td>
+  <td>api.js node in server/routes/api.js.</td>
+</tr>
+<tr>
+  <td>10</td>
   <td><code>express</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1821,7 +1879,7 @@ flowchart LR
   <td>express node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>6</td>
+  <td>11</td>
   <td><code>fs</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1829,7 +1887,7 @@ flowchart LR
   <td>fs node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>7</td>
+  <td>12</td>
   <td><code>{ leadsService, cmsService, keepAliveService, invoicesService }</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-async">Async</span></td>
   <td>External entry / no inbound edge</td>
@@ -1837,7 +1895,7 @@ flowchart LR
   <td>{ leadsService, cmsService, keepAliveService, invoicesService } node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>8</td>
+  <td>13</td>
   <td><code>{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1845,7 +1903,7 @@ flowchart LR
   <td>{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage } node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>9</td>
+  <td>14</td>
   <td><code>path</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1853,7 +1911,7 @@ flowchart LR
   <td>path node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>10</td>
+  <td>15</td>
   <td><code>{ requireAdminAuth }</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1861,7 +1919,7 @@ flowchart LR
   <td>{ requireAdminAuth } node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>11</td>
+  <td>16</td>
   <td><code>router</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-endpoint">API</span></td>
   <td>External entry / no inbound edge</td>
@@ -1869,12 +1927,68 @@ flowchart LR
   <td>router node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>12</td>
-  <td><code>express</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>boards.js</code><br><small style="color:var(--muted)">server/routes/boards.js</small><br><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small><br>+1 more</td>
+  <td>17</td>
+  <td><code>supabase.js</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>auth.js</code><br><small style="color:var(--muted)">server/middleware/auth.js</small><br><code>boards.js</code><br><small style="color:var(--muted)">server/routes/boards.js</small><br>+1 more</td>
+  <td><code>@supabase/supabase-js</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>supabase.js node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>cmsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-async">Async</span></td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td>No direct outbound edge</td>
-  <td>express node in package.json.</td>
+  <td>cmsService node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>{ createClient }</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-cmd">Entry</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>{ createClient } node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>invoicesService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-async">Async</span></td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>invoicesService node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>keepAliveService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>keepAliveService node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>leadsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-async">Async</span></td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>leadsService node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>path</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>path node in server/services/supabase.js.</td>
 </tr>
 </table>
 
@@ -1883,13 +1997,13 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>server/routes/api.js</code></td><td>11 nodes</td></tr>
-<tr><td><code>package.json</code></td><td>1 nodes</td></tr>
+      <tr><td><code>server/services/supabase.js</code></td><td>13 nodes</td></tr>
+<tr><td><code>server/routes/api.js</code></td><td>11 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x10, calls x1, imports x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x22, imports x4, calls x1, imports x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -4651,12 +4765,12 @@ flowchart LR
 
 <!-- ====== 16. Other ====== -->
 <h2 id="other">16. Other</h2>
-<p>Other groups implementation around public, studio, brand, server, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 460 nodes and 709 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 442 nodes and 673 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Other (460 nodes, 709 edges)
+    %% Section: Other (442 nodes, 673 edges)
     subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
         public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
         public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
@@ -4674,10 +4788,8 @@ flowchart LR
         public_studio_js_firebase_config_notifyauthliste_5ea65e48("_notifyAuthListeners()<br/><small>studio/js/firebase-config.js</small>")
         public_studio_js_firebase_config_initlocalfallba_501deb4a("_initLocalFallback()<br/><small>studio/js/firebase-config.js</small>")
     end
-    subgraph other_public_js_presentation_page_js_67cd495b["public/js/presentation-page.js"]
-        public_js_presentation_page_init_cdf60e4b("init()<br/><small>public/js/presentation-page.js</small>")
-        public_js_presentation_page_saveconfigmodal_023a3dce("saveConfigModal()<br/><small>public/js/presentation-page.js</small>")
-    end
+    public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54("initLuxuryScroll()<br/><small>js/effects/luxury-scroll.js</small>")
+    public_js_presentation_page_init_cdf60e4b("init()<br/><small>public/js/presentation-page.js</small>")
     scripts_generate_brand_pack_buildbrandpack_7048962a("buildBrandPack()<br/><small>scripts/generate-brand-pack.js</small>")
     public_studio_js_comments_engine_bindeventlisten_57dd061e("bindEventListeners()<br/><small>studio/js/comments-engine.js</small>")
     public_studio_js_studio_ai_init_a56126fc("init()<br/><small>studio/js/studio-ai.js</small>")
@@ -4697,7 +4809,7 @@ flowchart LR
     public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
     public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
     public_js_i18n_polishi18n_setlanguage_c0fb6d07 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    %% Omitted for readability: 442 nodes, 0 edges
+    %% Omitted for readability: 424 nodes, 0 edges
     class public_js_i18n_polishi18n_72987c12 klass;
     class public_js_i18n_polishi18n_constructor_34fce30d function;
     class public_js_i18n_polishi18n_detectlanguage_d4213613 function;
@@ -4711,8 +4823,8 @@ flowchart LR
     class public_studio_js_firebase_config_init_114423c3 function;
     class public_studio_js_firebase_config_notifyauthliste_5ea65e48 function;
     class public_studio_js_firebase_config_initlocalfallba_501deb4a function;
+    class public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54 function;
     class public_js_presentation_page_init_cdf60e4b function;
-    class public_js_presentation_page_saveconfigmodal_023a3dce function;
     class scripts_generate_brand_pack_buildbrandpack_7048962a function;
     class public_studio_js_comments_engine_bindeventlisten_57dd061e function;
     class public_studio_js_studio_ai_init_a56126fc function;
@@ -4987,16 +5099,16 @@ flowchart LR
       <tr><td><code>studio/js/comments-engine.js</code></td><td>30 nodes</td></tr>
 <tr><td><code>studio/js/studio-ai.js</code></td><td>29 nodes</td></tr>
 <tr><td><code>scripts/generate-brand-pack.js</code></td><td>24 nodes</td></tr>
-<tr><td><code>public/js/presentation-page.js</code></td><td>20 nodes</td></tr>
 <tr><td><code>server/index.js</code></td><td>19 nodes</td></tr>
 <tr><td><code>HANDOFF_EMAN_AL_KATHEERI.md</code></td><td>18 nodes</td></tr>
 <tr><td><code>docs/brand-guidelines.md</code></td><td>17 nodes</td></tr>
 <tr><td><code>brand-pack/06_guidelines/POLISH_BRAND_GUIDELINES.md</code></td><td>17 nodes</td></tr>
+<tr><td><code>scripts/generate-logo-concepts.js</code></td><td>17 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x392, calls x263, indirect call x32, imports x9. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x372, calls x254, indirect call x28, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -5007,18 +5119,18 @@ flowchart LR
   <div class="card">
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>Nodes</td><td>1084</td></tr>
-      <tr><td>Edges</td><td>1783</td></tr>
+      <tr><td>Nodes</td><td>1079</td></tr>
+      <tr><td>Edges</td><td>1770</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
-      <tr><td>Communities</td><td>79</td></tr>
+      <tr><td>Communities</td><td>78</td></tr>
       <tr><td>Documented Sections</td><td>15</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>1728</td></tr>
-      <tr><td>INFERRED</td><td>55</td></tr>
+      <tr><td>EXTRACTED</td><td>1719</td></tr>
+      <tr><td>INFERRED</td><td>51</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
   </div>
@@ -5026,7 +5138,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>polishmedia — Architecture Documentation</p>
-  <p>Generated: 2026-09-13 19:36 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 20:18 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

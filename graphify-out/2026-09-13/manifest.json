@@ -186,9 +186,9 @@
     "semantic_hash": "acfe4ba5bf5cca5ee6948950496ce55a"
   },
   "server/index.js": {
-    "mtime": 1789325857.3296187,
-    "seen": 1789326245.914955,
-    "ast_hash": "496b2d51cb047f336608a45457fdb4b0",
+    "mtime": 1789328476.3151817,
+    "seen": 1789328505.012977,
+    "ast_hash": "f15f6cf814ba9c41eb4191dec10cfb4a",
     "semantic_hash": ""
   },
   "server/middleware/auth.js": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789318987.8337924,
-    "seen": 1789319014.445935,
-    "ast_hash": "e41128293bbe37194c088fdae4c08a46",
+    "mtime": 1789328559.1719487,
+    "seen": 1789328562.018678,
+    "ast_hash": "32cb23d596d7567036abd281343eb925",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789327412.9569395,
-    "seen": 1789327498.577178,
-    "ast_hash": "e05c6546610c091f7e6fa01c67d6d246",
+    "mtime": 1789328487.7586966,
+    "seen": 1789328505.013003,
+    "ast_hash": "743bfadb1634a6c9a348d24fb96a59d5",
     "semantic_hash": ""
   },
   "public/apply.html": {

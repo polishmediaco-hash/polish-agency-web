@@ -8073,7 +8073,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L727"
+      "source_location": "L761"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -8422,6 +8422,18 @@
       "norm_label": "sprint 24: executive client video presentation & strategy board portal (`/presentation`) (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L706"
+    },
+    {
+      "id": "docs_handoff_sprint_25_presentation_hardening_studio_camera_bubble_engine_dual_delivery_whatsapp_notification_gateway_completed_september_2026",
+      "label": "Sprint 25: Presentation Hardening, Studio Camera Bubble Engine & Dual-Delivery WhatsApp Notification Gateway (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 25: presentation hardening, studio camera bubble engine & dual-delivery whatsapp notification gateway (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L725"
     },
     {
       "id": "docs_handoff_sprint_2_security_performance_hardening_completed_september_2026",
@@ -21528,30 +21540,6 @@
       "weight": 1.0
     },
     {
-      "source": "server_index",
-      "target": "server_services_calendlysync_startcalendlypoller",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "server/index.js",
-      "source_location": "L17",
-      "weight": 1.0
-    },
-    {
-      "source": "server_index",
-      "target": "server_services_supabase_keepaliveservice",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "server/index.js",
-      "source_location": "L493",
-      "weight": 1.0
-    },
-    {
       "source": "server_middleware_auth",
       "target": "server_services_supabase_isconfigured",
       "relation": "imports",
@@ -24570,6 +24558,17 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_25_presentation_hardening_studio_camera_bubble_engine_dual_delivery_whatsapp_notification_gateway_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L725",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -24632,7 +24631,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L727",
+      "source_location": "L761",
       "weight": 1.0
     },
     {
@@ -33283,5 +33282,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "470f115580c37804591c467afb566c5e31661a64"
+  "built_at_commit": "61e3884294a44a3e69c9d687702215bc4cbf47d2"
 }

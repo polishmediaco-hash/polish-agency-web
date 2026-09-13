@@ -157,38 +157,20 @@ async function runTest() {
     await page.screenshot({ path: desktopScreenshotPath, fullPage: true });
     console.log(`📸 Desktop Full-Page Screenshot saved to: ${desktopScreenshotPath}`);
 
-    // ── Test 8: Admin Tooling Gating & Customize Modal ──
-    console.log('[Test 8] Verifying Admin Tooling Gating...');
-    const isConfigHiddenVisitor = await page.$eval('#btnOpenConfig', el => window.getComputedStyle(el).display === 'none');
-    console.log(`✓ Admin Config Button Hidden for Regular Visitor: ${isConfigHiddenVisitor}`);
-    if (!isConfigHiddenVisitor) throw new Error('Admin config button should be hidden for visitor without ?admin=1');
+    // ── Test 8: Client Presentation Hygiene & Decoupling ──
+    console.log('[Test 8] Verifying Client Presentation Decoupling & Absence of Admin Controls...');
+    const hasAdminConfigBtn = await page.$eval('#btnOpenConfig', () => true).catch(() => false);
+    const hasAdminCameraBtn = await page.$eval('#btnPresentationCamera', () => true).catch(() => false);
+    const hasConfigModal = await page.$eval('#configModal', () => true).catch(() => false);
+    const hasCopyShareBtn = await page.$eval('#btnCopyShareLink', () => true).catch(() => false);
 
-    // Re-navigate with &admin=1 to verify admin mode
-    console.log('Navigating with &admin=1...');
-    await page.goto(testUrl + '&admin=1', { waitUntil: 'domcontentloaded' });
-    await new Promise(r => setTimeout(r, 600));
+    console.log(`✓ Admin Config Button absent in client view: ${!hasAdminConfigBtn}`);
+    console.log(`✓ Camera Button absent in client view: ${!hasAdminCameraBtn}`);
+    console.log(`✓ Config Modal absent in client view: ${!hasConfigModal}`);
+    console.log(`✓ Copy Share Button absent in client view: ${!hasCopyShareBtn}`);
 
-    const isConfigVisibleAdmin = await page.$eval('#btnOpenConfig', el => window.getComputedStyle(el).display !== 'none');
-    console.log(`✓ Admin Config Button Visible for Admin (?admin=1): ${isConfigVisibleAdmin}`);
-    if (!isConfigVisibleAdmin) throw new Error('Admin config button should be visible with ?admin=1');
-
-    await page.click('#btnOpenConfig');
-    await delay(400);
-
-    const isModalOpen = await page.$eval('#configModal', el => el.classList.contains('is-open'));
-    console.log(`✓ Customize Modal Open: ${isModalOpen}`);
-    if (!isModalOpen) throw new Error('Modal failed to open');
-
-    // Update client name in input and save
-    await page.$eval('#modalInputClient', el => el.value = 'Aurora Skincare');
-    await page.$eval('#modalInputTitle', el => el.value = '90-Day Growth Roadmap');
-    await page.click('#btnSaveModal');
-    await delay(500);
-
-    const updatedHeaderClient = await page.$eval('#headerClientName', el => el.textContent.trim());
-    console.log(`✓ Dynamically Updated Client Name: "${updatedHeaderClient}"`);
-    if (updatedHeaderClient !== 'Aurora Skincare') {
-      throw new Error('Modal save did not dynamically update page state');
+    if (hasAdminConfigBtn || hasAdminCameraBtn || hasConfigModal || hasCopyShareBtn) {
+      throw new Error('Client presentation contains admin/founder controls that must only exist in Admin Hub');
     }
 
     // ── Test 9: Mobile Viewport & Touch Targets ──
@@ -243,30 +225,70 @@ async function runTest() {
       throw new Error(`Expected ultra-wide board canvas height to be 780px, got ${boardWrapHeight}`);
     }
 
-    // ── Test 11: Face Camera Bubble Availability & Permissions ──
-    console.log('\n[Test 11] Verifying Studio Camera Bubble in Presentation & Board...');
-    const hasCameraBtn = await page.$eval('#btnPresentationCamera', el => !!el);
-    console.log(`✓ Presentation Camera Button Rendered: ${hasCameraBtn}`);
-    if (!hasCameraBtn) throw new Error('Presentation missing Camera button');
+    // ── Test 11: Admin Presentation Generator Hub & Vault ──
+    console.log('\n[Test 11] Verifying Admin Presentation Generator & Proposal Hub (/admin#presentations)...');
+    await page.goto('http://127.0.0.1:3000/admin#presentations', { waitUntil: 'domcontentloaded' });
+    await delay(1000);
 
-    const iframeAllow = await page.$eval('#boardIframe', el => el.getAttribute('allow') || '');
-    console.log(`✓ Board Iframe Permissions Allow: "${iframeAllow}"`);
-    if (!iframeAllow.includes('camera') || !iframeAllow.includes('microphone')) {
-      throw new Error('Board iframe missing camera/microphone permissions delegation');
+    // Unlock dashboard for admin test session
+    await page.evaluate(async () => {
+      if (typeof unlockDashboard === 'function') {
+        await unlockDashboard({ email: 'founder@polishmediaco.com' });
+      }
+    });
+    await delay(600);
+
+    // Verify Tab Pane is Active
+    const isTabActive = await page.$eval('#presentationsTabPane', el => el.classList.contains('active'));
+    console.log(`✓ Admin Presentations Tab Pane Active: ${isTabActive}`);
+    if (!isTabActive) throw new Error('#presentationsTabPane should be active on hash #presentations');
+
+    // Verify Generator Form Inputs
+    const brandVal = await page.$eval('#presGenBrand', el => el.value);
+    console.log(`✓ Generator Default Brand: "${brandVal}"`);
+    if (!brandVal) throw new Error('#presGenBrand should have default value');
+
+    // Fill new client data and verify instant URL generation
+    await page.$eval('#presGenBrand', el => el.value = 'L\'Étoile Paris');
+    await page.$eval('#presGenContact', el => el.value = 'Margaux');
+    await page.$eval('#presGenVideo', el => el.value = 'https://youtu.be/dQw4w9WgXcQ');
+    await page.evaluate(() => updatePresGenOutput());
+    await delay(300);
+
+    const generatedUrl = await page.$eval('#presGenOutputUrl', el => el.value);
+    console.log(`✓ Generated Client Proposal URL: ${generatedUrl}`);
+    if (!generatedUrl.includes('client=L%27%C3%89toile+Paris') && !generatedUrl.includes('client=L%27%C3%89toile%20Paris') && !generatedUrl.includes('L%27%C3%89toile')) {
+      throw new Error(`Generated URL does not contain encoded client brand: ${generatedUrl}`);
+    }
+    if (!generatedUrl.includes('video=dQw4w9WgXcQ')) {
+      throw new Error(`Generated URL does not contain parsed video ID: ${generatedUrl}`);
     }
 
-    const hasStudioCamera = await page.evaluate(() => typeof window.StudioCamera === 'object' && typeof window.StudioCamera.toggle === 'function');
-    console.log(`✓ StudioCamera Global API Mounted: ${hasStudioCamera}`);
-    if (!hasStudioCamera) throw new Error('StudioCamera engine not mounted');
+    // Save proposal to archive
+    await page.evaluate(() => saveCurrentPresentation());
+    await delay(300);
 
-    // Trigger StudioCamera init
-    await page.evaluate(() => window.StudioCamera.init());
-    const hasCameraBubbleDOM = await page.$eval('#cameraBubble', el => !!el);
-    console.log(`✓ Camera Bubble DOM Initialized: ${hasCameraBubbleDOM}`);
-    if (!hasCameraBubbleDOM) throw new Error('Camera bubble DOM failed to initialize');
+    const savedCountBadge = await page.$eval('#presSavedCountBadge', el => el.textContent.trim());
+    console.log(`✓ Saved Vault Count Badge: "${savedCountBadge}"`);
+    if (!savedCountBadge.includes('1 Saved') && !savedCountBadge.includes('Saved')) {
+      throw new Error(`Unexpected vault badge: "${savedCountBadge}"`);
+    }
+
+    const savedRowText = await page.$eval('#presSavedTableBody', el => el.textContent);
+    console.log(`✓ Saved Vault Row Rendered: ${savedRowText.includes('L\'Étoile Paris')}`);
+    if (!savedRowText.includes('L\'Étoile Paris')) {
+      throw new Error('Saved proposal did not render in #presSavedTableBody');
+    }
+
+    // Verify Board Selector populated from /api/boards
+    const boardOptionsCount = await page.$$eval('#presGenBoardSelect option', els => els.length);
+    console.log(`✓ Strategy Board Options Populated from API: ${boardOptionsCount} boards`);
+    if (boardOptionsCount < 2) {
+      throw new Error(`Expected at least 2 board options (starter + custom), found ${boardOptionsCount}`);
+    }
 
     console.log('\n======================================================');
-    console.log('  🎉 ALL 11 PRESENTATION TESTS PASSED PERFECTLY! (100%)');
+    console.log('  🎉 ALL 11 PRESENTATION & ADMIN TESTS PASSED! (100%)');
     console.log('======================================================\n');
   } finally {
     await browser.close();

@@ -756,6 +756,24 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - **Presentation Page E2E Suite**: Ran `node tests/test_presentation_page.js` — all 11/11 tests passed (100%).
    - **Graphify Synchronized**: AST knowledge graph updated cleanly.
 
+### Sprint 26: Client Presentation Decoupling & Centralized Admin Proposal Hub (Completed September 2026)
+1. ✅ **Client Presentation Hygiene & Complete Decoupling (`public/presentation.html`, `public/js/presentation-page.js`, `public/css/presentation-page.css`)**:
+   - **Purged Founder Controls**: Completely eradicated `#btnPresentationCamera`, `#configModal`, `#btnOpenConfig`, `#btnCopyShareLink`, and `#btnOpenStudio` from the client proposal experience.
+   - **Zero Client Confusion**: High-ticket beauty & cosmetics brand founders receive a 100% distraction-free, executive proposal view containing co-branded dynamic island header, cinema video stage + chapters, interactive strategy board companion (with fullscreen toggle), commercial scope cards, and conversion signoff bridges (`/book` and founder WhatsApp line).
+   - **Client-Side Code Cleanliness**: Stripped unused modal/copier functions and CSS from frontend scripts.
+
+2. ✅ **Centralized Admin Presentation & Proposal Generator Hub (`public/admin.html`)**:
+   - **Dedicated Navigation**: Added **Presentations** to `#mainNavTabs` and hash routing `#presentations` / `#proposals`.
+   - **Dynamic Board Studio Integration**: Automatically loads and displays all available strategy boards from `/api/boards` in a sleek dropdown selector, plus a custom Board ID entry fallback.
+   - **Smart Video Parser**: Automatically extracts YouTube IDs from standard links, shortened `youtu.be` links, embed URLs, and raw IDs, with full support for direct MP4 URLs.
+   - **1-Click Distribution Rails**: Instant client link generation with "Copy Client Link", "Preview ↗", and "Share Directly via WhatsApp" (pre-populating personalized founder outreach text).
+   - **Saved Proposals Vault**: Persistent local archive (`localStorage['polish_saved_presentations']`) of client proposals with 1-click re-copying, previewing, WhatsApp sharing, and deletion.
+   - **CRM Fast-Track Integration**: Added a "Proposal" action button to inbound brand dossier rows and inside the Lead Details modal, auto-populating brand name, contact name, and phone directly into the builder.
+
+3. ✅ **Rigorous Verification & Test Results**:
+   - Updated and executed `tests/test_presentation_page.js` against the live local server: 11/11 tests passed with 100% success rate (including client decoupling verification and admin generator lifecycle verification).
+   - Visual verification: Captured retina screenshot of Admin Presentations Hub at `tests/screenshots/admin_presentations_hub.png`.
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat

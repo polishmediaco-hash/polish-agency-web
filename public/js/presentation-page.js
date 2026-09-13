@@ -78,22 +78,6 @@
     );
     const waUrl = `https://wa.me/213662417761?text=${waText}`;
     waButtons.forEach(btn => btn.setAttribute('href', waUrl));
-
-    // Board Studio Direct Link
-    const studioLinkEl = document.getElementById('btnOpenStudio');
-    if (studioLinkEl) {
-      studioLinkEl.setAttribute('href', `https://app.polishmediaco.com/view/${encodeURIComponent(state.board)}`);
-    }
-
-    // Populate Modal Inputs
-    const inputClient = document.getElementById('modalInputClient');
-    if (inputClient) inputClient.value = state.client;
-    const inputTitle = document.getElementById('modalInputTitle');
-    if (inputTitle) inputTitle.value = state.title;
-    const inputBoard = document.getElementById('modalInputBoard');
-    if (inputBoard) inputBoard.value = state.board;
-    const inputVideo = document.getElementById('modalInputVideo');
-    if (inputVideo) inputVideo.value = state.video;
   }
 
   // ── 3. Universal Video Parser & Mounting ────────────────────────────────────
@@ -177,11 +161,11 @@
       // Placeholder / No Video Specified
       container.innerHTML = `
         <div class="pres-video-placeholder">
-          <div class="pres-placeholder-play-circle" onclick="window.PresEngine.openConfigModal()">
+          <div class="pres-placeholder-play-circle">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           </div>
-          <h3 class="pres-placeholder-title">No Video Recording Linked</h3>
-          <p class="pres-placeholder-desc">Click here or append <code>?video=YOUR_YOUTUBE_ID</code> to attach your strategy walkthrough.</p>
+          <h3 class="pres-placeholder-title">Strategy Walkthrough Recording</h3>
+          <p class="pres-placeholder-desc">Interactive session recording is being prepared for this proposal.</p>
         </div>
       `;
       container.classList.add('is-loaded');
@@ -355,93 +339,13 @@
     }
   }
 
-  // ── 7. Link Copier & Modal Drawer ───────────────────────────────────────────
-  function showToast(message) {
-    let toast = document.getElementById('presToast');
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.id = 'presToast';
-      toast.className = 'pres-toast';
-      document.body.appendChild(toast);
-    }
-    toast.textContent = message;
-    toast.classList.add('is-visible');
-    setTimeout(() => toast.classList.remove('is-visible'), 3200);
-  }
-
-  function copyClientShareLink() {
-    const url = window.location.href;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(() => {
-        showToast('✓ Confidential Client Link Copied to Clipboard');
-      }).catch(() => fallbackCopy(url));
-    } else {
-      fallbackCopy(url);
-    }
-  }
-
-  function fallbackCopy(text) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    try {
-      document.execCommand('copy');
-      showToast('✓ Client Link Copied to Clipboard');
-    } catch (_) {
-      prompt('Copy Client Presentation Link:', text);
-    }
-    document.body.removeChild(textArea);
-  }
-
-  function openConfigModal() {
-    const modal = document.getElementById('configModal');
-    if (modal) modal.classList.add('is-open');
-  }
-
-  function closeConfigModal() {
-    const modal = document.getElementById('configModal');
-    if (modal) modal.classList.remove('is-open');
-  }
-
-  function saveConfigModal() {
-    const client = (document.getElementById('modalInputClient')?.value || DEFAULTS.client).trim();
-    const title = (document.getElementById('modalInputTitle')?.value || DEFAULTS.title).trim();
-    const board = (document.getElementById('modalInputBoard')?.value || DEFAULTS.board).trim();
-    const video = (document.getElementById('modalInputVideo')?.value || '').trim();
-
-    const newUrl = new URL(window.location.origin + window.location.pathname);
-    newUrl.searchParams.set('client', client);
-    newUrl.searchParams.set('title', title);
-    newUrl.searchParams.set('board', board);
-    if (video) newUrl.searchParams.set('video', video);
-
-    // Update browser history and re-hydrate
-    window.history.pushState({}, '', newUrl.toString());
-    closeConfigModal();
-
-    const state = { client, name: 'Founder', board, title, video };
-    hydratePage(state);
-    mountVideo(parseVideoSource(video));
-    mountBoard(board);
-    showToast('✓ Presentation Updated & Custom Link Created');
-  }
-
-  // ── 8. Initialize Engine ────────────────────────────────────────────────────
+  // ── 7. Initialize Engine ────────────────────────────────────────────────────
   function init() {
     const state = getParams();
     hydratePage(state);
     renderChapters(DEFAULTS.chapters);
     mountVideo(parseVideoSource(state.video));
     mountBoard(state.board);
-
-    // Admin Access Gating for Link Customization Tool
-    const urlParams = new URLSearchParams(window.location.search);
-    const isAdmin = urlParams.get('admin') === '1' || urlParams.get('edit') === '1';
-    const btnConfig = document.getElementById('btnOpenConfig');
-    if (btnConfig) {
-      btnConfig.style.display = isAdmin ? 'inline-flex' : 'none';
-    }
 
     // Board Interactive Overlay Barrier (Prevents Scroll Hijacking)
     const boardOverlay = document.getElementById('boardOverlay');
@@ -464,32 +368,12 @@
       }
     });
 
-    // Event Bindings
-    const btnCopyLink = document.getElementById('btnCopyShareLink');
-    if (btnCopyLink) btnCopyLink.addEventListener('click', copyClientShareLink);
-
-    if (btnConfig) btnConfig.addEventListener('click', openConfigModal);
-
-    const btnCloseModal = document.getElementById('btnCloseModal');
-    if (btnCloseModal) btnCloseModal.addEventListener('click', closeConfigModal);
-
-    const btnSaveModal = document.getElementById('btnSaveModal');
-    if (btnSaveModal) btnSaveModal.addEventListener('click', saveConfigModal);
-
-    const configModal = document.getElementById('configModal');
-    if (configModal) {
-      configModal.addEventListener('click', (e) => {
-        if (e.target === configModal) closeConfigModal();
-      });
-    }
-
     const btnFullscreen = document.getElementById('btnToggleFullscreen');
     if (btnFullscreen) btnFullscreen.addEventListener('click', toggleBoardFullscreen);
 
-    // Escape closes modal, fullscreen, or locks board
+    // Escape exits fullscreen or locks board
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        closeConfigModal();
         if (boardOverlay) boardOverlay.classList.remove('is-active');
         const stage = document.getElementById('boardStage');
         if (stage && stage.classList.contains('is-fullscreen')) {
@@ -499,13 +383,9 @@
     });
   }
 
-  // Export engine methods for inline triggers
+  // Export engine methods for client triggers
   window.PresEngine = {
     init,
-    openConfigModal,
-    closeConfigModal,
-    saveConfigModal,
-    copyClientShareLink,
     toggleBoardFullscreen,
     seekToTime
   };

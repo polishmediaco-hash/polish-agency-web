@@ -97,13 +97,12 @@ const fs = require('fs');
     });
     await new Promise(r => setTimeout(r, 200));
 
-    // 3. Test Laser Activation
-    console.log('Testing Laser activation...');
-    await page.evaluate(() => {
-      window.StudioPresentation.toggleLaser();
-    });
+    // 3. Test Laser Activation via Direct UI Click on .btn-laser
+    console.log('Testing Laser activation via direct click on .btn-laser...');
+    await page.click('.btn-laser');
+    await new Promise(r => setTimeout(r, 100));
 
-    const laserState = await page.evaluate(() => {
+    let laserState = await page.evaluate(() => {
       const isLaser = window.StudioPresentation.isLaserActive();
       const bodyHasClass = document.body.classList.contains('is-laser-active');
       const dot = document.querySelector('.presentation-laser-dot');
@@ -114,11 +113,32 @@ const fs = require('fs');
       return { isLaser, bodyHasClass, dotActive, canvasVisible, btnActive };
     });
 
-    console.log('Laser State:', laserState);
+    console.log('Laser State after 1st click:', laserState);
     if (!laserState.isLaser || !laserState.bodyHasClass || !laserState.dotActive || !laserState.canvasVisible || !laserState.btnActive) {
-      throw new Error('Laser did not activate correctly!');
+      throw new Error('Laser did not activate correctly via direct button click!');
     }
     console.log('✅ Laser Pointer active with custom beam dot and trail canvas!');
+
+    // 3b. Test Deactivating Laser via Direct UI Click on .btn-laser
+    console.log('Testing Laser deactivation via 2nd direct click on .btn-laser...');
+    await page.click('.btn-laser');
+    await new Promise(r => setTimeout(r, 100));
+
+    laserState = await page.evaluate(() => {
+      const isLaser = window.StudioPresentation.isLaserActive();
+      const bodyHasClass = document.body.classList.contains('is-laser-active');
+      const btnActive = document.querySelector('.btn-laser')?.classList.contains('active');
+      return { isLaser, bodyHasClass, btnActive };
+    });
+    console.log('Laser State after 2nd click:', laserState);
+    if (laserState.isLaser || laserState.bodyHasClass || laserState.btnActive) {
+      throw new Error('Laser did not deactivate upon clicking .btn-laser a second time!');
+    }
+    console.log('✅ Verified: Laser cleanly toggles OFF when clicked directly from the presentation bar!');
+
+    // 3c. Re-activate laser for stroke testing
+    await page.click('.btn-laser');
+    await new Promise(r => setTimeout(r, 100));
 
     // 4. Simulate Mouse Movement & Laser Drawing
     console.log('Simulating laser movement and strokes across cards...');

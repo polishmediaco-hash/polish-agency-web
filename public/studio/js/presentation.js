@@ -75,9 +75,6 @@ window.StudioPresentation = (function () {
     window.removeEventListener('pointermove', onLaserPointerMove);
     window.addEventListener('pointermove', onLaserPointerMove, { passive: true });
 
-    window.removeEventListener('pointerdown', onLaserPointerDown);
-    window.addEventListener('pointerdown', onLaserPointerDown);
-
     window.removeEventListener('pointerup', onLaserPointerUp);
     window.addEventListener('pointerup', onLaserPointerUp);
 
@@ -104,6 +101,15 @@ window.StudioPresentation = (function () {
 
   function onLaserPointerMove(e) {
     if (!isPresenting || !isLaserActive) return;
+
+    // Dim or fade out laser beacon when cursor hovers over controls bar or sequencer modal
+    const isOverUi = e.target && e.target.closest && e.target.closest('.presentation-bar, #presentationOrderModal, .presentation-floating-logo');
+    if (isOverUi) {
+      if (laserDotEl) laserDotEl.style.opacity = '0';
+    } else {
+      if (laserDotEl) laserDotEl.style.opacity = '1';
+    }
+
     updateLaserDotPosition(e.clientX, e.clientY);
 
     // Only record ribbon points when pointer is actively pressed down (drawing mode)
@@ -133,6 +139,12 @@ window.StudioPresentation = (function () {
     isLaserDrawing = true;
     updateLaserDotPosition(e.clientX, e.clientY);
 
+    try {
+      if (laserCanvasEl && e.pointerId && laserCanvasEl.setPointerCapture) {
+        laserCanvasEl.setPointerCapture(e.pointerId);
+      }
+    } catch (_) {}
+
     const now = performance.now();
     currentStroke = {
       points: [{ x: e.clientX, y: e.clientY, time: now }],
@@ -148,6 +160,11 @@ window.StudioPresentation = (function () {
 
   function onLaserPointerUp(e) {
     if (!isPresenting || !isLaserActive) return;
+    try {
+      if (laserCanvasEl && e && e.pointerId && laserCanvasEl.releasePointerCapture) {
+        laserCanvasEl.releasePointerCapture(e.pointerId);
+      }
+    } catch (_) {}
     if (isLaserDrawing && currentStroke) {
       currentStroke.isDrawing = false;
       currentStroke.completedTime = performance.now();
@@ -261,8 +278,10 @@ window.StudioPresentation = (function () {
     if (laserDotEl) {
       if (isLaserActive) {
         laserDotEl.classList.add('is-active');
+        laserDotEl.style.opacity = '1';
       } else {
         laserDotEl.classList.remove('is-active');
+        laserDotEl.style.opacity = '0';
       }
     }
 
@@ -611,6 +630,10 @@ window.StudioPresentation = (function () {
   // ==========================================================
 
   function openSequencer() {
+    if (isLaserActive) {
+      toggleLaser();
+    }
+
     sequencerItems = buildPresentationSequence(false);
     renderSequencerList();
 
@@ -1131,7 +1154,11 @@ window.StudioPresentation = (function () {
       openSequencer();
       e.preventDefault();
     } else if (e.key === 'Escape') {
-      stop();
+      if (isLaserActive) {
+        toggleLaser();
+      } else {
+        stop();
+      }
       e.preventDefault();
     }
   });

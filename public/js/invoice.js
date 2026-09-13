@@ -1005,6 +1005,167 @@
     }, 2400);
   }
 
+  let isGeneratingInvoicePdf = false;
+
+  // --- Share Invoice with Attached PDF via WhatsApp / Web Share Level 2 ---
+  async function shareCurrentInvoiceWhatsApp() {
+    if (isGeneratingInvoicePdf) return;
+    isGeneratingInvoicePdf = true;
+
+    const btn = document.getElementById('btnShareWhatsApp');
+    const originalBtnHtml = btn ? btn.innerHTML : '';
+
+    try {
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `
+          <svg class="wa-spin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25"></circle>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+          </svg>
+          <span>Building PDF...</span>
+        `;
+      }
+
+      // 1. Resolve invoice metadata
+      const invNumber = (state.invoiceNumber || document.getElementById('inputInvoiceNumber')?.value || 'POL-2026').trim();
+      const clientName = (state.clientName || document.getElementById('inputClientName')?.value || 'Valued Partner').trim();
+      const clientPhone = (state.clientPhone || document.getElementById('inputClientPhone')?.value || '').replace(/[^0-9]/g, '');
+      const currency = state.currency || document.getElementById('inputCurrency')?.value || 'DA';
+      const totals = computeTotals();
+      const totalText = formatAmount(totals.grandTotal, currency, state.lang);
+
+      // Clean filename for PDF attachment/download
+      const safeClient = clientName.replace(/[/\\?%*:|"<>]/g, '').trim().replace(/\s+/g, '_');
+      const safeInv = invNumber.replace(/[/\\?%*:|"<>]/g, '').trim().replace(/\s+/g, '-');
+      const pdfFileName = `POLISH-Invoice-${safeInv}-${safeClient}.pdf`;
+
+      const shareText = `Hello ${clientName},\n\nHere is your official POLISH Media Co invoice reference *${invNumber}* for ${totalText}.\n\nPayable to: ${state.payableName || 'Faycal Chouli / POLISH Media Co'}.\nThank you for your partnership!`;
+
+      // 2. Ensure target sheet is visible and in DOM
+      const sheet = document.getElementById('invoiceSheet');
+      if (!sheet) {
+        throw new Error('Invoice sheet element not found');
+      }
+
+      // Re-render sheet to guarantee 100% data sync
+      renderInvoiceSheet();
+
+      // If on mobile and currently in Edit Form view, toggle preview so html2canvas has valid dimensions
+      const wasMobileFormActive = !document.body.classList.contains('show-mobile-preview') && window.innerWidth <= 1100;
+      if (wasMobileFormActive) {
+        document.body.classList.add('show-mobile-preview');
+        document.getElementById('btnMobilePreview')?.classList.add('active');
+        document.getElementById('btnMobileForm')?.classList.remove('active');
+      }
+
+      // Check if html2pdf is available
+      if (typeof html2pdf === 'undefined') {
+        throw new Error('PDF generator library not loaded');
+      }
+
+      const isDark = state.theme === 'obsidian' || sheet.getAttribute('data-invoice-theme') === 'obsidian';
+      const bgColor = isDark ? '#080706' : '#FAF7F2';
+
+      // 3. Generate high-res A4 PDF Blob via client-side html2pdf
+      const opt = {
+        margin: 0,
+        filename: pdfFileName,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          letterRendering: true,
+          scrollY: 0,
+          scrollX: 0,
+          windowWidth: 1200,
+          backgroundColor: bgColor
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        }
+      };
+
+      showToast('Rendering high-res A4 PDF...');
+
+      const pdfBlob = await html2pdf().set(opt).from(sheet).outputPdf('blob');
+      if (!pdfBlob || pdfBlob.size < 100) {
+        throw new Error('PDF render produced empty output');
+      }
+
+      const pdfFile = new File([pdfBlob], pdfFileName, { type: 'application/pdf' });
+
+      // 4. Mobile Native Share Sheet (Level 2: Files Support for WhatsApp on mobile devices)
+      const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || 
+                             (Boolean(navigator.maxTouchPoints) && navigator.maxTouchPoints > 1);
+
+      const canShareFiles = isMobileDevice && 
+                            typeof navigator.share === 'function' && 
+                            typeof navigator.canShare === 'function' && 
+                            navigator.canShare({ files: [pdfFile] });
+
+      if (canShareFiles) {
+        try {
+          await navigator.share({
+            title: `POLISH Invoice ${invNumber}`,
+            text: shareText,
+            files: [pdfFile]
+          });
+          showToast('Invoice PDF shared successfully!');
+          return;
+        } catch (shareErr) {
+          if (shareErr.name === 'AbortError') {
+            return;
+          }
+          console.warn('Native share threw non-abort error, falling back to download + WhatsApp Web:', shareErr);
+        }
+      }
+
+      // 5. Desktop / Browser Fallback:
+      // Download the PDF file directly and launch WhatsApp with client context
+      const blobUrl = URL.createObjectURL(pdfBlob);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = blobUrl;
+      downloadLink.download = pdfFileName;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      setTimeout(() => {
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(blobUrl);
+      }, 2000);
+
+      const waText = shareText + '\n\n📄 (The PDF invoice has been downloaded to your device — simply attach it here.)';
+      const waUrl = clientPhone
+        ? `https://wa.me/${clientPhone}?text=${encodeURIComponent(waText)}`
+        : `https://wa.me/?text=${encodeURIComponent(waText)}`;
+
+      window.open(waUrl, '_blank');
+      showToast('PDF downloaded! Opening WhatsApp...');
+
+    } catch (err) {
+      console.error('Invoice WhatsApp PDF sharing failed:', err);
+      showToast('PDF notice: ' + (err.message || 'error'));
+
+      // Fallback: at least open WhatsApp chat with details
+      const invNumber = (state.invoiceNumber || 'POL-2026').trim();
+      const clientName = (state.clientName || 'Valued Partner').trim();
+      const clientPhone = (state.clientPhone || '').replace(/[^0-9]/g, '');
+      const fallbackText = `Hello ${clientName},\n\nHere is your official POLISH Media Co invoice reference *${invNumber}*.\nThank you for your partnership!`;
+      const waUrl = clientPhone
+        ? `https://wa.me/${clientPhone}?text=${encodeURIComponent(fallbackText)}`
+        : `https://wa.me/?text=${encodeURIComponent(fallbackText)}`;
+      window.open(waUrl, '_blank');
+    } finally {
+      isGeneratingInvoicePdf = false;
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalBtnHtml;
+      }
+    }
+  }
+
   // ========================================================================
   // EXECUTIVE AUTHENTICATION & SUPABASE INTEGRATION
   // ========================================================================
@@ -1465,6 +1626,13 @@
     setupFormListeners();
     setupToolbar();
     await checkAdminAuth();
+  }
+
+  window.PolishInvoice = window.PolishInvoice || {};
+  window.PolishInvoice.shareCurrentInvoiceWhatsApp = shareCurrentInvoiceWhatsApp;
+  window.PolishInvoice.state = state;
+  if (!window.shareCurrentInvoiceWhatsApp) {
+    window.shareCurrentInvoiceWhatsApp = shareCurrentInvoiceWhatsApp;
   }
 
   window.refreshInvoiceStudio = function () {

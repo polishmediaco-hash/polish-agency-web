@@ -3196,10 +3196,10 @@
             Print / PDF
           </button>
 
-          <!-- Mobile 1-Tap Share to WhatsApp -->
-          <button type="button" class="btn-primary-action btn-share-wa" id="btnShareWhatsApp" onclick="shareCurrentInvoiceWhatsApp()" style="font-size: 11.5px; padding: 5px 14px; height: 28px; display: inline-flex; align-items: center; gap: 6px; background: rgba(37, 211, 102, 0.2); border: 1px solid rgba(37, 211, 102, 0.4); color: #25D366;" title="Share Invoice to Client via WhatsApp">
+          <!-- 1-Tap Share to WhatsApp with Attached PDF -->
+          <button type="button" class="btn-primary-action btn-share-wa" id="btnShareWhatsApp" onclick="shareCurrentInvoiceWhatsApp()" style="font-size: 11.5px; padding: 5px 14px; height: 28px; display: inline-flex; align-items: center; gap: 6px;" title="Share Invoice with Attached PDF via WhatsApp">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-            <span>Share WA</span>
+            <span>WhatsApp PDF</span>
           </button>
         </div>
       </div>
@@ -3774,7 +3774,8 @@
 <!-- Supabase Web Client (~35KB vs ~175KB Firebase) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/studio/js/supabase-config.js?v=20260910_v2"></script>
-<script src="/js/invoice.js?v=3.5"></script>
+<script src="/js/html2pdf.bundle.min.js"></script>
+<script src="/js/invoice.js?v=3.6"></script>
 
 <script>
   let activeAdminKey = '';
@@ -4358,8 +4359,11 @@
     });
   }
 
-  // ── Share Invoice to Client via WhatsApp ──────────────────
+  // ── Share Invoice to Client via WhatsApp with Attached PDF ──
   async function shareCurrentInvoiceWhatsApp() {
+    if (window.PolishInvoice && typeof window.PolishInvoice.shareCurrentInvoiceWhatsApp === 'function') {
+      return await window.PolishInvoice.shareCurrentInvoiceWhatsApp();
+    }
     const invNumber = (document.getElementById('inputInvoiceNumber')?.value || 'POL-2026').trim();
     const clientName = (document.getElementById('inputClientName')?.value || 'Valued Partner').trim();
     const clientPhone = (document.getElementById('inputClientPhone')?.value || '').replace(/[^0-9]/g, '');

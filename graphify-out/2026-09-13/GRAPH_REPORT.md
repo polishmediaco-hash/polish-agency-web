@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 90 files · ~714,233 words
+- 90 files · ~714,322 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1025 nodes · 1692 edges · 74 communities (66 shown, 6 thin omitted)
+- 1026 nodes · 1696 edges · 74 communities (66 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e07d8dc6`
+- Built from commit: `e03c407c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -93,12 +93,12 @@
 2. `pushHistory()` - 36 edges
 3. `renderElement()` - 32 edges
 4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 21 edges
-5. `pushHistory()` - 19 edges
-6. `selectElement()` - 19 edges
-7. `getCanvasCenter()` - 16 edges
+5. `selectElement()` - 19 edges
+6. `pushHistory()` - 19 edges
+7. `setupToolbar()` - 17 edges
 8. `bindKeyboardShortcuts()` - 16 edges
-9. `renderInvoiceSheet()` - 15 edges
-10. `setupToolbar()` - 15 edges
+9. `getCanvasCenter()` - 16 edges
+10. `renderInvoiceSheet()` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `checkNewCalendlyMeetings()` --calls--> `notifyNewMeeting()`  [EXTRACTED]
@@ -367,14 +367,14 @@ Nodes (3): initKineticTypography(), isReducedMotion(), revealKineticTitle()
 
 ### Community 75 - "invoice.js"
 Cohesion: 0.16
-Nodes (37): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), cleanContactName(), closeArchiveDrawer(), computeTotals(), escapeHTML(), fallbackCopy() (+29 more)
+Nodes (38): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), cleanContactName(), closeArchiveDrawer(), computeTotals(), escapeHTML(), fallbackCopy() (+30 more)
 
 ### Community 76 - "POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)"
 Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
 ## Knowledge Gaps
-- **357 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+352 more)
+- **357 isolated node(s):** `author`, `description`, `puppeteer`, `license`, `main` (+352 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 434 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -382,12 +382,12 @@ Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Prof
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `generate-social-avatars.js` to `package.json`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
+- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **What connects `author`, `description`, `puppeteer` to the rest of the system?**
   _357 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._

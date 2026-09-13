@@ -329,6 +329,42 @@ body.invoice-studio-body {
   box-shadow: 0 3px 10px rgba(226, 199, 153, 0.35);
 }
 
+/* WhatsApp Share Button & Animation */
+.btn-share-wa {
+  background: rgba(37, 211, 102, 0.16) !important;
+  border: 1px solid rgba(37, 211, 102, 0.45) !important;
+  color: #25D366 !important;
+  box-shadow: 0 1px 3px rgba(37, 211, 102, 0.15) !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-share-wa:hover {
+  background: rgba(37, 211, 102, 0.28) !important;
+  border-color: rgba(37, 211, 102, 0.7) !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3) !important;
+  transform: translateY(-1px);
+}
+
+.btn-share-wa:active {
+  transform: translateY(0);
+}
+
+.btn-share-wa:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+@keyframes waSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.wa-spin {
+  animation: waSpin 0.75s linear infinite;
+  display: inline-block;
+  transform-origin: center center;
+}
+
 .btn-icon-ghost {
   background: transparent;
   border: 1px solid var(--studio-border);

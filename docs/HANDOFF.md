@@ -652,6 +652,24 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
 5. ✅ **Production Deployment**:
    - Deployed live to Vercel production (`https://polishmediaco.com/admin`).
 
+### Sprint 21: Invoicing Atelier — WhatsApp PDF Attachment Engine & Mobile Web Share Level 2 (Completed September 2026)
+1. ✅ **Problem Solved**:
+   - The user noted that the WhatsApp invoice share button was previously plain text only; it needed to attach an actual high-res PDF invoice directly to WhatsApp.
+2. ✅ **Architecture & Implementation**:
+   - **Zero Server Overhead**: Embedded client-side vector engine using `html2pdf.bundle.min.js` (885 KB local bundle) to render `#invoiceSheet` at 2x scale directly to an A4 PDF blob without heavy headless Chrome dependencies on Vercel.
+   - **Mobile Web Share Level 2 (`navigator.share`)**: On mobile devices (iOS Safari / Android Chrome / PWA), checks `navigator.canShare({ files: [pdfFile] })` and triggers native share sheet with the actual PDF document attached directly into WhatsApp.
+   - **Desktop Fallback (Download + WhatsApp Web)**: On desktop browsers, automatically downloads the formatted PDF `POLISH-Invoice-[Serial]-[Client].pdf` and opens WhatsApp Web (`https://wa.me/...`) with prefilled client and invoice details.
+   - **Interactive Loading States**: Replaced static buttons with kinetic `waSpin` loading indicator (`Building PDF...`) and concurrency locks to prevent double-submission.
+   - **Unified Engine**: Integrated into both Admin Hub Invoicing Atelier (`public/admin.html`) and Standalone Invoicing Studio (`public/invoice.html`).
+   - **Service Worker Offline Cache**: Added `/js/html2pdf.bundle.min.js` to `public/sw-admin.js` shell and bumped cache to `polish-admin-v1.5`.
+3. ✅ **Rigorous Automated Testing**:
+   - Validated JS syntax across all modified modules (`invoice.js`, `sw-admin.js`, `html2pdf.bundle.min.js`).
+   - Executed headless Puppeteer E2E tests validating:
+     - Desktop download & URL redirect flow.
+     - Mobile Web Share Level 2 payload verification (188 KB high-res PDF attachment verified).
+     - Standalone invoice view parity (`/invoice`).
+   - All tests passed 100%.
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat

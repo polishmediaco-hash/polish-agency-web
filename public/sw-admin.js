@@ -3,14 +3,15 @@
  * Architecture: Instant Cache-First Assets + Network-First APIs with Snapshot Fallback
  */
 
-const CACHE_NAME = 'polish-admin-v1.4';
+const CACHE_NAME = 'polish-admin-v1.5';
 const APP_SHELL = [
   '/admin',
   '/assets/favicon.svg',
   '/assets/logo-gold-mark.svg',
   '/assets/logo-gold.svg',
   '/assets/logo-dark.svg',
-  '/css/invoice.css?v=3.5',
+  '/css/invoice.css',
+  '/js/html2pdf.bundle.min.js',
   '/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png',
   '/manifest-admin.json'
 ];

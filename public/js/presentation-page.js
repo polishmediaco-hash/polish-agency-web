@@ -12,21 +12,21 @@
     client: 'Celestia Cosmetics',
     name: 'Yasmine',
     board: 'polish-cosmetics-launch',
-    title: 'Haute Formulation & DTC Growth Architecture',
-    // High-prestige default showcase recording (Unlisted YouTube ID or MP4)
-    // You can customize anytime via ?video=... or the video switcher modal
-    video: 'dQw4w9WgXcQ', // Safe fallback placeholder ID
+    title: 'Strategic Walkthrough & Board Review',
+    // Default video recording ID (Unlisted YouTube ID or MP4)
+    video: '', // Safe clean default; provided via ?video=
     chapters: [
-      { time: '00:00', seconds: 0, title: '01 • Executive Diagnostic & Market Positioning' },
-      { time: '03:15', seconds: 195, title: '02 • DTC Revenue Velocity & CAC Compression' },
-      { time: '06:40', seconds: 400, title: '03 • Haute Creative & UGC Performance Matrix' },
-      { time: '09:50', seconds: 590, title: '04 • 90-Day Execution Roadmap & Retainer Scope' }
+      { time: '00:00', seconds: 0, title: '01 • Diagnostic & Market Positioning' },
+      { time: '03:15', seconds: 195, title: '02 • Revenue Velocity & CAC Compression' },
+      { time: '06:40', seconds: 400, title: '03 • Creative & UGC Performance Matrix' },
+      { time: '09:50', seconds: 590, title: '04 • 90-Day Roadmap & Retainer Scope' }
     ]
   };
 
   let activePlayerType = null;
   let ytPlayer = null;
   let nativeVideoEl = null;
+  let playbackPollTimer = null;
 
   // ── 1. URL Parameter Parser ──────────────────────────────────────────────────
   function getParams() {
@@ -35,7 +35,7 @@
     const name = (params.get('name') || DEFAULTS.name).trim();
     const board = (params.get('board') || params.get('boardId') || DEFAULTS.board).trim();
     const title = (params.get('title') || DEFAULTS.title).trim();
-    const video = (params.get('video') || params.get('v') || '').trim();
+    const video = (params.get('video') || params.get('v') || DEFAULTS.video).trim();
 
     return { client, name, board, title, video };
   }
@@ -161,6 +161,9 @@
         </video>
       `;
       nativeVideoEl = document.getElementById('presNativeVideo');
+      if (nativeVideoEl) {
+        nativeVideoEl.addEventListener('timeupdate', syncActiveChapterWithTime);
+      }
     } else {
       // Placeholder / No Video Specified
       container.innerHTML = `
@@ -169,13 +172,59 @@
             <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           </div>
           <h3 class="pres-placeholder-title">No Video Recording Linked</h3>
-          <p class="pres-placeholder-desc">Click here or use the <strong>Customize Walkthrough</strong> button below to attach your Unlisted YouTube recording or video URL.</p>
+          <p class="pres-placeholder-desc">Click here or append <code>?video=YOUR_YOUTUBE_ID</code> to attach your strategy walkthrough.</p>
         </div>
       `;
     }
   }
 
-  // ── 4. YouTube API Integration (For Chapters Seeking) ───────────────────────
+  // ── 4. YouTube API Integration (For Chapters Seeking & Sync) ────────────────
+  function startProgressSync() {
+    if (playbackPollTimer) clearInterval(playbackPollTimer);
+    playbackPollTimer = setInterval(syncActiveChapterWithTime, 500);
+  }
+
+  function stopProgressSync() {
+    if (playbackPollTimer) {
+      clearInterval(playbackPollTimer);
+      playbackPollTimer = null;
+    }
+  }
+
+  function syncActiveChapterWithTime() {
+    let currentTime = 0;
+    if (activePlayerType === 'youtube' && ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
+      try {
+        currentTime = ytPlayer.getCurrentTime();
+      } catch (_) { return; }
+    } else if (activePlayerType === 'native' && nativeVideoEl) {
+      currentTime = nativeVideoEl.currentTime;
+    } else {
+      return;
+    }
+
+    const chapters = DEFAULTS.chapters;
+    let activeIndex = 0;
+    for (let i = 0; i < chapters.length; i++) {
+      if (currentTime >= chapters[i].seconds) {
+        activeIndex = i;
+      } else {
+        break;
+      }
+    }
+
+    const pills = document.querySelectorAll('.pres-chapter-pill');
+    pills.forEach((p, idx) => {
+      if (idx === activeIndex) {
+        p.classList.add('is-active');
+        p.setAttribute('aria-current', 'true');
+      } else {
+        p.classList.remove('is-active');
+        p.removeAttribute('aria-current');
+      }
+    });
+  }
+
   function initYouTubeApi() {
     if (window.YT && window.YT.Player) {
       onYouTubeIframeAPIReady();
@@ -196,7 +245,14 @@
       try {
         ytPlayer = new window.YT.Player('ytIframePlayer', {
           events: {
-            'onReady': () => console.log('[POLISH Video] YouTube Player API Ready')
+            'onReady': () => console.log('[POLISH Video] YouTube Player API Ready'),
+            'onStateChange': (e) => {
+              if (window.YT && e.data === window.YT.PlayerState.PLAYING) {
+                startProgressSync();
+              } else if (window.YT && (e.data === window.YT.PlayerState.PAUSED || e.data === window.YT.PlayerState.ENDED)) {
+                stopProgressSync();
+              }
+            }
           }
         });
       } catch (err) {
@@ -228,9 +284,13 @@
     }
 
     // Highlight active chapter pill
-    document.querySelectorAll('.pres-chapter-pill').forEach(pill => pill.classList.remove('is-active'));
+    document.querySelectorAll('.pres-chapter-pill').forEach(pill => {
+      pill.classList.remove('is-active');
+      pill.removeAttribute('aria-current');
+    });
     if (pillElement) {
       pillElement.classList.add('is-active');
+      pillElement.setAttribute('aria-current', 'true');
     }
   }
 
@@ -243,6 +303,7 @@
       const pill = document.createElement('button');
       pill.type = 'button';
       pill.className = `pres-chapter-pill ${idx === 0 ? 'is-active' : ''}`;
+      if (idx === 0) pill.setAttribute('aria-current', 'true');
       pill.innerHTML = `
         <span class="pres-chapter-time">${ch.time}</span>
         <span>${ch.title}</span>
@@ -259,15 +320,16 @@
 
     // Use local client viewer /studio/view.html?id=...
     const boardUrl = `/studio/view.html?id=${encodeURIComponent(boardId)}`;
-    wrap.innerHTML = `
-      <iframe 
-        id="boardIframe"
-        class="pres-board-iframe"
-        src="${boardUrl}"
-        title="POLISH Board Studio Whiteboard"
-        allow="fullscreen">
-      </iframe>
-    `;
+    let iframe = document.getElementById('boardIframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'boardIframe';
+      iframe.className = 'pres-board-iframe';
+      iframe.title = 'POLISH Board Studio Whiteboard';
+      iframe.allow = 'fullscreen';
+      wrap.appendChild(iframe);
+    }
+    iframe.src = boardUrl;
   }
 
   function toggleBoardFullscreen() {
@@ -363,11 +425,39 @@
     mountVideo(parseVideoSource(state.video));
     mountBoard(state.board);
 
+    // Admin Access Gating for Link Customization Tool
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdmin = urlParams.get('admin') === '1' || urlParams.get('edit') === '1';
+    const btnConfig = document.getElementById('btnOpenConfig');
+    if (btnConfig) {
+      btnConfig.style.display = isAdmin ? 'inline-flex' : 'none';
+    }
+
+    // Board Interactive Overlay Barrier (Prevents Scroll Hijacking)
+    const boardOverlay = document.getElementById('boardOverlay');
+    const btnActivateBoard = document.getElementById('btnActivateBoard');
+    if (btnActivateBoard && boardOverlay) {
+      btnActivateBoard.addEventListener('click', (e) => {
+        e.stopPropagation();
+        boardOverlay.classList.add('is-active');
+      });
+      boardOverlay.addEventListener('click', () => {
+        boardOverlay.classList.add('is-active');
+      });
+    }
+
+    // Clicking outside the board re-locks pointer events
+    document.addEventListener('click', (e) => {
+      const stage = document.getElementById('boardStage');
+      if (stage && !stage.contains(e.target) && boardOverlay) {
+        boardOverlay.classList.remove('is-active');
+      }
+    });
+
     // Event Bindings
     const btnCopyLink = document.getElementById('btnCopyShareLink');
     if (btnCopyLink) btnCopyLink.addEventListener('click', copyClientShareLink);
 
-    const btnConfig = document.getElementById('btnOpenConfig');
     if (btnConfig) btnConfig.addEventListener('click', openConfigModal);
 
     const btnCloseModal = document.getElementById('btnCloseModal');
@@ -376,13 +466,21 @@
     const btnSaveModal = document.getElementById('btnSaveModal');
     if (btnSaveModal) btnSaveModal.addEventListener('click', saveConfigModal);
 
+    const configModal = document.getElementById('configModal');
+    if (configModal) {
+      configModal.addEventListener('click', (e) => {
+        if (e.target === configModal) closeConfigModal();
+      });
+    }
+
     const btnFullscreen = document.getElementById('btnToggleFullscreen');
     if (btnFullscreen) btnFullscreen.addEventListener('click', toggleBoardFullscreen);
 
-    // Escape closes modal or fullscreen
+    // Escape closes modal, fullscreen, or locks board
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeConfigModal();
+        if (boardOverlay) boardOverlay.classList.remove('is-active');
         const stage = document.getElementById('boardStage');
         if (stage && stage.classList.contains('is-fullscreen')) {
           toggleBoardFullscreen();

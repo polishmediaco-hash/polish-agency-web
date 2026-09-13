@@ -48,19 +48,20 @@
 
     <div class="pres-header-center">
       <div class="pres-confidential-badge">
-        <span class="pres-pulse-beacon"></span>
+        <span class="pres-pulse-beacon" aria-hidden="true"></span>
         <span>Confidential Strategy Briefing</span>
       </div>
     </div>
 
     <div class="pres-header-actions">
-      <a href="https://wa.me/213662417761" class="pres-btn-header-wa js-btn-wa" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/213662417761" class="pres-btn-header-wa js-btn-wa" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Founder">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.981.534 1.895.814 2.8.814 3.182 0 5.768-2.587 5.768-5.766.001-3.181-2.586-5.766-5.772-5.766zm9.969 5.766c0 5.485-4.464 9.949-9.969 9.949-1.637 0-3.176-.402-4.536-1.109l-5.495 1.442 1.468-5.364c-.815-1.424-1.282-3.076-1.282-4.838 0-5.485 4.465-9.949 9.969-9.949 5.505 0 9.969 4.464 9.969 9.949z"/></svg>
-        <span>WhatsApp Founder</span>
+        <span class="pres-wa-text">WhatsApp Founder</span>
       </a>
-      <a href="/book" class="pres-btn-header-cta js-btn-book">
-        <span>Schedule Discovery Call</span>
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <a href="/book" class="pres-btn-header-cta js-btn-book" aria-label="Schedule Kickoff Call">
+        <span class="pres-btn-text-full">Schedule Kickoff Call</span>
+        <span class="pres-btn-text-short">Book Call ↗</span>
+        <svg class="pres-btn-arrow-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
   </header>
@@ -73,14 +74,14 @@
     <!-- Hero Title Cluster -->
     <section class="pres-hero-intro">
       <div class="pres-super-tag">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
         <span>Bespoke DTC Beauty Growth Architecture</span>
       </div>
       <h1 class="pres-main-heading">
         Strategic Board Walkthrough <span class="pres-serif-italic">for</span> <span id="heroClientName">Celestia Cosmetics</span>
       </h1>
       <p class="pres-subtitle-desc" id="heroPresentationTitle">
-        Haute Formulation & DTC Growth Architecture — An executive walkthrough recording and interactive strategy whiteboard prepared exclusively for your brand.
+        Strategic Walkthrough &amp; Board Review — An executive walkthrough recording and interactive strategy whiteboard prepared exclusively for your brand.
       </p>
     </section>
 
@@ -126,11 +127,11 @@
           <span class="pres-board-title-text" id="boardHeaderTitle">Strategic Whiteboard Blueprint</span>
         </div>
         <div class="pres-board-actions">
-          <button type="button" class="pres-board-action-btn" id="btnToggleFullscreen" title="Toggle Full Screen View">
+          <button type="button" class="pres-board-action-btn" id="btnToggleFullscreen" title="Toggle Full Screen View" aria-label="Toggle Full Screen View">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
             <span>Full Screen Board</span>
           </button>
-          <a href="#" class="pres-board-action-btn" id="btnOpenStudio" target="_blank" rel="noopener noreferrer" title="Open directly in Studio">
+          <a href="#" class="pres-board-action-btn" id="btnOpenStudio" target="_blank" rel="noopener noreferrer" title="Open directly in Studio" aria-label="Open directly in Studio">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <span>Open in Studio</span>
           </a>
@@ -138,6 +139,12 @@
       </div>
 
       <div class="pres-board-iframe-wrap" id="boardIframeWrapper">
+        <div class="pres-board-overlay" id="boardOverlay">
+          <button type="button" class="pres-btn-board-activate" id="btnActivateBoard" aria-label="Click to interact with interactive board">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+            <span>Click to Interact with Board</span>
+          </button>
+        </div>
         <!-- Live Board Studio Iframe Mounted Dynamically -->
       </div>
     </section>
@@ -207,9 +214,9 @@
   <!-- ========================================================== -->
   <!-- 7. QUICK VIDEO SWITCHER / SHARE MODAL                      -->
   <!-- ========================================================== -->
-  <div class="pres-config-modal" id="configModal">
+  <div class="pres-config-modal" id="configModal" role="dialog" aria-modal="true" aria-labelledby="configModalTitle">
     <div class="pres-config-card">
-      <h3 class="pres-config-title">Customize Walkthrough Link</h3>
+      <h3 class="pres-config-title" id="configModalTitle">Customize Walkthrough Link</h3>
       <p class="pres-config-desc">
         Enter your Unlisted YouTube video link, client brand name, and board ID. The page updates instantly and creates a custom shareable link.
       </p>

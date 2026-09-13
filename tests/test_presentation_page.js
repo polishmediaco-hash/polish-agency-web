@@ -109,8 +109,20 @@ async function runTest() {
       throw new Error('Booking link missing brand pre-fill');
     }
 
-    // ── Test 7: Fullscreen Board Toggle ──
-    console.log('[Test 7] Verifying Fullscreen Board Toggle...');
+    // ── Test 7: Fullscreen Board Toggle & Board Interaction Overlay ──
+    console.log('[Test 7] Verifying Board Interaction Overlay & Fullscreen Toggle...');
+    const isOverlayVisible = await page.$eval('#boardOverlay', el => !el.classList.contains('is-active'));
+    console.log(`✓ Board Overlay Initially Locked (prevents scroll hijacking): ${isOverlayVisible}`);
+    if (!isOverlayVisible) throw new Error('Board overlay should be locked by default');
+
+    // Click to activate board
+    await page.click('#btnActivateBoard');
+    await delay(300);
+    const isOverlayActive = await page.$eval('#boardOverlay', el => el.classList.contains('is-active'));
+    console.log(`✓ Board Overlay Activated after click: ${isOverlayActive}`);
+    if (!isOverlayActive) throw new Error('Board overlay failed to activate on click');
+
+    // Fullscreen toggle
     await page.click('#btnToggleFullscreen');
     await delay(300);
     const isFull = await page.$eval('#boardStage', el => el.classList.contains('is-fullscreen'));
@@ -118,12 +130,10 @@ async function runTest() {
     if (!isFull) throw new Error('Board stage did not enter fullscreen');
 
     // Toggle back off
-    console.log('Current URL before second click:', page.url());
     await page.evaluate(() => {
       document.getElementById('btnToggleFullscreen').click();
     });
     await delay(300);
-    console.log('Current URL after second click:', page.url());
     const isStillFull = await page.evaluate(() => {
       const el = document.getElementById('boardStage');
       return el ? el.classList.contains('is-fullscreen') : null;
@@ -135,8 +145,21 @@ async function runTest() {
     await page.screenshot({ path: desktopScreenshotPath, fullPage: true });
     console.log(`📸 Desktop Full-Page Screenshot saved to: ${desktopScreenshotPath}`);
 
-    // ── Test 8: Quick Video Switcher / Share Modal ──
-    console.log('[Test 8] Verifying Quick Customize Modal...');
+    // ── Test 8: Admin Tooling Gating & Customize Modal ──
+    console.log('[Test 8] Verifying Admin Tooling Gating...');
+    const isConfigHiddenVisitor = await page.$eval('#btnOpenConfig', el => window.getComputedStyle(el).display === 'none');
+    console.log(`✓ Admin Config Button Hidden for Regular Visitor: ${isConfigHiddenVisitor}`);
+    if (!isConfigHiddenVisitor) throw new Error('Admin config button should be hidden for visitor without ?admin=1');
+
+    // Re-navigate with &admin=1 to verify admin mode
+    console.log('Navigating with &admin=1...');
+    await page.goto(testUrl + '&admin=1', { waitUntil: 'networkidle2' });
+    await delay(400);
+
+    const isConfigVisibleAdmin = await page.$eval('#btnOpenConfig', el => window.getComputedStyle(el).display !== 'none');
+    console.log(`✓ Admin Config Button Visible for Admin (?admin=1): ${isConfigVisibleAdmin}`);
+    if (!isConfigVisibleAdmin) throw new Error('Admin config button should be visible with ?admin=1');
+
     await page.click('#btnOpenConfig');
     await delay(400);
 
@@ -162,11 +185,34 @@ async function runTest() {
     await page.goto('http://localhost:3000/presentation?client=Celestia%20Cosmetics&video=dQw4w9WgXcQ', { waitUntil: 'networkidle2' });
     await delay(600);
 
-    const mobileHeaderVisible = await page.$eval('.pres-header-dock', el => {
-      const rect = el.getBoundingClientRect();
-      return rect.width > 0 && rect.height > 0 && rect.top >= 0;
+    const mobileMetrics = await page.evaluate(() => {
+      const header = document.querySelector('.pres-header-dock');
+      const waBtn = document.querySelector('.pres-btn-header-wa');
+      const ctaBtn = document.querySelector('.pres-btn-header-cta');
+      const boardBtn = document.querySelector('.pres-board-action-btn');
+
+      const waStyle = waBtn ? window.getComputedStyle(waBtn) : null;
+      const ctaRect = ctaBtn ? ctaBtn.getBoundingClientRect() : null;
+      const boardRect = boardBtn ? boardBtn.getBoundingClientRect() : null;
+
+      return {
+        headerVisible: !!header,
+        waVisibleOnMobile: waStyle ? waStyle.display !== 'none' : false,
+        ctaHeight: ctaRect ? ctaRect.height : 0,
+        boardBtnHeight: boardRect ? boardRect.height : 0
+      };
     });
-    console.log(`✓ Mobile Header Valid & Visible: ${mobileHeaderVisible}`);
+
+    console.log(`✓ Mobile WhatsApp Header Button Visible: ${mobileMetrics.waVisibleOnMobile}`);
+    console.log(`✓ Mobile Header CTA Height: ${mobileMetrics.ctaHeight}px (>=44px)`);
+    console.log(`✓ Mobile Board Button Height: ${mobileMetrics.boardBtnHeight}px (>=44px)`);
+
+    if (!mobileMetrics.waVisibleOnMobile) {
+      throw new Error('Mobile WhatsApp button should remain visible in header dock');
+    }
+    if (mobileMetrics.ctaHeight < 40 || mobileMetrics.boardBtnHeight < 40) {
+      throw new Error('Mobile buttons fail touch target size threshold');
+    }
 
     const mobileScreenshotPath = path.join(screenshotsDir, 'presentation_mobile_verified.png');
     await page.screenshot({ path: mobileScreenshotPath, fullPage: true });

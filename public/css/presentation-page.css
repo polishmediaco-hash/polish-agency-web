@@ -1061,105 +1061,6 @@ video.pres-native-video {
   margin: 0 auto 2rem;
 }
 
-.pres-gate-input-box {
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
-  text-align: left;
-}
-
-.pres-gate-label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--brand-platinum);
-  margin-bottom: 8px;
-}
-
-.pres-gate-input-row {
-  display: flex;
-  align-items: center;
-  background: rgba(10, 8, 7, 0.85);
-  border: 1px solid rgba(226, 199, 153, 0.25);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pres-gate-input-row:focus-within {
-  border-color: var(--brand-gold);
-  box-shadow: 0 0 0 2px rgba(226, 199, 153, 0.2);
-}
-
-.pres-gate-prefix {
-  padding: 0 10px 0 14px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-  user-select: none;
-}
-
-.pres-gate-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: #FFFFFF;
-  padding: 10px 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.84rem;
-  outline: none;
-  min-width: 0;
-}
-
-.pres-gate-submit-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 16px;
-  height: 42px;
-  background: var(--brand-gold);
-  color: #080706;
-  border: none;
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  white-space: nowrap;
-}
-
-.pres-gate-submit-btn:hover {
-  background: #ecd5ad;
-}
-
-.pres-gate-divider {
-  display: flex;
-  align-items: center;
-  margin: 1.5rem 0;
-  color: var(--text-muted);
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.pres-gate-divider::before,
-.pres-gate-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.pres-gate-divider span {
-  padding: 0 14px;
-}
-
 .pres-gate-actions {
   display: flex;
   gap: 12px;
@@ -1182,9 +1083,6 @@ video.pres-native-video {
   }
   .pres-gate-title {
     font-size: 1.8rem;
-  }
-  .pres-gate-prefix {
-    display: none;
   }
   .pres-gate-actions {
     flex-direction: column;

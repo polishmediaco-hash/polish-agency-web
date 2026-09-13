@@ -799,7 +799,24 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - "Save Proposal to Database" button persists directly via `POST /api/presentations` and renders a live, theme-consistent proposals table.
 
 5. ✅ **100% Automated E2E Test Suite**:
-   - `node tests/test_presentation_page.js` runs 10 comprehensive end-to-end tests covering REST CRUD, bespoke proposal hydration, video stage, chapter navigation, board stage, confidential gate, 404 gate, admin link builder, and mobile responsiveness. All 10 tests passed (100%).
+   - `node tests/test_presentation_page.js` runs 10 comprehensive end-to-end tests covering REST CRUD, bespoke proposal hydration, video stage, chapter navigation, board stage, 404 gate, admin link builder, and mobile responsiveness. All 10 tests passed (100%).
+
+### Sprint 28: Complete Deletion of Legacy `/presentation` Link & Gate Purge (Completed September 2026)
+1. ✅ **Old `/presentation` Link Eradication (`server/index.js`)**:
+   - Completely deleted the old `/presentation` route and all legacy presentation paths (`/presentation`, `/presentation.html`, `/presentation/:slug`, `/briefing`, `/briefing/:id`, `/review`).
+   - Any visits to `/presentation` or bare `/p` now instantly 301 redirect to the homepage (`/`).
+   - Only dedicated, co-branded vanity proposal URLs (`/p/:slug` and `/proposal/:slug`) serve the client proposal engine.
+
+2. ✅ **Confidential Gate & Nonsense Form Purge (`public/presentation.html`, `public/js/presentation-page.js`, `public/css/presentation-page.css`)**:
+   - Completely purged `#presConfidentialGate`, the security badge, password/brand-code input form, and surrounding fluff.
+   - If accessed without a slug in JavaScript, it performs an instant client redirect (`window.location.replace('/')`) with zero fluff.
+   - Cleaned up obsolete gate styles and form input CSS rules.
+
+3. ✅ **Admin Cleanliness (`public/admin.html`)**:
+   - Removed old "Client View" button (`/presentation`) from admin top navigation actions.
+   - Removed "Executive Client Presentation Portal" link from Studio settings, replacing it with an internal tab switch (`switchNavTab('presentations')`).
+   - Removed "Live Client View" header button from Presentations tab.
+   - Updated link preview button to require a valid generated proposal slug before navigating.
 
 ---
 

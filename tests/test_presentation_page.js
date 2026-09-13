@@ -128,20 +128,20 @@ async function runTest() {
     const heroTitle = await page.$eval('#heroPresentationTitle', el => el.textContent.trim());
     const signoffClient = await page.$eval('#signoffClientName', el => el.textContent.trim());
     const isContentVisible = await page.$eval('#presentationContent', el => el.style.display !== 'none');
-    const isConfGateHidden = await page.$eval('#presConfidentialGate', el => el.style.display === 'none');
+    const isLoadingGateHidden = await page.$eval('#presLoadingGate', el => el.style.display === 'none');
 
     console.log(`✓ Header Client: "${headerClient}"`);
     console.log(`✓ Hero Client: "${heroClient}"`);
     console.log(`✓ Hero Title: "${heroTitle}"`);
     console.log(`✓ Signoff Client: "${signoffClient}"`);
     console.log(`✓ Proposal Content Visible: ${isContentVisible}`);
-    console.log(`✓ Confidential Gate Hidden: ${isConfGateHidden}`);
+    console.log(`✓ Loading Gate Hidden: ${isLoadingGateHidden}`);
 
     if (headerClient !== 'Celestia Cosmetics' || heroClient !== 'Celestia Cosmetics') {
       throw new Error('Client name mismatch in DOM');
     }
-    if (!isContentVisible || !isConfGateHidden) {
-      throw new Error('Proposal content should be visible and gates hidden');
+    if (!isContentVisible || !isLoadingGateHidden) {
+      throw new Error('Proposal content should be visible and loading gate hidden');
     }
 
     // ── Test 3: Video Stage & YouTube Iframe Mounting ──
@@ -184,21 +184,16 @@ async function runTest() {
     await page.click('#btnToggleFullscreen');
     await delay(200);
 
-    // ── Test 6: Bare /presentation Confidential Portal Access Gate ──
-    console.log('\n[Test 6] Testing Bare /presentation URL Confidential Access Gate...');
+    // ── Test 6: Verify Old /presentation Link Redirects to Homepage ──
+    console.log('\n[Test 6] Testing Old /presentation URL Complete Deletion & Redirect...');
     await page.goto('http://127.0.0.1:3000/presentation', { waitUntil: 'domcontentloaded', timeout: 15000 });
-    await delay(600);
+    await delay(500);
 
-    const gateVisible = await page.$eval('#presConfidentialGate', el => el.style.display !== 'none');
-    const contentHidden = await page.$eval('#presentationContent', el => el.style.display === 'none');
-    const gateTitle = await page.$eval('#presConfidentialGate .pres-gate-title', el => el.textContent.trim());
+    const resolvedUrl = page.url().replace(/\/+$/, '');
+    console.log(`✓ Resolved URL after visiting /presentation: "${resolvedUrl}"`);
 
-    console.log(`✓ Confidential Gate Visible: ${gateVisible}`);
-    console.log(`✓ Content Hidden on Bare URL: ${contentHidden}`);
-    console.log(`✓ Gate Title: "${gateTitle}"`);
-
-    if (!gateVisible || !contentHidden) {
-      throw new Error('Bare /presentation must show confidential gate and hide mock content');
+    if (resolvedUrl !== 'http://127.0.0.1:3000') {
+      throw new Error(`Old /presentation must redirect completely to homepage, got: "${resolvedUrl}"`);
     }
 
     // ── Test 7: Invalid Slug /p/unknown-brand 404 Gate ──

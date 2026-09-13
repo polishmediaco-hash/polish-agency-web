@@ -186,9 +186,9 @@
     "semantic_hash": "acfe4ba5bf5cca5ee6948950496ce55a"
   },
   "server/index.js": {
-    "mtime": 1789331173.0349934,
-    "seen": 1789331709.3848681,
-    "ast_hash": "8894db1263e78bfef175b50bd9a46f34",
+    "mtime": 1789331961.7570224,
+    "seen": 1789332093.51439,
+    "ast_hash": "f3dc391a3e9789a44fda030ac3074252",
     "semantic_hash": ""
   },
   "server/middleware/auth.js": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789331684.2377148,
-    "seen": 1789331709.385354,
-    "ast_hash": "d86dc3911f82d06a17fc15bc52ae7d3e",
+    "mtime": 1789332027.8172598,
+    "seen": 1789332093.514912,
+    "ast_hash": "596a8464ee388d4f2f589d8cab7e5ce4",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789331723.121248,
+    "seen": 1789331865.266401,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -2064,21 +2064,21 @@
     "semantic_hash": ""
   },
   "public/js/presentation-page.js": {
-    "mtime": 1789331260.0496538,
-    "seen": 1789331709.3844821,
-    "ast_hash": "16ec809c2e29aa4eee73154843c66b4c",
+    "mtime": 1789332075.5411682,
+    "seen": 1789332093.514009,
+    "ast_hash": "49c395650c1b6ed9ccf31a43de9c9442",
     "semantic_hash": ""
   },
   "tests/test_presentation_page.js": {
-    "mtime": 1789331373.1718376,
-    "seen": 1789331709.384945,
-    "ast_hash": "53d30dae7ae26b7b91054c985ded2e32",
+    "mtime": 1789332046.4283078,
+    "seen": 1789332093.5144918,
+    "ast_hash": "8ec0200120f681559f0c00f49d8f2bdf",
     "semantic_hash": ""
   },
   "public/presentation.html": {
-    "mtime": 1789331218.3841968,
-    "seen": 1789331709.385495,
-    "ast_hash": "626f6ec8e9e1e86d1a6d142b798fa344",
+    "mtime": 1789331968.2641373,
+    "seen": 1789332093.515059,
+    "ast_hash": "f0cd9cb318b58551dacdd32eb5b7ef92",
     "semantic_hash": ""
   },
   ".agents/rules/no-filler.md": {
@@ -2100,8 +2100,8 @@
     "semantic_hash": ""
   },
   "server/db/presentations.json": {
-    "mtime": 1789331851.4886646,
-    "seen": 1789331862.214986,
+    "mtime": 1789332079.5268133,
+    "seen": 1789332093.51439,
     "ast_hash": "45764e44470d64a67e83922009d73f99",
     "semantic_hash": ""
   }

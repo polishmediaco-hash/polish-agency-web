@@ -1,11 +1,11 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 96 files · ~729,427 words
+- 96 files · ~729,437 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1090 nodes · 1783 edges · 78 communities (70 shown, 6 thin omitted)
+- 1093 nodes · 1791 edges · 78 communities (70 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
@@ -38,7 +38,7 @@
 - dependencies
 - drawing-engine.js
 - presentation.js
-- api.js
+- supabase.js
 - app.js
 - minimap.js
 - whatsapp.js
@@ -97,12 +97,12 @@
 2. `pushHistory()` - 36 edges
 3. `renderElement()` - 32 edges
 4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 28 edges
-5. `selectElement()` - 19 edges
-6. `pushHistory()` - 19 edges
+5. `pushHistory()` - 19 edges
+6. `selectElement()` - 19 edges
 7. `renderInvoiceSheet()` - 18 edges
 8. `setupToolbar()` - 18 edges
-9. `bindKeyboardShortcuts()` - 16 edges
-10. `getCanvasCenter()` - 16 edges
+9. `getCanvasCenter()` - 16 edges
+10. `bindKeyboardShortcuts()` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `checkNewCalendlyMeetings()` --calls--> `notifyNewMeeting()`  [EXTRACTED]
@@ -197,9 +197,9 @@ Nodes (5): attachStrokeEvents(), bindEvents(), getSmoothSvgPath(), init(), rende
 Cohesion: 0.11
 Nodes (38): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+30 more)
 
-### Community 23 - "api.js"
-Cohesion: 0.09
-Nodes (17): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService, presentationsService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+9 more)
+### Community 23 - "supabase.js"
+Cohesion: 0.08
+Nodes (18): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService, presentationsService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+10 more)
 
 ### Community 24 - "app.js"
 Cohesion: 0.67
@@ -394,21 +394,21 @@ Cohesion: 0.33
 Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy Standard, 4. Output Structure, Zero-Fluff & Anti-Filler Rule
 
 ## Knowledge Gaps
-- **383 isolated node(s):** `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)`, `C. Creator & UGC Portal (`public/creators.html`)`, `D. Admin Portal & Live CMS (`public/admin.html`)` (+378 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 467 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **384 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+379 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 470 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+- **Why does `express` connect `boards.js` to `package.json`, `index.js`, `supabase.js`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
-  _High betweenness centrality (0.003) - this node is a cross-community bridge._
-- **What connects `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)` to the rest of the system?**
-  _383 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `supabase.js`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+- **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
+  _384 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

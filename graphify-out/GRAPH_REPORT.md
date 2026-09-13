@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 96 files · ~729,437 words
+- 96 files · ~729,077 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1093 nodes · 1791 edges · 78 communities (70 shown, 6 thin omitted)
+- 1092 nodes · 1790 edges · 78 communities (70 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a0a0395d`
+- Built from commit: `86bf2d75`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -218,7 +218,7 @@ Cohesion: 0.33
 Nodes (5): builds, crons, headers, rewrites, version
 
 ### Community 28 - "presentation-page.js"
-Cohesion: 0.20
+Cohesion: 0.22
 Nodes (16): escapeHtml(), extractSlugFromPath(), getParams(), hydratePage(), init(), initYouTubeApi(), mountBoard(), mountVideo() (+8 more)
 
 ### Community 30 - "4. Prioritized Refactoring Recommendations"
@@ -395,18 +395,18 @@ Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy S
 
 ## Knowledge Gaps
 - **384 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+379 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 470 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 469 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `supabase.js`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `supabase.js`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
   _384 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**

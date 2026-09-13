@@ -22,7 +22,7 @@
   "20": "dependencies",
   "21": "drawing-engine.js",
   "22": "presentation.js",
-  "23": "api.js",
+  "23": "supabase.js",
   "24": "app.js",
   "25": "minimap.js",
   "26": "whatsapp.js",

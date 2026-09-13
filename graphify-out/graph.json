@@ -3002,7 +3002,7 @@
       "file_type": "code",
       "norm_label": "getparams()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L56"
+      "source_location": "L52"
     },
     {
       "id": "public_js_presentation_page_hydratepage",
@@ -3014,7 +3014,7 @@
       "file_type": "code",
       "norm_label": "hydratepage()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L92"
+      "source_location": "L75"
     },
     {
       "id": "public_js_presentation_page_init",
@@ -3026,7 +3026,7 @@
       "file_type": "code",
       "norm_label": "init()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L408"
+      "source_location": "L391"
     },
     {
       "id": "public_js_presentation_page_inityoutubeapi",
@@ -3038,7 +3038,7 @@
       "file_type": "code",
       "norm_label": "inityoutubeapi()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L287"
+      "source_location": "L270"
     },
     {
       "id": "public_js_presentation_page_mountboard",
@@ -3050,7 +3050,7 @@
       "file_type": "code",
       "norm_label": "mountboard()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L377"
+      "source_location": "L360"
     },
     {
       "id": "public_js_presentation_page_mountvideo",
@@ -3062,7 +3062,7 @@
       "file_type": "code",
       "norm_label": "mountvideo()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L182"
+      "source_location": "L165"
     },
     {
       "id": "public_js_presentation_page_parsevideosource",
@@ -3074,7 +3074,7 @@
       "file_type": "code",
       "norm_label": "parsevideosource()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L149"
+      "source_location": "L132"
     },
     {
       "id": "public_js_presentation_page_renderchapters",
@@ -3086,7 +3086,7 @@
       "file_type": "code",
       "norm_label": "renderchapters()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L356"
+      "source_location": "L339"
     },
     {
       "id": "public_js_presentation_page_renderdeliverables",
@@ -3098,7 +3098,7 @@
       "file_type": "code",
       "norm_label": "renderdeliverables()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L136"
+      "source_location": "L119"
     },
     {
       "id": "public_js_presentation_page_seektotime",
@@ -3110,7 +3110,7 @@
       "file_type": "code",
       "norm_label": "seektotime()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L324"
+      "source_location": "L307"
     },
     {
       "id": "public_js_presentation_page_showgate",
@@ -3122,7 +3122,7 @@
       "file_type": "code",
       "norm_label": "showgate()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L68"
+      "source_location": "L64"
     },
     {
       "id": "public_js_presentation_page_startprogresssync",
@@ -3134,7 +3134,7 @@
       "file_type": "code",
       "norm_label": "startprogresssync()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L241"
+      "source_location": "L224"
     },
     {
       "id": "public_js_presentation_page_stopprogresssync",
@@ -3146,19 +3146,7 @@
       "file_type": "code",
       "norm_label": "stopprogresssync()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L246"
-    },
-    {
-      "id": "public_js_presentation_page_submitgatecode",
-      "label": "submitGateCode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "presentation-page.js",
-      "file_type": "code",
-      "norm_label": "submitgatecode()",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L80"
+      "source_location": "L229"
     },
     {
       "id": "public_js_presentation_page_syncactivechapterwithtime",
@@ -3170,7 +3158,7 @@
       "file_type": "code",
       "norm_label": "syncactivechapterwithtime()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L253"
+      "source_location": "L236"
     },
     {
       "id": "public_js_presentation_page_toggleboardfullscreen",
@@ -3182,7 +3170,7 @@
       "file_type": "code",
       "norm_label": "toggleboardfullscreen()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L394"
+      "source_location": "L377"
     },
     {
       "id": "public_js_cms_loaddynamiccontent",
@@ -14957,7 +14945,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L132",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -14969,7 +14957,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L409",
+      "source_location": "L392",
       "weight": 1.0
     },
     {
@@ -14981,7 +14969,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L413",
+      "source_location": "L396",
       "weight": 1.0
     },
     {
@@ -14993,7 +14981,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L435",
+      "source_location": "L418",
       "weight": 1.0
     },
     {
@@ -15005,7 +14993,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L436",
+      "source_location": "L419",
       "weight": 1.0
     },
     {
@@ -15017,7 +15005,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L437",
+      "source_location": "L420",
       "weight": 1.0
     },
     {
@@ -15029,7 +15017,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L437",
+      "source_location": "L420",
       "weight": 1.0
     },
     {
@@ -15041,7 +15029,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L438",
+      "source_location": "L421",
       "weight": 1.0
     },
     {
@@ -15053,7 +15041,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L456",
+      "source_location": "L439",
       "weight": 1.0
     },
     {
@@ -15065,7 +15053,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L206",
+      "source_location": "L189",
       "weight": 1.0
     },
     {
@@ -15077,7 +15065,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L368",
+      "source_location": "L351",
       "weight": 1.0
     },
     {
@@ -15089,7 +15077,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L371",
+      "source_location": "L354",
       "weight": 1.0
     },
     {
@@ -15101,7 +15089,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L141",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -21629,7 +21617,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "server/index.js",
-      "source_location": "L493",
+      "source_location": "L502",
       "weight": 1.0
     },
     {
@@ -21953,7 +21941,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "server/index.js",
-      "source_location": "L493",
+      "source_location": "L502",
       "weight": 1.0
     },
     {
@@ -27183,7 +27171,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L136",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -27194,7 +27182,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L149",
+      "source_location": "L132",
       "weight": 1.0
     },
     {
@@ -27205,7 +27193,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L182",
+      "source_location": "L165",
       "weight": 1.0
     },
     {
@@ -27216,7 +27204,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L241",
+      "source_location": "L224",
       "weight": 1.0
     },
     {
@@ -27227,7 +27215,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L246",
+      "source_location": "L229",
       "weight": 1.0
     },
     {
@@ -27238,7 +27226,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L253",
+      "source_location": "L236",
       "weight": 1.0
     },
     {
@@ -27249,7 +27237,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L287",
+      "source_location": "L270",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_seektotime",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L307",
       "weight": 1.0
     },
     {
@@ -27265,24 +27264,13 @@
     },
     {
       "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_seektotime",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L324",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
       "target": "public_js_presentation_page_renderchapters",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L356",
+      "source_location": "L339",
       "weight": 1.0
     },
     {
@@ -27293,7 +27281,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L377",
+      "source_location": "L360",
       "weight": 1.0
     },
     {
@@ -27304,7 +27292,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L394",
+      "source_location": "L377",
       "weight": 1.0
     },
     {
@@ -27315,7 +27303,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L408",
+      "source_location": "L391",
       "weight": 1.0
     },
     {
@@ -27337,7 +27325,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L56",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -27348,18 +27336,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L68",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_submitgatecode",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L80",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -27370,7 +27347,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L92",
+      "source_location": "L75",
       "weight": 1.0
     },
     {
@@ -33121,7 +33098,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L493",
+      "source_location": "L474",
       "weight": 1.0
     },
     {
@@ -33133,7 +33110,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L222",
+      "source_location": "L205",
       "weight": 1.0
     },
     {
@@ -33145,7 +33122,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L243",
+      "source_location": "L226",
       "weight": 1.0
     },
     {
@@ -33498,5 +33475,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a0a0395dce747549ea686b2858e1d85e367ea3aa"
+  "built_at_commit": "86bf2d75456841b44a45c307c5f6f9741ae0d98a"
 }

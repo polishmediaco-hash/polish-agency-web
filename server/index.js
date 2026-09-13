@@ -358,6 +358,11 @@ app.get(['/invoice', '/invoices', '/invoice.html'], (req, res) => {
   res.redirect(302, `/admin/invoice${query}`);
 });
 
+// Delete old presentation link completely: redirect to homepage
+app.get(['/presentation', '/presentation.html', '/presentation/:slug', '/briefing', '/briefing/:id', '/review'], (req, res) => {
+  res.redirect(301, '/');
+});
+
 // ── 11. Static File Serving ──────────────────────────────────────────────────
 app.use(
   express.static(path.join(__dirname, '../public'), {
@@ -424,10 +429,14 @@ app.get('/brand-pack', (req, res) => {
 });
 
 // ── 13. Client Proposal & Sensitive Documents (De-indexed from Search) ───────
-app.get(['/p/:slug', '/proposal/:slug', '/presentation', '/presentation/:slug', '/briefing', '/briefing/:id', '/review'], (req, res) => {
+app.get(['/p/:slug', '/proposal/:slug'], (req, res) => {
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/presentation.html'));
+});
+
+app.get(['/p', '/proposal'], (req, res) => {
+  res.redirect(301, '/');
 });
 
 app.get('/eman-alkatheeri', (req, res) => {

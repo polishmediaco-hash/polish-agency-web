@@ -43,12 +43,8 @@
     const path = window.location.pathname.replace(/\/+$/, '');
     const pMatch = path.match(/^\/p\/([^/?#]+)/i);
     if (pMatch && pMatch[1]) return decodeURIComponent(pMatch[1]).trim().toLowerCase();
-    const presMatch = path.match(/^\/presentation\/([^/?#]+)/i);
-    if (presMatch && presMatch[1]) return decodeURIComponent(presMatch[1]).trim().toLowerCase();
     const propMatch = path.match(/^\/proposal\/([^/?#]+)/i);
     if (propMatch && propMatch[1]) return decodeURIComponent(propMatch[1]).trim().toLowerCase();
-    const briefMatch = path.match(/^\/briefing\/([^/?#]+)/i);
-    if (briefMatch && briefMatch[1]) return decodeURIComponent(briefMatch[1]).trim().toLowerCase();
     return null;
   }
 
@@ -67,25 +63,12 @@
   // ── 2. Gate & View Management ───────────────────────────────────────────────
   function showGate(gateId) {
     const loadingGate = document.getElementById('presLoadingGate');
-    const confGate = document.getElementById('presConfidentialGate');
     const notFoundGate = document.getElementById('presNotFoundGate');
     const content = document.getElementById('presentationContent');
 
     if (loadingGate) loadingGate.style.display = (gateId === 'loading') ? 'flex' : 'none';
-    if (confGate) confGate.style.display = (gateId === 'confidential') ? 'flex' : 'none';
     if (notFoundGate) notFoundGate.style.display = (gateId === 'notfound') ? 'flex' : 'none';
     if (content) content.style.display = (gateId === 'content') ? 'block' : 'none';
-  }
-
-  function submitGateCode() {
-    const input = document.getElementById('gateSlugInput');
-    if (!input) return;
-    let val = (input.value || '').trim();
-    if (!val) return;
-    val = val.replace(/^https?:\/\/[^/]+/i, '').replace(/^\/?(p|presentation|proposal|briefing)\//i, '').replace(/^\/+|\/+$/g, '');
-    if (val) {
-      window.location.href = `/p/${encodeURIComponent(val.toLowerCase())}`;
-    }
   }
 
   // ── 3. DOM Hydration ─────────────────────────────────────────────────────────
@@ -460,11 +443,9 @@
         mountBoard(state.board);
         showGate('content');
       } else {
-        // Bare /presentation page with no slug and no query params!
-        // Show confidential briefing portal gate.
-        const headerClientEl = document.getElementById('headerClientName');
-        if (headerClientEl) headerClientEl.textContent = 'Confidential Portal';
-        showGate('confidential');
+        // Bare access with no slug: redirect immediately to home
+        window.location.replace('/');
+        return;
       }
     }
 
@@ -508,8 +489,7 @@
   window.PresEngine = {
     init,
     toggleBoardFullscreen,
-    seekToTime,
-    submitGateCode
+    seekToTime
   };
 
   if (document.readyState === 'loading') {

@@ -2650,7 +2650,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "getdefaultcontent()",
       "source_file": "server/routes/api.js",
@@ -2662,7 +2662,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "readcontent()",
       "source_file": "server/routes/api.js",
@@ -2674,7 +2674,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "writecontent()",
       "source_file": "server/routes/api.js",
@@ -2686,11 +2686,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "mapboardtodbrow()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L130"
+      "source_location": "L131"
     },
     {
       "id": "server_services_supabase_mapdbboardtoboard",
@@ -2698,11 +2698,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "mapdbboardtoboard()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L112"
+      "source_location": "L113"
     },
     {
       "id": "server_services_supabase_mapdbleadtolead",
@@ -2710,11 +2710,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "mapdbleadtolead()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L38"
+      "source_location": "L39"
     },
     {
       "id": "server_services_supabase_mapdbrowtoinvoice",
@@ -2722,11 +2722,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "mapdbrowtoinvoice()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L449"
+      "source_location": "L450"
     },
     {
       "id": "server_services_supabase_mapdbrowtopresentation",
@@ -2734,11 +2734,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "mapdbrowtopresentation()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L655"
+      "source_location": "L656"
     },
     {
       "id": "server_services_supabase_mapleadtodbrow",
@@ -2746,11 +2746,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "mapleadtodbrow()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L75"
+      "source_location": "L76"
+    },
+    {
+      "id": "server_services_supabase_readlocalpresentations",
+      "label": "readLocalPresentations()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "supabase.js",
+      "file_type": "code",
+      "norm_label": "readlocalpresentations()",
+      "source_file": "server/services/supabase.js",
+      "source_location": "L687"
     },
     {
       "id": "server_services_supabase_slugifyproposal",
@@ -2758,11 +2770,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "slugifyproposal()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L677"
+      "source_location": "L678"
+    },
+    {
+      "id": "server_services_supabase_writelocalpresentations",
+      "label": "writeLocalPresentations()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "supabase.js",
+      "file_type": "code",
+      "norm_label": "writelocalpresentations()",
+      "source_file": "server/services/supabase.js",
+      "source_location": "L710"
     },
     {
       "id": "public_js_app_hidealert",
@@ -7372,7 +7396,7 @@
       "file_type": "code",
       "norm_label": "boardsservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L266"
+      "source_location": "L267"
     },
     {
       "id": "ref_express",
@@ -7500,7 +7524,7 @@
       "label": "api.js",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "api.js",
       "source_file": "server/routes/api.js",
@@ -7511,7 +7535,7 @@
       "label": "express",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "express",
       "source_file": "server/routes/api.js",
@@ -7522,7 +7546,7 @@
       "label": "fs",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "fs",
       "source_file": "server/routes/api.js",
@@ -7533,7 +7557,7 @@
       "label": "{ leadsService, cmsService, keepAliveService, invoicesService, presentationsService }",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "{ leadsservice, cmsservice, keepaliveservice, invoicesservice, presentationsservice }",
       "source_file": "server/routes/api.js",
@@ -7544,7 +7568,7 @@
       "label": "{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "{ notifynewlead, notifynewmeeting, sendwhatsappmessage }",
       "source_file": "server/routes/api.js",
@@ -7555,7 +7579,7 @@
       "label": "path",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "path",
       "source_file": "server/routes/api.js",
@@ -7566,7 +7590,7 @@
       "label": "{ requireAdminAuth }",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "{ requireadminauth }",
       "source_file": "server/routes/api.js",
@@ -7577,7 +7601,7 @@
       "label": "router",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "router",
       "source_file": "server/routes/api.js",
@@ -7588,29 +7612,40 @@
       "label": "supabase.js",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "supabase.js",
       "source_file": "server/services/supabase.js",
       "source_location": "L1"
     },
     {
+      "id": "server_services_supabase_bundled_presentations_file",
+      "label": "BUNDLED_PRESENTATIONS_FILE",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "supabase.js",
+      "file_type": "code",
+      "norm_label": "bundled_presentations_file",
+      "source_file": "server/services/supabase.js",
+      "source_location": "L35"
+    },
+    {
       "id": "server_services_supabase_cmsservice",
       "label": "cmsService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "cmsservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L376"
+      "source_location": "L377"
     },
     {
       "id": "server_services_supabase_createclient",
       "label": "{ createClient }",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "{ createclient }",
       "source_file": "server/services/supabase.js",
@@ -7621,7 +7656,7 @@
       "label": "fs",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "fs",
       "source_file": "server/services/supabase.js",
@@ -7632,40 +7667,40 @@
       "label": "invoicesService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "invoicesservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L472"
+      "source_location": "L473"
     },
     {
       "id": "server_services_supabase_keepaliveservice",
       "label": "keepAliveService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "keepaliveservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L431"
+      "source_location": "L432"
     },
     {
       "id": "server_services_supabase_leadsservice",
       "label": "leadsService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "leadsservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L147"
+      "source_location": "L148"
     },
     {
       "id": "server_services_supabase_path",
       "label": "path",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "path",
       "source_file": "server/services/supabase.js",
@@ -7676,11 +7711,11 @@
       "label": "presentationsService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "api.js",
+      "community_name": "supabase.js",
       "file_type": "code",
       "norm_label": "presentationsservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L686"
+      "source_location": "L722"
     },
     {
       "id": "public_js_app",
@@ -21575,6 +21610,18 @@
     },
     {
       "source": "server_index",
+      "target": "server_services_calendlysync_startcalendlypoller",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/index.js",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "server_index",
       "target": "server_services_supabase_keepaliveservice",
       "relation": "imports",
       "_origin": "ast",
@@ -21595,6 +21642,54 @@
       "context": "import",
       "source_file": "server/middleware/auth.js",
       "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_services_notification_notifynewlead",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_services_notification_notifynewmeeting",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_services_notification_sendwhatsappmessage",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_middleware_auth_requireadminauth",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -32269,7 +32364,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L112",
+      "source_location": "L113",
       "weight": 1.0
     },
     {
@@ -32291,7 +32386,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L130",
+      "source_location": "L131",
       "weight": 1.0
     },
     {
@@ -32302,7 +32397,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L147",
+      "source_location": "L148",
       "weight": 1.0
     },
     {
@@ -32324,7 +32419,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L266",
+      "source_location": "L267",
+      "weight": 1.0
+    },
+    {
+      "source": "server_services_supabase",
+      "target": "server_services_supabase_bundled_presentations_file",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "server/services/supabase.js",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -32335,7 +32441,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L376",
+      "source_location": "L377",
       "weight": 1.0
     },
     {
@@ -32346,7 +32452,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L38",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -32357,7 +32463,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L431",
+      "source_location": "L432",
       "weight": 1.0
     },
     {
@@ -32368,7 +32474,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L449",
+      "source_location": "L450",
       "weight": 1.0
     },
     {
@@ -32379,7 +32485,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L472",
+      "source_location": "L473",
       "weight": 1.0
     },
     {
@@ -32390,7 +32496,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L655",
+      "source_location": "L656",
       "weight": 1.0
     },
     {
@@ -32401,7 +32507,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L677",
+      "source_location": "L678",
+      "weight": 1.0
+    },
+    {
+      "source": "server_services_supabase",
+      "target": "server_services_supabase_readlocalpresentations",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "server/services/supabase.js",
+      "source_location": "L687",
+      "weight": 1.0
+    },
+    {
+      "source": "server_services_supabase",
+      "target": "server_services_supabase_writelocalpresentations",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "server/services/supabase.js",
+      "source_location": "L710",
       "weight": 1.0
     },
     {
@@ -32412,7 +32540,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L686",
+      "source_location": "L722",
       "weight": 1.0
     },
     {
@@ -32423,7 +32551,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L75",
+      "source_location": "L76",
       "weight": 1.0
     },
     {

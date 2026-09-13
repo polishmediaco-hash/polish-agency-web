@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>polishmedia — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 1016 nodes, 1683 edges, 73 communities. Commit: b52f795</p>
+<p class="subtitle">Generated from graphify knowledge graph: 1016 nodes, 1684 edges, 73 communities. Commit: dcbb41d</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -152,7 +152,7 @@ flowchart LR
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>1016 nodes · 1683 edges · 73 communities (66 shown, 5 thin omitted)</li>
+      <li>1016 nodes · 1684 edges · 73 communities (66 shown, 5 thin omitted)</li>
       <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `triggerAutoSave()` - 45 edges</li>
@@ -2793,24 +2793,24 @@ flowchart LR
 
 <!-- ====== 10. presentation.js ====== -->
 <h2 id="presentation-js">10. presentation.js</h2>
-<p>presentation.js groups implementation around presentationjs, public, studio, buildpresentationsequence, mostly in studio/js/presentation.js. This section covers 42 nodes and 92 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>presentation.js groups implementation around presentationjs, public, studio, buildpresentationsequence, mostly in studio/js/presentation.js. This section covers 42 nodes and 93 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: presentation.js (42 nodes, 92 edges)
+    %% Section: presentation.js (42 nodes, 93 edges)
     public_studio_js_presentation_startwithsteps_ea20c857("startWithSteps()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_opensequencer_31435b28("openSequencer()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_stop_25f87de6("stop()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_startfromsequencer_3126d584("startFromSequencer()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_movestep_2f7b688d("moveStep()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_onsequencerkeydown_f5a9ffd4("onSequencerKeydown()<br/><small>studio/js/presentation.js</small>")
-    public_studio_js_presentation_opensequencer_31435b28("openSequencer()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_buildpresentations_f105ecef("buildPresentationSequence()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_getslidetitle_4cab19ce("getSlideTitle()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_gotostep_6d2feb82("goToStep()<br/><small>studio/js/presentation.js</small>")
-    public_studio_js_presentation_updateslideinfo_c25b49cf("updateSlideInfo()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_clearspotlight_73add608("clearSpotlight()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_focusonelement_a087b832("focusOnElement()<br/><small>studio/js/presentation.js</small>")
+    public_studio_js_presentation_updateslideinfo_c25b49cf("updateSlideInfo()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_initlaser_38134041("initLaser()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_resizelasercanvas_001b6094("resizeLaserCanvas()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_savecustomorder_f14f3667("saveCustomOrder()<br/><small>studio/js/presentation.js</small>")
@@ -2818,9 +2818,9 @@ flowchart LR
     public_studio_js_presentation_next_14042dd3("next()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_nextmajorsection_83c02de3("nextMajorSection()<br/><small>studio/js/presentation.js</small>")
     public_studio_js_presentation_buildpresentations_f105ecef -->|calls| public_studio_js_presentation_getslidetitle_4cab19ce
-    public_studio_js_presentation_gotostep_6d2feb82 -->|calls| public_studio_js_presentation_updateslideinfo_c25b49cf
     public_studio_js_presentation_gotostep_6d2feb82 -->|calls| public_studio_js_presentation_clearspotlight_73add608
     public_studio_js_presentation_gotostep_6d2feb82 -->|calls| public_studio_js_presentation_focusonelement_a087b832
+    public_studio_js_presentation_gotostep_6d2feb82 -->|calls| public_studio_js_presentation_updateslideinfo_c25b49cf
     public_studio_js_presentation_initlaser_38134041 -->|calls| public_studio_js_presentation_resizelasercanvas_001b6094
     public_studio_js_presentation_movestep_2f7b688d -->|calls| public_studio_js_presentation_savecustomorder_f14f3667
     public_studio_js_presentation_movestep_2f7b688d -->|calls| public_studio_js_presentation_rendersequencerlis_82c44423
@@ -2838,17 +2838,17 @@ flowchart LR
     public_studio_js_presentation_updateslideinfo_c25b49cf -->|calls| public_studio_js_presentation_rendersequencerlis_82c44423
     %% Omitted for readability: 24 nodes, 0 edges
     class public_studio_js_presentation_startwithsteps_ea20c857 function;
+    class public_studio_js_presentation_opensequencer_31435b28 function;
     class public_studio_js_presentation_stop_25f87de6 function;
     class public_studio_js_presentation_startfromsequencer_3126d584 function;
     class public_studio_js_presentation_movestep_2f7b688d function;
     class public_studio_js_presentation_onsequencerkeydown_f5a9ffd4 function;
-    class public_studio_js_presentation_opensequencer_31435b28 function;
     class public_studio_js_presentation_buildpresentations_f105ecef function;
     class public_studio_js_presentation_getslidetitle_4cab19ce function;
     class public_studio_js_presentation_gotostep_6d2feb82 function;
-    class public_studio_js_presentation_updateslideinfo_c25b49cf function;
     class public_studio_js_presentation_clearspotlight_73add608 function;
     class public_studio_js_presentation_focusonelement_a087b832 function;
+    class public_studio_js_presentation_updateslideinfo_c25b49cf function;
     class public_studio_js_presentation_initlaser_38134041 function;
     class public_studio_js_presentation_resizelasercanvas_001b6094 function;
     class public_studio_js_presentation_savecustomorder_f14f3667 function;
@@ -3017,7 +3017,7 @@ flowchart LR
   <td><code>openSequencer()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>onSequencerKeydown()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>renderSequencerList()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small></td>
+  <td><code>buildPresentationSequence()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>onSequencerKeydown()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br><code>renderSequencerList()</code><br><small style="color:var(--muted)">studio/js/presentation.js</small><br>+1 more</td>
   <td>openSequencer() node in studio/js/presentation.js.</td>
 </tr>
 <tr>
@@ -3128,7 +3128,7 @@ flowchart LR
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: calls x43, contains x41, indirect call x8. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x44, contains x41, indirect call x8. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -5217,7 +5217,7 @@ flowchart LR
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><td>Nodes</td><td>1016</td></tr>
-      <tr><td>Edges</td><td>1683</td></tr>
+      <tr><td>Edges</td><td>1684</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
       <tr><td>Communities</td><td>73</td></tr>
       <tr><td>Documented Sections</td><td>15</td></tr>
@@ -5226,7 +5226,7 @@ flowchart LR
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>1638</td></tr>
+      <tr><td>EXTRACTED</td><td>1639</td></tr>
       <tr><td>INFERRED</td><td>45</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
@@ -5235,7 +5235,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>polishmedia — Architecture Documentation</p>
-  <p>Generated: 2026-09-13 04:34 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 04:39 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

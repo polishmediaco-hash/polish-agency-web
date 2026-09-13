@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 86 files · ~706,198 words
+- 87 files · ~707,744 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1011 nodes · 1678 edges · 73 communities (66 shown, 5 thin omitted)
+- 1016 nodes · 1683 edges · 73 communities (66 shown, 5 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5dc79c24`
+- Built from commit: `dcbb41d6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -93,7 +93,7 @@
 3. `renderElement()` - 32 edges
 4. `pushHistory()` - 19 edges
 5. `selectElement()` - 19 edges
-6. `6. Next Priority Roadmap (Ready for Next Conversation)` - 17 edges
+6. `6. Next Priority Roadmap (Ready for Next Conversation)` - 18 edges
 7. `getCanvasCenter()` - 16 edges
 8. `bindKeyboardShortcuts()` - 16 edges
 9. `renderInvoiceSheet()` - 15 edges
@@ -145,8 +145,8 @@ Cohesion: 0.30
 Nodes (16): BASE_DIR, CONCEPTS_DIR, createDropperBottleMockupSvg(), createHorizontalLockupSvg(), createStandaloneMarkSvg(), createVerticalLockupSvg(), fs, generateAllConcepts() (+8 more)
 
 ### Community 9 - "generate-social-avatars.js"
-Cohesion: 0.06
-Nodes (33): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, ASSET_SPECS, AVATAR_DIR (+25 more)
+Cohesion: 0.05
+Nodes (36): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, ASSET_SPECS, AVATAR_DIR (+28 more)
 
 ### Community 10 - "package.json"
 Cohesion: 0.10
@@ -218,7 +218,7 @@ Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects
 
 ### Community 31 - "6. Next Priority Roadmap (Ready for Next Conversation)"
 Cohesion: 0.05
-Nodes (36): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+28 more)
+Nodes (37): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+29 more)
 
 ### Community 32 - "OWASP Top 10 — Audit Checklist"
 Cohesion: 0.11
@@ -373,21 +373,21 @@ Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
 ## Knowledge Gaps
-- **346 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+341 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 422 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **350 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+345 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 426 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `generate-social-avatars.js` to `package.json`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _346 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _350 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

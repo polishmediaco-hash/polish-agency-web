@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "public/studio/js/presentation.js": {
-    "mtime": 1789270294.3661406,
-    "seen": 1789270376.4716768,
-    "ast_hash": "30ea872986b34965a20819dc75a78727",
+    "mtime": 1789274325.548445,
+    "seen": 1789274326.330061,
+    "ast_hash": "7fdb755d50a0f7aaba18124126cd3ff2",
     "semantic_hash": ""
   },
   "public/studio/js/studio-ai.js": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789273643.6896882,
-    "seen": 1789273653.317566,
-    "ast_hash": "d395e46250c87560b16cdfb97f6b684c",
+    "mtime": 1789274046.4255502,
+    "seen": 1789274052.842589,
+    "ast_hash": "88fea8c9229194686dce3783ba28a317",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789273633.763378,
-    "seen": 1789273653.317604,
-    "ast_hash": "ef94dfffa2fda112d7ccd63f90292e9d",
+    "mtime": 1789274170.3186812,
+    "seen": 1789274312.624131,
+    "ast_hash": "9158219ed7c8032d13c2f3916885cd2d",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789273658.664223,
+    "seen": 1789274085.296396,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -2037,6 +2037,12 @@
     "mtime": 1789271995.008452,
     "seen": 1789272027.508876,
     "ast_hash": "d0b51be55cab6791ed79883f11692188",
+    "semantic_hash": ""
+  },
+  "tests/test_logo_render.js": {
+    "mtime": 1789273989.9247537,
+    "seen": 1789274052.84226,
+    "ast_hash": "de1aafa6b21301f91ec5a7970753e0a3",
     "semantic_hash": ""
   }
 }

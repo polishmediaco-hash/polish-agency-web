@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "public/studio/js/presentation.js": {
-    "mtime": 1789270294.3661406,
-    "seen": 1789270376.4716768,
-    "ast_hash": "30ea872986b34965a20819dc75a78727",
+    "mtime": 1789274329.648477,
+    "seen": 1789274358.866883,
+    "ast_hash": "a3e62c7b30fcf7980259ce23b839c32a",
     "semantic_hash": ""
   },
   "public/studio/js/studio-ai.js": {
@@ -1957,8 +1957,8 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789274085.296396,
-    "ast_hash": "",
+    "seen": 1789274364.670721,
+    "ast_hash": "9d679501ccc8722f71c8d90ebd230e69",
     "semantic_hash": ""
   },
   "tests/test_sequencer_e2e.js": {
@@ -1968,9 +1968,9 @@
     "semantic_hash": ""
   },
   "tests/test_laser_and_branding.js": {
-    "mtime": 1789273589.002603,
-    "seen": 1789273653.3172622,
-    "ast_hash": "dfd9a469f3733ef0314d02890801f7d4",
+    "mtime": 1789274345.0812426,
+    "seen": 1789274358.8671339,
+    "ast_hash": "fcd51df47d9dbecca03b1f09799f1479",
     "semantic_hash": ""
   },
   "docs/assets/invoices/invoice-sheet-verified.png": {

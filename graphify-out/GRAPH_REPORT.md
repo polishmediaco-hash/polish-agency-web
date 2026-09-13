@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 87 files · ~707,745 words
+- 87 files · ~707,884 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1016 nodes · 1683 edges · 73 communities (66 shown, 5 thin omitted)
+- 1016 nodes · 1684 edges · 73 communities (66 shown, 5 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b52f7954`
+- Built from commit: `dcbb41d6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

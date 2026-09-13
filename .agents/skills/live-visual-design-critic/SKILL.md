@@ -46,7 +46,7 @@ Analyze each viewport and language across 6 core aesthetic dimensions:
    - Is backdrop blur smooth without visual compression artifacts?
 4. **Color Harmony & Specular Contrast**:
    - Contrast ratio between text and glass background (WCAG AA/AAA).
-   - Cyan/blue gradient luminance and button glow saturation.
+   - Champagne gold / cashmere platinum gradient luminance and button glow saturation.
 5. **Interactive Controls & Layout**:
    - Dynamic Island header symmetry and unboxed logo clarity.
    - Button padding, hover states, and touch accessibility (>= 44px).

@@ -27,8 +27,8 @@ This skill provides a standardized, rigorous workflow for auditing web applicati
 
 ## 3. Automated Performance Verification Checklist
 Run automated audits across the following metrics:
-1. **First Contentful Paint (FCP)**: Target < 1.0s
-2. **Largest Contentful Paint (LCP)**: Target < 1.8s
+1. **First Contentful Paint (FCP)**: Target < 0.4s (instant vanilla JS / pure CSS3)
+2. **Largest Contentful Paint (LCP)**: Target < 1.2s
 3. **Cumulative Layout Shift (CLS)**: Target < 0.05
 4. **Interaction to Next Paint (INP) / First Input Delay (FID)**: Target < 100ms
 5. **Total Page Weight**: Target < 500KB (compressed)

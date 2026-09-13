@@ -3,7 +3,10 @@ const path = require("path");
 const fs = require("fs");
 
 const TARGET_URL = process.env.LIVE_URL || "https://www.polishmediaco.com";
-const ARTIFACTS_DIR = process.env.ARTIFACTS_DIR || path.resolve("/Users/Macbook Pro/.gemini/antigravity/brain/fad06f18-b4fd-4b7f-a36a-68ac5be5729b");
+const ARTIFACTS_DIR = process.env.ARTIFACTS_DIR || path.resolve(process.cwd(), "artifacts");
+if (!fs.existsSync(ARTIFACTS_DIR)) {
+  fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
+}
 
 const AUDIT_VIEWPORTS = [
   { id: "desktop", name: "Desktop Widescreen", width: 1440, height: 900, isMobile: false },

@@ -14,7 +14,7 @@
 
 ## 3. Glassmorphism & Caustic Depth (Weight: 20%)
 - **Refraction Balance**: Glass panels must remain translucent enough to reveal floating 3D cosmetic artifacts behind them while keeping white text 100% legible.
-- **Specular Rim Highlights**: 1px top bevel highlight (`rgba(255,255,255,0.25 - 0.35)`) and subtle cyan perimeter radiance.
+- **Specular Rim Highlights**: 1px top bevel highlight (`rgba(245,230,211,0.18 - 0.28)`) and subtle Champagne Gold perimeter radiance (`rgba(226,199,153,0.12)`).
 - **Zero Cutouts**: Bounding boxes must blend seamlessly with zero rectangular clipping artifacts on any device.
 
 ## 4. Conversion Architecture & Ergonomics (Weight: 20%)

@@ -846,11 +846,17 @@
       });
     }
 
+    const btnDownload = document.getElementById('btnDownloadInvoice') || document.getElementById('btnDownloadPDF');
+    if (btnDownload) {
+      btnDownload.addEventListener('click', () => {
+        downloadCurrentInvoicePDF();
+      });
+    }
+
     const btnPrint = document.getElementById('btnPrintInvoice');
     if (btnPrint) {
       btnPrint.addEventListener('click', () => {
-        updateDocumentTitle();
-        window.print();
+        printCurrentInvoice();
       });
     }
 
@@ -1006,6 +1012,109 @@
   }
 
   let isGeneratingInvoicePdf = false;
+
+  // --- Direct 1-Click Vector PDF Download ---
+  async function downloadCurrentInvoicePDF() {
+    if (isGeneratingInvoicePdf) return;
+    isGeneratingInvoicePdf = true;
+
+    const btn = document.getElementById('btnDownloadInvoice') || document.getElementById('btnDownloadPDF');
+    const originalBtnHtml = btn ? btn.innerHTML : '';
+
+    try {
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `
+          <svg class="wa-spin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25"></circle>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+          </svg>
+          <span>Downloading PDF...</span>
+        `;
+      }
+
+      // 1. Resolve invoice metadata
+      const invNumber = (state.invoiceNumber || document.getElementById('inputInvoiceNumber')?.value || 'POL-2026').trim();
+      const clientName = (state.clientName || document.getElementById('inputClientName')?.value || 'Valued Partner').trim();
+      const safeClient = clientName.replace(/[/\\?%*:|"<>]/g, '').trim().replace(/\s+/g, '_');
+      const safeInv = invNumber.replace(/[/\\?%*:|"<>]/g, '').trim().replace(/\s+/g, '-');
+      const pdfFileName = `POLISH-Invoice-${safeInv}-${safeClient}.pdf`;
+
+      // 2. Ensure target sheet is visible and in DOM
+      const sheet = document.getElementById('invoiceSheet');
+      if (!sheet) {
+        throw new Error('Invoice sheet element not found');
+      }
+
+      // Re-render sheet to guarantee 100% data sync
+      renderInvoiceSheet();
+
+      // If on mobile and currently in Edit Form view, toggle preview so html2canvas has valid dimensions
+      const wasMobileFormActive = !document.body.classList.contains('show-mobile-preview') && window.innerWidth <= 1100;
+      if (wasMobileFormActive) {
+        document.body.classList.add('show-mobile-preview');
+        document.getElementById('btnMobilePreview')?.classList.add('active');
+        document.getElementById('btnMobileForm')?.classList.remove('active');
+      }
+
+      if (typeof html2pdf === 'undefined') {
+        throw new Error('PDF generator library not loaded');
+      }
+
+      const isDark = state.theme === 'obsidian' || sheet.getAttribute('data-invoice-theme') === 'obsidian';
+      const bgColor = isDark ? '#080706' : '#FAF7F2';
+
+      showToast('Rendering high-res A4 PDF...');
+
+      const opt = {
+        margin: 0,
+        filename: pdfFileName,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          letterRendering: true,
+          scrollY: 0,
+          scrollX: 0,
+          windowWidth: 1200,
+          backgroundColor: bgColor
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        }
+      };
+
+      await html2pdf().set(opt).from(sheet).save();
+      showToast('PDF downloaded successfully');
+
+      if (wasMobileFormActive) {
+        setTimeout(() => {
+          document.body.classList.remove('show-mobile-preview');
+          document.getElementById('btnMobileForm')?.classList.add('active');
+          document.getElementById('btnMobilePreview')?.classList.remove('active');
+        }, 500);
+      }
+    } catch (err) {
+      console.error('Direct PDF download failed:', err);
+      showToast('Direct PDF build failed — opening Print...');
+      printCurrentInvoice();
+    } finally {
+      isGeneratingInvoicePdf = false;
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalBtnHtml;
+      }
+    }
+  }
+
+  // --- Clean Physical / System Print ---
+  function printCurrentInvoice() {
+    renderInvoiceSheet();
+    updateDocumentTitle();
+    window.print();
+  }
 
   // --- Share Invoice with Attached PDF via WhatsApp / Web Share Level 2 ---
   async function shareCurrentInvoiceWhatsApp() {
@@ -1630,9 +1739,17 @@
 
   window.PolishInvoice = window.PolishInvoice || {};
   window.PolishInvoice.shareCurrentInvoiceWhatsApp = shareCurrentInvoiceWhatsApp;
+  window.PolishInvoice.downloadCurrentInvoicePDF = downloadCurrentInvoicePDF;
+  window.PolishInvoice.printCurrentInvoice = printCurrentInvoice;
   window.PolishInvoice.state = state;
   if (!window.shareCurrentInvoiceWhatsApp) {
     window.shareCurrentInvoiceWhatsApp = shareCurrentInvoiceWhatsApp;
+  }
+  if (!window.downloadCurrentInvoicePDF) {
+    window.downloadCurrentInvoicePDF = downloadCurrentInvoicePDF;
+  }
+  if (!window.printCurrentInvoice) {
+    window.printCurrentInvoice = printCurrentInvoice;
   }
 
   window.refreshInvoiceStudio = function () {

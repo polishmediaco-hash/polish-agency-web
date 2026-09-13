@@ -3,7 +3,7 @@
  * Architecture: Instant Cache-First Assets + Network-First APIs with Snapshot Fallback
  */
 
-const CACHE_NAME = 'polish-admin-v1.5';
+const CACHE_NAME = 'polish-admin-v1.6';
 const APP_SHELL = [
   '/admin',
   '/assets/favicon.svg',

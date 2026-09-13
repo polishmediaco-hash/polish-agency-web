@@ -1369,7 +1369,7 @@ body.edit-mode-active [contenteditable="true"]:focus {
 
 @page {
   size: A4 portrait;
-  margin: 8mm 10mm 8mm 10mm;
+  margin: 0;
 }
 
 @media print {
@@ -1381,9 +1381,11 @@ body.edit-mode-active [contenteditable="true"]:focus {
     min-height: auto !important;
     height: auto !important;
     overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  /* Hide entire studio UI, drawer, auth gate, and overlays in print */
+  /* Hide entire studio UI, drawer, auth gate, admin navigation, headers, docks, and overlays in print */
   .studio-nav,
   .mobile-view-tabs,
   .studio-editor-panel,
@@ -1396,7 +1398,27 @@ body.edit-mode-active [contenteditable="true"]:focus {
   .archive-drawer,
   .archive-drawer-backdrop,
   #archiveDrawer,
-  #archiveDrawerBackdrop {
+  #archiveDrawerBackdrop,
+  .admin-header,
+  .admin-nav,
+  .bottom-dock,
+  .mobile-bottom-dock,
+  .dock-backdrop,
+  .safari-install-banner,
+  .publish-bar,
+  #toast,
+  .page-header,
+  #invoicesTabPane > .page-header,
+  .tab-pane:not(#invoicesTabPane),
+  .inv-copy-btn,
+  .edit-mode-pill,
+  .btn-share-wa,
+  #btnShareWhatsApp,
+  #btnDownloadInvoice,
+  #btnPrintInvoice,
+  #btnToggleEdit,
+  #btnOpenArchive,
+  #btnCloudSave {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -1408,39 +1430,53 @@ body.edit-mode-active [contenteditable="true"]:focus {
     overflow: hidden !important;
   }
 
-  .studio-container {
+  /* Ensure all parent containers reset margins, paddings, borders, and shadows */
+  html body .admin-main,
+  html body .admin-main.admin-main-wide,
+  html body .admin-main.admin-main-crm,
+  html body main.admin-main,
+  html body #dashboardAppView,
+  html body #invoicesTabPane,
+  html body .studio-container,
+  html body #invoicesTabPane .studio-container,
+  html body .studio-stage,
+  html body #invoicesTabPane .studio-stage,
+  html body .invoice-sheet-wrapper {
     display: block !important;
     width: 100% !important;
+    max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    min-height: auto !important;
-  }
-
-  .studio-stage {
-    padding: 0 !important;
-    margin: 0 !important;
-    background: none !important;
-    display: block !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
     overflow: visible !important;
+    min-height: auto !important;
     max-height: none !important;
-  }
-
-  .invoice-sheet-wrapper {
+    height: auto !important;
+    position: static !important;
     transform: none !important;
-    width: 100% !important;
-    margin: 0 !important;
   }
 
   /* Enforce Haute Alabaster fine stationery in print across all themes */
   .invoice-sheet,
-  [data-invoice-theme="obsidian"] .invoice-sheet {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: calc(297mm - 16mm) !important;
-    margin: 0 !important;
-    padding: 4mm 6mm !important;
+  [data-invoice-theme="obsidian"] .invoice-sheet,
+  [data-invoice-theme="alabaster"] .invoice-sheet {
+    width: 210mm !important;
+    max-width: 210mm !important;
+    min-height: 297mm !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    padding: 14mm 16mm 12mm !important;
     box-shadow: none !important;
     border: none !important;
+    border-radius: 0 !important;
     background: #FAF7F2 !important;
     color: #080706 !important;
     --paper-bg: #FAF7F2 !important;
@@ -1460,6 +1496,13 @@ body.edit-mode-active [contenteditable="true"]:focus {
     print-color-adjust: exact !important;
     page-break-after: avoid !important;
     page-break-inside: avoid !important;
+  }
+
+  /* Force background color preservation across all child elements in print */
+  .invoice-sheet,
+  .invoice-sheet * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   /* Force dark vector logo in print on alabaster paper */

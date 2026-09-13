@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/invoice.css?v=3.5">
+  <link rel="stylesheet" href="/css/invoice.css?v=3.7">
 
   <script>
     // Instant pre-paint synchronous check to eliminate login screen flash
@@ -3162,7 +3162,7 @@
     <section id="invoicesTabPane" class="tab-pane">
       
       <!-- Studio Page Header & Controls -->
-      <div class="page-header">
+      <div class="page-header no-print">
         <div>
           <h1>Invoices</h1>
           <p>Create and export client invoices with multi-currency and PDF support.</p>
@@ -3190,10 +3190,16 @@
           <!-- Cloud Save -->
           <button type="button" class="btn-ghost" id="btnCloudSave" style="font-size: 11.5px; padding: 5px 12px;">Save</button>
 
-          <!-- Print / PDF -->
-          <button type="button" class="btn-primary-action" id="btnPrintInvoice" style="font-size: 11.5px; padding: 5px 14px; height: 28px; display: inline-flex; align-items: center; gap: 6px;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            Print / PDF
+          <!-- Direct 1-Click Vector PDF Download -->
+          <button type="button" class="btn-primary-action" id="btnDownloadInvoice" onclick="downloadCurrentInvoicePDF()" style="font-size: 11.5px; padding: 5px 14px; height: 28px; display: inline-flex; align-items: center; gap: 6px;" title="Direct 1-Click Vector PDF Download">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download PDF</span>
+          </button>
+
+          <!-- Print / System Dialog -->
+          <button type="button" class="btn-ghost" id="btnPrintInvoice" onclick="printCurrentInvoice()" style="font-size: 11.5px; padding: 5px 12px; height: 28px; display: inline-flex; align-items: center; gap: 6px;" title="Print A4 Invoice">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Print</span>
           </button>
 
           <!-- 1-Tap Share to WhatsApp with Attached PDF -->
@@ -3775,7 +3781,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/studio/js/supabase-config.js?v=20260910_v2"></script>
 <script src="/js/html2pdf.bundle.min.js"></script>
-<script src="/js/invoice.js?v=3.6"></script>
+<script src="/js/invoice.js?v=3.7"></script>
 
 <script>
   let activeAdminKey = '';
@@ -4357,6 +4363,22 @@
         }
       });
     });
+  }
+
+  // ── Download Invoice as Vector PDF ──
+  async function downloadCurrentInvoicePDF() {
+    if (window.PolishInvoice && typeof window.PolishInvoice.downloadCurrentInvoicePDF === 'function') {
+      return await window.PolishInvoice.downloadCurrentInvoicePDF();
+    }
+    window.print();
+  }
+
+  // ── Print Invoice A4 ──
+  function printCurrentInvoice() {
+    if (window.PolishInvoice && typeof window.PolishInvoice.printCurrentInvoice === 'function') {
+      return window.PolishInvoice.printCurrentInvoice();
+    }
+    window.print();
   }
 
   // ── Share Invoice to Client via WhatsApp with Attached PDF ──

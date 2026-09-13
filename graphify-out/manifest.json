@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789276717.4796252,
-    "seen": 1789276724.0794911,
-    "ast_hash": "3caa33cce700b36aeb002209c6006782",
+    "mtime": 1789278838.3016758,
+    "seen": 1789278861.701208,
+    "ast_hash": "e0d4f883d18e47c4ec9c89d2a6847f0f",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789278303.814242,
-    "seen": 1789278828.8534038,
-    "ast_hash": "a8c2ec8401c59426fcbc3e5bf1252032",
+    "mtime": 1789279448.2556562,
+    "seen": 1789279678.7793899,
+    "ast_hash": "3d79ec09512144aed95ed3a9c730482d",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -1830,9 +1830,9 @@
     "semantic_hash": ""
   },
   "public/js/invoice.js": {
-    "mtime": 1789278798.8560665,
-    "seen": 1789278828.852638,
-    "ast_hash": "d2521f02c07ff2f651f157ee2366078f",
+    "mtime": 1789279512.5536118,
+    "seen": 1789279678.7784991,
+    "ast_hash": "b1cbe778a05e5f817a938b3bc0e1f3a2",
     "semantic_hash": ""
   },
   "docs/INVOICE_GUIDELINES.md": {
@@ -1842,9 +1842,9 @@
     "semantic_hash": ""
   },
   "public/invoice.html": {
-    "mtime": 1789278807.5068946,
-    "seen": 1789278828.853502,
-    "ast_hash": "193cbb5c8756d783be1185c734d059ce",
+    "mtime": 1789279467.9754913,
+    "seen": 1789279678.779501,
+    "ast_hash": "630ab3cbacba229239966dd5338aa2dc",
     "semantic_hash": ""
   },
   "public/privacy.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789276730.439488,
+    "seen": 1789278861.701185,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -2052,9 +2052,9 @@
     "semantic_hash": ""
   },
   "public/sw-admin.js": {
-    "mtime": 1789278282.4661183,
-    "seen": 1789278828.8528671,
-    "ast_hash": "82247f053a52144d72ba2ae99ac03611",
+    "mtime": 1789279474.9430902,
+    "seen": 1789279678.7787461,
+    "ast_hash": "ad4445e7fc9d5baf60975f19fb926bc1",
     "semantic_hash": ""
   },
   "tests/test_auth_flow.js": {

@@ -722,6 +722,39 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Verified retina screenshots on Desktop (1440px) and iPhone (393px) with zero overlapping elements.
    - Graphify knowledge graph synchronized.
 
+### Sprint 25: Presentation Hardening, Studio Camera Bubble Engine & Dual-Delivery WhatsApp Notification Gateway (Completed September 2026)
+1. ✅ **Fluff Copy Purge & Presentation Ergonomics (`public/presentation.html`)**:
+   - **Zero-Fluff Standard**: Purged all theatrical adjectives ("living canvas", "caustic breathing", "sensual", "haute couture", "parisian cosmetic laboratory", "emotional apex") from client-facing copy.
+   - **Clean CTAs**: Simplified header conversion button to a crisp `Book` CTA linking directly to `/book` with brand parameters.
+   - **Reduced Visual Clutter**: Eradicated redundant badges, artificial eyecatchers, and excessive status pills based on direct founder feedback.
+   - **Video Loading Shimmer**: Added an instant CSS skeleton shimmer placeholder (`.video-stage-shimmer`) to eliminate empty black containers prior to YouTube player hydration.
+   - **Ultra-Wide Canvas Stage**: Upgraded board container height to `780px` on widescreen displays (>=1920px) for deep, high-resolution strategic reviews.
+   - **Admin Quick Links**: Added instant launcher buttons for the Presentation Portal in Tab 5 ("Studio & Settings") of the Admin Hub.
+
+2. ✅ **Studio Camera Bubble Permissions & UI Architecture (`server/index.js`, `public/presentation.html`)**:
+   - **Root Cause Identified**: The camera bubble feature failed because Express Helmet was transmitting `Permissions-Policy: camera=(), microphone=()`, blocking user media devices at the browser HTTP header level.
+   - **Security Policy Hardening**: Updated `Permissions-Policy` in `server/index.js` to `camera=(self), microphone=(self), display-capture=(self)` to safely permit WebRTC camera streams on the origin domain.
+   - **Iframe Permission Delegation**: Added `allow="camera; microphone; display-capture; fullscreen"` to presentation board iframes and studio view iframes so camera streams pass into embedded boards seamlessly.
+   - **Dedicated Controls**: Added `#btnPresentationCamera` to `/presentation` navigation bar and `#btnCameraBubble` in Board Studio controls for instant 1-tap toggling of the floating video bubble.
+
+3. ✅ **Dual-Delivery WhatsApp Notification Infrastructure (`server/services/notification.js`, `server/routes/api.js`, `public/admin.html`)**:
+   - **Root Cause Identified**: The Green-API instance (`710522731516`) was authorized and live, but `sendWhatsAppMessage()` evaluated `WHATSAPP_ALERT_CHAT_ID || WHATSAPP_ALERT_NUMBER`. Because `WHATSAPP_ALERT_CHAT_ID` (`120363411407042111@g.us` — the "POLISH Alerts" group) was configured in `.env`, all automated lead notifications were sent exclusively to the group and ZERO alerts were delivered to the founder's direct private 1-on-1 WhatsApp number (`+213 662 41 77 61`).
+   - **Dual-Delivery Architecture**: Refactored `sendWhatsAppMessage()` to resolve and dispatch in parallel to both:
+     - **Direct Private Push**: `213662417761@c.us` (instant 1-on-1 notification on the founder's phone).
+     - **Team Alert Group**: `120363411407042111@g.us` ("POLISH Alerts" group for multi-member auditing).
+   - **Awaited Dispatch & Structured Logging**: Awaited `sendWhatsAppMessage()` within `notifyNewLead()` and `notifyNewMeeting()`, capturing per-recipient delivery statuses and message IDs (`{ direct, group, messageIds }`).
+   - **Live Diagnostics API Endpoints**:
+     - `GET /api/whatsapp-status`: Returns real-time Green-API health (`stateInstance: "authorized"`) and registered numbers.
+     - `ALL /api/test-whatsapp`: Dispatches a live test message to all registered targets and reports individual message IDs.
+     - `POST /api/notifications/test`: Dispatches a full test lead and returns confirmation across WhatsApp, Telegram, and Webhooks.
+   - **Admin Hub Notifications Card**: Added a dedicated **Automated WhatsApp Notification Gateway (Green-API)** card to Tab 4 with live connection badge (`● Online (Authorized)`), registered routing display, dedicated "Test WhatsApp Push" button, and live dispatch log box.
+
+4. ✅ **Rigorous Verification & Test Results**:
+   - **WhatsApp Gateway Test**: Verified delivery to both `213662417761@c.us` (`idMessage: 3EB066562071D3414E0379`) and `120363411407042111@g.us` (`idMessage: 3EB0B6EF0FE5B3D67AAA62`).
+   - **End-to-End Application Test**: Dispatched live lead application through `POST /api/apply` — verified asynchronous dual push notification in server logs (`3EB0959AC774B131A2B77B` & `3EB0836C17D6D5E03A3ADB`).
+   - **Presentation Page E2E Suite**: Ran `node tests/test_presentation_page.js` — all 11/11 tests passed (100%).
+   - **Graphify Synchronized**: AST knowledge graph updated cleanly.
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat

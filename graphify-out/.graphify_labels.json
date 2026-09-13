@@ -22,7 +22,7 @@
   "20": "dependencies",
   "21": "drawing-engine.js",
   "22": "presentation.js",
-  "23": "api.js",
+  "23": "supabase.js",
   "24": "app.js",
   "25": "minimap.js",
   "26": "whatsapp.js",
@@ -62,7 +62,7 @@
   "60": "supabase-config.js",
   "61": "calendlySync.js",
   "62": "puppeteer",
-  "63": "capture-live-views.js",
+  "63": "api.js",
   "64": "auth.js",
   "65": "seed-supabase.js",
   "66": "templates-vault.js",
@@ -76,11 +76,6 @@
   "74": "thermal-guard.js",
   "75": "invoice.js",
   "76": "POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)",
-  "77": "capture_presentation_views.js",
-  "78": "test-miro-suite.js",
-  "79": "test_presentation_page.js",
-  "80": "test_logo_render.js",
   "81": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
-  "82": "Zero-Fluff & Anti-Filler Rule",
-  "83": "test_sequencer_e2e.js"
+  "82": "Zero-Fluff & Anti-Filler Rule"
 }

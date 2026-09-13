@@ -961,20 +961,24 @@ window.StudioPresentation = (function () {
   }
 
   function updateSlideInfo() {
-    const info = document.getElementById('presentSlideInfo');
-    if (!info) return;
+    const idxEl = document.getElementById('presentStepIndex');
+    const totalEl = document.getElementById('presentStepTotal');
+    if (idxEl) {
+      idxEl.textContent = String(currentStepIndex + 1).padStart(2, '0');
+    }
+    if (totalEl) {
+      totalEl.textContent = String(steps.length).padStart(2, '0');
+    }
 
-    const step = steps[currentStepIndex];
-    if (!step) return;
+    const prevBtn = document.querySelector('.btn-prev');
+    const nextBtn = document.querySelector('.btn-next');
+    if (prevBtn) prevBtn.disabled = (currentStepIndex === 0);
+    if (nextBtn) nextBtn.disabled = (currentStepIndex === steps.length - 1);
 
-    const stepNum = `${currentStepIndex + 1} of ${steps.length}`;
-    const badge = step.type === 'frame' ? 'FRAME' : (step.parentFrame ? 'CARD' : 'SLIDE');
-
-    info.innerHTML = `<span class="slide-count">Step ${stepNum}</span><span class="slide-sep">•</span><span class="slide-badge-pill">${badge}</span><span class="slide-title">${step.title.substring(0, 28)}</span>`;
-
-    const select = document.getElementById('presentSlideSelect');
-    if (select) {
-      select.value = currentStepIndex;
+    // If slide sequencer modal is visible, re-highlight active item
+    const modal = document.getElementById('presentationOrderModal');
+    if (modal && modal.style.display === 'flex') {
+      renderSequencerList();
     }
   }
 
@@ -999,9 +1003,9 @@ window.StudioPresentation = (function () {
       if (window.CanvasEngine && window.CanvasEngine.fitToContent) {
         window.CanvasEngine.fitToContent();
       }
-      const info = document.getElementById('presentSlideInfo');
-      if (info) {
-        info.innerHTML = `<span class="slide-count">Overview</span><span class="slide-sep">•</span><span class="slide-badge-pill">GOD VIEW</span><span class="slide-title">Master System Blueprint</span>`;
+      const idxEl = document.getElementById('presentStepIndex');
+      if (idxEl) {
+        idxEl.textContent = 'ALL';
       }
     } else {
       if (godBtn) godBtn.classList.remove('active');

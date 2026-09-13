@@ -514,9 +514,26 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Fixed `#invoicesTabPane .studio-container` to `height: calc(100vh - 180px); overflow: hidden;` with internal scroll containers for editor panel and stage.
    - Reset `.admin-main.admin-main-wide` bottom padding from `120px` to `24px !important`, ensuring zero awkward empty space cutouts below the invoice canvas.
    - Refined floating `.publish-bar` and `.inv-footer-pill` with high-contrast text and crisp alabaster styling.
-5. ✅ **Clean Parity & Multi-View Validation**:
-   - Synchronized stage toolbar HTML across `public/admin.html` and `public/invoice.html`.
-   - Verified across Light and Dark themes with automated Puppeteer visual screenshots.
+### Sprint 14: Minimalist Luxury Presentation Engine & Zero-Clutter Architecture (Completed September 2026)
+1. ✅ **Radical Clutter Elimination**:
+   - Completely purged bulky status pills, redundant board title boxes, and corporate confidentiality badges (`EXECUTIVE BRIEFING • CONFIDENTIAL`).
+   - Replaced clunky HTML `<select id="presentSlideSelect">` dropdown and long truncated step text strings with a compact, ultra-clean interface.
+2. ✅ **Standalone Floating Animated Brand Mark**:
+   - Deployed `#presentationFloatingLogo` in the top-left corner featuring the pure Golden Ratio Pipette mark (`/assets/logo-gold-mark.svg?v=22.0`).
+   - Smooth 4.5s harmonic levitation micro-animation (`@keyframes floatBrandMark`) with champagne gold glow in Obsidian Noir and calibrated bronze-gold depth filter on Haute Alabaster.
+   - 100% zero text boxes, zero borders, and zero clutter.
+3. ✅ **Compact 3-Cluster Controller (`.presentation-bar`)**:
+   - Redesigned the presentation controller into an ultra-sleek, ~360px floating glass pill centered at the bottom of the screen.
+   - **Cluster 1 (Stepper)**: `[ ◀ ]` (auto-disabled on slide 1), `[ 01 / 11 ]` interactive step pill, `[ ▶ ]`. Clicking the step pill opens the Slide Sequencer modal. Displays `ALL` during God View.
+   - **Cluster 2 (Timer)**: `[ 🟢 00:00 ]` elapsed pitch stopwatch with subtle emerald pulse.
+   - **Cluster 3 (Tools)**: Minimalist icon buttons for Laser Pointer (`L`), God View Overview (`G`), Slide Sequencer (`O`), Fullscreen (`F`), and Exit (`Esc`).
+4. ✅ **Zero Distraction Pitch Canvas**:
+   - Hidden `#minimapHud` and `.minimap-hud` radar minimap in presentation mode, keeping 100% visual focus on the active strategy card.
+5. ✅ **True Laser Pointer Engine & Light Trail**:
+   - Laser wand SVG emitting rays with cursor suppression, incandescent white-hot core, and glowing dissipating champagne light trail.
+   - Complete suppression of card selection, drag locks, and marquee selection during laser actions.
+6. ✅ **Automated Verification**:
+   - Automated Puppeteer test suite (`tests/test_laser_and_branding.js`) verifies floating mark, navigation stepping, step pill updates, God View toggling, laser light trail drawing, and 0 element selection interference across Dark and Light modes.
 
 ---
 

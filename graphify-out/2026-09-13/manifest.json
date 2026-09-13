@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789268290.944523,
-    "seen": 1789268364.384864,
-    "ast_hash": "c93d09e495c7c608a9ae15594b76530a",
+    "mtime": 1789268453.7381735,
+    "seen": 1789268462.9824681,
+    "ast_hash": "626e2b4d9709de9da45a983386611587",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -486,9 +486,9 @@
     "semantic_hash": ""
   },
   "public/studio/index.html": {
-    "mtime": 1789268181.4524257,
-    "seen": 1789268274.703574,
-    "ast_hash": "1e3b5f0223f2f478c133e0ba290ecc92",
+    "mtime": 1789268428.3927147,
+    "seen": 1789268462.9826932,
+    "ast_hash": "77b64fcb67def89a1117e619750d571e",
     "semantic_hash": ""
   },
   "public/studio/login.html": {
@@ -1957,8 +1957,8 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789267922.884098,
-    "ast_hash": "",
+    "seen": 1789268470.91632,
+    "ast_hash": "9d679501ccc8722f71c8d90ebd230e69",
     "semantic_hash": ""
   },
   "tests/test_sequencer_e2e.js": {
@@ -1967,28 +1967,10 @@
     "ast_hash": "b7fa2e0abe7fc5e264e92b3e63641278",
     "semantic_hash": ""
   },
-  "tests/screenshots/slide-sequencer-modal.png": {
-    "mtime": 1789268148.0248895,
-    "seen": 1789268274.7061079,
-    "ast_hash": "99efae6af6adc13cc519da12d66075dd",
-    "semantic_hash": ""
-  },
   "tests/test_laser_and_branding.js": {
     "mtime": 1789268249.530294,
     "seen": 1789268274.703068,
     "ast_hash": "c53c23969e99bc40117aa7370920671e",
-    "semantic_hash": ""
-  },
-  "tests/screenshots/presentation-branded-laser-dark.png": {
-    "mtime": 1789268256.4391968,
-    "seen": 1789268274.706107,
-    "ast_hash": "31056ac7ec7a9e0fdeeeb40d5772332e",
-    "semantic_hash": ""
-  },
-  "tests/screenshots/presentation-branded-laser-light.png": {
-    "mtime": 1789268255.7812572,
-    "seen": 1789268274.7061079,
-    "ast_hash": "11c0eb3e3a907a2452ce114dde3a4188",
     "semantic_hash": ""
   }
 }

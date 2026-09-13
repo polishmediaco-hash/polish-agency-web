@@ -7743,7 +7743,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L508"
+      "source_location": "L523"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -7936,6 +7936,18 @@
       "norm_label": "sprint 12: presentation executive branding & laser engine overhaul (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L488"
+    },
+    {
+      "id": "docs_handoff_sprint_13_executive_admin_invoicing_atelier_contrast_shadow_bleed_layout_polish_completed_september_2026",
+      "label": "Sprint 13: Executive Admin Invoicing Atelier Contrast, Shadow Bleed & Layout Polish (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 13: executive admin invoicing atelier contrast, shadow bleed & layout polish (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L506"
     },
     {
       "id": "docs_handoff_sprint_1_critical_hotfixes_completed_september_2026",
@@ -22860,6 +22872,17 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_13_executive_admin_invoicing_atelier_contrast_shadow_bleed_layout_polish_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L506",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -22922,7 +22945,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L508",
+      "source_location": "L523",
       "weight": 1.0
     },
     {

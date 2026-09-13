@@ -3892,24 +3892,27 @@ body.is-presenting .presentation-floating-logo {
   display: flex !important;
   align-items: center;
   justify-content: center;
+  animation: floatBrandMark 4.5s ease-in-out infinite;
 }
 
 .presentation-logo-img {
   display: block;
   width: 36px;
   height: 36px;
-  animation: floatBrandMark 4.5s ease-in-out infinite;
-  transition: opacity 0.3s ease;
+  filter: drop-shadow(0 4px 14px rgba(226, 199, 153, 0.6));
+  transition: filter 0.3s ease;
+}
+
+body:not(.theme-dark) .presentation-logo-img {
+  filter: contrast(1.25) brightness(0.82) drop-shadow(0 3px 8px rgba(100, 70, 30, 0.45));
 }
 
 @keyframes floatBrandMark {
   0%, 100% {
     transform: translateY(0) scale(1);
-    filter: drop-shadow(0 4px 12px rgba(226, 199, 153, 0.45));
   }
   50% {
     transform: translateY(-5px) scale(1.03);
-    filter: drop-shadow(0 8px 24px rgba(226, 199, 153, 0.75));
   }
 }
 
@@ -4078,6 +4081,13 @@ body:not(.theme-dark) .present-ctrl-btn:hover {
   border-color: #E2C799;
   color: #080706;
   box-shadow: 0 0 14px rgba(226, 199, 153, 0.6);
+}
+
+.present-ctrl-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
 }
 
 /* Interactive Step Pill */

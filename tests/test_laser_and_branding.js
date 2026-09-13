@@ -52,6 +52,51 @@ const fs = require('fs');
     }
     console.log('✅ Floating animated brand logo verified! Zero bulky pills or text walls.');
 
+    // 2b. Verify Stepper Controls & Step Pill
+    console.log('Verifying Stepper Controls & Step Pill...');
+    const stepInfoInitial = await page.evaluate(() => {
+      const idx = document.getElementById('presentStepIndex')?.textContent;
+      const total = document.getElementById('presentStepTotal')?.textContent;
+      const prevDisabled = document.querySelector('.btn-prev')?.disabled;
+      return { idx, total, prevDisabled };
+    });
+    console.log('Initial Step Info:', stepInfoInitial);
+    if (stepInfoInitial.idx !== '01' || !stepInfoInitial.prevDisabled) {
+      throw new Error(`Step index initial state mismatch: ${JSON.stringify(stepInfoInitial)}`);
+    }
+
+    // Advance to next step
+    await page.click('.btn-next');
+    await new Promise(r => setTimeout(r, 200));
+    const stepInfoNext = await page.evaluate(() => {
+      return document.getElementById('presentStepIndex')?.textContent;
+    });
+    console.log('Next Step Info:', stepInfoNext);
+    if (stepInfoNext !== '02') {
+      throw new Error(`Step index did not advance to 02! Got: ${stepInfoNext}`);
+    }
+
+    // Go back to first step
+    await page.click('.btn-prev');
+    await new Promise(r => setTimeout(r, 200));
+
+    // Test God View Toggle
+    await page.evaluate(() => {
+      window.StudioPresentation.toggleGodView();
+    });
+    const godViewIndex = await page.evaluate(() => {
+      return document.getElementById('presentStepIndex')?.textContent;
+    });
+    console.log('God View Index:', godViewIndex);
+    if (godViewIndex !== 'ALL') {
+      throw new Error(`God view did not display 'ALL' in step pill! Got: ${godViewIndex}`);
+    }
+    // Restore back from God View
+    await page.evaluate(() => {
+      window.StudioPresentation.toggleGodView();
+    });
+    await new Promise(r => setTimeout(r, 200));
+
     // 3. Test Laser Activation
     console.log('Testing Laser activation...');
     await page.evaluate(() => {

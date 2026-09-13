@@ -932,7 +932,9 @@ body.theme-dark .tool-item.tool-ai-btn {
 .is-presenting aside.creation-toolbar,
 .is-presenting .viewport-tools,
 .is-presenting .card-port,
-.is-presenting .resize-handle {
+.is-presenting .resize-handle,
+.is-presenting #minimapHud,
+.is-presenting .minimap-hud {
   display: none !important;
 }
 

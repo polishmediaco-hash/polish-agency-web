@@ -84,9 +84,9 @@
     "semantic_hash": "63623f55bd0a5d557bbca75ebeb8860f"
   },
   "public/studio/js/elements-factory.js": {
-    "mtime": 1789268009.643531,
-    "seen": 1789268057.611485,
-    "ast_hash": "175b1cd1df8d4d5544eca55d72bde11d",
+    "mtime": 1789270303.241938,
+    "seen": 1789270376.4716291,
+    "ast_hash": "e1e4ca4b9130cd73397dca84f0116a74",
     "semantic_hash": ""
   },
   "public/studio/js/firebase-config.js": {
@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "public/studio/js/presentation.js": {
-    "mtime": 1789268527.83165,
-    "seen": 1789268637.338154,
-    "ast_hash": "3ae45eaf30816b6cdee21bb54693718c",
+    "mtime": 1789270294.3661406,
+    "seen": 1789270376.4716768,
+    "ast_hash": "30ea872986b34965a20819dc75a78727",
     "semantic_hash": ""
   },
   "public/studio/js/studio-ai.js": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789268630.5653043,
-    "seen": 1789268637.338688,
-    "ast_hash": "5aac784ff17d4a8b6d7b8bbc3c9168b6",
+    "mtime": 1789273643.6896882,
+    "seen": 1789273653.317566,
+    "ast_hash": "d395e46250c87560b16cdfb97f6b684c",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789268062.0715106,
-    "seen": 1789268274.703419,
-    "ast_hash": "00741f35fa929fec98f0fe857f993b28",
+    "mtime": 1789273633.763378,
+    "seen": 1789273653.317604,
+    "ast_hash": "ef94dfffa2fda112d7ccd63f90292e9d",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -486,9 +486,9 @@
     "semantic_hash": ""
   },
   "public/studio/index.html": {
-    "mtime": 1789268428.3927147,
-    "seen": 1789268462.9826932,
-    "ast_hash": "77b64fcb67def89a1117e619750d571e",
+    "mtime": 1789273548.9028273,
+    "seen": 1789273653.317763,
+    "ast_hash": "4e694685ef655898f85fdf10c5695326",
     "semantic_hash": ""
   },
   "public/studio/login.html": {
@@ -660,8 +660,8 @@
     "semantic_hash": ""
   },
   "public/assets/logo-gold-mark.svg": {
-    "mtime": 1788571271.8374915,
-    "seen": 1788996280.989176,
+    "mtime": 1789271947.7613149,
+    "seen": 1789272027.509282,
     "ast_hash": "efc40b4dbb86f65c9f4a971d657dc92c",
     "semantic_hash": ""
   },
@@ -1782,9 +1782,9 @@
     "semantic_hash": ""
   },
   "server/services/supabase.js": {
-    "mtime": 1789261446.8457284,
-    "seen": 1789262038.3901381,
-    "ast_hash": "2c73f1fa09667492a4eafee789b3fe04",
+    "mtime": 1789271146.2112105,
+    "seen": 1789271345.6041868,
+    "ast_hash": "61ee3e1525efdb28652829c049ce7cdb",
     "semantic_hash": ""
   },
   "public/js/effects/kinetic-typography.js": {
@@ -1830,9 +1830,9 @@
     "semantic_hash": ""
   },
   "public/js/invoice.js": {
-    "mtime": 1789267922.3691838,
-    "seen": 1789267922.884087,
-    "ast_hash": "5ceac9a5159643a73c0a0ed2b20d09d8",
+    "mtime": 1789271969.4480615,
+    "seen": 1789272027.507713,
+    "ast_hash": "83c1e646e1b13f695539f29bdc6620e0",
     "semantic_hash": ""
   },
   "docs/INVOICE_GUIDELINES.md": {
@@ -1842,9 +1842,9 @@
     "semantic_hash": ""
   },
   "public/invoice.html": {
-    "mtime": 1789268030.5751479,
-    "seen": 1789268057.612237,
-    "ast_hash": "fa886057eb67afae2c6a80281fcee93c",
+    "mtime": 1789270220.713017,
+    "seen": 1789270376.472511,
+    "ast_hash": "e280f640f67fc39afb99db7dc04680e9",
     "semantic_hash": ""
   },
   "public/privacy.html": {
@@ -1957,8 +1957,8 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789268825.2565,
-    "ast_hash": "9d679501ccc8722f71c8d90ebd230e69",
+    "seen": 1789273658.664223,
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "tests/test_sequencer_e2e.js": {
@@ -1968,9 +1968,75 @@
     "semantic_hash": ""
   },
   "tests/test_laser_and_branding.js": {
-    "mtime": 1789268552.8112195,
-    "seen": 1789268637.338377,
-    "ast_hash": "53f49e29a953f8f08974b38f47f75276",
+    "mtime": 1789273589.002603,
+    "seen": 1789273653.3172622,
+    "ast_hash": "dfd9a469f3733ef0314d02890801f7d4",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-sheet-verified.png": {
+    "mtime": 1789270350.5965319,
+    "seen": 1789270376.472765,
+    "ast_hash": "753468fa271e3298fc03895fdd2abc72",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/01_invoice_studio_alabaster.png": {
+    "mtime": 1789271991.2674923,
+    "seen": 1789272027.5088708,
+    "ast_hash": "f4fca15344ce4af5541d69b1618a16a6",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/02_invoice_sheet_alabaster.png": {
+    "mtime": 1789271991.3422246,
+    "seen": 1789272027.508872,
+    "ast_hash": "9f904e1ef0267620d680006c498a9d1c",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/03_banking_rails_and_summary_detail.png": {
+    "mtime": 1789271991.3882527,
+    "seen": 1789272027.508872,
+    "ast_hash": "d49d14a66a81240583da93ef8cdc69a0",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/03b_summary_box_alignment.png": {
+    "mtime": 1789271991.4372058,
+    "seen": 1789272027.508873,
+    "ast_hash": "3781148afad1fef44c29759bd66b944f",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/04_invoice_arabic_rtl.png": {
+    "mtime": 1789271991.9146686,
+    "seen": 1789272027.508874,
+    "ast_hash": "1daaf835ae61a69b9d724e4da6533710",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/05_invoice_studio_obsidian.png": {
+    "mtime": 1789271992.7162428,
+    "seen": 1789272027.508874,
+    "ast_hash": "2169ac9bf026f4d4bb6c8bc444024f13",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/06_invoice_sheet_obsidian_vip.png": {
+    "mtime": 1789271992.7931404,
+    "seen": 1789272027.508875,
+    "ast_hash": "06a89fe3afa5a2e277f5479264d1db55",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/07_invoice_print_emulated.png": {
+    "mtime": 1789271993.2852008,
+    "seen": 1789272027.508875,
+    "ast_hash": "82665d7d6a9c7fe455bef2e75bb89103",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/08_invoice_mobile_form.png": {
+    "mtime": 1789271994.5326967,
+    "seen": 1789272027.508876,
+    "ast_hash": "a0a44454a67aecfc771c2768504c575d",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/09_invoice_mobile_preview.png": {
+    "mtime": 1789271995.008452,
+    "seen": 1789272027.508876,
+    "ast_hash": "d0b51be55cab6791ed79883f11692188",
     "semantic_hash": ""
   }
 }

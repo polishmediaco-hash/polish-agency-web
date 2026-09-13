@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789268630.5653043,
-    "seen": 1789268637.338688,
-    "ast_hash": "5aac784ff17d4a8b6d7b8bbc3c9168b6",
+    "mtime": 1789274046.4255502,
+    "seen": 1789274052.842589,
+    "ast_hash": "88fea8c9229194686dce3783ba28a317",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789270455.676252,
-    "seen": 1789270457.794827,
-    "ast_hash": "9a58e10e5f84e9678d14ecb23bd6ee5a",
+    "mtime": 1789274047.69153,
+    "seen": 1789274052.842626,
+    "ast_hash": "85e8648f15fc7e18b9b9f810bbc5f9f7",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -486,9 +486,9 @@
     "semantic_hash": ""
   },
   "public/studio/index.html": {
-    "mtime": 1789270361.3510785,
-    "seen": 1789270376.472563,
-    "ast_hash": "6b07adbcfd01a0e43b04be35b79998cb",
+    "mtime": 1789273548.9028273,
+    "seen": 1789273653.317763,
+    "ast_hash": "4e694685ef655898f85fdf10c5695326",
     "semantic_hash": ""
   },
   "public/studio/login.html": {
@@ -660,8 +660,8 @@
     "semantic_hash": ""
   },
   "public/assets/logo-gold-mark.svg": {
-    "mtime": 1788571271.8374915,
-    "seen": 1788996280.989176,
+    "mtime": 1789271947.7613149,
+    "seen": 1789272027.509282,
     "ast_hash": "efc40b4dbb86f65c9f4a971d657dc92c",
     "semantic_hash": ""
   },
@@ -1782,9 +1782,9 @@
     "semantic_hash": ""
   },
   "server/services/supabase.js": {
-    "mtime": 1789261446.8457284,
-    "seen": 1789262038.3901381,
-    "ast_hash": "2c73f1fa09667492a4eafee789b3fe04",
+    "mtime": 1789271146.2112105,
+    "seen": 1789271345.6041868,
+    "ast_hash": "61ee3e1525efdb28652829c049ce7cdb",
     "semantic_hash": ""
   },
   "public/js/effects/kinetic-typography.js": {
@@ -1830,9 +1830,9 @@
     "semantic_hash": ""
   },
   "public/js/invoice.js": {
-    "mtime": 1789270214.1683962,
-    "seen": 1789270376.47152,
-    "ast_hash": "8394d589b79c8f99ad59a8b8b76b01a4",
+    "mtime": 1789271969.4480615,
+    "seen": 1789272027.507713,
+    "ast_hash": "83c1e646e1b13f695539f29bdc6620e0",
     "semantic_hash": ""
   },
   "docs/INVOICE_GUIDELINES.md": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789268825.2565,
+    "seen": 1789273658.664223,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -1968,15 +1968,81 @@
     "semantic_hash": ""
   },
   "tests/test_laser_and_branding.js": {
-    "mtime": 1789270396.81433,
-    "seen": 1789270457.794433,
-    "ast_hash": "e6843984d85af5afc41e18fd2fc9b067",
+    "mtime": 1789273589.002603,
+    "seen": 1789273653.3172622,
+    "ast_hash": "dfd9a469f3733ef0314d02890801f7d4",
     "semantic_hash": ""
   },
   "docs/assets/invoices/invoice-sheet-verified.png": {
     "mtime": 1789270350.5965319,
     "seen": 1789270376.472765,
     "ast_hash": "753468fa271e3298fc03895fdd2abc72",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/01_invoice_studio_alabaster.png": {
+    "mtime": 1789271991.2674923,
+    "seen": 1789272027.5088708,
+    "ast_hash": "f4fca15344ce4af5541d69b1618a16a6",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/02_invoice_sheet_alabaster.png": {
+    "mtime": 1789271991.3422246,
+    "seen": 1789272027.508872,
+    "ast_hash": "9f904e1ef0267620d680006c498a9d1c",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/03_banking_rails_and_summary_detail.png": {
+    "mtime": 1789271991.3882527,
+    "seen": 1789272027.508872,
+    "ast_hash": "d49d14a66a81240583da93ef8cdc69a0",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/03b_summary_box_alignment.png": {
+    "mtime": 1789271991.4372058,
+    "seen": 1789272027.508873,
+    "ast_hash": "3781148afad1fef44c29759bd66b944f",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/04_invoice_arabic_rtl.png": {
+    "mtime": 1789271991.9146686,
+    "seen": 1789272027.508874,
+    "ast_hash": "1daaf835ae61a69b9d724e4da6533710",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/05_invoice_studio_obsidian.png": {
+    "mtime": 1789271992.7162428,
+    "seen": 1789272027.508874,
+    "ast_hash": "2169ac9bf026f4d4bb6c8bc444024f13",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/06_invoice_sheet_obsidian_vip.png": {
+    "mtime": 1789271992.7931404,
+    "seen": 1789272027.508875,
+    "ast_hash": "06a89fe3afa5a2e277f5479264d1db55",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/07_invoice_print_emulated.png": {
+    "mtime": 1789271993.2852008,
+    "seen": 1789272027.508875,
+    "ast_hash": "82665d7d6a9c7fe455bef2e75bb89103",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/08_invoice_mobile_form.png": {
+    "mtime": 1789271994.5326967,
+    "seen": 1789272027.508876,
+    "ast_hash": "a0a44454a67aecfc771c2768504c575d",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/09_invoice_mobile_preview.png": {
+    "mtime": 1789271995.008452,
+    "seen": 1789272027.508876,
+    "ast_hash": "d0b51be55cab6791ed79883f11692188",
+    "semantic_hash": ""
+  },
+  "tests/test_logo_render.js": {
+    "mtime": 1789273989.9247537,
+    "seen": 1789274052.84226,
+    "ast_hash": "de1aafa6b21301f91ec5a7970753e0a3",
     "semantic_hash": ""
   }
 }

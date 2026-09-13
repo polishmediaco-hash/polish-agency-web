@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 86 files · ~634,322 words
+- 86 files · ~706,198 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1004 nodes · 1664 edges · 73 communities (66 shown, 5 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 44 edges (avg confidence: 0.85)
+- 1011 nodes · 1678 edges · 73 communities (66 shown, 5 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ec16125d`
+- Built from commit: `5dc79c24`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -93,11 +93,11 @@
 3. `renderElement()` - 32 edges
 4. `pushHistory()` - 19 edges
 5. `selectElement()` - 19 edges
-6. `getCanvasCenter()` - 16 edges
-7. `bindKeyboardShortcuts()` - 16 edges
-8. `setupToolbar()` - 15 edges
-9. `updatePosition()` - 15 edges
-10. `renderControls()` - 15 edges
+6. `6. Next Priority Roadmap (Ready for Next Conversation)` - 17 edges
+7. `getCanvasCenter()` - 16 edges
+8. `bindKeyboardShortcuts()` - 16 edges
+9. `renderInvoiceSheet()` - 15 edges
+10. `setupToolbar()` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `checkNewCalendlyMeetings()` --calls--> `notifyNewMeeting()`  [EXTRACTED]
@@ -190,7 +190,7 @@ Nodes (5): attachStrokeEvents(), bindEvents(), getSmoothSvgPath(), init(), rende
 
 ### Community 22 - "presentation.js"
 Cohesion: 0.11
-Nodes (37): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+29 more)
+Nodes (38): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+30 more)
 
 ### Community 23 - "api.js"
 Cohesion: 0.10
@@ -217,8 +217,8 @@ Cohesion: 0.08
 Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects.js`, 1.3 `public/js/three.min.js` & `public/studio/js/html2canvas.min.js`, 1. God Nodes Analysis, 2.1 Cohesion Scores (< 0.10), 2.2 Cross-Module Coupling Topology, 2. Modularity & Community Cohesion, 3.1 Unreferenced Symbols & Leaky Interfaces (+15 more)
 
 ### Community 31 - "6. Next Priority Roadmap (Ready for Next Conversation)"
-Cohesion: 0.06
-Nodes (34): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+26 more)
+Cohesion: 0.05
+Nodes (36): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+28 more)
 
 ### Community 32 - "OWASP Top 10 — Audit Checklist"
 Cohesion: 0.11
@@ -365,16 +365,16 @@ Cohesion: 1.00
 Nodes (3): initKineticTypography(), isReducedMotion(), revealKineticTitle()
 
 ### Community 75 - "invoice.js"
-Cohesion: 0.19
-Nodes (33): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), closeArchiveDrawer(), computeTotals(), escapeHTML(), filterArchiveList(), formatAmount() (+25 more)
+Cohesion: 0.16
+Nodes (37): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), cleanContactName(), closeArchiveDrawer(), computeTotals(), escapeHTML(), fallbackCopy() (+29 more)
 
 ### Community 76 - "POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)"
 Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
 ## Knowledge Gaps
-- **344 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+339 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 420 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **346 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+341 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 422 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -387,7 +387,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _344 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _346 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

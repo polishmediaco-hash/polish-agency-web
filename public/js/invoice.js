@@ -59,6 +59,59 @@
     return formatSerialCode(nextNum);
   }
 
+  // --- Helpers: Banking Rails & Contacts Formatting ---
+  function formatRip(val) {
+    if (!val) return '';
+    const clean = String(val).replace(/\s+/g, '');
+    if (clean.length === 20 && /^\d+$/.test(clean)) {
+      return `${clean.slice(0, 3)}\u00A0${clean.slice(3, 8)}\u00A0${clean.slice(8, 18)}\u00A0${clean.slice(18, 20)}`;
+    }
+    return val;
+  }
+
+  function formatCcp(val) {
+    if (!val) return '';
+    return String(val).replace(/\bcle\b/i, 'Clé');
+  }
+
+  function cleanContactName(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/^[-–—]\s*/, '')
+      .replace(/^(Attn|Dir|À l'att\. de|بإدارة|عناية)\s*:\s*/i, '')
+      .trim();
+  }
+
+  // --- 1-Click Clipboard Copy with Feedback ---
+  window.copyToClipboard = function (text, label) {
+    const clean = String(text || '').replace(/\u00A0/g, ' ').trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(clean).then(() => {
+        showToast(label || 'Copied to clipboard');
+      }).catch(() => {
+        fallbackCopy(clean, label);
+      });
+    } else {
+      fallbackCopy(clean, label);
+    }
+  };
+
+  function fallbackCopy(text, label) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast(label || 'Copied to clipboard');
+    } catch (e) {
+      showToast('Copy failed');
+    }
+    document.body.removeChild(ta);
+  }
+
   // --- Default State (Exact match of verified invoice with auto-adjusted date & serial) ---
   const defaultState = {
     theme: 'alabaster', // 'alabaster' or 'obsidian'
@@ -103,7 +156,7 @@
 
     // Settlement / Payment Info
     beneficiaryName: 'FAYCAL CHOULI',
-    ccp: '0044643623 cle 49',
+    ccp: '0044643623 Clé 49',
     rip: '00799999004464362350',
     baridiMob: '',
     bankName: '',
@@ -126,6 +179,8 @@
       dueLabel: 'Due:',
       payableTo: 'PAYABLE TO',
       clientDetails: 'CLIENT DETAILS',
+      dirPrefix: 'Dir: ',
+      attnPrefix: 'Attn: ',
       colDesc: 'ITEM DESCRIPTION',
       colDuration: 'DURATION',
       colPlatform: 'PLATFORM',
@@ -136,8 +191,8 @@
       balanceDue: 'Balance Due:',
       paymentInfo: 'PAYMENT INFO:',
       beneficiary: 'Beneficiary:',
-      ccpLabel: 'Ccp :',
-      ripLabel: 'Rip :'
+      ccpLabel: 'CCP:',
+      ripLabel: 'RIP:'
     },
     fr: {
       invoiceTitle: 'FACTURE',
@@ -146,6 +201,8 @@
       dueLabel: 'Échéance :',
       payableTo: 'PAYABLE À',
       clientDetails: 'DÉTAILS DU CLIENT',
+      dirPrefix: 'Dir : ',
+      attnPrefix: 'À l\'att. de : ',
       colDesc: 'DESCRIPTION DU SERVICE',
       colDuration: 'DURÉE',
       colPlatform: 'PLATEFORME',
@@ -156,8 +213,8 @@
       balanceDue: 'Net À Payer :',
       paymentInfo: 'INFORMATIONS DE PAIEMENT :',
       beneficiary: 'Bénéficiaire :',
-      ccpLabel: 'Ccp :',
-      ripLabel: 'Rip :'
+      ccpLabel: 'CCP :',
+      ripLabel: 'RIP :'
     },
     ar: {
       invoiceTitle: 'فاتورة',
@@ -166,6 +223,8 @@
       dueLabel: 'الاستحقاق :',
       payableTo: 'مستحق لـ',
       clientDetails: 'بيانات العميل',
+      dirPrefix: 'بإدارة : ',
+      attnPrefix: 'عناية : ',
       colDesc: 'بيان الخدمة',
       colDuration: 'المدة',
       colPlatform: 'المنصة',
@@ -188,13 +247,13 @@
     const spaced = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
     switch (currency) {
       case 'DA':
-        return isAr ? `${spaced} دج` : `${spaced}da`;
+        return isAr ? `${spaced}\u00A0د.ج` : `${spaced}da`;
       case 'USD':
-        return isAr ? `${spaced} $` : '$' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return isAr ? `${spaced}\u00A0$` : '$' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       case 'EUR':
-        return isAr ? `${spaced} €` : val.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+        return isAr ? `${spaced}\u00A0€` : val.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
       case 'AED':
-        return isAr ? `${spaced} د.إ` : val.toLocaleString('en-US') + ' AED';
+        return isAr ? `${spaced}\u00A0د.إ` : val.toLocaleString('en-US') + ' AED';
       default:
         return `${spaced} ${currency}`;
     }
@@ -276,7 +335,7 @@
             <span class="inv-td-badge" contenteditable="${state.editMode}" data-field="items.${index}.platform" dir="ltr"><bdi>${escapeHTML(item.platform)}</bdi></span>
           </td>
           <td class="inv-td inv-td-price-cell">
-            <span class="inv-td-price" contenteditable="${state.editMode}" data-field="items.${index}.price" data-type="number" dir="ltr">${formatAmount(item.price, state.currency, state.lang)}</span>
+            <span class="inv-td-price" contenteditable="${state.editMode}" data-field="items.${index}.price" data-type="number" dir="${state.lang === 'ar' ? 'rtl' : 'ltr'}">${formatAmount(item.price, state.currency, state.lang)}</span>
           </td>
         </tr>
       `;
@@ -315,14 +374,23 @@
           <div class="inv-entity-card inv-entity-payable">
             <span class="inv-entity-label">${dict.payableTo}</span>
             <div class="inv-entity-name" contenteditable="${state.editMode}" data-field="payableName" dir="auto">${escapeHTML(state.payableName)}</div>
-            ${state.payableContact ? `<div class="inv-entity-sub" contenteditable="${state.editMode}" data-field="payableContact" dir="ltr"><span class="inv-dash">-</span> <bdi>${escapeHTML(state.payableContact)}</bdi></div>` : ''}
+            ${state.payableContact ? `
+              <div class="inv-entity-sub" dir="auto">
+                <span class="inv-entity-person" contenteditable="${state.editMode}" data-field="payableContact" dir="auto">${escapeHTML(cleanContactName(state.payableContact))}</span>
+              </div>
+            ` : ''}
             ${state.payablePhone ? `<div class="inv-entity-contact" dir="ltr"><span contenteditable="${state.editMode}" data-field="payablePhone"><bdi>${escapeHTML(state.payablePhone)}</bdi></span></div>` : ''}
           </div>
 
           <div class="inv-entity-card inv-entity-client">
             <span class="inv-entity-label">${dict.clientDetails}</span>
             <div class="inv-entity-name" contenteditable="${state.editMode}" data-field="clientName" dir="auto">${escapeHTML(state.clientName)}</div>
-            ${state.clientContact ? `<div class="inv-entity-sub" contenteditable="${state.editMode}" data-field="clientContact" dir="ltr"><span class="inv-dash">-</span> <bdi>${escapeHTML(state.clientContact)}</bdi></div>` : ''}
+            ${state.clientContact ? `
+              <div class="inv-entity-sub" dir="auto">
+                <span class="inv-entity-prefix">${dict.attnPrefix}</span>
+                <span class="inv-entity-person" contenteditable="${state.editMode}" data-field="clientContact" dir="auto">${escapeHTML(cleanContactName(state.clientContact))}</span>
+              </div>
+            ` : ''}
             ${state.clientPhone ? `<div class="inv-entity-contact" dir="ltr"><span contenteditable="${state.editMode}" data-field="clientPhone"><bdi>${escapeHTML(state.clientPhone)}</bdi></span></div>` : ''}
           </div>
         </section>
@@ -350,24 +418,24 @@
             ${state.items.length > 1 || state.taxRate > 0 || state.depositPaid > 0 ? `
               <div class="inv-calc-line">
                 <span>${dict.subtotal}</span>
-                <span dir="ltr">${formatAmount(totals.subtotal, state.currency, state.lang)}</span>
+                <span dir="${state.lang === 'ar' ? 'rtl' : 'ltr'}">${formatAmount(totals.subtotal, state.currency, state.lang)}</span>
               </div>
             ` : ''}
             ${state.taxRate > 0 ? `
               <div class="inv-calc-line">
                 <span>Tax (${state.taxRate}%):</span>
-                <span dir="ltr">${formatAmount(totals.taxAmount, state.currency, state.lang)}</span>
+                <span dir="${state.lang === 'ar' ? 'rtl' : 'ltr'}">${formatAmount(totals.taxAmount, state.currency, state.lang)}</span>
               </div>
             ` : ''}
             ${state.depositPaid > 0 ? `
               <div class="inv-calc-line">
                 <span>${dict.deposit}</span>
-                <span dir="ltr">-${formatAmount(state.depositPaid, state.currency, state.lang)}</span>
+                <span dir="${state.lang === 'ar' ? 'rtl' : 'ltr'}">-${formatAmount(state.depositPaid, state.currency, state.lang)}</span>
               </div>
             ` : ''}
             <div class="inv-calc-line total-line">
               <span>${dict.grandTotal}</span>
-              <span class="inv-total-amount" dir="ltr">${formatAmount(totals.grandTotal, state.currency, state.lang)}</span>
+              <span class="inv-total-amount" dir="${state.lang === 'ar' ? 'rtl' : 'ltr'}">${formatAmount(totals.grandTotal, state.currency, state.lang)}</span>
             </div>
           </div>
         </section>
@@ -379,11 +447,11 @@
           <div class="inv-rails-grid">
             <div class="inv-rail-item">
               <strong class="inv-rail-label"><bdi>${dict.ccpLabel}</bdi></strong> 
-              <span class="inv-rail-val" contenteditable="${state.editMode}" data-field="ccp" dir="ltr"><bdi>${escapeHTML(state.ccp)}</bdi></span>
+              <span class="inv-rail-val" contenteditable="${state.editMode}" data-field="ccp" dir="ltr"><bdi>${escapeHTML(formatCcp(state.ccp))}</bdi></span>
             </div>
             <div class="inv-rail-item">
               <strong class="inv-rail-label"><bdi>${dict.ripLabel}</bdi></strong> 
-              <span class="inv-rail-val" contenteditable="${state.editMode}" data-field="rip" dir="ltr"><bdi>${escapeHTML(state.rip)}</bdi></span>
+              <span class="inv-rail-val" contenteditable="${state.editMode}" data-field="rip" dir="ltr"><bdi>${escapeHTML(formatRip(state.rip))}</bdi></span>
             </div>
             ${state.bankName ? `
               <div class="inv-rail-item">
@@ -861,6 +929,19 @@
 
     window.addEventListener('beforeprint', () => {
       updateDocumentTitle();
+      const logo = document.getElementById('sheetLogo');
+      if (logo && state.theme === 'obsidian') {
+        logo.dataset.origSrc = logo.src;
+        logo.src = '/brand-pack/01_logos/polish-logo-horizontal-dark.svg';
+      }
+    });
+
+    window.addEventListener('afterprint', () => {
+      const logo = document.getElementById('sheetLogo');
+      if (logo && logo.dataset.origSrc) {
+        logo.src = logo.dataset.origSrc;
+        delete logo.dataset.origSrc;
+      }
     });
   }
 

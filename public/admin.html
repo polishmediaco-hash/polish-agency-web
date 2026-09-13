@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>POLISH Admin — Executive Hub &amp; Live CMS</title>
+  <title>POLISH Admin</title>
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=23.0">
   <link rel="alternate icon" type="image/png" sizes="32x32" href="/assets/logo-gold-mark.png?v=23.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
@@ -26,6 +26,9 @@
   </script>
   <style>
     /* Instant zero-flash authenticated view state */
+    html:not(.is-authenticated) .admin-nav {
+      display: none !important;
+    }
     html.is-authenticated #authGateView {
       display: none !important;
     }
@@ -99,18 +102,227 @@
     body.theme-light .page-header h1,
     body.theme-light .cms-card-title,
     body.theme-light .prospect-card-title,
-    body.theme-light .lead-card-name {
+    body.theme-light .lead-card-name,
+    body.theme-light #modalProspectTitle {
       color: var(--text) !important;
     }
 
     body.theme-light .admin-nav,
     body.theme-light .cms-card,
-    body.theme-light .stat-card,
-    body.theme-light .prospect-section-card,
     body.theme-light .leads-filter-pills,
     body.theme-light .leads-action-tools {
       background: var(--card-bg) !important;
       border-color: var(--card-border) !important;
+    }
+
+    /* Light Theme: Stat KPI Cards */
+    body.theme-light .stat-card {
+      background: #FFFFFF !important;
+      border: 1px solid var(--card-border) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    body.theme-light .stat-card .stat-val {
+      color: #0D0B0A !important;
+    }
+    body.theme-light #statTotalCount {
+      color: #0D0B0A !important;
+    }
+    body.theme-light #statQualifiedCount {
+      color: #047857 !important;
+    }
+    body.theme-light #statCallsCount {
+      color: #6D28D9 !important;
+    }
+    body.theme-light #statBrandCount {
+      color: #8C5E24 !important;
+    }
+    body.theme-light #statCreatorCount {
+      color: #BE123C !important;
+    }
+    body.theme-light .stat-card .stat-lbl {
+      color: #685E53 !important;
+      font-weight: 700 !important;
+    }
+
+    /* Light Theme: Filter Pills & Search */
+    body.theme-light .filter-pill {
+      background: #FFFFFF !important;
+      color: #423B33 !important;
+      border: 1px solid #D8D2C7 !important;
+    }
+    body.theme-light .filter-pill:hover {
+      background: #FAF8F5 !important;
+      color: #0D0B0A !important;
+      border-color: #8C6228 !important;
+    }
+    body.theme-light .filter-pill.active {
+      background: #0D0B0A !important;
+      color: #FFFFFF !important;
+      border-color: #0D0B0A !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    }
+    body.theme-light .search-input-wrap input {
+      background: #FFFFFF !important;
+      color: #0D0B0A !important;
+      border-color: #D8D2C7 !important;
+    }
+    body.theme-light .search-input-wrap input:focus {
+      border-color: #785627 !important;
+      box-shadow: 0 0 12px rgba(120, 86, 39, 0.18) !important;
+    }
+    body.theme-light .search-input-wrap svg {
+      color: #685E53 !important;
+    }
+
+    /* Light Theme: CRM Leads Table */
+    body.theme-light .leads-table-card {
+      background: #FFFFFF !important;
+      border-color: #D8D2C7 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+    }
+    body.theme-light table.leads-table thead th {
+      background: #FAF8F5 !important;
+      color: #685E53 !important;
+      border-bottom: 1px solid #D8D2C7 !important;
+      font-weight: 800 !important;
+    }
+    body.theme-light table.leads-table tbody td {
+      border-top: 1px solid #EAE5DC !important;
+      color: #423B33 !important;
+    }
+    body.theme-light table.leads-table tbody tr:hover td {
+      background: #FAF8F5 !important;
+    }
+    body.theme-light .crm-lead-title {
+      color: #0D0B0A !important;
+    }
+    body.theme-light .crm-lead-subtitle {
+      color: #8C6228 !important;
+    }
+    body.theme-light .crm-diagnostic-text {
+      color: #2A2520 !important;
+    }
+    body.theme-light .crm-date-text {
+      color: #0D0B0A !important;
+    }
+    body.theme-light .crm-time-text {
+      color: #685E53 !important;
+    }
+    body.theme-light .crm-ref-code {
+      background: #F0EDE6 !important;
+      color: #5E5549 !important;
+      border-color: #D8D2C7 !important;
+    }
+    body.theme-light .note-logged-badge {
+      background: rgba(180, 83, 9, 0.08) !important;
+      border-color: rgba(180, 83, 9, 0.3) !important;
+      color: #B45309 !important;
+    }
+    body.theme-light .crm-tag-meet {
+      background: rgba(124, 58, 237, 0.1) !important;
+      color: #6D28D9 !important;
+      border-color: rgba(124, 58, 237, 0.3) !important;
+    }
+    body.theme-light .crm-meet-btn {
+      background: rgba(37, 99, 235, 0.08) !important;
+      color: #1D4ED8 !important;
+      border-color: rgba(37, 99, 235, 0.3) !important;
+    }
+    body.theme-light .crm-meet-btn:hover {
+      background: rgba(37, 99, 235, 0.16) !important;
+    }
+    body.theme-light .lead-mobile-card {
+      background: #FFFFFF !important;
+      border-color: #D8D2C7 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+    }
+    body.theme-light .lead-mobile-head {
+      border-bottom-color: #EAE5DC !important;
+    }
+
+    /* Light Theme: CRM Stage Dropdown */
+    body.theme-light .crm-stage-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23423B33' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 8px center !important;
+      background-size: 9px !important;
+    }
+    body.theme-light .crm-stage-select option {
+      background: #FFFFFF !important;
+      color: #0D0B0A !important;
+    }
+    body.theme-light .stage-NEW, body.theme-light .stage-NEW_APPLICATION {
+      background-color: rgba(140, 98, 40, 0.12) !important;
+      color: #785627 !important;
+      border: 1px solid rgba(140, 98, 40, 0.4) !important;
+    }
+    body.theme-light .stage-IN_REVIEW {
+      background-color: rgba(37, 99, 235, 0.1) !important;
+      color: #1D4ED8 !important;
+      border: 1px solid rgba(37, 99, 235, 0.35) !important;
+    }
+    body.theme-light .stage-QUALIFIED {
+      background-color: rgba(16, 185, 129, 0.12) !important;
+      color: #047857 !important;
+      border: 1px solid rgba(16, 185, 129, 0.4) !important;
+    }
+    body.theme-light .stage-CALL_SCHEDULED {
+      background-color: rgba(147, 51, 234, 0.12) !important;
+      color: #6D28D9 !important;
+      border: 1px solid rgba(147, 51, 234, 0.4) !important;
+    }
+    body.theme-light .stage-ONBOARDED {
+      background-color: rgba(217, 119, 6, 0.12) !important;
+      color: #B45309 !important;
+      border: 1px solid rgba(217, 119, 6, 0.4) !important;
+    }
+    body.theme-light .stage-ARCHIVED {
+      background-color: rgba(100, 116, 139, 0.12) !important;
+      color: #475569 !important;
+      border: 1px solid rgba(100, 116, 139, 0.35) !important;
+    }
+
+    /* Light Theme: Executive Dossier Modal */
+    body.theme-light .prospect-dialog {
+      background: #FFFFFF !important;
+      border: 1px solid #D8D2C7 !important;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+    }
+    body.theme-light .prospect-dialog-header {
+      background: #FAF8F5 !important;
+      border-bottom: 1px solid #EAE5DC !important;
+    }
+    body.theme-light .prospect-section-card {
+      background: #FAF8F5 !important;
+      border-color: #EAE5DC !important;
+    }
+    body.theme-light .prospect-info-label {
+      color: #685E53 !important;
+    }
+    body.theme-light .prospect-info-val {
+      color: #0D0B0A !important;
+    }
+    body.theme-light .prospect-diagnostic-box {
+      background: #FFFFFF !important;
+      color: #0D0B0A !important;
+      border: 1px solid #D8D2C7 !important;
+    }
+    body.theme-light .prospect-notes-area {
+      background: #FFFFFF !important;
+      border: 1px solid #D8D2C7 !important;
+      color: #0D0B0A !important;
+    }
+    body.theme-light .prospect-notes-area:focus {
+      border-color: #785627 !important;
+      box-shadow: 0 0 12px rgba(120, 86, 39, 0.18) !important;
+    }
+    body.theme-light .modal-close-btn {
+      background: #F0EDE6 !important;
+      border-color: #D8D2C7 !important;
+      color: #0D0B0A !important;
+    }
+    body.theme-light .modal-close-btn:hover {
+      background: #E5DFD5 !important;
     }
 
     body.theme-light .admin-user-pill,
@@ -527,6 +739,14 @@
       padding-bottom: 24px !important;
     }
 
+    .admin-main.admin-main-crm {
+      max-width: 1540px !important;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 36px;
+      padding-bottom: 80px !important;
+    }
+
     /* Page Header */
     .page-header {
       display: flex;
@@ -832,94 +1052,217 @@
       background: rgba(239, 68, 68, 0.25);
     }
 
-    /* Auth Gate Screen */
+    /* ================= Haute Atelier Auth Gate Screen ================= */
+    #authGateView {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      z-index: 99999;
+      background: radial-gradient(circle at 50% 30%, rgba(226, 199, 153, 0.09) 0%, rgba(12, 10, 8, 0.96) 65%, #080706 100%) !important;
+      overflow-y: auto;
+    }
     .auth-overlay {
-      max-width: 440px;
-      margin: 80px auto;
-      padding: 0 20px;
+      width: 100%;
+      max-width: 420px;
+      margin: auto;
+      padding: 0;
       position: relative;
       z-index: 2;
     }
     .auth-box {
-      background: var(--card-bg);
-      border: 1px solid rgba(226, 199, 153, 0.25);
-      border-radius: 24px;
-      padding: 44px 36px;
+      width: 100%;
+      background: rgba(18, 15, 12, 0.92) !important;
+      border: 1px solid rgba(226, 199, 153, 0.28) !important;
+      border-radius: 26px;
+      padding: 42px 32px 36px;
       text-align: center;
-      backdrop-filter: blur(36px);
-      -webkit-backdrop-filter: blur(36px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(226, 199, 153, 0.1);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 45px rgba(226, 199, 153, 0.12);
+      color: #FAF6EF !important;
+    }
+    .auth-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(226, 199, 153, 0.08);
+      border: 1px solid rgba(226, 199, 153, 0.25);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #E2C799;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .auth-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
     }
     .auth-logo-bubble {
-      width: 76px;
-      height: 76px;
-      background: radial-gradient(circle, rgba(226, 199, 153, 0.18) 0%, rgba(9, 14, 26, 0.9) 100%);
-      border: 1px solid rgba(226, 199, 153, 0.35);
+      width: 68px;
+      height: 68px;
+      background: radial-gradient(circle, rgba(226, 199, 153, 0.22) 0%, rgba(18, 15, 12, 0.95) 100%);
+      border: 1px solid rgba(226, 199, 153, 0.45);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 22px;
-      box-shadow: 0 0 30px rgba(226, 199, 153, 0.25);
+      margin: 0 auto 16px;
+      box-shadow: 0 0 25px rgba(226, 199, 153, 0.25);
     }
     .auth-logo-bubble img {
-      height: 52px;
-      width: auto;
-      filter: drop-shadow(0 0 12px rgba(226, 199, 153, 0.65));
+      width: 40px;
+      height: 40px;
+      filter: drop-shadow(0 0 8px rgba(226, 199, 153, 0.6));
     }
-    .auth-box h2 {
-      font-size: 22px;
-      font-weight: 800;
-      color: #FFFFFF;
-      margin-bottom: 8px;
+    .auth-box h2,
+    body.theme-light #authGateView h2 {
+      font-size: 23px !important;
+      font-weight: 800 !important;
+      color: #FAF6EF !important;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px !important;
     }
-    .auth-box p {
-      color: var(--dim);
-      font-size: 13.5px;
-      margin-bottom: 24px;
+    .auth-box p.auth-subtitle,
+    body.theme-light #authGateView p.auth-subtitle {
+      color: #A39B90 !important;
+      font-size: 13px !important;
+      line-height: 1.5;
+      margin-bottom: 24px !important;
     }
-    .btn-google-auth {
+    .btn-google-auth,
+    body.theme-light #authGateView .btn-google-auth {
       width: 100%;
-      padding: 12px 20px;
+      padding: 13px 20px;
       font-size: 13.5px;
       font-weight: 700;
       font-family: inherit;
       border-radius: 12px;
-      border: 1px solid rgba(226, 199, 153, 0.35);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      color: #FFFFFF;
+      border: 1px solid rgba(226, 199, 153, 0.35) !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      color: #FAF6EF !important;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       transition: all 0.25s ease;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
     }
-    .btn-google-auth:hover {
-      background: linear-gradient(135deg, rgba(226, 199, 153, 0.16), rgba(197, 168, 128, 0.08));
-      border-color: rgba(226, 199, 153, 0.7);
+    .btn-google-auth:hover,
+    body.theme-light #authGateView .btn-google-auth:hover {
+      background: rgba(226, 199, 153, 0.16) !important;
+      border-color: rgba(226, 199, 153, 0.7) !important;
       box-shadow: 0 6px 24px rgba(226, 199, 153, 0.25);
       transform: translateY(-1px);
+    }
+    .btn-google-auth #btnGoogleText,
+    body.theme-light #authGateView .btn-google-auth #btnGoogleText {
+      color: #FAF6EF !important;
+      font-weight: 700 !important;
     }
     .auth-divider {
       display: flex;
       align-items: center;
       text-align: center;
-      margin: 20px 0;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      margin: 22px 0 20px;
+      color: #7A7268;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
     .auth-divider::before, .auth-divider::after {
       content: '';
       flex: 1;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(226, 199, 153, 0.15);
     }
     .auth-divider span {
-      padding: 0 10px;
+      padding: 0 12px;
+    }
+    .auth-key-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .auth-key-icon {
+      position: absolute;
+      left: 14px;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    .auth-key-input,
+    body.theme-light #authGateView .auth-key-input {
+      width: 100% !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(226, 199, 153, 0.28) !important;
+      border-radius: 12px !important;
+      color: #FAF6EF !important;
+      padding: 12px 42px 12px 40px !important;
+      font-size: 13.5px !important;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+    .auth-key-input::placeholder,
+    body.theme-light #authGateView .auth-key-input::placeholder {
+      color: #7A7268 !important;
+    }
+    .auth-key-input:focus,
+    body.theme-light #authGateView .auth-key-input:focus {
+      border-color: #E2C799 !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 0 0 3px rgba(226, 199, 153, 0.15) !important;
+    }
+    .auth-toggle-pwd {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: #A39B90;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+    }
+    .auth-toggle-pwd:hover {
+      color: #E2C799;
+    }
+    .btn-key-unlock {
+      width: 100%;
+      padding: 13px 20px;
+      font-size: 13.5px;
+      font-weight: 700;
+      font-family: inherit;
+      border-radius: 12px;
+      border: 1px solid rgba(226, 199, 153, 0.4);
+      background: linear-gradient(135deg, #E2C799 0%, #C5A880 100%);
+      color: #080706;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 18px rgba(226, 199, 153, 0.25);
+    }
+    .btn-key-unlock:hover {
+      background: linear-gradient(135deg, #F5E6D3 0%, #E2C799 100%);
+      box-shadow: 0 6px 24px rgba(226, 199, 153, 0.4);
+      transform: translateY(-1px);
     }
     .auth-error-box {
       margin-top: 14px;
@@ -931,6 +1274,20 @@
       font-size: 12px;
       line-height: 1.45;
       text-align: left;
+    }
+    .auth-footer {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .auth-return-link {
+      font-size: 12px;
+      color: #7A7268;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .auth-return-link:hover {
+      color: #E2C799;
     }
     .admin-user-pill {
       display: inline-flex;
@@ -1156,8 +1513,8 @@
       table-layout: fixed;
     }
     table.leads-table thead th {
-      background: rgba(0, 0, 0, 0.45);
-      padding: 14px 16px;
+      background: rgba(18, 15, 12, 0.95);
+      padding: 14px 18px;
       font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
@@ -1167,15 +1524,15 @@
       border-bottom: 1px solid var(--card-border);
       white-space: nowrap;
     }
-    table.leads-table thead th:nth-child(1) { width: 25%; min-width: 220px; }
-    table.leads-table thead th:nth-child(2) { width: 14%; min-width: 120px; }
-    table.leads-table thead th:nth-child(3) { width: 16%; min-width: 150px; }
-    table.leads-table thead th:nth-child(4) { width: 23%; min-width: 210px; }
-    table.leads-table thead th:nth-child(5) { width: 10%; min-width: 100px; }
-    table.leads-table thead th:nth-child(6) { width: 12%; min-width: 110px; text-align: right; }
+    table.leads-table thead th:nth-child(1) { width: 26%; min-width: 280px; }
+    table.leads-table thead th:nth-child(2) { width: 13%; min-width: 140px; }
+    table.leads-table thead th:nth-child(3) { width: 15%; min-width: 160px; }
+    table.leads-table thead th:nth-child(4) { width: 26%; min-width: 280px; }
+    table.leads-table thead th:nth-child(5) { width: 10%; min-width: 115px; }
+    table.leads-table thead th:nth-child(6) { width: 10%; min-width: 115px; text-align: right; }
 
     table.leads-table tbody td {
-      padding: 15px 16px;
+      padding: 16px 18px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       font-size: 13px;
       color: var(--muted);
@@ -1189,6 +1546,107 @@
     }
     table.leads-table tbody tr:hover td {
       background: rgba(226, 199, 153, 0.025);
+    }
+
+    /* Semantic Leads Classes */
+    .crm-lead-title {
+      font-weight: 800;
+      font-size: 14.5px;
+      color: #FFFFFF;
+      line-height: 1.35;
+    }
+    .crm-lead-subtitle {
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--cyan);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .crm-lead-meta {
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .crm-diagnostic-text {
+      font-size: 12.5px;
+      color: #E2D9CC;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+    .crm-ref-code {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .crm-date-text {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #F5F1EA;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .crm-time-text {
+      font-size: 11px;
+      color: var(--dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .crm-tag-meet {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 12px;
+      font-size: 10.5px;
+      font-weight: 800;
+      background: rgba(192, 132, 252, 0.15);
+      color: #C084FC;
+      border: 1px solid rgba(192, 132, 252, 0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .crm-meet-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      background: rgba(96, 165, 250, 0.12);
+      color: #60A5FA;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-top: 4px;
+    }
+    .crm-meet-btn:hover {
+      background: rgba(96, 165, 250, 0.24);
+    }
+    .crm-rev-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 10.5px;
+      font-weight: 800;
+      background: rgba(226, 199, 153, 0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(226, 199, 153, 0.25);
+      margin-bottom: 4px;
     }
 
     /* Mobile Leads Cards View */
@@ -1236,34 +1694,37 @@
     .prospect-modal-overlay {
       position: fixed;
       inset: 0;
-      z-index: 9999;
+      z-index: 100000;
       background: rgba(4, 6, 10, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: none;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      padding: 20px;
+      padding: 48px 24px;
+      overflow-y: auto;
+      box-sizing: border-box;
     }
     .prospect-modal-overlay.active {
       display: flex;
-      animation: modalFadeIn 0.2s ease-out;
+      animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     @keyframes modalFadeIn {
       from { opacity: 0; transform: scale(0.98); }
       to { opacity: 1; transform: scale(1); }
     }
     .prospect-dialog {
-      background: #090D14;
-      border: 1px solid rgba(226, 199, 153, 0.25);
+      background: #0F0D0B;
+      border: 1px solid rgba(226, 199, 153, 0.28);
       border-radius: 24px;
       width: 100%;
-      max-width: 880px;
-      max-height: 90vh;
+      max-width: 960px;
+      margin: auto 0;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(226, 199, 153, 0.12);
+      box-shadow: 0 32px 100px rgba(0, 0, 0, 0.85), 0 0 50px rgba(226, 199, 153, 0.1);
+      position: relative;
     }
     .prospect-dialog-header {
       padding: 20px 28px;
@@ -1461,7 +1922,7 @@
     <div class="admin-brand-col">
       <a href="/" class="brand-wrap" title="POLISH Agency Home">
         <img src="/assets/logo-dark.svg" alt="POLISH" class="admin-logo-img" id="adminHeaderLogo">
-        <span class="admin-badge"><span class="pulse-live-dot"></span> EXECUTIVE HUB</span>
+        <span class="admin-badge"><span class="pulse-live-dot"></span> ADMIN</span>
       </a>
     </div>
 
@@ -1478,11 +1939,11 @@
       </button>
       <button class="nav-tab" data-pane="leadsTabPane" onclick="switchMainTab('leadsTabPane')">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10"/><path d="M7 12h10"/><path d="M7 16h6"/></svg>
-        <span class="tab-label-full">Inbound Dossiers</span>
-        <span class="tab-label-short">Dossiers</span>
+        <span class="tab-label-full">Leads</span>
+        <span class="tab-label-short">Leads</span>
         <span class="tab-badge" id="leadsNavCount">0</span>
       </button>
-      <button class="nav-tab" data-pane="invoicesTabPane" onclick="switchMainTab('invoicesTabPane')" title="Executive Invoicing Atelier">
+      <button class="nav-tab" data-pane="invoicesTabPane" onclick="switchMainTab('invoicesTabPane')" title="Invoices">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
         <span>Invoices</span>
         <span class="tab-badge" id="invoicesNavCount" style="background: rgba(226,199,153,0.18); color: #E2C799; border: 1px solid rgba(226,199,153,0.35);">24</span>
@@ -1493,7 +1954,7 @@
       </button>
     </div>
 
-    <!-- Zone 3: Executive Utilities & User Profile -->
+    <!-- Zone 3: Utilities & User Profile -->
     <div class="nav-actions" id="navActions" style="display: none;">
       <a href="/" target="_blank" class="btn-nav" title="View Live Website">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1509,11 +1970,11 @@
         <button type="button" class="btn-theme-opt active" id="btnAdminLight" onclick="setAdminTheme('light')" style="background:var(--card-bg); border:none; color:var(--text); font-size:11px; font-weight:700; padding:3px 7px; border-radius:4px; cursor:pointer;">Light</button>
       </div>
       <div class="nav-divider"></div>
-      <div id="adminUserPill" class="admin-user-pill" title="Authenticated Executive">
+      <div id="adminUserPill" class="admin-user-pill" title="Logged In">
         <span id="adminUserIcon" class="user-avatar-icon">👑</span>
         <span id="adminUserEmail" class="user-email-text">Admin</span>
       </div>
-      <button class="btn-nav btn-nav-logout" onclick="logoutAdmin()" title="Log Out of Executive Hub">
+      <button class="btn-nav btn-nav-logout" onclick="logoutAdmin()" title="Log Out">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
           <polyline points="16 17 21 12 16 7"></polyline>
@@ -1529,25 +1990,56 @@
 <!-- ================= AUTH GATE SCREEN ================= -->
 <div id="authGateView">
   <div class="auth-overlay">
-    <div class="auth-box" style="max-width: 380px; padding: 48px 32px;">
-      <div class="auth-logo-bubble" style="margin-bottom: 20px;">
-        <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" width="52" height="52">
+    <div class="auth-box">
+
+      <div class="auth-logo-bubble">
+        <img src="/assets/logo-gold-mark.svg?v=23.0" alt="POLISH" width="40" height="40">
       </div>
-      <h2 style="font-size: 21px; letter-spacing: -0.01em; margin-bottom: 24px;">Executive Portal</h2>
+
+      <h2>Sign In</h2>
 
       <!-- Primary Google 1-Click Sign-In -->
-      <button class="btn-google-auth" id="btnGoogleSignIn" onclick="handleGoogleAdminSignIn()" style="margin-bottom: 0;">
+      <button type="button" class="btn-google-auth" id="btnGoogleSignIn" onclick="handleGoogleAdminSignIn()">
         <svg width="18" height="18" viewBox="0 0 24 24">
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
           <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
           <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
           <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
         </svg>
-        <span id="btnGoogleText">Sign In with Google</span>
+        <span id="btnGoogleText">Continue with Google</span>
       </button>
 
-      <!-- Auth Error Notification Box (Generic, zero data leakage) -->
-      <div id="authGateError" class="auth-error-box" style="display: none; margin-top: 18px;"></div>
+      <div class="auth-divider">
+        <span>or</span>
+      </div>
+
+      <!-- Security Key Form -->
+      <form id="authKeyForm" onsubmit="event.preventDefault(); handleKeyUnlock();">
+        <div class="auth-key-wrap">
+          <svg class="auth-key-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2C799" stroke-width="2.2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <input type="password" id="adminSecurityKey" class="auth-key-input" placeholder="Security key" autocomplete="current-password" required>
+          <button type="button" class="auth-toggle-pwd" onclick="toggleAdminKeyVisibility()" title="Show/Hide">
+            <svg id="eyeIconShow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+        <button type="submit" id="btnKeyUnlock" class="btn-key-unlock">
+          <span>Sign In</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+        </button>
+      </form>
+
+      <!-- Auth Error Notification Box -->
+      <div id="authGateError" class="auth-error-box" style="display: none;"></div>
+
+      <div class="auth-footer">
+        <a href="/" class="auth-return-link">&larr; Back to website</a>
+      </div>
     </div>
   </div>
 </div>
@@ -1675,7 +2167,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 5. Brand Partnership Application (/apply)
               </div>
-              <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Intake Dossier</span>
+              <span class="badge-pill" style="background: var(--cyan-dim); color: var(--cyan);">Application</span>
             </div>
             <div class="grid-2">
               <div class="form-group"><label class="form-label">Headline Line 1</label><input type="text" id="en_apply_hl1" class="form-input" required></div>
@@ -1958,12 +2450,12 @@
       </div>
     </section>
 
-    <!-- ================= TAB 3: PROSPECTS CRM & INBOUND DOSSIERS ================= -->
+    <!-- ================= TAB 3: LEADS & INQUIRIES ================= -->
     <section id="leadsTabPane" class="tab-pane">
       <div class="page-header">
         <div>
-          <h1>Executive Prospects CRM</h1>
-          <p>Real-time intake dossiers, deal pipeline stages, and strategic founder diagnostics.</p>
+          <h1>Leads &amp; Inquiries</h1>
+          <p>Submissions, applications, and scheduled strategy calls.</p>
         </div>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
           <button class="btn-ghost" onclick="exportLeadsCsv()" title="Export filtered prospects to CSV">
@@ -1972,7 +2464,7 @@
           </button>
           <button class="btn-ghost" onclick="refreshLeads()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-            Refresh Pipeline
+            Refresh
           </button>
         </div>
       </div>
@@ -1983,14 +2475,14 @@
           <div class="stat-val" id="statTotalCount">0</div>
           <div class="stat-lbl">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Total Prospects
+            Total Leads
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-val" id="statQualifiedCount" style="color: #10B981;">0</div>
           <div class="stat-lbl" style="color: #10B981;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Qualified Deals
+            Qualified
           </div>
         </div>
         <div class="stat-card">
@@ -2004,14 +2496,14 @@
           <div class="stat-val" id="statBrandCount" style="color: #E2C799;">0</div>
           <div class="stat-lbl" style="color: #E2C799;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            Brand Partners
+            Brands
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-val" id="statCreatorCount" style="color: #F43F5E;">0</div>
           <div class="stat-lbl" style="color: #F43F5E;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            Creator Network
+            Creators
           </div>
         </div>
       </div>
@@ -2019,7 +2511,7 @@
       <!-- CRM Controls & Filter Toolbar -->
       <div class="leads-controls-bar" id="leadsControlsBar" style="display: none;">
         <div class="leads-filter-pills">
-          <button class="filter-pill active" id="filterBtnAll" onclick="setLeadsFilter('ALL')">All Pipeline</button>
+          <button class="filter-pill active" id="filterBtnAll" onclick="setLeadsFilter('ALL')">All</button>
           <button class="filter-pill" id="filterBtnNew" onclick="setLeadsFilter('NEW')">New</button>
           <button class="filter-pill" id="filterBtnReview" onclick="setLeadsFilter('IN_REVIEW')">Under Review</button>
           <button class="filter-pill" id="filterBtnQualified" onclick="setLeadsFilter('QUALIFIED')">Qualified</button>
@@ -2035,16 +2527,16 @@
         </div>
       </div>
 
-      <!-- Desktop View: Modern High-Ticket CRM Table -->
+      <!-- Desktop View: High-Ticket CRM Table -->
       <div class="leads-table-card">
         <div class="table-container">
           <table class="leads-table">
             <thead>
               <tr>
-                <th>Prospect &amp; Brand</th>
+                <th>Lead / Brand</th>
                 <th>Category</th>
-                <th>CRM Stage</th>
-                <th>Growth Diagnostic &amp; Notes</th>
+                <th>Status</th>
+                <th>Details &amp; Notes</th>
                 <th>Submitted</th>
                 <th style="text-align: right;">Actions</th>
               </tr>
@@ -2059,146 +2551,14 @@
 
     </section>
 
-    <!-- ================= EXECUTIVE PROSPECT DETAIL DOSSIER MODAL ================= -->
-    <div id="prospectModal" class="prospect-modal-overlay" onclick="handleModalOverlayClick(event)">
-      <div class="prospect-dialog" role="dialog" aria-modal="true" aria-labelledby="modalProspectTitle">
-        
-        <!-- Modal Sticky Header -->
-        <div class="prospect-dialog-header">
-          <div>
-            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); display: flex; align-items: center; gap: 8px;">
-              <span>EXECUTIVE DOSSIER</span>
-              <span style="color: var(--dim);">•</span>
-              <span id="modalProspectId" style="color: var(--muted); font-family: monospace;"></span>
-            </div>
-            <h2 id="modalProspectTitle" style="font-size: 20px; font-weight: 800; color: #FFFFFF; margin-top: 4px; letter-spacing: -0.01em;"></h2>
-          </div>
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div id="modalStageWrapper"></div>
-            <button class="modal-close-btn" onclick="closeProspectModal()" title="Close Dossier (Esc)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Modal 2-Column Body -->
-        <div class="prospect-dialog-body">
-          
-          <!-- Column 1: Commercial DNA & Intake Diagnostic -->
-          <div>
-            <!-- Identity & Links Card -->
-            <div class="prospect-section-card">
-              <div class="prospect-section-title">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Commercial DNA &amp; Contact
-              </div>
-              <div class="prospect-info-row">
-                <span class="prospect-info-label">Applicant Name</span>
-                <span class="prospect-info-val" id="modalFullName"></span>
-              </div>
-              <div class="prospect-info-row">
-                <span class="prospect-info-label">Brand / Project</span>
-                <span class="prospect-info-val" id="modalBrandName" style="color: var(--cyan);"></span>
-              </div>
-              <div class="prospect-info-row">
-                <span class="prospect-info-label">Title / Role</span>
-                <span class="prospect-info-val" id="modalRole"></span>
-              </div>
-              <div class="prospect-info-row">
-                <span class="prospect-info-label">Category</span>
-                <span class="prospect-info-val" id="modalCategory"></span>
-              </div>
-              <div class="prospect-info-row">
-                <span class="prospect-info-label">Official Website</span>
-                <span class="prospect-info-val" id="modalWebsite"></span>
-              </div>
-              <div class="prospect-info-row">
-                <span class="prospect-info-label">Social Channel</span>
-                <span class="prospect-info-val" id="modalSocial"></span>
-              </div>
-              <div class="prospect-info-row">
-                <span class="prospect-info-label">Direct Phone / WA</span>
-                <span class="prospect-info-val" id="modalPhone"></span>
-              </div>
-              <div class="prospect-info-row" id="modalRevenueRow">
-                <span class="prospect-info-label">Monthly Revenue</span>
-                <span class="prospect-info-val" id="modalMonthlyRevenue" style="color: var(--brand-gold); font-weight: 700;"></span>
-              </div>
-              <div class="prospect-info-row">
-                <span class="prospect-info-label">Logged At</span>
-                <span class="prospect-info-val" id="modalSubmittedAt" style="color: var(--dim); font-size: 12px;"></span>
-              </div>
-            </div>
-
-            <!-- Application Diagnostic Card -->
-            <div class="prospect-section-card">
-              <div class="prospect-section-title">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                Intake Growth Diagnostic
-              </div>
-              <div style="margin-bottom: 14px;">
-                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">Current Marketing History &amp; Baseline</div>
-                <div id="modalMarketingHistory" style="font-size: 13.5px; color: #E2E8F0; line-height: 1.6; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);"></div>
-              </div>
-              <div>
-                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">90-Day Revenue &amp; Growth Objective</div>
-                <div id="modalPrimaryGoal" style="font-size: 13.5px; color: #E2E8F0; line-height: 1.6; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Column 2: Founder Strategic Notes & Direct Action Center -->
-          <div>
-            <!-- Founder Private Strategy Notes -->
-            <div class="prospect-section-card">
-              <div class="prospect-section-title" style="color: #F59E0B;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                Founder Private Strategy Notes
-              </div>
-              <p style="font-size: 12px; color: var(--dim); margin-bottom: 10px;">
-                Record confidential call insights, audit findings, retainer quotes, or next steps. Saved permanently to the database.
-              </p>
-              <textarea id="modalNotesInput" class="prospect-notes-area" placeholder="e.g., Call completed. Retainer proposal sent for 450,000 DA/mo. Target launch Nov 1st..."></textarea>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-                <span id="modalNotesSaveStatus" style="font-size: 11.5px; color: var(--dim);"></span>
-                <button class="btn-ghost" style="padding: 6px 14px; font-size: 12px; color: #F59E0B; border-color: rgba(245, 158, 11, 0.35);" onclick="saveModalFounderNotes()">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                  Save Notes
-                </button>
-              </div>
-            </div>
-
-            <!-- Direct Outreach Action Center -->
-            <div class="prospect-section-card">
-              <div class="prospect-section-title">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                Founder Action Center
-              </div>
-              <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a id="modalWhatsAppBtn" href="#" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 10px 16px; font-size: 13px; justify-content: center;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                  <span>Launch WhatsApp Outreach</span>
-                </a>
-                <button class="btn-danger" style="padding: 9px 16px; font-size: 12.5px; justify-content: center; width: 100%; border-radius: 20px;" onclick="deleteModalProspect()">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                  <span>Delete Application from CRM</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= TAB 3.5: EXECUTIVE INVOICING ATELIER ================= -->
+    <!-- ================= TAB 3.5: INVOICES ================= -->
     <section id="invoicesTabPane" class="tab-pane">
       
-      <!-- Studio Page Header & Executive Controls -->
+      <!-- Studio Page Header & Controls -->
       <div class="page-header">
         <div>
-          <h1>Executive Invoicing Atelier</h1>
-          <p>Bespoke luxury billing studio, multi-currency accounting, and vector PDF exports.</p>
+          <h1>Invoices</h1>
+          <p>Create and export client invoices with multi-currency and PDF support.</p>
         </div>
         <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
           <!-- Sheet Theme Toggle -->
@@ -2443,7 +2803,7 @@
       <div class="page-header">
         <div>
           <h1>Application Notifications</h1>
-          <p>Instant push alerts to your phone or team chat whenever a new brand or creator dossier is submitted.</p>
+          <p>Instant push alerts to your phone or team chat whenever a new application is submitted.</p>
         </div>
         <button class="btn-cta" onclick="sendTestNotification()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -2521,6 +2881,167 @@
     </div>
   </div>
 </aside>
+
+<!-- ================= EXECUTIVE PROSPECT DETAIL DOSSIER MODAL ================= -->
+<div id="prospectModal" class="prospect-modal-overlay" onclick="handleModalOverlayClick(event)">
+  <div class="prospect-dialog" role="dialog" aria-modal="true" aria-labelledby="modalProspectTitle">
+    
+    <!-- Modal Header -->
+    <div class="prospect-dialog-header">
+      <div>
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); display: flex; align-items: center; gap: 8px;">
+          <span>EXECUTIVE DOSSIER</span>
+          <span style="color: var(--dim);">•</span>
+          <span id="modalProspectId" style="color: var(--muted); font-family: monospace;"></span>
+        </div>
+        <h2 id="modalProspectTitle" class="crm-lead-title" style="font-size: 20px; font-weight: 800; margin-top: 4px; letter-spacing: -0.01em;"></h2>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div id="modalStageWrapper"></div>
+        <button class="modal-close-btn" onclick="closeProspectModal()" title="Close Dossier (Esc)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal 2-Column Body -->
+    <div class="prospect-dialog-body">
+      
+      <!-- Column 1: Commercial DNA & Intake Diagnostic -->
+      <div>
+        <!-- Identity & Links Card -->
+        <div class="prospect-section-card">
+          <div class="prospect-section-title">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Commercial DNA &amp; Contact
+          </div>
+          <div class="prospect-info-row">
+            <span class="prospect-info-label">Applicant Name</span>
+            <span class="prospect-info-val" id="modalFullName"></span>
+          </div>
+          <div class="prospect-info-row">
+            <span class="prospect-info-label">Brand / Project</span>
+            <span class="prospect-info-val" id="modalBrandName" style="color: var(--cyan);"></span>
+          </div>
+          <div class="prospect-info-row">
+            <span class="prospect-info-label">Title / Role</span>
+            <span class="prospect-info-val" id="modalRole"></span>
+          </div>
+          <div class="prospect-info-row">
+            <span class="prospect-info-label">Category</span>
+            <span class="prospect-info-val" id="modalCategory"></span>
+          </div>
+          <div class="prospect-info-row">
+            <span class="prospect-info-label">Official Website</span>
+            <span class="prospect-info-val" id="modalWebsite"></span>
+          </div>
+          <div class="prospect-info-row">
+            <span class="prospect-info-label">Social Channel</span>
+            <span class="prospect-info-val" id="modalSocial"></span>
+          </div>
+          <div class="prospect-info-row">
+            <span class="prospect-info-label">Direct Phone / WA</span>
+            <span class="prospect-info-val" id="modalPhone"></span>
+          </div>
+          <div class="prospect-info-row" id="modalRevenueRow">
+            <span class="prospect-info-label">Monthly Revenue</span>
+            <span class="prospect-info-val" id="modalMonthlyRevenue" style="color: var(--brand-gold); font-weight: 700;"></span>
+          </div>
+          <div class="prospect-info-row">
+            <span class="prospect-info-label">Logged At</span>
+            <span class="prospect-info-val" id="modalSubmittedAt" style="color: var(--dim); font-size: 12px;"></span>
+          </div>
+        </div>
+
+        <!-- Application Diagnostic Card -->
+        <div class="prospect-section-card">
+          <div class="prospect-section-title">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Intake Growth Diagnostic
+          </div>
+          
+          <!-- Dedicated Calendly Meeting Block (Toggled dynamically) -->
+          <div id="modalMeetingBlock" style="display: none; margin-bottom: 14px;">
+            <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">Scheduled Strategy Call</div>
+            <div class="prospect-diagnostic-box" style="padding: 12px 14px; border-radius: 12px; margin-bottom: 8px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                <div>
+                  <div id="modalMeetingTitle" style="font-size: 13.5px; font-weight: 700; color: #C084FC;">Strategy Meeting (Calendly)</div>
+                  <div id="modalMeetingTime" style="font-size: 12.5px; color: var(--text); margin-top: 2px;"></div>
+                  <div id="modalMeetingEmail" style="font-size: 11.5px; color: var(--dim); margin-top: 2px;"></div>
+                </div>
+                <a id="modalMeetingJoinLink" href="#" target="_blank" rel="noopener" class="crm-meet-btn" style="padding: 6px 14px; font-size: 12px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                  <span>Launch Google Meet ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div id="modalStandardDiag">
+            <div style="margin-bottom: 14px;">
+              <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">Current Marketing History &amp; Baseline</div>
+              <div id="modalMarketingHistory" class="prospect-diagnostic-box" style="font-size: 13px; line-height: 1.6; padding: 12px 14px; border-radius: 12px;"></div>
+            </div>
+            <div>
+              <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 5px;">90-Day Revenue &amp; Growth Objective</div>
+              <div id="modalPrimaryGoal" class="prospect-diagnostic-box" style="font-size: 13px; line-height: 1.6; padding: 12px 14px; border-radius: 12px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Founder Strategic Notes & Direct Action Center -->
+      <div>
+        <!-- Founder Private Strategy Notes -->
+        <div class="prospect-section-card">
+          <div class="prospect-section-title" style="color: #F59E0B;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Founder Private Strategy Notes
+          </div>
+          <p style="font-size: 12px; color: var(--dim); margin-bottom: 10px;">
+            Record confidential call insights, audit findings, retainer quotes, or next steps. Saved permanently to the database.
+          </p>
+          <textarea id="modalNotesInput" class="prospect-notes-area" placeholder="e.g., Call completed. Retainer proposal sent for 450,000 DA/mo. Target launch Nov 1st..."></textarea>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+            <span id="modalNotesSaveStatus" style="font-size: 11.5px; color: var(--dim);"></span>
+            <button class="btn-ghost" style="padding: 6px 14px; font-size: 12px; color: #F59E0B; border-color: rgba(245, 158, 11, 0.35);" onclick="saveModalFounderNotes()">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Save Notes
+            </button>
+          </div>
+        </div>
+
+        <!-- Direct Outreach Action Center -->
+        <div class="prospect-section-card">
+          <div class="prospect-section-title">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Founder Action Center
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a id="modalMeetingActionBtn" href="#" target="_blank" rel="noopener" class="crm-meet-btn" style="padding: 10px 16px; font-size: 13px; justify-content: center; display: none;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              <span>Join Google Meet Call</span>
+            </a>
+            <a id="modalStoreActionBtn" href="#" target="_blank" rel="noopener" class="btn-ghost" style="padding: 10px 16px; font-size: 13px; justify-content: center; display: none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span>Visit Brand Website</span>
+            </a>
+            <a id="modalWhatsAppBtn" href="#" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 10px 16px; font-size: 13px; justify-content: center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              <span>Launch WhatsApp Outreach</span>
+            </a>
+            <button class="btn-danger" style="padding: 9px 16px; font-size: 12.5px; justify-content: center; width: 100%; border-radius: 20px;" onclick="deleteModalProspect()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span>Delete Application from CRM</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- Supabase Web Client (~35KB vs ~175KB Firebase) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2610,7 +3131,47 @@
     await loadCmsData();
     loadWaConfig();
     await refreshLeads();
-    notifyToast(`Executive Hub Unlocked${user && user.email ? ': ' + user.email : ''}.`);
+    notifyToast(`Signed in${user && user.email ? ': ' + user.email : ''}.`);
+  }
+
+  // ── Key Visibility & Unlock Handlers ───────────────────────
+  function toggleAdminKeyVisibility() {
+    const input = document.getElementById('adminSecurityKey');
+    if (!input) return;
+    const isPwd = input.type === 'password';
+    input.type = isPwd ? 'text' : 'password';
+    const showIcon = document.getElementById('eyeIconShow');
+    if (showIcon) {
+      showIcon.innerHTML = isPwd
+        ? '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>'
+        : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+    }
+  }
+
+  async function handleKeyUnlock() {
+    const inputEl = document.getElementById('adminSecurityKey');
+    const key = inputEl ? inputEl.value.trim() : '';
+    if (!key) {
+      showAuthError('Please enter your security key.');
+      return;
+    }
+    const btn = document.getElementById('btnKeyUnlock');
+    if (btn) {
+      btn.style.opacity = '0.75';
+      btn.innerHTML = '<span>Signing in...</span>';
+    }
+    try {
+      const ok = await verifyAndUnlock(key);
+      if (!ok && btn) {
+        btn.style.opacity = '1';
+        btn.innerHTML = '<span>Sign In</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>';
+      }
+    } catch (err) {
+      if (btn) {
+        btn.style.opacity = '1';
+        btn.innerHTML = '<span>Sign In</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>';
+      }
+    }
   }
 
   // ── Supabase Google Sign-In ───────────────────────────────
@@ -2628,7 +3189,7 @@
       }
 
       await window.PolishSupabase.loginWithGoogle({
-        redirectTo: window.location.href.split('#')[0]
+        redirectTo: window.location.origin + '/admin'
       });
     } catch (err) {
       console.error('[Admin Auth] Google sign-in error:', err);
@@ -2669,8 +3230,8 @@
     const inputEl = document.getElementById('adminSecurityKey');
     const key = providedKey || (inputEl ? inputEl.value.trim() : '');
     if (!key) {
-      notifyToast('Please enter your security key.', true);
-      return;
+      showAuthError('Please enter your security key.');
+      return false;
     }
 
     try {
@@ -2680,16 +3241,16 @@
       const data = await res.json();
 
       if (!res.ok || !data.success) {
-        notifyToast('Invalid administrative key.', true);
+        showAuthError(data.error || 'Invalid administrative key.');
         localStorage.removeItem('polish_admin_key');
         localStorage.removeItem('polish_admin_session');
         sessionStorage.removeItem('polish_admin_key');
         document.documentElement.classList.remove('is-authenticated');
-        document.getElementById('authGateView').style.display = 'block';
+        document.getElementById('authGateView').style.display = 'flex';
         document.getElementById('dashboardAppView').style.display = 'none';
         document.getElementById('mainNavTabs').style.display = 'none';
         document.getElementById('navActions').style.display = 'none';
-        return;
+        return false;
       }
 
       activeAdminKey = key;
@@ -2697,8 +3258,10 @@
       localStorage.setItem('polish_admin_session', 'authenticated');
       sessionStorage.setItem('polish_admin_key', key);
       await unlockDashboard(null, key);
+      return true;
     } catch (err) {
-      notifyToast('Connection error: ' + err.message, true);
+      showAuthError('Connection error: ' + err.message);
+      return false;
     }
   }
 
@@ -2768,8 +3331,8 @@
     const savedKey = localStorage.getItem('polish_admin_key') || sessionStorage.getItem('polish_admin_key');
     const keyToTry = urlKey || savedKey;
     if (keyToTry) {
-      verifyAndUnlock(keyToTry);
-      return;
+      const ok = await verifyAndUnlock(keyToTry);
+      if (ok) return;
     }
 
     // 2. Fast Supabase session check: handle returning redirect and active sessions
@@ -2800,8 +3363,13 @@
     if (mainEl) {
       if (paneId === 'invoicesTabPane') {
         mainEl.classList.add('admin-main-wide');
+        mainEl.classList.remove('admin-main-crm');
+      } else if (paneId === 'leadsTabPane') {
+        mainEl.classList.add('admin-main-crm');
+        mainEl.classList.remove('admin-main-wide');
       } else {
         mainEl.classList.remove('admin-main-wide');
+        mainEl.classList.remove('admin-main-crm');
       }
     }
 
@@ -3207,7 +3775,7 @@
     const s = String(raw).toUpperCase().trim();
     if (s === 'IN_REVIEW' || s === 'UNDER_REVIEW') return 'IN_REVIEW';
     if (s === 'QUALIFIED' || s === 'QUALIFIED_DEAL') return 'QUALIFIED';
-    if (s === 'CALL_SCHEDULED' || s === 'CALL' || s === 'MEETING') return 'CALL_SCHEDULED';
+    if (s === 'CALL_SCHEDULED' || s === 'CALL' || s === 'MEETING' || s === 'SCHEDULED') return 'CALL_SCHEDULED';
     if (s === 'ONBOARDED' || s === 'PARTNER_ONBOARDED') return 'ONBOARDED';
     if (s === 'ARCHIVED') return 'ARCHIVED';
     return 'NEW';
@@ -3350,22 +3918,55 @@
 
     activeModalLeadId = leadId;
     const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
+    const isMeeting = lead.type === 'CALENDLY_MEETING';
+    const isStrategy = lead.type === 'STRATEGY_INTAKE';
     const stage = normalizeStage(lead.status);
 
     document.getElementById('modalProspectId').textContent = lead.id;
-    document.getElementById('modalProspectTitle').textContent = isCreator ? lead.name : (lead.brandName || lead.fullName || 'Confidential Brand');
-    document.getElementById('modalFullName').textContent = lead.fullName || lead.name || '—';
-    document.getElementById('modalBrandName').textContent = lead.brandName || (isCreator ? 'Creator Network' : '—');
-    document.getElementById('modalRole').textContent = lead.role || (isCreator ? 'UGC Creator / Partner' : 'Founder / CEO');
-    document.getElementById('modalCategory').textContent = lead.businessCategory || (isCreator ? 'Creator & UGC' : 'Cosmetics Brand');
 
-    // Website
+    // Title & Identity
+    let displayTitle = '';
+    let displayBrand = '';
+    let displayRole = '';
+    let displayCategory = '';
+
+    if (isMeeting) {
+      displayTitle = `Strategy Session: ${lead.fullName || 'Prospect'}`;
+      displayBrand = (lead.brand && lead.brand !== 'Not specified' && lead.brand !== 'Brand') ? lead.brand : (lead.fullName ? `${lead.fullName}'s Brand` : 'Strategy Call Booking');
+      displayRole = 'Prospective Brand Partner';
+      displayCategory = 'Calendly Scheduled Call';
+    } else if (isCreator) {
+      displayTitle = lead.name || 'UGC Creator';
+      displayBrand = 'Creator Network';
+      displayRole = 'UGC Creator / Partner';
+      displayCategory = 'Creator & UGC Talent';
+    } else {
+      const cleanBrand = (lead.brandName && lead.brandName !== 'Brand') ? lead.brandName : '';
+      displayTitle = cleanBrand || (lead.fullName ? `${lead.fullName}'s Brand` : 'Direct Brand Application');
+      displayBrand = cleanBrand || 'Brand Partner';
+      displayRole = lead.role || 'Founder / CEO';
+      displayCategory = lead.businessCategory || 'Cosmetics & Skincare';
+    }
+
+    document.getElementById('modalProspectTitle').textContent = displayTitle;
+    document.getElementById('modalFullName').textContent = lead.fullName || lead.name || '—';
+    document.getElementById('modalBrandName').textContent = displayBrand;
+    document.getElementById('modalRole').textContent = displayRole;
+    document.getElementById('modalCategory').textContent = displayCategory;
+
+    // Website & Store Action Button
     const siteWrap = document.getElementById('modalWebsite');
+    const storeActBtn = document.getElementById('modalStoreActionBtn');
     if (lead.websiteUrl && lead.websiteUrl !== 'Not provided') {
       let url = lead.websiteUrl.startsWith('http') ? lead.websiteUrl : 'https://' + lead.websiteUrl;
       siteWrap.innerHTML = `<a href="${esc(url)}" target="_blank" rel="noopener" style="color:var(--cyan); text-decoration:underline; display:inline-flex; align-items:center; gap:4px;">${esc(lead.websiteUrl)} <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>`;
+      if (storeActBtn) {
+        storeActBtn.href = url;
+        storeActBtn.style.display = 'inline-flex';
+      }
     } else {
-      siteWrap.innerHTML = `<span style="color:var(--dim);">Not provided</span>`;
+      siteWrap.innerHTML = `<span style="color:var(--dim);">${isMeeting && lead.joinUrl ? 'Google Meet Call Booked' : 'Not provided'}</span>`;
+      if (storeActBtn) storeActBtn.style.display = 'none';
     }
 
     // Social
@@ -3377,14 +3978,14 @@
       socialWrap.innerHTML = `<span style="color:var(--dim);">—</span>`;
     }
 
-    // Phone / WhatsApp
+    // Phone / WhatsApp / Email
     const phoneWrap = document.getElementById('modalPhone');
     const rawPhone = lead.phone || '';
     const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
     if (cleanPhone) {
       phoneWrap.innerHTML = `<a href="https://wa.me/${cleanPhone}" target="_blank" rel="noopener" style="color:#25D366; text-decoration:underline;">+${cleanPhone}</a>`;
     } else {
-      phoneWrap.innerHTML = `<span style="color:var(--dim);">${esc(rawPhone || 'Not provided')}</span>`;
+      phoneWrap.innerHTML = `<span style="color:var(--dim);">${lead.email ? esc(lead.email) : 'Not provided'}</span>`;
     }
 
     // Date
@@ -3403,36 +4004,81 @@
       }
     }
 
-    // Answers / Diagnostic
-    if (lead.type === 'STRATEGY_INTAKE' && lead.answers) {
-      let answersHtml = '<div style="display: grid; gap: 8px; margin-top: 6px;">';
-      const qLabels = {
-        q1_avatar: '1. Primary Target Client & Acute Crisis',
-        q2_dream_outcome: '2. 30/90-Day Dream Transformation',
-        q3_naming: '3. Flagship Advisory Program Name',
-        q4_delivery: '4. Delivery Format & Rapid First Win',
-        q5_pricing: '5. Commercial Fee Structure (AED)',
-        q6_bonus_stack: '6. High-Value Bonus Stack',
-        q7_guarantee: '7. Risk-Reversal Guarantee',
-        q8_scarcity_urgency: '8. Monthly Capacity & Fast-Action Perk',
-        q9_proof: '9. Authority Proof & Media Track Record',
-        q10_warm_launch: '10. 48-Hour Warm Rolodex Contacts'
-      };
-      for (const [key, label] of Object.entries(qLabels)) {
-        const val = lead.answers[key];
-        if (val) {
-          answersHtml += `<div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(226,199,153,0.18); border-radius: 8px; padding: 10px 14px; text-align: left;">
-            <div style="font-size: 11px; font-weight: 800; color: var(--cyan); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">${label}</div>
-            <div style="font-size: 13px; color: #F5F1EA; line-height: 1.45; white-space: pre-wrap;">${esc(val)}</div>
-          </div>`;
+    // Meeting Block vs Standard Diagnostic
+    const meetBlock = document.getElementById('modalMeetingBlock');
+    const stdBlock = document.getElementById('modalStandardDiag');
+    const meetActBtn = document.getElementById('modalMeetingActionBtn');
+
+    let meetDateFormatted = '';
+    if (isMeeting) {
+      if (meetBlock) meetBlock.style.display = 'block';
+      if (stdBlock) stdBlock.style.display = 'none';
+
+      const meetDate = lead.startTime ? new Date(lead.startTime) : null;
+      meetDateFormatted = meetDate ? meetDate.toLocaleString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Time not specified';
+
+      const mTitle = document.getElementById('modalMeetingTitle');
+      if (mTitle) mTitle.textContent = lead.eventName || 'Strategy Meeting (Calendly)';
+
+      const mTime = document.getElementById('modalMeetingTime');
+      if (mTime) mTime.textContent = `📅 Scheduled: ${meetDateFormatted}`;
+
+      const mEmail = document.getElementById('modalMeetingEmail');
+      if (mEmail) mEmail.textContent = `✉️ Invitee Email: ${lead.email || 'Not specified'}`;
+
+      const mJoinLink = document.getElementById('modalMeetingJoinLink');
+      if (mJoinLink) {
+        if (lead.joinUrl) {
+          mJoinLink.href = lead.joinUrl;
+          mJoinLink.style.display = 'inline-flex';
+        } else {
+          mJoinLink.style.display = 'none';
         }
       }
-      answersHtml += '</div>';
-      document.getElementById('modalMarketingHistory').innerHTML = answersHtml;
-      document.getElementById('modalPrimaryGoal').textContent = lead.notes ? `Special Notes: ${lead.notes}` : 'No special notes provided.';
+
+      if (meetActBtn) {
+        if (lead.joinUrl) {
+          meetActBtn.href = lead.joinUrl;
+          meetActBtn.style.display = 'inline-flex';
+        } else {
+          meetActBtn.style.display = 'none';
+        }
+      }
     } else {
-      document.getElementById('modalMarketingHistory').textContent = isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `Portfolio / Showreel: ${lead.portfolio}` : 'Creator Network UGC Applicant') : (lead.marketingHistory || 'No baseline specified.');
-      document.getElementById('modalPrimaryGoal').textContent = isCreator ? (lead.portfolio || 'Creator Network Partnership') : (lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? lead.primaryGoal : 'Scale profitable acquisition & UGC volume.');
+      if (meetBlock) meetBlock.style.display = 'none';
+      if (stdBlock) stdBlock.style.display = 'block';
+      if (meetActBtn) meetActBtn.style.display = 'none';
+
+      if (isStrategy && lead.answers) {
+        let answersHtml = '<div style="display: grid; gap: 8px; margin-top: 6px;">';
+        const qLabels = {
+          q1_avatar: '1. Primary Target Client & Acute Crisis',
+          q2_dream_outcome: '2. 30/90-Day Dream Transformation',
+          q3_naming: '3. Flagship Advisory Program Name',
+          q4_delivery: '4. Delivery Format & Rapid First Win',
+          q5_pricing: '5. Commercial Fee Structure (AED)',
+          q6_bonus_stack: '6. High-Value Bonus Stack',
+          q7_guarantee: '7. Risk-Reversal Guarantee',
+          q8_scarcity_urgency: '8. Monthly Capacity & Fast-Action Perk',
+          q9_proof: '9. Authority Proof & Media Track Record',
+          q10_warm_launch: '10. 48-Hour Warm Rolodex Contacts'
+        };
+        for (const [key, label] of Object.entries(qLabels)) {
+          const val = lead.answers[key];
+          if (val) {
+            answersHtml += `<div class="prospect-diagnostic-box" style="padding: 10px 14px; border-radius: 8px; margin-bottom: 6px;">
+              <div style="font-size: 11px; font-weight: 800; color: var(--cyan); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">${label}</div>
+              <div style="font-size: 13px; line-height: 1.45; white-space: pre-wrap;">${esc(val)}</div>
+            </div>`;
+          }
+        }
+        answersHtml += '</div>';
+        document.getElementById('modalMarketingHistory').innerHTML = answersHtml;
+        document.getElementById('modalPrimaryGoal').textContent = lead.notes ? `Special Notes: ${lead.notes}` : 'No special notes provided.';
+      } else {
+        document.getElementById('modalMarketingHistory').textContent = isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `Portfolio / Showreel: ${lead.portfolio}` : 'Creator Network UGC Applicant') : (lead.marketingHistory || 'No baseline specified.');
+        document.getElementById('modalPrimaryGoal').textContent = isCreator ? (lead.portfolio || 'Creator Network Partnership') : (lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? lead.primaryGoal : 'Scale profitable acquisition & UGC volume.');
+      }
     }
 
     // Stage Selector in Modal
@@ -3445,10 +4091,12 @@
     // WhatsApp outreach link
     const waBtn = document.getElementById('modalWhatsAppBtn');
     let outreachMsg = '';
-    if (isCreator) {
+    if (isMeeting) {
+      outreachMsg = `Hi ${lead.fullName || 'there'}, this is POLISH Media Co confirming our strategy session on ${meetDateFormatted || 'our scheduled call'}. Looking forward to speaking with you!`;
+    } else if (isCreator) {
       outreachMsg = `Hi ${lead.name}, this is POLISH Media Co. We reviewed your UGC creator dossier (Ref: ${lead.id}) and would love to discuss casting for our upcoming beauty and cosmetics partner campaigns.`;
     } else {
-      const bName = lead.brandName || 'your brand';
+      const bName = (lead.brandName && lead.brandName !== 'Brand') ? lead.brandName : 'your brand';
       outreachMsg = `Hi ${lead.fullName || 'there'}, this is POLISH Media Co. I reviewed your ${bName} growth dossier (Ref: ${lead.id}) and would love to discuss accelerating your acquisition loops. When are you available for a brief call?`;
     }
     const targetPhone = cleanPhone || '213662417761';
@@ -3581,12 +4229,15 @@
   function getFilteredLeads() {
     return rawLeadsData.filter(lead => {
       const stage = normalizeStage(lead.status);
+      const isMeeting = lead.type === 'CALENDLY_MEETING';
+      const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
+
       if (currentFilter === 'NEW' && stage !== 'NEW') return false;
       if (currentFilter === 'IN_REVIEW' && stage !== 'IN_REVIEW') return false;
       if (currentFilter === 'QUALIFIED' && stage !== 'QUALIFIED') return false;
-      if (currentFilter === 'CALL_SCHEDULED' && stage !== 'CALL_SCHEDULED') return false;
-      if (currentFilter === 'BRANDS' && lead.type === 'CREATOR_PARTNERSHIP') return false;
-      if (currentFilter === 'CREATORS' && lead.type !== 'CREATOR_PARTNERSHIP') return false;
+      if (currentFilter === 'CALL_SCHEDULED' && stage !== 'CALL_SCHEDULED' && !isMeeting) return false;
+      if (currentFilter === 'BRANDS' && (isCreator || isMeeting)) return false;
+      if (currentFilter === 'CREATORS' && !isCreator) return false;
 
       if (currentSearch) {
         const text = [
@@ -3594,6 +4245,9 @@
           lead.fullName,
           lead.name,
           lead.brandName,
+          lead.brand,
+          lead.email,
+          lead.eventName,
           lead.socialLink,
           lead.websiteUrl,
           lead.businessCategory,
@@ -3621,13 +4275,13 @@
     if (!rawLeadsData.length) {
       const emptyHtml = `<tr><td colspan="6" style="text-align:center; padding: 60px 20px; color: var(--dim);">
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom:12px; opacity:0.8;"><path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7z"/><path d="M5.45 5.11L2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-        <div style="font-weight:700; color:#FFFFFF; font-size:15px;">No prospects logged yet</div>
-        <div style="font-size:12.5px; margin-top:4px;">New brand and creator dossiers will appear here in real-time.</div>
+        <div class="crm-lead-title" style="font-size:15px;">No prospects logged yet</div>
+        <div style="font-size:12.5px; margin-top:4px; color: var(--dim);">New brand and creator dossiers will appear here in real-time.</div>
       </td></tr>`;
       tbody.innerHTML = emptyHtml;
       mobileList.innerHTML = `<div style="text-align:center; padding: 50px 20px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom:8px; opacity:0.8;"><path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7z"/><path d="M5.45 5.11L2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-        <div style="font-weight:700; color:#FFFFFF;">No prospects logged yet</div>
+        <div class="crm-lead-title">No prospects logged yet</div>
       </div>`;
       metricsRow.style.display = 'none';
       controlsBar.style.display = 'none';
@@ -3640,8 +4294,8 @@
     // Compute pipeline counts
     const totalCount = rawLeadsData.length;
     const qualifiedCount = rawLeadsData.filter(l => normalizeStage(l.status) === 'QUALIFIED').length;
-    const callsCount = rawLeadsData.filter(l => normalizeStage(l.status) === 'CALL_SCHEDULED').length;
-    const brandsCount = rawLeadsData.filter(l => l.type !== 'CREATOR_PARTNERSHIP').length;
+    const callsCount = rawLeadsData.filter(l => normalizeStage(l.status) === 'CALL_SCHEDULED' || l.type === 'CALENDLY_MEETING').length;
+    const brandsCount = rawLeadsData.filter(l => l.type !== 'CREATOR_PARTNERSHIP' && l.type !== 'CALENDLY_MEETING').length;
     const creatorsCount = rawLeadsData.filter(l => l.type === 'CREATOR_PARTNERSHIP').length;
 
     document.getElementById('statTotalCount').textContent = totalCount;
@@ -3661,19 +4315,65 @@
     // Desktop Table Rows
     tbody.innerHTML = filtered.map(lead => {
       const d = new Date(lead.submittedAt);
-      const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
-      const timeStr = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      const dateStr = !isNaN(d.getTime()) ? d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '—';
+      const timeStr = !isNaN(d.getTime()) ? d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : '';
       const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
+      const isMeeting = lead.type === 'CALENDLY_MEETING';
+      const isStrategy = lead.type === 'STRATEGY_INTAKE';
       const cleanSocial = formatSocialUrl(lead.socialLink);
       const phone = (lead.phone || '').replace(/[^0-9]/g, '');
+
+      if (isMeeting) {
+        const meetTime = lead.startTime ? new Date(lead.startTime) : null;
+        const meetTimeStr = meetTime && !isNaN(meetTime.getTime()) 
+          ? meetTime.toLocaleString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) 
+          : 'Strategy Call';
+        return `
+          <tr onclick="openProspectModal('${esc(lead.id)}')">
+            <td>
+              <div class="crm-lead-title">${esc(lead.fullName || 'Prospect')}</div>
+              <div class="crm-lead-subtitle">${esc(lead.eventName || 'Strategy Session')} • <span style="color: var(--dim); font-weight: 500;">Calendly</span></div>
+              <div class="crm-lead-meta"><span style="color: var(--dim);">${esc(lead.email || 'No email')}</span></div>
+            </td>
+            <td>
+              <span class="crm-tag-meet"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Strategy Call</span>
+            </td>
+            <td onclick="event.stopPropagation()">
+              ${renderStageSelect(lead.id, lead.status || 'CALL_SCHEDULED')}
+            </td>
+            <td>
+              <div class="crm-diagnostic-text" style="font-weight: 700;"><span style="color: var(--cyan);">Session:</span> ${meetTimeStr}</div>
+              ${lead.joinUrl ? `<a href="${esc(lead.joinUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="crm-meet-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> Join Google Meet</a>` : ''}
+              ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
+            </td>
+            <td>
+              <span class="crm-ref-code">${esc(lead.id.slice(0, 14))}</span>
+              <div class="crm-date-text">${dateStr}</div>
+              <div class="crm-time-text">${timeStr}</div>
+            </td>
+            <td onclick="event.stopPropagation()" style="text-align: right;">
+              <div style="display: inline-flex; align-items: center; gap: 6px;">
+                <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                  Dossier
+                </button>
+                ${lead.email ? `<a href="mailto:${esc(lead.email)}" class="btn-ghost" style="padding: 5px 8px;" title="Email Invitee"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>` : ''}
+                <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }
 
       if (isCreator) {
         return `
           <tr onclick="openProspectModal('${esc(lead.id)}')">
             <td>
-              <div style="font-weight: 800; color: #FFFFFF; font-size: 14px;">${esc(lead.name)}</div>
-              <div style="color: #C084FC; font-size: 12px; font-weight: 700; margin-top: 2px;">Creator Network</div>
-              <div style="font-size: 11px; color: var(--dim); margin-top: 2px;">${esc(lead.phone || 'No phone')}</div>
+              <div class="crm-lead-title">${esc(lead.name || 'UGC Creator')}</div>
+              <div class="crm-lead-subtitle" style="color: #C084FC;">Creator Network</div>
+              <div class="crm-lead-meta">${esc(lead.phone || 'No phone')}</div>
             </td>
             <td>
               <span class="badge-pill" style="background: rgba(192, 132, 252, 0.15); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.3);">UGC Creator</span>
@@ -3682,19 +4382,20 @@
               ${renderStageSelect(lead.id, lead.status)}
             </td>
             <td>
-              <div style="font-size: 12px; color: #E2E8F0; line-height: 1.4;">
+              <div class="crm-diagnostic-text">
                 ${lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color: #60A5FA; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg> Showreel Portfolio</a>` : '<span style="color:var(--dim);">No portfolio link</span>'}
               </div>
               ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
             </td>
             <td>
-              <span class="badge-pill" style="background: rgba(255,255,255,0.06); color: var(--muted); font-size: 9.5px;">${esc(lead.id.slice(0, 14))}</span>
-              <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">${dateStr}<br>${timeStr}</div>
+              <span class="crm-ref-code">${esc(lead.id.slice(0, 14))}</span>
+              <div class="crm-date-text">${dateStr}</div>
+              <div class="crm-time-text">${timeStr}</div>
             </td>
             <td onclick="event.stopPropagation()" style="text-align: right;">
               <div style="display: inline-flex; align-items: center; gap: 6px;">
                 <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
                   Dossier
                 </button>
                 ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 5px 10px; font-size: 11px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
@@ -3707,13 +4408,13 @@
         `;
       }
 
-      if (lead.type === 'STRATEGY_INTAKE') {
+      if (isStrategy) {
         return `
           <tr onclick="openProspectModal('${esc(lead.id)}')">
             <td>
-              <div style="font-weight: 800; color: #FFFFFF; font-size: 14.5px;">${esc(lead.brandName || 'Executive Advisory Container')}</div>
-              <div style="color: var(--cyan); font-weight: 700; font-size: 12px; margin-top: 1px;">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">Executive Consultant</span></div>
-              <div style="font-size: 11px; color: var(--dim); margin-top: 2px;">${esc(lead.phone || 'No phone')}</div>
+              <div class="crm-lead-title">${esc(lead.brandName || 'Executive Advisory Container')}</div>
+              <div class="crm-lead-subtitle">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">Executive Consultant</span></div>
+              <div class="crm-lead-meta">${esc(lead.phone || 'No phone')}</div>
             </td>
             <td>
               <span class="badge-pill" style="background: rgba(226, 199, 153, 0.18); color: var(--cyan); border: 1px solid rgba(226, 199, 153, 0.4);">Executive Intake</span>
@@ -3722,19 +4423,20 @@
               ${renderStageSelect(lead.id, lead.status)}
             </td>
             <td>
-              <div style="font-size: 12.5px; color: #E2E8F0; font-weight: 600; line-height: 1.35; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(lead.primaryGoal || '')}">
+              <div class="crm-diagnostic-text" style="font-weight: 600; line-height: 1.35; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(lead.primaryGoal || '')}">
                 ${esc(lead.primaryGoal || '10-Pillar Strategy Brief Logged')}
               </div>
               ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
             </td>
             <td>
-              <span class="badge-pill" style="background: rgba(255,255,255,0.06); color: var(--muted); font-size: 9.5px;">${esc(lead.id.slice(0, 14))}</span>
-              <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">${dateStr}<br>${timeStr}</div>
+              <span class="crm-ref-code">${esc(lead.id.slice(0, 14))}</span>
+              <div class="crm-date-text">${dateStr}</div>
+              <div class="crm-time-text">${timeStr}</div>
             </td>
             <td onclick="event.stopPropagation()" style="text-align: right;">
               <div style="display: inline-flex; align-items: center; gap: 6px;">
                 <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
                   Dossier
                 </button>
                 ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 5px 10px; font-size: 11px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
@@ -3747,36 +4449,41 @@
         `;
       }
 
+      const cleanBrand = (lead.brandName && lead.brandName !== 'Brand') ? lead.brandName : '';
+      const brandDisplayName = cleanBrand || (lead.fullName ? `${lead.fullName}'s Brand` : 'Direct Brand Application');
+
       return `
         <tr onclick="openProspectModal('${esc(lead.id)}')">
           <td>
-            <div style="font-weight: 800; color: #FFFFFF; font-size: 14.5px;">${esc(lead.brandName || lead.fullName)}</div>
-            <div style="color: var(--cyan); font-weight: 700; font-size: 12px; margin-top: 1px;">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">${esc(lead.role || 'Founder')}</span></div>
-            ${lead.websiteUrl && lead.websiteUrl !== 'Not provided' ? `<a href="${esc(lead.websiteUrl.startsWith('http') ? lead.websiteUrl : 'https://' + lead.websiteUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size: 11px; color: var(--dim); text-decoration: underline; display: inline-flex; align-items: center; gap: 3px; margin-top: 2px;">${esc(lead.websiteUrl)} <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>` : ''}
+            <div class="crm-lead-title">${esc(brandDisplayName)}</div>
+            <div class="crm-lead-subtitle">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">${esc(lead.role || 'Founder')}</span></div>
+            ${lead.websiteUrl && lead.websiteUrl !== 'Not provided' ? `<div class="crm-lead-meta"><a href="${esc(lead.websiteUrl.startsWith('http') ? lead.websiteUrl : 'https://' + lead.websiteUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color: var(--dim); text-decoration: underline; display: inline-flex; align-items: center; gap: 3px;">${esc(lead.websiteUrl)} <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>` : ''}
           </td>
           <td>
-            <span class="badge-pill" style="background: rgba(226, 199, 153, 0.1); color: var(--cyan); border: 1px solid rgba(226, 199, 153, 0.25);">${esc(lead.businessCategory || 'Skincare')}</span>
+            <span class="badge-pill" style="background: rgba(226, 199, 153, 0.1); color: var(--cyan); border: 1px solid rgba(226, 199, 153, 0.25);">${esc(lead.businessCategory || 'Cosmetics')}</span>
           </td>
           <td onclick="event.stopPropagation()">
             ${renderStageSelect(lead.id, lead.status)}
           </td>
           <td>
-            <div style="font-size: 12.5px; color: #E2E8F0; font-weight: 600; line-height: 1.35; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(lead.primaryGoal || lead.marketingHistory || '')}">
+            <div class="crm-diagnostic-text" style="font-weight: 600; line-height: 1.35; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(lead.primaryGoal || lead.marketingHistory || '')}">
               ${esc(lead.primaryGoal && lead.primaryGoal !== 'Not provided' ? lead.primaryGoal : (lead.marketingHistory || 'Inbound prospect'))}
             </div>
             ${lead.notes ? `<div class="note-logged-badge" title="${esc(lead.notes)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 30))}${lead.notes.length > 30 ? '...' : ''}</div>` : ''}
           </td>
           <td>
-            <span class="badge-pill" style="background: rgba(255,255,255,0.06); color: var(--muted); font-size: 9.5px;">${esc(lead.id.slice(0, 14))}</span>
-            <div style="font-size: 11px; color: var(--dim); margin-top: 4px;">${dateStr}<br>${timeStr}</div>
+            <span class="crm-ref-code">${esc(lead.id.slice(0, 14))}</span>
+            <div class="crm-date-text">${dateStr}</div>
+            <div class="crm-time-text">${timeStr}</div>
           </td>
           <td onclick="event.stopPropagation()" style="text-align: right;">
             <div style="display: inline-flex; align-items: center; gap: 6px;">
               <button class="btn-ghost" style="padding: 5px 10px; font-size: 11px;" onclick="openProspectModal('${esc(lead.id)}')">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
                 Dossier
               </button>
               ${cleanSocial ? `<a href="${esc(cleanSocial)}" target="_blank" rel="noopener" class="btn-ghost" style="padding: 5px 8px;" title="Social profile"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>` : ''}
+              ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 5px 10px; font-size: 11px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}
               <button class="btn-danger" title="Delete prospect" onclick="deleteLead('${esc(lead.id)}')">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
               </button>
@@ -3789,40 +4496,73 @@
     // Mobile Responsive Card List
     mobileList.innerHTML = filtered.map(lead => {
       const d = new Date(lead.submittedAt);
-      const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+      const dateStr = !isNaN(d.getTime()) ? d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '—';
       const isCreator = lead.type === 'CREATOR_PARTNERSHIP';
+      const isMeeting = lead.type === 'CALENDLY_MEETING';
       const cleanSocial = formatSocialUrl(lead.socialLink);
       const phone = (lead.phone || '').replace(/[^0-9]/g, '');
+
+      let title = '';
+      let subtitle = '';
+      let categoryBadge = '';
+      let objectiveContent = '';
+
+      if (isMeeting) {
+        title = lead.fullName || 'Strategy Call Prospect';
+        subtitle = `<div class="crm-lead-subtitle">${esc(lead.eventName || 'Strategy Session')} • <span style="color: var(--dim); font-weight: 500;">Calendly</span></div>`;
+        categoryBadge = `<span class="crm-tag-meet"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Strategy Call</span>`;
+        const meetTime = lead.startTime ? new Date(lead.startTime) : null;
+        const meetTimeStr = meetTime && !isNaN(meetTime.getTime()) 
+          ? meetTime.toLocaleString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) 
+          : 'Scheduled Call';
+        objectiveContent = `
+          <div class="crm-diagnostic-text"><strong>Session:</strong> ${meetTimeStr}</div>
+          ${lead.joinUrl ? `<a href="${esc(lead.joinUrl)}" target="_blank" rel="noopener" class="crm-meet-btn" style="margin-top: 6px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> Join Google Meet</a>` : ''}
+        `;
+      } else if (isCreator) {
+        title = lead.name || 'UGC Creator';
+        subtitle = `<span class="badge-pill" style="background: rgba(192, 132, 252, 0.15); color: #C084FC; margin-top: 4px; display: inline-block;">Creator Network</span>`;
+        categoryBadge = `<span class="badge-pill" style="background: rgba(192, 132, 252, 0.15); color: #C084FC;">UGC</span>`;
+        objectiveContent = lead.portfolio && lead.portfolio !== 'Not provided' 
+          ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color: #60A5FA; text-decoration: underline;">Showreel Portfolio</a>` 
+          : '<span style="color:var(--dim);">No portfolio</span>';
+      } else {
+        const cleanBrand = (lead.brandName && lead.brandName !== 'Brand') ? lead.brandName : '';
+        title = cleanBrand || (lead.fullName ? `${lead.fullName}'s Brand` : 'Direct Application');
+        subtitle = `<div class="crm-lead-subtitle">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">${esc(lead.role || 'Founder')}</span></div>`;
+        categoryBadge = `<span class="badge-pill" style="background: rgba(226, 199, 153, 0.1); color: var(--cyan);">${esc(lead.businessCategory || 'Brand')}</span>`;
+        objectiveContent = `<div><strong>Objective:</strong> ${esc(lead.primaryGoal || lead.marketingHistory || '—')}</div>`;
+      }
 
       return `
         <div class="lead-mobile-card">
           <div class="lead-mobile-head">
             <div>
-              <span class="badge-pill" style="background: rgba(255,255,255,0.06); color: var(--muted); font-size: 10px;">${esc(lead.id)}</span>
-              <span style="font-size: 11px; color: var(--dim); margin-left: 6px;">${dateStr}</span>
+              <span class="crm-ref-code">${esc(lead.id)}</span>
+              <span class="crm-time-text" style="margin-left: 6px;">${dateStr}</span>
             </div>
             <div>
-              ${renderStageSelect(lead.id, lead.status)}
+              ${renderStageSelect(lead.id, lead.status || (isMeeting ? 'CALL_SCHEDULED' : 'NEW'))}
             </div>
           </div>
           
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px;">
             <div>
-              <div style="font-size: 16px; font-weight: 800; color: #FFFFFF;">${esc(isCreator ? lead.name : (lead.brandName || lead.fullName))}</div>
-              ${!isCreator ? `<div style="font-size: 12.5px; font-weight: 700; color: var(--cyan); margin-top: 2px;">${esc(lead.fullName)} • <span style="color: var(--dim); font-weight: 500;">${esc(lead.role || 'Founder')}</span></div>` : `<span class="badge-pill" style="background: rgba(192, 132, 252, 0.15); color: #C084FC; margin-top: 4px; display: inline-block;">Creator Network</span>`}
+              <div class="crm-lead-title" style="font-size: 16px;">${esc(title)}</div>
+              ${subtitle}
             </div>
-            ${!isCreator ? `<span class="badge-pill" style="background: rgba(226, 199, 153, 0.1); color: var(--cyan);">${esc(lead.businessCategory || 'Brand')}</span>` : ''}
+            ${categoryBadge}
           </div>
 
-          <div style="font-size: 12.5px; color: var(--muted); margin: 8px 0; line-height: 1.4;">
-            ${isCreator ? (lead.portfolio && lead.portfolio !== 'Not provided' ? `<a href="${esc(lead.portfolio)}" target="_blank" rel="noopener" style="color: #60A5FA; text-decoration: underline;">Showreel Portfolio</a>` : 'No portfolio') : `<div><strong>Objective:</strong> ${esc(lead.primaryGoal || lead.marketingHistory || '—')}</div>`}
+          <div class="crm-diagnostic-text" style="margin: 8px 0; line-height: 1.4;">
+            ${objectiveContent}
           </div>
 
           ${lead.notes ? `<div class="note-logged-badge" style="margin-bottom: 10px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${esc(lead.notes.slice(0, 35))}${lead.notes.length > 35 ? '...' : ''}</div>` : ''}
 
           <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
             <button class="btn-ghost" style="padding: 7px 14px; font-size: 12px; flex: 1; text-align: center; justify-content: center;" onclick="openProspectModal('${esc(lead.id)}')">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
               View Dossier
             </button>
             ${phone ? `<a href="https://wa.me/${phone}" target="_blank" rel="noopener" class="wa-link-btn" style="padding: 7px 14px; font-size: 12px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></a>` : ''}

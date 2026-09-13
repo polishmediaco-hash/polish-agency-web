@@ -2678,7 +2678,7 @@
       "file_type": "code",
       "norm_label": "mapboardtodbrow()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L114"
+      "source_location": "L128"
     },
     {
       "id": "server_services_supabase_mapdbboardtoboard",
@@ -2690,7 +2690,7 @@
       "file_type": "code",
       "norm_label": "mapdbboardtoboard()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L96"
+      "source_location": "L110"
     },
     {
       "id": "server_services_supabase_mapdbleadtolead",
@@ -2714,7 +2714,7 @@
       "file_type": "code",
       "norm_label": "mapdbrowtoinvoice()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L433"
+      "source_location": "L447"
     },
     {
       "id": "server_services_supabase_mapleadtodbrow",
@@ -2726,7 +2726,7 @@
       "file_type": "code",
       "norm_label": "mapleadtodbrow()",
       "source_file": "server/services/supabase.js",
-      "source_location": "L66"
+      "source_location": "L73"
     },
     {
       "id": "public_js_app_hidealert",
@@ -5330,7 +5330,7 @@
       "file_type": "code",
       "norm_label": "addserviceitem()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L643"
+      "source_location": "L630"
     },
     {
       "id": "public_js_invoice_attachinlineeditlisteners",
@@ -5342,7 +5342,7 @@
       "file_type": "code",
       "norm_label": "attachinlineeditlisteners()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L516"
+      "source_location": "L503"
     },
     {
       "id": "public_js_invoice_checkadminauth",
@@ -5354,7 +5354,7 @@
       "file_type": "code",
       "norm_label": "checkadminauth()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1047"
+      "source_location": "L1034"
     },
     {
       "id": "public_js_invoice_cleancontactname",
@@ -5378,7 +5378,7 @@
       "file_type": "code",
       "norm_label": "closearchivedrawer()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1438"
+      "source_location": "L1425"
     },
     {
       "id": "public_js_invoice_computetotals",
@@ -5426,7 +5426,7 @@
       "file_type": "code",
       "norm_label": "filterarchivelist()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1445"
+      "source_location": "L1432"
     },
     {
       "id": "public_js_invoice_formatamount",
@@ -5486,7 +5486,7 @@
       "file_type": "code",
       "norm_label": "getauthheaders()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1014"
+      "source_location": "L1001"
     },
     {
       "id": "public_js_invoice_getformattedinvoicefilename",
@@ -5534,7 +5534,7 @@
       "file_type": "code",
       "norm_label": "init()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1460"
+      "source_location": "L1447"
     },
     {
       "id": "public_js_invoice_loadcloudinvoiceslist",
@@ -5546,7 +5546,7 @@
       "file_type": "code",
       "norm_label": "loadcloudinvoiceslist()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1303"
+      "source_location": "L1290"
     },
     {
       "id": "public_js_invoice_loadfromlocalstorage",
@@ -5558,7 +5558,7 @@
       "file_type": "code",
       "norm_label": "loadfromlocalstorage()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L970"
+      "source_location": "L957"
     },
     {
       "id": "public_js_invoice_loadpreset",
@@ -5570,7 +5570,7 @@
       "file_type": "code",
       "norm_label": "loadpreset()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L795"
+      "source_location": "L782"
     },
     {
       "id": "public_js_invoice_logoutadmin",
@@ -5582,7 +5582,7 @@
       "file_type": "code",
       "norm_label": "logoutadmin()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1207"
+      "source_location": "L1194"
     },
     {
       "id": "public_js_invoice_openarchivedrawer",
@@ -5594,7 +5594,7 @@
       "file_type": "code",
       "norm_label": "openarchivedrawer()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1430"
+      "source_location": "L1417"
     },
     {
       "id": "public_js_invoice_renderarchivecards",
@@ -5606,7 +5606,7 @@
       "file_type": "code",
       "norm_label": "renderarchivecards()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1328"
+      "source_location": "L1315"
     },
     {
       "id": "public_js_invoice_renderinvoicesheet",
@@ -5630,7 +5630,7 @@
       "file_type": "code",
       "norm_label": "renderserviceformrows()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L582"
+      "source_location": "L569"
     },
     {
       "id": "public_js_invoice_saveinvoicetocloud",
@@ -5642,7 +5642,7 @@
       "file_type": "code",
       "norm_label": "saveinvoicetocloud()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1233"
+      "source_location": "L1220"
     },
     {
       "id": "public_js_invoice_savetolocalstorage",
@@ -5654,7 +5654,7 @@
       "file_type": "code",
       "norm_label": "savetolocalstorage()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L962"
+      "source_location": "L949"
     },
     {
       "id": "public_js_invoice_setnestedvalue",
@@ -5666,7 +5666,7 @@
       "file_type": "code",
       "norm_label": "setnestedvalue()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L541"
+      "source_location": "L528"
     },
     {
       "id": "public_js_invoice_setupformlisteners",
@@ -5678,7 +5678,7 @@
       "file_type": "code",
       "norm_label": "setupformlisteners()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L656"
+      "source_location": "L643"
     },
     {
       "id": "public_js_invoice_setuptoolbar",
@@ -5690,7 +5690,7 @@
       "file_type": "code",
       "norm_label": "setuptoolbar()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L804"
+      "source_location": "L791"
     },
     {
       "id": "public_js_invoice_setvalue",
@@ -5702,7 +5702,7 @@
       "file_type": "code",
       "norm_label": "setvalue()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L576"
+      "source_location": "L563"
     },
     {
       "id": "public_js_invoice_showautherror",
@@ -5714,7 +5714,7 @@
       "file_type": "code",
       "norm_label": "showautherror()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1039"
+      "source_location": "L1026"
     },
     {
       "id": "public_js_invoice_showtoast",
@@ -5726,7 +5726,7 @@
       "file_type": "code",
       "norm_label": "showtoast()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L992"
+      "source_location": "L979"
     },
     {
       "id": "public_js_invoice_syncstatetoform",
@@ -5738,7 +5738,7 @@
       "file_type": "code",
       "norm_label": "syncstatetoform()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L551"
+      "source_location": "L538"
     },
     {
       "id": "public_js_invoice_unlockstudio",
@@ -5750,7 +5750,7 @@
       "file_type": "code",
       "norm_label": "unlockstudio()",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1126"
+      "source_location": "L1113"
     },
     {
       "id": "public_js_invoice_updatedocumenttitle",
@@ -6990,7 +6990,7 @@
       "file_type": "code",
       "norm_label": "boardsservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L250"
+      "source_location": "L264"
     },
     {
       "id": "ref_express",
@@ -7221,7 +7221,7 @@
       "file_type": "code",
       "norm_label": "cmsservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L360"
+      "source_location": "L374"
     },
     {
       "id": "server_services_supabase_createclient",
@@ -7254,7 +7254,7 @@
       "file_type": "code",
       "norm_label": "invoicesservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L456"
+      "source_location": "L470"
     },
     {
       "id": "server_services_supabase_keepaliveservice",
@@ -7265,7 +7265,7 @@
       "file_type": "code",
       "norm_label": "keepaliveservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L415"
+      "source_location": "L429"
     },
     {
       "id": "server_services_supabase_leadsservice",
@@ -7276,7 +7276,7 @@
       "file_type": "code",
       "norm_label": "leadsservice",
       "source_file": "server/services/supabase.js",
-      "source_location": "L131"
+      "source_location": "L145"
     },
     {
       "id": "server_services_supabase_path",
@@ -7803,7 +7803,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L540"
+      "source_location": "L589"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -8020,6 +8020,42 @@
       "norm_label": "sprint 14: minimalist luxury presentation engine & zero-clutter architecture (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L517"
+    },
+    {
+      "id": "docs_handoff_sprint_16_inbound_crm_dossiers_executive_lead_management_overhaul_completed_september_2026",
+      "label": "Sprint 16: Inbound CRM Dossiers & Executive Lead Management Overhaul (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 16: inbound crm dossiers & executive lead management overhaul (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L552"
+    },
+    {
+      "id": "docs_handoff_sprint_16_official_brand_watermark_silk_sheen_zero_distortion_presentation_mode_completed_september_2026",
+      "label": "Sprint 16: Official Brand Watermark, Silk Sheen & Zero-Distortion Presentation Mode (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 16: official brand watermark, silk sheen & zero-distortion presentation mode (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L536"
+    },
+    {
+      "id": "docs_handoff_sprint_17_invoicing_atelier_redesign_trilingual_optimization_completed_september_2026",
+      "label": "Sprint 17: Invoicing Atelier Redesign & Trilingual Optimization (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 17: invoicing atelier redesign & trilingual optimization (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L567"
     },
     {
       "id": "docs_handoff_sprint_1_critical_hotfixes_completed_september_2026",
@@ -11935,6 +11971,50 @@
       "source_location": "L1"
     },
     {
+      "id": "tests_test_logo_render",
+      "label": "test_logo_render.js",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "test_logo_render.js",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_logo_render_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_test_logo_render_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "tests_test_logo_render_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "generate-social-avatars.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L1"
+    },
+    {
       "id": "tests_test_sequencer_e2e",
       "label": "test_sequencer_e2e.js",
       "_origin": "ast",
@@ -12504,7 +12584,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L650",
+      "source_location": "L637",
       "weight": 1.0
     },
     {
@@ -12516,7 +12596,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L651",
+      "source_location": "L638",
       "weight": 1.0
     },
     {
@@ -12528,7 +12608,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L652",
+      "source_location": "L639",
       "weight": 1.0
     },
     {
@@ -12540,7 +12620,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L653",
+      "source_location": "L640",
       "weight": 1.0
     },
     {
@@ -12552,7 +12632,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L526",
+      "source_location": "L513",
       "weight": 1.0
     },
     {
@@ -12564,7 +12644,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L529",
+      "source_location": "L516",
       "weight": 1.0
     },
     {
@@ -12576,7 +12656,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L534",
+      "source_location": "L521",
       "weight": 1.0
     },
     {
@@ -12588,7 +12668,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L535",
+      "source_location": "L522",
       "weight": 1.0
     },
     {
@@ -12600,7 +12680,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L536",
+      "source_location": "L523",
       "weight": 1.0
     },
     {
@@ -12612,7 +12692,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1062",
+      "source_location": "L1049",
       "weight": 1.0
     },
     {
@@ -12624,7 +12704,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1082",
+      "source_location": "L1069",
       "weight": 1.0
     },
     {
@@ -12636,7 +12716,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1095",
+      "source_location": "L1082",
       "weight": 1.0
     },
     {
@@ -12648,7 +12728,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1109",
+      "source_location": "L1096",
       "weight": 1.0
     },
     {
@@ -12672,7 +12752,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1448",
+      "source_location": "L1435",
       "weight": 1.0
     },
     {
@@ -12708,7 +12788,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1461",
+      "source_location": "L1448",
       "weight": 1.0
     },
     {
@@ -12720,7 +12800,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1462",
+      "source_location": "L1449",
       "weight": 1.0
     },
     {
@@ -12732,7 +12812,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1463",
+      "source_location": "L1450",
       "weight": 1.0
     },
     {
@@ -12744,7 +12824,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1464",
+      "source_location": "L1451",
       "weight": 1.0
     },
     {
@@ -12756,7 +12836,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1465",
+      "source_location": "L1452",
       "weight": 1.0
     },
     {
@@ -12768,7 +12848,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1308",
+      "source_location": "L1295",
       "weight": 1.0
     },
     {
@@ -12780,7 +12860,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1314",
+      "source_location": "L1301",
       "weight": 1.0
     },
     {
@@ -12792,7 +12872,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L981",
+      "source_location": "L968",
       "weight": 1.0
     },
     {
@@ -12804,7 +12884,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L985",
+      "source_location": "L972",
       "weight": 1.0
     },
     {
@@ -12816,7 +12896,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L798",
+      "source_location": "L785",
       "weight": 1.0
     },
     {
@@ -12828,7 +12908,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L799",
+      "source_location": "L786",
       "weight": 1.0
     },
     {
@@ -12840,7 +12920,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L800",
+      "source_location": "L787",
       "weight": 1.0
     },
     {
@@ -12852,7 +12932,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L801",
+      "source_location": "L788",
       "weight": 1.0
     },
     {
@@ -12864,7 +12944,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1227",
+      "source_location": "L1214",
       "weight": 1.0
     },
     {
@@ -12876,7 +12956,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1435",
+      "source_location": "L1422",
       "weight": 1.0
     },
     {
@@ -12888,7 +12968,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1338",
+      "source_location": "L1325",
       "weight": 1.0
     },
     {
@@ -12948,7 +13028,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L380",
+      "source_location": "L379",
       "weight": 1.0
     },
     {
@@ -12960,7 +13040,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L451",
+      "source_location": "L450",
       "weight": 1.0
     },
     {
@@ -12972,7 +13052,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L459",
+      "source_location": "L454",
       "weight": 1.0
     },
     {
@@ -12984,7 +13064,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L601",
+      "source_location": "L588",
       "weight": 1.0
     },
     {
@@ -12996,7 +13076,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L627",
+      "source_location": "L614",
       "weight": 1.0
     },
     {
@@ -13008,7 +13088,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L628",
+      "source_location": "L615",
       "weight": 1.0
     },
     {
@@ -13020,7 +13100,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1244",
+      "source_location": "L1231",
       "weight": 1.0
     },
     {
@@ -13032,7 +13112,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1246",
+      "source_location": "L1233",
       "weight": 1.0
     },
     {
@@ -13044,7 +13124,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1247",
+      "source_location": "L1234",
       "weight": 1.0
     },
     {
@@ -13056,7 +13136,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1271",
+      "source_location": "L1258",
       "weight": 1.0
     },
     {
@@ -13068,7 +13148,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1283",
+      "source_location": "L1270",
       "weight": 1.0
     },
     {
@@ -13080,7 +13160,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1290",
+      "source_location": "L1277",
       "weight": 1.0
     },
     {
@@ -13092,12 +13172,24 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L662",
+      "source_location": "L649",
       "weight": 1.0
     },
     {
       "source": "public_js_invoice_setupformlisteners",
       "target": "public_js_invoice_savetolocalstorage",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/invoice.js",
+      "source_location": "L650",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_invoice_setupformlisteners",
+      "target": "public_js_invoice_formatserialcode",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -13109,18 +13201,6 @@
     },
     {
       "source": "public_js_invoice_setupformlisteners",
-      "target": "public_js_invoice_formatserialcode",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/invoice.js",
-      "source_location": "L676",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_invoice_setupformlisteners",
       "target": "public_js_invoice_incrementserialcode",
       "relation": "calls",
       "_origin": "ast",
@@ -13128,7 +13208,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L687",
+      "source_location": "L674",
       "weight": 1.0
     },
     {
@@ -13140,7 +13220,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L688",
+      "source_location": "L675",
       "weight": 1.0
     },
     {
@@ -13152,7 +13232,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L691",
+      "source_location": "L678",
       "weight": 1.0
     },
     {
@@ -13164,7 +13244,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L699",
+      "source_location": "L686",
       "weight": 1.0
     },
     {
@@ -13176,7 +13256,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L727",
+      "source_location": "L714",
       "weight": 1.0
     },
     {
@@ -13188,7 +13268,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L813",
+      "source_location": "L800",
       "weight": 1.0
     },
     {
@@ -13200,7 +13280,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L814",
+      "source_location": "L801",
       "weight": 1.0
     },
     {
@@ -13212,7 +13292,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L851",
+      "source_location": "L838",
       "weight": 1.0
     },
     {
@@ -13224,7 +13304,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L858",
+      "source_location": "L845",
       "weight": 1.0
     },
     {
@@ -13236,7 +13316,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L866",
+      "source_location": "L853",
       "weight": 1.0
     },
     {
@@ -13248,7 +13328,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L878",
+      "source_location": "L865",
       "weight": 1.0
     },
     {
@@ -13260,7 +13340,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L879",
+      "source_location": "L866",
       "weight": 1.0
     },
     {
@@ -13272,7 +13352,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L881",
+      "source_location": "L868",
       "weight": 1.0
     },
     {
@@ -13284,7 +13364,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L927",
+      "source_location": "L914",
       "weight": 1.0
     },
     {
@@ -13296,7 +13376,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L552",
+      "source_location": "L539",
       "weight": 1.0
     },
     {
@@ -13308,7 +13388,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L573",
+      "source_location": "L560",
       "weight": 1.0
     },
     {
@@ -13320,7 +13400,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/invoice.js",
-      "source_location": "L1140",
+      "source_location": "L1127",
       "weight": 1.0
     },
     {
@@ -20728,6 +20808,18 @@
       "weight": 1.0
     },
     {
+      "source": "tests_test_logo_render",
+      "target": "ref_puppeteer",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "tests_test_sequencer_e2e",
       "target": "ref_puppeteer",
       "relation": "imports_from",
@@ -23050,6 +23142,39 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_16_official_brand_watermark_silk_sheen_zero_distortion_presentation_mode_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L536",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_16_inbound_crm_dossiers_executive_lead_management_overhaul_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L552",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_17_invoicing_atelier_redesign_trilingual_optimization_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L567",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -23112,7 +23237,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L540",
+      "source_location": "L589",
       "weight": 1.0
     },
     {
@@ -24718,7 +24843,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1014",
+      "source_location": "L1001",
       "weight": 1.0
     },
     {
@@ -24729,7 +24854,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1039",
+      "source_location": "L1026",
       "weight": 1.0
     },
     {
@@ -24740,7 +24865,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1047",
+      "source_location": "L1034",
       "weight": 1.0
     },
     {
@@ -24762,7 +24887,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1126",
+      "source_location": "L1113",
       "weight": 1.0
     },
     {
@@ -24773,7 +24898,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1207",
+      "source_location": "L1194",
       "weight": 1.0
     },
     {
@@ -24784,7 +24909,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1233",
+      "source_location": "L1220",
       "weight": 1.0
     },
     {
@@ -24795,7 +24920,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1303",
+      "source_location": "L1290",
       "weight": 1.0
     },
     {
@@ -24806,7 +24931,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1328",
+      "source_location": "L1315",
       "weight": 1.0
     },
     {
@@ -24817,7 +24942,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1430",
+      "source_location": "L1417",
       "weight": 1.0
     },
     {
@@ -24828,7 +24953,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1438",
+      "source_location": "L1425",
       "weight": 1.0
     },
     {
@@ -24839,7 +24964,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1445",
+      "source_location": "L1432",
       "weight": 1.0
     },
     {
@@ -24850,7 +24975,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L1460",
+      "source_location": "L1447",
       "weight": 1.0
     },
     {
@@ -24949,7 +25074,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L516",
+      "source_location": "L503",
       "weight": 1.0
     },
     {
@@ -24960,7 +25085,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L541",
+      "source_location": "L528",
       "weight": 1.0
     },
     {
@@ -24971,7 +25096,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L551",
+      "source_location": "L538",
       "weight": 1.0
     },
     {
@@ -24982,7 +25107,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L576",
+      "source_location": "L563",
       "weight": 1.0
     },
     {
@@ -24993,7 +25118,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L582",
+      "source_location": "L569",
       "weight": 1.0
     },
     {
@@ -25015,7 +25140,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L643",
+      "source_location": "L630",
       "weight": 1.0
     },
     {
@@ -25026,7 +25151,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L656",
+      "source_location": "L643",
       "weight": 1.0
     },
     {
@@ -25059,7 +25184,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L795",
+      "source_location": "L782",
       "weight": 1.0
     },
     {
@@ -25070,7 +25195,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L804",
+      "source_location": "L791",
       "weight": 1.0
     },
     {
@@ -25081,7 +25206,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L962",
+      "source_location": "L949",
       "weight": 1.0
     },
     {
@@ -25092,7 +25217,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
-      "source_location": "L970",
+      "source_location": "L957",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_invoice",
+      "target": "public_js_invoice_showtoast",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/invoice.js",
+      "source_location": "L979",
       "weight": 1.0
     },
     {
@@ -25104,17 +25240,6 @@
       "confidence_score": 1.0,
       "source_file": "public/js/invoice.js",
       "source_location": "L99",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_invoice",
-      "target": "public_js_invoice_showtoast",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/invoice.js",
-      "source_location": "L992",
       "weight": 1.0
     },
     {
@@ -30333,13 +30458,13 @@
     },
     {
       "source": "server_services_supabase",
-      "target": "server_services_supabase_mapboardtodbrow",
+      "target": "server_services_supabase_mapdbboardtoboard",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L114",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
@@ -30355,13 +30480,24 @@
     },
     {
       "source": "server_services_supabase",
+      "target": "server_services_supabase_mapboardtodbrow",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "server/services/supabase.js",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "server_services_supabase",
       "target": "server_services_supabase_leadsservice",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L131",
+      "source_location": "L145",
       "weight": 1.0
     },
     {
@@ -30383,7 +30519,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L250",
+      "source_location": "L264",
       "weight": 1.0
     },
     {
@@ -30405,7 +30541,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L360",
+      "source_location": "L374",
       "weight": 1.0
     },
     {
@@ -30416,7 +30552,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L415",
+      "source_location": "L429",
       "weight": 1.0
     },
     {
@@ -30427,7 +30563,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L433",
+      "source_location": "L447",
       "weight": 1.0
     },
     {
@@ -30438,7 +30574,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L456",
+      "source_location": "L470",
       "weight": 1.0
     },
     {
@@ -30449,18 +30585,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/services/supabase.js",
-      "source_location": "L66",
-      "weight": 1.0
-    },
-    {
-      "source": "server_services_supabase",
-      "target": "server_services_supabase_mapdbboardtoboard",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "server/services/supabase.js",
-      "source_location": "L96",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -30493,6 +30618,39 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_laser_and_branding.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_logo_render",
+      "target": "tests_test_logo_render_puppeteer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_logo_render",
+      "target": "tests_test_logo_render_path",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_logo_render",
+      "target": "tests_test_logo_render_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_logo_render.js",
       "source_location": "L3",
       "weight": 1.0
     },
@@ -30754,7 +30912,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/invoice.js",
-      "source_location": "L734",
+      "source_location": "L721",
       "weight": 1.0
     },
     {
@@ -30766,7 +30924,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/invoice.js",
-      "source_location": "L907",
+      "source_location": "L894",
       "weight": 1.0
     },
     {
@@ -30778,7 +30936,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/invoice.js",
-      "source_location": "L912",
+      "source_location": "L899",
       "weight": 1.0
     },
     {
@@ -30790,7 +30948,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/invoice.js",
-      "source_location": "L917",
+      "source_location": "L904",
       "weight": 1.0
     },
     {
@@ -30802,7 +30960,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/invoice.js",
-      "source_location": "L932",
+      "source_location": "L919",
       "weight": 1.0
     },
     {
@@ -31203,5 +31361,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "25966743f33b9ac91ea3f5a36daac4457d0f9eef"
+  "built_at_commit": "b52f7954d2dbb1fbf4a0b29ce23a1cb5f9b54b20"
 }

@@ -564,6 +564,25 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Added `.crm-tag-meet` badge and 1-click `.crm-meet-btn` (`Join Google Meet`).
    - Updated `server/services/supabase.js` (`mapDbLeadToLead` / `mapLeadToDbRow`) to preserve `startTime`, `joinUrl`, `eventName`, `brand`, `eventUri`, and `portfolio`.
    - Synchronized existing Supabase database records so Calendly meetings display scheduled times, invitee details, and direct video links in both the table and modal dialog.
+### Sprint 17: Invoicing Atelier Redesign & Trilingual Optimization (Completed September 2026)
+1. ✅ **Executive Decorum & Contact Hierarchy**:
+   - Removed informal dashes and unwanted `DIR:` prefixes on the agency payable side, rendering `Faycal Chouli` directly.
+   - Preserved executive attention styling on the client side: `ATTN: Yasmine` (localized French `À l'att. de :`, Arabic `عناية :`).
+2. ✅ **Algerian Banking Rails & Letterpress Cleanliness**:
+   - Formatted unbroken 20-digit Algerian RIP into standard `007 99999 0044643623 50` 3-5-10-2 spacing clusters with non-breaking spaces.
+   - Normalized French diacritics: `Clé 49`.
+   - Eliminated distracting copy buttons from payment rails for authentic high-ticket stationery aesthetics.
+3. ✅ **Summary Monolith Grid Snapping (Zero Overhang)**:
+   - Snapped `.inv-summary-box` width to `40%` (250px–280px), aligning flush with the Price column (`22%`) boundary in both LTR and RTL.
+4. ✅ **Arabic (RTL) Localization & Currency Positioning**:
+   - Removed conflicting `text-align: left !important;` on entity cards; Arabic cards (`بيانات العميل` and `مستحق لـ`) align naturally to the right margin.
+   - Fixed Arabic currency formatting to `د.ج` with dynamic `dir="rtl"` in CSS and templates (`.inv-td-price`, `.inv-total-amount`, `.inv-calc-line`), ensuring numbers read first from right to left (`د.ج 180 000`).
+   - Implemented single-column rail structure in RTL, completely preventing long Arabic banking labels from overflowing the card boundary.
+5. ✅ **Obsidian Print Bleed Elimination & WCAG AAA Contrast**:
+   - Deepened `--paper-accent-gold` to `#785627` (6.22:1 contrast ratio, WCAG AAA compliant against `#FAF7F2`).
+   - In `@media print`, enforced Haute Alabaster `#FAF7F2` fine stationery even in Obsidian VIP mode, preventing black margin box clipping.
+6. ✅ **Automated Visual Verification & Artifacts**:
+   - Captured 10 high-resolution Retina screenshots in `docs/assets/invoices/` across Desktop Studio, Alabaster Sheet, Banking Details, Arabic RTL, Obsidian VIP, Print Emulation, and Mobile Phone Viewports.
 
 ---
 

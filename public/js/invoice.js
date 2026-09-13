@@ -129,7 +129,7 @@
     payableContact: 'Faycal Chouli',
     payableSubtitle: '',
     payableAddress: '',
-    payablePhone: '+213 661 41 77 62',
+    payablePhone: '+213 662 41 77 61',
     payableEmail: 'Contact@polishmediaco.com',
     payableWebsite: 'polishmediaco.com',
 
@@ -987,6 +987,9 @@
         if (state.invoiceNumber) {
           state.invoiceNumber = formatSerialCode(state.invoiceNumber);
         }
+        if (state.payablePhone === '+213 661 41 77 62' || !state.payablePhone) {
+          state.payablePhone = '+213 662 41 77 61';
+        }
       } else {
         state.invoiceNumber = formatSerialCode('094');
         state.issueDate = getTodayFormatted();
@@ -1544,7 +1547,7 @@
         clientAddress: state.clientAddress || '',
         payableName: state.payableName || 'Polish Media Co',
         payableContact: state.payableContact || 'Faycal Chouli',
-        payablePhone: state.payablePhone || '+213 661 41 77 62',
+        payablePhone: state.payablePhone || '+213 662 41 77 61',
         items: state.items || [],
         beneficiaryName: state.beneficiaryName || 'FAYCAL CHOULI',
         ccp: state.ccp || '0044643623 cle 49',
@@ -1675,7 +1678,7 @@
       clientAddress: inv.clientAddress || '',
       payableName: inv.payableName || 'Polish Media Co',
       payableContact: inv.payableContact || 'Faycal Chouli',
-      payablePhone: inv.payablePhone || '+213 661 41 77 62',
+      payablePhone: inv.payablePhone || '+213 662 41 77 61',
       items: Array.isArray(inv.items) && inv.items.length > 0 ? inv.items : defaultState.items,
       beneficiaryName: inv.beneficiaryName || 'FAYCAL CHOULI',
       ccp: inv.ccp || '0044643623 cle 49',

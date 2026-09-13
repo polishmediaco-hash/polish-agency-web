@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789278838.3016758,
-    "seen": 1789278861.701208,
-    "ast_hash": "e0d4f883d18e47c4ec9c89d2a6847f0f",
+    "mtime": 1789280678.0702677,
+    "seen": 1789280690.540134,
+    "ast_hash": "fbfefa0715f45aaa118aa11046a10bb7",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789280195.8717234,
-    "seen": 1789280270.3253329,
-    "ast_hash": "d4d87fc958158550a5566b9d9bdd9bd3",
+    "mtime": 1789280608.5280294,
+    "seen": 1789280690.540163,
+    "ast_hash": "c17311c63bf65eee60cfa11a747359eb",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -1830,21 +1830,21 @@
     "semantic_hash": ""
   },
   "public/js/invoice.js": {
-    "mtime": 1789280133.5126362,
-    "seen": 1789280270.324564,
-    "ast_hash": "04d547cd344eead26e1e092d508cc545",
+    "mtime": 1789280583.3324454,
+    "seen": 1789280690.539354,
+    "ast_hash": "be33c82ad4440525b419e2233b466c37",
     "semantic_hash": ""
   },
   "docs/INVOICE_GUIDELINES.md": {
-    "mtime": 1789256893.4533198,
-    "seen": 1789256906.6614468,
-    "ast_hash": "58e5cdd1f840f4573e74334192bf004f",
+    "mtime": 1789280641.0504577,
+    "seen": 1789280690.540135,
+    "ast_hash": "6731cc7228326928a4f65a9a2d01b5d5",
     "semantic_hash": ""
   },
   "public/invoice.html": {
-    "mtime": 1789280228.551089,
-    "seen": 1789280270.325431,
-    "ast_hash": "40ad1a973dc501b97bc38a48f2166939",
+    "mtime": 1789280622.565547,
+    "seen": 1789280690.540262,
+    "ast_hash": "0201fb97e4d146c1f3fbabbdc64da7ed",
     "semantic_hash": ""
   },
   "public/privacy.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789279694.9831061,
+    "seen": 1789280284.336582,
     "ast_hash": "",
     "semantic_hash": ""
   },

@@ -26,7 +26,7 @@ Every invoice generated reflects the **Haute Atelier Champagne Gold** brand stan
 ### A. Agency Credentials
 * **Payable To**: `Polish Media Co`
 * **Contact Person**: `Faycal Chouli`
-* **Contacts**: `+213 661 41 77 62` • `Contact@polishmediaco.com` • `polishmediaco.com`
+* **Contacts**: `+213 662 41 77 61` • `Contact@polishmediaco.com` • `polishmediaco.com`
 
 ### B. Settlement & Banking Rails
 * **Beneficiary**: **FAYCAL CHOULI**

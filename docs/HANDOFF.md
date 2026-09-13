@@ -354,7 +354,7 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
 4. ✅ **Two-Way Live Sync & Direct Inline Editing**: Supports form-to-preview updates and click-to-edit `contenteditable` directly on the A4 sheet with instant localStorage auto-save (`polish_invoice_state_v4`).
 5. ✅ **Branded Serial Architecture & Increment Engine**: Implemented `POL-YYYY-XXX` (e.g. `POL-2026-094`) with automatic sequential code adjustment, blur auto-formatting, and `+1 Next` increment button.
 6. ✅ **Dynamic Live Date Synchronizer**: Automatically sets issue date to today's date (`DD/MM/YYYY`) with a one-click `Today` date button.
-7. ✅ **Architectural Card Symmetry**: Formatted `PAYABLE TO` (Polish Media Co / - Faycal Chouli / +213 661 41 77 62) to mirror `CLIENT DETAILS` (Celestia cosmetics / - Yasmine / +213 563 05 28 57). Zero hallucinated locations or text.
+7. ✅ **Architectural Card Symmetry**: Formatted `PAYABLE TO` (Polish Media Co / - Faycal Chouli / +213 662 41 77 61) to mirror `CLIENT DETAILS` (Celestia cosmetics / - Yasmine / +213 563 05 28 57). Zero hallucinated locations or text.
 8. ✅ **Print-Perfect A4 Vector Engine**: Tailored `@page` and `@media print` rules for single-page 300+ DPI vector PDF generation with zero margins or UI bleed.
 9. ✅ **Admin Hub Integration**: Added direct Invoicing Studio launch buttons to `public/admin.html` top navigation and action toolbar.
 
@@ -409,10 +409,10 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - "فاتورة" is anchored on the top-right in bold **Tajawal** typography, paired with right-aligned metadata (`رقم الفاتورة : POL-2026-094`, `التاريخ : 13/09/2026`).
 2. ✅ **Symmetrical Entity Cards (Locked LTR Grid)**:
    - Locked `.inv-entities-grid` to `direction: ltr !important;`, preventing column reversal in RTL.
-   - `PAYABLE TO` (`مستحق لـ`: Polish Media Co / - Faycal Chouli / `+213 661 41 77 62`) sits on the left directly under the POLISH logo.
+   - `PAYABLE TO` (`مستحق لـ`: Polish Media Co / - Faycal Chouli / `+213 662 41 77 61`) sits on the left directly under the POLISH logo.
    - `CLIENT DETAILS` (`بيانات العميل`: Celestia cosmetics / - Yasmine / `+213 563 05 28 57`) sits on the right directly under the invoice title.
 3. ✅ **Unicode BiDi Isolation & Punctuation Shielding**:
-   - Phone numbers isolated with `dir="ltr"` and `<bdi>`, preventing weak character reordering (`+213 661 41 77 62` never inverts to `62 77 41 661 213+`).
+   - Phone numbers isolated with `dir="ltr"` and `<bdi>`, preventing weak character reordering (`+213 662 41 77 61` never inverts to `61 77 41 662 213+`).
    - Contact person dashes structured as `<span class="inv-dash">-</span> <bdi>Name</bdi>`, keeping hyphens strictly on the left (`- Faycal Chouli` never flips to `Faycal Chouli -`).
    - Table duration badges isolated with `dir="ltr"` (`15 Days` never flips to `Days 15`).
    - Currency formatted with non-breaking spaces (`\u00A0`) as thousands separators and atomic LTR spans (`180 000 دج` instead of unspaced `180000da` or reversed `000 180 دج`).
@@ -423,7 +423,7 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Grand Total box (`المجموع الإجمالي`) aligned to the left edge directly flush underneath the `السعر` (Price) column.
 5. ✅ **Official Invoice Footer Pill Locked to LTR**:
    - Locked `.inv-footer` and `.inv-footer-pill` to `direction: ltr !important;`.
-   - Preserves phone number, website, and email links without icon inversion (`polishmediaco.com` | `+213 661 41 77 62` | `Contact@polishmediaco.com`).
+   - Preserves phone number, website, and email links without icon inversion (`polishmediaco.com` | `+213 662 41 77 61` | `Contact@polishmediaco.com`).
 6. ✅ **Comprehensive E2E Visual Verification**:
 ### Sprint 9: Haute Beauté Cosmetic Blueprints & Presentation Engine 2.0 (Completed September 2026)
 1. ✅ **4 Bespoke Cosmetic & Beauty Strategy Blueprints**:

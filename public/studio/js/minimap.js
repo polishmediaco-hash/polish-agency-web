@@ -27,7 +27,34 @@ window.MiniMap = (function () {
     }
 
     bindInteractions();
+    bindEvents();
     update();
+  }
+
+  let updateRaf = null;
+  function scheduleUpdate() {
+    if (updateRaf) return;
+    updateRaf = requestAnimationFrame(() => {
+      updateRaf = null;
+      update();
+    });
+  }
+
+  function bindEvents() {
+    if (!window.StudioEvents) return;
+    const Ev = window.StudioEvents.Events;
+    [
+      Ev.VIEWPORT_CHANGED,
+      Ev.MINIMAP_UPDATE,
+      Ev.ELEMENT_MOVED,
+      Ev.ELEMENT_RESIZED,
+      Ev.ELEMENT_CREATED,
+      Ev.ELEMENT_DELETED,
+      Ev.THEME_CHANGED,
+      Ev.BOARD_LOADED
+    ].forEach(event => {
+      window.StudioEvents.on(event, scheduleUpdate);
+    });
   }
 
   function createMiniMapDOM() {

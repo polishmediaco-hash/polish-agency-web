@@ -7,3 +7,7 @@ task.md
 .vercel
 .impeccable
 server/db/boards/board-*.json
+server/db/leads.json
+server/db/intake_latest.json
+server/db/invoices.json
+graphify-out/cache/

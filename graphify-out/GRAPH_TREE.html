@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>/ — graphify tree viewer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      margin: 20px 0 0 24px;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #1e3a56;
+    }
+    .controls {
+      margin: 20px 0 15px 24px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 8px 18px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    button:active {
+      background: #004085;
+    }
+    #tree-container {
+      width: calc(100vw - 48px); /* Adjust for body margin/padding */
+      height: 85vh;
+      overflow: auto;
+      border-radius: 8px;
+      background: #fff;
+      margin-left: 24px;
+      margin-right: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #ddd;
+    }
+    svg {
+      background: #fff;
+      border-radius: 8px;
+      display: block; /* Important for D3 */
+    }
+    .node circle {
+      stroke-width: 2.5px;
+    }
+    .node text { /* Base style for the <text> container */
+      font: 13px 'Segoe UI', sans-serif;
+      paint-order: stroke fill; /* Ensures text is readable over lines */
+      stroke: #fff; /* White halo */
+      stroke-width: 3px; /* Halo thickness */
+      stroke-linejoin: round;
+      stroke-opacity: 0.85; /* Halo opacity */
+    }
+    .link {
+      fill: none;
+      stroke-opacity: 0.7;
+      stroke-width: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>/ — Knowledge Graph</h1>
+  <div class="controls">
+    <button onclick="expandAll()">Expand All</button>
+    <button onclick="collapseAll()">Collapse All</button>
+    <button onclick="resetView()">Reset View</button>
+  </div>
+  <div id="tree-container">
+    <svg id="tree-svg" width="6000" height="8000"></svg>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    const initialJsonData = {"name":"/","total_count":2318,"children":[{"name":".agents","total_count":6,"children":[{"name":"skills","total_count":6,"children":[{"name":"live-visual-design-critic","total_count":6,"children":[{"name":"scripts","total_count":6,"children":[{"name":"capture-live-views.js","total_count":6,"children":[{"name":"AUDIT_VIEWPORTS","total_count":1,"children":[]},{"name":"captureLiveViews()","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"LANGUAGES","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]}]}]}]}]}]},{"name":"package.json","total_count":27,"children":[{"name":"author","total_count":1,"children":[]},{"name":"compression","total_count":1,"children":[]},{"name":"compression","total_count":1,"children":[]},{"name":"cors","total_count":1,"children":[]},{"name":"cors","total_count":1,"children":[]},{"name":"dependencies","total_count":1,"children":[]},{"name":"description","total_count":1,"children":[]},{"name":"dev","total_count":1,"children":[]},{"name":"devDependencies","total_count":1,"children":[]},{"name":"dotenv","total_count":1,"children":[]},{"name":"dotenv","total_count":1,"children":[]},{"name":"express","total_count":1,"children":[]},{"name":"express","total_count":1,"children":[]},{"name":"express-rate-limit","total_count":1,"children":[]},{"name":"express-rate-limit","total_count":1,"children":[]},{"name":"helmet","total_count":1,"children":[]},{"name":"helmet","total_count":1,"children":[]},{"name":"license","total_count":1,"children":[]},{"name":"main","total_count":1,"children":[]},{"name":"name","total_count":1,"children":[]},{"name":"overrides","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"qs","total_count":1,"children":[]},{"name":"scripts","total_count":1,"children":[]},{"name":"start","total_count":1,"children":[]},{"name":"version","total_count":1,"children":[]}]},{"name":"public","total_count":2074,"children":[{"name":"js","total_count":1729,"children":[{"name":"app.js","total_count":5,"children":[{"name":"hideAlert()","total_count":1,"children":[]},{"name":"markFieldError()","total_count":1,"children":[]},{"name":"showAlert()","total_count":1,"children":[]},{"name":"updateStepUI()","total_count":1,"children":[]},{"name":"validateCurrentStep()","total_count":1,"children":[]}]},{"name":"calculator.js","total_count":7,"children":[{"name":"animateValue()","total_count":1,"children":[]},{"name":"calculate()","total_count":1,"children":[]},{"name":"formatCurrency()","total_count":1,"children":[]},{"name":"formatShortCurrency()","total_count":1,"children":[]},{"name":"initLuxuryCalculator()","total_count":1,"children":[]},{"name":"update()","total_count":1,"children":[]},{"name":"updateSliderTrack()","total_count":1,"children":[]}]},{"name":"cms.js","total_count":1,"children":[{"name":"loadDynamicContent()","total_count":1,"children":[]}]},{"name":"i18n.js","total_count":9,"children":[{"name":".applyLanguage()","total_count":1,"children":[]},{"name":".constructor()","total_count":1,"children":[]},{"name":".detectLanguage()","total_count":1,"children":[]},{"name":".init()","total_count":1,"children":[]},{"name":".renderLanguageToggles()","total_count":1,"children":[]},{"name":".setLanguage()","total_count":1,"children":[]},{"name":".t()","total_count":1,"children":[]},{"name":"POLISH_TRANSLATIONS","total_count":1,"children":[]},{"name":"PolishI18n","total_count":1,"children":[]}]},{"name":"lenis.min.js","total_count":31,"children":[{"name":"actualScroll()","total_count":1,"children":[]},{"name":"advance()","total_count":1,"children":[]},{"name":"className()","total_count":1,"children":[]},{"name":"cleanUpClassName()","total_count":1,"children":[]},{"name":"constructor()","total_count":1,"children":[]},{"name":"destroy()","total_count":1,"children":[]},{"name":"emit()","total_count":1,"children":[]},{"name":"fromTo()","total_count":1,"children":[]},{"name":"isHorizontal()","total_count":1,"children":[]},{"name":"isLocked()","total_count":1,"children":[]},{"name":"isScrolling()","total_count":1,"children":[]},{"name":"isSmooth()","total_count":1,"children":[]},{"name":"isStopped()","total_count":1,"children":[]},{"name":"limit()","total_count":1,"children":[]},{"name":"off()","total_count":1,"children":[]},{"name":"on()","total_count":1,"children":[]},{"name":"preventNextNativeScrollEvent()","total_count":1,"children":[]},{"name":"progress()","total_count":1,"children":[]},{"name":"R()","total_count":1,"children":[]},{"name":"reset()","total_count":1,"children":[]},{"name":"resize()","total_count":1,"children":[]},{"name":"rootElement()","total_count":1,"children":[]},{"name":"scroll()","total_count":1,"children":[]},{"name":"scrollTo()","total_count":1,"children":[]},{"name":"setScroll()","total_count":1,"children":[]},{"name":"start()","total_count":1,"children":[]},{"name":"stop()","total_count":1,"children":[]},{"name":"updateClassName()","total_count":1,"children":[]},{"name":"w()","total_count":1,"children":[]},{"name":"x()","total_count":1,"children":[]},{"name":"z()","total_count":1,"children":[]}]},{"name":"luxury-effects.js","total_count":20,"children":[{"name":"animateParticles()","total_count":1,"children":[]},{"name":"applyFluidViscosity()","total_count":1,"children":[]},{"name":"applyReducedMotionPolicy()","total_count":1,"children":[]},{"name":"cacheScrollElements()","total_count":1,"children":[]},{"name":"decay()","total_count":1,"children":[]},{"name":"detectMobileThermalGuard()","total_count":1,"children":[]},{"name":"doFlipExit()","total_count":1,"children":[]},{"name":"initCardReveal()","total_count":1,"children":[]},{"name":"initHeroIntersectionObserver()","total_count":1,"children":[]},{"name":"initKineticTypography()","total_count":1,"children":[]},{"name":"initLuxuryOpeningAnimation()","total_count":1,"children":[]},{"name":"initMagneticButtons()","total_count":1,"children":[]},{"name":"initSpotlightCards()","total_count":1,"children":[]},{"name":"measureScrollMetrics()","total_count":1,"children":[]},{"name":"revealKineticTitle()","total_count":1,"children":[]},{"name":"scheduleScrollUpdate()","total_count":1,"children":[]},{"name":"skipIntro()","total_count":1,"children":[]},{"name":"startVelocityDecay()","total_count":1,"children":[]},{"name":"updateScrollState()","total_count":1,"children":[]},{"name":"updateStickyVisibility()","total_count":1,"children":[]}]},{"name":"three-cosmetics.js","total_count":7,"children":[{"name":"animate()","total_count":1,"children":[]},{"name":"initThreeCosmetics()","total_count":1,"children":[]},{"name":"onDragEnd()","total_count":1,"children":[]},{"name":"onDragMove()","total_count":1,"children":[]},{"name":"onMouseDown()","total_count":1,"children":[]},{"name":"onMouseMove()","total_count":1,"children":[]},{"name":"onWindowResize()","total_count":1,"children":[]}]},{"name":"three.min.js","total_count":1602,"children":[{"name":"$c()","total_count":1,"children":[]},{"name":"$e()","total_count":1,"children":[]},{"name":"$h()","total_count":1,"children":[]},{"name":"$l","total_count":1,"children":[]},{"name":"(+1402 more)","total_count":1402,"children":[]},{"name":"._activateAction()","total_count":1,"children":[]},{"name":"._addInactiveAction()","total_count":1,"children":[]},{"name":"._addInactiveBinding()","total_count":1,"children":[]},{"name":"._bindAction()","total_count":1,"children":[]},{"name":"._deactivateAction()","total_count":1,"children":[]},{"name":"._getValue_array()","total_count":1,"children":[]},{"name":"._getValue_arrayElement()","total_count":1,"children":[]},{"name":"._getValue_direct()","total_count":1,"children":[]},{"name":"._getValue_toArray()","total_count":1,"children":[]},{"name":"._getValue_unavailable()","total_count":1,"children":[]},{"name":"._getValue_unbound()","total_count":1,"children":[]},{"name":"._initMemoryManager()","total_count":1,"children":[]},{"name":"._isActiveAction()","total_count":1,"children":[]},{"name":"._lendAction()","total_count":1,"children":[]},{"name":"._lendBinding()","total_count":1,"children":[]},{"name":"._lendControlInterpolant()","total_count":1,"children":[]},{"name":"._lerp()","total_count":1,"children":[]},{"name":"._lerpAdditive()","total_count":1,"children":[]},{"name":"._onChange()","total_count":1,"children":[]},{"name":"._onChange()","total_count":1,"children":[]},{"name":"._onChangeCallback()","total_count":1,"children":[]},{"name":"._onChangeCallback()","total_count":1,"children":[]},{"name":"._removeInactiveAction()","total_count":1,"children":[]},{"name":"._removeInactiveBinding()","total_count":1,"children":[]},{"name":"._removeInactiveBindingsForAction()","total_count":1,"children":[]},{"name":"._scheduleFading()","total_count":1,"children":[]},{"name":"._select()","total_count":1,"children":[]},{"name":"._setAdditiveIdentityNumeric()","total_count":1,"children":[]},{"name":"._setAdditiveIdentityOther()","total_count":1,"children":[]},{"name":"._setAdditiveIdentityQuaternion()","total_count":1,"children":[]},{"name":"._setEndings()","total_count":1,"children":[]},{"name":"._setValue_array()","total_count":1,"children":[]},{"name":"._setValue_array_setMatrixWorldNeedsUpdate()","total_count":1,"children":[]},{"name":"._setValue_array_setNeedsUpdate()","total_count":1,"children":[]},{"name":"._setValue_arrayElement()","total_count":1,"children":[]},{"name":"._setValue_arrayElement_setMatrixWorldNeedsUpdate()","total_count":1,"children":[]},{"name":"._setValue_arrayElement_setNeedsUpdate()","total_count":1,"children":[]},{"name":"._setValue_direct()","total_count":1,"children":[]},{"name":"._setValue_direct_setMatrixWorldNeedsUpdate()","total_count":1,"children":[]},{"name":"._setValue_direct_setNeedsUpdate()","total_count":1,"children":[]},{"name":"._setValue_fromArray()","total_count":1,"children":[]},{"name":"._setValue_fromArray_setMatrixWorldNeedsUpdate()","total_count":1,"children":[]},{"name":"._setValue_fromArray_setNeedsUpdate()","total_count":1,"children":[]},{"name":"._setValue_unavailable()","total_count":1,"children":[]},{"name":"._setValue_unbound()","total_count":1,"children":[]},{"name":"._slerp()","total_count":1,"children":[]},{"name":"._slerpAdditive()","total_count":1,"children":[]},{"name":"._takeBackAction()","total_count":1,"children":[]},{"name":"._takeBackBinding()","total_count":1,"children":[]},{"name":"._takeBackControlInterpolant()","total_count":1,"children":[]},{"name":"._update()","total_count":1,"children":[]},{"name":"._updateTime()","total_count":1,"children":[]},{"name":"._updateTimeScale()","total_count":1,"children":[]},{"name":"._updateWeight()","total_count":1,"children":[]},{"name":".absarc()","total_count":1,"children":[]},{"name":".absellipse()","total_count":1,"children":[]},{"name":".accumulate()","total_count":1,"children":[]},{"name":".accumulateAdditive()","total_count":1,"children":[]},{"name":".add()","total_count":1,"children":[]},{"name":".add()","total_count":1,"children":[]},{"name":".add()","total_count":1,"children":[]},{"name":".add()","total_count":1,"children":[]},{"name":".add()","total_count":1,"children":[]},{"name":".add()","total_count":1,"children":[]},{"name":".add()","total_count":1,"children":[]},{"name":".add()","total_count":1,"children":[]},{"name":".addColors()","total_count":1,"children":[]},{"name":".addEventListener()","total_count":1,"children":[]},{"name":".addGroup()","total_count":1,"children":[]},{"name":".addLevel()","total_count":1,"children":[]},{"name":".addScalar()","total_count":1,"children":[]},{"name":".addScalar()","total_count":1,"children":[]},{"name":".addScalar()","total_count":1,"children":[]},{"name":".addScalar()","total_count":1,"children":[]},{"name":".addScaledSH()","total_count":1,"children":[]},{"name":".addScaledVector()","total_count":1,"children":[]},{"name":".addScaledVector()","total_count":1,"children":[]},{"name":".addScaledVector()","total_count":1,"children":[]},{"name":".addVectors()","total_count":1,"children":[]},{"name":".addVectors()","total_count":1,"children":[]},{"name":".addVectors()","total_count":1,"children":[]},{"name":".angle()","total_count":1,"children":[]},{"name":".angleTo()","total_count":1,"children":[]},{"name":".angleTo()","total_count":1,"children":[]},{"name":".apply()","total_count":1,"children":[]},{"name":".applyAxisAngle()","total_count":1,"children":[]},{"name":".applyEuler()","total_count":1,"children":[]},{"name":".applyMatrix3()","total_count":1,"children":[]},{"name":".applyMatrix3()","total_count":1,"children":[]},{"name":".applyMatrix3()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyMatrix4()","total_count":1,"children":[]},{"name":".applyNormalMatrix()","total_count":1,"children":[]},{"name":".applyNormalMatrix()","total_count":1,"children":[]},{"name":".applyNormalMatrix()","total_count":1,"children":[]},{"name":".applyQuaternion()","total_count":1,"children":[]},{"name":".applyQuaternion()","total_count":1,"children":[]},{"name":".arc()","total_count":1,"children":[]},{"name":".area()","total_count":1,"children":[]},{"name":".array()","total_count":1,"children":[]},{"name":".at()","total_count":1,"children":[]},{"name":".at()","total_count":1,"children":[]},{"name":".attach()","total_count":1,"children":[]},{"name":".bezierCurveTo()","total_count":1,"children":[]},{"name":".bezierCurveTo()","total_count":1,"children":[]},{"name":".bind()","total_count":1,"children":[]},{"name":".bind()","total_count":1,"children":[]},{"name":".boneTransform()","total_count":1,"children":[]},{"name":".calculateInverses()","total_count":1,"children":[]},{"name":".ceil()","total_count":1,"children":[]},{"name":".ceil()","total_count":1,"children":[]},{"name":".ceil()","total_count":1,"children":[]},{"name":".center()","total_count":1,"children":[]},{"name":".clamp()","total_count":1,"children":[]},{"name":".clamp()","total_count":1,"children":[]},{"name":".clamp()","total_count":1,"children":[]},{"name":".clampLength()","total_count":1,"children":[]},{"name":".clampLength()","total_count":1,"children":[]},{"name":".clampLength()","total_count":1,"children":[]},{"name":".clampPoint()","total_count":1,"children":[]},{"name":".clampPoint()","total_count":1,"children":[]},{"name":".clampPoint()","total_count":1,"children":[]},{"name":".clampScalar()","total_count":1,"children":[]},{"name":".clampScalar()","total_count":1,"children":[]},{"name":".clampScalar()","total_count":1,"children":[]},{"name":".clear()","total_count":1,"children":[]},{"name":".clear()","total_count":1,"children":[]},{"name":".clearGroups()","total_count":1,"children":[]},{"name":".clearViewOffset()","total_count":1,"children":[]},{"name":".clearViewOffset()","total_count":1,"children":[]},{"name":".clipAction()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".clone()","total_count":1,"children":[]},{"name":".closePath()","total_count":1,"children":[]},{"name":".closestPointToPoint()","total_count":1,"children":[]},{"name":".closestPointToPoint()","total_count":1,"children":[]},{"name":".closestPointToPoint()","total_count":1,"children":[]},{"name":".closestPointToPointParameter()","total_count":1,"children":[]},{"name":".compose()","total_count":1,"children":[]},{"name":".computeBoundingBox()","total_count":1,"children":[]},{"name":".computeBoundingSphere()","total_count":1,"children":[]},{"name":".computeFaceNormals()","total_count":1,"children":[]},{"name":".computeFrenetFrames()","total_count":1,"children":[]},{"name":".computeLineDistances()","total_count":1,"children":[]},{"name":".computeLineDistances()","total_count":1,"children":[]},{"name":".computeTangents()","total_count":1,"children":[]},{"name":".computeVertexNormals()","total_count":1,"children":[]},{"name":".conjugate()","total_count":1,"children":[]},{"name":".connect()","total_count":1,"children":[]},{"name":".constructor()","total_count":1,"children":[]},{"name":".constructor()","total_count":1,"children":[]},{"name":".constructor()","total_count":1,"children":[]},{"name":".constructor()","total_count":1,"children":[]}]},{"name":"vendor","total_count":43,"children":[{"name":"anime.min.js","total_count":43,"children":[{"name":"a()","total_count":1,"children":[]},{"name":"B()","total_count":1,"children":[]},{"name":"b()","total_count":1,"children":[]},{"name":"C()","total_count":1,"children":[]},{"name":"c()","total_count":1,"children":[]},{"name":"cn()","total_count":1,"children":[]},{"name":"d()","total_count":1,"children":[]},{"name":"E()","total_count":1,"children":[]},{"name":"en()","total_count":1,"children":[]},{"name":"f()","total_count":1,"children":[]},{"name":"f()","total_count":1,"children":[]},{"name":"g()","total_count":1,"children":[]},{"name":"g()","total_count":1,"children":[]},{"name":"h()","total_count":1,"children":[]},{"name":"h()","total_count":1,"children":[]},{"name":"I()","total_count":1,"children":[]},{"name":"J()","total_count":1,"children":[]},{"name":"k()","total_count":1,"children":[]},{"name":"L()","total_count":1,"children":[]},{"name":"m()","total_count":1,"children":[]},{"name":"m()","total_count":1,"children":[]},{"name":"n()","total_count":1,"children":[]},{"name":"nn()","total_count":1,"children":[]},{"name":"o()","total_count":1,"children":[]},{"name":"o()","total_count":1,"children":[]},{"name":"on()","total_count":1,"children":[]},{"name":"P()","total_count":1,"children":[]},{"name":"q()","total_count":1,"children":[]},{"name":"r()","total_count":1,"children":[]},{"name":"r()","total_count":1,"children":[]},{"name":"T()","total_count":1,"children":[]},{"name":"t()","total_count":1,"children":[]},{"name":"tn()","total_count":1,"children":[]},{"name":"u()","total_count":1,"children":[]},{"name":"u()","total_count":1,"children":[]},{"name":"un()","total_count":1,"children":[]},{"name":"v()","total_count":1,"children":[]},{"name":"V()","total_count":1,"children":[]},{"name":"W()","total_count":1,"children":[]},{"name":"x()","total_count":1,"children":[]},{"name":"y()","total_count":1,"children":[]},{"name":"y()","total_count":1,"children":[]},{"name":"Z()","total_count":1,"children":[]}]}]},{"name":"whatsapp.js","total_count":4,"children":[{"name":"initWhatsAppWidget()","total_count":1,"children":[]},{"name":"POLISH_WHATSAPP_CONFIG","total_count":1,"children":[]},{"name":"renderWhatsAppContent()","total_count":1,"children":[]},{"name":"updateMicroLabelText()","total_count":1,"children":[]}]}]},{"name":"studio","total_count":345,"children":[{"name":"js","total_count":345,"children":[{"name":"camera-bubble.js","total_count":11,"children":[{"name":"clampAndApplyPos()","total_count":1,"children":[]},{"name":"handlePointerDown()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"onPointerMove()","total_count":1,"children":[]},{"name":"onPointerUp()","total_count":1,"children":[]},{"name":"start()","total_count":1,"children":[]},{"name":"stop()","total_count":1,"children":[]},{"name":"toggle()","total_count":1,"children":[]},{"name":"toggleMirror()","total_count":1,"children":[]},{"name":"toggleSize()","total_count":1,"children":[]},{"name":"updateHudButtonState()","total_count":1,"children":[]}]},{"name":"canvas-panzoom.js","total_count":11,"children":[{"name":"applyTransform()","total_count":1,"children":[]},{"name":"canvasToScreen()","total_count":1,"children":[]},{"name":"fitToContent()","total_count":1,"children":[]},{"name":"getCanvasBounds()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"resetView()","total_count":1,"children":[]},{"name":"screenToCanvas()","total_count":1,"children":[]},{"name":"setTool()","total_count":1,"children":[]},{"name":"smoothPanTo()","total_count":1,"children":[]},{"name":"step()","total_count":1,"children":[]},{"name":"zoomDelta()","total_count":1,"children":[]}]},{"name":"comments-engine.js","total_count":29,"children":[{"name":"addReply()","total_count":1,"children":[]},{"name":"bindEventListeners()","total_count":1,"children":[]},{"name":"cancelDraftPin()","total_count":1,"children":[]},{"name":"closePopover()","total_count":1,"children":[]},{"name":"deleteComment()","total_count":1,"children":[]},{"name":"escapeHtml()","total_count":1,"children":[]},{"name":"formatTimeAgo()","total_count":1,"children":[]},{"name":"getInitials()","total_count":1,"children":[]},{"name":"handleDropPinAt()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"jumpToPin()","total_count":1,"children":[]},{"name":"loadComments()","total_count":1,"children":[]},{"name":"openPopover()","total_count":1,"children":[]},{"name":"persistComment()","total_count":1,"children":[]},{"name":"renderDraftPopoverContent()","total_count":1,"children":[]},{"name":"renderExistingPopoverContent()","total_count":1,"children":[]},{"name":"renderPins()","total_count":1,"children":[]},{"name":"renderTray()","total_count":1,"children":[]},{"name":"saveDraftPin()","total_count":1,"children":[]},{"name":"setDraftType()","total_count":1,"children":[]},{"name":"setFilter()","total_count":1,"children":[]},{"name":"setupDOMContainers()","total_count":1,"children":[]},{"name":"showClientToast()","total_count":1,"children":[]},{"name":"syncLocalAndCloudBoard()","total_count":1,"children":[]},{"name":"togglePinDropMode()","total_count":1,"children":[]},{"name":"toggleResolve()","total_count":1,"children":[]},{"name":"toggleTray()","total_count":1,"children":[]},{"name":"updateBadgeCounter()","total_count":1,"children":[]},{"name":"updatePopoverPosition()","total_count":1,"children":[]}]},{"name":"connector-engine.js","total_count":8,"children":[{"name":"calculateBezierPath()","total_count":1,"children":[]},{"name":"endDrawing()","total_count":1,"children":[]},{"name":"getAnchorCoords()","total_count":1,"children":[]},{"name":"getPortCenterInCanvas()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"renderAllConnections()","total_count":1,"children":[]},{"name":"startDrawing()","total_count":1,"children":[]},{"name":"updateConnectedLines()","total_count":1,"children":[]}]},{"name":"drawing-engine.js","total_count":6,"children":[{"name":"attachStrokeEvents()","total_count":1,"children":[]},{"name":"bindEvents()","total_count":1,"children":[]},{"name":"getSmoothSvgPath()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"renderAllStrokes()","total_count":1,"children":[]},{"name":"setPenConfig()","total_count":1,"children":[]}]},{"name":"elements-factory.js","total_count":28,"children":[{"name":"applyElementStyles()","total_count":1,"children":[]},{"name":"attachElementInteractions()","total_count":1,"children":[]},{"name":"createBeliefTriadDOM()","total_count":1,"children":[]},{"name":"createBonusStackDOM()","total_count":1,"children":[]},{"name":"createCadenceTimelineDOM()","total_count":1,"children":[]},{"name":"createCalloutDOM()","total_count":1,"children":[]},{"name":"createCapacityIndicatorDOM()","total_count":1,"children":[]},{"name":"createDiagnosticProtocolDOM()","total_count":1,"children":[]},{"name":"createFlywheelRingsDOM()","total_count":1,"children":[]},{"name":"createFormDOM()","total_count":1,"children":[]},{"name":"createFrameDOM()","total_count":1,"children":[]},{"name":"createLdjMatrixDOM()","total_count":1,"children":[]},{"name":"createMetricDOM()","total_count":1,"children":[]},{"name":"createOfferNameGeneratorDOM()","total_count":1,"children":[]},{"name":"createPaymentArchitectureDOM()","total_count":1,"children":[]},{"name":"createPipelineNodeDOM()","total_count":1,"children":[]},{"name":"createPrescriptionDOM()","total_count":1,"children":[]},{"name":"createPricingDOM()","total_count":1,"children":[]},{"name":"createScriptDOM()","total_count":1,"children":[]},{"name":"createShapeDOM()","total_count":1,"children":[]},{"name":"createSprintSwimlaneDOM()","total_count":1,"children":[]},{"name":"createStickyDOM()","total_count":1,"children":[]},{"name":"createTableDOM()","total_count":1,"children":[]},{"name":"createTextDOM()","total_count":1,"children":[]},{"name":"createUnbundlingTreeDOM()","total_count":1,"children":[]},{"name":"createValueEquationDOM()","total_count":1,"children":[]},{"name":"createVotingDotsDOM()","total_count":1,"children":[]},{"name":"renderElement()","total_count":1,"children":[]}]},{"name":"firebase-config.js","total_count":13,"children":[{"name":"_initLocalFallback()","total_count":1,"children":[]},{"name":"_notifyAuthListeners()","total_count":1,"children":[]},{"name":"deleteBoard()","total_count":1,"children":[]},{"name":"getBoard()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"listBoards()","total_count":1,"children":[]},{"name":"login()","total_count":1,"children":[]},{"name":"loginOffline()","total_count":1,"children":[]},{"name":"loginWithGoogle()","total_count":1,"children":[]},{"name":"logout()","total_count":1,"children":[]},{"name":"onAuthStateChanged()","total_count":1,"children":[]},{"name":"register()","total_count":1,"children":[]},{"name":"saveBoard()","total_count":1,"children":[]}]},{"name":"html2canvas.min.js","total_count":95,"children":[{"name":"_n()","total_count":1,"children":[]},{"name":"A()","total_count":1,"children":[]},{"name":"Ae()","total_count":1,"children":[]},{"name":"an()","total_count":1,"children":[]},{"name":"B()","total_count":1,"children":[]},{"name":"B()","total_count":1,"children":[]},{"name":"bB()","total_count":1,"children":[]},{"name":"Be()","total_count":1,"children":[]},{"name":"Bs()","total_count":1,"children":[]},{"name":"CA()","total_count":1,"children":[]},{"name":"cn()","total_count":1,"children":[]},{"name":"Cs()","total_count":1,"children":[]},{"name":"dA()","total_count":1,"children":[]},{"name":"de()","total_count":1,"children":[]},{"name":"Ds()","total_count":1,"children":[]},{"name":"E()","total_count":1,"children":[]},{"name":"e()","total_count":1,"children":[]},{"name":"EB()","total_count":1,"children":[]},{"name":"ee()","total_count":1,"children":[]},{"name":"FA()","total_count":1,"children":[]},{"name":"fe()","total_count":1,"children":[]},{"name":"fn()","total_count":1,"children":[]},{"name":"fr()","total_count":1,"children":[]},{"name":"Fs()","total_count":1,"children":[]},{"name":"gA()","total_count":1,"children":[]},{"name":"gB()","total_count":1,"children":[]},{"name":"Gn()","total_count":1,"children":[]},{"name":"gr()","total_count":1,"children":[]},{"name":"gs()","total_count":1,"children":[]},{"name":"H()","total_count":1,"children":[]},{"name":"hA()","total_count":1,"children":[]},{"name":"He()","total_count":1,"children":[]},{"name":"Hn()","total_count":1,"children":[]},{"name":"I()","total_count":1,"children":[]},{"name":"ie()","total_count":1,"children":[]},{"name":"jA()","total_count":1,"children":[]},{"name":"KB()","total_count":1,"children":[]},{"name":"Kr()","total_count":1,"children":[]},{"name":"l()","total_count":1,"children":[]},{"name":"lA()","total_count":1,"children":[]},{"name":"lB()","total_count":1,"children":[]},{"name":"Lr()","total_count":1,"children":[]},{"name":"ls()","total_count":1,"children":[]},{"name":"MB()","total_count":1,"children":[]},{"name":"mr()","total_count":1,"children":[]},{"name":"ms()","total_count":1,"children":[]},{"name":"n()","total_count":1,"children":[]},{"name":"ne()","total_count":1,"children":[]},{"name":"nn()","total_count":1,"children":[]},{"name":"ns()","total_count":1,"children":[]},{"name":"oe()","total_count":1,"children":[]},{"name":"on()","total_count":1,"children":[]},{"name":"p()","total_count":1,"children":[]},{"name":"pe()","total_count":1,"children":[]},{"name":"pr()","total_count":1,"children":[]},{"name":"Pt()","total_count":1,"children":[]},{"name":"qA()","total_count":1,"children":[]},{"name":"QB()","total_count":1,"children":[]},{"name":"Qe()","total_count":1,"children":[]},{"name":"Qn()","total_count":1,"children":[]},{"name":"r()","total_count":1,"children":[]},{"name":"rB()","total_count":1,"children":[]},{"name":"re()","total_count":1,"children":[]},{"name":"rs()","total_count":1,"children":[]},{"name":"sB()","total_count":1,"children":[]},{"name":"se()","total_count":1,"children":[]},{"name":"sn()","total_count":1,"children":[]},{"name":"SUPPORT_CORS_IMAGES()","total_count":1,"children":[]},{"name":"SUPPORT_CORS_XHR()","total_count":1,"children":[]},{"name":"SUPPORT_FOREIGNOBJECT_DRAWING()","total_count":1,"children":[]},{"name":"SUPPORT_NATIVE_TEXT_SEGMENTATION()","total_count":1,"children":[]},{"name":"SUPPORT_RANGE_BOUNDS()","total_count":1,"children":[]},{"name":"SUPPORT_RESPONSE_TYPE()","total_count":1,"children":[]},{"name":"SUPPORT_SVG_DRAWING()","total_count":1,"children":[]},{"name":"SUPPORT_WORD_BREAKING()","total_count":1,"children":[]},{"name":"t()","total_count":1,"children":[]},{"name":"t()","total_count":1,"children":[]},{"name":"TB()","total_count":1,"children":[]},{"name":"te()","total_count":1,"children":[]},{"name":"ts()","total_count":1,"children":[]},{"name":"UA()","total_count":1,"children":[]},{"name":"Us()","total_count":1,"children":[]},{"name":"Vn()","total_count":1,"children":[]},{"name":"Vs()","total_count":1,"children":[]},{"name":"w()","total_count":1,"children":[]},{"name":"wA()","total_count":1,"children":[]},{"name":"ws()","total_count":1,"children":[]},{"name":"XA()","total_count":1,"children":[]},{"name":"xB()","total_count":1,"children":[]},{"name":"Xs()","total_count":1,"children":[]},{"name":"Xt()","total_count":1,"children":[]},{"name":"YA()","total_count":1,"children":[]},{"name":"ye()","total_count":1,"children":[]},{"name":"ZA()","total_count":1,"children":[]},{"name":"zn()","total_count":1,"children":[]}]},{"name":"inspector.js","total_count":31,"children":[{"name":"addBoxToFrame()","total_count":1,"children":[]},{"name":"applyCoverBanner()","total_count":1,"children":[]},{"name":"closeCoverModal()","total_count":1,"children":[]},{"name":"cycleAlign()","total_count":1,"children":[]},{"name":"handleDeviceCoverUpload()","total_count":1,"children":[]},{"name":"hide()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"openCoverModal()","total_count":1,"children":[]},{"name":"pickPreset()","total_count":1,"children":[]},{"name":"removeCoverBanner()","total_count":1,"children":[]},{"name":"renderControls()","total_count":1,"children":[]},{"name":"setConnColor()","total_count":1,"children":[]},{"name":"setConnStyle()","total_count":1,"children":[]},{"name":"setElementBgColor()","total_count":1,"children":[]},{"name":"setElementTextColor()","total_count":1,"children":[]},{"name":"setFont()","total_count":1,"children":[]},{"name":"setFrameBanner()","total_count":1,"children":[]},{"name":"setMetricCurrency()","total_count":1,"children":[]},{"name":"setMetricDelta()","total_count":1,"children":[]},{"name":"setPricingCurrency()","total_count":1,"children":[]},{"name":"setShapeType()","total_count":1,"children":[]},{"name":"setStickyColor()","total_count":1,"children":[]},{"name":"show()","total_count":1,"children":[]},{"name":"startConnect()","total_count":1,"children":[]},{"name":"stepFontSize()","total_count":1,"children":[]},{"name":"toggleBold()","total_count":1,"children":[]},{"name":"toggleItalic()","total_count":1,"children":[]},{"name":"togglePricingFeatured()","total_count":1,"children":[]},{"name":"toggleTape()","total_count":1,"children":[]},{"name":"updateCoverPreview()","total_count":1,"children":[]},{"name":"updatePosition()","total_count":1,"children":[]}]},{"name":"marquee-selection.js","total_count":8,"children":[{"name":"clearMultiSelection()","total_count":1,"children":[]},{"name":"endBatchDrag()","total_count":1,"children":[]},{"name":"handlePointerMove()","total_count":1,"children":[]},{"name":"handlePointerUp()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"moveBatchDrag()","total_count":1,"children":[]},{"name":"startBatchDrag()","total_count":1,"children":[]},{"name":"startMarquee()","total_count":1,"children":[]}]},{"name":"minimap.js","total_count":5,"children":[{"name":"bindInteractions()","total_count":1,"children":[]},{"name":"createMiniMapDOM()","total_count":1,"children":[]},{"name":"handleMapPointer()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"update()","total_count":1,"children":[]}]},{"name":"presentation.js","total_count":6,"children":[{"name":"flyToSlide()","total_count":1,"children":[]},{"name":"next()","total_count":1,"children":[]},{"name":"prev()","total_count":1,"children":[]},{"name":"start()","total_count":1,"children":[]},{"name":"stop()","total_count":1,"children":[]},{"name":"toggleGodView()","total_count":1,"children":[]}]},{"name":"studio-ai.js","total_count":26,"children":[{"name":"appendMessage()","total_count":1,"children":[]},{"name":"applyCreatorPersona()","total_count":1,"children":[]},{"name":"applySavedState()","total_count":1,"children":[]},{"name":"clearChat()","total_count":1,"children":[]},{"name":"clearSelectionContext()","total_count":1,"children":[]},{"name":"close()","total_count":1,"children":[]},{"name":"getSelectionContext()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"initDraggable()","total_count":1,"children":[]},{"name":"insertCardsToCanvas()","total_count":1,"children":[]},{"name":"minimize()","total_count":1,"children":[]},{"name":"onCanvasSelectionChange()","total_count":1,"children":[]},{"name":"onTemplateLoaded()","total_count":1,"children":[]},{"name":"open()","total_count":1,"children":[]},{"name":"removeTypingIndicator()","total_count":1,"children":[]},{"name":"renderMarkdown()","total_count":1,"children":[]},{"name":"restore()","total_count":1,"children":[]},{"name":"sendMessage()","total_count":1,"children":[]},{"name":"sendPreset()","total_count":1,"children":[]},{"name":"setSendButtonState()","total_count":1,"children":[]},{"name":"showTypingIndicator()","total_count":1,"children":[]},{"name":"toggleDock()","total_count":1,"children":[]},{"name":"toggleDrawer()","total_count":1,"children":[]},{"name":"toggleWindow()","total_count":1,"children":[]},{"name":"updatePillCardsCount()","total_count":1,"children":[]},{"name":"updateSelectionBadge()","total_count":1,"children":[]}]},{"name":"studio-core.js","total_count":68,"children":[{"name":"addCallout()","total_count":1,"children":[]},{"name":"addConnection()","total_count":1,"children":[]},{"name":"addDrawingStroke()","total_count":1,"children":[]},{"name":"addForm()","total_count":1,"children":[]},{"name":"addFormField()","total_count":1,"children":[]},{"name":"addFrame()","total_count":1,"children":[]},{"name":"addFrameBox()","total_count":1,"children":[]},{"name":"addMetric()","total_count":1,"children":[]},{"name":"addPricing()","total_count":1,"children":[]},{"name":"addPricingFeature()","total_count":1,"children":[]},{"name":"addScript()","total_count":1,"children":[]},{"name":"addShape()","total_count":1,"children":[]},{"name":"addSticky()","total_count":1,"children":[]},{"name":"addStrategyCard()","total_count":1,"children":[]},{"name":"addTable()","total_count":1,"children":[]},{"name":"addTableCol()","total_count":1,"children":[]},{"name":"addTableRow()","total_count":1,"children":[]},{"name":"addText()","total_count":1,"children":[]},{"name":"applyCurrencyToElements()","total_count":1,"children":[]},{"name":"applyLoadedBoard()","total_count":1,"children":[]},{"name":"bindKeyboardShortcuts()","total_count":1,"children":[]},{"name":"bindTitleInput()","total_count":1,"children":[]},{"name":"bringForward()","total_count":1,"children":[]},{"name":"clearMultiSelection()","total_count":1,"children":[]},{"name":"deleteSelected()","total_count":1,"children":[]},{"name":"deselectAll()","total_count":1,"children":[]},{"name":"duplicateSelected()","total_count":1,"children":[]},{"name":"exportFrames()","total_count":1,"children":[]},{"name":"exportJSON()","total_count":1,"children":[]},{"name":"exportPNG()","total_count":1,"children":[]},{"name":"findConnection()","total_count":1,"children":[]},{"name":"findElement()","total_count":1,"children":[]},{"name":"formatConvertedText()","total_count":1,"children":[]},{"name":"getBuiltinStarterBoard()","total_count":1,"children":[]},{"name":"getCanvasCenter()","total_count":1,"children":[]},{"name":"importJSON()","total_count":1,"children":[]},{"name":"indicateSaved()","total_count":1,"children":[]},{"name":"indicateSaving()","total_count":1,"children":[]},{"name":"init()","total_count":1,"children":[]},{"name":"initTheme()","total_count":1,"children":[]},{"name":"loadBoard()","total_count":1,"children":[]},{"name":"loadTemplate()","total_count":1,"children":[]},{"name":"persistBoard()","total_count":1,"children":[]},{"name":"pushHistory()","total_count":1,"children":[]},{"name":"redo()","total_count":1,"children":[]},{"name":"removeFormField()","total_count":1,"children":[]},{"name":"removeFrameBox()","total_count":1,"children":[]},{"name":"removePricingFeature()","total_count":1,"children":[]},{"name":"removeTableCol()","total_count":1,"children":[]},{"name":"removeTableRow()","total_count":1,"children":[]},{"name":"renderBoard()","total_count":1,"children":[]},{"name":"reRenderElement()","total_count":1,"children":[]},{"name":"saveLocally()","total_count":1,"children":[]},{"name":"selectConnection()","total_count":1,"children":[]},{"name":"selectElement()","total_count":1,"children":[]},{"name":"selectStroke()","total_count":1,"children":[]},{"name":"sendBackward()","total_count":1,"children":[]},{"name":"setBoardCurrency()","total_count":1,"children":[]},{"name":"setMultiSelected()","total_count":1,"children":[]},{"name":"showToast()","total_count":1,"children":[]},{"name":"toggleCameraBubble()","total_count":1,"children":[]},{"name":"toggleLockSelected()","total_count":1,"children":[]},{"name":"toggleShortcutsModal()","total_count":1,"children":[]},{"name":"toggleTheme()","total_count":1,"children":[]},{"name":"triggerAutoSave()","total_count":1,"children":[]},{"name":"undo()","total_count":1,"children":[]},{"name":"updateElementPosition()","total_count":1,"children":[]},{"name":"updateThemeButton()","total_count":1,"children":[]}]}]}]}]},{"name":"scratch","total_count":94,"children":[{"name":"audit-typography-and-views.js","total_count":7,"children":[{"name":"fs","total_count":1,"children":[]},{"name":"LANGS","total_count":1,"children":[]},{"name":"PAGES","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"runAudit()","total_count":1,"children":[]},{"name":"VIEWPORTS","total_count":1,"children":[]}]},{"name":"capture-decoupled-header.js","total_count":3,"children":[{"name":"capture()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]}]},{"name":"capture-full-mobile.js","total_count":3,"children":[{"name":"capture()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]}]},{"name":"capture-mobile-views.js","total_count":3,"children":[{"name":"capture()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]}]},{"name":"extract-reference-products.js","total_count":7,"children":[{"name":"crops","total_count":1,"children":[]},{"name":"extractItem()","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"outputDir","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"run()","total_count":1,"children":[]},{"name":"sharp","total_count":1,"children":[]}]},{"name":"mobile-audit.js","total_count":4,"children":[{"name":"fs","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"runMobileAudit()","total_count":1,"children":[]}]},{"name":"multi-device-test.js","total_count":6,"children":[{"name":"fs","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"ROUTES","total_count":1,"children":[]},{"name":"testAllDevices()","total_count":1,"children":[]},{"name":"VIEWPORTS","total_count":1,"children":[]}]},{"name":"perf-audit.js","total_count":3,"children":[{"name":"auditSite()","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"recordFrame()","total_count":1,"children":[]}]},{"name":"process-3d-assets.js","total_count":7,"children":[{"name":"assets","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"outputDir","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"processAsset()","total_count":1,"children":[]},{"name":"run()","total_count":1,"children":[]},{"name":"sharp","total_count":1,"children":[]}]},{"name":"process-clean-3d-assets.js","total_count":8,"children":[{"name":"assets","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"outputDir","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"processCleanAsset()","total_count":1,"children":[]},{"name":"run()","total_count":1,"children":[]},{"name":"sharp","total_count":1,"children":[]},{"name":"smoothstep()","total_count":1,"children":[]}]},{"name":"process-exact-reference-assets.js","total_count":8,"children":[{"name":"assets","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"outputDir","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"processCleanAsset()","total_count":1,"children":[]},{"name":"run()","total_count":1,"children":[]},{"name":"sharp","total_count":1,"children":[]},{"name":"smoothstep()","total_count":1,"children":[]}]},{"name":"process-holographic-assets.js","total_count":8,"children":[{"name":"assets","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"outputDir","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"processHoloAsset()","total_count":1,"children":[]},{"name":"run()","total_count":1,"children":[]},{"name":"sharp","total_count":1,"children":[]},{"name":"smoothstep()","total_count":1,"children":[]}]},{"name":"test-desktop-sticky.js","total_count":3,"children":[{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"testDesktop()","total_count":1,"children":[]}]},{"name":"test-logo-sizes.js","total_count":3,"children":[{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"testLogoSizes()","total_count":1,"children":[]}]},{"name":"test-phone-native-ar.js","total_count":3,"children":[{"name":"capture()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]}]},{"name":"test-phone-native-views.js","total_count":3,"children":[{"name":"capture()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]}]},{"name":"test-refined-header-footer.js","total_count":3,"children":[{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"test()","total_count":1,"children":[]}]},{"name":"test-spacing-best-practices.js","total_count":3,"children":[{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"testSpacingBestPractices()","total_count":1,"children":[]}]},{"name":"test-sticky-cta.js","total_count":3,"children":[{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"testStickyCTA()","total_count":1,"children":[]}]},{"name":"verify-updates.js","total_count":3,"children":[{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"verifyUpdates()","total_count":1,"children":[]}]},{"name":"verify-wa-elevation.js","total_count":3,"children":[{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"verifyElevation()","total_count":1,"children":[]}]}]},{"name":"scripts","total_count":60,"children":[{"name":"generate-brand-pack.js","total_count":23,"children":[{"name":"BASE_DIR","total_count":1,"children":[]},{"name":"buildBrandPack()","total_count":1,"children":[]},{"name":"COLOR_DIR","total_count":1,"children":[]},{"name":"COLORS","total_count":1,"children":[]},{"name":"createHorizontalLogoSvg()","total_count":1,"children":[]},{"name":"createInstagramAvatarSvg()","total_count":1,"children":[]},{"name":"createLinkedInBannerSvg()","total_count":1,"children":[]},{"name":"createMarkSvg()","total_count":1,"children":[]},{"name":"createOpenGraphCardSvg()","total_count":1,"children":[]},{"name":"createPaletteSwatchesSvg()","total_count":1,"children":[]},{"name":"createTwitterBannerSvg()","total_count":1,"children":[]},{"name":"createVerticalLogoSvg()","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"getMarkSnippet()","total_count":1,"children":[]},{"name":"GUIDE_DIR","total_count":1,"children":[]},{"name":"ICONS_DIR","total_count":1,"children":[]},{"name":"LOGOS_DIR","total_count":1,"children":[]},{"name":"PACK_DIR","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"sharp","total_count":1,"children":[]},{"name":"SOCIAL_DIR","total_count":1,"children":[]},{"name":"TYPO_DIR","total_count":1,"children":[]},{"name":"{ execSync }","total_count":1,"children":[]}]},{"name":"generate-logo-concepts.js","total_count":16,"children":[{"name":"BASE_DIR","total_count":1,"children":[]},{"name":"CONCEPTS_DIR","total_count":1,"children":[]},{"name":"createDropperBottleMockupSvg()","total_count":1,"children":[]},{"name":"createHorizontalLockupSvg()","total_count":1,"children":[]},{"name":"createStandaloneMarkSvg()","total_count":1,"children":[]},{"name":"createVerticalLockupSvg()","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"generateAllConcepts()","total_count":1,"children":[]},{"name":"getMarkConcept1()","total_count":1,"children":[]},{"name":"getMarkConcept2()","total_count":1,"children":[]},{"name":"getMarkConcept3()","total_count":1,"children":[]},{"name":"getMarkConcept4()","total_count":1,"children":[]},{"name":"getMarkConcept5()","total_count":1,"children":[]},{"name":"MOCKUPS_DIR","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"sharp","total_count":1,"children":[]}]},{"name":"generate-social-avatars.js","total_count":16,"children":[{"name":"ASSET_SPECS","total_count":1,"children":[]},{"name":"AVATAR_DIR","total_count":1,"children":[]},{"name":"COLORS","total_count":1,"children":[]},{"name":"createAvatarSvg()","total_count":1,"children":[]},{"name":"EDITIONS_DIR","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"generateAll()","total_count":1,"children":[]},{"name":"generateReadme()","total_count":1,"children":[]},{"name":"getPipetteMark()","total_count":1,"children":[]},{"name":"getSvgDefs()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"PLATFORM_DIR","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"SOCIAL_DIR","total_count":1,"children":[]},{"name":"updateMasterZip()","total_count":1,"children":[]},{"name":"{ execSync }","total_count":1,"children":[]}]},{"name":"test-miro-suite.js","total_count":5,"children":[{"name":"fs","total_count":1,"children":[]},{"name":"http","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"puppeteer","total_count":1,"children":[]},{"name":"runMiroSuite()","total_count":1,"children":[]}]}]},{"name":"server","total_count":53,"children":[{"name":"index.js","total_count":15,"children":[{"name":"ALLOWED_ORIGINS","total_count":1,"children":[]},{"name":"apiRoutes","total_count":1,"children":[]},{"name":"app","total_count":1,"children":[]},{"name":"boardsRoutes","total_count":1,"children":[]},{"name":"compression","total_count":1,"children":[]},{"name":"configLimiter","total_count":1,"children":[]},{"name":"cors","total_count":1,"children":[]},{"name":"express","total_count":1,"children":[]},{"name":"helmet","total_count":1,"children":[]},{"name":"intakeLimiter","total_count":1,"children":[]},{"name":"isProdEnv()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"rateLimit","total_count":1,"children":[]},{"name":"{ requireAdminAuth }","total_count":1,"children":[]},{"name":"{ startCalendlyPoller }","total_count":1,"children":[]}]},{"name":"middleware","total_count":5,"children":[{"name":"auth.js","total_count":5,"children":[{"name":"crypto","total_count":1,"children":[]},{"name":"getAdminEmails()","total_count":1,"children":[]},{"name":"requireAdminAuth()","total_count":1,"children":[]},{"name":"tokenCache","total_count":1,"children":[]},{"name":"verifyFirebaseIdToken()","total_count":1,"children":[]}]}]},{"name":"routes","total_count":22,"children":[{"name":"api.js","total_count":11,"children":[{"name":"express","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"getDefaultContent()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"readContent()","total_count":1,"children":[]},{"name":"readLeads()","total_count":1,"children":[]},{"name":"router","total_count":1,"children":[]},{"name":"writeContent()","total_count":1,"children":[]},{"name":"writeLeads()","total_count":1,"children":[]},{"name":"{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }","total_count":1,"children":[]},{"name":"{ requireAdminAuth }","total_count":1,"children":[]}]},{"name":"boards.js","total_count":11,"children":[{"name":"BUNDLED_BOARDS_DIR","total_count":1,"children":[]},{"name":"ensureBoardsSeeded()","total_count":1,"children":[]},{"name":"express","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"getStarterBoard()","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"readBoardFile()","total_count":1,"children":[]},{"name":"resolveBoardPath()","total_count":1,"children":[]},{"name":"router","total_count":1,"children":[]},{"name":"sanitizeBoardId()","total_count":1,"children":[]},{"name":"writeBoardFile()","total_count":1,"children":[]}]}]},{"name":"services","total_count":11,"children":[{"name":"calendlySync.js","total_count":7,"children":[{"name":"checkNewCalendlyMeetings()","total_count":1,"children":[]},{"name":"fs","total_count":1,"children":[]},{"name":"initNotifiedCache()","total_count":1,"children":[]},{"name":"notifiedEventUris","total_count":1,"children":[]},{"name":"path","total_count":1,"children":[]},{"name":"startCalendlyPoller()","total_count":1,"children":[]},{"name":"{ notifyNewMeeting }","total_count":1,"children":[]}]},{"name":"notification.js","total_count":4,"children":[{"name":"escapeTg()","total_count":1,"children":[]},{"name":"notifyNewLead()","total_count":1,"children":[]},{"name":"notifyNewMeeting()","total_count":1,"children":[]},{"name":"sendWhatsAppMessage()","total_count":1,"children":[]}]}]}]},{"name":"vercel.json","total_count":4,"children":[{"name":"builds","total_count":1,"children":[]},{"name":"headers","total_count":1,"children":[]},{"name":"rewrites","total_count":1,"children":[]},{"name":"version","total_count":1,"children":[]}]}]};
+
+    function transformData(jsonData) {
+        // Helper function to recursively build the children structure
+        function processNode(node, parentL1StageName) {
+            let displayName = node.name;
+            // Append total_count if it exists and is not already in the name
+            if (node.total_count !== undefined) {
+                if (!/\(Total Count: \d+\)$/.test(displayName)) {
+                    displayName += ` (Total Count: ${node.total_count})`;
+                }
+            }
+
+            const newNode = { name: displayName };
+
+            if (parentL1StageName === "Root") {
+                 newNode.originalStageName = node.name;
+            } else {
+                newNode.originalStageName = parentL1StageName;
+            }
+
+            if (node.children && node.children.length > 0) {
+                const stageNameToPass = (parentL1StageName === "Root") ? node.name : parentL1StageName;
+                newNode.children = node.children.map(child => processNode(child, stageNameToPass));
+            }
+
+            return newNode;
+        }
+
+        let rootDisplayName = jsonData.name;
+        if (jsonData.total_count !== undefined && !/\(Total Count: \d+\)$/.test(rootDisplayName)) {
+            rootDisplayName += ` (Total Count: ${jsonData.total_count})`;
+        }
+
+        return {
+            name: rootDisplayName,
+            originalStageName: "Root",
+            children: (jsonData.children || []).map(child => processNode(child, "Root"))
+        };
+    }
+
+    const treeData = transformData(initialJsonData);
+
+    // Auto-populated phaseColors: every depth-1 child of the root gets
+    // a stable colour from a bigger palette so all top-level dirs are
+    // distinguishable.
+    const PALETTE = [
+      ["#3498DB","#2980B9","#AED6F1"], ["#2ECC71","#27AE60","#A9DFBF"],
+      ["#E74C3C","#C0392B","#F5B7B1"], ["#9B59B6","#8E44AD","#D7BDE2"],
+      ["#F39C12","#D68910","#FAD7A0"], ["#1ABC9C","#117864","#A2D9CE"],
+      ["#34495E","#1B2631","#ABB2B9"], ["#E67E22","#BA4A00","#F5CBA7"],
+      ["#16A085","#0E6655","#A2D9CE"], ["#D35400","#A04000","#EDBB99"],
+      ["#7F8C8D","#566573","#D5DBDB"], ["#C0392B","#7B241C","#F5B7B1"],
+      ["#2E86C1","#1B4F72","#A9CCE3"], ["#28B463","#196F3D","#A9DFBF"],
+      ["#AF7AC5","#6C3483","#D2B4DE"],
+    ];
+    const phaseColors = { "Root": { fill: "#4A4A4A", stroke: "#333333", collapsedFill: "#6C757D" },
+                          "Default": { fill: "#BDC3C7", stroke: "#95A5A6", collapsedFill: "#ECF0F1" } };
+    (initialJsonData.children || []).forEach((c, i) => {
+      const pal = PALETTE[i % PALETTE.length];
+      phaseColors[c.name] = { fill: pal[0], stroke: pal[1], collapsedFill: pal[2] };
+    });
+
+    const levelSpecificPalettes = {
+      0: { fill: "#4A4A4A", stroke: "#333333", collapsedFill: "#6C757D" },
+      2: { fill: "#6ab04c", stroke: "#508a38", collapsedFill: "#a3d391" },
+      3: { fill: "#f0932b", stroke: "#d0730f", collapsedFill: "#f6c07e" },
+      4: { fill: "#be2edd", stroke: "#a01cb3", collapsedFill: "#e08bf2" },
+      5: { fill: "#00a8ff", stroke: "#007ac1", collapsedFill: "#74d2ff" },
+      6: { fill: "#e55039", stroke: "#c23620", collapsedFill: "#f09a8d" },
+      default: { fill: "#747d8c", stroke: "#57606f", collapsedFill: "#a4b0be" }
+    };
+
+    const svgElement = d3.select("#tree-svg");
+    const initialSvgWidth = +svgElement.attr("width");
+    const initialSvgHeight = +svgElement.attr("height");
+    const margin = { top: 40, right: 120, bottom: 80, left: 450 };
+    let width = initialSvgWidth - margin.left - margin.right;
+    let height = initialSvgHeight - margin.top - margin.bottom;
+    const duration = 500;
+    let nodeCounter = 0;
+    const g = svgElement.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const treemap = d3.tree().nodeSize([40, 0]);
+    let rootNode = d3.hierarchy(treeData, d => d.children);
+    rootNode.x0 = 0;
+    rootNode.y0 = 0;
+
+    if (rootNode.children) {
+      rootNode.children.forEach(d_child => {
+        if (d_child.children) { collapseBranch(d_child); }
+      });
+    }
+    updateTree(rootNode);
+
+    function collapseBranch(d) { if (d.children) { d._children = d.children; d._children.forEach(collapseBranch); d.children = null; } }
+    function expandBranch(d) { if (d._children) { d.children = d._children; d._children = null; } if (d.children) { d.children.forEach(expandBranch); } }
+    window.expandAll = () => { expandBranch(rootNode); updateTree(rootNode); };
+    window.collapseAll = () => { if (rootNode.children) { rootNode.children.forEach(collapseBranch); } updateTree(rootNode); };
+    window.resetView = () => { if (rootNode.children) { rootNode.children.forEach(d_child => { if (d_child.children || d_child._children) { collapseBranch(d_child); } }); } if (rootNode._children && !rootNode.children) { rootNode.children = rootNode._children; rootNode._children = null; } updateTree(rootNode); };
+
+    function updateTree(source) {
+      const treeLayoutData = treemap(rootNode);
+      let nodes = treeLayoutData.descendants();
+      let links = treeLayoutData.descendants().slice(1);
+
+      let minX = 0;
+      let maxX = 0;
+      if (nodes.length > 0) {
+        minX = d3.min(nodes, d => d.x);
+        maxX = d3.max(nodes, d => d.x);
+      }
+
+      let neededHeight = Math.max(initialSvgHeight, maxX - minX + margin.top + margin.bottom + 100);
+      svgElement.transition().duration(duration / 2).attr("height", neededHeight);
+      g.transition().duration(duration / 2).attr("transform", `translate(${margin.left},${margin.top - minX + 40})`);
+
+      nodes.forEach(d => { d.y = d.depth * 400; }); // Adjust horizontal separation if needed
+
+      const node = g.selectAll('g.node').data(nodes, d => d.id || (d.id = ++nodeCounter));
+      const nodeEnter = node.enter().append('g')
+        .attr('class', d => "node" + (d.children || d._children ? " node--internal" : " node--leaf") + (d._children ? " _children" : ""))
+        .attr('transform', d => `translate(${source.y0},${source.x0})`)
+        .on('click', (event, d) => { if (d.children) { d._children = d.children; d.children = null; } else if (d._children) { d.children = d._children; d._children = null; } updateTree(d); })
+        .style('cursor', d => (d.children || d._children) ? 'pointer' : 'default');
+
+      nodeEnter.append('circle').attr('r', 1e-6);
+
+      nodeEnter.append('text')
+        .attr('dy', '.35em')
+        .attr('x', d => d.children || d._children ? -14 : 14)
+        .attr('text-anchor', d => d.children || d._children ? 'end' : 'start')
+        .style("fill-opacity", 1e-6)
+        .call(wrapText, 380);
+
+      const nodeUpdate = nodeEnter.merge(node);
+      nodeUpdate.transition().duration(duration)
+        .attr('transform', d => `translate(${d.y},${d.x})`)
+        .attr('class', d => "node" + (d.children ? " node--internal" : " node--leaf") + (d._children ? " node--internal _children" : ""));
+
+      nodeUpdate.select('circle').attr('r', 8.5)
+        .style('fill', d => {
+            let palette;
+            if (d.depth === 0) {
+                palette = levelSpecificPalettes[0];
+            } else if (d.depth === 1) {
+                palette = phaseColors[d.data.originalStageName] || phaseColors.Default;
+            } else {
+                palette = levelSpecificPalettes[d.depth] || levelSpecificPalettes.default;
+            }
+            if (d._children) return palette.collapsedFill;
+            if (d.children) return palette.fill;
+            return "#fff";
+        })
+        .style('stroke', d => {
+            let palette;
+            if (d.depth === 0) {
+                palette = levelSpecificPalettes[0];
+            } else if (d.depth === 1) {
+                palette = phaseColors[d.data.originalStageName] || phaseColors.Default;
+            } else {
+                palette = levelSpecificPalettes[d.depth] || levelSpecificPalettes.default;
+            }
+            return palette.stroke;
+        });
+      nodeUpdate.select('text').style("fill-opacity", 1).call(wrapText, 380);
+
+      const nodeExit = node.exit().transition().duration(duration).attr('transform', d => `translate(${source.y},${source.x})`).remove();
+      nodeExit.select('circle').attr('r', 1e-6);
+      nodeExit.select('text').style('fill-opacity', 1e-6);
+
+      const link = g.selectAll('path.link').data(links, d => d.id);
+      const linkEnter = link.enter().insert('path', "g").attr('class', 'link').attr('d', d => { const o = { x: source.x0, y: source.y0 }; return diagonal(o, o); });
+
+      linkEnter.merge(link).transition().duration(duration).attr('d', d => diagonal(d, d.parent))
+        .style('stroke', d => {
+            const sourceNode = d.parent;
+            if (!sourceNode) return phaseColors.Default.stroke;
+            const l1AncestorName = sourceNode.data.originalStageName;
+            const colorPalette = phaseColors[l1AncestorName] || phaseColors.Default;
+            return colorPalette.stroke;
+        });
+      link.exit().transition().duration(duration).attr('d', d => { const o = { x: source.x, y: source.y }; return diagonal(o, o); }).remove();
+      nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
+    }
+
+    function diagonal(s, d) { return `M ${s.y} ${s.x} C ${(s.y + d.y) / 2} ${s.x}, ${(s.y + d.y) / 2} ${d.x}, ${d.y} ${d.x}`; }
+
+    function wrapText(textElements, maxWidth) {
+        const textPartColors = {
+            name: '#343a40',
+            count: '#0056b3'
+        };
+        const countRegex = /(\s\(Total Count: \d+\))$/;
+
+        textElements.each(function () {
+            const textD3 = d3.select(this);
+            const originalNodeText = textD3.datum().data.name;
+            const x = parseFloat(textD3.attr("x") || 0);
+            const initialDy = textD3.attr("dy");
+            const textAnchor = textD3.attr("text-anchor");
+            const lineHeight = 1.1;
+
+            textD3.text(null);
+
+            let namePart = originalNodeText;
+            let countPartText = "";
+
+            const countMatch = originalNodeText.match(countRegex);
+            if (countMatch && originalNodeText.endsWith(countMatch[0])) {
+                namePart = originalNodeText.substring(0, originalNodeText.length - countMatch[0].length).trim();
+                countPartText = countMatch[0].trim();
+            }
+
+            const tokens = [];
+            namePart.split(/\s+/).filter(Boolean).forEach(word => {
+                tokens.push({ text: word, type: 'name' });
+            });
+            if (countPartText) {
+                tokens.push({ text: countPartText, type: 'count' });
+            }
+
+            if (tokens.length === 0 && originalNodeText) {
+                tokens.push({ text: originalNodeText, type: 'name' });
+            }
+
+            let currentTspan = textD3.append("tspan").attr("x", x).attr("dy", initialDy);
+            if (textAnchor === "end") currentTspan.attr("text-anchor", "end");
+
+            let lineTokens = [];
+
+            for (let i = 0; i < tokens.length; i++) {
+                const tokenObj = tokens[i];
+
+                lineTokens.push(tokenObj);
+                currentTspan.text(lineTokens.map(t => t.text).join(" "));
+
+                if (currentTspan.node().getComputedTextLength() > maxWidth && lineTokens.length > 1) {
+                    lineTokens.pop();
+
+                    currentTspan.text(null);
+                    lineTokens.forEach((prevToken, idx) => {
+                        currentTspan.append("tspan")
+                            .text((idx > 0 ? " " : "") + prevToken.text)
+                            .style("fill", textPartColors[prevToken.type] || textPartColors.name)
+                            .style("font-weight", prevToken.type === 'count' ? "bold" : "normal");
+                    });
+
+                    lineTokens = [tokenObj];
+                    currentTspan = textD3.append("tspan").attr("x", x).attr("dy", lineHeight + "em");
+                    if (textAnchor === "end") currentTspan.attr("text-anchor", "end");
+                }
+            }
+
+            currentTspan.text(null);
+            lineTokens.forEach((token, idx) => {
+                currentTspan.append("tspan")
+                    .text((idx > 0 ? " " : "") + token.text)
+                    .style("fill", textPartColors[token.type] || textPartColors.name)
+                    .style("font-weight", token.type === 'count' ? "bold" : "normal");
+            });
+
+            if (textD3.selectAll("tspan > tspan").empty() && textD3.select("tspan").text().length === 0 && originalNodeText) {
+                let t = textD3.select("tspan");
+                let displayText = originalNodeText;
+                t.text(displayText).style("fill", textPartColors.name);
+                if (t.node() && t.node().getComputedTextLength() > maxWidth && displayText.length > 20) {
+                    let estimatedChars = Math.floor(maxWidth / (t.node().getComputedTextLength()/displayText.length) );
+                    displayText = displayText.substring(0, Math.max(0, estimatedChars - 3)) + "...";
+                    t.text(displayText);
+                }
+            }
+        });
+    }
+  </script>
+</body>
+</html>

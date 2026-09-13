@@ -57,6 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
       formHeader.appendChild(banner);
     }
 
+    // Auto-select corresponding monthly revenue in Step 3
+    if (revNum > 0) {
+      let targetVal = 'Under $20k/mo';
+      if (revNum >= 500000) targetVal = '$500k+/mo';
+      else if (revNum >= 150000) targetVal = '$150k - $500k/mo';
+      else if (revNum >= 50000) targetVal = '$50k - $150k/mo';
+      else if (revNum >= 20000) targetVal = '$20k - $50k/mo';
+      else targetVal = 'Under $20k/mo';
+
+      const revSelect = document.getElementById('monthlyRevenue');
+      if (revSelect) {
+        revSelect.value = targetVal;
+      }
+    }
+
     // Auto-select corresponding marketing status in Step 3
     if (focusParam === 'scale') {
       const opt = document.querySelector('select[name="marketingHistory"] option[value*="manage marketing in-house"]');
@@ -172,12 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const brandInput = document.getElementById('brandName');
       const emailInput = document.getElementById('workEmail');
       const phoneInput = document.getElementById('phoneWhatsapp');
+      const websiteInput = document.getElementById('websiteUrl');
       const socialInput = document.getElementById('socialLink');
 
       const name = nameInput ? nameInput.value.trim() : '';
       const brand = brandInput ? brandInput.value.trim() : '';
       const email = emailInput ? emailInput.value.trim() : '';
       const phone = phoneInput ? phoneInput.value.trim() : '';
+      const website = websiteInput ? websiteInput.value.trim() : '';
       const social = socialInput ? socialInput.value.trim() : '';
 
       if (!name) {
@@ -202,6 +219,11 @@ document.addEventListener('DOMContentLoaded', () => {
         showAlert(isFr ? 'Veuillez indiquer votre numéro WhatsApp direct ou téléphone (avec indicatif pays).' : (isAr ? 'يرجى إدخال رقم واتساب أو هاتف مباشر مع رمز الدولة.' : 'Please enter your direct WhatsApp or phone number with country code.'), phoneInput);
         return false;
       }
+      if (!website) {
+        markFieldError(websiteInput);
+        showAlert(isFr ? 'Veuillez indiquer le site web ou boutique en ligne de votre marque.' : (isAr ? 'يرجى إدخال رابط المتجر الإلكتروني أو الموقع الخاص بعلامتك.' : 'Please enter your brand website or store URL.'), websiteInput);
+        return false;
+      }
       if (!social) {
         markFieldError(socialInput);
         showAlert(isFr ? 'Veuillez indiquer le lien vers votre réseau social (Instagram / TikTok).' : (isAr ? 'يرجى إدخال حساب التواصل الاجتماعي (Instagram / TikTok).' : 'Please enter your Instagram, TikTok, or brand social handle.'), socialInput);
@@ -213,21 +235,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const role = roleSelect ? roleSelect.value.trim() : '';
 
       if (!category) {
-        showAlert(isFr ? 'Veuillez sélectionner votre catégorie produit.' : 'Please select your business vertical.');
+        showAlert(isFr ? 'Veuillez sélectionner votre catégorie produit.' : (isAr ? 'يرجى اختيار تصنيف منتجات علامتك التجارية.' : 'Please select your business vertical.'));
         return false;
       }
       if (!role) {
         markFieldError(roleSelect);
-        showAlert(isFr ? 'Veuillez choisir votre fonction dans la marque.' : 'Please choose your leadership position in the organization.', roleSelect);
+        showAlert(isFr ? 'Veuillez choisir votre fonction dans la marque.' : (isAr ? 'يرجى تحديد دورك وموقعك القيادي في العلامة التجارية.' : 'Please choose your leadership position in the organization.'), roleSelect);
         return false;
       }
     } else if (currentStep === 3) {
+      const revenueSelect = document.getElementById('monthlyRevenue');
+      const revenue = revenueSelect ? revenueSelect.value.trim() : '';
       const historySelect = document.getElementById('marketingHistory');
       const history = historySelect ? historySelect.value.trim() : '';
 
+      if (!revenue) {
+        markFieldError(revenueSelect);
+        showAlert(isFr ? 'Veuillez sélectionner votre tranche de chiffre d\'affaires mensuel.' : (isAr ? 'يرجى تحديد نطاق الإيرادات الشهرية الحالية لعلامتك.' : 'Please select your current monthly revenue range.'), revenueSelect);
+        return false;
+      }
       if (!history) {
         markFieldError(historySelect);
-        showAlert(isFr ? 'Veuillez sélectionner votre statut marketing actuel.' : 'Please select your past marketing or agency experience.', historySelect);
+        showAlert(isFr ? 'Veuillez sélectionner votre statut marketing actuel.' : (isAr ? 'يرجى تحديد وضعك التسويقي الحالي.' : 'Please select your past marketing or agency experience.'), historySelect);
         return false;
       }
     }
@@ -295,6 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
       socialLink: formData.get('socialLink')?.toString().trim() || '',
       role: formData.get('role')?.toString().trim() || '',
       businessCategory: formData.get('businessCategory')?.toString().trim() || '',
+      monthlyRevenue: formData.get('monthlyRevenue')?.toString().trim() || '',
       marketingHistory: formData.get('marketingHistory')?.toString().trim() || '',
       primaryGoal: formData.get('primaryGoal')?.toString().trim() || '',
       calculatorData: (revParam || targetParam) ? {
@@ -308,8 +338,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Button Spinner UI
     const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
-    const loadingText = isFr ? 'Enregistrement du Dossier...' : 'Registering Dossier...';
-    const submitText = (window.polishI18n ? window.polishI18n.t('apply.btnSubmit') : null) || (isFr ? 'Envoyer le Dossier de Partenariat' : 'Submit Partnership Brief');
+    const isAr = window.polishI18n && window.polishI18n.currentLang === 'ar';
+    let loadingText = 'Registering Dossier...';
+    if (isFr) loadingText = 'Enregistrement du Dossier...';
+    else if (isAr) loadingText = 'جاري تسجيل الملف...';
+
+    const submitText = (window.polishI18n ? window.polishI18n.t('apply.btnSubmit') : null) || (isFr ? 'Envoyer le Dossier de Partenariat' : (isAr ? 'إرسال ملف الشراكة' : 'Submit Partnership Brief'));
 
     if (btnSubmit) {
       btnSubmit.disabled = true;
@@ -332,7 +366,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json();
 
       if (!response.ok || !result.success) {
-        throw new Error(result.error || (isFr ? "Échec de l'envoi. Veuillez nous contacter directement sur WhatsApp." : 'Failed to submit application.'));
+        let errDefault = 'Failed to submit application.';
+        if (isFr) errDefault = "Échec de l'envoi. Veuillez nous contacter directement sur WhatsApp.";
+        else if (isAr) errDefault = 'فشل إرسال الطلب. يرجى التواصل معنا مباشرة عبر واتساب.';
+        throw new Error(result.error || errDefault);
       }
 
       // Show Success Box

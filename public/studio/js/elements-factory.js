@@ -91,6 +91,18 @@ window.ElementsFactory = (function () {
       case 'payment-architecture':
         el = createPaymentArchitectureDOM(data);
         break;
+      case 'routine-step':
+        el = createRoutineStepDOM(data);
+        break;
+      case 'olfactory-pyramid':
+        el = createOlfactoryPyramidDOM(data);
+        break;
+      case 'ugc-brief':
+        el = createUgcBriefDOM(data);
+        break;
+      case 'clinical-proof':
+        el = createClinicalProofDOM(data);
+        break;
       default:
         el = createFrameDOM(data);
     }
@@ -1438,6 +1450,14 @@ window.ElementsFactory = (function () {
         return;
       }
 
+      // When drawing mode (pen / laser) is active, do not intercept pointerdown so drawing engine draws seamlessly
+      if (window.CanvasEngine) {
+        const tool = window.CanvasEngine.getTool();
+        if (tool === 'pen' || tool === 'laser') {
+          return;
+        }
+      }
+
       // Always select element on pointerdown
       if (window.StudioCore) {
         window.StudioCore.selectElement(el, data);
@@ -1502,6 +1522,14 @@ window.ElementsFactory = (function () {
           data.height = newH;
         }
 
+        if (window.StudioEvents) {
+          window.StudioEvents.emit(window.StudioEvents.Events.ELEMENT_RESIZED, {
+            id: el.id,
+            el,
+            width: data.width,
+            height: data.height
+          });
+        }
         if (window.ConnectorEngine) {
           window.ConnectorEngine.updateConnectedLines(el.id);
         }
@@ -1527,6 +1555,14 @@ window.ElementsFactory = (function () {
         data.x = newX;
         data.y = newY;
 
+        if (window.StudioEvents) {
+          window.StudioEvents.emit(window.StudioEvents.Events.ELEMENT_MOVED, {
+            id: el.id,
+            el,
+            x: newX,
+            y: newY
+          });
+        }
         if (window.ConnectorEngine) {
           window.ConnectorEngine.updateConnectedLines(el.id);
         }
@@ -1806,6 +1842,265 @@ window.ElementsFactory = (function () {
       <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
       <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
       <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 26. POLISH Cosmetic: 4-Step Skincare Routine Step DOM
+  function createRoutineStepDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-routine-step ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 420}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'routine-step';
+
+    card.innerHTML = `
+      <div class="crs-header">
+        <div class="crs-badge-row">
+          <span class="crs-step-badge" contenteditable="true" data-field="stepBadge">${data.stepBadge || 'STEP 01 • PREPARE'}</span>
+          <span class="crs-time-badge" contenteditable="true" data-field="timeBadge">${data.timeBadge || 'AM & PM DAILY'}</span>
+        </div>
+        <h3 class="crs-title" contenteditable="true" data-field="title">${data.title || 'Botanical Acid Mantle Cleanser'}</h3>
+        <p class="crs-subtitle" contenteditable="true" data-field="subtitle">${data.subtitle || 'pH 5.2 Micro-Gel Formulation'}</p>
+      </div>
+
+      <div class="crs-body">
+        <div class="crs-actives-card">
+          <span class="crs-field-label">KEY BIO-ACTIVES</span>
+          <div class="crs-actives-text" contenteditable="true" data-field="actives">${data.actives || '• 2% Salicylic Acid (Liposomal Encapsulated)\n• Centella Asiatica & Madecassoside\n• Camellia Sinensis Ferment Extract'}</div>
+        </div>
+
+        <div class="crs-benefit-row">
+          <div class="crs-benefit-col">
+            <span class="crs-field-label">TARGET ACTION</span>
+            <div class="crs-benefit-val" contenteditable="true" data-field="target">${data.target || 'Pore Decongestion & Barrier Prep'}</div>
+          </div>
+          <div class="crs-benefit-col">
+            <span class="crs-field-label">ROUTINE AOV LIFT</span>
+            <div class="crs-benefit-val highlight-gold" contenteditable="true" data-field="aovLift">${data.aovLift || '+$42 (Bundled: 3.4x CVR)'}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 27. POLISH Cosmetic: Haute Parfumerie Olfactory Pyramid DOM
+  function createOlfactoryPyramidDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-olfactory-pyramid ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 480}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'olfactory-pyramid';
+
+    card.innerHTML = `
+      <div class="op-header">
+        <div class="op-tag-row">
+          <span class="op-badge-gold">HAUTE PARFUMERIE</span>
+          <span class="op-type-badge" contenteditable="true" data-field="concentration">${data.concentration || 'EXTRAIT DE PARFUM (30% CONCENTRATION)'}</span>
+        </div>
+        <h3 class="op-title" contenteditable="true" data-field="title">${data.title || 'Oud Saphir Royale'}</h3>
+        <p class="op-tagline" contenteditable="true" data-field="tagline">${data.tagline || 'Sensual Amber, Velvety Damascus Rose & Smoked Oud'}</p>
+      </div>
+
+      <div class="op-tiers-stack">
+        <!-- Top Tier -->
+        <div class="op-tier op-tier-top">
+          <div class="op-tier-meta">
+            <span class="op-tier-name">01. HEAD NOTES</span>
+            <span class="op-tier-time">0 — 20 MIN</span>
+          </div>
+          <div class="op-tier-notes" contenteditable="true" data-field="topNotes">${data.topNotes || 'Italian Bergamot, Pink Peppercorn, Wild Saffron'}</div>
+        </div>
+
+        <!-- Heart Tier -->
+        <div class="op-tier op-tier-heart">
+          <div class="op-tier-meta">
+            <span class="op-tier-name">02. HEART NOTES</span>
+            <span class="op-tier-time">20 MIN — 4 HOURS</span>
+          </div>
+          <div class="op-tier-notes" contenteditable="true" data-field="heartNotes">${data.heartNotes || 'Damascus Rose Absolute, Orris Butter, Cardamom Pods'}</div>
+        </div>
+
+        <!-- Base Tier -->
+        <div class="op-tier op-tier-base">
+          <div class="op-tier-meta">
+            <span class="op-tier-name">03. BASE NOTES</span>
+            <span class="op-tier-time">4 HOURS — 24+ HOURS</span>
+          </div>
+          <div class="op-tier-notes" contenteditable="true" data-field="baseNotes">${data.baseNotes || 'Cambodian Agarwood (Oud), Ambergris, Bourbon Vanilla'}</div>
+        </div>
+      </div>
+
+      <div class="op-metrics-footer">
+        <div class="op-footer-stat">
+          <span class="op-stat-label">LONGEVITY</span>
+          <span class="op-stat-val" contenteditable="true" data-field="longevity">${data.longevity || '16+ Hours Sillage'}</span>
+        </div>
+        <div class="op-footer-stat">
+          <span class="op-stat-label">DISCOVERY VOUCHER</span>
+          <span class="op-stat-val highlight-gold" contenteditable="true" data-field="voucher">${data.voucher || '100% Rebated on 100ml'}</span>
+        </div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 28. POLISH Cosmetic: Beauty UGC Video Brief DOM
+  function createUgcBriefDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-ugc-brief ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 460}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'ugc-brief';
+
+    card.innerHTML = `
+      <div class="cub-header">
+        <div class="cub-badge-row">
+          <span class="cub-platform-pill" contenteditable="true" data-field="platform">${data.platform || 'TIKTOK & SPARK ADS'}</span>
+          <span class="cub-aspect-pill" contenteditable="true" data-field="aspect">${data.aspect || '9:16 VERTICAL 4K'}</span>
+        </div>
+        <h3 class="cub-title" contenteditable="true" data-field="title">${data.title || 'Micro-Texture Swatch & Skin Melt'}</h3>
+        <span class="cub-concept-tag" contenteditable="true" data-field="conceptTag">${data.conceptTag || 'ANGLE: THE 3-SECOND HYPER-HYDRATION TEST'}</span>
+      </div>
+
+      <div class="cub-timeline">
+        <div class="cub-timeline-step">
+          <div class="cub-step-badge">0:00 — 0:03</div>
+          <div class="cub-step-content">
+            <span class="cub-step-role">VISUAL HOOK (THUMBSTOP)</span>
+            <div class="cub-step-text" contenteditable="true" data-field="hookText">${data.hookText || 'Extreme close-up dropper release onto cheekbone. Glass-skin luminescence catches natural sunlight.'}</div>
+          </div>
+        </div>
+
+        <div class="cub-timeline-step">
+          <div class="cub-step-badge">0:03 — 0:15</div>
+          <div class="cub-step-content">
+            <span class="cub-step-role">BARRIER AGITATION & PROOF</span>
+            <div class="cub-step-text" contenteditable="true" data-field="agitationText">${data.agitationText || '"Stop layering 8 serums that cancel each other out. This single lipid complex replaced my entire morning drawer."'}</div>
+          </div>
+        </div>
+
+        <div class="cub-timeline-step">
+          <div class="cub-step-badge">0:15 — 0:30</div>
+          <div class="cub-step-content">
+            <span class="cub-step-role">TEXTURE MELT & ABSORPTION</span>
+            <div class="cub-step-text" contenteditable="true" data-field="demoText">${data.demoText || 'Half-face comparison showing instant velvet matte finish without stickiness or shine.'}</div>
+          </div>
+        </div>
+
+        <div class="cub-timeline-step">
+          <div class="cub-step-badge">0:30 — 0:40</div>
+          <div class="cub-step-content">
+            <span class="cub-step-role">CALL TO ACTION (OFFER)</span>
+            <div class="cub-step-text" contenteditable="true" data-field="ctaText">${data.ctaText || 'Get the 3-Piece Atelier Discovery Kit before current batch sells out. 100% empty-bottle guarantee.'}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cub-metrics-bar">
+        <span class="cub-metric-item">Target Thumbstop: <strong contenteditable="true" data-field="thumbstop">${data.thumbstop || '36%+'}</strong></span>
+        <span class="cub-metric-item">Target CPA: <strong contenteditable="true" data-field="cpa">${data.cpa || '$18.50'}</strong></span>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
+      <div class="resize-handle rh-se" data-handle="se"></div>
+      <div class="resize-handle rh-sw" data-handle="sw"></div>
+      <div class="resize-handle rh-ne" data-handle="ne"></div>
+      <div class="resize-handle rh-nw" data-handle="nw"></div>
+    `;
+    return card;
+  }
+
+  // 29. POLISH Cosmetic: Laboratory Clinical Claims DOM
+  function createClinicalProofDOM(data) {
+    const card = document.createElement('div');
+    card.id = data.id;
+    card.className = `element-clinical-proof ${data.fontFamily ? 'font-' + data.fontFamily : ''} ${data.isLocked ? 'is-locked' : ''}`;
+    card.style.left = `${data.x}px`;
+    card.style.top = `${data.y}px`;
+    card.style.width = `${data.width || 500}px`;
+    card.style.zIndex = data.zIndex || 12;
+    card.dataset.type = 'clinical-proof';
+
+    card.innerHTML = `
+      <div class="ccp-header">
+        <div class="ccp-badge-row">
+          <span class="ccp-seal-pill">CLINICAL SUBSTANTIATION</span>
+          <span class="ccp-lab-pill" contenteditable="true" data-field="labName">${data.labName || 'INDEPENDENT DERM TESTING LAB (FR)'}</span>
+        </div>
+        <h3 class="ccp-title" contenteditable="true" data-field="title">${data.title || 'Laboratory Bio-Efficacy Results'}</h3>
+        <p class="ccp-protocol" contenteditable="true" data-field="protocol">${data.protocol || '28-Day Blinded Clinical Study • n = 54 Subjects • Instrumental Corneometry'}</p>
+      </div>
+
+      <div class="ccp-claims-grid">
+        <div class="ccp-claim-card">
+          <div class="ccp-claim-number" contenteditable="true" data-field="stat1">${data.stat1 || '96%'}</div>
+          <div class="ccp-claim-text" contenteditable="true" data-field="claim1">${data.claim1 || 'Demonstrated immediate reduction in skin surface erythema & redness within 15 minutes of application.'}</div>
+        </div>
+        <div class="ccp-claim-card">
+          <div class="ccp-claim-number" contenteditable="true" data-field="stat2">${data.stat2 || '89%'}</div>
+          <div class="ccp-claim-text" contenteditable="true" data-field="claim2">${data.claim2 || 'Measured instrumental lift in barrier moisture retention over 72 consecutive hours.'}</div>
+        </div>
+      </div>
+
+      <div class="ccp-compliance-strip">
+        <div class="ccp-compliance-tag">✓ EU CPSR Certified</div>
+        <div class="ccp-compliance-tag">✓ Hypoallergenic</div>
+        <div class="ccp-compliance-tag">✓ Safe for Sensitive Skin</div>
+        <div class="ccp-compliance-tag">✓ Dermatologist Tested</div>
+      </div>
+
+      <!-- Ports -->
+      <div class="card-port port-top" data-port="top" data-parent="${data.id}"></div>
+      <div class="card-port port-right" data-port="right" data-parent="${data.id}"></div>
+      <div class="card-port port-bottom" data-port="bottom" data-parent="${data.id}"></div>
+      <div class="card-port port-left" data-port="left" data-parent="${data.id}"></div>
+
+      <!-- Resize Handles -->
       <div class="resize-handle rh-se" data-handle="se"></div>
       <div class="resize-handle rh-sw" data-handle="sw"></div>
       <div class="resize-handle rh-ne" data-handle="ne"></div>

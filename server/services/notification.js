@@ -108,6 +108,7 @@ async function notifyNewLead(lead) {
       `*Email:* ${lead.email || 'None'}\n` +
       `*Phone/WA:* ${lead.phone || 'None'}\n` +
       `*Category:* ${lead.businessCategory}\n` +
+      `*Revenue:* ${lead.monthlyRevenue || 'Not specified'}\n` +
       `*Website:* ${lead.websiteUrl || 'None'}\n` +
       `*Social:* ${lead.socialLink || 'None'}\n` +
       `*Status:* ${lead.marketingHistory || 'None'}\n` +
@@ -147,6 +148,7 @@ async function notifyNewLead(lead) {
           `✉️ *Email:* ${escapeTg(lead.email || 'None')}\n` +
           `📞 *Phone/WA:* ${escapeTg(lead.phone || 'None')}\n` +
           `💄 *Category:* ${escapeTg(lead.businessCategory)}\n` +
+          `💰 *Revenue:* ${escapeTg(lead.monthlyRevenue || 'Not specified')}\n` +
           `🌐 *Website:* ${escapeTg(lead.websiteUrl || 'None')}\n` +
           `📱 *Social:* ${escapeTg(lead.socialLink || 'None')}\n` +
           `📊 *Status:* ${escapeTg(lead.marketingHistory || 'None')}\n` +
@@ -163,11 +165,12 @@ async function notifyNewLead(lead) {
           parse_mode: 'Markdown'
         })
       });
-      const resData = await res.json();
-      if (!resData.ok) {
-        console.error('[Notification Service] Telegram API responded with error:', resData);
+
+      if (!res.ok) {
+        const errBody = await res.text();
+        console.warn(`[Notification Service] Telegram alert failed (${res.status}):`, errBody);
       } else {
-        console.log('[Notification Service] Telegram notification dispatched successfully.');
+        console.log('[Notification Service] Telegram alert dispatched successfully.');
       }
     } catch (err) {
       console.error('[Notification Service] Telegram dispatch error:', err.message);
@@ -185,7 +188,7 @@ async function notifyNewLead(lead) {
             ? `🚨 **New POLISH Creator Application!**\n**Name:** ${lead.name}\n**Social:** ${lead.socialLink}\n**Phone:** ${lead.phone}\n**Portfolio:** ${lead.portfolio}\n**ID:** \`${lead.id}\``
             : isIntake
             ? `📋 **New POLISH Strategy Intake!**\n**Client:** ${lead.fullName}\n**Container:** ${lead.brandName}\n**Phone:** ${lead.phone}\n**ID:** \`${lead.id}\``
-            : `🚨 **New POLISH Growth Application!**\n**Brand:** ${lead.brandName} (${lead.businessCategory})\n**Contact:** ${lead.fullName} (${lead.role})\n**Email:** ${lead.email || 'None'}\n**Phone:** ${lead.phone || 'None'}\n**Website:** ${lead.websiteUrl}\n**Social:** ${lead.socialLink}\n**Goal:** ${lead.primaryGoal}\n**ID:** \`${lead.id}\``
+            : `🚨 **New POLISH Growth Application!**\n**Brand:** ${lead.brandName} (${lead.businessCategory})\n**Contact:** ${lead.fullName} (${lead.role})\n**Email:** ${lead.email || 'None'}\n**Phone:** ${lead.phone || 'None'}\n**Revenue:** ${lead.monthlyRevenue || 'Not specified'}\n**Website:** ${lead.websiteUrl}\n**Social:** ${lead.socialLink}\n**Goal:** ${lead.primaryGoal}\n**ID:** \`${lead.id}\``
         })
       });
       console.log('[Notification Service] Webhook alert dispatched successfully.');

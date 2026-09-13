@@ -35,6 +35,12 @@
       "source": "/(.*)",
       "destination": "/server/index.js"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/keep-alive",
+      "schedule": "0 12 */2 * *"
+    }
   ]
 }
 

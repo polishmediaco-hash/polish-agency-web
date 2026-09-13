@@ -152,6 +152,10 @@ window.CanvasEngine = (function () {
     if (zoomLabel) {
       zoomLabel.textContent = Math.round(scale * 100) + '%';
     }
+    if (window.StudioEvents) {
+      window.StudioEvents.emit(window.StudioEvents.Events.VIEWPORT_CHANGED, { panX, panY, scale });
+      window.StudioEvents.emit(window.StudioEvents.Events.MINIMAP_UPDATE);
+    }
     if (window.StudioInspector) {
       window.StudioInspector.updatePosition();
     }
@@ -241,6 +245,10 @@ window.CanvasEngine = (function () {
         btn.classList.remove('active');
       }
     });
+
+    if (window.StudioEvents) {
+      window.StudioEvents.emit(window.StudioEvents.Events.TOOL_CHANGED, { activeTool: tool });
+    }
 
     if (window.DrawingEngine) {
       window.DrawingEngine.setEnabled(tool === 'pen' || tool === 'laser');

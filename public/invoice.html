@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POLISH Media Co. — Executive Invoicing Atelier &amp; Cloud Billing Engine</title>
+  
+  <!-- Meta & Security -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#080706">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Cormorant Garamond, Tajawal, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    // Instant pre-paint synchronous check to eliminate login screen flash
+    (function() {
+      try {
+        var savedKey = localStorage.getItem('polish_admin_key') || sessionStorage.getItem('polish_admin_key');
+        var savedSession = localStorage.getItem('polish_admin_session');
+        if (savedKey || savedSession || window.location.search.includes('key=')) {
+          document.documentElement.classList.add('is-authenticated');
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <!-- Invoice Stylesheet -->
+  <link rel="stylesheet" href="/css/invoice.css?v=3.3">
+</head>
+<body class="invoice-studio-body">
+
+  <!-- ========================================================================
+       1. EXECUTIVE AUTHENTICATION GATE (Supabase Google Sign-in / Security Key)
+       ======================================================================== -->
+  <div id="authGateView" class="no-print">
+    <div class="auth-overlay">
+      <div class="auth-box">
+        <div class="auth-logo-bubble">
+          <img src="/assets/logo-gold.svg" alt="POLISH Media Co." width="32" height="32" style="filter: drop-shadow(0 0 10px rgba(226,199,153,0.5));">
+        </div>
+        
+        <h2>Executive Billing Atelier</h2>
+        <p>Private cloud invoicing engine. Access is restricted to authorized executive directors.</p>
+
+        <!-- Google OAuth Button -->
+        <button type="button" class="btn-google-auth" id="btnGoogleSignIn" onclick="handleGoogleAdminSignIn()">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.35 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <span id="btnGoogleText">Sign In with Google</span>
+        </button>
+
+        <!-- Auth Error Container -->
+        <div id="authGateError" class="auth-error-box" style="display: none;"></div>
+
+        <!-- Master Key Fallback Accordion -->
+        <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06);">
+          <details style="font-size: 12px; color: var(--studio-text-muted); cursor: pointer;">
+            <summary style="outline: none; user-select: none; transition: color 0.2s;">Emergency Key Access</summary>
+            <div style="margin-top: 12px; display: flex; gap: 8px;">
+              <input type="password" id="adminSecurityKey" placeholder="Executive Master Key" style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 12px; outline: none;">
+              <button type="button" id="btnKeyUnlock" onclick="handleKeyUnlock()" style="background: rgba(226,199,153,0.15); border: 1px solid rgba(226,199,153,0.3); color: var(--studio-gold); padding: 8px 14px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer;">Unlock</button>
+            </div>
+          </details>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="/admin.html" style="font-size: 12px; color: var(--studio-text-muted); text-decoration: none; transition: color 0.2s;">&larr; Return to Admin Hub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. SECURE STUDIO APPLICATION VIEW
+       ======================================================================== -->
+  <div id="studioAppView" style="display: none; width: 100%; height: 100%;">
+
+    <!-- Top Navigation Bar (Consistent Executive Design) -->
+    <header class="studio-nav no-print" id="mainAppHeader">
+      <div class="studio-nav-inner">
+        <!-- Left Brand Group -->
+        <div class="header-left">
+          <a href="/admin.html" class="brand-link" title="POLISH Media Co. — Executive Hub">
+            <img src="/assets/logo-gold.svg" alt="POLISH" class="brand-logo">
+          </a>
+          <span class="badge-role">INVOICES</span>
+        </div>
+
+        <!-- Center Nav Capsule Tabs -->
+        <nav class="center-capsule">
+          <a href="/admin.html#leads" class="capsule-btn">
+            Leads <span class="badge-count">142</span>
+          </a>
+          <a href="/admin/invoice" class="capsule-btn active">
+            Invoices <span class="badge-count active-gold">24</span>
+          </a>
+          <a href="/admin.html#cms" class="capsule-btn">CMS</a>
+          <a href="/admin.html#whatsapp" class="capsule-btn">WhatsApp</a>
+          <a href="/admin.html#system" class="capsule-btn">System</a>
+        </nav>
+
+        <!-- Right Action Controls -->
+        <div class="header-right">
+          <!-- Cloud Sync Pill -->
+          <div class="cloud-sync-pill" id="cloudSyncPill" title="Cloud Persistence Active">
+            <span class="cloud-sync-dot"></span>
+            <span id="cloudSyncText">Supabase Sync</span>
+          </div>
+
+          <!-- Invoice Sheet Theme Mode (Alabaster vs Obsidian) -->
+          <div class="theme-capsule">
+            <button type="button" class="theme-opt active" id="themeAlabaster" title="Alabaster Light Sheet">Alabaster</button>
+            <button type="button" class="theme-opt" id="themeObsidian" title="Obsidian Dark Sheet">Obsidian</button>
+          </div>
+
+          <!-- Language Selector -->
+          <select class="tool-select-clean" id="langSelect" title="Select Invoice Language">
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+            <option value="ar">AR</option>
+          </select>
+
+          <!-- Direct Edit Toggle -->
+          <button type="button" class="btn-ghost" id="btnToggleEdit" title="Toggle Direct Click-to-Edit on Sheet">Edit</button>
+
+          <!-- Archives Drawer Trigger -->
+          <button type="button" class="btn-ghost" id="btnOpenArchive" title="Cloud Saved Invoices">Archives</button>
+
+          <!-- Cloud Save Button -->
+          <button type="button" class="btn-ghost" id="btnCloudSave" title="Save to Supabase">Save</button>
+
+          <!-- Download PDF / Print Primary Button -->
+          <button type="button" class="btn-primary-action" id="btnPrintInvoice" title="Generate Vector A4 PDF">Print / PDF</button>
+
+          <!-- Hidden user container for JS bindings -->
+          <span id="adminUserBadge" style="display: none;"><span id="adminUserEmail">Director</span></span>
+
+          <!-- Logout -->
+          <button type="button" class="btn-icon-ghost" id="btnAdminLogout" title="Sign Out">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile View Toggle Tabs (< 1100px) -->
+    <nav class="mobile-view-tabs no-print" aria-label="Mobile Navigation">
+      <button type="button" class="mobile-tab-btn active" id="btnMobileForm">Edit Form</button>
+      <button type="button" class="mobile-tab-btn" id="btnMobilePreview">Live Preview</button>
+    </nav>
+
+    <!-- 2. Main Studio Workspace: Split View -->
+    <main class="studio-container">
+      
+      <!-- Left Drawer: Form Inputs -->
+      <aside class="studio-editor-panel no-print" id="studioEditorPanel">
+        
+        <!-- Quick Presets -->
+        <div class="editor-section">
+          <div class="editor-section-header">
+            <span class="editor-section-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              Quick Presets
+            </span>
+          </div>
+          <div class="preset-pills">
+            <button type="button" class="preset-pill active" data-preset-load="celestia">Celestia (Beauty Retainer)</button>
+            <button type="button" class="preset-pill" data-preset-load="picked">Picked Makeup (Monthly)</button>
+            <button type="button" class="preset-pill" id="btnResetInvoice" style="color: var(--studio-text-muted);">Reset</button>
+          </div>
+        </div>
+
+        <!-- Invoice Meta Details -->
+        <div class="editor-section">
+          <div class="editor-section-header">
+            <span class="editor-section-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              Invoice Reference &amp; Dates
+            </span>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Serial Number</label>
+              <div style="display: flex; gap: 6px;">
+                <input type="text" class="form-input" id="inputInvoiceNumber" placeholder="POL-2026-094" style="flex: 1;">
+                <button type="button" class="btn-studio-secondary" id="btnNextSerial" title="Increment Serial Number (+1)" style="padding: 0 10px; font-weight: 800;">+1</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Currency</label>
+              <select class="form-select" id="inputCurrency">
+                <option value="DA">Algerian Dinar (DA)</option>
+                <option value="USD">US Dollar ($ / USD)</option>
+                <option value="EUR">Euro (€ / EUR)</option>
+                <option value="AED">UAE Dirham (AED)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Issue Date</label>
+              <div style="display: flex; gap: 6px;">
+                <input type="text" class="form-input" id="inputIssueDate" placeholder="DD/MM/YYYY" style="flex: 1;">
+                <button type="button" class="btn-studio-secondary" id="btnSetToday" title="Set to Today" style="padding: 0 10px; font-size: 11px;">Today</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Due Date (Optional)</label>
+              <input type="text" class="form-input" id="inputDueDate" placeholder="DD/MM/YYYY or Empty">
+            </div>
+          </div>
+        </div>
+
+        <!-- Payable To Details -->
+        <div class="editor-section">
+          <div class="editor-section-header">
+            <span class="editor-section-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              Payable To (Agency Details)
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Agency / Company Name</label>
+            <input type="text" class="form-input" id="inputPayableName" placeholder="Polish Media Co">
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Contact Person</label>
+              <input type="text" class="form-input" id="inputPayableContact" placeholder="Faycal Chouli">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="text" class="form-input" id="inputPayablePhone" placeholder="+213 661 41 77 62">
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Details -->
+        <div class="editor-section">
+          <div class="editor-section-header">
+            <span class="editor-section-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              Client Details
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Client / Brand Name</label>
+            <input type="text" class="form-input" id="inputClientName" placeholder="e.g. Celestia cosmetics">
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Contact Person</label>
+              <input type="text" class="form-input" id="inputClientContact" placeholder="e.g. Yasmine">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="text" class="form-input" id="inputClientPhone" placeholder="+213 563 05 28 57">
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Email (Optional)</label>
+              <input type="email" class="form-input" id="inputClientEmail" placeholder="client@brand.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Address (Optional)</label>
+              <input type="text" class="form-input" id="inputClientAddress" placeholder="Algiers, Algeria">
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Line Items -->
+        <div class="editor-section">
+          <div class="editor-section-header">
+            <span class="editor-section-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              Services &amp; Deliverables
+            </span>
+          </div>
+          
+          <!-- Dynamic Items Container -->
+          <div id="serviceItemsFormContainer"></div>
+
+          <button type="button" class="btn-add-item" id="btnAddServiceItem">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Add Service Item
+          </button>
+        </div>
+
+        <!-- Payment Settlement Details -->
+        <div class="editor-section">
+          <div class="editor-section-header">
+            <span class="editor-section-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              Payment Settlement
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Beneficiary Account</label>
+            <input type="text" class="form-input" id="inputBeneficiaryName" value="FAYCAL CHOULI">
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">CCP Number</label>
+              <input type="text" class="form-input" id="inputCcp" value="0044643623 cle 49">
+            </div>
+            <div class="form-group">
+              <label class="form-label">RIP Number</label>
+              <input type="text" class="form-input" id="inputRip" value="00799999004464362350">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bank Name / Details (Optional)</label>
+            <input type="text" class="form-input" id="inputBankName" placeholder="Banque d'Algérie / BEA / etc.">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Terms &amp; Settlement Notes (Optional)</label>
+            <textarea class="form-input" id="inputTerms" rows="2" placeholder="Payment due upon receipt. Transfers to be confirmed via screenshot."></textarea>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- Right Main Stage: Live A4 Canvas -->
+      <section class="studio-stage" id="studioStage">
+        
+        <!-- Stage Info Pill -->
+        <div class="stage-toolbar no-print">
+          <div class="stage-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            A4 Canvas Live Preview
+          </div>
+          <span class="edit-mode-pill inactive" id="editModePill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            Preview Mode
+          </span>
+        </div>
+
+        <!-- The A4 Sheet Wrapper -->
+        <div class="invoice-sheet-wrapper">
+          <article class="invoice-sheet" id="invoiceSheet" data-invoice-theme="alabaster">
+            <!-- Dynamically Injected by invoice.js -->
+          </article>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- ========================================================================
+       3. INVOICES ARCHIVE SLIDE-OUT DRAWER
+       ======================================================================== -->
+  <div class="archive-drawer-backdrop no-print" id="archiveDrawerBackdrop"></div>
+  <aside class="archive-drawer no-print" id="archiveDrawer">
+    <div class="archive-drawer-header">
+      <div class="archive-drawer-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8v13H3V8"></path><path d="M1 3h22v5H1z"></path><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+        Cloud Invoices Archive
+      </div>
+      <button type="button" class="archive-drawer-close" id="btnCloseArchive" title="Close Drawer">&times;</button>
+    </div>
+    <div class="archive-drawer-body">
+      <input type="text" class="archive-search-input" id="archiveSearchInput" placeholder="Filter by serial, client, or date...">
+      <div id="archiveListContainer" style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="text-align: center; padding: 30px; color: var(--studio-text-muted); font-size: 13px;">
+          Loading cloud invoices...
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Toast -->
+  <div id="invToast" class="no-print">Action successful</div>
+
+  <!-- Supabase & Engine Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/studio/js/supabase-config.js?v=20260910_v2"></script>
+  <script src="/js/invoice.js?v=3.2"></script>
+</body>
+</html>

@@ -48,6 +48,9 @@ window.ConnectorEngine = (function () {
             color: 'slate'
           };
 
+          if (window.StudioEvents) {
+            window.StudioEvents.emit(window.StudioEvents.Events.CONNECTION_CREATED, { conn: newConnection });
+          }
           if (window.StudioCore) {
             window.StudioCore.addConnection(newConnection);
           }
@@ -56,6 +59,20 @@ window.ConnectorEngine = (function () {
 
       endDrawing();
     });
+
+    if (window.StudioEvents) {
+      window.StudioEvents.on(window.StudioEvents.Events.ELEMENT_MOVED, (data) => {
+        if (data && data.id) updateConnectedLines(data.id);
+      });
+      window.StudioEvents.on(window.StudioEvents.Events.ELEMENT_RESIZED, (data) => {
+        if (data && data.id) updateConnectedLines(data.id);
+      });
+      window.StudioEvents.on(window.StudioEvents.Events.THEME_CHANGED, () => {
+        if (window.StudioCore && typeof window.StudioCore.getConnections === 'function') {
+          renderAllConnections(window.StudioCore.getConnections());
+        }
+      });
+    }
   }
 
   function startDrawing(portEl) {

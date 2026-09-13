@@ -1,19 +1,21 @@
 /**
- * POLISH Media Co — Admin Authentication Middleware
+ * POLISH Media Co — Admin & Studio Authentication Middleware
  * 
  * Supports dual-factor administrative authentication:
- * 1. Firebase Auth ID Token (Google Sign-In / Email login)
- *    - Validates signature & validity against Google Identity Toolkit
+ * 1. Supabase Auth JWT (Google OAuth, Email/Password, or Magic Link)
+ *    - Validates signature & validity against Supabase Auth engine
  *    - Enforces ADMIN_EMAILS whitelist (e.g. polishmediaco@gmail.com, choulif.work@gmail.com)
  * 2. Fallback Admin API Key (x-api-key header or ?key= query)
  *    - For CI/CD, curl, or emergency recovery
+ * 3. Graceful offline / local development fallback
  */
 
 const crypto = require('crypto');
+const { supabase, isConfigured } = require('../services/supabase');
 const tokenCache = new Map(); // token -> { user, expiresAt }
 
 function getAdminEmails() {
-  const envEmails = process.env.ADMIN_EMAILS || 'polishmediaco@gmail.com,choulif.work@gmail.com';
+  const envEmails = process.env.ADMIN_EMAILS || 'polishmediaco@gmail.com,choulif.work@gmail.com,choulifaycal10@gmail.com';
   return envEmails
     .split(',')
     .map(e => e.trim().toLowerCase())
@@ -21,57 +23,46 @@ function getAdminEmails() {
 }
 
 /**
- * Validates a Firebase ID token using Google Identity Toolkit API.
- * Uses an in-memory 5-minute cache to avoid external network latency on rapid calls.
+ * Validates a Supabase Auth JWT using the Supabase Admin Auth API.
+ * Uses an in-memory 5-minute cache to eliminate external network latency on rapid requests.
  */
-async function verifyFirebaseIdToken(idToken) {
-  if (!idToken || typeof idToken !== 'string') return null;
+async function verifySupabaseToken(token) {
+  if (!token || typeof token !== 'string') return null;
 
   const now = Date.now();
-  const cached = tokenCache.get(idToken);
+  const cached = tokenCache.get(token);
   if (cached && cached.expiresAt > now) {
     return cached.user;
   }
 
-  const apiKey = process.env.FIREBASE_API_KEY || 'AIzaSyAdtvlrJwmTGMe6JbMCSdEQCKC7eAle-TM';
+  if (isConfigured && supabase) {
+    try {
+      const { data, error } = await supabase.auth.getUser(token);
+      if (!error && data && data.user) {
+        const u = data.user;
+        const user = {
+          uid: u.id,
+          email: (u.email || '').toLowerCase(),
+          displayName: u.user_metadata?.full_name || u.user_metadata?.name || (u.email ? u.email.split('@')[0] : 'Admin'),
+          photoUrl: u.user_metadata?.avatar_url || u.user_metadata?.picture || null,
+          emailVerified: !!u.email_confirmed_at
+        };
 
-  try {
-    const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ idToken })
-    });
+        // Cache valid user session for 5 minutes
+        tokenCache.set(token, { user, expiresAt: now + 5 * 60 * 1000 });
 
-    if (!res.ok) {
-      tokenCache.delete(idToken);
-      return null;
-    }
-
-    const data = await res.json();
-    if (data && data.users && data.users[0]) {
-      const u = data.users[0];
-      const user = {
-        uid: u.localId,
-        email: (u.email || '').toLowerCase(),
-        displayName: u.displayName || (u.email ? u.email.split('@')[0] : 'Admin'),
-        photoUrl: u.photoUrl || null,
-        emailVerified: !!u.emailVerified
-      };
-
-      // Cache valid token for 5 minutes
-      tokenCache.set(idToken, { user, expiresAt: now + 5 * 60 * 1000 });
-
-      // Clean up old cache entries if Map gets large
-      if (tokenCache.size > 100) {
-        for (const [k, v] of tokenCache.entries()) {
-          if (v.expiresAt <= now) tokenCache.delete(k);
+        // Maintain bounded cache size
+        if (tokenCache.size > 200) {
+          for (const [k, v] of tokenCache.entries()) {
+            if (v.expiresAt <= now) tokenCache.delete(k);
+          }
         }
-      }
 
-      return user;
+        return user;
+      }
+    } catch (err) {
+      console.error('[Auth] Error verifying Supabase token:', err.message);
     }
-  } catch (err) {
-    console.error('[Auth] Error verifying Firebase ID token:', err.message);
   }
 
   return null;
@@ -79,17 +70,17 @@ async function verifyFirebaseIdToken(idToken) {
 
 /**
  * Express Middleware: requireAdminAuth
- * Enforces admin authorization via Firebase Bearer Token or valid Admin API Key.
+ * Enforces admin authorization via Supabase Bearer Token or valid Admin API Key.
  */
 async function requireAdminAuth(req, res, next) {
   const adminEmails = getAdminEmails();
 
-  // 1. Check for Firebase Bearer Token in Authorization header
+  // 1. Check for Supabase Bearer Token in Authorization header
   const authHeader = req.headers.authorization;
   if (authHeader && authHeader.startsWith('Bearer ')) {
-    const idToken = authHeader.substring(7).trim();
-    if (idToken) {
-      const user = await verifyFirebaseIdToken(idToken);
+    const token = authHeader.substring(7).trim();
+    if (token) {
+      const user = await verifySupabaseToken(token);
       if (user && user.email) {
         if (adminEmails.includes(user.email)) {
           req.adminUser = user;
@@ -104,7 +95,7 @@ async function requireAdminAuth(req, res, next) {
       }
       return res.status(401).json({
         success: false,
-        error: 'Invalid or expired Firebase session. Please sign in again.'
+        error: 'Invalid or expired Supabase session. Please sign in again.'
       });
     }
   }
@@ -132,8 +123,67 @@ async function requireAdminAuth(req, res, next) {
   });
 }
 
+/**
+ * Express Middleware: requireUserOrAdminAuth
+ * Enforces authorization for Studio board operations:
+ * Accepts any authenticated Supabase user OR valid Admin API Key.
+ * In offline/local dev without Supabase credentials, falls back gracefully.
+ */
+async function requireUserOrAdminAuth(req, res, next) {
+  // 1. Check for Supabase Bearer Token in Authorization header
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.substring(7).trim();
+    if (token) {
+      const user = await verifySupabaseToken(token);
+      if (user) {
+        req.user = user;
+        return next();
+      }
+      return res.status(401).json({
+        success: false,
+        error: 'Invalid or expired session. Please sign in again.'
+      });
+    }
+  }
+
+  // 2. Check for Fallback Admin API Key (x-api-key or x-admin-key header)
+  const providedKey = req.headers['x-api-key'] || req.headers['x-admin-key'] || req.query.key;
+  const expectedKey = process.env.ADMIN_API_KEY;
+
+  if (expectedKey && providedKey && typeof providedKey === 'string') {
+    const pBuf = Buffer.from(providedKey);
+    const eBuf = Buffer.from(expectedKey);
+    if (pBuf.length === eBuf.length && crypto.timingSafeEqual(pBuf, eBuf)) {
+      req.user = {
+        uid: 'admin-key-holder',
+        email: 'service-key@polishmediaco.com',
+        displayName: 'Master Key Holder'
+      };
+      return next();
+    }
+  }
+
+  // 3. In non-production development or local mode, allow offline dev user
+  const IS_PROD = process.env.NODE_ENV === 'production';
+  if (!IS_PROD || !isConfigured) {
+    req.user = {
+      uid: 'dev-user',
+      email: 'dev@localhost',
+      displayName: 'Local Dev User'
+    };
+    return next();
+  }
+
+  return res.status(401).json({
+    success: false,
+    error: 'Unauthorized. Authentication required to modify boards.'
+  });
+}
+
 module.exports = {
   getAdminEmails,
-  verifyFirebaseIdToken,
-  requireAdminAuth
+  verifySupabaseToken,
+  requireAdminAuth,
+  requireUserOrAdminAuth
 };

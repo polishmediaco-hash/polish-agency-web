@@ -10,6 +10,58 @@
   'use strict';
 
   const CREATOR_PERSONAS = {
+    'polish-cosmetics-launch': {
+      persona: 'polish-cosmetics',
+      name: 'POLISH Formulation Atelier',
+      badge: 'COSMETICS LAUNCH COPILOT',
+      welcome: 'POLISH Cosmetic Formulation & Launch Copilot active. Ready to architect bio-active clinical trials, packaging vessel specifications, and 90-day sell-out drop sequences.',
+      presets: [
+        { label: 'Clinical Claim Protocol', prompt: 'Architect a 28-day blinded clinical testing protocol and claim substantiation framework for our hero formulation to clear EU CPSR and FDA standards.' },
+        { label: 'Vessel & Packaging Spec', prompt: 'Specify high-ticket primary glass flacon specs and secondary rigid slide box packaging to justify a 4x price multiplier and drive organic viral unboxing.' },
+        { label: '90-Day Pre-Order Drop', prompt: 'Map out a 4-phase DTC waitlist drop funnel from R&D teaser VSL to private SMS pre-order release allocating 2,500 initial batch units.' },
+        { label: 'Formula Differentiation', prompt: 'How do we articulate our proprietary bio-active delivery mechanism so consumers instantly recognize it as a breakthrough category first?' },
+        { label: 'Launch Ritual Bundle', prompt: 'Design a 3-item launch ritual bundle with complementary actives that lifts first-order AOV from $65 to $160+.' }
+      ]
+    },
+    'polish-skincare-regimen': {
+      persona: 'polish-skincare',
+      name: 'POLISH Skincare Atelier',
+      badge: 'SKINCARE ROUTINE COPILOT',
+      welcome: 'POLISH Skincare & Retention Copilot active. Ready to engineer 4-step routine architectures, basket-building AOV multipliers, and 90-day replenishment subscriptions.',
+      presets: [
+        { label: '4-Step Regimen Architecture', prompt: 'Map out a synergistic 4-step skincare routine (Prepare, Treat, Hydrate, Shield) with active bio-compatibility and step-by-step skin barrier logic.' },
+        { label: 'Replenishment Cycle Matrix', prompt: 'Structure a 30/60/90-day auto-ship subscription schedule with predictive churn checkpoints and post-purchase skin concierge touchpoints.' },
+        { label: 'Routine AOV Basket Lift', prompt: 'How do we frame the 4-piece complete ritual so 60%+ of net-new customers choose the bundle over the standalone serum?' },
+        { label: 'Barrier Adaptation Guide', prompt: 'Draft the post-purchase Day 14 check-in script addressing the retinoid/acid skin adjustment phase to eliminate formula return requests.' },
+        { label: 'VIP Skin Concierge Sequence', prompt: 'Design a personalized async skin concierge workflow via WhatsApp/SMS that increases 12-month client LTV by 3x.' }
+      ]
+    },
+    'polish-parfumerie-prestige': {
+      persona: 'polish-parfumerie',
+      name: 'POLISH Parfumerie Atelier',
+      badge: 'HAUTE PARFUM COPILOT',
+      welcome: 'POLISH Haute Parfumerie Copilot active. Ready to construct 3-tier olfactory pyramids, discovery sample voucher flywheels, and prestige global boutique margins.',
+      presets: [
+        { label: 'Olfactory Pyramid Design', prompt: 'Architect a sensual 3-tier olfactory pyramid (Head, Heart, Base notes) with rare ingredients, 30%+ extrait concentration, and 16-hour sillage.' },
+        { label: 'Discovery Voucher Flywheel', prompt: 'Structure a self-liquidating $38 Discovery Wardrobe campaign with 100% voucher credit towards full 100ml flacons to eliminate the blind-buy barrier.' },
+        { label: 'Prestige Storytelling & Lore', prompt: 'Write an evocative, editorial fragrance narrative detailing the sourcing lore of our aged Cambodian oud and Grasse rose.' },
+        { label: 'Selective Retail Strategy', prompt: 'Develop a selective distribution framework balancing 84% DTC website margins with prestige department store counter placement (Harrods, Saks).' },
+        { label: 'Private Salon Bespoke Tier', prompt: 'How do we structure an ultra-exclusive $2,500+ custom bespoke formulation atelier service for VIP private clients in the GCC?' }
+      ]
+    },
+    'polish-ugc-beauty': {
+      persona: 'polish-ugc',
+      name: 'POLISH Beauty Creator Network',
+      badge: 'BEAUTY CREATOR COPILOT',
+      welcome: 'POLISH Beauty Creator Copilot active. Ready to brief aesthetic micro-creators, script macro texture ASMR hooks, and scale paid whitelisting ads.',
+      presets: [
+        { label: 'Macro Texture ASMR Brief', prompt: 'Write a 40-second timecoded video performance brief centered on an extreme 4K macro texture dropper release and skin melt demo.' },
+        { label: '3-Tier Seeding Matrix', prompt: 'Establish a tiered creator seeding matrix across Micro Skin Nerds, Pro Estheticians, and Tastemakers with exact compensation and whitelisting rights.' },
+        { label: 'Barrier Myth Agitation Script', prompt: 'Draft a polarizing 3-second hook and 15-second agitation script addressing common skincare routine mistakes that damage the skin acid mantle.' },
+        { label: 'Split-Face Clinical Proof Brief', prompt: 'Create a video brief for a 14-day half-face comparison test showing objective moisture meter readings and barrier redness reduction.' },
+        { label: 'Meta & TikTok Spark Scaling', prompt: 'How do we test 12 creator variations in an Advantage+ sandbox and graduate top 5% thumbstop winners into evergreen spend?' }
+      ]
+    },
     'hormozi-offer': {
       persona: 'hormozi',
       name: 'Alex Hormozi',
@@ -661,10 +713,14 @@
           rawType === 'sprint-swimlane' ? 900 :
           rawType === 'belief-triad' ? 780 :
           rawType === 'diagnostic-protocol' ? 700 :
+          rawType === 'clinical-proof' ? 500 :
+          rawType === 'olfactory-pyramid' ? 480 :
           rawType === 'offer-name-generator' ? 500 :
           rawType === 'bonus-stack' ? 480 :
+          rawType === 'ugc-brief' ? 460 :
           rawType === 'prescription' ? 440 :
           rawType === 'pipeline-node' ? 440 :
+          rawType === 'routine-step' ? 420 :
           rawType === 'capacity-indicator' ? 380 :
           rawType === 'pricing' ? 340 :
           rawType === 'sticky' ? 300 : 460
@@ -824,6 +880,132 @@
       }
       const ctx = this.getSelectionContext();
       this.updateSelectionBadge(ctx);
+    },
+
+    // Executive Board Strategy Auditor
+    auditCurrentBoard() {
+      if (!window.StudioCore) return;
+      const board = window.StudioCore.getCurrentBoard ? window.StudioCore.getCurrentBoard() : null;
+      const elements = window.StudioCore.getElements ? window.StudioCore.getElements() : [];
+      const connections = window.StudioCore.getConnections ? window.StudioCore.getConnections() : [];
+
+      if (!elements || elements.length === 0) {
+        if (typeof window.StudioCore.showToast === 'function') {
+          window.StudioCore.showToast('Canvas is empty. Add elements or deploy a blueprint first.', 'warning');
+        }
+        return;
+      }
+
+      this.openWindow();
+
+      // Synthesize board summary
+      const frameCount = elements.filter(e => e.type === 'frame').length;
+      const metricCount = elements.filter(e => e.type === 'metric').length;
+      const pricingCount = elements.filter(e => e.type === 'pricing').length;
+      const cosmeticCount = elements.filter(e => ['routine-step', 'olfactory-pyramid', 'ugc-brief', 'clinical-proof'].includes(e.type)).length;
+      const titles = elements.map(e => e.title || e.headline || e.stepBadge || e.type).filter(Boolean).slice(0, 12);
+
+      const auditPrompt = `Perform an executive strategy audit of our current board "${board ? board.title : 'Active Blueprint'}":
+- Total Elements: ${elements.length} (${frameCount} Frames, ${metricCount} KPI Metrics, ${pricingCount} Retainer Cards, ${cosmeticCount} Cosmetic Architecture Cards, ${connections.length} Vector Connectors)
+- Key Elements on Canvas: ${titles.join(', ')}
+
+Please provide:
+1. STRATEGIC STRENGTHS: 2 major conversion or authority levers already well-represented.
+2. CRITICAL BOTTLENECK: 1 glaring risk or missing element that weakens commercial velocity or buyer conviction.
+3. IMMEDIATE ACTION: Exactly which card or framework we must add next to complete the loop, with specific recommended numbers and copy.`;
+
+      const promptInput = document.getElementById('aiPromptInput');
+      if (promptInput) {
+        promptInput.value = auditPrompt;
+        promptInput.style.height = 'auto';
+        promptInput.style.height = Math.min(promptInput.scrollHeight, 110) + 'px';
+      }
+      this.sendMessage();
+    },
+
+    // 1-Click Multi-Node Strategy Flow Injector
+    injectStrategyFlow(flowType = 'routine') {
+      if (!window.StudioCore) return;
+
+      let cards = [];
+      if (flowType === 'routine') {
+        cards = [
+          {
+            type: 'routine-step',
+            stepBadge: 'STEP 01 • PREPARE',
+            timeBadge: 'AM & PM',
+            title: 'Botanical Lipid-Restoring Cleanser',
+            actives: '• 5% Niacinamide + Zinc PCA\n• Centella Asiatica & Liposomal Matrix',
+            aovLift: 'Solo: $48 | Step 1 Anchor'
+          },
+          {
+            type: 'routine-step',
+            stepBadge: 'STEP 02 • TREAT',
+            timeBadge: 'AM & PM ESSENTIAL',
+            title: 'Cellular Peptide Renewal Elixir',
+            actives: '• Copper Tripeptide-1 (GHK-Cu)\n• 3 Molecular Weight Hyaluronic Acid',
+            aovLift: 'Solo: $84 | Hero SKU (62% CVR)'
+          },
+          {
+            type: 'routine-step',
+            stepBadge: 'STEP 03 • HYDRATE',
+            timeBadge: 'PM HEALING',
+            title: 'Ceramide Lamellar Barrier Crème',
+            actives: '• Ceramides NP, AP, EOP (3:1:1)\n• Plant Squalane & Cholesterol',
+            aovLift: 'Solo: $72 | +28% Basket Cross-Sell'
+          },
+          {
+            type: 'metric',
+            title: 'ROUTINE BUNDLE AOV',
+            figure: '$198 AOV',
+            badge: '+142% LTV BOOST',
+            subtitle: 'Complete 3-Piece Regimen'
+          }
+        ];
+      } else if (flowType === 'parfum') {
+        cards = [
+          {
+            type: 'olfactory-pyramid',
+            title: 'Oud Impérial & Rose Centifolia',
+            concentration: 'EXTRAIT DE PARFUM (32%)',
+            topNotes: 'Calabrian Bergamot, Saffron, Pink Peppercorn',
+            heartNotes: 'Grasse Rose Centifolia, Orris Butter, Cardamom',
+            baseNotes: '30-Yr Wild Cambodian Oud, Ambergris, Vanilla',
+            voucher: '$38 Discovery Set = 100% Credit on 100ml'
+          },
+          {
+            type: 'metric',
+            title: 'DISCOVERY TO FLACON CVR',
+            figure: '38.4% CVR',
+            badge: 'CAC COMPRESSED',
+            subtitle: 'Discovery Voucher to Full 100ml Flacon ($240 MSRP)'
+          }
+        ];
+      } else if (flowType === 'clinical') {
+        cards = [
+          {
+            type: 'clinical-proof',
+            title: 'Laboratory Bio-Efficacy Results',
+            labName: 'PARISIAN DERM CLINICAL LAB',
+            stat1: '96%',
+            claim1: 'Immediate reduction in skin erythema within 15 minutes.',
+            stat2: '89%',
+            claim2: 'Instrumental corneometry lift in barrier moisture over 72 hours.'
+          },
+          {
+            type: 'ugc-brief',
+            title: 'Extreme Macro Texture Melt',
+            platform: 'TIKTOK & SPARK ADS',
+            conceptTag: 'ANGLE: SENSORY ASMR & BARRIER SOOTHING',
+            thumbstop: '42%+',
+            cpa: '$16.50'
+          }
+        ];
+      }
+
+      if (cards.length > 0) {
+        this.insertCardsToCanvas(cards);
+      }
     }
   };
 

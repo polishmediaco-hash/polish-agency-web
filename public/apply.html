@@ -16,9 +16,10 @@
   <meta property="og:description" content="Ready to dominate your market? Submit your brand dossier to POLISH.">
   <meta property="og:image" content="https://polishmediaco.com/assets/logo-gold.png?v=21.0">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=21.0">
-  <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png?v=21.0">
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=23.0">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="/assets/logo-gold-mark.png?v=23.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
 
   <!-- Google Fonts: Plus Jakarta Sans, Cormorant Garamond & Tajawal (Arabic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,9 +164,15 @@
                 </div>
               </div>
 
-              <div class="field-group" style="margin-top: 16px;">
-                <label class="field-label" for="socialLink"><span data-i18n="apply.socialLink">Primary Social Link (Instagram / TikTok)</span> <span class="req">*</span></label>
-                <input type="text" id="socialLink" name="socialLink" class="form-input" placeholder="@auroracosmetics or URL" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="next" required>
+              <div class="input-grid-2" style="margin-top: 16px;">
+                <div class="field-group">
+                  <label class="field-label" for="websiteUrl"><span data-i18n="apply.websiteUrl">Brand Website / Store URL</span> <span class="req">*</span></label>
+                  <input type="url" id="websiteUrl" name="websiteUrl" class="form-input" placeholder="https://auroracosmetics.com" autocomplete="url" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="url" enterkeyhint="next" required>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="socialLink"><span data-i18n="apply.socialLink">Primary Social Link (Instagram / TikTok)</span> <span class="req">*</span></label>
+                  <input type="text" id="socialLink" name="socialLink" class="form-input" placeholder="@auroracosmetics or URL" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="next" required>
+                </div>
               </div>
             </div>
 
@@ -192,7 +199,7 @@
                   </label>
 
                   <label class="cat-badge-label">
-                    <input type="radio" name="businessCategory" value="Cosmetic Manufacturer / OEM">
+                    <input type="radio" name="businessCategory" value="Fragrance & Body">
                     <div class="cat-badge-card" data-i18n="apply.optFragrance">Fragrance & Body</div>
                   </label>
                 </div>
@@ -204,8 +211,8 @@
                   <option value="" disabled selected>Select leadership position...</option>
                   <option value="Founder / CEO / Co-Founder" data-i18n="apply.optFounder">Founder / CEO</option>
                   <option value="CMO / VP of Marketing / Head of Growth" data-i18n="apply.optMarketing">CMO / Marketing Lead</option>
-                  <option value="Cosmetic Chemist / Formulation & R&D Lead" data-i18n="apply.optEcommerce">E-Commerce Director</option>
-                  <option value="Managing Director / Partner" data-i18n="apply.optAgency">Brand Representative</option>
+                  <option value="E-Commerce Director" data-i18n="apply.optEcommerce">E-Commerce Director</option>
+                  <option value="Brand Representative" data-i18n="apply.optAgency">Brand Representative</option>
                 </select>
               </div>
             </div>
@@ -214,10 +221,22 @@
             <div class="form-step-pane" data-step="3">
               <h3 class="step-lead-title" data-i18n="apply.step3Title">Current Marketing Setup</h3>
 
+              <div class="field-group" style="margin-bottom: 20px;">
+                <label class="field-label" for="monthlyRevenue"><span data-i18n="apply.monthlyRevenue">Current Monthly Revenue</span> <span class="req">*</span></label>
+                <select id="monthlyRevenue" name="monthlyRevenue" class="form-select" required>
+                  <option value="" disabled selected data-i18n="apply.optRevPlaceholder">Select current monthly revenue range...</option>
+                  <option value="Under $20k/mo" data-i18n="apply.optRevUnder20k">Under $20,000 / month (Early Stage)</option>
+                  <option value="$20k - $50k/mo" data-i18n="apply.optRev20k50k">$20,000 – $50,000 / month (Emerging Brand)</option>
+                  <option value="$50k - $150k/mo" data-i18n="apply.optRev50k150k">$50,000 – $150,000 / month (Scaling Brand)</option>
+                  <option value="$150k - $500k/mo" data-i18n="apply.optRev150k500k">$150,000 – $500,000 / month (High-Growth Brand)</option>
+                  <option value="$500k+/mo" data-i18n="apply.optRev500kPlus">$500,000+ / month (Enterprise / Global House)</option>
+                </select>
+              </div>
+
               <div class="field-group">
                 <label class="field-label" for="marketingHistory"><span data-i18n="apply.marketingHistory">Marketing Status</span> <span class="req">*</span></label>
                 <select id="marketingHistory" name="marketingHistory" class="form-select" required>
-                  <option value="" disabled selected>Select current marketing status...</option>
+                  <option value="" disabled selected data-i18n="apply.optHistPlaceholder">Select current marketing status...</option>
                   <option value="We manage marketing in-house and are looking to scale profitably." data-i18n="apply.optHistInHouse">Managing in-house, ready to scale profitably</option>
                   <option value="We currently do not run paid ads (organic/influencer only)" data-i18n="apply.optHistNone">Organic / Influencer only (no paid ads yet)</option>
                   <option value="We currently work with an agency and seek better creative & ROAS" data-i18n="apply.optHistAgency">Working with an agency, looking for better creative & ROAS</option>

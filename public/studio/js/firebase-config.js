@@ -325,6 +325,18 @@
       return cached;
     },
 
+    // Helper: Get Auth Headers for API requests
+    async getAuthHeaders() {
+      const headers = { 'Content-Type': 'application/json' };
+      try {
+        if (this.auth && this.auth.currentUser && typeof this.auth.currentUser.getIdToken === 'function') {
+          const token = await this.auth.currentUser.getIdToken();
+          if (token) headers['Authorization'] = `Bearer ${token}`;
+        }
+      } catch (_) {}
+      return headers;
+    },
+
     // Board Persistence: Save / Update Board (Instant Sync + Non-blocking Background API)
     async saveBoard(boardData, user) {
       if (!boardData || !boardData.id) throw new Error('Invalid board data');
@@ -367,11 +379,16 @@
       } catch (_) {}
 
       // 2. Non-blocking asynchronous sync to backend API in background
-      fetch(`/api/boards/${encodeURIComponent(boardData.id)}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(() => {});
+      (async () => {
+        try {
+          const headers = await this.getAuthHeaders();
+          await fetch(`/api/boards/${encodeURIComponent(boardData.id)}`, {
+            method: 'PUT',
+            headers,
+            body: JSON.stringify(payload)
+          });
+        } catch (_) {}
+      })();
 
       return payload;
     },
@@ -394,7 +411,15 @@
       } catch (_) {}
 
       // 2. Non-blocking delete on server
-      fetch(`/api/boards/${encodeURIComponent(boardId)}`, { method: 'DELETE' }).catch(() => {});
+      (async () => {
+        try {
+          const headers = await this.getAuthHeaders();
+          await fetch(`/api/boards/${encodeURIComponent(boardId)}`, {
+            method: 'DELETE',
+            headers
+          });
+        } catch (_) {}
+      })();
       return true;
     }
   };

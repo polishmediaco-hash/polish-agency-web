@@ -18,8 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
-  <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg?v=23.0">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="/assets/logo-gold-mark.png?v=23.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
   <style>
     :root {
       --brand-gold: #C5A880;
@@ -226,32 +227,25 @@
     </button>
   </div>
 
-  <!-- Firebase Web SDK (Lightweight Auth Only — zero firestore overhead) -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="/studio/js/firebase-config.js?v=20260909_fast"></script>
+  <!-- Supabase Web Client (~35KB vs ~175KB Firebase) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/studio/js/supabase-config.js?v=20260910_v2"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      // Instant zero-delay initialization
-      PolishFirebase.init();
+      await PolishSupabase.init();
 
-      // Check if arriving from full-page redirect
-      if (PolishFirebase.auth && PolishFirebase.auth.getRedirectResult) {
-        try {
-          const res = await PolishFirebase.auth.getRedirectResult();
-          if (res && res.user) {
-            let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
-            if (redirect === '/login' || redirect.startsWith('/login')) redirect = '/boards';
-            window.location.replace(redirect);
-            return;
-          }
-        } catch (e) {
-          console.warn('[Login] Redirect check:', e);
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlErr = urlParams.get('error') || PolishSupabase.lastAuthError;
+      if (urlErr) {
+        const authError = document.getElementById('authError');
+        if (authError) {
+          authError.innerHTML = urlErr;
+          authError.style.display = 'block';
         }
       }
 
-      if (PolishFirebase.currentUser) {
+      if (PolishSupabase.currentUser) {
         let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
         if (redirect === '/login' || redirect.startsWith('/login')) redirect = '/boards';
         window.location.replace(redirect);
@@ -259,13 +253,13 @@
     });
 
     function handleOfflineEntry() {
-      PolishFirebase.loginOffline('Executive Advisor');
+      PolishSupabase.loginOffline('Executive Advisor');
       let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
       if (redirect === '/login' || redirect.startsWith('/login')) redirect = '/boards';
       window.location.href = redirect;
     }
 
-    async function handleGoogleSignIn(mode) {
+    async function handleGoogleSignIn() {
       const authError = document.getElementById('authError');
       const btn = document.getElementById('btnGoogleSignIn');
       const text = document.getElementById('btnGoogleText');
@@ -273,39 +267,22 @@
       authError.style.display = 'none';
       btn.style.opacity = '0.75';
       btn.style.pointerEvents = 'none';
-      text.textContent = mode === 'redirect' ? 'Redirecting to Google...' : 'Connecting to Google...';
+      text.textContent = 'Connecting with Google...';
 
       try {
-        if (mode === 'redirect') {
-          if (!PolishFirebase.auth) await PolishFirebase.init();
-          const provider = new firebase.auth.GoogleAuthProvider();
-          provider.addScope('profile');
-          provider.addScope('email');
-          provider.setCustomParameters({ prompt: 'select_account' });
-          await PolishFirebase.auth.signInWithRedirect(provider);
-          return;
-        }
-
-        const user = await PolishFirebase.loginWithGoogle();
-        if (!user) {
-          text.textContent = 'Redirecting to Google...';
-          return;
-        }
-        const redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
-        window.location.href = redirect;
+        let redirect = new URLSearchParams(window.location.search).get('redirect') || '/boards';
+        if (redirect === '/login' || redirect.startsWith('/login')) redirect = '/boards';
+        
+        await PolishSupabase.loginWithGoogle({
+          redirectTo: window.location.origin + redirect
+        });
       } catch (err) {
         btn.style.opacity = '1';
         btn.style.pointerEvents = 'auto';
         text.textContent = 'Continue with Google';
-        console.error('[Login] Google auth error:', err);
+        console.error('[Login] Supabase Google auth error:', err);
 
-        let msg = err.message || 'Google Sign-In could not be completed.';
-        if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/popup-blocked') {
-          msg = `Sign-in popup was closed or blocked.<div style="margin-top:10px;"><button type="button" onclick="handleGoogleSignIn('redirect')" style="background:#080706;border:1px solid rgba(197,168,128,0.45);color:#F5E6D3;padding:8px 18px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;">Continue with Direct Google Sign-In &rarr;</button></div>`;
-        } else if (err.code === 'auth/unauthorized-domain') {
-          msg = 'Domain not authorized in Firebase Auth. You can use Offline Mode below.';
-        }
-        authError.innerHTML = msg;
+        authError.innerHTML = err.message || 'Google Sign-In could not be completed. You can use Offline Mode below.';
         authError.style.display = 'block';
       }
     }

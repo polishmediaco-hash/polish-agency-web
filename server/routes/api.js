@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage } = require('../services/notification');
 const { requireAdminAuth } = require('../middleware/auth');
+const { leadsService, cmsService, keepAliveService, invoicesService } = require('../services/supabase');
 
 const router = express.Router();
 // On Vercel serverless the project root is read-only; use /tmp which is writable.
@@ -18,36 +19,6 @@ const INTAKE_FILE = IS_VERCEL
   ? path.join('/tmp', 'intake_latest.json')
   : path.join(__dirname, '../db/intake_latest.json');
 
-// Helper to read DB safely
-function readLeads() {
-  try {
-    if (!fs.existsSync(DB_FILE)) {
-      fs.writeFileSync(DB_FILE, '[]', 'utf8');
-      return [];
-    }
-    const data = fs.readFileSync(DB_FILE, 'utf8');
-    return JSON.parse(data || '[]');
-  } catch (err) {
-    console.error('Error reading leads DB:', err);
-    return [];
-  }
-}
-
-// Helper to write DB safely — atomic rename prevents race condition data loss
-function writeLeads(leads) {
-  try {
-    const dir = path.dirname(DB_FILE);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    const tmp = DB_FILE + '.tmp.' + Date.now();
-    fs.writeFileSync(tmp, JSON.stringify(leads, null, 2), 'utf8');
-    fs.renameSync(tmp, DB_FILE); // atomic on same filesystem
-    return true;
-  } catch (err) {
-    console.error('Error writing leads DB:', err);
-    return false;
-  }
-}
-
 // GET /api/config
 router.get('/config', (req, res) => {
   res.json({
@@ -58,12 +29,96 @@ router.get('/config', (req, res) => {
   });
 });
 
-// GET /api/admin/verify (Validate Firebase Bearer token or API key and return admin profile)
+// GET /api/config/supabase (Safe public client config for Supabase Auth)
+router.get('/config/supabase', (req, res) => {
+  res.json({
+    supabaseUrl: process.env.SUPABASE_URL || '',
+    supabaseAnonKey: process.env.SUPABASE_ANON_KEY || '',
+    isConfigured: Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY)
+  });
+});
+
+// GET /api/cron/keep-alive (Automated heartbeat to prevent 7-day auto-pausing on Supabase Free Tier)
+router.get('/cron/keep-alive', async (req, res) => {
+  try {
+    const cronSecret = process.env.CRON_SECRET;
+    const authHeader = req.headers.authorization;
+    if (cronSecret && authHeader && authHeader !== `Bearer ${cronSecret}`) {
+      return res.status(401).json({ success: false, error: 'Unauthorized cron invocation.' });
+    }
+    const result = await keepAliveService.recordPing('vercel_cron');
+    return res.json({
+      success: true,
+      message: 'Supabase keep-alive heartbeat registered successfully.',
+      cloud: result.cloud,
+      timestamp: new Date().toISOString()
+    });
+  } catch (err) {
+    console.error('[Keep-Alive Cron Error]:', err);
+    return res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET /api/admin/verify (Validate Supabase Bearer token or API key and return admin profile)
 router.get('/admin/verify', requireAdminAuth, (req, res) => {
   res.json({
     success: true,
     user: req.adminUser
   });
+});
+
+// ── INVOICES API (Protected by Admin Auth) ──────────────────────────────────
+// GET /api/invoices (List all invoices)
+router.get('/invoices', requireAdminAuth, async (req, res) => {
+  try {
+    const invoices = await invoicesService.listInvoices();
+    res.json({ success: true, invoices });
+  } catch (err) {
+    console.error('[API /api/invoices Error]:', err);
+    res.status(500).json({ success: false, error: 'Failed to retrieve invoices.' });
+  }
+});
+
+// GET /api/invoices/:id (Fetch single invoice)
+router.get('/invoices/:id', requireAdminAuth, async (req, res) => {
+  try {
+    const invoice = await invoicesService.getInvoiceById(req.params.id);
+    if (!invoice) {
+      return res.status(404).json({ success: false, error: 'Invoice not found.' });
+    }
+    res.json({ success: true, invoice });
+  } catch (err) {
+    console.error('[API /api/invoices/:id Error]:', err);
+    res.status(500).json({ success: false, error: 'Failed to retrieve invoice.' });
+  }
+});
+
+// POST /api/invoices (Create / Update invoice)
+router.post('/invoices', requireAdminAuth, async (req, res) => {
+  try {
+    if (!req.body || typeof req.body !== 'object') {
+      return res.status(400).json({ success: false, error: 'Invalid invoice payload.' });
+    }
+    const saved = await invoicesService.saveInvoice(req.body);
+    res.json({ success: true, invoice: saved });
+  } catch (err) {
+    console.error('[API POST /api/invoices Error]:', err);
+    res.status(500).json({ success: false, error: 'Failed to save invoice.' });
+  }
+});
+
+// DELETE /api/invoices/:id (Delete invoice)
+router.delete('/invoices/:id', requireAdminAuth, async (req, res) => {
+  try {
+    const ok = await invoicesService.deleteInvoice(req.params.id);
+    if (!ok) {
+      return res.status(404).json({ success: false, error: 'Invoice could not be deleted.' });
+    }
+    res.json({ success: true, message: 'Invoice permanently deleted.' });
+  } catch (err) {
+    console.error('[API DELETE /api/invoices/:id Error]:', err);
+    res.status(500).json({ success: false, error: 'Failed to delete invoice.' });
+  }
 });
 
 // POST /api/apply (Multi-Step Brand Partnership Dossier Intake)
@@ -78,6 +133,7 @@ router.post('/apply', async (req, res) => {
       socialLink,
       role,
       businessCategory,
+      monthlyRevenue,
       marketingHistory,
       primaryGoal
     } = req.body;
@@ -100,6 +156,7 @@ router.post('/apply', async (req, res) => {
       socialLink: socialLink.trim(),
       role: role.trim(),
       businessCategory: businessCategory.trim(),
+      monthlyRevenue: (monthlyRevenue || '').trim() || (req.body.calculatorData?.monthlyRevenue ? `$${Number(req.body.calculatorData.monthlyRevenue).toLocaleString()}/mo` : 'Not specified'),
       marketingHistory: marketingHistory.trim(),
       primaryGoal: primaryGoal ? primaryGoal.trim() : 'Not provided',
       calculatorData: req.body.calculatorData || null,
@@ -109,9 +166,7 @@ router.post('/apply', async (req, res) => {
       status: 'NEW_APPLICATION'
     };
 
-    const leads = readLeads();
-    leads.unshift(newLead);
-    writeLeads(leads);
+    await leadsService.createLead(newLead);
 
     // Fire off async notification
     notifyNewLead(newLead).catch(console.error);
@@ -145,19 +200,21 @@ router.post('/creators/apply', async (req, res) => {
     const creatorApplication = {
       id: `CREATOR-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`,
       type: 'CREATOR_PARTNERSHIP',
-      name: name.trim(),
+      fullName: name.trim(),
       socialLink: socialLink.trim(),
-      portfolio: portfolio ? portfolio.trim() : 'Not provided',
+      websiteUrl: portfolio ? portfolio.trim() : 'Not provided',
       phone: phone.trim(),
+      role: 'UGC Content Creator',
+      businessCategory: 'Creator Talent',
+      marketingHistory: 'UGC Content Creation',
+      primaryGoal: 'Brand Content Partnerships',
       ipAddress: req.ip || req.headers['x-forwarded-for'] || 'unknown',
       userAgent: req.headers['user-agent'] || 'unknown',
       submittedAt: new Date().toISOString(),
       status: 'NEW_APPLICATION'
     };
 
-    const leads = readLeads();
-    leads.unshift(creatorApplication);
-    writeLeads(leads);
+    await leadsService.createLead(creatorApplication);
 
     // Fire off async notification
     notifyNewLead(creatorApplication).catch(console.error);
@@ -207,10 +264,8 @@ router.post('/intake', async (req, res) => {
       status: 'NEW_APPLICATION'
     };
 
-    // 1. Save to central leads DB
-    const leads = readLeads();
-    leads.unshift(intakeLead);
-    writeLeads(leads);
+    // 1. Save to central leads DB (Supabase + Local fallback)
+    await leadsService.createLead(intakeLead);
 
     // 2. Persist latest calibrated intake answers for private board sync
     try {
@@ -243,7 +298,7 @@ router.post('/intake', async (req, res) => {
 });
 
 // GET /api/intake (Retrieve latest calibrated intake brief for the Board — Admin only)
-router.get('/intake', requireAdminAuth, (req, res) => {
+router.get('/intake', requireAdminAuth, async (req, res) => {
   try {
     if (fs.existsSync(INTAKE_FILE)) {
       const data = fs.readFileSync(INTAKE_FILE, 'utf8');
@@ -251,7 +306,7 @@ router.get('/intake', requireAdminAuth, (req, res) => {
     }
 
     // Fallback: check leads for type: STRATEGY_INTAKE
-    const leads = readLeads();
+    const leads = await leadsService.getAllLeads();
     const latest = leads.find(l => l.type === 'STRATEGY_INTAKE');
     if (latest) {
       return res.json({ success: true, intake: latest });
@@ -265,56 +320,60 @@ router.get('/intake', requireAdminAuth, (req, res) => {
 });
 
 // GET /api/leads
-router.get('/leads', requireAdminAuth, (req, res) => {
-  const leads = readLeads();
-  res.json({
-    success: true,
-    total: leads.length,
-    leads
-  });
+router.get('/leads', requireAdminAuth, async (req, res) => {
+  try {
+    const leads = await leadsService.getAllLeads();
+    res.json({
+      success: true,
+      total: leads.length,
+      leads
+    });
+  } catch (err) {
+    console.error('Error fetching leads:', err);
+    res.status(500).json({ success: false, error: 'Failed to fetch leads.' });
+  }
 });
 
 // PATCH /api/leads/:id (Update CRM stage, founder notes, priority)
-router.patch('/leads/:id', requireAdminAuth, (req, res) => {
-  const { id } = req.params;
-  const { status, notes, priority } = req.body || {};
-  const leads = readLeads();
-  const index = leads.findIndex(l => l.id === id);
+router.patch('/leads/:id', requireAdminAuth, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status, notes, priority, tags } = req.body || {};
+    const updated = await leadsService.updateLead(id, { status, notes, priority, tags });
 
-  if (index === -1) {
-    return res.status(404).json({ success: false, error: 'Application not found.' });
+    if (!updated) {
+      return res.status(404).json({ success: false, error: 'Application not found.' });
+    }
+
+    res.json({
+      success: true,
+      message: `Application ${id} updated successfully.`,
+      lead: updated
+    });
+  } catch (err) {
+    console.error('Error updating lead:', err);
+    res.status(500).json({ success: false, error: 'Failed to update lead.' });
   }
-
-  if (status !== undefined) leads[index].status = status;
-  if (notes !== undefined) leads[index].notes = notes;
-  if (priority !== undefined) leads[index].priority = priority;
-  leads[index].updatedAt = new Date().toISOString();
-
-  writeLeads(leads);
-  res.json({
-    success: true,
-    message: `Application ${id} updated successfully.`,
-    lead: leads[index]
-  });
 });
 
 // DELETE /api/leads/:id (Delete application from Admin Dashboard)
-router.delete('/leads/:id', requireAdminAuth, (req, res) => {
-  const { id } = req.params;
-  const leads = readLeads();
-  const initialLength = leads.length;
-  const filtered = leads.filter(l => l.id !== id);
+router.delete('/leads/:id', requireAdminAuth, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await leadsService.deleteLead(id);
 
-  if (filtered.length === initialLength) {
-    return res.status(404).json({ success: false, error: 'Application not found.' });
+    if (!deleted) {
+      return res.status(404).json({ success: false, error: 'Application not found.' });
+    }
+
+    res.json({
+      success: true,
+      message: `Application ${id} deleted successfully.`
+    });
+  } catch (err) {
+    console.error('Error deleting lead:', err);
+    res.status(500).json({ success: false, error: 'Failed to delete lead.' });
   }
-
-  writeLeads(filtered);
-  res.json({
-    success: true,
-    message: `Application ${id} deleted successfully.`,
-    total: filtered.length
-  });
 });
 
 // POST /api/notifications/test (Test Notification Service)
@@ -453,10 +512,8 @@ router.post('/calendly-webhook', async (req, res) => {
       status: 'SCHEDULED'
     };
 
-    // Save to leads DB
-    const leads = readLeads();
-    leads.unshift(meetingRecord);
-    writeLeads(leads);
+    // Save to leads DB (Supabase + local fallback)
+    await leadsService.createLead(meetingRecord);
 
     // Fire off async notifications (WhatsApp + Telegram + Webhook)
     notifyNewMeeting(meetingRecord).catch(console.error);
@@ -745,19 +802,27 @@ function writeContent(content) {
 }
 
 // GET /api/content (Public - For live website dynamic hydration)
-router.get('/content', (req, res) => {
-  const content = readContent();
-  res.json({ success: true, content });
+router.get('/content', async (req, res) => {
+  try {
+    let content = await cmsService.getContent();
+    if (!content || Object.keys(content).length === 0) {
+      content = getDefaultContent();
+    }
+    res.json({ success: true, content });
+  } catch (err) {
+    console.error('Error reading CMS content:', err);
+    res.json({ success: true, content: getDefaultContent() });
+  }
 });
 
 // POST /api/content (Protected - Save website text from Admin Dashboard)
-router.post('/content', requireAdminAuth, (req, res) => {
+router.post('/content', requireAdminAuth, async (req, res) => {
   const { content } = req.body;
   if (!content || typeof content !== 'object') {
     return res.status(400).json({ success: false, error: 'Invalid content payload.' });
   }
 
-  const saved = writeContent(content);
+  const saved = await cmsService.saveContent(content, req.adminUser?.email || 'Admin');
   if (!saved) {
     return res.status(500).json({ success: false, error: 'Failed to write content to database.' });
   }
@@ -766,9 +831,9 @@ router.post('/content', requireAdminAuth, (req, res) => {
 });
 
 // POST /api/content/reset (Protected - Reset website text to original defaults)
-router.post('/content/reset', requireAdminAuth, (req, res) => {
+router.post('/content/reset', requireAdminAuth, async (req, res) => {
   const def = getDefaultContent();
-  writeContent(def);
+  await cmsService.saveContent(def, 'Factory Reset');
   res.json({ success: true, message: 'Website content reset to factory defaults.', content: def });
 });
 
@@ -961,7 +1026,44 @@ router.post('/ai/chat', async (req, res) => {
     const t = activeTemplate;
 
     if (activePersona || activeTemplate) {
-      if (p.includes('hormozi') || t.includes('hormozi')) {
+      if (p.includes('polish-cosmetics') || t.includes('polish-cosmetics') || p.includes('cosmetics') || t.includes('cosmetics')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: POLISH COSMETICS ATELIER (HAUTE FORMULATION & PRODUCT LAUNCH)
+Adopt POLISH Media Co's elite cosmetic formulation accelerator and luxury launch mindset.
+Frameworks to embody:
+- Hero SKU & Formulation Chemistry: Emphasize bio-active bioavailability, liposomal delivery systems, and clinical efficacy.
+- Regulatory & Claim Substantiation: EU CPSR, US FDA cosmetic safe harbors, independent dermatological trials (n=50+ cohort), corneometry and barrier metrics.
+- Tactile Packaging Architecture: UV-coated flint glass flacons, custom gold-accented pipettes, rigid soft-touch slide boxes with gold foil batch seals.
+- Drop Velocity: 4-phase DTC waitlist drop funnel (R&D Teaser VSL → Private SMS VIP Drop → General Public DTC Scaling).
+- Launch Economics: Always formulate a 3-item ritual bundle to lift launch-day AOV above $160.
+- Style: Authoritative, sensorial, cosmetological, grounded in clinical science and luxury prestige.`;
+      } else if (p.includes('polish-skincare') || t.includes('polish-skincare') || p.includes('skincare') || t.includes('skincare')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: POLISH SKINCARE ATELIER (DTC ROUTINE & REPLENISHMENT LTV)
+Adopt POLISH Media Co's clinical skincare routine architecture and retention engineering mindset.
+Frameworks to embody:
+- 4-Step Regimen Architecture: Prepare (cleanser) → Treat (high-potency serum) → Hydrate (lamellar barrier crème) → Shield (mineral SPF).
+- Routine Basket-Building: Position the complete 4-piece regimen to achieve 3.4x higher conversion and +140% AOV lift vs single SKUs.
+- 90-Day Auto-Ship Retention: 30/60/90-day automated replenishment triggers, usage check-ins, and barrier adaptation guides.
+- Post-Purchase Skin Concierge: WhatsApp/SMS personal advisor touchpoints that eradicate customer churn.
+- Style: Dermatological, structured, ritualistic, focused on skin barrier integrity and subscription economics.`;
+      } else if (p.includes('polish-parfumerie') || t.includes('polish-parfumerie') || p.includes('parfumerie') || t.includes('parfumerie')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: POLISH HAUTE PARFUMERIE (PRESTIGE POSITIONING & DISCOVERY)
+Adopt POLISH Media Co's luxury parfumerie and olfactory architecture mindset.
+Frameworks to embody:
+- 3-Tier Olfactory Architecture: Top/Head Notes (0-20 min), Heart Notes (20 min - 4 hr), Base Notes (4 - 24 hr). Extrait concentration (30%+).
+- Discovery Voucher Flywheel: Overcome digital fragrance blind-buying with a $38 Discovery Wardrobe rebating 100% on any 100ml flacon.
+- Narrative & Provenance: Sourcing lore, artisanal extraction (steam distillation, CO2 extract), and rare terroir.
+- Distribution Strategy: 84% DTC website margins harmonized with prestige boutique counters (Harrods, Bon Marché, Dubai Mall).
+- Style: Poetic, evocative, ultra-luxurious, sensorial, commanding high-ticket price asymmetry.`;
+      } else if (p.includes('polish-ugc') || t.includes('polish-ugc') || p.includes('ugc') || t.includes('ugc')) {
+        contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: POLISH BEAUTY CREATOR NETWORK (PERFORMANCE UGC & SPARK ADS)
+Adopt POLISH Media Co's high-converting beauty creator direction and paid social scaling mindset.
+Frameworks to embody:
+- 3-Second Sensory Hooks: 4K macro texture dropper releases, viscous droplet melts, skin barrier ASMR, and split-face moisture meter tests.
+- 3-Tier Creator Seeding Matrix: Tier 1 (Micro Skin Nerds), Tier 2 (Pro Estheticians & Cosmetic Chemists), Tier 3 (Category Tastemakers).
+- Whitelisting & Dark Posting: Meta Spark Ads & TikTok Shop whitelisting with 30/90-day usage rights.
+- DCT Sandbox Testing: 3 video thumbstops × 2 audio angles tested in isolated ad sets before graduating to core Advantage+ budgets.
+- Style: Direct-response, hyper-tactile, conversion-focused, obsessing over thumbstop rate (>38%) and CPA compression.`;
+      } else if (p.includes('hormozi') || t.includes('hormozi')) {
         contextualSystemPrompt += `\n\n### ACTIVE CREATOR PERSONA: ALEX HORMOZI ($100M OFFERS & VALUE EQUATION)
 Adopt Alex Hormozi's direct, high-leverage operator mindset.
 Frameworks to embody:

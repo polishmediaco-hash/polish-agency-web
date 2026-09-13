@@ -3368,3 +3368,638 @@ body.theme-dark .flywheel-tier-desc {
   border-top: 1px solid var(--border-subtle, #E8E2D8);
   padding-top: 0.85rem;
 }
+
+/* ==========================================================
+   26. POLISH COSMETICS: 4-STEP SKINCARE ROUTINE STEP CARD
+   ========================================================== */
+.element-routine-step {
+  position: absolute;
+  background: var(--surface-white, #FFFFFF);
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-frame);
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.element-routine-step:hover {
+  border-color: var(--brand-gold, #C5A880);
+  box-shadow: var(--shadow-hover);
+}
+.crs-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.crs-step-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  background: rgba(197, 168, 128, 0.12);
+  border: 1px solid rgba(197, 168, 128, 0.3);
+  color: var(--brand-gold-text, #8C6226);
+  text-transform: uppercase;
+}
+.crs-time-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--text-muted, #5C564F);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.crs-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-ink, #110F0D);
+  line-height: 1.3;
+}
+.crs-subtitle {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted, #5C564F);
+  font-style: italic;
+}
+.crs-actives-card {
+  background: var(--surface-subtle, #F5F1EB);
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 10px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.crs-field-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-light, #7E776F);
+  text-transform: uppercase;
+}
+.crs-actives-text {
+  font-size: 0.75rem;
+  color: var(--text-slate, #2E2A27);
+  line-height: 1.5;
+  white-space: pre-line;
+}
+.crs-benefit-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle, #E8E2D8);
+}
+.crs-benefit-val {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-slate, #2E2A27);
+  line-height: 1.35;
+  margin-top: 0.2rem;
+}
+.crs-benefit-val.highlight-gold {
+  color: var(--brand-gold-text, #8C6226);
+  font-weight: 700;
+}
+
+/* ==========================================================
+   27. POLISH COSMETICS: HAUTE PARFUMERIE OLFACTORY PYRAMID
+   ========================================================== */
+.element-olfactory-pyramid {
+  position: absolute;
+  background: var(--surface-white, #FFFFFF);
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-frame);
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+.element-olfactory-pyramid:hover {
+  border-color: var(--brand-gold, #C5A880);
+  box-shadow: var(--shadow-hover);
+}
+.op-tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.op-badge-gold {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: #E2C799;
+  color: #080706;
+}
+.op-type-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.56rem;
+  font-weight: 700;
+  color: var(--text-muted, #5C564F);
+  letter-spacing: 0.08em;
+}
+.op-title {
+  margin: 0;
+  font-family: var(--font-serif, serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text-ink, #110F0D);
+  line-height: 1.25;
+}
+.op-tagline {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted, #5C564F);
+}
+.op-tiers-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.op-tier {
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: transform 0.2s ease;
+}
+.op-tier-top {
+  background: linear-gradient(135deg, rgba(226, 199, 153, 0.12) 0%, rgba(245, 241, 235, 0.4) 100%);
+  border-color: rgba(226, 199, 153, 0.35);
+}
+.op-tier-heart {
+  background: linear-gradient(135deg, rgba(197, 168, 128, 0.15) 0%, rgba(245, 241, 235, 0.5) 100%);
+  border-color: rgba(197, 168, 128, 0.45);
+}
+.op-tier-base {
+  background: linear-gradient(135deg, rgba(140, 98, 38, 0.12) 0%, rgba(245, 241, 235, 0.6) 100%);
+  border-color: rgba(140, 98, 38, 0.35);
+}
+.op-tier-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.op-tier-name {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-slate, #2E2A27);
+  text-transform: uppercase;
+}
+.op-tier-time {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  color: var(--text-muted, #5C564F);
+}
+.op-tier-notes {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-ink, #110F0D);
+  line-height: 1.4;
+}
+.op-metrics-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--border-subtle, #E8E2D8);
+}
+.op-stat-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.54rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-light, #7E776F);
+  text-transform: uppercase;
+  display: block;
+}
+.op-stat-val {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-slate, #2E2A27);
+  margin-top: 0.15rem;
+  display: block;
+}
+.op-stat-val.highlight-gold {
+  color: var(--brand-gold-text, #8C6226);
+  font-weight: 700;
+}
+
+/* ==========================================================
+   28. POLISH COSMETICS: BEAUTY UGC VIDEO SCRIPT BRIEF CARD
+   ========================================================== */
+.element-ugc-brief {
+  position: absolute;
+  background: var(--surface-white, #FFFFFF);
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-frame);
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.element-ugc-brief:hover {
+  border-color: var(--brand-gold, #C5A880);
+  box-shadow: var(--shadow-hover);
+}
+.cub-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.cub-platform-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: #110F0D;
+  color: #F5E6D3;
+  letter-spacing: 0.08em;
+}
+.cub-aspect-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.56rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(197, 168, 128, 0.15);
+  color: var(--brand-gold-text, #8C6226);
+}
+.cub-title {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text-ink, #110F0D);
+  line-height: 1.3;
+}
+.cub-concept-tag {
+  display: block;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--brand-gold-text, #8C6226);
+  margin-top: 0.25rem;
+}
+.cub-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.cub-timeline-step {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  background: var(--surface-subtle, #F5F1EB);
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 8px;
+}
+.cub-step-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--brand-gold-text, #8C6226);
+  white-space: nowrap;
+  padding-top: 0.1rem;
+}
+.cub-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.cub-step-role {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-light, #7E776F);
+}
+.cub-step-text {
+  font-size: 0.75rem;
+  color: var(--text-slate, #2E2A27);
+  line-height: 1.45;
+}
+.cub-metrics-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border-subtle, #E8E2D8);
+  font-size: 0.72rem;
+  color: var(--text-muted, #5C564F);
+}
+.cub-metric-item strong {
+  color: var(--text-ink, #110F0D);
+  font-weight: 700;
+}
+
+/* ==========================================================
+   29. POLISH COSMETICS: CLINICAL CLAIMS SUBSTANTIATION CARD
+   ========================================================== */
+.element-clinical-proof {
+  position: absolute;
+  background: var(--surface-white, #FFFFFF);
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 16px;
+  padding: 1.65rem;
+  box-shadow: var(--shadow-frame);
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+.element-clinical-proof:hover {
+  border-color: var(--brand-gold, #C5A880);
+  box-shadow: var(--shadow-hover);
+}
+.ccp-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+.ccp-seal-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  background: rgba(4, 120, 87, 0.1);
+  border: 1px solid rgba(4, 120, 87, 0.25);
+  color: var(--accent-green, #047857);
+}
+.ccp-lab-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  color: var(--text-muted, #5C564F);
+  letter-spacing: 0.06em;
+}
+.ccp-title {
+  margin: 0;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--text-ink, #110F0D);
+  line-height: 1.3;
+}
+.ccp-protocol {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.74rem;
+  color: var(--text-muted, #5C564F);
+}
+.ccp-claims-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+.ccp-claim-card {
+  background: var(--surface-subtle, #F5F1EB);
+  border: 1px solid var(--border-subtle, #E8E2D8);
+  border-radius: 10px;
+  padding: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.ccp-claim-number {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--brand-gold-text, #8C6226);
+  line-height: 1;
+}
+.ccp-claim-text {
+  font-size: 0.72rem;
+  color: var(--text-slate, #2E2A27);
+  line-height: 1.4;
+}
+.ccp-compliance-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle, #E8E2D8);
+}
+.ccp-compliance-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--accent-green, #047857);
+  background: rgba(4, 120, 87, 0.08);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* ==========================================================
+   DARK MODE ADAPTATION: COSMETIC BOARD CARDS
+   ========================================================== */
+body.theme-dark .element-routine-step,
+body.theme-dark .element-olfactory-pyramid,
+body.theme-dark .element-ugc-brief,
+body.theme-dark .element-clinical-proof {
+  background: #141210 !important;
+  border-color: rgba(226, 199, 153, 0.22) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(226, 199, 153, 0.12) !important;
+}
+body.theme-dark .crs-title,
+body.theme-dark .op-title,
+body.theme-dark .cub-title,
+body.theme-dark .ccp-title {
+  color: #F5E6D3 !important;
+}
+body.theme-dark .crs-actives-card,
+body.theme-dark .cub-timeline-step,
+body.theme-dark .ccp-claim-card {
+  background: #0E0C0A !important;
+  border-color: rgba(226, 199, 153, 0.15) !important;
+}
+body.theme-dark .crs-actives-text,
+body.theme-dark .crs-benefit-val,
+body.theme-dark .op-tier-notes,
+body.theme-dark .cub-step-text,
+body.theme-dark .ccp-claim-text {
+  color: #D9C9B8 !important;
+}
+body.theme-dark .crs-step-badge,
+body.theme-dark .crs-benefit-val.highlight-gold,
+body.theme-dark .op-stat-val.highlight-gold,
+body.theme-dark .cub-concept-tag,
+body.theme-dark .ccp-claim-number {
+  color: #E2C799 !important;
+}
+body.theme-dark .op-tier-top {
+  background: rgba(226, 199, 153, 0.08) !important;
+  border-color: rgba(226, 199, 153, 0.25) !important;
+}
+body.theme-dark .op-tier-heart {
+  background: rgba(197, 168, 128, 0.1) !important;
+  border-color: rgba(197, 168, 128, 0.3) !important;
+}
+body.theme-dark .op-tier-base {
+  background: rgba(140, 98, 38, 0.1) !important;
+  border-color: rgba(140, 98, 38, 0.3) !important;
+}
+body.theme-dark .op-tier-name {
+  color: #F5E6D3 !important;
+}
+
+/* ==========================================================
+   PRESENTATION 2.0: LASER POINTER, TIMER & SPOTLIGHT
+   ========================================================== */
+.presentation-laser-dot {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(226, 199, 153, 0.9), 0 0 20px 8px rgba(226, 199, 153, 0.75), 0 0 40px 14px rgba(226, 199, 153, 0.4);
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  display: none;
+  transition: transform 0.05s ease-out;
+}
+.presentation-laser-dot.is-active {
+  display: block;
+}
+
+/* Presentation Bar Enhancements */
+.presentation-bar {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 15, 12, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 199, 153, 0.32);
+  border-radius: 40px;
+  padding: 0.5rem 1.15rem;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.8), 0 0 24px rgba(226, 199, 153, 0.16);
+  z-index: 9999;
+  align-items: center;
+  gap: 0.65rem;
+}
+body.is-presenting .presentation-bar {
+  display: flex !important;
+}
+
+.present-timer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #E2C799;
+  background: rgba(226, 199, 153, 0.12);
+  border: 1px solid rgba(226, 199, 153, 0.25);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+}
+.present-timer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: pulseEmerald 2s infinite;
+}
+@keyframes pulseEmerald {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.present-nav-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(226, 199, 153, 0.2);
+  color: #F5E6D3;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+.present-nav-btn:hover {
+  background: rgba(226, 199, 153, 0.2);
+  border-color: #E2C799;
+  color: #FFFFFF;
+}
+.present-nav-btn.active {
+  background: #E2C799;
+  color: #080706;
+  border-color: #E2C799;
+  font-weight: 700;
+}
+
+.present-slide-info {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #F5E6D3;
+  font-size: 0.75rem;
+  padding: 0 0.4rem;
+  white-space: nowrap;
+}
+.present-slide-info .slide-count {
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  color: #E2C799;
+}
+.present-slide-info .slide-sep {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Progressive Card Spotlight in Presentation Mode */
+.board-element.spotlight-dimmed {
+  opacity: 0.22 !important;
+  filter: blur(1px) !important;
+  transform: scale(0.98);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.board-element.spotlight-active {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: scale(1.02);
+  z-index: 100 !important;
+  outline: 2px solid #E2C799 !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 32px rgba(226, 199, 153, 0.4) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+

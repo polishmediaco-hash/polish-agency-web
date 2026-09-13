@@ -7,8 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg">
-  <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-gold-mark.svg?v=23.0">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="/assets/logo-gold-mark.png?v=23.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
   <link rel="stylesheet" href="/studio/css/board-elements.css?v=20260909_v6">
   <link rel="stylesheet" href="/studio/css/studio.css?v=20260909_v6">
   <link rel="stylesheet" href="/studio/css/inspector.css?v=20260909_v6">
@@ -933,10 +934,10 @@
   <!-- ========================================================== -->
   <!-- JAVASCRIPT MODULES                                         -->
   <!-- ========================================================== -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="/studio/js/firebase-config.js?v=20260909_v2"></script>
-  <script src="/studio/js/html2canvas.min.js"></script>
+  <!-- Supabase Web Client (~35KB vs ~175KB Firebase) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/studio/js/supabase-config.js?v=20260910_v2"></script>
+  <script src="/studio/js/studio-events.js?v=20260910_v1"></script>
   <script src="/studio/js/camera-bubble.js?v=20260909_v3"></script>
 
   <script src="/studio/js/canvas-panzoom.js?v=20260909_v6"></script>
@@ -947,7 +948,9 @@
   <script src="/studio/js/connector-engine.js?v=20260909_v6"></script>
   <script src="/studio/js/inspector.js?v=20260909_v6"></script>
   <script src="/studio/js/presentation.js?v=20260909_v6"></script>
-  <script src="/studio/js/studio-core.js?v=20260909_v8"></script>
+  <script src="/studio/js/currency-engine.js?v=20260910_v1"></script>
+  <script src="/studio/js/templates-vault.js?v=20260910_v1"></script>
+  <script src="/studio/js/studio-core.js?v=20260910_v1"></script>
 
   <script>
     // Initialize Studio on DOM Load

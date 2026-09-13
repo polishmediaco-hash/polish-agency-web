@@ -2110,6 +2110,15 @@ body.is-rtl .marquee-item .marquee-text {
   border-top: 1px solid var(--border-subtle);
 }
 
+.step-nav-footer.is-first-step {
+  grid-template-columns: 1fr !important;
+}
+
+.step-nav-footer.is-first-step .btn-back-step {
+  display: none !important;
+}
+
+
 .btn-back-step {
   width: 100%;
   min-width: 0;

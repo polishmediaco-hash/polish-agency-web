@@ -8,6 +8,15 @@ window.StudioInspector = (function () {
   let activeElement = null;
   let activeData = null;
 
+  function pushHistory() {
+    if (window.StudioCore && typeof window.StudioCore.pushHistory === "function") {
+      window.StudioCore.pushHistory();
+    }
+    if (window.StudioEvents) {
+      window.StudioEvents.emit(window.StudioEvents.Events.HISTORY_PUSHED, {});
+    }
+  }
+
   function init() {
     inspectorEl = document.getElementById('floating-inspector');
     if (inspectorEl) {
@@ -26,6 +35,30 @@ window.StudioInspector = (function () {
     window.addEventListener('resize', () => {
       updatePosition();
     });
+
+    if (window.StudioEvents) {
+      window.StudioEvents.on(window.StudioEvents.Events.ELEMENT_SELECTED, (payload) => {
+        if (payload && payload.el) {
+          show(payload.el, payload.data);
+        }
+      });
+      window.StudioEvents.on(window.StudioEvents.Events.ELEMENT_DESELECTED, () => {
+        hide();
+      });
+      window.StudioEvents.on(window.StudioEvents.Events.CONNECTION_SELECTED, (payload) => {
+        if (payload && payload.labelPill) {
+          show(payload.labelPill, payload.conn);
+        }
+      });
+      window.StudioEvents.on(window.StudioEvents.Events.VIEWPORT_CHANGED, () => {
+        updatePosition();
+      });
+      window.StudioEvents.on(window.StudioEvents.Events.ELEMENT_MOVED, (payload) => {
+        if (activeElement && payload && payload.id === activeElement.id) {
+          updatePosition(activeElement);
+        }
+      });
+    }
   }
 
   function show(el, data) {
@@ -331,6 +364,7 @@ window.StudioInspector = (function () {
   }
 
   function setFont(id, font) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
@@ -345,6 +379,7 @@ window.StudioInspector = (function () {
   }
 
   function stepFontSize(id, delta) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
@@ -363,6 +398,7 @@ window.StudioInspector = (function () {
   }
 
   function toggleBold(id) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
@@ -377,6 +413,7 @@ window.StudioInspector = (function () {
   }
 
   function toggleItalic(id) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
@@ -391,6 +428,7 @@ window.StudioInspector = (function () {
   }
 
   function cycleAlign(id) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
@@ -408,6 +446,7 @@ window.StudioInspector = (function () {
   }
 
   function setElementBgColor(id, hex) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
@@ -423,6 +462,7 @@ window.StudioInspector = (function () {
   }
 
   function setElementTextColor(id, hex) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
@@ -437,6 +477,7 @@ window.StudioInspector = (function () {
   }
 
   function setShapeType(id, shapeType) {
+    pushHistory();
     const data = window.StudioCore.findElement(id);
     if (data) {
       data.shapeType = shapeType;
@@ -453,6 +494,7 @@ window.StudioInspector = (function () {
   }
 
   function toggleTape(id) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore.findElement(id);
     if (el && data) {
@@ -473,6 +515,7 @@ window.StudioInspector = (function () {
   }
 
   function setPricingCurrency(id, currency) {
+    pushHistory();
     const data = window.StudioCore.findElement(id);
     if (data) {
       data.currency = currency;
@@ -482,6 +525,7 @@ window.StudioInspector = (function () {
   }
 
   function setMetricCurrency(id, newCur) {
+    pushHistory();
     const data = window.StudioCore.findElement(id);
     if (!data) return;
     data.currency = newCur;
@@ -496,6 +540,7 @@ window.StudioInspector = (function () {
   }
 
   function togglePricingFeatured(id) {
+    pushHistory();
     const data = window.StudioCore.findElement(id);
     const el = document.getElementById(id);
     if (data && el) {
@@ -509,6 +554,7 @@ window.StudioInspector = (function () {
   }
 
   function setConnColor(id, color) {
+    pushHistory();
     const data = window.StudioCore.findConnection(id);
     if (data) {
       data.color = color;
@@ -522,6 +568,7 @@ window.StudioInspector = (function () {
   }
 
   function setConnStyle(id, style) {
+    pushHistory();
     const data = window.StudioCore.findConnection(id);
     if (data) {
       data.style = style;
@@ -535,6 +582,7 @@ window.StudioInspector = (function () {
   }
 
   function addBoxToFrame(id) {
+    pushHistory();
     const data = window.StudioCore.findElement(id);
     if (data) {
       if (!data.boxes) data.boxes = [];
@@ -629,6 +677,7 @@ window.StudioInspector = (function () {
   }
 
   function applyCoverBanner() {
+    pushHistory();
     if (!currentBannerFrameId) return;
     const input = document.getElementById('coverUrlInput');
     const url = input ? input.value.trim() : '';
@@ -645,6 +694,7 @@ window.StudioInspector = (function () {
   }
 
   function removeCoverBanner() {
+    pushHistory();
     if (!currentBannerFrameId) return;
     const data = window.StudioCore.findElement(currentBannerFrameId);
     if (data) {
@@ -672,6 +722,7 @@ window.StudioInspector = (function () {
   }
 
   function setMetricDelta(id, deltaColor) {
+    pushHistory();
     const el = document.getElementById(id);
     const data = window.StudioCore ? window.StudioCore.findElement(id) : null;
     if (el && data) {

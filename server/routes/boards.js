@@ -1,6 +1,8 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const { requireUserOrAdminAuth } = require('../middleware/auth');
+const { boardsService } = require('../services/supabase');
 
 const router = express.Router();
 
@@ -251,22 +253,19 @@ function writeBoardFile(filePath, data) {
 }
 
 // GET /api/boards (List all boards)
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    ensureBoardsSeeded();
-    const files = fs.readdirSync(BOARDS_DIR).filter(f => f.endsWith('.json'));
+    let allBoards = await boardsService.listBoards();
 
     // If no boards exist, seed starter template
-    if (files.length === 0) {
+    if (!allBoards || allBoards.length === 0) {
       const starter = getStarterBoard();
-      const starterPath = path.join(BOARDS_DIR, `${starter.id}.json`);
-      writeBoardFile(starterPath, starter);
-      files.push(`${starter.id}.json`);
+      await boardsService.saveBoard(starter);
+      allBoards = [starter];
     }
 
-    const boards = files
-      .map(file => {
-        const board = readBoardFile(path.join(BOARDS_DIR, file));
+    const boards = allBoards
+      .map(board => {
         if (!board) return null;
         return {
           id: board.id,
@@ -290,7 +289,7 @@ router.get('/', (req, res) => {
 });
 
 // POST /api/boards (Create new board)
-router.post('/', (req, res) => {
+router.post('/', requireUserOrAdminAuth, async (req, res) => {
   try {
     const { title, client, template } = req.body || {};
 
@@ -300,6 +299,7 @@ router.post('/', (req, res) => {
     if (template === 'starter' || template === 'executive') {
       newBoard = getStarterBoard();
       newBoard.id = id;
+      newBoard.slug = id;
       newBoard.title = (title || 'Executive Strategy Board').trim();
       newBoard.client = (client || 'Private Client').trim();
     } else {
@@ -359,14 +359,17 @@ router.post('/', (req, res) => {
       };
     }
 
-    const filePath = path.join(BOARDS_DIR, `${id}.json`);
-    const saved = writeBoardFile(filePath, newBoard);
-
-    if (!saved) {
-      return res.status(500).json({ success: false, error: 'Failed to write board file.' });
+    if (req.user) {
+      newBoard.ownerId = req.user.uid || 'admin';
+      newBoard.ownerEmail = req.user.email || '';
     }
 
-    res.status(201).json({ success: true, message: 'Board created successfully.', board: newBoard });
+    const saved = await boardsService.saveBoard(newBoard);
+    if (!saved) {
+      return res.status(500).json({ success: false, error: 'Failed to save board.' });
+    }
+
+    res.status(201).json({ success: true, message: 'Board created successfully.', board: saved });
   } catch (err) {
     console.error('Error creating board:', err);
     res.status(500).json({ success: false, error: 'Could not create board.' });
@@ -381,7 +384,7 @@ function sanitizeBoardId(id) {
   return clean;
 }
 
-// Helper: Resolve a board file path by ID or slug
+// Helper: Resolve a board file path by ID or slug (Local fallback)
 function resolveBoardPath(safeId) {
   let filePath = path.join(BOARDS_DIR, `${safeId}.json`);
 
@@ -419,20 +422,23 @@ function resolveBoardPath(safeId) {
 }
 
 // GET /api/boards/:id (Get single board data)
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    ensureBoardsSeeded();
     const safeId = sanitizeBoardId(req.params.id);
     if (!safeId) {
       return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
     }
 
-    const filePath = resolveBoardPath(safeId);
-    if (!filePath || !fs.existsSync(filePath)) {
-      return res.status(404).json({ success: false, error: 'Board not found.' });
+    let board = await boardsService.getBoardById(safeId);
+    if (!board) {
+      if (safeId === 'starter-strategy-board' || safeId === 'executive-strategy-template') {
+        board = getStarterBoard();
+        await boardsService.saveBoard(board);
+      } else {
+        return res.status(404).json({ success: false, error: 'Board not found.' });
+      }
     }
 
-    const board = readBoardFile(filePath);
     res.json({ success: true, board });
   } catch (err) {
     console.error('Error loading board:', err);
@@ -441,20 +447,14 @@ router.get('/:id', (req, res) => {
 });
 
 // GET /api/boards/:id/comments (Get all comments for a board)
-router.get('/:id/comments', (req, res) => {
+router.get('/:id/comments', async (req, res) => {
   try {
-    ensureBoardsSeeded();
     const safeId = sanitizeBoardId(req.params.id);
     if (!safeId) {
       return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
     }
 
-    const filePath = resolveBoardPath(safeId);
-    if (!filePath || !fs.existsSync(filePath)) {
-      return res.status(404).json({ success: false, error: 'Board not found.' });
-    }
-
-    const board = readBoardFile(filePath);
+    const board = await boardsService.getBoardById(safeId);
     if (!board) {
       return res.status(404).json({ success: false, error: 'Board not found.' });
     }
@@ -468,20 +468,14 @@ router.get('/:id/comments', (req, res) => {
 });
 
 // POST /api/boards/:id/comments (Add, update, or resolve a comment)
-router.post('/:id/comments', (req, res) => {
+router.post('/:id/comments', async (req, res) => {
   try {
-    ensureBoardsSeeded();
     const safeId = sanitizeBoardId(req.params.id);
     if (!safeId) {
       return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
     }
 
-    const filePath = resolveBoardPath(safeId);
-    if (!filePath || !fs.existsSync(filePath)) {
-      return res.status(404).json({ success: false, error: 'Board not found.' });
-    }
-
-    const board = readBoardFile(filePath);
+    const board = await boardsService.getBoardById(safeId);
     if (!board) {
       return res.status(404).json({ success: false, error: 'Board not found.' });
     }
@@ -495,7 +489,7 @@ router.post('/:id/comments', (req, res) => {
     // Support deletion action
     if (payload.action === 'delete' && payload.commentId) {
       board.comments = board.comments.filter(c => c.id !== payload.commentId);
-      writeBoardFile(filePath, board);
+      await boardsService.saveBoard(board);
       return res.json({
         success: true,
         message: 'Comment deleted.',
@@ -507,7 +501,7 @@ router.post('/:id/comments', (req, res) => {
     // Support batch replace if passed an array of comments
     if (Array.isArray(payload.comments)) {
       board.comments = payload.comments;
-      writeBoardFile(filePath, board);
+      await boardsService.saveBoard(board);
       return res.json({
         success: true,
         message: 'Comments updated.',
@@ -570,10 +564,7 @@ router.post('/:id/comments', (req, res) => {
       board.comments.push(newComment);
     }
 
-    const saved = writeBoardFile(filePath, board);
-    if (!saved) {
-      return res.status(500).json({ success: false, error: 'Failed to persist comments.' });
-    }
+    await boardsService.saveBoard(board);
 
     res.json({
       success: true,
@@ -589,7 +580,7 @@ router.post('/:id/comments', (req, res) => {
 });
 
 // PUT /api/boards/:id (Save/Update board data)
-router.put('/:id', (req, res) => {
+router.put('/:id', requireUserOrAdminAuth, async (req, res) => {
   try {
     const safeId = sanitizeBoardId(req.params.id);
     if (!safeId) {
@@ -601,15 +592,18 @@ router.put('/:id', (req, res) => {
       return res.status(400).json({ success: false, error: 'Invalid board payload.' });
     }
 
-    const filePath = path.join(BOARDS_DIR, `${safeId}.json`);
     incomingData.id = safeId;
-    const saved = writeBoardFile(filePath, incomingData);
+    if (req.user) {
+      incomingData.ownerId = req.user.uid || incomingData.ownerId;
+      incomingData.ownerEmail = req.user.email || incomingData.ownerEmail;
+    }
 
+    const saved = await boardsService.saveBoard(incomingData);
     if (!saved) {
       return res.status(500).json({ success: false, error: 'Failed to save board.' });
     }
 
-    res.json({ success: true, message: 'Board saved.', updatedAt: incomingData.updatedAt });
+    res.json({ success: true, message: 'Board saved.', updatedAt: saved.updatedAt || new Date().toISOString() });
   } catch (err) {
     console.error('Error saving board:', err);
     res.status(500).json({ success: false, error: 'Could not save board.' });
@@ -617,19 +611,18 @@ router.put('/:id', (req, res) => {
 });
 
 // POST /api/boards/:id/duplicate (Duplicate a board)
-router.post('/:id/duplicate', (req, res) => {
+router.post('/:id/duplicate', requireUserOrAdminAuth, async (req, res) => {
   try {
     const safeId = sanitizeBoardId(req.params.id);
     if (!safeId) {
       return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
     }
-    const srcPath = path.join(BOARDS_DIR, `${safeId}.json`);
 
-    if (!fs.existsSync(srcPath)) {
+    const original = await boardsService.getBoardById(safeId);
+    if (!original) {
       return res.status(404).json({ success: false, error: 'Original board not found.' });
     }
 
-    const original = readBoardFile(srcPath);
     const newId = `board-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
     const copy = {
       ...original,
@@ -640,10 +633,13 @@ router.post('/:id/duplicate', (req, res) => {
       updatedAt: new Date().toISOString()
     };
 
-    const newPath = path.join(BOARDS_DIR, `${newId}.json`);
-    writeBoardFile(newPath, copy);
+    if (req.user) {
+      copy.ownerId = req.user.uid || 'admin';
+      copy.ownerEmail = req.user.email || '';
+    }
 
-    res.json({ success: true, message: 'Board duplicated successfully.', board: copy });
+    const saved = await boardsService.saveBoard(copy);
+    res.json({ success: true, message: 'Board duplicated successfully.', board: saved });
   } catch (err) {
     console.error('Error duplicating board:', err);
     res.status(500).json({ success: false, error: 'Could not duplicate board.' });
@@ -651,19 +647,18 @@ router.post('/:id/duplicate', (req, res) => {
 });
 
 // DELETE /api/boards/:id (Delete a board)
-router.delete('/:id', (req, res) => {
+router.delete('/:id', requireUserOrAdminAuth, async (req, res) => {
   try {
     const safeId = sanitizeBoardId(req.params.id);
     if (!safeId) {
       return res.status(400).json({ success: false, error: 'Invalid board identifier.' });
     }
-    const filePath = path.join(BOARDS_DIR, `${safeId}.json`);
 
-    if (!fs.existsSync(filePath)) {
+    const deleted = await boardsService.deleteBoard(safeId);
+    if (!deleted) {
       return res.status(404).json({ success: false, error: 'Board not found.' });
     }
 
-    fs.unlinkSync(filePath);
     res.json({ success: true, message: 'Board deleted successfully.' });
   } catch (err) {
     console.error('Error deleting board:', err);

@@ -6,9 +6,10 @@
   <title>Creator & UGC Partnerships | POLISH Media Co.</title>
   <meta name="description" content="Apply to join the POLISH beauty and cosmetic UGC creator network. Get booked for paid campaigns, product seeding, and long-term brand partnerships.">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=21.0">
-  <link rel="alternate icon" type="image/png" href="/assets/logo-gold.png?v=21.0">
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=23.0">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="/assets/logo-gold-mark.png?v=23.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
 
   <!-- Google Fonts: Plus Jakarta Sans, Cormorant Garamond & Tajawal (Arabic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -252,6 +253,7 @@
         const phone = phoneInput.value.trim();
 
         const isFr = window.polishI18n && window.polishI18n.currentLang === 'fr';
+        const isAr = window.polishI18n && window.polishI18n.currentLang === 'ar';
 
         let hasError = false;
         if (!name) { markFieldError(nameInput); hasError = true; }
@@ -259,7 +261,10 @@
         if (!phone) { markFieldError(phoneInput); hasError = true; }
 
         if (hasError) {
-          showAlert(isFr ? 'Veuillez renseigner votre nom complet, votre profil social et votre numéro de téléphone / WhatsApp.' : 'Please complete your full name, social handle/link, and phone number.');
+          let errText = 'Please complete your full name, social handle/link, and phone number.';
+          if (isFr) errText = 'Veuillez renseigner votre nom complet, votre profil social et votre numéro de téléphone / WhatsApp.';
+          else if (isAr) errText = 'يرجى إدخال اسمك الكامل، وحساب التواصل، ورقم الهاتف أو واتساب.';
+          showAlert(errText);
           if (!name) nameInput.focus();
           else if (!socialLink) socialInput.focus();
           else if (!phone) phoneInput.focus();
@@ -267,12 +272,16 @@
         }
 
         submitBtn.disabled = true;
+        let loadingText = 'Registering Profile...';
+        if (isFr) loadingText = 'Enregistrement du Profil...';
+        else if (isAr) loadingText = 'جاري تسجيل الملف...';
+
         submitBtn.innerHTML = `
           <svg style="animation: spin 1s linear infinite; width:16px; height:16px; margin-right:8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
             <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
           </svg>
-          <span>${isFr ? 'Enregistrement du Profil...' : 'Registering Profile...'}</span>
+          <span>${loadingText}</span>
         `;
 
         try {
@@ -285,9 +294,12 @@
           const data = await res.json();
 
           if (!res.ok || !data.success) {
-            showAlert(data.error || (isFr ? 'Échec de la soumission. Veuillez nous écrire directement sur WhatsApp.' : 'Failed to submit application. Please reach out on WhatsApp.'));
+            let failText = 'Failed to submit application. Please reach out on WhatsApp.';
+            if (isFr) failText = 'Échec de la soumission. Veuillez nous écrire directement sur WhatsApp.';
+            else if (isAr) failText = 'فشل إرسال الطلب. يرجى التواصل معنا مباشرة عبر واتساب.';
+            showAlert(data.error || failText);
             submitBtn.disabled = false;
-            const btnText = (window.polishI18n ? window.polishI18n.t('creators.btnSubmit') : null) || (isFr ? 'Soumettre mon Profil Créateur' : 'Submit Creator Profile');
+            const btnText = (window.polishI18n ? window.polishI18n.t('creators.btnSubmit') : null) || (isFr ? 'Soumettre mon Profil Créateur' : (isAr ? 'إرسال ملف صانع المحتوى' : 'Submit Creator Profile'));
             submitBtn.innerHTML = `
               <span>${btnText}</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -302,9 +314,12 @@
           creatorForm.style.display = 'none';
           refBadge.textContent = data.applicationId;
           
-          const defaultWaText = isFr
-            ? `Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Créateur UGC (Réf: ${data.applicationId}). Nom: ${name}. Au plaisir d'échanger !`
-            : `Hi POLISH team! I just submitted my UGC Creator application (Ref: ${data.applicationId}). Name: ${name}. Looking forward to connecting!`;
+          let defaultWaText = `Hi POLISH team! I just submitted my UGC Creator application (Ref: ${data.applicationId}). Name: ${name}. Looking forward to connecting!`;
+          if (isFr) {
+            defaultWaText = `Bonjour l'équipe POLISH ! Je viens de soumettre ma candidature Créateur UGC (Réf: ${data.applicationId}). Nom: ${name}. Au plaisir d'échanger !`;
+          } else if (isAr) {
+            defaultWaText = `مرحباً بفريق بولش! لقد قمت للتو بتقديم طلب الانضمام كصانع محتوى UGC (المرجع: ${data.applicationId}). الاسم: ${name}. أتطلع للتواصل معكم!`;
+          }
           
           const waMsg = encodeURIComponent(defaultWaText);
           waLink.href = `https://wa.me/213662417761?text=${waMsg}`;
@@ -314,9 +329,12 @@
 
         } catch (err) {
           console.error(err);
-          showAlert(isFr ? 'Erreur de connexion. Veuillez réessayer ou nous contacter sur WhatsApp.' : 'Network connection error. Please try again or message directly on WhatsApp.');
+          let netErrText = 'Network connection error. Please try again or message directly on WhatsApp.';
+          if (isFr) netErrText = 'Erreur de connexion. Veuillez réessayer ou nous contacter sur WhatsApp.';
+          else if (isAr) netErrText = 'حدث خطأ في الاتصال بالشبكة. يرجى إعادة المحاولة أو مراسلتنا عبر واتساب.';
+          showAlert(netErrText);
           submitBtn.disabled = false;
-          const btnText = (window.polishI18n ? window.polishI18n.t('creators.btnSubmit') : null) || (isFr ? 'Soumettre mon Profil Créateur' : 'Submit Creator Profile');
+          const btnText = (window.polishI18n ? window.polishI18n.t('creators.btnSubmit') : null) || (isFr ? 'Soumettre mon Profil Créateur' : (isAr ? 'إرسال ملف صانع المحتوى' : 'Submit Creator Profile'));
           submitBtn.innerHTML = `
             <span>${btnText}</span>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">

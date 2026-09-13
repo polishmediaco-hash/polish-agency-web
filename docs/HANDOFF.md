@@ -29,7 +29,7 @@ The application has successfully completed a luxury atelier rebranding and typog
 * **Brand Assets Updated**:
   * Vector Gold Logo: `/assets/logo-gold.svg`
   * High-Res Gold Raster Logo: `/assets/logo-gold.png`
-  * Universal SVG Favicon: `/assets/favicon.svg` (Golden Ratio Pipette on rounded obsidian tile)
+  * Universal SVG Favicon: `/assets/favicon.svg` (Full-bleed Golden Ratio Pipette with faceted diamond core on transparent background; matching app mark)
   * Master Brand Pack: `/brand-pack/POLISH_Media_Co_Brand_Pack.zip` (834 KB)
   * Interactive Brand Vault: `/brand-pack`
   * Logo Exploration Studio: `/logo-preview`
@@ -87,6 +87,18 @@ The application has successfully completed a luxury atelier rebranding and typog
   * `06_guidelines/`: `POLISH_BRAND_GUIDELINES.md` (Full 10-chapter Brand Standards Bible).
 * **Routes Registered**: `GET /brand-pack`.
 *(Note: Dev preview tools `palette-preview.html`, `font-preview.html`, `logo-preview.html`, and `_template.html` have been permanently retired and purged.)*
+
+### F. Executive Invoicing Atelier & Generator (`public/invoice.html` / `/admin/invoice`)
+* **Dedicated High-Prestige Invoicing Studio**: Two-column split-view workspace combining real-time intake form controls with an instant live A4 sheet preview.
+* **Dual Haute Paper Stock Themes**:
+  * **Haute Alabaster (`#FAF7F2`)**: Fine stationery paper stock with obsidian typography for official client printouts and vector PDF export.
+  * **Haute Obsidian (`#080706`)**: Radiant champagne gold typography on obsidian noir for VIP screen reviews and WhatsApp delivery.
+* **Two-Way Live Synchronization**: Instant updates from form inputs to sheet, plus direct inline `contenteditable` editing directly on the A4 paper.
+* **Automated Sequential Serial Codes**: `POL-YYYY-XXX` (e.g. `POL-2026-094`) with blur auto-formatting, date default to today (`DD/MM/YYYY`), and 1-click `+1 Next` incrementation.
+* **Multi-Currency Settlements**: Full support for Algerian Dinar (`180 000 دج` / `180 000da`), US Dollar (`$`), Euro (`€`), and UAE Dirham (`AED`).
+* **Trilingual & RTL Arabic Masterpiece**: Complete Unicode Bidirectional (BiDi) isolation, strict top-left brand logo anchoring, symmetrical entity cards, and native Tajawal typography.
+* **Cloud Persistence & Security**: Gated behind Supabase Auth and admin key, backed by Supabase `invoicesService` with atomic local JSON caching and slide-out archive drawer (`#archiveDrawer`).
+* **Print-Perfect Vector PDF Output**: Zero-margin `@media print` rules generating razor-sharp 300+ DPI vector PDF invoices with dynamic document titles (`Invoice - [Client] - [Serial] - [Date].pdf`).
 
 ### H. Award-Winning Luxury Cards & Tactile Micro-Interactions
 * **Dynamic Cursor Spotlight (120FPS RAF-Throttled Tracking)**:
@@ -228,22 +240,188 @@ The application has successfully completed a luxury atelier rebranding and typog
 
 ---
 
-## 5. Next Priority Roadmap for Future Sessions
+## 5. Major Milestones & Integrations (September 2026 Session)
 
-1. **Client Presentation View Alignment (`/view/:id` & `/b/:id`)**: Upgrade `.client-dock` from 64px 9999px balloon pill to the unified 52px 16px architectural capsule, unboxed brand mark, and enable the 4-way currency switcher (`DZD / AED / USD / EUR`) for international client reviews.
-2. **Template Modals Harmonization**: Synchronize the modal dialogs between `/boards` and `/studio` with identical frosted glassmorphism and category filtering.
-3. **Production Deployment & Monitoring**: Deploy to production infrastructure (Vercel / Railway / VPS with PM2) and verify edge SSL certificates.
-4. **Custom Domain & DNS Setup**: Ensure canonical routing between `polishmediaco.com` and `app.polishmediaco.com`.
-5. **Calendly Live Webhook Verification**: Confirm real-time webhook payload receipts at `https://polishmediaco.com/api/calendly-webhook` from Calendly developer console.
-6. **Client Collaboration Live Beta**: Test real-time multi-user pin drop commenting and pillar approvals with live beauty brand test accounts.
+### A. Agent Reach & Internet Capabilities (`agent-reach`)
+* **Core Runtime**: `agent-reach` v1.5.0 installed globally in `~/.local/bin/agent-reach`.
+* **Upstream Toolchain Installed**:
+  * `yt-dlp` (2026.8.19) — YouTube metadata & subtitle extraction.
+  * `gh` (v2.100.0) — Official GitHub CLI.
+  * `mcporter` (0.13.10) + Exa Search MCP — Zero-key AI semantic web search (`mcporter call exa.web_search_exa`).
+  * `opencli` (v1.8.7) — Desktop browser bridge connecting to Chrome extension (`opencli doctor` verified live). Unlocks Reddit, Facebook, Instagram, Xiaohongshu, and Bilibili subtitle scraping via dedicated browser sessions.
+  * `twitter-cli`, `bilibili-cli` (`bili`), `rdt-cli` (`rdt`), `ffmpeg` (v6.0 static).
+* **Skills Registered**:
+  * `~/.agents/skills/agent-reach/`
+  * `~/.gemini/config/skills/agent-reach/` (Antigravity native)
+
+### B. Graphify Codebase Knowledge Graph (`graphify`)
+* **Engine**: `graphify` v0.9.57 installed globally in `~/.local/bin/graphify`.
+* **Antigravity Native Integration**: `~/.gemini/config/skills/graphify/SKILL.md`, `.agents/rules/graphify.md`, and `.agents/workflows/graphify.md`.
+* **Codebase Knowledge Graph Built**:
+  * Analyzed 68 code files across the repository.
+  * Extracted **2,376 nodes**, **5,319 edges**, and **149 functional communities**.
+* **Visual Artifacts Generated in `graphify-out/`**:
+  * `graphify-out/graph.html` — Interactive force-directed network explorer.
+  * `graphify-out/polishmedia-callflow.html` — Interactive Mermaid architecture & call-flow diagrams.
+  * `graphify-out/GRAPH_TREE.html` — D3 collapsible hierarchy tree.
+  * `graphify-out/GRAPH_REPORT.md` — God nodes, community cohesion scores, and unexpected connections.
+* **Auto-Sync Git Hook**: Installed at `.git/hooks/post-commit` (automatically syncs AST graph on every `git commit` with zero LLM API cost).
+
+### C. The Four Comprehensive Audits Conducted
+Four concurrent specialized subagents completed a deep audit of the codebase, yielding standalone actionable reports:
+
+1. **🛡️ Application Security & API Boundaries** (Report: `docs/SECURITY_AUDIT_REPORT.md`):
+   * **V-01 (CRITICAL)**: `/api/boards` CRUD routes (`GET`, `POST`, `PUT`, `DELETE`) are completely unauthenticated. Anyone can enumerate, read, mutate, or delete client strategy blueprints.
+   * **V-02 (CRITICAL)**: `POST /api/ai/chat` is an open unauthenticated proxy to Google Gemini using server API key without dedicated rate limits.
+   * **V-03 (CRITICAL)**: Production `.env` uses default example key `ADMIN_API_KEY=polish_admin_secure_key_2026`; admin routes accept key in query string (`?key=`), leaking credentials in access logs.
+   * **V-04 (HIGH)**: CORS validation uses substring matching `origin.includes('localhost')`, allowing cross-origin bypass via `https://attacker-localhost.com` with `credentials: true`.
+   * **V-05 (HIGH)**: `POST /api/calendly-webhook` lacks HMAC-SHA256 signature verification, allowing spoofed meetings and spamming WhatsApp/Telegram notifications.
+   * **V-06 (HIGH)**: Live customer PII committed in Git tracking (`server/db/leads.json` and `server/db/intake_latest.json`).
+   * *Deliverable*: Complete hardened `server/index.js` drop-in replacement generated.
+
+2. **🏗️ Codebase Architecture & Modularity** (Report: `docs/ARCHITECTURAL_HEALTH_AUDIT.md`):
+   * **God Node (`studio-core.js`)**: 3,863 LOC, 68 edges, cohesion: 0.101. Contains 2,080 lines of hardcoded static templates (>54% of file) and combines 8 distinct responsibilities.
+   * **Vercel Ephemeral Storage Trap**: `server/routes/boards.js` writes to `/tmp/boards` on Vercel. Because `/tmp` is container-scoped, saved boards are permanently wiped when serverless containers cycle.
+   * **State Synchronization**: Inspector edits bypass Cmd+Z history stack; multi-key localStorage clobbering across tabs.
+   * **Graph Distortion**: Unbundled `three.min.js` (1,602 nodes in Graphify) creates phantom domain concepts due to minified symbol names. Needs `.graphifyignore`.
+
+3. **⚡ Performance & Bundle Weight**:
+   * **Orphaned Scripts**: 621.7 KB of unused dead scripts in `public/js/` (`three.min.js`, `three-cosmetics.js`, `lenis.min.js`, `calculator.js`).
+   * **Critical Path**: `html2canvas.min.js` (194 KB) loaded synchronously in `<head>` of `studio/index.html` instead of on-demand when exporting images.
+   * **Runtime Waste**: `animateParticles()` in `luxury-effects.js` runs continuous 120 FPS canvas clear/redraw loop even 4,000px below the fold.
+   * **Layout Thrashing**: `getBoundingClientRect()` called inside mousemove RAF loop on cards/buttons.
+   * **Edge Cache**: `vercel.json` missing immutable edge cache headers for `/css/(.*)` and `/js/(.*)`.
+
+4. **💎 Luxury UI/UX, Trilingual & Conversion Funnel**:
+   * **Step 2 Form Data Bug**: In `apply.html`, "Fragrance & Body" submits value `"Cosmetic Manufacturer / OEM"`; "E-Commerce Director" submits `"Cosmetic Chemist / Formulation & R&D Lead"`; "Brand Representative" submits `"Managing Director / Partner"`.
+   * **Qualification Gap**: Missing Monthly Revenue dropdown in `apply.html` Step 3 (violates the $20,000/mo minimum client requirement); missing Brand Website URL input.
+   * **Desktop CSS Glitch**: Step 1 button trapped in left 50% width on desktop.
+   * **Arabic Validation Gap**: `creators.html` and `app.js` bypass Arabic in error alerts and loading text.
+   * **Duplicate Arrow**: Double arrow (`"→ →"`) rendered on direct booking CTA.
 
 ---
 
-## 6. How to Start a Fresh Antigravity Chat
+## 6. Next Priority Roadmap (Ready for Next Conversation)
 
-To maintain maximum speed, crisp model attention, and zero context rot:
+### Sprint 1: Critical Hotfixes (Completed September 2026)
+1. ✅ **Fix `apply.html` Step 2 Data Values**: Corrected radio and select `value` attributes (`Fragrance & Body`, `E-Commerce Director`, `Brand Representative`) ensuring accurate lead categorization in CRM.
+2. ✅ **Purge 621 KB Dead Scripts**: Deleted `public/js/three.min.js`, `public/js/three-cosmetics.js`, `public/js/lenis.min.js`, and `public/js/calculator.js`. Created `.graphifyignore` and pruned 1,906 phantom nodes from the graphify knowledge graph.
+3. ✅ **Purge PII from Git Tracking**: Untracked `server/db/leads.json` from git (`git rm --cached`) and added `server/db/leads.json` and `server/db/intake_latest.json` to `.gitignore`.
+4. ✅ **Fix Desktop Step 1 Button Squeeze**: Added `.step-nav-footer.is-first-step` full-width 1-column grid styling in `style.css`.
+5. ✅ **Add Website URL Field to `apply.html`**: Formatted Step 1 into a 2-column grid capturing both `Brand Website / Store URL` and `Primary Social Link` with full trilingual validation in `app.js`.
 
-1. Click **New Conversation** in the sidebar (or run `/clear`).
-2. Set workspace to: `/Users/Shared/polishmedia`
-3. Send this starter prompt:
-   > *"I am continuing work on POLISH Media Co. Please read `@docs/HANDOFF.md` and `@AGENTS.md` for current context. Let's work on [choose your next task from Section 5]."*
+
+### Sprint 2: Security & Performance Hardening (Completed September 2026)
+1. ✅ **Deploy Hardened `server/index.js`**: Applied audited drop-in backend with exact CORS (preventing substring bypass), `trust proxy`, tiered rate limiters (`aiLimiter`, `intakeLimiter`, `boardsWriteLimiter`, `globalApiLimiter`), and default key alerts.
+2. ✅ **Add Auth to `/api/boards`**: Protected state-modifying board operations (`POST`, `PUT`, `DELETE`, `duplicate`) with `requireUserOrAdminAuth`, and attached authorization headers in `firebase-config.js` and `studio-core.js`.
+3. ✅ **Lazy-load `html2canvas` in Studio**: Removed 194 KB synchronous script tag from `studio/index.html` and implemented on-demand dynamic loading inside `exportFrames()` in `studio-core.js`.
+4. ✅ **Pause Particle Canvas Below Fold**: Added `IntersectionObserver` to `animateParticles()` in `luxury-effects.js`, completely halting the 120 FPS RAF loop when scrolled below the fold.
+5. ✅ **Cache Card Bounding Rects**: Eliminated layout thrashing reflows on card and button hover by caching `getBoundingClientRect()` on `mouseenter`.
+6. ✅ **Full Arabic Error & Status Support**: Updated `creators.html` and `app.js` with localized Arabic strings for all validation, loading, error, and WhatsApp message templates.
+
+### Sprint 3: Architectural Decoupling & Conversion Polish (Completed September 2026)
+1. ✅ **Decouple `studio-core.js` God Node**: Extracted 2,120+ lines of static templates into `public/studio/js/templates-vault.js` and 4-way multi-currency conversions into `public/studio/js/currency-engine.js`, dropping `studio-core.js` from 3,889 LOC to 1,760 LOC (-55%).
+2. ✅ **Durable Cloud Persistence & Supabase Migration Architecture**: Routed all board data, comments, and connections through `boardsService` (`server/services/supabase.js`), with full cloud PostgreSQL readiness, schema migrations (`scripts/supabase-schema.sql`), seed scripts, and local fallback.
+3. ✅ **Connect Inspector to Undo/Redo Stack**: Hooked all floating inspector visual property mutations into `window.StudioCore.pushHistory()`, enabling instantaneous undo/redo (Cmd+Z / Cmd+Shift+Z) for style, color, font, and layout adjustments.
+4. ✅ **Add Revenue Qualification to `apply.html`**: Introduced the high-ticket monthly revenue qualification selector in Step 3 across English, French, and Arabic dictionaries, with automatic tier pre-selection for traffic originating from the DTC Calculator (`?rev=...`).
+5. ✅ **Lead Intake & Notification Enrichment**: Persisted `monthlyRevenue` across backend intake pipelines and included financial tier details in founder alerts (WhatsApp, Telegram, Webhook).
+
+### Sprint 4: Visual Physics Modularization & Studio Event Bus (Completed September 2026)
+1. ✅ **Modularize `luxury-effects.js`**: Split the 1,073 LOC monolithic effects engine into 6 single-responsibility submodules in `public/js/effects/` (`thermal-guard.js`, `kinetic-typography.js`, `spotlight-cards.js`, `particle-canvas.js`, `luxury-scroll.js`, `opening-cinematic.js`) coordinated by `luxury-effects.js` as the master lifecycle dispatcher with zero bundler overhead and 100% backward compatibility.
+2. ✅ **Implement Studio Event Bus**: Engineered `public/studio/js/studio-events.js` high-performance pub/sub event bus with typed events (`VIEWPORT_CHANGED`, `ELEMENT_MOVED`, `ELEMENT_RESIZED`, `ELEMENT_SELECTED`, `CONNECTION_SELECTED`, `THEME_CHANGED`, `BOARD_LOADED`, `HISTORY_PUSHED`). Fully decoupled `canvas-panzoom.js`, `minimap.js`, `elements-factory.js`, `connector-engine.js`, `inspector.js`, and `studio-core.js`.
+3. ✅ **Execute Live Supabase Migration**: Successfully verified and migrated local storage to cloud Supabase (`https://rkbddfdevgcwqjoshpex.supabase.co`) — 13 leads, trilingual CMS live dictionary, 29 client board workspaces, and keep-alive heartbeats synced to PostgreSQL.
+4. ✅ **Drawing & Canvas Event Passthrough**: Resolved pointer-event routing so freehand pen and laser drawing smoothly glide over cards and frames without accidental card selection or drag locks.
+5. ✅ **12/12 Automated E2E Verification**: Verified with automated headless browser test suite (`scripts/test-miro-suite.js`) covering dark/light theme toggling, freehand drawings, geometric shapes, floating text, templates, minimap radar tracking, and multi-selection.
+
+### Sprint 5: Luxury Invoicing Atelier & Commercial Rebrand (Completed September 2026)
+1. ✅ **Launch Luxury Invoicing Atelier (`/invoice`)**: Deployed `public/invoice.html`, `public/css/invoice.css`, and `public/js/invoice.js` enabling live entering, editing, previewing, and PDF downloading of agency client invoices.
+2. ✅ **Complete Rebranding Fidelity**: Integrated the official Golden Ratio Pipette logo, Warm Alabaster (`#FAF7F2`) paper stock for official A4 print, and Haute Obsidian (`#080706`) for VIP screen presentation.
+3. ✅ **Full Historical Data Extraction**: Pre-populated with Faycal Chouli settlement rails (CCP `0044643623 cle 49`, RIP `00799999004464362350`), Celestia Cosmetics presets (Meta Intensive Ads 180,000 DA), Picked Makeup, and multi-currency formats (`DA`, `$`, `€`, `AED`).
+4. ✅ **Two-Way Live Sync & Direct Inline Editing**: Supports form-to-preview updates and click-to-edit `contenteditable` directly on the A4 sheet with instant localStorage auto-save (`polish_invoice_state_v4`).
+5. ✅ **Branded Serial Architecture & Increment Engine**: Implemented `POL-YYYY-XXX` (e.g. `POL-2026-094`) with automatic sequential code adjustment, blur auto-formatting, and `+1 Next` increment button.
+6. ✅ **Dynamic Live Date Synchronizer**: Automatically sets issue date to today's date (`DD/MM/YYYY`) with a one-click `Today` date button.
+7. ✅ **Architectural Card Symmetry**: Formatted `PAYABLE TO` (Polish Media Co / - Faycal Chouli / +213 661 41 77 62) to mirror `CLIENT DETAILS` (Celestia cosmetics / - Yasmine / +213 563 05 28 57). Zero hallucinated locations or text.
+8. ✅ **Print-Perfect A4 Vector Engine**: Tailored `@page` and `@media print` rules for single-page 300+ DPI vector PDF generation with zero margins or UI bleed.
+9. ✅ **Admin Hub Integration**: Added direct Invoicing Studio launch buttons to `public/admin.html` top navigation and action toolbar.
+
+### Sprint 6: Supabase Auth, Subdomain Verification & Executive Header Overhaul (Completed September 2026)
+1. ✅ **Supabase Auth Migration**: Successfully migrated authentication from Firebase Auth to Supabase Auth (`@supabase/supabase-js` v2). Wired Google OAuth with zero-delay session hydration across both `public/studio/login.html` and `public/admin.html`. Verified authorized email gating (`polishmediaco@gmail.com`).
+2. ✅ **DNS & Subdomain Architecture on Vercel**: Configured and verified custom domains on Vercel production (`polishmediaco.com`, `www.polishmediaco.com`, and `app.polishmediaco.com`) while preserving all Zoho Mail MX/TXT records on Hostinger nameservers.
+3. ✅ **Executive Admin Header Redesign (`public/admin.html`)**:
+   - **Zone 1 (Brand & Live Status)**: POLISH logo mark with glowing `EXECUTIVE HUB` status badge and pulsing green emerald indicator.
+   - **Zone 2 (Centered Segmented Capsule)**: High-contrast frosted glass navigation capsule with 4 primary panes (`Website Text`, `WhatsApp`, `Inbound Dossiers` with live counter badge, `Alerts`). Purged duplicate links and cleaned tab mapping index.
+   - **Zone 3 (Executive Utilities & Profile)**: Direct action buttons (`Invoices ↗`, `Live Site ↗`), vertical hairline divider, authenticated user pill with crown icon and email, and high-visibility logout button.
+   - **Fluid Responsive Adaptation**: 2-tier layout for tablets and laptops (< 1180px) with centered pill capsule, and ultra-compact, zero-overflow view for mobile (< 680px) with short labels ("Site Text", "WhatsApp", "Dossiers 0", "Alerts").
+   - **Toast Notification Relocation**: Relocated floating toasts from top-right to bottom-right/bottom-center to permanently eliminate any overlap or collision with the header.
+4. ✅ **Live Production Verification**: Deployed to Vercel production (`https://polishmediaco.com/admin.html`) and verified across 1440px, 1280px, 1024px, and 393px viewports with zero console warnings and 100% test pass rate.
+
+### Sprint 7: Executive Invoicing Atelier & Cloud CMS Persistence (Completed September 2026)
+1. ✅ **Permanent Public Route Lockdown**:
+   - Removed unauthenticated public access to `/invoice`, `/invoices`, and `/invoice.html`.
+   - Mounted 302 redirect directly before static file middleware to guarantee `/invoice*` requests redirect to `/admin/invoice`.
+   - Protected `/admin/invoice` with strict headers (`X-Frame-Options: DENY`, `X-Robots-Tag: noindex, nofollow, noarchive`, `Cache-Control: no-cache, no-store, must-revalidate`).
+2. ✅ **Executive Auth Gate Integration (`public/invoice.html`)**:
+   - Integrated Supabase Google 1-Click Sign-In gated to verified executive directors (`polishmediaco@gmail.com`, `choulif.work@gmail.com`, `choulifaycal10@gmail.com`).
+   - Integrated master emergency key unlock (`adminSecurityKey` + Enter keydown).
+   - Dynamic user profile pill with email display and 1-click logout in header.
+3. ✅ **Supabase Cloud Persistence Layer (`invoicesService`)**:
+   - Implemented `server/services/supabase.js` `invoicesService` storing full invoice contracts with atomic fallback to local JSON cache (`server/db/invoices.json`).
+   - Isolated invoices from lead dossiers (`getAllLeads()` excludes `type = 'INVOICE'`).
+   - Built authenticated Express API endpoints: `GET /api/invoices`, `POST /api/invoices`, `GET /api/invoices/:id`, `DELETE /api/invoices/:id` protected by `requireAdminAuth`.
+4. ✅ **Slide-Out Invoices Archive Drawer (`#archiveDrawer`)**:
+   - Real-time cloud drawer listing saved client invoices with serial code, status pill (issued/draft/paid), client name, formatted total, and issue date.
+   - Live search filter input, 1-click "Load Into Studio", and permanent cloud deletion.
+   - Synchronous cloud persistence button (`#btnCloudSave`) with emerald pulsing indicator (`Synced (Supabase)`).
+5. ✅ **Live Production Vercel Deployment**:
+   - Deployed and verified on `https://polishmediaco.com/admin/invoice` and `https://polishmediaco.com/invoice` (confirmed 302 redirect and 401 API barrier).
+6. ✅ **Dynamic PDF Download Naming Engine (`public/js/invoice.js`)**:
+   - Implemented dynamic filename formatter: `Invoice - [Client Name] - [Serial #] - [Date].pdf` (English/Arabic) or `Facture - [Client Name] - [Serial #] - [Date].pdf` (French).
+   - Sanitizes illegal filesystem characters (`/`, `\`, `?`, `%`, `*`, `:`, `|`, `"`, `<`, `>`) and extraneous whitespace.
+   - Synchronizes `document.title` on client input, issue date edits, invoice number changes, and immediately before print triggers (<kbd>Cmd</kbd> + <kbd>P</kbd>, <kbd>Ctrl</kbd> + <kbd>P</kbd>, `#btnPrintInvoice`).
+7. ✅ **PDF Export & Print Black Bar Elimination (`public/css/invoice.css` & `public/invoice.html`)**:
+   - Root-caused Chromium/WebKit print flattening bug where `transform: translateX(100%)` on the fixed `#archiveDrawer` was being rendered over the printable A4 page.
+   - Hardened `@media print` with explicit `display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important; position: absolute !important; top: -99999px !important;` on `#archiveDrawer`, `.archive-drawer`, `.archive-drawer-backdrop`, and auth overlays.
+   - Marked `#archiveDrawerBackdrop`, `#archiveDrawer`, `#authGateView`, and `#invToast` with `.no-print`. Confirmed 100% pristine vector A4 PDF output with zero black margins.
+8. ✅ **Executive Dashboard & Invoicing Atelier Design Harmonization & Zero-Flash Auth Persistence**:
+   - **Invoice Sheet Integrity**: Preserved 100% of the operational `#invoiceSheet`, calculations, currency formats, field IDs, presets, and trilingual localizations (EN / FR / AR RTL) without alteration.
+   - **Page Chrome Alignment**: Styled surrounding page chrome (navigation header, action buttons, fonts, dark/light themes, input panels) to match Executive Admin Hub 1:1.
+   - **Zero-Flash Session Persistence**: Implemented pre-paint synchronous auth script in `<head>` and `localStorage` token retention across `/admin.html` and `/admin/invoice`. Suppresses login gate before first paint and eliminates reload flicker.
+   - **Seamless Bi-Directional Navigation**: Integrated `Invoices` counter tab into the Admin header capsule, and `Leads` return link in the Invoice header capsule with automatic `#leads` hash activation. Tested and verified end-to-end with Puppeteer.
+
+### Sprint 8: Luxury Arabic (RTL) & Unicode BiDi Typography Architecture (Completed September 2026)
+1. ✅ **Brand Logo Anchored Top-Left Across All Languages**:
+   - Resolved issue where `dir="rtl"` on `#invoiceSheet` flipped the header flexbox, pushing the POLISH Media Co brandmark to the right and invoice title to the left.
+   - Enforced `direction: ltr !important;` on `.inv-header`. The official Golden Ratio Pipette logo remains anchored to the top-left permanently across English, French, and Arabic.
+   - "فاتورة" is anchored on the top-right in bold **Tajawal** typography, paired with right-aligned metadata (`رقم الفاتورة : POL-2026-094`, `التاريخ : 13/09/2026`).
+2. ✅ **Symmetrical Entity Cards (Locked LTR Grid)**:
+   - Locked `.inv-entities-grid` to `direction: ltr !important;`, preventing column reversal in RTL.
+   - `PAYABLE TO` (`مستحق لـ`: Polish Media Co / - Faycal Chouli / `+213 661 41 77 62`) sits on the left directly under the POLISH logo.
+   - `CLIENT DETAILS` (`بيانات العميل`: Celestia cosmetics / - Yasmine / `+213 563 05 28 57`) sits on the right directly under the invoice title.
+3. ✅ **Unicode BiDi Isolation & Punctuation Shielding**:
+   - Phone numbers isolated with `dir="ltr"` and `<bdi>`, preventing weak character reordering (`+213 661 41 77 62` never inverts to `62 77 41 661 213+`).
+   - Contact person dashes structured as `<span class="inv-dash">-</span> <bdi>Name</bdi>`, keeping hyphens strictly on the left (`- Faycal Chouli` never flips to `Faycal Chouli -`).
+   - Table duration badges isolated with `dir="ltr"` (`15 Days` never flips to `Days 15`).
+   - Currency formatted with non-breaking spaces (`\u00A0`) as thousands separators and atomic LTR spans (`180 000 دج` instead of unspaced `180000da` or reversed `000 180 دج`).
+   - Settlement rail colons and acronyms isolated (`(CCP)`, `(RIP)`), eliminating punctuation hops.
+4. ✅ **Table Column Alignment & Grand Total Box Harmony**:
+   - Standardized table column sequence to: `Description` | `Duration` | `Platform` | `Price`.
+   - In Arabic RTL, reading right-to-left puts `بيان الخدمة` (Description) on the far right and `السعر` (Price) on the far left.
+   - Grand Total box (`المجموع الإجمالي`) aligned to the left edge directly flush underneath the `السعر` (Price) column.
+5. ✅ **Official Invoice Footer Pill Locked to LTR**:
+   - Locked `.inv-footer` and `.inv-footer-pill` to `direction: ltr !important;`.
+   - Preserves phone number, website, and email links without icon inversion (`polishmediaco.com` | `+213 661 41 77 62` | `Contact@polishmediaco.com`).
+6. ✅ **Comprehensive E2E Visual Verification**:
+   - Verified via Puppeteer headless browser testing across **Haute Alabaster**, **Haute Obsidian**, and **Print Emulation** in Arabic, English, and French.
+   - Confirmed 0 console errors, 0 layout shifts, and 100% typography fidelity.
+   - Updated AST knowledge graph with `graphify update .`.
+
+---
+
+## 7. How to Start a Fresh Antigravity Chat
+
+To maintain maximum speed, zero context rot, and optimal token efficiency:
+
+1. Click **New Conversation** in the sidebar (or start a fresh chat).
+2. Ensure workspace is set to: `/Users/Shared/polishmedia`
+3. Send this exact prompt to kick off the next session:
+   > *"I am continuing work on POLISH Media Co. Please review `@docs/HANDOFF.md`."*

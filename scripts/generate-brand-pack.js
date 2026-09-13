@@ -230,8 +230,7 @@ function createTwitterBannerSvg() {
   <!-- Editorial Tagline with Cormorant Italic -->
   <text x="320" y="295" class="font-serif-luxury" font-size="24" fill="#F5E6D3">Haute Parfumerie, Clinical Formulations &amp; Algorithmic DTC Scaling.</text>
   
-  <!-- Key Metros Bar -->
-  <text x="320" y="350" class="font-brand-sub" font-size="12" letter-spacing="5" fill="rgba(245, 230, 211, 0.5)">PARIS  •  NEW YORK  •  DUBAI  •  TOKYO  •  ZÜRICH</text>
+
 
   <!-- High-Ticket Credential Pill -->
   <rect x="1100" y="200" width="260" height="70" rx="35" fill="rgba(20, 18, 16, 0.8)" stroke="rgba(226, 199, 153, 0.25)" stroke-width="1"/>
@@ -293,11 +292,6 @@ function createOpenGraphCardSvg() {
   <text x="600" y="340" class="font-brand-title" font-size="64" letter-spacing="14" text-anchor="middle" fill="url(#champagneGoldGrad)">POLISH</text>
   <text x="600" y="385" class="font-brand-sub" font-size="16" letter-spacing="12" text-anchor="middle" fill="#C5A880">MEDIA CO</text>
 
-  <!-- Tagline -->
-  <text x="600" y="455" class="font-serif-luxury" font-size="28" text-anchor="middle" fill="#F5E6D3">The Haute Atelier of High-Ticket Beauty &amp; Cosmetic Scaling</text>
-  
-  <!-- Trilingual & Metro Footer -->
-  <text x="600" y="525" class="font-brand-sub" font-size="12" letter-spacing="6" text-anchor="middle" fill="rgba(245, 230, 211, 0.45)">PARIS  •  NEW YORK  •  DUBAI  •  POLISHMEDIACO.COM</text>
 </svg>`;
 }
 

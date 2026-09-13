@@ -949,13 +949,28 @@
   }
 
   async function checkAdminAuth() {
+    const isInsideAdmin = !!document.getElementById('dashboardAppView');
     const authGate = document.getElementById('authGateView');
     const appView = document.getElementById('studioAppView');
 
-    // 0. Check URL query key
+    // 0. Inside Admin Dashboard: Authentication is handled by admin.html
+    if (isInsideAdmin) {
+      const storedKey = localStorage.getItem('polish_admin_key') || sessionStorage.getItem('polish_admin_key');
+      if (storedKey) activeAdminKey = storedKey;
+      if (window.PolishSupabase && typeof window.PolishSupabase.getIdToken === 'function') {
+        try {
+          const token = await window.PolishSupabase.getIdToken();
+          if (token) activeAdminToken = token;
+        } catch (_) {}
+      }
+      loadCloudInvoicesList();
+      return true;
+    }
+
+    // 1. Check URL query key
     const urlKey = new URLSearchParams(window.location.search).get('key');
 
-    // 1. Check fallback key in localStorage or sessionStorage
+    // 2. Check fallback key in localStorage or sessionStorage
     const storedKey = urlKey || localStorage.getItem('polish_admin_key') || sessionStorage.getItem('polish_admin_key');
     if (storedKey) {
       try {
@@ -978,7 +993,7 @@
       } catch (_) {}
     }
 
-    // 2. Check Supabase OAuth
+    // 3. Check Supabase OAuth
     if (window.PolishSupabase) {
       try {
         await window.PolishSupabase.init();
@@ -1005,7 +1020,7 @@
       }
     }
 
-    // Unauthenticated
+    // Unauthenticated (only for standalone invoice.html)
     document.documentElement.classList.remove('is-authenticated');
     if (authGate) authGate.style.display = 'flex';
     if (appView) appView.style.display = 'none';
@@ -1013,14 +1028,15 @@
   }
 
   function unlockStudio(identifier) {
+    const isInsideAdmin = !!document.getElementById('dashboardAppView');
     const authGate = document.getElementById('authGateView');
     const appView = document.getElementById('studioAppView');
     const userEmailEl = document.getElementById('adminUserEmail');
 
     document.documentElement.classList.add('is-authenticated');
-    if (authGate) authGate.style.display = 'none';
+    if (authGate && !isInsideAdmin) authGate.style.display = 'none';
     if (appView) appView.style.display = 'block';
-    if (userEmailEl && identifier) {
+    if (userEmailEl && identifier && !isInsideAdmin) {
       userEmailEl.textContent = identifier.includes('@') ? identifier.split('@')[0] : identifier;
       userEmailEl.title = identifier;
     }
@@ -1028,62 +1044,68 @@
     loadCloudInvoicesList();
   }
 
-  window.handleGoogleAdminSignIn = async function () {
-    const errEl = document.getElementById('authGateError');
-    if (errEl) errEl.style.display = 'none';
-    const text = document.getElementById('btnGoogleText');
-    if (text) text.textContent = 'Connecting with Google...';
+  if (!window.handleGoogleAdminSignIn) {
+    window.handleGoogleAdminSignIn = async function () {
+      const errEl = document.getElementById('authGateError');
+      if (errEl) errEl.style.display = 'none';
+      const text = document.getElementById('btnGoogleText');
+      if (text) text.textContent = 'Connecting with Google...';
 
-    try {
-      if (!window.PolishSupabase || !window.PolishSupabase.isReady) {
-        await window.PolishSupabase.init();
+      try {
+        if (!window.PolishSupabase || !window.PolishSupabase.isReady) {
+          await window.PolishSupabase.init();
+        }
+        await window.PolishSupabase.loginWithGoogle({
+          redirectTo: window.location.href.split('#')[0]
+        });
+      } catch (err) {
+        console.error('[Invoice Auth] Google sign-in failed:', err);
+        showAuthError(err.message || 'Google sign-in could not be completed.');
+      } finally {
+        if (text) text.textContent = 'Sign In with Google';
       }
-      await window.PolishSupabase.loginWithGoogle({
-        redirectTo: window.location.href.split('#')[0]
+    };
+  }
+
+  if (!window.handleKeyUnlock) {
+    window.handleKeyUnlock = async function () {
+      const keyInput = document.getElementById('adminSecurityKey');
+      const key = keyInput ? keyInput.value.trim() : '';
+      if (!key) {
+        showAuthError('Please enter your executive master key.');
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/admin/verify', {
+          headers: { 'x-api-key': key }
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          activeAdminKey = key;
+          localStorage.setItem('polish_admin_key', key);
+          sessionStorage.setItem('polish_admin_key', key);
+          document.documentElement.classList.add('is-authenticated');
+          unlockStudio('Executive Key');
+        } else {
+          showAuthError(data.error || 'Invalid executive security key.');
+        }
+      } catch (err) {
+        showAuthError('Connection error: ' + err.message);
+      }
+    };
+  }
+
+  if (!document.getElementById('dashboardAppView')) {
+    const emergencyKeyInput = document.getElementById('adminSecurityKey');
+    if (emergencyKeyInput) {
+      emergencyKeyInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (window.handleKeyUnlock) window.handleKeyUnlock();
+        }
       });
-    } catch (err) {
-      console.error('[Invoice Auth] Google sign-in failed:', err);
-      showAuthError(err.message || 'Google sign-in could not be completed.');
-    } finally {
-      if (text) text.textContent = 'Sign In with Google';
     }
-  };
-
-  window.handleKeyUnlock = async function () {
-    const keyInput = document.getElementById('adminSecurityKey');
-    const key = keyInput ? keyInput.value.trim() : '';
-    if (!key) {
-      showAuthError('Please enter your executive master key.');
-      return;
-    }
-
-    try {
-      const res = await fetch('/api/admin/verify', {
-        headers: { 'x-api-key': key }
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        activeAdminKey = key;
-        localStorage.setItem('polish_admin_key', key);
-        sessionStorage.setItem('polish_admin_key', key);
-        document.documentElement.classList.add('is-authenticated');
-        unlockStudio('Executive Key');
-      } else {
-        showAuthError(data.error || 'Invalid executive security key.');
-      }
-    } catch (err) {
-      showAuthError('Connection error: ' + err.message);
-    }
-  };
-
-  const emergencyKeyInput = document.getElementById('adminSecurityKey');
-  if (emergencyKeyInput) {
-    emergencyKeyInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        window.handleKeyUnlock();
-      }
-    });
   }
 
   async function logoutAdmin() {
@@ -1194,6 +1216,10 @@
       if (res.ok && data.success && Array.isArray(data.invoices)) {
         cachedCloudInvoices = data.invoices;
         renderArchiveCards(cachedCloudInvoices);
+        const countBadge = document.getElementById('invoicesNavCount');
+        if (countBadge) {
+          countBadge.textContent = cachedCloudInvoices.length;
+        }
       } else {
         listContainer.innerHTML = `<div style="text-align: center; padding: 24px; color: var(--studio-text-muted); font-size: 12.5px;">No cloud invoices found or access denied.</div>`;
       }
@@ -1343,6 +1369,13 @@
     setupToolbar();
     await checkAdminAuth();
   }
+
+  window.refreshInvoiceStudio = function () {
+    syncStateToForm();
+    renderInvoiceSheet();
+    loadCloudInvoicesList();
+  };
+  window.initInvoiceStudio = init;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

@@ -941,9 +941,11 @@ body.theme-dark .tool-item.tool-ai-btn {
   opacity: 0.78;
 }
 
-.is-presenting .board-frame.active-presentation-frame {
+.is-presenting .board-frame.active-presentation-frame,
+.is-presenting .studio-element.active-presentation-slide {
   opacity: 1 !important;
-  filter: drop-shadow(0 0 36px rgba(226, 199, 153, 0.35));
+  filter: drop-shadow(0 0 36px rgba(226, 199, 153, 0.45));
+  outline: 2px solid rgba(226, 199, 153, 0.7) !important;
   z-index: 50 !important;
 }
 

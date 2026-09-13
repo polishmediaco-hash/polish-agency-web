@@ -9,7 +9,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/invoice.css?v=3.5">
 
   <script>
     // Instant pre-paint synchronous check to eliminate login screen flash
@@ -501,6 +502,13 @@
       padding: 32px 20px 120px;
       position: relative;
       z-index: 1;
+      transition: max-width 0.2s ease;
+    }
+
+    .admin-main.admin-main-wide {
+      max-width: 1720px !important;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     /* Page Header */
@@ -1408,7 +1416,7 @@
 <div id="toast"></div>
 
 <!-- ================= TOP NAVIGATION ================= -->
-<header class="admin-nav">
+<header class="admin-nav no-print">
   <div class="admin-nav-inner">
     
     <!-- Zone 1: Luxury Brand & Live Status -->
@@ -1436,11 +1444,11 @@
         <span class="tab-label-short">Dossiers</span>
         <span class="tab-badge" id="leadsNavCount">0</span>
       </button>
-      <a href="/admin/invoice" class="nav-tab" title="Launch Executive Invoicing Atelier" style="text-decoration: none;">
+      <button class="nav-tab" data-pane="invoicesTabPane" onclick="switchMainTab('invoicesTabPane')" title="Executive Invoicing Atelier">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
         <span>Invoices</span>
-        <span class="tab-badge" style="background: rgba(226,199,153,0.18); color: #E2C799; border: 1px solid rgba(226,199,153,0.35);">24</span>
-      </a>
+        <span class="tab-badge" id="invoicesNavCount" style="background: rgba(226,199,153,0.18); color: #E2C799; border: 1px solid rgba(226,199,153,0.35);">24</span>
+      </button>
       <button class="nav-tab" data-pane="notifTabPane" onclick="switchMainTab('notifTabPane')">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         <span>Alerts</span>
@@ -1449,17 +1457,6 @@
 
     <!-- Zone 3: Executive Utilities & User Profile -->
     <div class="nav-actions" id="navActions" style="display: none;">
-      <a href="/admin/invoice" target="_blank" class="btn-nav" title="Launch Invoicing Atelier">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-          <polyline points="10 9 9 9 8 9"></polyline>
-        </svg>
-        <span>Invoices</span>
-        <span class="ext-arrow">↗</span>
-      </a>
       <a href="/" target="_blank" class="btn-nav" title="View Live Website">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -2156,6 +2153,252 @@
       </div>
     </div>
 
+    <!-- ================= TAB 3.5: EXECUTIVE INVOICING ATELIER ================= -->
+    <section id="invoicesTabPane" class="tab-pane">
+      
+      <!-- Studio Page Header & Executive Controls -->
+      <div class="page-header">
+        <div>
+          <h1>Executive Invoicing Atelier</h1>
+          <p>Bespoke luxury billing studio, multi-currency accounting, and vector PDF exports.</p>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <!-- Sheet Theme Toggle -->
+          <div class="theme-switch" style="display:inline-flex; align-items:center; background:var(--bg); border:1px solid var(--card-border); border-radius:6px; padding:2px;">
+            <button type="button" class="btn-theme-opt active" id="themeAlabaster" style="background:var(--card-bg); border:none; color:var(--text); font-size:11px; font-weight:700; padding:4px 8px; border-radius:4px; cursor:pointer;">Alabaster</button>
+            <button type="button" class="btn-theme-opt" id="themeObsidian" style="background:transparent; border:none; color:var(--dim); font-size:11px; font-weight:600; padding:4px 8px; border-radius:4px; cursor:pointer;">Obsidian</button>
+          </div>
+
+          <!-- Language Selector -->
+          <select class="form-select" id="langSelect" style="width: auto; padding: 4px 10px; font-size: 11.5px; height: 28px; font-weight: 600;">
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+            <option value="ar">AR</option>
+          </select>
+
+          <!-- Edit Mode Toggle -->
+          <button type="button" class="btn-ghost" id="btnToggleEdit" style="font-size: 11.5px; padding: 5px 12px;">Edit Sheet</button>
+
+          <!-- Archives Drawer -->
+          <button type="button" class="btn-ghost" id="btnOpenArchive" style="font-size: 11.5px; padding: 5px 12px;">Archives</button>
+
+          <!-- Cloud Save -->
+          <button type="button" class="btn-ghost" id="btnCloudSave" style="font-size: 11.5px; padding: 5px 12px;">Save</button>
+
+          <!-- Print / PDF -->
+          <button type="button" class="btn-primary-action" id="btnPrintInvoice" style="font-size: 11.5px; padding: 5px 14px; height: 28px; display: inline-flex; align-items: center; gap: 6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print / PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile View Toggle Tabs (< 1100px) -->
+      <nav class="mobile-view-tabs no-print" aria-label="Mobile Navigation">
+        <button type="button" class="mobile-tab-btn active" id="btnMobileForm">Edit Form</button>
+        <button type="button" class="mobile-tab-btn" id="btnMobilePreview">Live Preview</button>
+      </nav>
+
+      <!-- Main Studio Workspace: Split View -->
+      <div class="studio-container">
+        
+        <!-- Left Drawer: Form Inputs -->
+        <aside class="studio-editor-panel no-print" id="studioEditorPanel">
+          
+          <!-- Quick Presets -->
+          <div class="editor-section">
+            <div class="editor-section-header">
+              <span class="editor-section-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                Quick Presets
+              </span>
+            </div>
+            <div class="preset-pills">
+              <button type="button" class="preset-pill active" data-preset-load="celestia">Celestia (Beauty Retainer)</button>
+              <button type="button" class="preset-pill" data-preset-load="picked">Picked Makeup (Monthly)</button>
+              <button type="button" class="preset-pill" id="btnResetInvoice" style="color: var(--studio-text-muted);">Reset</button>
+            </div>
+          </div>
+
+          <!-- Invoice Meta Details -->
+          <div class="editor-section">
+            <div class="editor-section-header">
+              <span class="editor-section-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Invoice Reference &amp; Dates
+              </span>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Serial Number</label>
+                <div style="display: flex; gap: 6px;">
+                  <input type="text" class="form-input" id="inputInvoiceNumber" placeholder="POL-2026-094" style="flex: 1;">
+                  <button type="button" class="btn-studio-secondary" id="btnNextSerial" title="Increment Serial Number (+1)" style="padding: 0 10px; font-weight: 800;">+1</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Currency</label>
+                <select class="form-select" id="inputCurrency">
+                  <option value="DA">Algerian Dinar (DA)</option>
+                  <option value="USD">US Dollar ($ / USD)</option>
+                  <option value="EUR">Euro (€ / EUR)</option>
+                  <option value="AED">UAE Dirham (AED)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Issue Date</label>
+                <div style="display: flex; gap: 6px;">
+                  <input type="text" class="form-input" id="inputIssueDate" placeholder="DD/MM/YYYY" style="flex: 1;">
+                  <button type="button" class="btn-studio-secondary" id="btnSetToday" title="Set to Today" style="padding: 0 10px; font-size: 11px;">Today</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Due Date (Optional)</label>
+                <input type="text" class="form-input" id="inputDueDate" placeholder="DD/MM/YYYY or Empty">
+              </div>
+            </div>
+          </div>
+
+          <!-- Payable To Details -->
+          <div class="editor-section">
+            <div class="editor-section-header">
+              <span class="editor-section-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Payable To (Agency Details)
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Agency / Company Name</label>
+              <input type="text" class="form-input" id="inputPayableName" placeholder="Polish Media Co">
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Contact Person</label>
+                <input type="text" class="form-input" id="inputPayableContact" placeholder="Faycal Chouli">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-input" id="inputPayablePhone" placeholder="+213 661 41 77 62">
+              </div>
+            </div>
+          </div>
+
+          <!-- Client Details -->
+          <div class="editor-section">
+            <div class="editor-section-header">
+              <span class="editor-section-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Client Details
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Client / Brand Name</label>
+              <input type="text" class="form-input" id="inputClientName" placeholder="e.g. Celestia cosmetics">
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Contact Person</label>
+                <input type="text" class="form-input" id="inputClientContact" placeholder="e.g. Yasmine">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-input" id="inputClientPhone" placeholder="+213 563 05 28 57">
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Email (Optional)</label>
+                <input type="email" class="form-input" id="inputClientEmail" placeholder="client@brand.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Address (Optional)</label>
+                <input type="text" class="form-input" id="inputClientAddress" placeholder="Algiers, Algeria">
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Line Items -->
+          <div class="editor-section">
+            <div class="editor-section-header">
+              <span class="editor-section-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                Services &amp; Deliverables
+              </span>
+            </div>
+            
+            <!-- Dynamic Items Container -->
+            <div id="serviceItemsFormContainer"></div>
+
+            <button type="button" class="btn-add-item" id="btnAddServiceItem">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Service Item
+            </button>
+          </div>
+
+          <!-- Payment Settlement Details -->
+          <div class="editor-section">
+            <div class="editor-section-header">
+              <span class="editor-section-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                Payment Settlement
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Beneficiary Account</label>
+              <input type="text" class="form-input" id="inputBeneficiaryName" value="FAYCAL CHOULI">
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">CCP Number</label>
+                <input type="text" class="form-input" id="inputCcp" value="0044643623 cle 49">
+              </div>
+              <div class="form-group">
+                <label class="form-label">RIP Number</label>
+                <input type="text" class="form-input" id="inputRip" value="00799999004464362350">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bank Name / Details (Optional)</label>
+              <input type="text" class="form-input" id="inputBankName" placeholder="Banque d'Algérie / BEA / etc.">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Terms &amp; Settlement Notes (Optional)</label>
+              <textarea class="form-input" id="inputTerms" rows="2" placeholder="Payment due upon receipt. Transfers to be confirmed via screenshot."></textarea>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- Right Main Stage: Live A4 Canvas -->
+        <section class="studio-stage" id="studioStage">
+          
+          <!-- Stage Info Pill -->
+          <div class="stage-toolbar no-print">
+            <div class="stage-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              A4 Canvas Live Preview
+            </div>
+            <span class="edit-mode-pill inactive" id="editModePill">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              Preview Mode
+            </span>
+          </div>
+
+          <!-- The A4 Sheet Wrapper -->
+          <div class="invoice-sheet-wrapper">
+            <article class="invoice-sheet" id="invoiceSheet" data-invoice-theme="alabaster">
+              <!-- Dynamically Injected by invoice.js -->
+            </article>
+          </div>
+
+        </section>
+
+      </div>
+
+    </section>
+
     <!-- ================= TAB 4: INSTANT NOTIFICATIONS ================= -->
     <section id="notifTabPane" class="tab-pane">
       <div class="page-header">
@@ -2220,9 +2463,30 @@
   </main>
 </div>
 
+<!-- Invoices Archive Slide-Out Drawer -->
+<div class="archive-drawer-backdrop no-print" id="archiveDrawerBackdrop"></div>
+<aside class="archive-drawer no-print" id="archiveDrawer">
+  <div class="archive-drawer-header">
+    <div class="archive-drawer-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8v13H3V8"></path><path d="M1 3h22v5H1z"></path><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+      Cloud Invoices Archive
+    </div>
+    <button type="button" class="archive-drawer-close" id="btnCloseArchive" title="Close Drawer">&times;</button>
+  </div>
+  <div class="archive-drawer-body">
+    <input type="text" class="archive-search-input" id="archiveSearchInput" placeholder="Filter by serial, client, or date...">
+    <div id="archiveListContainer" style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="text-align: center; padding: 30px; color: var(--studio-text-muted); font-size: 13px;">
+        Loading cloud invoices...
+      </div>
+    </div>
+  </div>
+</aside>
+
 <!-- Supabase Web Client (~35KB vs ~175KB Firebase) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/studio/js/supabase-config.js?v=20260910_v2"></script>
+<script src="/js/invoice.js?v=3.5"></script>
 
 <script>
   let activeAdminKey = '';
@@ -2491,8 +2755,21 @@
 
     document.querySelectorAll(`.nav-tab[data-pane="${paneId}"]`).forEach(t => t.classList.add('active'));
 
+    const mainEl = document.querySelector('.admin-main');
+    if (mainEl) {
+      if (paneId === 'invoicesTabPane') {
+        mainEl.classList.add('admin-main-wide');
+      } else {
+        mainEl.classList.remove('admin-main-wide');
+      }
+    }
+
     if (paneId === 'leadsTabPane') {
       refreshLeads();
+    } else if (paneId === 'invoicesTabPane') {
+      if (typeof window.refreshInvoiceStudio === 'function') {
+        window.refreshInvoiceStudio();
+      }
     }
   }
 
@@ -2501,6 +2778,7 @@
     if (hash === 'leads' || hash === 'dossiers') switchMainTab('leadsTabPane');
     else if (hash === 'whatsapp' || hash === 'wa') switchMainTab('waTabPane');
     else if (hash === 'cms' || hash === 'text') switchMainTab('cmsTabPane');
+    else if (hash === 'invoices' || hash === 'invoice') switchMainTab('invoicesTabPane');
     else if (hash === 'alerts' || hash === 'notif' || hash === 'system') switchMainTab('notifTabPane');
   }
   window.addEventListener('hashchange', handleHashRoute);

@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 84 files · ~615,305 words
+- 84 files · ~628,191 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 954 nodes · 1567 edges · 74 communities (67 shown, 5 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.85)
+- 974 nodes · 1609 edges · 74 communities (67 shown, 5 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `817751d8`
+- Built from commit: `0bb2d00d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -38,6 +38,7 @@
 - dependencies
 - drawing-engine.js
 - presentation.js
+- api.js
 - app.js
 - minimap.js
 - whatsapp.js
@@ -74,7 +75,6 @@
 - workflows/graphify.md
 - supabase-config.js
 - calendlySync.js
-- api.js
 - auth.js
 - seed-supabase.js
 - templates-vault.js
@@ -130,8 +130,8 @@ Cohesion: 0.12
 Nodes (32): applyElementStyles(), attachElementInteractions(), createBeliefTriadDOM(), createBonusStackDOM(), createCadenceTimelineDOM(), createCalloutDOM(), createCapacityIndicatorDOM(), createClinicalProofDOM() (+24 more)
 
 ### Community 5 - "studio-ai.js"
-Cohesion: 0.16
-Nodes (26): appendMessage(), applyCreatorPersona(), applySavedState(), clearChat(), clearSelectionContext(), close(), getSelectionContext(), init() (+18 more)
+Cohesion: 0.15
+Nodes (28): appendMessage(), applyCreatorPersona(), applySavedState(), auditCurrentBoard(), clearChat(), clearSelectionContext(), close(), getSelectionContext() (+20 more)
 
 ### Community 6 - "generate-brand-pack.js"
 Cohesion: 0.14
@@ -194,8 +194,12 @@ Cohesion: 0.48
 Nodes (5): attachStrokeEvents(), bindEvents(), getSmoothSvgPath(), init(), renderAllStrokes()
 
 ### Community 22 - "presentation.js"
-Cohesion: 0.48
-Nodes (5): flyToSlide(), next(), prev(), start(), toggleGodView()
+Cohesion: 0.17
+Nodes (21): buildPresentationSequence(), clearSpotlight(), focusOnElement(), getSlideTitle(), goToStep(), initLaser(), isValidSlideElement(), next() (+13 more)
+
+### Community 23 - "api.js"
+Cohesion: 0.10
+Nodes (17): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+9 more)
 
 ### Community 24 - "app.js"
 Cohesion: 0.67
@@ -219,7 +223,7 @@ Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects
 
 ### Community 31 - "6. Next Priority Roadmap (Ready for Next Conversation)"
 Cohesion: 0.07
-Nodes (28): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+20 more)
+Nodes (29): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+21 more)
 
 ### Community 32 - "OWASP Top 10 — Audit Checklist"
 Cohesion: 0.11
@@ -333,10 +337,6 @@ Nodes (12): _formatUser(), getAuthHeaders(), getBoard(), getIdToken(), init(), l
 Cohesion: 0.26
 Nodes (11): checkNewCalendlyMeetings(), fs, initNotifiedCache(), notifiedEventUris, { notifyNewMeeting }, path, startCalendlyPoller(), escapeTg() (+3 more)
 
-### Community 62 - "api.js"
-Cohesion: 0.10
-Nodes (17): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+9 more)
-
 ### Community 64 - "auth.js"
 Cohesion: 0.31
 Nodes (8): crypto, getAdminEmails(), requireAdminAuth(), requireUserOrAdminAuth(), { supabase, isConfigured }, tokenCache, verifySupabaseToken(), isConfigured
@@ -378,8 +378,8 @@ Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
 ## Knowledge Gaps
-- **332 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+327 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 406 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **333 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+328 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 408 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -392,10 +392,10 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _332 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _333 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**
   _Cohesion score 0.11931818181818182 - nodes in this community are weakly interconnected._
-- **Should `generate-brand-pack.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.14492753623188406 - nodes in this community are weakly interconnected._
+- **Should `studio-ai.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.14532019704433496 - nodes in this community are weakly interconnected._

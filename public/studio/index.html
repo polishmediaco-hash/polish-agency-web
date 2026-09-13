@@ -201,6 +201,11 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><polyline points="9 13 11 15 15 11"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
         </span>
       </button>
+      <button class="tool-item" data-tool="cosmetic" onclick="toggleCosmeticMenu(event)" data-tooltip="Haute Beauté Blueprints" aria-label="Haute Beauté Cosmetic Blocks">
+        <span class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </span>
+      </button>
     </div>
 
     <div class="dock-separator" aria-hidden="true"></div>
@@ -279,6 +284,25 @@
       <button class="stroke-size-btn" onclick="setPenWidth(2)">Fine (2px)</button>
       <button class="stroke-size-btn" onclick="setPenWidth(4)">Med (4px)</button>
       <button class="stroke-size-btn" onclick="setPenWidth(8)">Bold (8px)</button>
+    </div>
+  </div>
+
+  <!-- Flyout Menu: Haute Beauté Cosmetic Blocks -->
+  <div id="cosmeticFlyout" class="tool-flyout" style="display:none; min-width:220px;">
+    <div class="flyout-title">Haute Beauté Blueprints</div>
+    <div class="flyout-grid">
+      <button class="flyout-btn" onclick="StudioCore.addRoutineStep(); closeAllFlyouts();">
+        🧴 Routine Step
+      </button>
+      <button class="flyout-btn" onclick="StudioCore.addOlfactoryPyramid(); closeAllFlyouts();">
+        ✨ Olfactory Pyramid
+      </button>
+      <button class="flyout-btn" onclick="StudioCore.addUgcBrief(); closeAllFlyouts();">
+        🎬 UGC Creator Brief
+      </button>
+      <button class="flyout-btn" onclick="StudioCore.addClinicalProof(); closeAllFlyouts();">
+        🔬 Clinical Proof Metric
+      </button>
     </div>
   </div>
 
@@ -924,11 +948,15 @@
   <!-- PRESENTATION MODE SLIDE CONTROLLER                         -->
   <!-- ========================================================== -->
   <div class="presentation-bar">
-    <button class="present-nav-btn btn-prev" onclick="StudioPresentation.prev()">← Previous</button>
+    <button class="present-nav-btn btn-prev" onclick="StudioPresentation.prev()" title="Previous Slide (Left Arrow)">← Prev</button>
+    <div class="present-timer-badge" title="Live Pitch Timer"><span class="present-timer-dot"></span><span id="presentTimer">00:00</span></div>
     <div id="presentSlideInfo" class="present-slide-info"><span class="slide-count">Slide 1 of 8</span></div>
-    <button class="present-nav-btn btn-next" onclick="StudioPresentation.next()">Next →</button>
-    <button class="present-nav-btn btn-godview" onclick="StudioPresentation.toggleGodView()" title="Toggle Macro God View (G / O)">⛶ God View</button>
-    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:8px">Exit (Esc)</button>
+    <select id="presentSlideSelect" class="present-nav-btn" style="background:rgba(255,255,255,0.06); color:#E2C799; border-radius:12px; font-size:0.7rem; padding:0.25rem 0.5rem; outline:none; border:1px solid rgba(226,199,153,0.25);" title="Jump to Slide"></select>
+    <button class="present-nav-btn btn-next" onclick="StudioPresentation.next()" title="Next Slide (Right Arrow / Space)">Next →</button>
+    <button class="present-nav-btn btn-laser" onclick="StudioPresentation.toggleLaser()" title="Laser Pointer (L)">⚲ Laser</button>
+    <button class="present-nav-btn btn-godview" onclick="StudioPresentation.toggleGodView()" title="God View (G / O)">⛶ God View</button>
+    <button class="present-nav-btn btn-fullscreen" onclick="StudioPresentation.toggleFullscreen()" title="Fullscreen (F)">⛶ Fullscreen</button>
+    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:6px" title="Exit Presentation (Esc)">Exit (Esc)</button>
   </div>
 
   <!-- ========================================================== -->
@@ -1115,6 +1143,24 @@
       closeAllFlyouts();
     }
 
+    function toggleCosmeticMenu(e) {
+      e.stopPropagation();
+      const flyout = document.getElementById('cosmeticFlyout');
+      const isVisible = flyout && flyout.style.display === 'block';
+      closeAllFlyouts();
+      if (flyout && !isVisible) {
+        const btn = document.querySelector('[data-tool="cosmetic"]');
+        if (btn) {
+          const rect = btn.getBoundingClientRect();
+          flyout.style.display = 'block';
+          flyout.style.left = `${Math.round(rect.left + rect.width / 2)}px`;
+          flyout.style.transform = 'translateX(-50%)';
+          flyout.style.top = 'auto';
+          flyout.style.bottom = `${Math.round(window.innerHeight - rect.top + 12)}px`;
+        }
+      }
+    }
+
     function closeAllFlyouts() {
       document.querySelectorAll('.tool-flyout').forEach(el => el.style.display = 'none');
     }
@@ -1169,6 +1215,9 @@
       </div>
 
       <div class="ai-header-actions">
+        <button type="button" class="ai-icon-btn" onclick="StudioAI.auditCurrentBoard()" title="Audit Board Strategy">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </button>
         <button type="button" class="ai-icon-btn" onclick="StudioAI.clearChat()" title="Reset Session">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
         </button>

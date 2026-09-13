@@ -114,28 +114,28 @@
     "semantic_hash": ""
   },
   "public/studio/js/presentation.js": {
-    "mtime": 1788935838.5271375,
-    "seen": 1788993504.516905,
-    "ast_hash": "883193de1d626a77c2f3708b99599d6f",
-    "semantic_hash": "883193de1d626a77c2f3708b99599d6f"
+    "mtime": 1789265822.19877,
+    "seen": 1789265844.021648,
+    "ast_hash": "f1e857fa4d4f9b6980f4da4fa1a888ad",
+    "semantic_hash": ""
   },
   "public/studio/js/studio-ai.js": {
-    "mtime": 1788945158.510755,
-    "seen": 1788993504.516905,
-    "ast_hash": "65b2ac6fe51feab498963774eefe19e2",
-    "semantic_hash": "65b2ac6fe51feab498963774eefe19e2"
+    "mtime": 1789265586.0944414,
+    "seen": 1789265632.723424,
+    "ast_hash": "52700aa3da0f80210a0af3b272d412fb",
+    "semantic_hash": ""
   },
   "public/studio/js/studio-core.js": {
-    "mtime": 1789000011.909434,
-    "seen": 1789000194.674059,
-    "ast_hash": "3ac0345ec471abb21fb30eb126387c93",
+    "mtime": 1789265524.633714,
+    "seen": 1789265554.334649,
+    "ast_hash": "4db8c03872f525c8735329348bc33c1f",
     "semantic_hash": ""
   },
   "scripts/generate-brand-pack.js": {
-    "mtime": 1788571253.5232587,
-    "seen": 1788993504.516916,
-    "ast_hash": "fc6c6ecb5d97a8d7bc6ebcf1a30f3ddc",
-    "semantic_hash": "fc6c6ecb5d97a8d7bc6ebcf1a30f3ddc"
+    "mtime": 1789266009.8660238,
+    "seen": 1789266024.946986,
+    "ast_hash": "c4a80b8e1144160f275e144304b2d962",
+    "semantic_hash": ""
   },
   "scripts/generate-logo-concepts.js": {
     "mtime": 1788569609.737862,
@@ -198,9 +198,9 @@
     "semantic_hash": ""
   },
   "server/routes/api.js": {
-    "mtime": 1789261478.7184527,
-    "seen": 1789262038.390107,
-    "ast_hash": "5cc829ff585995617afa37269e74fd75",
+    "mtime": 1789265551.8214605,
+    "seen": 1789265554.334798,
+    "ast_hash": "e4f25102f278247a88d790ca89609801",
     "semantic_hash": ""
   },
   "server/routes/boards.js": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789265455.1762853,
-    "seen": 1789265459.613176,
-    "ast_hash": "a0d8bf8ff7629a2ae49cd9e24f61a363",
+    "mtime": 1789266013.904681,
+    "seen": 1789266024.947426,
+    "ast_hash": "bfe6c4a5c7a9d2d9affa5db4503d3ab5",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,21 +396,21 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789265014.3777986,
-    "seen": 1789265459.613207,
-    "ast_hash": "0b2c037f9a624d4b2a824bc9246c3390",
+    "mtime": 1789265483.6924062,
+    "seen": 1789265554.335181,
+    "ast_hash": "4dc133ddcb10cbf1602b15d67dee4dde",
     "semantic_hash": ""
   },
   "public/apply.html": {
-    "mtime": 1788996763.5640862,
-    "seen": 1788996818.24205,
-    "ast_hash": "0ae6262be85a6e51ed243ef2355017db",
+    "mtime": 1789265684.1407282,
+    "seen": 1789265713.9326909,
+    "ast_hash": "54e27b00cce21743c8adf5d6547187c6",
     "semantic_hash": ""
   },
   "public/book.html": {
-    "mtime": 1788956010.513539,
-    "seen": 1788996280.9891598,
-    "ast_hash": "1522fca84c1970f06dbbc9345eef661f",
+    "mtime": 1789265688.321388,
+    "seen": 1789265713.932692,
+    "ast_hash": "509f824bffe9922c9ce6ab20aeb64efb",
     "semantic_hash": ""
   },
   "public/brand-pack.html": {
@@ -438,27 +438,27 @@
     "semantic_hash": ""
   },
   "public/creators.html": {
-    "mtime": 1788996237.9109,
-    "seen": 1788996280.989162,
-    "ast_hash": "e2ffcbd9e7da5fb98bd83b82f250765b",
+    "mtime": 1789265693.5741816,
+    "seen": 1789265713.932739,
+    "ast_hash": "0bd61631a595b99fd6c62a9f37d7a87a",
     "semantic_hash": ""
   },
   "public/eman-alkatheeri.html": {
-    "mtime": 1788956029.8110597,
-    "seen": 1788996280.989162,
-    "ast_hash": "5196c6b35727645c273b85016a5ba713",
+    "mtime": 1789265704.7957768,
+    "seen": 1789265713.932739,
+    "ast_hash": "1f94a3c3044bbbe4bcba5a8c131dfa5b",
     "semantic_hash": ""
   },
   "public/index.html": {
-    "mtime": 1788956001.906187,
-    "seen": 1788996280.989163,
-    "ast_hash": "6ed2b69c143ceccbadfc783a012e8935",
+    "mtime": 1789265679.1401024,
+    "seen": 1789265713.932739,
+    "ast_hash": "a916b6bdbe9ccc7656337956cb970090",
     "semantic_hash": ""
   },
   "public/intake.html": {
-    "mtime": 1788956021.325296,
-    "seen": 1788996280.989163,
-    "ast_hash": "67b67860b554224e8672bdf6da7d6868",
+    "mtime": 1789265700.1291068,
+    "seen": 1789265713.9327402,
+    "ast_hash": "32e627c8ae818d6933acf82c26b00fb0",
     "semantic_hash": ""
   },
   "public/llms-full.txt": {
@@ -480,15 +480,15 @@
     "semantic_hash": ""
   },
   "public/studio/dashboard.html": {
-    "mtime": 1789265450.5225866,
-    "seen": 1789265459.613357,
-    "ast_hash": "317d6f19498216f0801cc0d8294627f8",
+    "mtime": 1789265460.148505,
+    "seen": 1789265554.335337,
+    "ast_hash": "d8e49838bdb23b841a352534b0299b19",
     "semantic_hash": ""
   },
   "public/studio/index.html": {
-    "mtime": 1789001315.3339214,
-    "seen": 1789001350.886235,
-    "ast_hash": "c44325d8118d3bd19bdf3d869abc7695",
+    "mtime": 1789265737.0042682,
+    "seen": 1789265844.022356,
+    "ast_hash": "f560d72584aecba9f76f34f26b48c8a9",
     "semantic_hash": ""
   },
   "public/studio/login.html": {
@@ -1086,15 +1086,15 @@
     "semantic_hash": ""
   },
   "public/brand-pack/03_social_assets/og-social-card-1200x630.png": {
-    "mtime": 1788571273.543428,
-    "seen": 1788996280.989205,
-    "ast_hash": "c9a7db68fddff145ed2f95953cd9430a",
+    "mtime": 1789265992.3905056,
+    "seen": 1789266024.948874,
+    "ast_hash": "d5b95c6476bcd648c39c7df85a075830",
     "semantic_hash": ""
   },
   "public/brand-pack/03_social_assets/og-social-card-1200x630.svg": {
-    "mtime": 1788571273.26607,
-    "seen": 1788996280.989205,
-    "ast_hash": "dd4cfcfd0d01433b891ee3c313cc4e16",
+    "mtime": 1789265986.9681797,
+    "seen": 1789266024.948874,
+    "ast_hash": "02d5cb0cd23523099199b2bcaceb9ea7",
     "semantic_hash": ""
   },
   "public/brand-pack/03_social_assets/profile_pictures/01_platform_specific/01_instagram_profile_1080x1080.png": {
@@ -1332,9 +1332,9 @@
     "semantic_hash": ""
   },
   "public/brand-pack/03_social_assets/twitter-x-header-1500x500.svg": {
-    "mtime": 1788571272.4551446,
-    "seen": 1788996280.989221,
-    "ast_hash": "8063894c846f7de9ea900ecf7fe6420e",
+    "mtime": 1789265997.619843,
+    "seen": 1789266024.94942,
+    "ast_hash": "f4f23065c16f78423f5cfdd83eeac911",
     "semantic_hash": ""
   },
   "public/brand-pack/04_color_palette/polish-palette-swatches.png": {
@@ -1859,94 +1859,100 @@
     "ast_hash": "3bd873c6d81dd483738f651d8d546ad0",
     "semantic_hash": ""
   },
-  "public/POLISH_Invoice_Sample.pdf": {
-    "mtime": 1789256295.6977382,
-    "seen": 1789256331.877821,
-    "ast_hash": "61f29bb82303caf8c62ab94e48b8fa0a",
-    "semantic_hash": ""
-  },
-  "public/invoice-mobile-form.png": {
-    "mtime": 1789255191.3549669,
-    "seen": 1789255223.284361,
-    "ast_hash": "78ea9a291a2c95bd87dee4ab904f4f7b",
-    "semantic_hash": ""
-  },
-  "public/invoice-mobile-preview.png": {
-    "mtime": 1789255191.8069124,
-    "seen": 1789255223.284361,
-    "ast_hash": "45c39de4e51dcb960c2ef37412f73f84",
-    "semantic_hash": ""
-  },
-  "public/invoice-preview-alabaster.png": {
-    "mtime": 1789255092.8767471,
-    "seen": 1789255223.284362,
-    "ast_hash": "593968d9cbb9f4aa2b49534d97ba059e",
-    "semantic_hash": ""
-  },
-  "public/invoice-preview-obsidian.png": {
-    "mtime": 1789255093.3612678,
-    "seen": 1789255223.284364,
-    "ast_hash": "164685f1c1ef2b8109e8e8f3550aff15",
-    "semantic_hash": ""
-  },
-  "public/invoice-print-emulated.png": {
-    "mtime": 1789256647.1710596,
-    "seen": 1789256668.223918,
-    "ast_hash": "e2352a7e44071778dbb774ee2c504330",
-    "semantic_hash": ""
-  },
-  "public/invoice-sheet-clean.png": {
-    "mtime": 1789256647.1341712,
-    "seen": 1789256668.2239192,
-    "ast_hash": "a959b04a1781e1bd0d231184d51eb5ca",
-    "semantic_hash": ""
-  },
-  "public/invoice-studio-fullview.png": {
-    "mtime": 1789256647.253265,
-    "seen": 1789256668.2239192,
-    "ast_hash": "4e4eeb757797dfb73f5005eed5b04cf7",
-    "semantic_hash": ""
-  },
-  "server/db/invoices.json": {
-    "mtime": 1789261961.8420727,
-    "seen": 1789262038.3901062,
-    "ast_hash": "f34e4448638529471f48c7dc06b74ce5",
-    "semantic_hash": ""
-  },
   "public/admin-preview.html": {
     "mtime": 1789264958.9959612,
     "seen": 1789265459.613207,
     "ast_hash": "a840504cfe03f0cdbb811c9de4d781c6",
     "semantic_hash": ""
   },
-  "public/invoice-archive-drawer.png": {
-    "mtime": 1789261982.6734154,
-    "seen": 1789262038.39252,
-    "ast_hash": "3ff0847817059be81b1c661c67a44e22",
-    "semantic_hash": ""
-  },
-  "public/invoice-auth-gate.png": {
-    "mtime": 1789261958.4997334,
-    "seen": 1789262038.392521,
-    "ast_hash": "0bf5c31935ba83404536ef1d30f91765",
-    "semantic_hash": ""
-  },
-  "public/invoice-cloud-save.png": {
-    "mtime": 1789261962.9395077,
-    "seen": 1789262038.392521,
-    "ast_hash": "64788c701181b0be17d6d9a05c8f8916",
-    "semantic_hash": ""
-  },
-  "public/invoice-studio-unlocked.png": {
-    "mtime": 1789261959.7806304,
-    "seen": 1789262038.3925812,
-    "ast_hash": "38f02aeb28b7f4065bfab3876ae9df9e",
-    "semantic_hash": ""
-  },
   "public/assets/logo-dark.svg": {
     "mtime": 1789264669.9576306,
     "seen": 1789265459.613701,
     "ast_hash": "07e77d93435b2003b85a90cfadfe4722",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/POLISH_Invoice_Sample.pdf": {
+    "mtime": 1789256295.6977382,
+    "seen": 1789265632.7242188,
+    "ast_hash": "61f29bb82303caf8c62ab94e48b8fa0a",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-archive-drawer.png": {
+    "mtime": 1789261982.6734154,
+    "seen": 1789265632.7242398,
+    "ast_hash": "3ff0847817059be81b1c661c67a44e22",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-auth-gate.png": {
+    "mtime": 1789261958.4997334,
+    "seen": 1789265632.7242398,
+    "ast_hash": "0bf5c31935ba83404536ef1d30f91765",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-cloud-save.png": {
+    "mtime": 1789261962.9395077,
+    "seen": 1789265632.7242408,
+    "ast_hash": "64788c701181b0be17d6d9a05c8f8916",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-mobile-form.png": {
+    "mtime": 1789255191.3549669,
+    "seen": 1789265632.724242,
+    "ast_hash": "78ea9a291a2c95bd87dee4ab904f4f7b",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-mobile-preview.png": {
+    "mtime": 1789255191.8069124,
+    "seen": 1789265632.724242,
+    "ast_hash": "45c39de4e51dcb960c2ef37412f73f84",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-preview-alabaster.png": {
+    "mtime": 1789255092.8767471,
+    "seen": 1789265632.724243,
+    "ast_hash": "593968d9cbb9f4aa2b49534d97ba059e",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-preview-obsidian.png": {
+    "mtime": 1789255093.3612678,
+    "seen": 1789265632.724243,
+    "ast_hash": "164685f1c1ef2b8109e8e8f3550aff15",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-print-emulated.png": {
+    "mtime": 1789256647.1710596,
+    "seen": 1789265632.724243,
+    "ast_hash": "e2352a7e44071778dbb774ee2c504330",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-sheet-clean.png": {
+    "mtime": 1789256647.1341712,
+    "seen": 1789265632.7242439,
+    "ast_hash": "a959b04a1781e1bd0d231184d51eb5ca",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-studio-fullview.png": {
+    "mtime": 1789256647.253265,
+    "seen": 1789265632.7242439,
+    "ast_hash": "4e4eeb757797dfb73f5005eed5b04cf7",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-studio-unlocked.png": {
+    "mtime": 1789261959.7806304,
+    "seen": 1789265632.724245,
+    "ast_hash": "38f02aeb28b7f4065bfab3876ae9df9e",
+    "semantic_hash": ""
+  },
+  "public/assets/og-card.png": {
+    "mtime": 1789265992.3289351,
+    "seen": 1789266024.9481652,
+    "ast_hash": "d5b95c6476bcd648c39c7df85a075830",
+    "semantic_hash": ""
+  },
+  "public/assets/og-card.svg": {
+    "mtime": 1789265984.9244661,
+    "seen": 1789266024.948166,
+    "ast_hash": "02d5cb0cd23523099199b2bcaceb9ea7",
     "semantic_hash": ""
   }
 }

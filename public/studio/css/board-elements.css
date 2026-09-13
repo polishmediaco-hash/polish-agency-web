@@ -3984,8 +3984,22 @@ body.is-presenting .presentation-bar {
 .present-slide-info .slide-sep {
   color: rgba(255, 255, 255, 0.3);
 }
+.present-slide-info .slide-badge-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(226, 199, 153, 0.18);
+  color: #E2C799;
+  border: 1px solid rgba(226, 199, 153, 0.35);
+  padding: 0.1rem 0.45rem;
+  border-radius: 10px;
+}
 
 /* Progressive Card Spotlight in Presentation Mode */
+.spotlight-dimmed,
+.studio-element.spotlight-dimmed,
 .board-element.spotlight-dimmed {
   opacity: 0.22 !important;
   filter: blur(1px) !important;
@@ -3993,6 +4007,8 @@ body.is-presenting .presentation-bar {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
+.spotlight-active,
+.studio-element.spotlight-active,
 .board-element.spotlight-active {
   opacity: 1 !important;
   filter: none !important;

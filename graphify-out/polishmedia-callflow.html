@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>polishmedia — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 1080 nodes, 1779 edges, 78 communities. Commit: 5fd86cd</p>
+<p class="subtitle">Generated from graphify knowledge graph: 1080 nodes, 1781 edges, 78 communities. Commit: f2915de</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -119,8 +119,8 @@ flowchart LR
     OTHER_D0941E68("Other<br/><small>445 nodes</small>")
     class OTHER_D0941E68 module;
     SERVE_API_35EC8E86 -->|imports x10| OTHER_D0941E68
+    OTHER_D0941E68 -->|imports x5| SERVE_API_35EC8E86
     OTHER_D0941E68 -->|imports x4| BUILD_GRAPH_321CBB04
-    OTHER_D0941E68 -->|imports x4| SERVE_API_35EC8E86
     BUILD_GRAPH_321CBB04 -->|imports x2| OTHER_D0941E68
     TESTS_FIXTURES_B84B1DCC -->|imports| OTHER_D0941E68
     BUILD_GRAPH_321CBB04 -->|imports| TESTS_FIXTURES_B84B1DCC
@@ -153,7 +153,7 @@ flowchart LR
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>1080 nodes · 1779 edges · 78 communities (70 shown, 6 thin omitted)</li>
+      <li>1080 nodes · 1781 edges · 78 communities (70 shown, 6 thin omitted)</li>
       <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 52 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `triggerAutoSave()` - 45 edges</li>
@@ -1970,7 +1970,7 @@ flowchart LR
   <td>22</td>
   <td><code>keepAliveService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
   <td>No direct outbound edge</td>
   <td>keepAliveService node in server/services/supabase.js.</td>
 </tr>
@@ -4765,12 +4765,12 @@ flowchart LR
 
 <!-- ====== 16. Other ====== -->
 <h2 id="other">16. Other</h2>
-<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 445 nodes and 685 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 445 nodes and 686 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Other (445 nodes, 685 edges)
+    %% Section: Other (445 nodes, 686 edges)
     subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
         public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
         public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
@@ -5122,7 +5122,7 @@ flowchart LR
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><td>Nodes</td><td>1080</td></tr>
-      <tr><td>Edges</td><td>1779</td></tr>
+      <tr><td>Edges</td><td>1781</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
       <tr><td>Communities</td><td>78</td></tr>
       <tr><td>Documented Sections</td><td>15</td></tr>
@@ -5131,7 +5131,7 @@ flowchart LR
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>1727</td></tr>
+      <tr><td>EXTRACTED</td><td>1729</td></tr>
       <tr><td>INFERRED</td><td>52</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
@@ -5140,7 +5140,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>polishmedia — Architecture Documentation</p>
-  <p>Generated: 2026-09-13 17:26 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 18:49 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

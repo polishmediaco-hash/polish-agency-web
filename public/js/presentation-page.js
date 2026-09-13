@@ -149,6 +149,11 @@
           </iframe>
         </div>
       `;
+      const ytIframe = document.getElementById('ytIframePlayer');
+      if (ytIframe) {
+        ytIframe.addEventListener('load', () => container.classList.add('is-loaded'));
+      }
+      setTimeout(() => container.classList.add('is-loaded'), 1200);
       initYouTubeApi();
     } else if (videoSource.type === 'native') {
       container.innerHTML = `
@@ -164,8 +169,10 @@
       `;
       nativeVideoEl = document.getElementById('presNativeVideo');
       if (nativeVideoEl) {
+        nativeVideoEl.addEventListener('loadeddata', () => container.classList.add('is-loaded'));
         nativeVideoEl.addEventListener('timeupdate', syncActiveChapterWithTime);
       }
+      setTimeout(() => container.classList.add('is-loaded'), 1200);
     } else {
       // Placeholder / No Video Specified
       container.innerHTML = `
@@ -177,6 +184,7 @@
           <p class="pres-placeholder-desc">Click here or append <code>?video=YOUR_YOUTUBE_ID</code> to attach your strategy walkthrough.</p>
         </div>
       `;
+      container.classList.add('is-loaded');
     }
   }
 

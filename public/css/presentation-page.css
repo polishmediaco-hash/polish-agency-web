@@ -311,10 +311,32 @@ body.presentation-body {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background-color: #000000;
+  background-color: #0c0a08;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.pres-video-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(226, 199, 153, 0.06) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: presVideoShimmer 2s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.pres-video-container.is-loaded::before {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes presVideoShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .pres-video-frame {
@@ -1053,5 +1075,12 @@ video.pres-native-video {
   
   .pres-client-title {
     max-width: 75px;
+  }
+}
+
+/* Ultra-Wide Widescreen Support (≥1920px Displays) */
+@media (min-width: 1920px) {
+  .pres-board-iframe-wrap {
+    height: 780px;
   }
 }

@@ -2918,7 +2918,7 @@
       "file_type": "code",
       "norm_label": "closeconfigmodal()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L392"
+      "source_location": "L402"
     },
     {
       "id": "public_js_presentation_page_copyclientsharelink",
@@ -2930,7 +2930,7 @@
       "file_type": "code",
       "norm_label": "copyclientsharelink()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L362"
+      "source_location": "L372"
     },
     {
       "id": "public_js_presentation_page_fallbackcopy",
@@ -2942,7 +2942,7 @@
       "file_type": "code",
       "norm_label": "fallbackcopy()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L373"
+      "source_location": "L383"
     },
     {
       "id": "public_js_presentation_page_getparams",
@@ -2978,7 +2978,7 @@
       "file_type": "code",
       "norm_label": "init()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L421"
+      "source_location": "L431"
     },
     {
       "id": "public_js_presentation_page_inityoutubeapi",
@@ -2990,7 +2990,7 @@
       "file_type": "code",
       "norm_label": "inityoutubeapi()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L228"
+      "source_location": "L238"
     },
     {
       "id": "public_js_presentation_page_mountboard",
@@ -3002,7 +3002,7 @@
       "file_type": "code",
       "norm_label": "mountboard()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L317"
+      "source_location": "L327"
     },
     {
       "id": "public_js_presentation_page_mountvideo",
@@ -3014,7 +3014,7 @@
       "file_type": "code",
       "norm_label": "mountvideo()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L131"
+      "source_location": "L133"
     },
     {
       "id": "public_js_presentation_page_openconfigmodal",
@@ -3026,7 +3026,7 @@
       "file_type": "code",
       "norm_label": "openconfigmodal()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L387"
+      "source_location": "L397"
     },
     {
       "id": "public_js_presentation_page_parsevideosource",
@@ -3038,7 +3038,7 @@
       "file_type": "code",
       "norm_label": "parsevideosource()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L98"
+      "source_location": "L100"
     },
     {
       "id": "public_js_presentation_page_renderchapters",
@@ -3050,7 +3050,7 @@
       "file_type": "code",
       "norm_label": "renderchapters()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L297"
+      "source_location": "L307"
     },
     {
       "id": "public_js_presentation_page_saveconfigmodal",
@@ -3062,7 +3062,7 @@
       "file_type": "code",
       "norm_label": "saveconfigmodal()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L397"
+      "source_location": "L407"
     },
     {
       "id": "public_js_presentation_page_seektotime",
@@ -3074,7 +3074,7 @@
       "file_type": "code",
       "norm_label": "seektotime()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L265"
+      "source_location": "L275"
     },
     {
       "id": "public_js_presentation_page_showtoast",
@@ -3086,7 +3086,7 @@
       "file_type": "code",
       "norm_label": "showtoast()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L349"
+      "source_location": "L359"
     },
     {
       "id": "public_js_presentation_page_startprogresssync",
@@ -3098,7 +3098,7 @@
       "file_type": "code",
       "norm_label": "startprogresssync()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L182"
+      "source_location": "L192"
     },
     {
       "id": "public_js_presentation_page_stopprogresssync",
@@ -3110,7 +3110,7 @@
       "file_type": "code",
       "norm_label": "stopprogresssync()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L187"
+      "source_location": "L197"
     },
     {
       "id": "public_js_presentation_page_syncactivechapterwithtime",
@@ -3122,7 +3122,7 @@
       "file_type": "code",
       "norm_label": "syncactivechapterwithtime()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L194"
+      "source_location": "L204"
     },
     {
       "id": "public_js_presentation_page_toggleboardfullscreen",
@@ -3134,7 +3134,7 @@
       "file_type": "code",
       "norm_label": "toggleboardfullscreen()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L335"
+      "source_location": "L345"
     },
     {
       "id": "public_js_cms_loaddynamiccontent",
@@ -14804,7 +14804,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L366",
+      "source_location": "L376",
       "weight": 1.0
     },
     {
@@ -14816,7 +14816,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L367",
+      "source_location": "L377",
       "weight": 1.0
     },
     {
@@ -14828,7 +14828,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L380",
+      "source_location": "L390",
       "weight": 1.0
     },
     {
@@ -14840,7 +14840,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L422",
+      "source_location": "L432",
       "weight": 1.0
     },
     {
@@ -14852,7 +14852,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L423",
+      "source_location": "L433",
       "weight": 1.0
     },
     {
@@ -14864,7 +14864,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L424",
+      "source_location": "L434",
       "weight": 1.0
     },
     {
@@ -14876,7 +14876,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L425",
+      "source_location": "L435",
       "weight": 1.0
     },
     {
@@ -14888,7 +14888,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L425",
+      "source_location": "L435",
       "weight": 1.0
     },
     {
@@ -14900,7 +14900,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L426",
+      "source_location": "L436",
       "weight": 1.0
     },
     {
@@ -14912,7 +14912,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L150",
+      "source_location": "L157",
       "weight": 1.0
     },
     {
@@ -14924,7 +14924,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L311",
+      "source_location": "L321",
       "weight": 1.0
     },
     {
@@ -14936,7 +14936,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L411",
+      "source_location": "L421",
       "weight": 1.0
     },
     {
@@ -14948,7 +14948,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L414",
+      "source_location": "L424",
       "weight": 1.0
     },
     {
@@ -14960,7 +14960,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L415",
+      "source_location": "L425",
       "weight": 1.0
     },
     {
@@ -14972,7 +14972,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L415",
+      "source_location": "L425",
       "weight": 1.0
     },
     {
@@ -14984,7 +14984,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L416",
+      "source_location": "L426",
       "weight": 1.0
     },
     {
@@ -14996,7 +14996,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L417",
+      "source_location": "L427",
       "weight": 1.0
     },
     {
@@ -21468,6 +21468,30 @@
       "weight": 1.0
     },
     {
+      "source": "server_index",
+      "target": "server_services_calendlysync_startcalendlypoller",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/index.js",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "server_index",
+      "target": "server_services_supabase_keepaliveservice",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/index.js",
+      "source_location": "L493",
+      "weight": 1.0
+    },
+    {
       "source": "server_middleware_auth",
       "target": "server_services_supabase_isconfigured",
       "relation": "imports",
@@ -26967,13 +26991,24 @@
     },
     {
       "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_parsevideosource",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
       "target": "public_js_presentation_page_mountvideo",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L131",
+      "source_location": "L133",
       "weight": 1.0
     },
     {
@@ -26984,7 +27019,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L182",
+      "source_location": "L192",
       "weight": 1.0
     },
     {
@@ -26995,7 +27030,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L187",
+      "source_location": "L197",
       "weight": 1.0
     },
     {
@@ -27006,7 +27041,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L194",
+      "source_location": "L204",
       "weight": 1.0
     },
     {
@@ -27017,7 +27052,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L228",
+      "source_location": "L238",
       "weight": 1.0
     },
     {
@@ -27028,7 +27063,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L265",
+      "source_location": "L275",
       "weight": 1.0
     },
     {
@@ -27039,18 +27074,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L297",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_mountboard",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L317",
+      "source_location": "L307",
       "weight": 1.0
     },
     {
@@ -27066,13 +27090,24 @@
     },
     {
       "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_mountboard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L327",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
       "target": "public_js_presentation_page_toggleboardfullscreen",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L335",
+      "source_location": "L345",
       "weight": 1.0
     },
     {
@@ -27083,7 +27118,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L349",
+      "source_location": "L359",
       "weight": 1.0
     },
     {
@@ -27094,7 +27129,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L362",
+      "source_location": "L372",
       "weight": 1.0
     },
     {
@@ -27105,7 +27140,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L373",
+      "source_location": "L383",
       "weight": 1.0
     },
     {
@@ -27116,7 +27151,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L387",
+      "source_location": "L397",
       "weight": 1.0
     },
     {
@@ -27127,7 +27162,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L392",
+      "source_location": "L402",
       "weight": 1.0
     },
     {
@@ -27138,7 +27173,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L397",
+      "source_location": "L407",
       "weight": 1.0
     },
     {
@@ -27149,7 +27184,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L421",
+      "source_location": "L431",
       "weight": 1.0
     },
     {
@@ -27161,17 +27196,6 @@
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
       "source_location": "L44",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_parsevideosource",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L98",
       "weight": 1.0
     },
     {
@@ -32823,7 +32847,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L459",
+      "source_location": "L469",
       "weight": 1.0
     },
     {
@@ -32835,7 +32859,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L461",
+      "source_location": "L471",
       "weight": 1.0
     },
     {
@@ -32847,7 +32871,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L464",
+      "source_location": "L474",
       "weight": 1.0
     },
     {
@@ -32859,7 +32883,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L467",
+      "source_location": "L477",
       "weight": 1.0
     },
     {
@@ -32871,7 +32895,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L477",
+      "source_location": "L487",
       "weight": 1.0
     },
     {
@@ -32883,7 +32907,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L165",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -32895,7 +32919,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L184",
+      "source_location": "L194",
       "weight": 1.0
     },
     {
@@ -33212,5 +33236,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5fd86cd5f2ebb75b4f46c9dae30a49d1b812d86e"
+  "built_at_commit": "f2915de01f0b0545ac72099efecfe8b747ef8dd2"
 }

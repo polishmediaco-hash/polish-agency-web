@@ -73,6 +73,12 @@ async function runTest() {
       throw new Error(`Unexpected iframe source: ${iframeSrc}`);
     }
 
+    // Verify Video Shimmer & is-loaded Transition
+    await delay(1300);
+    const isVideoLoaded = await page.$eval('#videoWrapper', el => el.classList.contains('is-loaded'));
+    console.log(`✓ Video Container is-loaded Class Applied: ${isVideoLoaded}`);
+    if (!isVideoLoaded) throw new Error('Video container failed to acquire is-loaded class');
+
     // ── Test 4: Chapter Navigation ──
     console.log('[Test 4] Verifying Chapter Pills...');
     const chaptersCount = await page.$$eval('.pres-chapter-pill', els => els.length);
@@ -225,8 +231,20 @@ async function runTest() {
     await page.screenshot({ path: mobileScreenshotPath, fullPage: true });
     console.log(`📸 Mobile Screenshot saved to: ${mobileScreenshotPath}`);
 
+    // ── Test 10: Ultra-Wide Widescreen Viewport (1920x1080) ──
+    console.log('\n[Test 10] Verifying Ultra-Wide Monitor Display (1920px)...');
+    await page.setViewport({ width: 1920, height: 1080 });
+    await page.goto(testUrl, { waitUntil: 'domcontentloaded' });
+    await new Promise(r => setTimeout(r, 600));
+
+    const boardWrapHeight = await page.$eval('.pres-board-iframe-wrap', el => window.getComputedStyle(el).height);
+    console.log(`✓ Ultra-Wide Board Canvas Height: ${boardWrapHeight} (Expected: 780px)`);
+    if (boardWrapHeight !== '780px') {
+      throw new Error(`Expected ultra-wide board canvas height to be 780px, got ${boardWrapHeight}`);
+    }
+
     console.log('\n======================================================');
-    console.log('  🎉 ALL 9 PRESENTATION TESTS PASSED PERFECTLY! (100%)');
+    console.log('  🎉 ALL 10 PRESENTATION TESTS PASSED PERFECTLY! (100%)');
     console.log('======================================================\n');
   } finally {
     await browser.close();

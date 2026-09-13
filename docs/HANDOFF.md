@@ -485,6 +485,39 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Confirmed `https://polishmediaco.com/assets/og-card.png` returns HTTP 200 (132 KB, live on edge CDN).
    - Confirmed `https://polishmediaco.com/assets/favicon.svg` returns HTTP 200 (1.6 KB, live on edge CDN).
 
+### Sprint 12: Presentation Executive Branding & Laser Engine Overhaul (Completed September 2026)
+1. ✅ **Minimalist Floating Animated Brand Watermark in Presentation Mode**:
+   - Replaced all text boxes and pills with a pure, standalone floating Golden Ratio Pipette mark (`#presentationFloatingLogo` / `/assets/logo-gold-mark.svg?v=22.0`) in the top-left corner.
+   - Smooth 4.5s levitation micro-animation (`@keyframes floatBrandMark`) with ambient champagne gold glow (`drop-shadow(0 4px 12px rgba(226, 199, 153, 0.45))`), completely free of boxes, borders, and text clutter.
+   - Integrated subtle brand anchor (`.present-bar-brand`) in the floating presentation controller with mini gold mark and `POLISH` typography.
+2. ✅ **True Laser Pointer Engine (Zero Selector Ambiguity)**:
+   - Replaced misleading unicode `⚲` with custom vector laser wand SVG icon.
+   - Suppressed OS mouse cursor across canvas (`cursor: none !important`) during laser mode so presenter sees purely the laser beam.
+   - Upgraded `.presentation-laser-dot` with incandescent white-hot core (`#FFFFFF`), inner champagne flare ring, and radial bloom aura.
+   - Implemented hardware-accelerated 2D light trail canvas (`.presentation-laser-canvas`):
+     - Renders luminous champagne gold laser ribbons with white-hot cores when moving or dragging across cards.
+     - Automatically fades and evaporates paths over 850ms.
+3. ✅ **Elimination of Element Selection / Card Dragging in Laser Mode**:
+   - Intercepted `pointerdown` events on `.studio-element`, `.board-frame`, and `#viewport` in `elements-factory.js`, `canvas-panzoom.js`, and `marquee-selection.js`.
+   - Clicking or dragging during laser mode never selects cards, never moves elements, never creates marquee selection boxes, and never opens inspectors.
+4. ✅ **Full E2E Verification**:
+   - Verified via Puppeteer in `tests/test_laser_and_branding.js`: verified Brand HUD presence, brand text, laser activation, dynamic stroke rendering, and confirmed 0 elements selected during laser actions.
+
+### Sprint 13: Executive Admin Invoicing Atelier Contrast, Shadow Bleed & Layout Polish (Completed September 2026)
+1. ✅ **Elimination of Right-Edge Bleeding Shadow**:
+   - Resolved off-canvas shadow artifact from `.archive-drawer` (`box-shadow: -20px 0 60px rgba(0,0,0,0.9)`). Added `visibility: hidden; pointer-events: none;` when inactive and `visibility: visible; pointer-events: auto;` when active, completely eliminating GPU shadow rasterization bleed into the viewport.
+2. ✅ **Executive User Pill Contrast in Haute Alabaster Light Mode**:
+   - Fixed text contrast in `#adminUserPill` / `#adminUserEmail` in Light Mode (`body.theme-light`), enforcing crisp dark typography (`#0D0B0A !important`) with 100% WCAG AAA legibility on the frosted alabaster pill background.
+3. ✅ **Redesigned Stage Toolbar Pill & Mode Indicator**:
+   - Replaced clashing nested black/white boxes above the A4 canvas with a unified, beveled luxury pill capsule (`.stage-toolbar`) featuring hairline divider (`.stage-toolbar-divider`), soft typography, and bronze mode indicator badge matching the Haute Alabaster theme.
+4. ✅ **Eradication of Bottom Void & Viewport Double Scrolling**:
+   - Fixed `#invoicesTabPane .studio-container` to `height: calc(100vh - 180px); overflow: hidden;` with internal scroll containers for editor panel and stage.
+   - Reset `.admin-main.admin-main-wide` bottom padding from `120px` to `24px !important`, ensuring zero awkward empty space cutouts below the invoice canvas.
+   - Refined floating `.publish-bar` and `.inv-footer-pill` with high-contrast text and crisp alabaster styling.
+5. ✅ **Clean Parity & Multi-View Validation**:
+   - Synchronized stage toolbar HTML across `public/admin.html` and `public/invoice.html`.
+   - Verified across Light and Dark themes with automated Puppeteer visual screenshots.
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat

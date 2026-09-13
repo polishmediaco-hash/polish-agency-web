@@ -26,7 +26,12 @@ window.CanvasEngine = (function () {
     // Pointer Down (Pan or Tool Action)
     viewport.addEventListener('pointerdown', (e) => {
       // Ignore if clicking inside interactive UI elements
-      if (e.target.closest('button, input, textarea, select, .studio-dock, .creation-toolbar, .viewport-tools, #floating-inspector, .minimap-hud, .template-modal, .shortcuts-modal')) {
+      if (e.target.closest('button, input, textarea, select, .studio-dock, .creation-toolbar, .viewport-tools, #floating-inspector, .minimap-hud, .template-modal, .shortcuts-modal, .presentation-bar, .presentation-floating-logo')) {
+        return;
+      }
+
+      // In presentation mode, suppress creation clicks, empty canvas selection, and marquee boxes
+      if (window.StudioPresentation && window.StudioPresentation.isPresenting && window.StudioPresentation.isPresenting()) {
         return;
       }
 

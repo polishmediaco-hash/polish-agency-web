@@ -3874,26 +3874,123 @@ body.theme-dark .op-tier-name {
 }
 
 /* ==========================================================
-   PRESENTATION 2.0: LASER POINTER, TIMER & SPOTLIGHT
+   PRESENTATION 2.0: BRAND HUD, LASER POINTER, TIMER & SPOTLIGHT
    ========================================================== */
+
+/* Top Presentation Floating Brand Watermark */
+.presentation-floating-logo {
+  position: fixed;
+  top: 1.8rem;
+  left: 2.2rem;
+  z-index: 10000;
+  display: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+body.is-presenting .presentation-floating-logo {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.presentation-logo-img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  animation: floatBrandMark 4.5s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes floatBrandMark {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 4px 12px rgba(226, 199, 153, 0.45));
+  }
+  50% {
+    transform: translateY(-5px) scale(1.03);
+    filter: drop-shadow(0 8px 24px rgba(226, 199, 153, 0.75));
+  }
+}
+
+/* Presentation Laser Pointer Beacon */
 .presentation-laser-dot {
   position: fixed;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #FFFFFF;
-  box-shadow: 0 0 0 4px rgba(226, 199, 153, 0.9), 0 0 20px 8px rgba(226, 199, 153, 0.75), 0 0 40px 14px rgba(226, 199, 153, 0.4);
+  border: 2px solid #FFE5A3;
+  box-shadow:
+    0 0 10px 3px rgba(255, 229, 163, 0.95),
+    0 0 28px 8px rgba(226, 199, 153, 0.8),
+    0 0 55px 16px rgba(226, 199, 153, 0.45);
   pointer-events: none;
-  z-index: 999999;
+  z-index: 9999999;
   transform: translate(-50%, -50%);
   display: none;
-  transition: transform 0.05s ease-out;
+  transition: transform 0.04s ease-out;
 }
+
 .presentation-laser-dot.is-active {
   display: block;
 }
 
-/* Presentation Bar Enhancements */
+.presentation-laser-dot::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(226, 199, 153, 0.25) 60%, transparent 100%);
+  animation: laserPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes laserPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.35); opacity: 0.4; }
+}
+
+/* Fullscreen Dynamic Laser Light Trail Canvas */
+.presentation-laser-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999998;
+  display: none;
+}
+
+body.is-presenting.is-laser-active .presentation-laser-canvas {
+  display: block;
+}
+
+/* Hide OS cursor during laser mode across canvas, while keeping controls clickable */
+body.is-presenting.is-laser-active,
+body.is-presenting.is-laser-active #viewport,
+body.is-presenting.is-laser-active .studio-element,
+body.is-presenting.is-laser-active .board-frame,
+body.is-presenting.is-laser-active svg,
+body.is-presenting.is-laser-active canvas:not(.presentation-laser-canvas) {
+  cursor: none !important;
+}
+
+body.is-presenting.is-laser-active .presentation-bar,
+body.is-presenting.is-laser-active .presentation-bar *,
+body.is-presenting.is-laser-active .presentation-brand-hud,
+body.is-presenting.is-laser-active .presentation-brand-hud *,
+body.is-presenting.is-laser-active #presentationOrderModal,
+body.is-presenting.is-laser-active #presentationOrderModal * {
+  cursor: pointer !important;
+}
+
+/* ==========================================================
+   MINIMALIST LUXURY PRESENTATION CONTROLLER
+   ========================================================== */
 .presentation-bar {
   display: none;
   position: fixed;
@@ -3901,34 +3998,142 @@ body.theme-dark .op-tier-name {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(18, 15, 12, 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(226, 199, 153, 0.32);
   border-radius: 40px;
-  padding: 0.5rem 1.15rem;
-  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.8), 0 0 24px rgba(226, 199, 153, 0.16);
+  padding: 0.35rem 0.6rem;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.85), 0 0 24px rgba(226, 199, 153, 0.15);
   z-index: 9999;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.4rem;
+  user-select: none;
 }
+
 body.is-presenting .presentation-bar {
   display: flex !important;
 }
 
-.present-timer-badge {
+/* Light theme for Presentation Bar */
+body:not(.theme-dark) .presentation-bar {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(226, 199, 153, 0.45);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.15), 0 0 20px rgba(226, 199, 153, 0.18);
+}
+
+.present-nav-cluster,
+.present-tools-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.present-bar-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(226, 199, 153, 0.25);
+  margin: 0 0.15rem;
+}
+
+/* Standard Control Button */
+.present-ctrl-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #F5E6D3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  outline: none;
+}
+
+body:not(.theme-dark) .present-ctrl-btn {
+  color: #1A1715;
+}
+
+.present-ctrl-btn:hover {
+  background: rgba(226, 199, 153, 0.18);
+  border-color: rgba(226, 199, 153, 0.35);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+body:not(.theme-dark) .present-ctrl-btn:hover {
+  background: rgba(226, 199, 153, 0.25);
+  border-color: rgba(226, 199, 153, 0.5);
+  color: #080706;
+}
+
+.present-ctrl-btn:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.present-ctrl-btn.active {
+  background: #E2C799;
+  border-color: #E2C799;
+  color: #080706;
+  box-shadow: 0 0 14px rgba(226, 199, 153, 0.6);
+}
+
+/* Interactive Step Pill */
+.present-step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.65rem;
+  background: rgba(226, 199, 153, 0.12);
+  border: 1px solid rgba(226, 199, 153, 0.28);
+  border-radius: 20px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #E2C799;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+}
+
+body:not(.theme-dark) .present-step-pill {
+  background: rgba(226, 199, 153, 0.18);
+  border-color: rgba(226, 199, 153, 0.4);
+  color: #936B2B;
+}
+
+.present-step-pill:hover {
+  background: rgba(226, 199, 153, 0.25);
+  border-color: #E2C799;
+  transform: translateY(-1px);
+}
+
+.present-step-sep {
+  color: rgba(226, 199, 153, 0.4);
+  font-weight: 500;
+}
+
+/* Presentation Timer Capsule */
+.present-timer-capsule {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
   font-family: var(--font-mono, monospace);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: #E2C799;
-  background: rgba(226, 199, 153, 0.12);
-  border: 1px solid rgba(226, 199, 153, 0.25);
-  padding: 0.25rem 0.6rem;
-  border-radius: 20px;
+  color: #C5A880;
+  font-variant-numeric: tabular-nums;
 }
-.present-timer-dot {
+
+body:not(.theme-dark) .present-timer-capsule {
+  color: #8C827A;
+}
+
+.present-timer-pulse {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -3936,65 +4141,17 @@ body.is-presenting .presentation-bar {
   box-shadow: 0 0 8px #10B981;
   animation: pulseEmerald 2s infinite;
 }
+
 @keyframes pulseEmerald {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(0.85); }
 }
 
-.present-nav-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(226, 199, 153, 0.2);
-  color: #F5E6D3;
-  padding: 0.35rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: all 0.2s ease;
-}
-.present-nav-btn:hover {
-  background: rgba(226, 199, 153, 0.2);
-  border-color: #E2C799;
-  color: #FFFFFF;
-}
-.present-nav-btn.active {
-  background: #E2C799;
-  color: #080706;
-  border-color: #E2C799;
-  font-weight: 700;
-}
-
-.present-slide-info {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: #F5E6D3;
-  font-size: 0.75rem;
-  padding: 0 0.4rem;
-  white-space: nowrap;
-}
-.present-slide-info .slide-count {
-  font-family: var(--font-mono, monospace);
-  font-weight: 700;
-  color: #E2C799;
-}
-.present-slide-info .slide-sep {
-  color: rgba(255, 255, 255, 0.3);
-}
-.present-slide-info .slide-badge-pill {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.6rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: rgba(226, 199, 153, 0.18);
-  color: #E2C799;
-  border: 1px solid rgba(226, 199, 153, 0.35);
-  padding: 0.1rem 0.45rem;
-  border-radius: 10px;
+/* Close button distinct hover */
+.present-btn-close:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #EF4444;
 }
 
 /* Progressive Card Spotlight in Presentation Mode */

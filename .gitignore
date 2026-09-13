@@ -11,3 +11,4 @@ server/db/leads.json
 server/db/intake_latest.json
 server/db/invoices.json
 graphify-out/cache/
+tests/screenshots/

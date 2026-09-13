@@ -1450,6 +1450,24 @@ window.ElementsFactory = (function () {
         return;
       }
 
+      // In presentation mode, intercept pointer events:
+      if (window.StudioPresentation && window.StudioPresentation.isPresenting && window.StudioPresentation.isPresenting()) {
+        if (window.StudioPresentation.isLaserActive && window.StudioPresentation.isLaserActive()) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        if (window.StudioPresentation.findStepIndexByElement) {
+          const stepIdx = window.StudioPresentation.findStepIndexByElement(el);
+          if (stepIdx !== -1) {
+            window.StudioPresentation.goToStep(stepIdx);
+          }
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+
       // When drawing mode (pen / laser) is active, do not intercept pointerdown so drawing engine draws seamlessly
       if (window.CanvasEngine) {
         const tool = window.CanvasEngine.getTool();

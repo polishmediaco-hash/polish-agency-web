@@ -60,9 +60,9 @@
     "semantic_hash": "9dbd2b6995628d25f86413f356031ffd"
   },
   "public/studio/js/canvas-panzoom.js": {
-    "mtime": 1788999783.9228961,
-    "seen": 1789000194.673975,
-    "ast_hash": "936b2dd2cb3faa1f355c766fa03fd998",
+    "mtime": 1789268212.4522853,
+    "seen": 1789268274.702741,
+    "ast_hash": "ebc35f4a3f60aababdb1f88947ffebb7",
     "semantic_hash": ""
   },
   "public/studio/js/comments-engine.js": {
@@ -84,9 +84,9 @@
     "semantic_hash": "63623f55bd0a5d557bbca75ebeb8860f"
   },
   "public/studio/js/elements-factory.js": {
-    "mtime": 1789264953.2779481,
-    "seen": 1789265459.612549,
-    "ast_hash": "9fa390bf103f4e3f1cc1dac73b11e033",
+    "mtime": 1789268009.643531,
+    "seen": 1789268057.611485,
+    "ast_hash": "175b1cd1df8d4d5544eca55d72bde11d",
     "semantic_hash": ""
   },
   "public/studio/js/firebase-config.js": {
@@ -102,10 +102,10 @@
     "semantic_hash": ""
   },
   "public/studio/js/marquee-selection.js": {
-    "mtime": 1788930178.244231,
-    "seen": 1788993504.5169039,
-    "ast_hash": "0c2427a4d154c78b1d22c83deb035584",
-    "semantic_hash": "0c2427a4d154c78b1d22c83deb035584"
+    "mtime": 1789268024.2820475,
+    "seen": 1789268057.611516,
+    "ast_hash": "a7150b9d91a2ff055af13e713aa5d657",
+    "semantic_hash": ""
   },
   "public/studio/js/minimap.js": {
     "mtime": 1788999811.6847444,
@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "public/studio/js/presentation.js": {
-    "mtime": 1789266977.6474502,
-    "seen": 1789267113.324,
-    "ast_hash": "c636ac90482047ded31722fb6a54bef3",
+    "mtime": 1789268235.6516275,
+    "seen": 1789268274.702836,
+    "ast_hash": "5e9f0abcba0e1dbf8ecbba1a6e758747",
     "semantic_hash": ""
   },
   "public/studio/js/studio-ai.js": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789267152.4284217,
-    "seen": 1789267901.863793,
-    "ast_hash": "321232056830a133ab7c7afe4c6a91dc",
+    "mtime": 1789268453.7381735,
+    "seen": 1789268462.9824681,
+    "ast_hash": "626e2b4d9709de9da45a983386611587",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789266811.578095,
-    "seen": 1789266877.550451,
-    "ast_hash": "46bd2dec62ebc4b980dee852cdbab9a5",
+    "mtime": 1789268062.0715106,
+    "seen": 1789268274.703419,
+    "ast_hash": "00741f35fa929fec98f0fe857f993b28",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -486,9 +486,9 @@
     "semantic_hash": ""
   },
   "public/studio/index.html": {
-    "mtime": 1789266935.1293523,
-    "seen": 1789267113.324826,
-    "ast_hash": "fdb68f02fa16167073d1458bc8018b76",
+    "mtime": 1789268428.3927147,
+    "seen": 1789268462.9826932,
+    "ast_hash": "77b64fcb67def89a1117e619750d571e",
     "semantic_hash": ""
   },
   "public/studio/login.html": {
@@ -1830,9 +1830,9 @@
     "semantic_hash": ""
   },
   "public/js/invoice.js": {
-    "mtime": 1789266735.466617,
-    "seen": 1789266877.550421,
-    "ast_hash": "b3fc9290885c21aa23e8240a7c94d7db",
+    "mtime": 1789267922.3691838,
+    "seen": 1789267922.884087,
+    "ast_hash": "5ceac9a5159643a73c0a0ed2b20d09d8",
     "semantic_hash": ""
   },
   "docs/INVOICE_GUIDELINES.md": {
@@ -1842,9 +1842,9 @@
     "semantic_hash": ""
   },
   "public/invoice.html": {
-    "mtime": 1789263802.5876288,
-    "seen": 1789265459.613318,
-    "ast_hash": "fa846c55d3b551d1e594d289ab9ae260",
+    "mtime": 1789268030.5751479,
+    "seen": 1789268057.612237,
+    "ast_hash": "fa886057eb67afae2c6a80281fcee93c",
     "semantic_hash": ""
   },
   "public/privacy.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789266877.550433,
+    "seen": 1789267922.884098,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -1967,10 +1967,10 @@
     "ast_hash": "b7fa2e0abe7fc5e264e92b3e63641278",
     "semantic_hash": ""
   },
-  "tests/screenshots/slide-sequencer-modal.png": {
-    "mtime": 1789267074.4266505,
-    "seen": 1789267113.327641,
-    "ast_hash": "70a3bf7f3c7a5a438df6cf0148f4fdb0",
+  "tests/test_laser_and_branding.js": {
+    "mtime": 1789268249.530294,
+    "seen": 1789268274.703068,
+    "ast_hash": "c53c23969e99bc40117aa7370920671e",
     "semantic_hash": ""
   }
 }

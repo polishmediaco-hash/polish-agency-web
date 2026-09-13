@@ -989,57 +989,89 @@
   </div>
 
   <!-- ========================================================== -->
-  <!-- PRESENTATION BRAND & EXECUTIVE HUD                         -->
+  <!-- PRESENTATION FLOATING BRAND WATERMARK                      -->
   <!-- ========================================================== -->
-  <div id="presentationBrandHud" class="presentation-brand-hud" aria-label="Executive Presentation Header">
-    <!-- Top-Left Brand Capsule -->
-    <div class="present-brand-capsule">
-      <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="present-brand-logo" width="24" height="24" />
-      <div class="present-brand-text">
-        <div class="present-brand-main">
-          <span class="present-brand-name">POLISH</span>
-          <span class="present-brand-tag">MEDIA CO</span>
-        </div>
-        <div class="present-brand-sub">Haute Atelier Strategy Engine</div>
-      </div>
-      <div class="present-brand-divider"></div>
-      <div class="present-board-pill" id="presentBoardTitleBadge">Strategy Briefing</div>
-    </div>
-
-    <!-- Top-Right Confidentiality Status Pill -->
-    <div class="present-status-capsule">
-      <span class="present-status-dot"></span>
-      <span class="present-status-text">EXECUTIVE BRIEFING • CONFIDENTIAL</span>
-    </div>
+  <div id="presentationFloatingLogo" class="presentation-floating-logo" title="POLISH Media Co" aria-label="POLISH Media Co">
+    <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="presentation-logo-img" width="36" height="36" />
   </div>
 
   <!-- ========================================================== -->
-  <!-- PRESENTATION MODE SLIDE CONTROLLER                         -->
+  <!-- PRESENTATION MODE FLOATING CONTROLLER                      -->
   <!-- ========================================================== -->
-  <div class="presentation-bar">
-    <!-- Left Brand Anchor -->
-    <div class="present-bar-brand" title="POLISH Media Co — Haute Atelier Strategy Engine">
-      <img src="/assets/logo-gold-mark.svg?v=22.0" alt="POLISH" class="present-bar-logo" width="18" height="18" />
-      <span class="present-bar-brand-name">POLISH</span>
-    </div>
-    <div class="dock-divider" style="height:16px; margin:0 4px"></div>
+  <div class="presentation-bar" role="toolbar" aria-label="Presentation Controls">
+    <!-- Slide Navigation Cluster (Prev, Step Pill, Next) -->
+    <div class="present-nav-cluster">
+      <button type="button" class="present-ctrl-btn btn-prev" onclick="StudioPresentation.prev()" title="Previous Slide (Left Arrow)" aria-label="Previous Slide">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
 
-    <button class="present-nav-btn btn-prev" onclick="StudioPresentation.prev()" title="Previous Slide (Left Arrow)">← Prev</button>
-    <div class="present-timer-badge" title="Live Pitch Timer"><span class="present-timer-dot"></span><span id="presentTimer">00:00</span></div>
-    <div id="presentSlideInfo" class="present-slide-info"><span class="slide-count">Slide 1 of 8</span></div>
-    <select id="presentSlideSelect" class="present-nav-btn" style="background:rgba(255,255,255,0.06); color:#E2C799; border-radius:12px; font-size:0.7rem; padding:0.25rem 0.5rem; outline:none; border:1px solid rgba(226,199,153,0.25);" title="Jump to Slide"></select>
-    <button class="present-nav-btn btn-next" onclick="StudioPresentation.next()" title="Next Slide (Right Arrow / Space)">Next →</button>
-    <button class="present-nav-btn btn-laser" onclick="StudioPresentation.toggleLaser()" title="Laser Pointer & Light Trail (L)">
-      <svg class="laser-icon-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 20l10-10m0 0l2-5 3 3-5 2z"/>
-        <path d="M19 5l3-3m-1 7l3 1m-7-3l1 3"/>
+      <button type="button" class="present-step-pill" onclick="StudioPresentation.openSequencer()" title="Slide Sequencer (Click to view & reorder slides)">
+        <span id="presentStepIndex">01</span>
+        <span class="present-step-sep">/</span>
+        <span id="presentStepTotal">11</span>
+      </button>
+
+      <button type="button" class="present-ctrl-btn btn-next" onclick="StudioPresentation.next()" title="Next Slide (Right Arrow / Space)" aria-label="Next Slide">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <div class="present-bar-divider"></div>
+
+    <!-- Timer Badge -->
+    <div class="present-timer-capsule" title="Elapsed Pitch Time">
+      <span class="present-timer-pulse"></span>
+      <span id="presentTimer">00:00</span>
+    </div>
+
+    <div class="present-bar-divider"></div>
+
+    <!-- Tool Actions Cluster -->
+    <div class="present-tools-cluster">
+      <!-- Laser Pointer -->
+      <button type="button" class="present-ctrl-btn btn-laser" onclick="StudioPresentation.toggleLaser()" title="Laser Pointer & Light Trail (L)" aria-label="Laser Pointer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l10-10m0 0l2-5 3 3-5 2z"/>
+          <path d="M19 5l3-3m-1 7l3 1m-7-3l1 3"/>
+        </svg>
+      </button>
+
+      <!-- God View / Macro Overview -->
+      <button type="button" class="present-ctrl-btn btn-godview" onclick="StudioPresentation.toggleGodView()" title="Overview / God View (G)" aria-label="God View">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+        </svg>
+      </button>
+
+      <!-- Slide Sequencer Modal -->
+      <button type="button" class="present-ctrl-btn btn-reorder" onclick="StudioPresentation.openSequencer()" title="Slide Sequencer (O)" aria-label="Slide Sequencer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Fullscreen -->
+      <button type="button" class="present-ctrl-btn btn-fullscreen" onclick="StudioPresentation.toggleFullscreen()" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="present-bar-divider"></div>
+
+    <!-- Exit Button -->
+    <button type="button" class="present-ctrl-btn present-btn-close" onclick="StudioPresentation.stop()" title="Exit Presentation (Esc)" aria-label="Exit Presentation">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
-      <span>Laser</span>
     </button>
-    <button class="present-nav-btn btn-godview" onclick="StudioPresentation.toggleGodView()" title="God View (G / O)">⛶ God View</button>
-    <button class="present-nav-btn btn-fullscreen" onclick="StudioPresentation.toggleFullscreen()" title="Fullscreen (F)">⛶ Fullscreen</button>
-    <button class="present-nav-btn btn-reorder" onclick="StudioPresentation.openSequencer()" title="Reorder Slides (O)">☰ Order</button>
-    <button class="dock-btn" onclick="StudioPresentation.stop()" style="margin-left:6px" title="Exit Presentation (Esc)">Exit (Esc)</button>
   </div>
 
   <!-- ========================================================== -->

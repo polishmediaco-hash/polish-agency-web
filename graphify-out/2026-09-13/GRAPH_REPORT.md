@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 85 files · ~640,160 words
+- 86 files · ~665,757 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 989 nodes · 1642 edges · 73 communities (66 shown, 5 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 40 edges (avg confidence: 0.85)
+- 1002 nodes · 1661 edges · 73 communities (66 shown, 5 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 44 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2bdb31ad`
+- Built from commit: `f97396cf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -145,8 +145,8 @@ Cohesion: 0.30
 Nodes (16): BASE_DIR, CONCEPTS_DIR, createDropperBottleMockupSvg(), createHorizontalLockupSvg(), createStandaloneMarkSvg(), createVerticalLockupSvg(), fs, generateAllConcepts() (+8 more)
 
 ### Community 9 - "generate-social-avatars.js"
-Cohesion: 0.07
-Nodes (30): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, ASSET_SPECS, AVATAR_DIR (+22 more)
+Cohesion: 0.06
+Nodes (33): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, ASSET_SPECS, AVATAR_DIR (+25 more)
 
 ### Community 10 - "package.json"
 Cohesion: 0.10
@@ -189,8 +189,8 @@ Cohesion: 0.48
 Nodes (5): attachStrokeEvents(), bindEvents(), getSmoothSvgPath(), init(), renderAllStrokes()
 
 ### Community 22 - "presentation.js"
-Cohesion: 0.13
-Nodes (32): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+24 more)
+Cohesion: 0.11
+Nodes (37): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+29 more)
 
 ### Community 23 - "api.js"
 Cohesion: 0.10
@@ -217,8 +217,8 @@ Cohesion: 0.08
 Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects.js`, 1.3 `public/js/three.min.js` & `public/studio/js/html2canvas.min.js`, 1. God Nodes Analysis, 2.1 Cohesion Scores (< 0.10), 2.2 Cross-Module Coupling Topology, 2. Modularity & Community Cohesion, 3.1 Unreferenced Symbols & Leaky Interfaces (+15 more)
 
 ### Community 31 - "6. Next Priority Roadmap (Ready for Next Conversation)"
-Cohesion: 0.07
-Nodes (29): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+21 more)
+Cohesion: 0.06
+Nodes (32): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+24 more)
 
 ### Community 32 - "OWASP Top 10 — Audit Checklist"
 Cohesion: 0.11
@@ -373,21 +373,21 @@ Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
 ## Knowledge Gaps
-- **336 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+331 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 411 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **342 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+337 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 418 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `generate-social-avatars.js` to `package.json`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
-  _High betweenness centrality (0.003) - this node is a cross-community bridge._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _336 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _342 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

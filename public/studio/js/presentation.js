@@ -22,9 +22,14 @@ window.StudioPresentation = (function () {
   let sequencerItems = [];
   let draggedIndex = null;
 
-  // Laser Pointer State
+  // Laser Pointer & Dynamic Light Trail State
   let isLaserActive = false;
   let laserDotEl = null;
+  let laserCanvasEl = null;
+  let laserCtx = null;
+  let laserPoints = [];
+  let laserAnimFrame = null;
+  let isLaserDrawing = false;
 
   // Pitch Timer State
   let timerInterval = null;
@@ -49,20 +54,152 @@ window.StudioPresentation = (function () {
       }
     }
 
-    window.removeEventListener('mousemove', onLaserMove);
-    window.addEventListener('mousemove', onLaserMove);
+    if (!laserCanvasEl) {
+      laserCanvasEl = document.querySelector('.presentation-laser-canvas');
+      if (!laserCanvasEl) {
+        laserCanvasEl = document.createElement('canvas');
+        laserCanvasEl.className = 'presentation-laser-canvas';
+        document.body.appendChild(laserCanvasEl);
+      }
+      laserCtx = laserCanvasEl.getContext('2d');
+      resizeLaserCanvas();
+      window.removeEventListener('resize', resizeLaserCanvas);
+      window.addEventListener('resize', resizeLaserCanvas);
+    }
+
+    window.removeEventListener('pointermove', onLaserPointerMove);
+    window.addEventListener('pointermove', onLaserPointerMove, { passive: true });
+
+    window.removeEventListener('pointerdown', onLaserPointerDown);
+    window.addEventListener('pointerdown', onLaserPointerDown);
+
+    window.removeEventListener('pointerup', onLaserPointerUp);
+    window.addEventListener('pointerup', onLaserPointerUp);
   }
 
-  function onLaserMove(e) {
-    if (!isPresenting || !isLaserActive || !laserDotEl) return;
-    laserDotEl.style.left = `${e.clientX}px`;
-    laserDotEl.style.top = `${e.clientY}px`;
+  function resizeLaserCanvas() {
+    if (!laserCanvasEl) return;
+    const dpr = window.devicePixelRatio || 1;
+    laserCanvasEl.width = window.innerWidth * dpr;
+    laserCanvasEl.height = window.innerHeight * dpr;
+    laserCanvasEl.style.width = `${window.innerWidth}px`;
+    laserCanvasEl.style.height = `${window.innerHeight}px`;
+    if (laserCtx) {
+      laserCtx.scale(dpr, dpr);
+    }
+  }
+
+  function onLaserPointerMove(e) {
+    if (!isPresenting || !isLaserActive) return;
+    if (laserDotEl) {
+      laserDotEl.style.left = `${e.clientX}px`;
+      laserDotEl.style.top = `${e.clientY}px`;
+    }
+
+    const now = performance.now();
+    laserPoints.push({
+      x: e.clientX,
+      y: e.clientY,
+      time: now,
+      isDown: isLaserDrawing
+    });
+
+    if (!laserAnimFrame) {
+      laserAnimFrame = requestAnimationFrame(renderLaserLoop);
+    }
+  }
+
+  function onLaserPointerDown(e) {
+    if (!isPresenting || !isLaserActive) return;
+    if (e.target.closest('.presentation-bar, .presentation-floating-logo, #presentationOrderModal')) return;
+
+    isLaserDrawing = true;
+    e.preventDefault();
+    e.stopPropagation();
+
+    const now = performance.now();
+    laserPoints.push({
+      x: e.clientX,
+      y: e.clientY,
+      time: now,
+      isDown: true
+    });
+
+    if (!laserAnimFrame) {
+      laserAnimFrame = requestAnimationFrame(renderLaserLoop);
+    }
+  }
+
+  function onLaserPointerUp(e) {
+    if (!isPresenting || !isLaserActive) return;
+    isLaserDrawing = false;
+  }
+
+  function renderLaserLoop() {
+    if (!laserCtx || !laserCanvasEl) {
+      laserAnimFrame = null;
+      return;
+    }
+
+    const now = performance.now();
+    const TRAIL_LIFETIME = 850;
+
+    laserPoints = laserPoints.filter(pt => now - pt.time < TRAIL_LIFETIME);
+
+    const dpr = window.devicePixelRatio || 1;
+    laserCtx.clearRect(0, 0, laserCanvasEl.width / dpr, laserCanvasEl.height / dpr);
+
+    if (laserPoints.length > 1) {
+      for (let i = 1; i < laserPoints.length; i++) {
+        const p0 = laserPoints[i - 1];
+        const p1 = laserPoints[i];
+        const age = now - p1.time;
+        const alpha = Math.max(0, 1 - (age / TRAIL_LIFETIME));
+
+        const dist = Math.hypot(p1.x - p0.x, p1.y - p0.y);
+        if (dist > 180) continue;
+
+        // Outer Champagne Gold Glow Beam
+        laserCtx.save();
+        laserCtx.beginPath();
+        laserCtx.moveTo(p0.x, p0.y);
+        laserCtx.lineTo(p1.x, p1.y);
+        laserCtx.strokeStyle = `rgba(226, 199, 153, ${alpha * 0.85})`;
+        laserCtx.lineWidth = (p1.isDown ? 7 : 4) * alpha;
+        laserCtx.lineCap = 'round';
+        laserCtx.lineJoin = 'round';
+        laserCtx.shadowColor = '#E2C799';
+        laserCtx.shadowBlur = 18 * alpha;
+        laserCtx.stroke();
+        laserCtx.restore();
+
+        // Inner Incandescent White Beam Core
+        laserCtx.save();
+        laserCtx.beginPath();
+        laserCtx.moveTo(p0.x, p0.y);
+        laserCtx.lineTo(p1.x, p1.y);
+        laserCtx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.95})`;
+        laserCtx.lineWidth = (p1.isDown ? 3 : 1.8) * alpha;
+        laserCtx.lineCap = 'round';
+        laserCtx.lineJoin = 'round';
+        laserCtx.stroke();
+        laserCtx.restore();
+      }
+    }
+
+    if (laserPoints.length > 0 && isLaserActive && isPresenting) {
+      laserAnimFrame = requestAnimationFrame(renderLaserLoop);
+    } else {
+      laserAnimFrame = null;
+    }
   }
 
   function toggleLaser() {
     if (!isPresenting) return;
     isLaserActive = !isLaserActive;
-    if (!laserDotEl) initLaser();
+    if (!laserDotEl || !laserCanvasEl) initLaser();
+
+    document.body.classList.toggle('is-laser-active', isLaserActive);
 
     if (laserDotEl) {
       if (isLaserActive) {
@@ -72,10 +209,39 @@ window.StudioPresentation = (function () {
       }
     }
 
+    if (!isLaserActive) {
+      laserPoints = [];
+      if (laserCtx && laserCanvasEl) {
+        const dpr = window.devicePixelRatio || 1;
+        laserCtx.clearRect(0, 0, laserCanvasEl.width / dpr, laserCanvasEl.height / dpr);
+      }
+    }
+
     const laserBtn = document.querySelector('.btn-laser');
     if (laserBtn) {
       laserBtn.classList.toggle('active', isLaserActive);
     }
+  }
+
+  function updateBrandHud() {
+    const badgeEl = document.getElementById('presentBoardTitleBadge');
+    const boardTitleInput = document.getElementById('boardTitleInput');
+    if (badgeEl) {
+      let title = '';
+      if (window.StudioCore && window.StudioCore.getCurrentBoard) {
+        const board = window.StudioCore.getCurrentBoard();
+        if (board && board.title) title = board.title;
+      }
+      if (!title && boardTitleInput && boardTitleInput.value) {
+        title = boardTitleInput.value;
+      }
+      badgeEl.textContent = title || 'Haute Strategy Briefing';
+    }
+  }
+
+  function findStepIndexByElement(el) {
+    if (!el) return -1;
+    return steps.findIndex(s => s.el === el || (s.el && s.el.id === el.id));
   }
 
   function startTimer() {
@@ -615,6 +781,7 @@ window.StudioPresentation = (function () {
     currentStepIndex = 0;
     isGodView = false;
 
+    updateBrandHud();
     initLaser();
     startTimer();
 
@@ -628,6 +795,7 @@ window.StudioPresentation = (function () {
   function stop() {
     isPresenting = false;
     document.body.classList.remove('is-presenting');
+    document.body.classList.remove('is-laser-active');
 
     stopTimer();
     clearSpotlight();
@@ -638,6 +806,11 @@ window.StudioPresentation = (function () {
     if (laserDotEl) {
       laserDotEl.classList.remove('is-active');
     }
+    if (laserCtx && laserCanvasEl) {
+      const dpr = window.devicePixelRatio || 1;
+      laserCtx.clearRect(0, 0, laserCanvasEl.width / dpr, laserCanvasEl.height / dpr);
+    }
+    laserPoints = [];
 
     document.querySelectorAll('.board-frame, .studio-element').forEach(f => {
       f.classList.remove('active-presentation-frame', 'active-presentation-slide', 'spotlight-dimmed', 'spotlight-active');
@@ -916,7 +1089,10 @@ window.StudioPresentation = (function () {
     toggleLaser,
     toggleFullscreen,
     clearSpotlight,
+    updateBrandHud,
+    findStepIndexByElement,
     isPresenting: () => isPresenting,
+    isLaserActive: () => isLaserActive,
     getSteps: () => steps,
     getSequencerItems: () => sequencerItems
   };

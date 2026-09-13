@@ -30,6 +30,7 @@ window.MarqueeEngine = (function () {
   }
 
   function startMarquee(e) {
+    if (window.StudioPresentation && window.StudioPresentation.isPresenting && window.StudioPresentation.isPresenting()) return;
     if (e.button !== 0) return;
     isSelecting = true;
     startScreenX = e.clientX;

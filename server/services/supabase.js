@@ -32,6 +32,7 @@ const LOCAL_CMS_FILE = IS_VERCEL ? path.join('/tmp', 'content.json') : path.join
 const LOCAL_BOARDS_DIR = IS_VERCEL ? path.join('/tmp', 'boards') : path.join(__dirname, '../db/boards');
 const LOCAL_INVOICES_FILE = IS_VERCEL ? path.join('/tmp', 'invoices.json') : path.join(__dirname, '../db/invoices.json');
 const LOCAL_PRESENTATIONS_FILE = IS_VERCEL ? path.join('/tmp', 'presentations.json') : path.join(__dirname, '../db/presentations.json');
+const BUNDLED_PRESENTATIONS_FILE = path.join(__dirname, '../db/presentations.json');
 
 
 // ── Entity Mappers: camelCase (JS) <-> snake_case (Postgres) ─────────────────
@@ -683,6 +684,41 @@ function slugifyProposal(text) {
     .replace(/^-+|-+$/g, '');
 }
 
+function readLocalPresentations() {
+  try {
+    if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
+      const data = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
+      if (Array.isArray(data) && data.length > 0) return data;
+    }
+    if (fs.existsSync(BUNDLED_PRESENTATIONS_FILE)) {
+      const content = fs.readFileSync(BUNDLED_PRESENTATIONS_FILE, 'utf8');
+      if (IS_VERCEL) {
+        try {
+          const dir = path.dirname(LOCAL_PRESENTATIONS_FILE);
+          if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+          fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, content, 'utf8');
+        } catch (_) {}
+      }
+      return JSON.parse(content || '[]');
+    }
+  } catch (e) {
+    console.error('Local presentations read error:', e);
+  }
+  return [];
+}
+
+function writeLocalPresentations(list) {
+  try {
+    const dir = path.dirname(LOCAL_PRESENTATIONS_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(list, null, 2), 'utf8');
+    return true;
+  } catch (e) {
+    console.error('Local presentations write error:', e);
+    return false;
+  }
+}
+
 const presentationsService = {
   async listPresentations() {
     if (isConfigured) {
@@ -701,14 +737,7 @@ const presentationsService = {
     }
 
     // Local Fallback (or when cloud has no rows yet)
-    try {
-      if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
-        return JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
-      }
-    } catch (e) {
-      console.error('Local presentations read error:', e);
-    }
-    return [];
+    return readLocalPresentations();
   },
 
   async getPresentationBySlug(slugOrId) {
@@ -734,28 +763,32 @@ const presentationsService = {
         .select('*')
         .eq('type', 'PRESENTATION');
 
-      if (!errSlug && bySlug) {
+      if (!errSlug && bySlug && bySlug.length > 0) {
         const found = bySlug.find(r => {
           const s = (r.metadata?.slug || r.id || '').toLowerCase();
           return s === clean;
         });
         if (found) return mapDbRowToPresentation(found);
       }
-      console.warn('[Supabase presentationsService.getPresentationBySlug error, falling back]:', errId?.message || errSlug?.message);
     }
 
-    // Local Fallback
-    try {
-      if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
-        const presentations = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
-        return presentations.find(p => 
-          (p.slug && p.slug.toLowerCase() === clean) || 
-          (p.id && p.id.toLowerCase() === clean)
-        ) || null;
+    // Local Fallback (checked if not in cloud Supabase or if Supabase is offline)
+    const localPresentations = readLocalPresentations();
+    const foundLocal = localPresentations.find(p => 
+      (p.slug && p.slug.toLowerCase() === clean) || 
+      (p.id && p.id.toLowerCase() === clean)
+    );
+
+    if (foundLocal) {
+      // If found in local seed while cloud is configured, sync in background
+      if (isConfigured) {
+        presentationsService.savePresentation(foundLocal).catch(err => {
+          console.warn('[Supabase auto-seed presentation error]:', err?.message);
+        });
       }
-    } catch (e) {
-      console.error('Local presentation get error:', e);
+      return foundLocal;
     }
+
     return null;
   },
 
@@ -830,17 +863,12 @@ const presentationsService = {
       if (!error && data) {
         // Update local file cache for instant offline access
         try {
-          let localList = [];
-          if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
-            localList = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
-          }
+          const localList = readLocalPresentations();
           const mapped = mapDbRowToPresentation(data);
           const idx = localList.findIndex(p => p.id === id || p.slug === rawSlug);
           if (idx >= 0) localList[idx] = mapped;
           else localList.unshift(mapped);
-          const dir = path.dirname(LOCAL_PRESENTATIONS_FILE);
-          if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-          fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(localList, null, 2), 'utf8');
+          writeLocalPresentations(localList);
         } catch (_) {}
 
         return mapDbRowToPresentation(data);
@@ -849,23 +877,12 @@ const presentationsService = {
     }
 
     // Local Fallback
-    try {
-      let localList = [];
-      if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
-        localList = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
-      }
-      const idx = localList.findIndex(p => p.id === id || p.slug === rawSlug);
-      if (idx >= 0) localList[idx] = enriched;
-      else localList.unshift(enriched);
-
-      const dir = path.dirname(LOCAL_PRESENTATIONS_FILE);
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(localList, null, 2), 'utf8');
-      return enriched;
-    } catch (e) {
-      console.error('Local presentation save error:', e);
-      return enriched;
-    }
+    const localList = readLocalPresentations();
+    const idx = localList.findIndex(p => p.id === id || p.slug === rawSlug);
+    if (idx >= 0) localList[idx] = enriched;
+    else localList.unshift(enriched);
+    writeLocalPresentations(localList);
+    return enriched;
   },
 
   async deletePresentation(idOrSlug) {
@@ -880,30 +897,19 @@ const presentationsService = {
         .eq('type', 'PRESENTATION');
 
       if (!error) {
-        try {
-          if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
-            let localList = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
-            localList = localList.filter(p => p.id !== clean && p.slug !== clean);
-            fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(localList, null, 2), 'utf8');
-          }
-        } catch (_) {}
+        const localList = readLocalPresentations();
+        const filtered = localList.filter(p => p.id !== clean && p.slug !== clean);
+        writeLocalPresentations(filtered);
         return true;
       }
       console.warn('[Supabase presentationsService.deletePresentation error, falling back]:', error?.message);
     }
 
     // Local Fallback
-    try {
-      if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
-        let localList = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
-        localList = localList.filter(p => p.id !== clean && p.slug !== clean);
-        fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(localList, null, 2), 'utf8');
-        return true;
-      }
-    } catch (e) {
-      console.error('Local presentation delete error:', e);
-    }
-    return false;
+    const localList = readLocalPresentations();
+    const filtered = localList.filter(p => p.id !== clean && p.slug !== clean);
+    writeLocalPresentations(filtered);
+    return true;
   }
 };
 

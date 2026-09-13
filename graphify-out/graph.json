@@ -12406,6 +12406,202 @@
       "source_location": "L1"
     },
     {
+      "id": "agents_skills_zero_fluff_operator_skill",
+      "label": "zero-fluff-operator/SKILL.md",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "frontmatter": {
+        "name": "zero-fluff-operator",
+        "description": "Ruthless anti-filler, anti-buzzword, and zero-bullshit standard for all communications, UI copy, code reviews, and critiques. Enforces direct, operator-grade clarity, bans flowery AI theatrical metaphors, eliminates pretentious luxury fluff, and demands actionable, concise execution."
+      },
+      "node_kind": "page",
+      "norm_label": "zero-fluff-operator/skill.md",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_1_the_core_rule",
+      "label": "1. The Core Rule",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. the core rule",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_2_banned_words_tropes_theatrical_fluff",
+      "label": "2. Banned Words, Tropes & Theatrical Fluff",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. banned words, tropes & theatrical fluff",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L20"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_3_the_operator_copy_standard",
+      "label": "3. The Operator Copy Standard",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3. the operator copy standard",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L48"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_4_rules_for_critiques_reviews",
+      "label": "4. Rules for Critiques & Reviews",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "4. rules for critiques & reviews",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L60"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_5_pre_response_filter_apply_before_every_output",
+      "label": "5. Pre-Response Filter (Apply Before Every Output)",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "5. pre-response filter (apply before every output)",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L70"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_the_ai_buzzword_throat_clearing_blacklist",
+      "label": "\ud83d\udeab The AI Buzzword & Throat-Clearing Blacklist",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\ud83d\udeab the ai buzzword & throat-clearing blacklist",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_the_theatrical_luxury_fluff_blacklist_never_use",
+      "label": "\ud83d\udeab The Theatrical Luxury Fluff Blacklist (NEVER USE)",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\ud83d\udeab the theatrical luxury fluff blacklist (never use)",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_the_theatrical_ui_label_blacklist_from_real_code_audits",
+      "label": "\ud83d\udeab The Theatrical UI Label Blacklist (From Real Code Audits)",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\ud83d\udeab the theatrical ui label blacklist (from real code audits)",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "agents_skills_zero_fluff_operator_skill_zero_fluff_operator_standard_anti_filler_direct_execution",
+      "label": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "_origin": "ast",
+      "community": 81,
+      "community_name": "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "zero-fluff operator standard (anti-filler & direct execution)",
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "agents_rules_no_filler",
+      "label": "no-filler.md",
+      "_origin": "ast",
+      "community": 82,
+      "community_name": "Zero-Fluff & Anti-Filler Rule",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "no-filler.md",
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_rules_no_filler_1_core_mandate",
+      "label": "1. Core Mandate",
+      "_origin": "ast",
+      "community": 82,
+      "community_name": "Zero-Fluff & Anti-Filler Rule",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. core mandate",
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "agents_rules_no_filler_2_strictly_banned_vocabulary_tropes",
+      "label": "2. Strictly Banned Vocabulary & Tropes",
+      "_origin": "ast",
+      "community": 82,
+      "community_name": "Zero-Fluff & Anti-Filler Rule",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. strictly banned vocabulary & tropes",
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "agents_rules_no_filler_3_ui_copy_standard",
+      "label": "3. UI Copy Standard",
+      "_origin": "ast",
+      "community": 82,
+      "community_name": "Zero-Fluff & Anti-Filler Rule",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3. ui copy standard",
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "agents_rules_no_filler_4_output_structure",
+      "label": "4. Output Structure",
+      "_origin": "ast",
+      "community": 82,
+      "community_name": "Zero-Fluff & Anti-Filler Rule",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "4. output structure",
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "agents_rules_no_filler_zero_fluff_anti_filler_rule",
+      "label": "Zero-Fluff & Anti-Filler Rule",
+      "_origin": "ast",
+      "community": 82,
+      "community_name": "Zero-Fluff & Anti-Filler Rule",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "zero-fluff & anti-filler rule",
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L1"
+    },
+    {
       "id": "scripts_generate_social_avatars",
       "label": "generate-social-avatars.js",
       "_origin": "ast",
@@ -21727,6 +21923,61 @@
       "weight": 1.0
     },
     {
+      "source": "agents_rules_no_filler",
+      "target": "agents_rules_no_filler_zero_fluff_anti_filler_rule",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_rules_no_filler_zero_fluff_anti_filler_rule",
+      "target": "agents_rules_no_filler_3_ui_copy_standard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_rules_no_filler_zero_fluff_anti_filler_rule",
+      "target": "agents_rules_no_filler_4_output_structure",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_rules_no_filler_zero_fluff_anti_filler_rule",
+      "target": "agents_rules_no_filler_1_core_mandate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_rules_no_filler_zero_fluff_anti_filler_rule",
+      "target": "agents_rules_no_filler_2_strictly_banned_vocabulary_tropes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/rules/no-filler.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
       "source": "agents_skills_award_winning_luxury_cards_skill",
       "target": "agents_skills_award_winning_luxury_cards_skill_award_winning_luxury_cards_architectural_design_guide",
       "relation": "contains",
@@ -23231,6 +23482,105 @@
       "confidence_score": 1.0,
       "source_file": ".agents/skills/vibe-security/SKILL.md",
       "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill",
+      "target": "agents_skills_zero_fluff_operator_skill_zero_fluff_operator_standard_anti_filler_direct_execution",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill_2_banned_words_tropes_theatrical_fluff",
+      "target": "agents_skills_zero_fluff_operator_skill_the_theatrical_luxury_fluff_blacklist_never_use",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill_2_banned_words_tropes_theatrical_fluff",
+      "target": "agents_skills_zero_fluff_operator_skill_the_ai_buzzword_throat_clearing_blacklist",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill_2_banned_words_tropes_theatrical_fluff",
+      "target": "agents_skills_zero_fluff_operator_skill_the_theatrical_ui_label_blacklist_from_real_code_audits",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill_zero_fluff_operator_standard_anti_filler_direct_execution",
+      "target": "agents_skills_zero_fluff_operator_skill_1_the_core_rule",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill_zero_fluff_operator_standard_anti_filler_direct_execution",
+      "target": "agents_skills_zero_fluff_operator_skill_2_banned_words_tropes_theatrical_fluff",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill_zero_fluff_operator_standard_anti_filler_direct_execution",
+      "target": "agents_skills_zero_fluff_operator_skill_3_the_operator_copy_standard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill_zero_fluff_operator_standard_anti_filler_direct_execution",
+      "target": "agents_skills_zero_fluff_operator_skill_4_rules_for_critiques_reviews",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_skills_zero_fluff_operator_skill_zero_fluff_operator_standard_anti_filler_direct_execution",
+      "target": "agents_skills_zero_fluff_operator_skill_5_pre_response_filter_apply_before_every_output",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".agents/skills/zero-fluff-operator/SKILL.md",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -32635,5 +32985,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "bc7b6e67f6728d0257ad282cb6838daa66433816"
+  "built_at_commit": "205ff28dd3af304189584ba191f1e783e063c75e"
 }

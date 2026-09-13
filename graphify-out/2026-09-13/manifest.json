@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789317475.9395046,
-    "seen": 1789317481.549462,
-    "ast_hash": "58f760b875b7a3ef85b965b1ea20d8c4",
+    "mtime": 1789318987.8337924,
+    "seen": 1789319014.445935,
+    "ast_hash": "e41128293bbe37194c088fdae4c08a46",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -1957,8 +1957,8 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789317486.04933,
-    "ast_hash": "",
+    "seen": 1789319014.445914,
+    "ast_hash": "9d679501ccc8722f71c8d90ebd230e69",
     "semantic_hash": ""
   },
   "tests/test_sequencer_e2e.js": {

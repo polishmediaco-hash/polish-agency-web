@@ -2080,5 +2080,17 @@
     "seen": 1789318897.2267158,
     "ast_hash": "c76b223787649a3148d15bbd1805ebc9",
     "semantic_hash": ""
+  },
+  ".agents/rules/no-filler.md": {
+    "mtime": 1789319713.1511197,
+    "seen": 1789319727.085264,
+    "ast_hash": "27ef4dcaa182b9bfb4b161856fed6d41",
+    "semantic_hash": ""
+  },
+  ".agents/skills/zero-fluff-operator/SKILL.md": {
+    "mtime": 1789319677.1395998,
+    "seen": 1789319727.085276,
+    "ast_hash": "78f7a9fa2d38f88e750319e0258ddcac",
+    "semantic_hash": ""
   }
 }

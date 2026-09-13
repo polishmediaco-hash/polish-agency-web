@@ -272,6 +272,10 @@
 
   // --- Calculation Engine ---
   // --- Dynamic Document Title for Contextual PDF File Downloads ---
+  function isStandaloneInvoicePage() {
+    return !document.getElementById('dashboardAppView') && !document.querySelector('.admin-nav');
+  }
+
   function getFormattedInvoiceFilename() {
     const prefix = state.lang === 'fr' ? 'Facture' : 'Invoice';
     const client = (state.clientName || 'Client')
@@ -289,7 +293,10 @@
   }
 
   function updateDocumentTitle() {
-    document.title = getFormattedInvoiceFilename();
+    // Guard: Only update document.title if on dedicated standalone invoice page
+    if (isStandaloneInvoicePage()) {
+      document.title = getFormattedInvoiceFilename();
+    }
   }
 
   function computeTotals() {
@@ -919,16 +926,20 @@
       btnLogout.addEventListener('click', logoutAdmin);
     }
 
+    let prevAdminTitle = document.title || 'POLISH Admin';
+
     window.addEventListener('keydown', (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
         e.preventDefault();
-        updateDocumentTitle();
+        prevAdminTitle = document.title;
+        document.title = getFormattedInvoiceFilename();
         window.print();
       }
     });
 
     window.addEventListener('beforeprint', () => {
-      updateDocumentTitle();
+      prevAdminTitle = document.title;
+      document.title = getFormattedInvoiceFilename();
       const logo = document.getElementById('sheetLogo');
       if (logo && state.theme === 'obsidian') {
         logo.dataset.origSrc = logo.src;
@@ -937,6 +948,9 @@
     });
 
     window.addEventListener('afterprint', () => {
+      if (!isStandaloneInvoicePage()) {
+        document.title = prevAdminTitle || 'POLISH Admin';
+      }
       const logo = document.getElementById('sheetLogo');
       if (logo && logo.dataset.origSrc) {
         logo.src = logo.dataset.origSrc;

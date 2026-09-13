@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>POLISH Admin</title>
+  <meta property="og:title" content="POLISH Admin">
+  <meta property="og:site_name" content="POLISH Media Co.">
+  <meta property="og:description" content="Executive Admin &amp; Growth Studio">
+  <meta property="og:image" content="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
+  <meta name="twitter:title" content="POLISH Admin">
   <link rel="manifest" href="/manifest-admin.json">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="POLISH Admin">
   <meta name="theme-color" content="#080706">
@@ -4084,6 +4091,7 @@
 
   // ── Main Tab Switching & Hash Navigation ──────────────────
   function switchMainTab(paneId) {
+    document.title = 'POLISH Admin';
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
 

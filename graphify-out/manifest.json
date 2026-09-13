@@ -2052,9 +2052,9 @@
     "semantic_hash": ""
   },
   "public/sw-admin.js": {
-    "mtime": 1789275522.1389825,
-    "seen": 1789275948.363528,
-    "ast_hash": "82eac8703c68dbcad5ab6b1f1ea4132e",
+    "mtime": 1789276781.1577504,
+    "seen": 1789276786.789527,
+    "ast_hash": "0fb8619d13b2d74827fedbe767b05ad5",
     "semantic_hash": ""
   },
   "tests/test_auth_flow.js": {

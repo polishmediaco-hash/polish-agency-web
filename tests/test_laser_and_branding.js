@@ -122,10 +122,12 @@ const fs = require('fs');
 
     // 4. Simulate Mouse Movement & Laser Drawing
     console.log('Simulating laser movement and strokes across cards...');
-    await page.mouse.move(720, 450);
+    const startX = 720 + 120;
+    const startY = 450;
+    await page.mouse.move(startX, startY);
     await page.mouse.down();
-    for (let i = 0; i <= 20; i++) {
-      const angle = (i / 20) * Math.PI * 2;
+    for (let i = 0; i <= 24; i++) {
+      const angle = (i / 24) * Math.PI * 2;
       const x = 720 + Math.cos(angle) * 120;
       const y = 450 + Math.sin(angle) * 70;
       await page.mouse.move(x, y);
@@ -160,11 +162,13 @@ const fs = require('fs');
     await page.evaluate(() => {
       document.body.classList.add('theme-dark');
     });
-    // Draw golden laser circle
-    await page.mouse.move(680, 400);
+    // Draw golden laser circle starting on perimeter
+    const darkStartX = 680 + 140;
+    const darkStartY = 400;
+    await page.mouse.move(darkStartX, darkStartY);
     await page.mouse.down();
-    for (let i = 0; i <= 15; i++) {
-      const angle = (i / 15) * Math.PI * 2;
+    for (let i = 0; i <= 20; i++) {
+      const angle = (i / 20) * Math.PI * 2;
       const x = 680 + Math.cos(angle) * 140;
       const y = 400 + Math.sin(angle) * 80;
       await page.mouse.move(x, y);
@@ -177,7 +181,7 @@ const fs = require('fs');
     console.log(`📸 Dark presentation screenshot saved: ${darkPath}`);
 
     // Copy to brain artifacts
-    const brainDir = '/Users/Macbook Pro/.gemini/antigravity/brain/dae08dfc-7362-4886-9219-1e2edfe91e4f';
+    const brainDir = '/Users/Macbook Pro/.gemini/antigravity/brain/eece1928-74a6-4f17-bb76-aca8f9543d67';
     if (fs.existsSync(brainDir)) {
       fs.copyFileSync(lightPath, path.join(brainDir, 'presentation-branded-laser-light.png'));
       fs.copyFileSync(darkPath, path.join(brainDir, 'presentation-branded-laser-dark.png'));

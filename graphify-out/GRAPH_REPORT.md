@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 86 files · ~634,322 words
+- 86 files · ~662,833 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1004 nodes · 1664 edges · 73 communities (66 shown, 5 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 44 edges (avg confidence: 0.85)
+- 1009 nodes · 1676 edges · 73 communities (66 shown, 5 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ec16125d`
+- Built from commit: `25966743`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -95,9 +95,9 @@
 5. `selectElement()` - 19 edges
 6. `getCanvasCenter()` - 16 edges
 7. `bindKeyboardShortcuts()` - 16 edges
-8. `setupToolbar()` - 15 edges
-9. `updatePosition()` - 15 edges
-10. `renderControls()` - 15 edges
+8. `renderInvoiceSheet()` - 15 edges
+9. `setupToolbar()` - 15 edges
+10. `updatePosition()` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `checkNewCalendlyMeetings()` --calls--> `notifyNewMeeting()`  [EXTRACTED]
@@ -190,7 +190,7 @@ Nodes (5): attachStrokeEvents(), bindEvents(), getSmoothSvgPath(), init(), rende
 
 ### Community 22 - "presentation.js"
 Cohesion: 0.11
-Nodes (37): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+29 more)
+Nodes (38): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+30 more)
 
 ### Community 23 - "api.js"
 Cohesion: 0.10
@@ -365,8 +365,8 @@ Cohesion: 1.00
 Nodes (3): initKineticTypography(), isReducedMotion(), revealKineticTitle()
 
 ### Community 75 - "invoice.js"
-Cohesion: 0.19
-Nodes (33): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), closeArchiveDrawer(), computeTotals(), escapeHTML(), filterArchiveList(), formatAmount() (+25 more)
+Cohesion: 0.16
+Nodes (37): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), cleanContactName(), closeArchiveDrawer(), computeTotals(), escapeHTML(), fallbackCopy() (+29 more)
 
 ### Community 76 - "POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)"
 Cohesion: 0.29

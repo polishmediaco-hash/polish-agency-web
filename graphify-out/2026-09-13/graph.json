@@ -2162,7 +2162,7 @@
       "file_type": "code",
       "norm_label": "clearspotlight()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L981"
+      "source_location": "L985"
     },
     {
       "id": "public_studio_js_presentation_closesequencer",
@@ -2546,7 +2546,7 @@
       "file_type": "code",
       "norm_label": "togglegodview()",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L987"
+      "source_location": "L991"
     },
     {
       "id": "public_studio_js_presentation_togglelaser",
@@ -7743,7 +7743,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L523"
+      "source_location": "L540"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -7948,6 +7948,18 @@
       "norm_label": "sprint 13: executive admin invoicing atelier contrast, shadow bleed & layout polish (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L506"
+    },
+    {
+      "id": "docs_handoff_sprint_14_minimalist_luxury_presentation_engine_zero_clutter_architecture_completed_september_2026",
+      "label": "Sprint 14: Minimalist Luxury Presentation Engine & Zero-Clutter Architecture (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 14: minimalist luxury presentation engine & zero-clutter architecture (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L517"
     },
     {
       "id": "docs_handoff_sprint_1_critical_hotfixes_completed_september_2026",
@@ -16416,7 +16428,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L1008",
+      "source_location": "L1012",
       "weight": 1.0
     },
     {
@@ -16428,7 +16440,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L992",
+      "source_location": "L996",
       "weight": 1.0
     },
     {
@@ -16465,6 +16477,18 @@
       "context": "call",
       "source_file": "public/studio/js/presentation.js",
       "source_location": "L696",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_presentation_updateslideinfo",
+      "target": "public_studio_js_presentation_rendersequencerlist",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/presentation.js",
+      "source_location": "L981",
       "weight": 1.0
     },
     {
@@ -22883,6 +22907,17 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_14_minimalist_luxury_presentation_engine_zero_clutter_architecture_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L517",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -22945,7 +22980,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L523",
+      "source_location": "L540",
       "weight": 1.0
     },
     {
@@ -27378,7 +27413,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L981",
+      "source_location": "L985",
       "weight": 1.0
     },
     {
@@ -27389,7 +27424,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/presentation.js",
-      "source_location": "L987",
+      "source_location": "L991",
       "weight": 1.0
     },
     {
@@ -30969,5 +31004,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f97396cfea410971c302b144aac10b4348132668"
+  "built_at_commit": "ec16125d21875b403d8763ecd5c129ba1ead7ae9"
 }

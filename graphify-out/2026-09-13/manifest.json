@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "public/studio/js/presentation.js": {
-    "mtime": 1789268235.6516275,
-    "seen": 1789268274.702836,
-    "ast_hash": "5e9f0abcba0e1dbf8ecbba1a6e758747",
+    "mtime": 1789268527.83165,
+    "seen": 1789268637.338154,
+    "ast_hash": "3ae45eaf30816b6cdee21bb54693718c",
     "semantic_hash": ""
   },
   "public/studio/js/studio-ai.js": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "docs/HANDOFF.md": {
-    "mtime": 1789268453.7381735,
-    "seen": 1789268462.9824681,
-    "ast_hash": "626e2b4d9709de9da45a983386611587",
+    "mtime": 1789268630.5653043,
+    "seen": 1789268637.338688,
+    "ast_hash": "5aac784ff17d4a8b6d7b8bbc3c9168b6",
     "semantic_hash": ""
   },
   "docs/SECURITY_AUDIT_REPORT.md": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789268470.91632,
+    "seen": 1789268825.2565,
     "ast_hash": "9d679501ccc8722f71c8d90ebd230e69",
     "semantic_hash": ""
   },
@@ -1968,9 +1968,9 @@
     "semantic_hash": ""
   },
   "tests/test_laser_and_branding.js": {
-    "mtime": 1789268249.530294,
-    "seen": 1789268274.703068,
-    "ast_hash": "c53c23969e99bc40117aa7370920671e",
+    "mtime": 1789268552.8112195,
+    "seen": 1789268637.338377,
+    "ast_hash": "53f49e29a953f8f08974b38f47f75276",
     "semantic_hash": ""
   }
 }

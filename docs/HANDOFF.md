@@ -533,7 +533,25 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Laser wand SVG emitting rays with cursor suppression, incandescent white-hot core, and glowing dissipating champagne light trail.
    - Complete suppression of card selection, drag locks, and marquee selection during laser actions.
 6. ✅ **Automated Verification**:
-   - Automated Puppeteer test suite (`tests/test_laser_and_branding.js`) verifies floating mark, navigation stepping, step pill updates, God View toggling, laser light trail drawing, and 0 element selection interference across Dark and Light modes.
+### Sprint 15: Presentation Logo Visibility, Active Gleam Animation & Laser Logic Overhaul (Completed September 2026)
+1. ✅ **Presentation Floating Brand Mark Visibility & Scaled Optics**:
+   - Upgraded `#presentationFloatingLogo` standalone Golden Ratio mark (`/assets/logo-gold-mark.svg?v=23.0`) from 36px to 56px (`width: 56px; height: 56px;`), delivering bold visual presence and pristine vector clarity without any filler text.
+   - Removed blurry drop-shadows that muddied fine vector details of the 45° chevron and diamond core.
+   - Calibrated high-contrast Light Mode filter (`brightness(0.45) contrast(1.5) sepia(0.25) saturate(1.6)`) converting pale gold to rich burnished antique bronze on the warm Alabaster canvas (`#FAF7F2`), achieving 100% WCAG AAA visibility.
+2. ✅ **Active Luxury Animations**:
+   - Engineered continuous specular light gleam sweep (`.presentation-logo-gleam` with `@keyframes logoGleamSweep`) traveling across the gold metal pipette every 3.2s via CSS masking.
+   - Integrated breathing ambient champagne halo (`.presentation-logo-halo` with `@keyframes logoAuraPulse`) rhythmically expanding and pulsing light behind the mark.
+   - Smooth harmonic levitation float (`@keyframes logoLevitate`).
+3. ✅ **Complete Laser Pointer Logic Re-engineering**:
+   - **Hover vs Drawing Separation**: Hovering moves the laser beacon dot (`.presentation-laser-dot`) across cards with hardware-accelerated GPU transforms (`translate3d`) without scribbling unwanted lines across slides.
+   - **Disappearing Ink Ribbon**: Clicking and dragging draws luminous champagne gold ribbons (`#E2C799` with incandescent white core `#FFFFFF`).
+   - **Quadratic Bézier Smoothing**: Interpolates points using midpoint quadratic Bézier curves (`quadraticCurveTo`), completely eliminating jagged polygonal segments and angular bends.
+   - **Discrete Stroke Segmentation**: Multi-stroke architecture (`strokes = []`) ensures separate strokes are completely independent; lifting the pen and clicking elsewhere never draws an accidental connecting line across the canvas.
+   - **Direct Canvas Pointer Handling**: Assigned `pointer-events: auto` to `.presentation-laser-canvas` and removed event cancellation in `elements-factory.js`, guaranteeing drawing works seamlessly directly over cards, frames, equations, and tables.
+   - **Organic Dissipation**: Smooth exponential fade (`Math.pow(1 - age / LIFETIME, 1.4)`) and stroke-width tapering over 1.1s.
+4. ✅ **Full E2E Automated Verification**:
+   - Verified via Puppeteer in `tests/test_laser_and_branding.js` and `tests/test_sequencer_e2e.js`: 100% pass rate.
+   - Verified screenshots captured: `tests/screenshots/presentation-branded-laser-dark.png` and `tests/screenshots/presentation-branded-laser-light.png`.
 
 ---
 

@@ -27,9 +27,10 @@ window.StudioPresentation = (function () {
   let laserDotEl = null;
   let laserCanvasEl = null;
   let laserCtx = null;
-  let laserPoints = [];
   let laserAnimFrame = null;
   let isLaserDrawing = false;
+  let currentStroke = null;
+  let strokes = [];
 
   // Pitch Timer State
   let timerInterval = null;
@@ -67,6 +68,10 @@ window.StudioPresentation = (function () {
       window.addEventListener('resize', resizeLaserCanvas);
     }
 
+    // Attach direct listeners on canvas to capture drawing without card interference
+    laserCanvasEl.removeEventListener('pointerdown', onLaserPointerDown);
+    laserCanvasEl.addEventListener('pointerdown', onLaserPointerDown);
+
     window.removeEventListener('pointermove', onLaserPointerMove);
     window.addEventListener('pointermove', onLaserPointerMove, { passive: true });
 
@@ -75,6 +80,9 @@ window.StudioPresentation = (function () {
 
     window.removeEventListener('pointerup', onLaserPointerUp);
     window.addEventListener('pointerup', onLaserPointerUp);
+
+    window.removeEventListener('pointercancel', onLaserPointerUp);
+    window.addEventListener('pointercancel', onLaserPointerUp);
   }
 
   function resizeLaserCanvas() {
@@ -89,41 +97,49 @@ window.StudioPresentation = (function () {
     }
   }
 
+  function updateLaserDotPosition(clientX, clientY) {
+    if (!laserDotEl) return;
+    laserDotEl.style.transform = `translate3d(${clientX}px, ${clientY}px, 0) translate(-50%, -50%)`;
+  }
+
   function onLaserPointerMove(e) {
     if (!isPresenting || !isLaserActive) return;
-    if (laserDotEl) {
-      laserDotEl.style.left = `${e.clientX}px`;
-      laserDotEl.style.top = `${e.clientY}px`;
-    }
+    updateLaserDotPosition(e.clientX, e.clientY);
 
-    const now = performance.now();
-    laserPoints.push({
-      x: e.clientX,
-      y: e.clientY,
-      time: now,
-      isDown: isLaserDrawing
-    });
-
-    if (!laserAnimFrame) {
-      laserAnimFrame = requestAnimationFrame(renderLaserLoop);
+    // Only record ribbon points when pointer is actively pressed down (drawing mode)
+    if (isLaserDrawing && currentStroke) {
+      const now = performance.now();
+      const pts = currentStroke.points;
+      const lastPt = pts[pts.length - 1];
+      if (!lastPt || Math.hypot(e.clientX - lastPt.x, e.clientY - lastPt.y) >= 3) {
+        pts.push({
+          x: e.clientX,
+          y: e.clientY,
+          time: now
+        });
+      }
+      if (!laserAnimFrame) {
+        laserAnimFrame = requestAnimationFrame(renderLaserLoop);
+      }
     }
   }
 
   function onLaserPointerDown(e) {
     if (!isPresenting || !isLaserActive) return;
-    if (e.target.closest('.presentation-bar, .presentation-floating-logo, #presentationOrderModal')) return;
+    if (e.target && e.target.closest && e.target.closest('.presentation-bar, .presentation-floating-logo, #presentationOrderModal')) {
+      return;
+    }
 
     isLaserDrawing = true;
-    e.preventDefault();
-    e.stopPropagation();
+    updateLaserDotPosition(e.clientX, e.clientY);
 
     const now = performance.now();
-    laserPoints.push({
-      x: e.clientX,
-      y: e.clientY,
-      time: now,
-      isDown: true
-    });
+    currentStroke = {
+      points: [{ x: e.clientX, y: e.clientY, time: now }],
+      isDrawing: true,
+      completedTime: null
+    };
+    strokes.push(currentStroke);
 
     if (!laserAnimFrame) {
       laserAnimFrame = requestAnimationFrame(renderLaserLoop);
@@ -132,7 +148,15 @@ window.StudioPresentation = (function () {
 
   function onLaserPointerUp(e) {
     if (!isPresenting || !isLaserActive) return;
+    if (isLaserDrawing && currentStroke) {
+      currentStroke.isDrawing = false;
+      currentStroke.completedTime = performance.now();
+      currentStroke = null;
+    }
     isLaserDrawing = false;
+    if (strokes.length > 0 && !laserAnimFrame) {
+      laserAnimFrame = requestAnimationFrame(renderLaserLoop);
+    }
   }
 
   function renderLaserLoop() {
@@ -142,52 +166,85 @@ window.StudioPresentation = (function () {
     }
 
     const now = performance.now();
-    const TRAIL_LIFETIME = 850;
-
-    laserPoints = laserPoints.filter(pt => now - pt.time < TRAIL_LIFETIME);
+    const STROKE_LIFETIME = 1100; // 1.1s organic incandescent dissipation
 
     const dpr = window.devicePixelRatio || 1;
     laserCtx.clearRect(0, 0, laserCanvasEl.width / dpr, laserCanvasEl.height / dpr);
 
-    if (laserPoints.length > 1) {
-      for (let i = 1; i < laserPoints.length; i++) {
-        const p0 = laserPoints[i - 1];
-        const p1 = laserPoints[i];
-        const age = now - p1.time;
-        const alpha = Math.max(0, 1 - (age / TRAIL_LIFETIME));
+    // Filter out expired strokes
+    strokes = strokes.filter(stroke => {
+      if (stroke.isDrawing) return true;
+      const ageSinceEnd = now - stroke.completedTime;
+      return ageSinceEnd < STROKE_LIFETIME;
+    });
 
-        const dist = Math.hypot(p1.x - p0.x, p1.y - p0.y);
-        if (dist > 180) continue;
+    for (const stroke of strokes) {
+      const pts = stroke.points;
+      if (pts.length === 0) continue;
 
-        // Outer Champagne Gold Glow Beam
-        laserCtx.save();
-        laserCtx.beginPath();
-        laserCtx.moveTo(p0.x, p0.y);
-        laserCtx.lineTo(p1.x, p1.y);
-        laserCtx.strokeStyle = `rgba(226, 199, 153, ${alpha * 0.85})`;
-        laserCtx.lineWidth = (p1.isDown ? 7 : 4) * alpha;
-        laserCtx.lineCap = 'round';
-        laserCtx.lineJoin = 'round';
-        laserCtx.shadowColor = '#E2C799';
-        laserCtx.shadowBlur = 18 * alpha;
-        laserCtx.stroke();
-        laserCtx.restore();
-
-        // Inner Incandescent White Beam Core
-        laserCtx.save();
-        laserCtx.beginPath();
-        laserCtx.moveTo(p0.x, p0.y);
-        laserCtx.lineTo(p1.x, p1.y);
-        laserCtx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.95})`;
-        laserCtx.lineWidth = (p1.isDown ? 3 : 1.8) * alpha;
-        laserCtx.lineCap = 'round';
-        laserCtx.lineJoin = 'round';
-        laserCtx.stroke();
-        laserCtx.restore();
+      let strokeAge = 0;
+      if (!stroke.isDrawing && stroke.completedTime) {
+        strokeAge = now - stroke.completedTime;
       }
+      const progress = Math.min(1, strokeAge / STROKE_LIFETIME);
+      const overallAlpha = Math.max(0, Math.pow(1 - progress, 1.4));
+      if (overallAlpha <= 0) continue;
+
+      if (pts.length === 1) {
+        // Single point click tap: render a soft glowing beacon flare
+        laserCtx.save();
+        laserCtx.beginPath();
+        laserCtx.arc(pts[0].x, pts[0].y, 5 * overallAlpha, 0, Math.PI * 2);
+        laserCtx.fillStyle = `rgba(255, 255, 255, ${overallAlpha * 0.95})`;
+        laserCtx.shadowColor = '#E2C799';
+        laserCtx.shadowBlur = 16 * overallAlpha;
+        laserCtx.fill();
+        laserCtx.restore();
+        continue;
+      }
+
+      // Outer Champagne Gold Glow Beam with quadratic Bézier curves
+      laserCtx.save();
+      laserCtx.beginPath();
+      laserCtx.moveTo(pts[0].x, pts[0].y);
+
+      for (let i = 1; i < pts.length - 1; i++) {
+        const xc = (pts[i].x + pts[i + 1].x) / 2;
+        const yc = (pts[i].y + pts[i + 1].y) / 2;
+        laserCtx.quadraticCurveTo(pts[i].x, pts[i].y, xc, yc);
+      }
+      laserCtx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
+
+      laserCtx.strokeStyle = `rgba(226, 199, 153, ${overallAlpha * 0.9})`;
+      laserCtx.lineWidth = Math.max(1.5, 7 * overallAlpha);
+      laserCtx.lineCap = 'round';
+      laserCtx.lineJoin = 'round';
+      laserCtx.shadowColor = '#E2C799';
+      laserCtx.shadowBlur = 18 * overallAlpha;
+      laserCtx.stroke();
+      laserCtx.restore();
+
+      // Inner Incandescent White Core Beam
+      laserCtx.save();
+      laserCtx.beginPath();
+      laserCtx.moveTo(pts[0].x, pts[0].y);
+
+      for (let i = 1; i < pts.length - 1; i++) {
+        const xc = (pts[i].x + pts[i + 1].x) / 2;
+        const yc = (pts[i].y + pts[i + 1].y) / 2;
+        laserCtx.quadraticCurveTo(pts[i].x, pts[i].y, xc, yc);
+      }
+      laserCtx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
+
+      laserCtx.strokeStyle = `rgba(255, 255, 255, ${overallAlpha * 0.98})`;
+      laserCtx.lineWidth = Math.max(0.8, 2.5 * overallAlpha);
+      laserCtx.lineCap = 'round';
+      laserCtx.lineJoin = 'round';
+      laserCtx.stroke();
+      laserCtx.restore();
     }
 
-    if (laserPoints.length > 0 && isLaserActive && isPresenting) {
+    if ((strokes.length > 0 || isLaserDrawing) && isLaserActive && isPresenting) {
       laserAnimFrame = requestAnimationFrame(renderLaserLoop);
     } else {
       laserAnimFrame = null;
@@ -210,7 +267,9 @@ window.StudioPresentation = (function () {
     }
 
     if (!isLaserActive) {
-      laserPoints = [];
+      strokes = [];
+      currentStroke = null;
+      isLaserDrawing = false;
       if (laserCtx && laserCanvasEl) {
         const dpr = window.devicePixelRatio || 1;
         laserCtx.clearRect(0, 0, laserCanvasEl.width / dpr, laserCanvasEl.height / dpr);
@@ -810,7 +869,9 @@ window.StudioPresentation = (function () {
       const dpr = window.devicePixelRatio || 1;
       laserCtx.clearRect(0, 0, laserCanvasEl.width / dpr, laserCanvasEl.height / dpr);
     }
-    laserPoints = [];
+    strokes = [];
+    currentStroke = null;
+    isLaserDrawing = false;
 
     document.querySelectorAll('.board-frame, .studio-element').forEach(f => {
       f.classList.remove('active-presentation-frame', 'active-presentation-slide', 'spotlight-dimmed', 'spotlight-active');

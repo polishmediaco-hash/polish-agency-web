@@ -1453,8 +1453,6 @@ window.ElementsFactory = (function () {
       // In presentation mode, intercept pointer events:
       if (window.StudioPresentation && window.StudioPresentation.isPresenting && window.StudioPresentation.isPresenting()) {
         if (window.StudioPresentation.isLaserActive && window.StudioPresentation.isLaserActive()) {
-          e.preventDefault();
-          e.stopPropagation();
           return;
         }
         if (window.StudioPresentation.findStepIndexByElement) {

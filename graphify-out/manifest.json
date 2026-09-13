@@ -84,9 +84,9 @@
     "semantic_hash": "63623f55bd0a5d557bbca75ebeb8860f"
   },
   "public/studio/js/elements-factory.js": {
-    "mtime": 1789268009.643531,
-    "seen": 1789268057.611485,
-    "ast_hash": "175b1cd1df8d4d5544eca55d72bde11d",
+    "mtime": 1789270303.241938,
+    "seen": 1789270376.4716291,
+    "ast_hash": "e1e4ca4b9130cd73397dca84f0116a74",
     "semantic_hash": ""
   },
   "public/studio/js/firebase-config.js": {
@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "public/studio/js/presentation.js": {
-    "mtime": 1789268527.83165,
-    "seen": 1789268637.338154,
-    "ast_hash": "3ae45eaf30816b6cdee21bb54693718c",
+    "mtime": 1789270294.3661406,
+    "seen": 1789270376.4716768,
+    "ast_hash": "30ea872986b34965a20819dc75a78727",
     "semantic_hash": ""
   },
   "public/studio/js/studio-ai.js": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "public/admin.html": {
-    "mtime": 1789268062.0715106,
-    "seen": 1789268274.703419,
-    "ast_hash": "00741f35fa929fec98f0fe857f993b28",
+    "mtime": 1789270455.676252,
+    "seen": 1789270457.794827,
+    "ast_hash": "9a58e10e5f84e9678d14ecb23bd6ee5a",
     "semantic_hash": ""
   },
   "public/apply.html": {
@@ -486,9 +486,9 @@
     "semantic_hash": ""
   },
   "public/studio/index.html": {
-    "mtime": 1789268428.3927147,
-    "seen": 1789268462.9826932,
-    "ast_hash": "77b64fcb67def89a1117e619750d571e",
+    "mtime": 1789270361.3510785,
+    "seen": 1789270376.472563,
+    "ast_hash": "6b07adbcfd01a0e43b04be35b79998cb",
     "semantic_hash": ""
   },
   "public/studio/login.html": {
@@ -1830,9 +1830,9 @@
     "semantic_hash": ""
   },
   "public/js/invoice.js": {
-    "mtime": 1789267922.3691838,
-    "seen": 1789267922.884087,
-    "ast_hash": "5ceac9a5159643a73c0a0ed2b20d09d8",
+    "mtime": 1789270214.1683962,
+    "seen": 1789270376.47152,
+    "ast_hash": "8394d589b79c8f99ad59a8b8b76b01a4",
     "semantic_hash": ""
   },
   "docs/INVOICE_GUIDELINES.md": {
@@ -1842,9 +1842,9 @@
     "semantic_hash": ""
   },
   "public/invoice.html": {
-    "mtime": 1789268030.5751479,
-    "seen": 1789268057.612237,
-    "ast_hash": "fa886057eb67afae2c6a80281fcee93c",
+    "mtime": 1789270220.713017,
+    "seen": 1789270376.472511,
+    "ast_hash": "e280f640f67fc39afb99db7dc04680e9",
     "semantic_hash": ""
   },
   "public/privacy.html": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789268470.91632,
+    "seen": 1789268825.2565,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -1968,9 +1968,15 @@
     "semantic_hash": ""
   },
   "tests/test_laser_and_branding.js": {
-    "mtime": 1789268552.8112195,
-    "seen": 1789268637.338377,
-    "ast_hash": "53f49e29a953f8f08974b38f47f75276",
+    "mtime": 1789270396.81433,
+    "seen": 1789270457.794433,
+    "ast_hash": "e6843984d85af5afc41e18fd2fc9b067",
+    "semantic_hash": ""
+  },
+  "docs/assets/invoices/invoice-sheet-verified.png": {
+    "mtime": 1789270350.5965319,
+    "seen": 1789270376.472765,
+    "ast_hash": "753468fa271e3298fc03895fdd2abc72",
     "semantic_hash": ""
   }
 }

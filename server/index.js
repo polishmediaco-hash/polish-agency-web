@@ -290,7 +290,7 @@ app.use((req, res, next) => {
       return next();
     }
 
-    if (req.path === '/dashboard' || req.path === '/boards') {
+    if (req.path === '/dashboard' || req.path === '/boards' || req.path === '/studio/dashboard') {
       res.setHeader('Cache-Control', 'no-cache, must-revalidate');
       return res.sendFile(path.join(__dirname, '../public/studio/dashboard.html'));
     }
@@ -326,7 +326,7 @@ app.get(['/login', '/studio/login'], (req, res) => {
   res.sendFile(path.join(__dirname, '../public/studio/login.html'));
 });
 
-app.get(['/boards', '/dashboard'], (req, res) => {
+app.get(['/boards', '/dashboard', '/studio/dashboard'], (req, res) => {
   if (isProdEnv(req)) {
     const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
     return res.redirect(301, `https://app.${DOMAIN}/boards${query}`);

@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>polishmedia — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 1032 nodes, 1712 edges, 74 communities. Commit: 082a570</p>
+<p class="subtitle">Generated from graphify knowledge graph: 1054 nodes, 1755 edges, 81 communities. Commit: dfeec80</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -100,7 +100,7 @@ flowchart LR
     class SERVE_API_35EC8E86 module;
     SECURITY_GLOBAL_5B9C6A04("Security &amp; Global Graph<br/><small>82 nodes</small>")
     class SECURITY_GLOBAL_5B9C6A04 module;
-    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>47 nodes</small>")
+    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>28 nodes</small>")
     class TESTS_FIXTURES_B84B1DCC module;
     STUDIO_CORE_JS_962D5B3D("studio-core.js<br/><small>74 nodes</small>")
     class STUDIO_CORE_JS_962D5B3D module;
@@ -116,12 +116,13 @@ flowchart LR
     class LUXURY_EFFECTS_JS_FB489F07 module;
     COMMENTS_ENGINE_JS_35A49B5F("comments-engine.js<br/><small>30 nodes</small>")
     class COMMENTS_ENGINE_JS_35A49B5F module;
-    OTHER_D0941E68("Other<br/><small>372 nodes</small>")
+    OTHER_D0941E68("Other<br/><small>413 nodes</small>")
     class OTHER_D0941E68 module;
     SERVE_API_35EC8E86 -->|imports x10| OTHER_D0941E68
     OTHER_D0941E68 -->|imports x5| SERVE_API_35EC8E86
     OTHER_D0941E68 -->|imports x4| BUILD_GRAPH_321CBB04
     BUILD_GRAPH_321CBB04 -->|imports x2| OTHER_D0941E68
+    OTHER_D0941E68 -->|imports x2| TESTS_FIXTURES_B84B1DCC
     TESTS_FIXTURES_B84B1DCC -->|imports| OTHER_D0941E68
     BUILD_GRAPH_321CBB04 -->|imports| TESTS_FIXTURES_B84B1DCC
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
@@ -140,7 +141,7 @@ flowchart LR
     <h4>Architecture Layers</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
-      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>63</td><td><code>31, 15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>100</td><td><code>32, 36, 37, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Serving API</td><td>24</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>47</td><td><code>9</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>comments-engine.js</td><td>30</td><td><code>3</code></td></tr><tr><td>Other</td><td>372</td><td><code>5, 6, 11, 33, 34, 35, 8, 2, 12, 60, 68, 61, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 70, 76, 24, 65, 71, 72, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
+      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>63</td><td><code>31, 15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>100</td><td><code>32, 36, 37, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Serving API</td><td>24</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>28</td><td><code>62, 77, 78, 79, 80</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>comments-engine.js</td><td>30</td><td><code>3</code></td></tr><tr><td>Other</td><td>413</td><td><code>5, 6, 11, 33, 28, 34, 35, 8, 9, 2, 12, 60, 68, 61, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 63, 70, 76, 24, 65, 71, 72, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
     </table>
   </div>
   <div class="card">
@@ -152,8 +153,8 @@ flowchart LR
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>1032 nodes · 1712 edges · 74 communities (66 shown, 6 thin omitted)</li>
-      <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)</li>
+      <li>1054 nodes · 1755 edges · 81 communities (73 shown, 6 thin omitted)</li>
+      <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 50 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `triggerAutoSave()` - 45 edges</li>
       <li>2. `pushHistory()` - 36 edges</li>
@@ -2102,64 +2103,60 @@ flowchart LR
 
 <!-- ====== 8. Tests & Fixtures ====== -->
 <h2 id="tests-fixtures">8. Tests &amp; Fixtures</h2>
-<p>Tests &amp; Fixtures groups implementation around scripts, test, social, generate, mostly in scripts/generate-social-avatars.js, live-visual-design-critic/scripts/capture-live-views.js, scripts/test-miro-suite.js. This section covers 47 nodes and 51 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Tests &amp; Fixtures groups implementation around test, tests, puppeteer, miro, mostly in scripts/test-miro-suite.js, tests/test_presentation_page.js, tests/test_auth_flow.js. This section covers 28 nodes and 27 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Tests &amp; Fixtures (47 nodes, 51 edges)
-    subgraph tests_fixtures_scripts_generate_social_avatars_j_997ea3e2["scripts/generate-social-avatars.js"]
-        scripts_generate_social_avatars_generateall_4ed76c31("generateAll()<br/><small>scripts/generate-social-avatars.js</small>")
-        scripts_generate_social_avatars_createavatarsvg_7ed936cd("createAvatarSvg()<br/><small>scripts/generate-social-avatars.js</small>")
-        scripts_generate_social_avatars_72d7cb5e("generate-social-avatars.js")
-        scripts_generate_social_avatars_getsvgdefs_56361a8c("getSvgDefs()<br/><small>scripts/generate-social-avatars.js</small>")
-        scripts_generate_social_avatars_getpipettemark_7be98819("getPipetteMark()<br/><small>scripts/generate-social-avatars.js</small>")
-        scripts_generate_social_avatars_generatereadme_b7ea5720("generateReadme()<br/><small>scripts/generate-social-avatars.js</small>")
-        scripts_generate_social_avatars_updatemasterzip_c44a77ce("updateMasterZip()<br/><small>scripts/generate-social-avatars.js</small>")
+    %% Section: Tests &amp; Fixtures (28 nodes, 27 edges)
+    subgraph tests_fixtures_scripts_test_miro_suite_js_d3388c70["scripts/test-miro-suite.js"]
+        scripts_test_miro_suite_ba6aec94("test-miro-suite.js")
+        scripts_test_miro_suite_fs_10a0136d("fs<br/><small>scripts/test-miro-suite.js</small>")
+        scripts_test_miro_suite_http_98f034b3("http<br/><small>scripts/test-miro-suite.js</small>")
+        scripts_test_miro_suite_path_9152793c("path<br/><small>scripts/test-miro-suite.js</small>")
+        scripts_test_miro_suite_puppeteer_9741a028("puppeteer<br/><small>scripts/test-miro-suite.js</small>")
+        scripts_test_miro_suite_runmirosuite_ccb3b9cb("runMiroSuite()<br/><small>scripts/test-miro-suite.js</small>")
     end
-    subgraph tests_fixtures_live_visual_design_critic_scripts_690f209c["live-visual-design-critic/scripts/capture-live-views.js"]
-        agents_skills_live_visual_design_critic_scripts_abd92f05("capture-live-views.js")
-        agents_skills_live_visual_design_critic_scripts_1ec9cc2e("AUDIT_VIEWPORTS<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
-        agents_skills_live_visual_design_critic_scripts_cd532171("LANGUAGES<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
-        agents_skills_live_visual_design_critic_scripts_74ea90e9("captureLiveViews()<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
-        agents_skills_live_visual_design_critic_scripts_1ddc4352("fs<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
+    subgraph tests_fixtures_tests_test_auth_flow_js_cb2388a3["tests/test_auth_flow.js"]
+        tests_test_auth_flow_b31ab4be("test_auth_flow.js")
+        tests_test_auth_flow_fs_9ec5bb3f("fs<br/><small>tests/test_auth_flow.js</small>")
+        tests_test_auth_flow_path_787c712b("path<br/><small>tests/test_auth_flow.js</small>")
+        tests_test_auth_flow_puppeteer_9293e9f0("puppeteer<br/><small>tests/test_auth_flow.js</small>")
+    end
+    subgraph tests_fixtures_tests_test_laser_and_branding_js_f26a81e6["tests/test_laser_and_branding.js"]
+        tests_test_laser_and_branding_fea5d1e9("test_laser_and_branding.js")
+        tests_test_laser_and_branding_fs_411357b5("fs<br/><small>tests/test_laser_and_branding.js</small>")
+        tests_test_laser_and_branding_path_3782e045("path<br/><small>tests/test_laser_and_branding.js</small>")
+        tests_test_laser_and_branding_puppeteer_6a244d2d("puppeteer<br/><small>tests/test_laser_and_branding.js</small>")
     end
     ref_puppeteer_8ead168e("puppeteer<br/><small>package.json</small>")
-    scripts_test_miro_suite_ba6aec94("test-miro-suite.js")
-    tests_test_auth_flow_b31ab4be("test_auth_flow.js")
-    tests_test_laser_and_branding_fea5d1e9("test_laser_and_branding.js")
     tests_test_logo_render_36041aa6("test_logo_render.js")
+    tests_test_presentation_page_c6deb0f4("test_presentation_page.js")
     tests_test_sequencer_e2e_a6da4f8e("test_sequencer_e2e.js")
-    scripts_generate_social_avatars_createavatarsvg_7ed936cd -->|calls| scripts_generate_social_avatars_getsvgdefs_56361a8c
-    scripts_generate_social_avatars_createavatarsvg_7ed936cd -->|calls| scripts_generate_social_avatars_getpipettemark_7be98819
-    scripts_generate_social_avatars_generateall_4ed76c31 -->|calls| scripts_generate_social_avatars_createavatarsvg_7ed936cd
-    scripts_generate_social_avatars_generateall_4ed76c31 -->|calls| scripts_generate_social_avatars_generatereadme_b7ea5720
-    scripts_generate_social_avatars_generateall_4ed76c31 -->|calls| scripts_generate_social_avatars_updatemasterzip_c44a77ce
-    agents_skills_live_visual_design_critic_scripts_abd92f05 -->|imports| ref_puppeteer_8ead168e
-    scripts_generate_social_avatars_72d7cb5e -->|imports| ref_puppeteer_8ead168e
-    scripts_test_miro_suite_ba6aec94 -->|imports| ref_puppeteer_8ead168e
     tests_test_auth_flow_b31ab4be -->|imports| ref_puppeteer_8ead168e
-    tests_test_laser_and_branding_fea5d1e9 -->|imports| ref_puppeteer_8ead168e
     tests_test_logo_render_36041aa6 -->|imports| ref_puppeteer_8ead168e
+    scripts_test_miro_suite_ba6aec94 -->|imports| ref_puppeteer_8ead168e
+    tests_test_presentation_page_c6deb0f4 -->|imports| ref_puppeteer_8ead168e
+    tests_test_laser_and_branding_fea5d1e9 -->|imports| ref_puppeteer_8ead168e
     tests_test_sequencer_e2e_a6da4f8e -->|imports| ref_puppeteer_8ead168e
-    %% Omitted for readability: 29 nodes, 0 edges
-    class scripts_generate_social_avatars_generateall_4ed76c31 function;
-    class scripts_generate_social_avatars_createavatarsvg_7ed936cd function;
-    class scripts_generate_social_avatars_72d7cb5e module;
-    class scripts_generate_social_avatars_getsvgdefs_56361a8c function;
-    class scripts_generate_social_avatars_getpipettemark_7be98819 function;
-    class scripts_generate_social_avatars_generatereadme_b7ea5720 function;
-    class scripts_generate_social_avatars_updatemasterzip_c44a77ce function;
-    class agents_skills_live_visual_design_critic_scripts_abd92f05 module;
-    class agents_skills_live_visual_design_critic_scripts_1ec9cc2e klass;
-    class agents_skills_live_visual_design_critic_scripts_cd532171 klass;
-    class agents_skills_live_visual_design_critic_scripts_74ea90e9 function;
-    class agents_skills_live_visual_design_critic_scripts_1ddc4352 function;
-    class ref_puppeteer_8ead168e function;
+    %% Omitted for readability: 10 nodes, 0 edges
     class scripts_test_miro_suite_ba6aec94 test;
+    class scripts_test_miro_suite_fs_10a0136d test;
+    class scripts_test_miro_suite_http_98f034b3 test;
+    class scripts_test_miro_suite_path_9152793c test;
+    class scripts_test_miro_suite_puppeteer_9741a028 test;
+    class scripts_test_miro_suite_runmirosuite_ccb3b9cb test;
     class tests_test_auth_flow_b31ab4be test;
+    class tests_test_auth_flow_fs_9ec5bb3f test;
+    class tests_test_auth_flow_path_787c712b test;
+    class tests_test_auth_flow_puppeteer_9293e9f0 test;
     class tests_test_laser_and_branding_fea5d1e9 test;
+    class tests_test_laser_and_branding_fs_411357b5 test;
+    class tests_test_laser_and_branding_path_3782e045 test;
+    class tests_test_laser_and_branding_puppeteer_6a244d2d test;
+    class ref_puppeteer_8ead168e function;
     class tests_test_logo_render_36041aa6 test;
+    class tests_test_presentation_page_c6deb0f4 test;
     class tests_test_sequencer_e2e_a6da4f8e test;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
@@ -2184,62 +2181,78 @@ flowchart LR
 </tr>
 <tr>
   <td>1</td>
-  <td><code>captureLiveViews()</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
+  <td><code>test_auth_flow.js</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>captureLiveViews() node in live-visual-design-critic/scripts/capture-live-views.js.</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
   <td>2</td>
-  <td><code>createAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>generateAll()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><code>getPipetteMark()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br><code>getSvgDefs()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td>createAvatarSvg() node in scripts/generate-social-avatars.js.</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in tests/test_auth_flow.js.</td>
 </tr>
 <tr>
   <td>3</td>
-  <td><code>generateAll()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
+  <td><code>path</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
-  <td><code>createAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br><code>generateReadme()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br><code>updateMasterZip()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td>generateAll() node in scripts/generate-social-avatars.js.</td>
+  <td>No direct outbound edge</td>
+  <td>path node in tests/test_auth_flow.js.</td>
 </tr>
 <tr>
   <td>4</td>
-  <td><code>generateReadme()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>generateAll()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>generateReadme() node in scripts/generate-social-avatars.js.</td>
+  <td>puppeteer node in tests/test_auth_flow.js.</td>
 </tr>
 <tr>
   <td>5</td>
-  <td><code>getPipetteMark()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>createAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>getPipetteMark() node in scripts/generate-social-avatars.js.</td>
+  <td><code>test_logo_render.js</code><br><small style="color:var(--muted)">tests/test_logo_render.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
   <td>6</td>
-  <td><code>getSvgDefs()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>createAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_logo_render.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>getSvgDefs() node in scripts/generate-social-avatars.js.</td>
+  <td>fs node in tests/test_logo_render.js.</td>
 </tr>
 <tr>
   <td>7</td>
-  <td><code>updateMasterZip()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>generateAll()</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
+  <td><code>path</code><br><small style="color:var(--muted)">tests/test_logo_render.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>updateMasterZip() node in scripts/generate-social-avatars.js.</td>
+  <td>path node in tests/test_logo_render.js.</td>
 </tr>
 <tr>
   <td>8</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_logo_render.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in tests/test_logo_render.js.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>capture-live-views.js</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small><br><code>generate-social-avatars.js</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br><code>package.json</code><br><small style="color:var(--muted)">package.json</small><br>+6 more</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in package.json.</td>
+</tr>
+<tr>
+  <td>10</td>
   <td><code>runMiroSuite()</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2247,143 +2260,7 @@ flowchart LR
   <td>runMiroSuite() node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>9</td>
-  <td><code>capture-live-views.js</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>capture-live-views.js node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>10</td>
-  <td><code>AUDIT_VIEWPORTS</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>AUDIT_VIEWPORTS node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
   <td>11</td>
-  <td><code>fs</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>fs node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>12</td>
-  <td><code>LANGUAGES</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>LANGUAGES node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>path</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>path node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>puppeteer node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>generate-social-avatars.js</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>generate-social-avatars.js node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>16</td>
-  <td><code>ASSET_SPECS</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-async">Async</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>ASSET_SPECS node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>17</td>
-  <td><code>AVATAR_DIR</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>AVATAR_DIR node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>18</td>
-  <td><code>COLORS</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>COLORS node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>19</td>
-  <td><code>EDITIONS_DIR</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>EDITIONS_DIR node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>20</td>
-  <td><code>{ execSync }</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>{ execSync } node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>21</td>
-  <td><code>fs</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>fs node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>22</td>
-  <td><code>path</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>path node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>23</td>
-  <td><code>PLATFORM_DIR</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>PLATFORM_DIR node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>24</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>puppeteer node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>25</td>
-  <td><code>SOCIAL_DIR</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>SOCIAL_DIR node in scripts/generate-social-avatars.js.</td>
-</tr>
-<tr>
-  <td>26</td>
   <td><code>test-miro-suite.js</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2391,7 +2268,7 @@ flowchart LR
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>27</td>
+  <td>12</td>
   <td><code>fs</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2399,7 +2276,7 @@ flowchart LR
   <td>fs node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>28</td>
+  <td>13</td>
   <td><code>http</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2407,7 +2284,7 @@ flowchart LR
   <td>http node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>29</td>
+  <td>14</td>
   <td><code>path</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2415,12 +2292,116 @@ flowchart LR
   <td>path node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>30</td>
+  <td>15</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>puppeteer node in scripts/test-miro-suite.js.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>runTest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>test_presentation_page.js</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>Organizes documentation pages, navigation, or content lookup.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in tests/test_presentation_page.js.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>path</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>path node in tests/test_presentation_page.js.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in tests/test_presentation_page.js.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>test_laser_and_branding.js</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in tests/test_laser_and_branding.js.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>path</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>path node in tests/test_laser_and_branding.js.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in tests/test_laser_and_branding.js.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>test_sequencer_e2e.js</code><br><small style="color:var(--muted)">tests/test_sequencer_e2e.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_sequencer_e2e.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in tests/test_sequencer_e2e.js.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>path</code><br><small style="color:var(--muted)">tests/test_sequencer_e2e.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>path node in tests/test_sequencer_e2e.js.</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_sequencer_e2e.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in tests/test_sequencer_e2e.js.</td>
 </tr>
 </table>
 
@@ -2429,9 +2410,8 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>scripts/generate-social-avatars.js</code></td><td>17 nodes</td></tr>
-<tr><td><code>live-visual-design-critic/scripts/capture-live-views.js</code></td><td>7 nodes</td></tr>
-<tr><td><code>scripts/test-miro-suite.js</code></td><td>6 nodes</td></tr>
+      <tr><td><code>scripts/test-miro-suite.js</code></td><td>6 nodes</td></tr>
+<tr><td><code>tests/test_presentation_page.js</code></td><td>5 nodes</td></tr>
 <tr><td><code>tests/test_auth_flow.js</code></td><td>4 nodes</td></tr>
 <tr><td><code>tests/test_laser_and_branding.js</code></td><td>4 nodes</td></tr>
 <tr><td><code>tests/test_logo_render.js</code></td><td>4 nodes</td></tr>
@@ -2441,7 +2421,7 @@ flowchart LR
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x39, imports x7, calls x5. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x21, imports x6. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -4864,12 +4844,12 @@ flowchart LR
 
 <!-- ====== 16. Other ====== -->
 <h2 id="other">16. Other</h2>
-<p>Other groups implementation around public, studio, brand, server, mostly in studio/js/studio-ai.js, scripts/generate-brand-pack.js, server/index.js. This section covers 372 nodes and 531 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/studio-ai.js, scripts/generate-brand-pack.js, server/index.js. This section covers 413 nodes and 596 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Other (372 nodes, 531 edges)
+    %% Section: Other (413 nodes, 596 edges)
     subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
         public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
         public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
@@ -4887,10 +4867,12 @@ flowchart LR
         public_studio_js_firebase_config_notifyauthliste_5ea65e48("_notifyAuthListeners()<br/><small>studio/js/firebase-config.js</small>")
         public_studio_js_firebase_config_initlocalfallba_501deb4a("_initLocalFallback()<br/><small>studio/js/firebase-config.js</small>")
     end
+    subgraph other_public_js_presentation_page_js_67cd495b["public/js/presentation-page.js"]
+        public_js_presentation_page_init_cdf60e4b("init()<br/><small>public/js/presentation-page.js</small>")
+        public_js_presentation_page_saveconfigmodal_023a3dce("saveConfigModal()<br/><small>public/js/presentation-page.js</small>")
+    end
     public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54("initLuxuryScroll()<br/><small>js/effects/luxury-scroll.js</small>")
     scripts_generate_brand_pack_buildbrandpack_7048962a("buildBrandPack()<br/><small>scripts/generate-brand-pack.js</small>")
-    scripts_generate_logo_concepts_generateallconcep_90ccce43("generateAllConcepts()<br/><small>scripts/generate-logo-concepts.js</small>")
-    public_studio_js_connector_engine_init_92aa4b6a("init()<br/><small>studio/js/connector-engine.js</small>")
     public_studio_js_studio_ai_init_a56126fc("init()<br/><small>studio/js/studio-ai.js</small>")
     public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_constructor_34fce30d
     public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_detectlanguage_d4213613
@@ -4908,7 +4890,7 @@ flowchart LR
     public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
     public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
     public_js_i18n_polishi18n_setlanguage_c0fb6d07 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    %% Omitted for readability: 354 nodes, 0 edges
+    %% Omitted for readability: 395 nodes, 0 edges
     class public_js_i18n_polishi18n_72987c12 klass;
     class public_js_i18n_polishi18n_constructor_34fce30d function;
     class public_js_i18n_polishi18n_detectlanguage_d4213613 function;
@@ -4922,10 +4904,10 @@ flowchart LR
     class public_studio_js_firebase_config_init_114423c3 function;
     class public_studio_js_firebase_config_notifyauthliste_5ea65e48 function;
     class public_studio_js_firebase_config_initlocalfallba_501deb4a function;
+    class public_js_presentation_page_init_cdf60e4b function;
+    class public_js_presentation_page_saveconfigmodal_023a3dce function;
     class public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54 function;
     class scripts_generate_brand_pack_buildbrandpack_7048962a function;
-    class scripts_generate_logo_concepts_generateallconcep_90ccce43 function;
-    class public_studio_js_connector_engine_init_92aa4b6a function;
     class public_studio_js_studio_ai_init_a56126fc function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
@@ -5201,13 +5183,13 @@ flowchart LR
 <tr><td><code>HANDOFF_EMAN_AL_KATHEERI.md</code></td><td>18 nodes</td></tr>
 <tr><td><code>docs/brand-guidelines.md</code></td><td>17 nodes</td></tr>
 <tr><td><code>brand-pack/06_guidelines/POLISH_BRAND_GUIDELINES.md</code></td><td>17 nodes</td></tr>
+<tr><td><code>public/js/presentation-page.js</code></td><td>17 nodes</td></tr>
 <tr><td><code>scripts/generate-logo-concepts.js</code></td><td>17 nodes</td></tr>
-<tr><td><code>studio/js/firebase-config.js</code></td><td>15 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x308, calls x182, indirect call x22, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x346, calls x204, indirect call x27, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -5218,18 +5200,18 @@ flowchart LR
   <div class="card">
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>Nodes</td><td>1032</td></tr>
-      <tr><td>Edges</td><td>1712</td></tr>
+      <tr><td>Nodes</td><td>1054</td></tr>
+      <tr><td>Edges</td><td>1755</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
-      <tr><td>Communities</td><td>74</td></tr>
+      <tr><td>Communities</td><td>81</td></tr>
       <tr><td>Documented Sections</td><td>15</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>1667</td></tr>
-      <tr><td>INFERRED</td><td>45</td></tr>
+      <tr><td>EXTRACTED</td><td>1705</td></tr>
+      <tr><td>INFERRED</td><td>50</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
   </div>
@@ -5237,7 +5219,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>polishmedia — Architecture Documentation</p>
-  <p>Generated: 2026-09-13 16:38 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 17:01 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

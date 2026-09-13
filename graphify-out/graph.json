@@ -1286,7 +1286,7 @@
       "file_type": "code",
       "norm_label": "isprodenv()",
       "source_file": "server/index.js",
-      "source_location": "L311"
+      "source_location": "L315"
     },
     {
       "id": "public_studio_js_firebase_config_deleteboard",
@@ -2909,6 +2909,198 @@
       "source_location": "L34"
     },
     {
+      "id": "public_js_presentation_page_closeconfigmodal",
+      "label": "closeConfigModal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "closeconfigmodal()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L330"
+    },
+    {
+      "id": "public_js_presentation_page_copyclientsharelink",
+      "label": "copyClientShareLink()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "copyclientsharelink()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L300"
+    },
+    {
+      "id": "public_js_presentation_page_fallbackcopy",
+      "label": "fallbackCopy()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "fallbackcopy()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L311"
+    },
+    {
+      "id": "public_js_presentation_page_getparams",
+      "label": "getParams()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "getparams()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L32"
+    },
+    {
+      "id": "public_js_presentation_page_hydratepage",
+      "label": "hydratePage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "hydratepage()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L44"
+    },
+    {
+      "id": "public_js_presentation_page_init",
+      "label": "init()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "init()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L359"
+    },
+    {
+      "id": "public_js_presentation_page_inityoutubeapi",
+      "label": "initYouTubeApi()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "inityoutubeapi()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L179"
+    },
+    {
+      "id": "public_js_presentation_page_mountboard",
+      "label": "mountBoard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "mountboard()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L256"
+    },
+    {
+      "id": "public_js_presentation_page_mountvideo",
+      "label": "mountVideo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "mountvideo()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L131"
+    },
+    {
+      "id": "public_js_presentation_page_openconfigmodal",
+      "label": "openConfigModal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "openconfigmodal()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L325"
+    },
+    {
+      "id": "public_js_presentation_page_parsevideosource",
+      "label": "parseVideoSource()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "parsevideosource()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L98"
+    },
+    {
+      "id": "public_js_presentation_page_renderchapters",
+      "label": "renderChapters()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "renderchapters()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L237"
+    },
+    {
+      "id": "public_js_presentation_page_saveconfigmodal",
+      "label": "saveConfigModal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "saveconfigmodal()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L335"
+    },
+    {
+      "id": "public_js_presentation_page_seektotime",
+      "label": "seekToTime()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "seektotime()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L209"
+    },
+    {
+      "id": "public_js_presentation_page_showtoast",
+      "label": "showToast()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "showtoast()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L287"
+    },
+    {
+      "id": "public_js_presentation_page_toggleboardfullscreen",
+      "label": "toggleBoardFullscreen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "toggleboardfullscreen()",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L273"
+    },
+    {
       "id": "public_js_cms_loaddynamiccontent",
       "label": "loadDynamicContent()",
       "_callable": true,
@@ -4347,6 +4539,18 @@
       "norm_label": "sendwhatsappmessage()",
       "source_file": "server/services/notification.js",
       "source_location": "L10"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_captureliveviews",
+      "label": "captureLiveViews()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 63,
+      "community_name": "capture-live-views.js",
+      "file_type": "code",
+      "norm_label": "captureliveviews()",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L17"
     },
     {
       "id": "server_middleware_auth_getadminemails",
@@ -5813,6 +6017,30 @@
       "source_location": "L295"
     },
     {
+      "id": "scripts_test_miro_suite_runmirosuite",
+      "label": "runMiroSuite()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 77,
+      "community_name": "test-miro-suite.js",
+      "file_type": "code",
+      "norm_label": "runmirosuite()",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "tests_test_presentation_page_runtest",
+      "label": "runTest()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 78,
+      "community_name": "test_presentation_page.js",
+      "file_type": "code",
+      "norm_label": "runtest()",
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L17"
+    },
+    {
       "id": "scripts_generate_logo_concepts_createdropperbottlemockupsvg",
       "label": "createDropperBottleMockupSvg()",
       "_callable": true,
@@ -5933,18 +6161,6 @@
       "source_location": "L238"
     },
     {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_captureliveviews",
-      "label": "captureLiveViews()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "captureliveviews()",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L17"
-    },
-    {
       "id": "scripts_generate_social_avatars_createavatarsvg",
       "label": "createAvatarSvg()",
       "_callable": true,
@@ -6015,18 +6231,6 @@
       "norm_label": "updatemasterzip()",
       "source_file": "scripts/generate-social-avatars.js",
       "source_location": "L472"
-    },
-    {
-      "id": "scripts_test_miro_suite_runmirosuite",
-      "label": "runMiroSuite()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "runmirosuite()",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L6"
     },
     {
       "id": "public_studio_js_studio_core",
@@ -6290,7 +6494,7 @@
       "file_type": "code",
       "norm_label": "ailimiter",
       "source_file": "server/index.js",
-      "source_location": "L176"
+      "source_location": "L180"
     },
     {
       "id": "server_index_allowed_origins",
@@ -6301,7 +6505,7 @@
       "file_type": "code",
       "norm_label": "allowed_origins",
       "source_file": "server/index.js",
-      "source_location": "L124"
+      "source_location": "L128"
     },
     {
       "id": "server_index_apiroutes",
@@ -6345,7 +6549,7 @@
       "file_type": "code",
       "norm_label": "boardswritelimiter",
       "source_file": "server/index.js",
-      "source_location": "L203"
+      "source_location": "L207"
     },
     {
       "id": "server_index_compression",
@@ -6367,7 +6571,7 @@
       "file_type": "code",
       "norm_label": "configlimiter",
       "source_file": "server/index.js",
-      "source_location": "L185"
+      "source_location": "L189"
     },
     {
       "id": "server_index_cors",
@@ -6400,7 +6604,7 @@
       "file_type": "code",
       "norm_label": "globalapilimiter",
       "source_file": "server/index.js",
-      "source_location": "L158"
+      "source_location": "L162"
     },
     {
       "id": "server_index_helmet",
@@ -6422,7 +6626,7 @@
       "file_type": "code",
       "norm_label": "intakelimiter",
       "source_file": "server/index.js",
-      "source_location": "L167"
+      "source_location": "L171"
     },
     {
       "id": "server_index_path",
@@ -6466,7 +6670,7 @@
       "file_type": "code",
       "norm_label": "webhooklimiter",
       "source_file": "server/index.js",
-      "source_location": "L194"
+      "source_location": "L198"
     },
     {
       "id": "public_studio_js_firebase_config",
@@ -7468,6 +7672,17 @@
       "norm_label": "version",
       "source_file": "vercel.json",
       "source_location": "L2"
+    },
+    {
+      "id": "public_js_presentation_page",
+      "label": "presentation-page.js",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "presentation-page.js",
+      "file_type": "code",
+      "norm_label": "presentation-page.js",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L1"
     },
     {
       "id": "public_js_cms",
@@ -11435,6 +11650,171 @@
       "source_location": "L1"
     },
     {
+      "id": "tests_test_auth_flow",
+      "label": "test_auth_flow.js",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "test_auth_flow.js",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_auth_flow_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_test_auth_flow_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "tests_test_auth_flow_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_auth_flow.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_logo_render",
+      "label": "test_logo_render.js",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "test_logo_render.js",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_logo_render_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_test_logo_render_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "tests_test_logo_render_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_logo_render.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "ref_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "concept",
+      "norm_label": "puppeteer",
+      "source_file": "package.json",
+      "source_location": "L23"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views",
+      "label": "capture-live-views.js",
+      "_origin": "ast",
+      "community": 63,
+      "community_name": "capture-live-views.js",
+      "file_type": "code",
+      "norm_label": "capture-live-views.js",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_audit_viewports",
+      "label": "AUDIT_VIEWPORTS",
+      "_origin": "ast",
+      "community": 63,
+      "community_name": "capture-live-views.js",
+      "file_type": "code",
+      "norm_label": "audit_viewports",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 63,
+      "community_name": "capture-live-views.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_languages",
+      "label": "LANGUAGES",
+      "_origin": "ast",
+      "community": 63,
+      "community_name": "capture-live-views.js",
+      "file_type": "code",
+      "norm_label": "languages",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L15"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 63,
+      "community_name": "capture-live-views.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 63,
+      "community_name": "capture-live-views.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_location": "L1"
+    },
+    {
       "id": "server_middleware_auth",
       "label": "auth.js",
       "_origin": "ast",
@@ -11750,6 +12130,149 @@
       "source_location": "L1"
     },
     {
+      "id": "scripts_test_miro_suite",
+      "label": "test-miro-suite.js",
+      "_origin": "ast",
+      "community": 77,
+      "community_name": "test-miro-suite.js",
+      "file_type": "code",
+      "norm_label": "test-miro-suite.js",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_test_miro_suite_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 77,
+      "community_name": "test-miro-suite.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "scripts_test_miro_suite_http",
+      "label": "http",
+      "_origin": "ast",
+      "community": 77,
+      "community_name": "test-miro-suite.js",
+      "file_type": "code",
+      "norm_label": "http",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "scripts_test_miro_suite_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 77,
+      "community_name": "test-miro-suite.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "scripts_test_miro_suite_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 77,
+      "community_name": "test-miro-suite.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "scripts/test-miro-suite.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_presentation_page",
+      "label": "test_presentation_page.js",
+      "_origin": "ast",
+      "community": 78,
+      "community_name": "test_presentation_page.js",
+      "file_type": "code",
+      "norm_label": "test_presentation_page.js",
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_presentation_page_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 78,
+      "community_name": "test_presentation_page.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L15"
+    },
+    {
+      "id": "tests_test_presentation_page_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 78,
+      "community_name": "test_presentation_page.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L14"
+    },
+    {
+      "id": "tests_test_presentation_page_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 78,
+      "community_name": "test_presentation_page.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L13"
+    },
+    {
+      "id": "tests_test_laser_and_branding",
+      "label": "test_laser_and_branding.js",
+      "_origin": "ast",
+      "community": 79,
+      "community_name": "test_laser_and_branding.js",
+      "file_type": "code",
+      "norm_label": "test_laser_and_branding.js",
+      "source_file": "tests/test_laser_and_branding.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_laser_and_branding_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 79,
+      "community_name": "test_laser_and_branding.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_laser_and_branding.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_test_laser_and_branding_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 79,
+      "community_name": "test_laser_and_branding.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_laser_and_branding.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "tests_test_laser_and_branding_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 79,
+      "community_name": "test_laser_and_branding.js",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_laser_and_branding.js",
+      "source_location": "L1"
+    },
+    {
       "id": "scripts_generate_logo_concepts",
       "label": "generate-logo-concepts.js",
       "_origin": "ast",
@@ -11827,69 +12350,47 @@
       "source_location": "L9"
     },
     {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views",
-      "label": "capture-live-views.js",
+      "id": "tests_test_sequencer_e2e",
+      "label": "test_sequencer_e2e.js",
       "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
+      "community": 80,
+      "community_name": "test_sequencer_e2e.js",
       "file_type": "code",
-      "norm_label": "capture-live-views.js",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "norm_label": "test_sequencer_e2e.js",
+      "source_file": "tests/test_sequencer_e2e.js",
       "source_location": "L1"
     },
     {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_audit_viewports",
-      "label": "AUDIT_VIEWPORTS",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "audit_viewports",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L8"
-    },
-    {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_fs",
+      "id": "tests_test_sequencer_e2e_fs",
       "label": "fs",
       "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
+      "community": 80,
+      "community_name": "test_sequencer_e2e.js",
       "file_type": "code",
       "norm_label": "fs",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_file": "tests/test_sequencer_e2e.js",
       "source_location": "L3"
     },
     {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_languages",
-      "label": "LANGUAGES",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "languages",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
-      "source_location": "L15"
-    },
-    {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_path",
+      "id": "tests_test_sequencer_e2e_path",
       "label": "path",
       "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
+      "community": 80,
+      "community_name": "test_sequencer_e2e.js",
       "file_type": "code",
       "norm_label": "path",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_file": "tests/test_sequencer_e2e.js",
       "source_location": "L2"
     },
     {
-      "id": "agents_skills_live_visual_design_critic_scripts_capture_live_views_puppeteer",
+      "id": "tests_test_sequencer_e2e_puppeteer",
       "label": "puppeteer",
       "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
+      "community": 80,
+      "community_name": "test_sequencer_e2e.js",
       "file_type": "code",
       "norm_label": "puppeteer",
-      "source_file": ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js",
+      "source_file": "tests/test_sequencer_e2e.js",
       "source_location": "L1"
     },
     {
@@ -12012,248 +12513,6 @@
       "norm_label": "social_dir",
       "source_file": "scripts/generate-social-avatars.js",
       "source_location": "L14"
-    },
-    {
-      "id": "scripts_test_miro_suite",
-      "label": "test-miro-suite.js",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "test-miro-suite.js",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "scripts_test_miro_suite_fs",
-      "label": "fs",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L4"
-    },
-    {
-      "id": "scripts_test_miro_suite_http",
-      "label": "http",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "http",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "scripts_test_miro_suite_path",
-      "label": "path",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "scripts_test_miro_suite_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "puppeteer",
-      "source_file": "scripts/test-miro-suite.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_test_auth_flow",
-      "label": "test_auth_flow.js",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "test_auth_flow.js",
-      "source_file": "tests/test_auth_flow.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_test_auth_flow_fs",
-      "label": "fs",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "tests/test_auth_flow.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "tests_test_auth_flow_path",
-      "label": "path",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "tests/test_auth_flow.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "tests_test_auth_flow_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "puppeteer",
-      "source_file": "tests/test_auth_flow.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_test_laser_and_branding",
-      "label": "test_laser_and_branding.js",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "test_laser_and_branding.js",
-      "source_file": "tests/test_laser_and_branding.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_test_laser_and_branding_fs",
-      "label": "fs",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "tests/test_laser_and_branding.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "tests_test_laser_and_branding_path",
-      "label": "path",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "tests/test_laser_and_branding.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "tests_test_laser_and_branding_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "puppeteer",
-      "source_file": "tests/test_laser_and_branding.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_test_logo_render",
-      "label": "test_logo_render.js",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "test_logo_render.js",
-      "source_file": "tests/test_logo_render.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_test_logo_render_fs",
-      "label": "fs",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "tests/test_logo_render.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "tests_test_logo_render_path",
-      "label": "path",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "tests/test_logo_render.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "tests_test_logo_render_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "puppeteer",
-      "source_file": "tests/test_logo_render.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_test_sequencer_e2e",
-      "label": "test_sequencer_e2e.js",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "test_sequencer_e2e.js",
-      "source_file": "tests/test_sequencer_e2e.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_test_sequencer_e2e_fs",
-      "label": "fs",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "tests/test_sequencer_e2e.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "tests_test_sequencer_e2e_path",
-      "label": "path",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "tests/test_sequencer_e2e.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "tests_test_sequencer_e2e_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "code",
-      "norm_label": "puppeteer",
-      "source_file": "tests/test_sequencer_e2e.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "ref_puppeteer",
-      "label": "puppeteer",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "generate-social-avatars.js",
-      "file_type": "concept",
-      "norm_label": "puppeteer",
-      "source_file": "package.json",
-      "source_location": "L23"
     }
   ],
   "links": [
@@ -14223,6 +14482,210 @@
       "context": "call",
       "source_file": "public/js/luxury-effects.js",
       "source_location": "L744",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_copyclientsharelink",
+      "target": "public_js_presentation_page_showtoast",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L304",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_copyclientsharelink",
+      "target": "public_js_presentation_page_fallbackcopy",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L305",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_fallbackcopy",
+      "target": "public_js_presentation_page_showtoast",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L318",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_getparams",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L360",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_hydratepage",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L361",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_renderchapters",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L362",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_mountvideo",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L363",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_parsevideosource",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L363",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_mountboard",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L364",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_mountvideo",
+      "target": "public_js_presentation_page_inityoutubeapi",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_renderchapters",
+      "target": "public_js_presentation_page_seektotime",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L250",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_saveconfigmodal",
+      "target": "public_js_presentation_page_closeconfigmodal",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L349",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_saveconfigmodal",
+      "target": "public_js_presentation_page_hydratepage",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L352",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_saveconfigmodal",
+      "target": "public_js_presentation_page_mountvideo",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L353",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_saveconfigmodal",
+      "target": "public_js_presentation_page_parsevideosource",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L353",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_saveconfigmodal",
+      "target": "public_js_presentation_page_mountboard",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L354",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_saveconfigmodal",
+      "target": "public_js_presentation_page_showtoast",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L355",
       "weight": 1.0
     },
     {
@@ -20714,7 +21177,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "server/index.js",
-      "source_location": "L483",
+      "source_location": "L493",
       "weight": 1.0
     },
     {
@@ -21014,7 +21477,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "server/index.js",
-      "source_location": "L483",
+      "source_location": "L493",
       "weight": 1.0
     },
     {
@@ -21183,6 +21646,18 @@
       "context": "import",
       "source_file": "tests/test_logo_render.js",
       "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_presentation_page",
+      "target": "ref_puppeteer",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -26027,6 +26502,182 @@
       "weight": 1.0
     },
     {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_mountvideo",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L131",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_inityoutubeapi",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L179",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_seektotime",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L209",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_renderchapters",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L237",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_mountboard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L256",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_toggleboardfullscreen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L273",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_showtoast",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L287",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_copyclientsharelink",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L300",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_fallbackcopy",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L311",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_getparams",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_openconfigmodal",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L325",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_closeconfigmodal",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L330",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_saveconfigmodal",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L335",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_init",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L359",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_hydratepage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_parsevideosource",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
       "source": "public_js_whatsapp",
       "target": "public_js_whatsapp_renderwhatsappcontent",
       "relation": "contains",
@@ -30412,7 +31063,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L124",
+      "source_location": "L128",
       "weight": 1.0
     },
     {
@@ -30439,17 +31090,6 @@
     },
     {
       "source": "server_index",
-      "target": "server_index_globalapilimiter",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "server/index.js",
-      "source_location": "L158",
-      "weight": 1.0
-    },
-    {
-      "source": "server_index",
       "target": "server_index_boardsroutes",
       "relation": "contains",
       "_origin": "ast",
@@ -30461,13 +31101,13 @@
     },
     {
       "source": "server_index",
-      "target": "server_index_intakelimiter",
+      "target": "server_index_globalapilimiter",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L167",
+      "source_location": "L162",
       "weight": 1.0
     },
     {
@@ -30483,13 +31123,24 @@
     },
     {
       "source": "server_index",
+      "target": "server_index_intakelimiter",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "server/index.js",
+      "source_location": "L171",
+      "weight": 1.0
+    },
+    {
+      "source": "server_index",
       "target": "server_index_ailimiter",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L176",
+      "source_location": "L180",
       "weight": 1.0
     },
     {
@@ -30500,7 +31151,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L185",
+      "source_location": "L189",
       "weight": 1.0
     },
     {
@@ -30522,7 +31173,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L194",
+      "source_location": "L198",
       "weight": 1.0
     },
     {
@@ -30533,7 +31184,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L203",
+      "source_location": "L207",
       "weight": 1.0
     },
     {
@@ -30544,7 +31195,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "server/index.js",
-      "source_location": "L311",
+      "source_location": "L315",
       "weight": 1.0
     },
     {
@@ -31175,6 +31826,50 @@
       "weight": 1.0
     },
     {
+      "source": "tests_test_presentation_page",
+      "target": "tests_test_presentation_page_puppeteer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_presentation_page",
+      "target": "tests_test_presentation_page_path",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_presentation_page",
+      "target": "tests_test_presentation_page_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_presentation_page",
+      "target": "tests_test_presentation_page_runtest",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_presentation_page.js",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
       "source": "tests_test_sequencer_e2e",
       "target": "tests_test_sequencer_e2e_puppeteer",
       "relation": "contains",
@@ -31568,6 +32263,66 @@
       "weight": 1.0
     },
     {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_copyclientsharelink",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L368",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_openconfigmodal",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L371",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_closeconfigmodal",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L374",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_saveconfigmodal",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L377",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page_init",
+      "target": "public_js_presentation_page_toggleboardfullscreen",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L380",
+      "weight": 1.0
+    },
+    {
       "source": "public_js_whatsapp",
       "target": "public_js_whatsapp_initwhatsappwidget",
       "relation": "indirect_call",
@@ -31881,5 +32636,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "082a5708557febd522984820c5391f72555ceeea"
+  "built_at_commit": "dfeec809e8da79fc055d825a280731bbc1d2c9af"
 }

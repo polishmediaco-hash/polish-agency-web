@@ -85,8 +85,12 @@ app.use(
           "'self'",
           "https://calendly.com",
           "https://accounts.google.com",
-          "https://*.supabase.co"
+          "https://*.supabase.co",
+          "https://www.youtube-nocookie.com",
+          "https://www.youtube.com",
+          "https://player.vimeo.com"
         ],
+        mediaSrc: ["'self'", "blob:", "data:", "https:"],
         objectSrc: ["'none'"],
         workerSrc: ["'self'"],
         manifestSrc: ["'self'"],
@@ -420,6 +424,12 @@ app.get('/brand-pack', (req, res) => {
 });
 
 // ── 13. Client Proposal & Sensitive Documents (De-indexed from Search) ───────
+app.get(['/presentation', '/presentation/:id', '/briefing', '/briefing/:id', '/review'], (req, res) => {
+  res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  res.sendFile(path.join(__dirname, '../public/presentation.html'));
+});
+
 app.get('/eman-alkatheeri', (req, res) => {
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   res.setHeader('Cache-Control', 'no-cache, must-revalidate');

@@ -1,0 +1,978 @@
+/**
+ * POLISH Media Co. — Executive Presentation & Strategy Walkthrough Stylesheet
+ * Brand Aesthetic: Haute Atelier Champagne Gold & Deep Obsidian Noir
+ */
+
+:root {
+  --brand-gold: #E2C799;
+  --brand-gold-bright: #F3DEB8;
+  --brand-blue: #C5A880; /* Haute Bronze */
+  --brand-platinum: #F5E6D3;
+  --bg-noir: #080706;
+  --bg-surface: #0E0C0A;
+  --bg-card: rgba(18, 15, 13, 0.82);
+  --bg-card-hover: rgba(26, 22, 19, 0.94);
+  --border-subtle: rgba(226, 199, 153, 0.16);
+  --border-specular: rgba(226, 199, 153, 0.38);
+  --border-glow: rgba(226, 199, 153, 0.65);
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #E3D9CE;
+  --text-muted: #9E9488;
+  --text-gold: #E2C799;
+  
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-arabic: 'Tajawal', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+  
+  --shadow-luxury: 0 24px 60px -12px rgba(0, 0, 0, 0.85), 0 0 40px rgba(226, 199, 153, 0.08);
+  --shadow-glow: 0 0 32px rgba(226, 199, 153, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.presentation-body {
+  background-color: var(--bg-noir);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.55;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(226, 199, 153, 0.08) 0%, transparent 70%),
+    radial-gradient(circle at 100% 50%, rgba(197, 168, 128, 0.04) 0%, transparent 60%);
+}
+
+/* Subtle background noise / ambient glow */
+.pres-ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(226, 199, 153, 0.06) 0%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========================================================== */
+/* 1. EXECUTIVE HEADER DOCK                                   */
+/* ========================================================== */
+.pres-header-dock {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 1240px;
+  height: 58px;
+  background: rgba(14, 12, 10, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-specular);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  z-index: 1000;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+}
+
+.pres-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.pres-logo-mark {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(226, 199, 153, 0.55));
+  flex-shrink: 0;
+}
+
+.pres-brand-names {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pres-agency-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pres-x-divider {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--brand-gold);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pres-client-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--brand-platinum);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.pres-header-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pres-confidential-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: var(--radius-full);
+  background: rgba(226, 199, 153, 0.08);
+  border: 1px solid rgba(226, 199, 153, 0.25);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-gold);
+}
+
+.pres-pulse-beacon {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: pulseBeacon 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseBeacon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.3); }
+}
+
+.pres-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pres-btn-header-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(226, 199, 153, 0.3);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pres-btn-header-wa:hover {
+  background: rgba(226, 199, 153, 0.14);
+  border-color: var(--brand-gold);
+  color: #FFFFFF;
+}
+
+.pres-btn-header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #F5E6D3 0%, #E2C799 60%, #C5A880 100%);
+  color: #080706;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 2px 14px rgba(226, 199, 153, 0.35);
+  transition: all 0.2s ease;
+}
+
+.pres-btn-header-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(226, 199, 153, 0.55);
+}
+
+/* ========================================================== */
+/* 2. MAIN PRESENTATION CONTAINER                             */
+/* ========================================================== */
+.pres-main-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 92px 20px 80px;
+}
+
+/* Hero Title Cluster */
+.pres-hero-intro {
+  text-align: center;
+  margin-bottom: 2.2rem;
+}
+
+.pres-super-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-gold);
+  margin-bottom: 0.85rem;
+}
+
+.pres-main-heading {
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+}
+
+.pres-main-heading .pres-serif-italic {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--brand-gold);
+  padding: 0 0.15em;
+}
+
+.pres-subtitle-desc {
+  font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ========================================================== */
+/* 3. THEATER VIDEO STAGE                                     */
+/* ========================================================== */
+.pres-theater-stage {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-specular);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-luxury);
+  padding: 18px;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pres-theater-stage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(226, 199, 153, 0.6), transparent);
+  pointer-events: none;
+}
+
+/* 16:9 Video Frame */
+.pres-video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000000;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.pres-video-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Native Video Element */
+video.pres-native-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000000;
+}
+
+/* Video Placeholder / Setup State */
+.pres-video-placeholder {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(26, 22, 18, 0.95), #000000 85%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  z-index: 5;
+}
+
+.pres-placeholder-play-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(245, 230, 211, 0.95), rgba(226, 199, 153, 0.95));
+  color: #080706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 35px rgba(226, 199, 153, 0.45);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-bottom: 1.25rem;
+}
+
+.pres-placeholder-play-circle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 50px rgba(226, 199, 153, 0.7);
+}
+
+.pres-placeholder-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.4rem;
+}
+
+.pres-placeholder-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: 460px;
+}
+
+/* Video Timeline Chapters */
+.pres-chapters-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-subtle) transparent;
+}
+
+.pres-chapters-bar::-webkit-scrollbar {
+  height: 4px;
+}
+.pres-chapters-bar::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+
+.pres-chapter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.pres-chapter-pill:hover {
+  background: rgba(226, 199, 153, 0.1);
+  border-color: rgba(226, 199, 153, 0.4);
+  color: #FFFFFF;
+}
+
+.pres-chapter-pill.is-active {
+  background: rgba(226, 199, 153, 0.18);
+  border-color: var(--brand-gold);
+  color: var(--brand-gold-bright);
+  box-shadow: 0 0 12px rgba(226, 199, 153, 0.25);
+}
+
+.pres-chapter-time {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--brand-gold);
+  opacity: 0.9;
+}
+
+/* Video Toolbar Sub-bar */
+.pres-video-subbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 0 4px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pres-video-info-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pres-video-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pres-tool-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.pres-tool-btn:hover {
+  color: var(--brand-gold);
+}
+
+/* ========================================================== */
+/* 4. STRATEGY BOARD VIEWER STAGE                             */
+/* ========================================================== */
+.pres-board-stage {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-specular);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-luxury);
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pres-board-header {
+  height: 52px;
+  padding: 0 1.25rem;
+  background: rgba(22, 19, 16, 0.95);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pres-board-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.pres-board-title-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-gold);
+}
+
+.pres-board-title-text {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pres-board-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pres-board-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pres-board-action-btn:hover {
+  background: rgba(226, 199, 153, 0.12);
+  border-color: var(--brand-gold);
+  color: #FFFFFF;
+}
+
+.pres-board-iframe-wrap {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  background-color: #FAF7F2; /* Light mode canvas background */
+}
+
+.pres-board-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Fullscreen mode for board */
+.pres-board-stage.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  border-radius: 0;
+  margin: 0;
+  height: 100vh;
+}
+
+.pres-board-stage.is-fullscreen .pres-board-iframe-wrap {
+  height: calc(100vh - 52px);
+}
+
+/* ========================================================== */
+/* 5. COMMERCIAL HIGHLIGHTS & DELIVERABLES GRID               */
+/* ========================================================== */
+.pres-takeaways-section {
+  margin-bottom: 2.5rem;
+}
+
+.pres-section-heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.pres-section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+}
+
+.pres-section-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.pres-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pres-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pres-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-specular);
+  background: var(--bg-card-hover);
+}
+
+.pres-card-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--brand-gold);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.pres-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.pres-card-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ========================================================== */
+/* 6. CONVERSION & SIGNOFF MONOLITH                           */
+/* ========================================================== */
+.pres-signoff-card {
+  background: linear-gradient(135deg, rgba(26, 22, 18, 0.95) 0%, rgba(14, 12, 10, 0.98) 100%);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-luxury), var(--shadow-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.pres-signoff-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(226, 199, 153, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pres-signoff-title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.pres-signoff-title .pres-serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--brand-gold);
+}
+
+.pres-signoff-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto 1.75rem;
+}
+
+.pres-signoff-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.pres-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #F5E6D3 0%, #E2C799 50%, #C5A880 100%);
+  color: #080706;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(226, 199, 153, 0.4);
+  transition: all 0.25s ease;
+}
+
+.pres-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(226, 199, 153, 0.65);
+}
+
+.pres-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-specular);
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pres-btn-whatsapp:hover {
+  background: rgba(226, 199, 153, 0.12);
+  border-color: var(--brand-gold);
+}
+
+/* ========================================================== */
+/* 7. QUICK VIDEO SWITCHER / SHARE DRAWER                     */
+/* ========================================================== */
+.pres-config-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.pres-config-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pres-config-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-specular);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: var(--shadow-luxury);
+  position: relative;
+}
+
+.pres-config-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.pres-config-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.pres-form-group {
+  margin-bottom: 1rem;
+}
+
+.pres-form-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.pres-form-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.pres-form-input:focus {
+  border-color: var(--brand-gold);
+}
+
+.pres-form-hint {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.pres-config-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.pres-btn-cancel {
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.pres-btn-save {
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #F5E6D3, #E2C799);
+  border: none;
+  border-radius: var(--radius-full);
+  color: #080706;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Toast */
+.pres-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(50px);
+  background: rgba(22, 19, 16, 0.96);
+  border: 1px solid var(--brand-gold);
+  color: #FFFFFF;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 30000;
+  pointer-events: none;
+}
+
+.pres-toast.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ========================================================== */
+/* 8. RESPONSIVE BREAKPOINTS                                  */
+/* ========================================================== */
+@media (max-width: 960px) {
+  .pres-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pres-board-iframe-wrap {
+    height: 520px;
+  }
+  
+  .pres-header-center {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .pres-header-dock {
+    height: 50px;
+    padding: 0 0.75rem;
+    width: calc(100% - 20px);
+    top: 10px;
+  }
+  
+  .pres-client-title {
+    max-width: 90px;
+    font-size: 0.78rem;
+  }
+
+  .pres-agency-title {
+    font-size: 0.76rem;
+  }
+  
+  .pres-btn-header-wa {
+    display: none;
+  }
+
+  .pres-btn-header-cta {
+    padding: 5px 11px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  .pres-btn-header-cta span {
+    display: none;
+  }
+
+  .pres-btn-header-cta::after {
+    content: 'Book Call ↗';
+    font-weight: 700;
+  }
+  
+  .pres-main-wrapper {
+    padding: 80px 14px 60px;
+  }
+
+  .pres-board-title-tag {
+    display: none;
+  }
+
+  .pres-board-action-btn span {
+    display: none;
+  }
+
+  .pres-board-action-btn {
+    padding: 6px 9px;
+  }
+  
+  .pres-theater-stage {
+    padding: 10px;
+    border-radius: var(--radius-md);
+  }
+  
+  .pres-board-iframe-wrap {
+    height: 420px;
+  }
+  
+  .pres-signoff-card {
+    padding: 1.75rem 1.25rem;
+  }
+  
+  .pres-signoff-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .pres-btn-primary, .pres-btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+  }
+}

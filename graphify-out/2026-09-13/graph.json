@@ -7873,7 +7873,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L675"
+      "source_location": "L708"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -8186,6 +8186,30 @@
       "norm_label": "sprint 21: invoicing atelier \u2014 whatsapp pdf attachment engine & mobile web share level 2 (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L655"
+    },
+    {
+      "id": "docs_handoff_sprint_22_phone_native_admin_dashboard_ergonomics_standalone_pwa_safe_area_header_architecture_completed_september_2026",
+      "label": "Sprint 22: Phone-Native Admin Dashboard Ergonomics, Standalone PWA & Safe-Area Header Architecture (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 22: phone-native admin dashboard ergonomics, standalone pwa & safe-area header architecture (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L673"
+    },
+    {
+      "id": "docs_handoff_sprint_23_invoicing_atelier_single_page_vector_pdf_hardening_agency_phone_number_synchronization_completed_september_2026",
+      "label": "Sprint 23: Invoicing Atelier \u2014 Single-Page Vector PDF Hardening & Agency Phone Number Synchronization (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 23: invoicing atelier \u2014 single-page vector pdf hardening & agency phone number synchronization (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L692"
     },
     {
       "id": "docs_handoff_sprint_2_security_performance_hardening_completed_september_2026",
@@ -23561,6 +23585,28 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_22_phone_native_admin_dashboard_ergonomics_standalone_pwa_safe_area_header_architecture_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L673",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_23_invoicing_atelier_single_page_vector_pdf_hardening_agency_phone_number_synchronization_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L692",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -23623,7 +23669,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L675",
+      "source_location": "L708",
       "weight": 1.0
     },
     {
@@ -31835,5 +31881,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ce68c57b3001153f792ed0f14f1ebf0945b76876"
+  "built_at_commit": "082a5708557febd522984820c5391f72555ceeea"
 }

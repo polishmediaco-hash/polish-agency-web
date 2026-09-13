@@ -186,9 +186,9 @@
     "semantic_hash": "acfe4ba5bf5cca5ee6948950496ce55a"
   },
   "server/index.js": {
-    "mtime": 1789275919.4245615,
-    "seen": 1789275948.3636322,
-    "ast_hash": "cceb057a690b430fe0f1842fb9d1fcff",
+    "mtime": 1789318407.5832725,
+    "seen": 1789318897.226149,
+    "ast_hash": "436875ea0a0c35c9763dc7355d39031f",
     "semantic_hash": ""
   },
   "server/middleware/auth.js": {
@@ -1958,7 +1958,7 @@
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
     "seen": 1789317486.04933,
-    "ast_hash": "9d679501ccc8722f71c8d90ebd230e69",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "tests/test_sequencer_e2e.js": {
@@ -2061,6 +2061,24 @@
     "mtime": 1789276657.3981237,
     "seen": 1789276724.079131,
     "ast_hash": "2bd4e1e49f8c5e5d77551df53fe5b66e",
+    "semantic_hash": ""
+  },
+  "public/js/presentation-page.js": {
+    "mtime": 1789318582.8306055,
+    "seen": 1789318897.2258172,
+    "ast_hash": "4e1829c1317668bfa2da56456b6d74de",
+    "semantic_hash": ""
+  },
+  "tests/test_presentation_page.js": {
+    "mtime": 1789318678.0615046,
+    "seen": 1789318897.226239,
+    "ast_hash": "dc89fc27025753414665fdf3bbb58b13",
+    "semantic_hash": ""
+  },
+  "public/presentation.html": {
+    "mtime": 1789318600.8484652,
+    "seen": 1789318897.2267158,
+    "ast_hash": "c76b223787649a3148d15bbd1805ebc9",
     "semantic_hash": ""
   }
 }

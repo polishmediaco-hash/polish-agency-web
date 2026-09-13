@@ -1064,19 +1064,23 @@
       const isDark = state.theme === 'obsidian' || sheet.getAttribute('data-invoice-theme') === 'obsidian';
       const bgColor = isDark ? '#080706' : '#FAF7F2';
 
+      // Clamp sheet height to 296mm during capture to guarantee exactly 1 single A4 page
+      const prevMinHeight = sheet.style.minHeight;
+      const prevHeight = sheet.style.height;
+      sheet.style.minHeight = '296mm';
+      sheet.style.height = '296mm';
+
       showToast('Rendering high-res A4 PDF...');
 
       const opt = {
         margin: 0,
         filename: pdfFileName,
         image: { type: 'jpeg', quality: 0.98 },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
         html2canvas: {
           scale: 2,
           useCORS: true,
           letterRendering: true,
-          scrollY: 0,
-          scrollX: 0,
-          windowWidth: 1200,
           backgroundColor: bgColor
         },
         jsPDF: {
@@ -1088,6 +1092,9 @@
 
       await html2pdf().set(opt).from(sheet).save();
       showToast('PDF downloaded successfully');
+
+      sheet.style.minHeight = prevMinHeight;
+      sheet.style.height = prevHeight;
 
       if (wasMobileFormActive) {
         setTimeout(() => {
@@ -1101,6 +1108,10 @@
       showToast('Direct PDF build failed — opening Print...');
       printCurrentInvoice();
     } finally {
+      if (typeof sheet !== 'undefined' && sheet) {
+        sheet.style.minHeight = '';
+        sheet.style.height = '';
+      }
       isGeneratingInvoicePdf = false;
       if (btn) {
         btn.disabled = false;
@@ -1176,18 +1187,22 @@
       const isDark = state.theme === 'obsidian' || sheet.getAttribute('data-invoice-theme') === 'obsidian';
       const bgColor = isDark ? '#080706' : '#FAF7F2';
 
+      // Clamp sheet height to 296mm during capture to guarantee exactly 1 single A4 page
+      const prevMinHeight = sheet.style.minHeight;
+      const prevHeight = sheet.style.height;
+      sheet.style.minHeight = '296mm';
+      sheet.style.height = '296mm';
+
       // 3. Generate high-res A4 PDF Blob via client-side html2pdf
       const opt = {
         margin: 0,
         filename: pdfFileName,
         image: { type: 'jpeg', quality: 0.98 },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
         html2canvas: {
           scale: 2,
           useCORS: true,
           letterRendering: true,
-          scrollY: 0,
-          scrollX: 0,
-          windowWidth: 1200,
           backgroundColor: bgColor
         },
         jsPDF: {
@@ -1267,6 +1282,10 @@
         : `https://wa.me/?text=${encodeURIComponent(fallbackText)}`;
       window.open(waUrl, '_blank');
     } finally {
+      if (typeof sheet !== 'undefined' && sheet) {
+        sheet.style.minHeight = '';
+        sheet.style.height = '';
+      }
       isGeneratingInvoicePdf = false;
       if (btn) {
         btn.disabled = false;

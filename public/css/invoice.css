@@ -753,7 +753,7 @@ body.invoice-studio-body {
 
 .invoice-sheet {
   width: 210mm;
-  min-height: 297mm;
+  min-height: 296mm;
   background-color: var(--paper-bg);
   color: var(--paper-text);
   padding: 16mm 18mm 14mm;
@@ -1470,7 +1470,7 @@ body.edit-mode-active [contenteditable="true"]:focus {
   [data-invoice-theme="alabaster"] .invoice-sheet {
     width: 210mm !important;
     max-width: 210mm !important;
-    min-height: 297mm !important;
+    min-height: 296mm !important;
     height: auto !important;
     margin: 0 auto !important;
     padding: 14mm 16mm 12mm !important;

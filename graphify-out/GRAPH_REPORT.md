@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 92 files · ~720,103 words
+- 92 files · ~720,475 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1054 nodes · 1755 edges · 81 communities (73 shown, 6 thin omitted)
+- 1055 nodes · 1754 edges · 81 communities (73 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 50 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `dfeec809`
+- Built from commit: `bc7b6e67`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -99,13 +99,13 @@
 1. `triggerAutoSave()` - 45 edges
 2. `pushHistory()` - 36 edges
 3. `renderElement()` - 32 edges
-4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 24 edges
-5. `pushHistory()` - 19 edges
-6. `selectElement()` - 19 edges
+4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 25 edges
+5. `selectElement()` - 19 edges
+6. `pushHistory()` - 19 edges
 7. `renderInvoiceSheet()` - 18 edges
 8. `setupToolbar()` - 18 edges
-9. `getCanvasCenter()` - 16 edges
-10. `bindKeyboardShortcuts()` - 16 edges
+9. `bindKeyboardShortcuts()` - 16 edges
+10. `getCanvasCenter()` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `checkNewCalendlyMeetings()` --calls--> `notifyNewMeeting()`  [EXTRACTED]
@@ -229,8 +229,8 @@ Cohesion: 0.08
 Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects.js`, 1.3 `public/js/three.min.js` & `public/studio/js/html2canvas.min.js`, 1. God Nodes Analysis, 2.1 Cohesion Scores (< 0.10), 2.2 Cross-Module Coupling Topology, 2. Modularity & Community Cohesion, 3.1 Unreferenced Symbols & Leaky Interfaces (+15 more)
 
 ### Community 31 - "6. Next Priority Roadmap (Ready for Next Conversation)"
-Cohesion: 0.05
-Nodes (43): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+35 more)
+Cohesion: 0.04
+Nodes (44): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+36 more)
 
 ### Community 32 - "OWASP Top 10 — Audit Checklist"
 Cohesion: 0.11
@@ -409,24 +409,24 @@ Cohesion: 0.50
 Nodes (3): fs, path, puppeteer
 
 ## Knowledge Gaps
-- **363 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+358 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 441 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **364 isolated node(s):** `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)`, `C. Creator & UGC Portal (`public/creators.html`)`, `D. Admin Portal & Live CMS (`public/admin.html`)` (+359 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 442 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`, `test-miro-suite.js`, `test_presentation_page.js`, `test_laser_and_branding.js`, `test_sequencer_e2e.js`, `capture-live-views.js`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _363 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)` to the rest of the system?**
+  _364 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**
   _Cohesion score 0.11931818181818182 - nodes in this community are weakly interconnected._
 - **Should `studio-ai.js` be split into smaller, more focused modules?**
   _Cohesion score 0.14532019704433496 - nodes in this community are weakly interconnected._
+- **Should `generate-brand-pack.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.14492753623188406 - nodes in this community are weakly interconnected._

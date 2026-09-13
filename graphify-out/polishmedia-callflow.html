@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>polishmedia — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 1054 nodes, 1755 edges, 81 communities. Commit: dfeec80</p>
+<p class="subtitle">Generated from graphify knowledge graph: 1055 nodes, 1754 edges, 81 communities. Commit: bc7b6e6</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -68,6 +68,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     <a href="#analysis-clustering">Analysis &amp; Clustering</a>
     <a href="#outputs-docs">Outputs &amp; Docs</a>
     <a href="#cli-skills">CLI &amp; Skill Installers</a>
+    <a href="#ingest-cache-update">Ingestion &amp; Updates</a>
     <a href="#serve-api">Serving API</a>
     <a href="#security-global">Security &amp; Global Graph</a>
     <a href="#tests-fixtures">Tests &amp; Fixtures</a>
@@ -77,7 +78,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
     <a href="#inspector-js">inspector.js</a>
     <a href="#elements-factory-js">elements-factory.js</a>
     <a href="#luxury-effects-js">luxury-effects.js</a>
-    <a href="#comments-engine-js">comments-engine.js</a>
     <a href="#other">Other</a>
 </div>
 
@@ -92,10 +92,12 @@ flowchart LR
     class BUILD_GRAPH_321CBB04 module;
     ANALYSIS_CLUSTERING_C79796DA("Analysis &amp; Clustering<br/><small>24 nodes</small>")
     class ANALYSIS_CLUSTERING_C79796DA module;
-    OUTPUTS_DOCS_ED82387C("Outputs &amp; Docs<br/><small>63 nodes</small>")
+    OUTPUTS_DOCS_ED82387C("Outputs &amp; Docs<br/><small>19 nodes</small>")
     class OUTPUTS_DOCS_ED82387C module;
     CLI_SKILLS_9964CBB8("CLI &amp; Skill Installers<br/><small>100 nodes</small>")
     class CLI_SKILLS_9964CBB8 module;
+    INGEST_CACHE_UPDATE_FF457338("Ingestion &amp; Updates<br/><small>45 nodes</small>")
+    class INGEST_CACHE_UPDATE_FF457338 module;
     SERVE_API_35EC8E86("Serving API<br/><small>24 nodes</small>")
     class SERVE_API_35EC8E86 module;
     SECURITY_GLOBAL_5B9C6A04("Security &amp; Global Graph<br/><small>82 nodes</small>")
@@ -114,13 +116,11 @@ flowchart LR
     class ELEMENTS_FACTORY_JS_7A50F465 module;
     LUXURY_EFFECTS_JS_FB489F07("luxury-effects.js<br/><small>32 nodes</small>")
     class LUXURY_EFFECTS_JS_FB489F07 module;
-    COMMENTS_ENGINE_JS_35A49B5F("comments-engine.js<br/><small>30 nodes</small>")
-    class COMMENTS_ENGINE_JS_35A49B5F module;
-    OTHER_D0941E68("Other<br/><small>413 nodes</small>")
+    OTHER_D0941E68("Other<br/><small>443 nodes</small>")
     class OTHER_D0941E68 module;
     SERVE_API_35EC8E86 -->|imports x10| OTHER_D0941E68
-    OTHER_D0941E68 -->|imports x5| SERVE_API_35EC8E86
     OTHER_D0941E68 -->|imports x4| BUILD_GRAPH_321CBB04
+    OTHER_D0941E68 -->|imports x4| SERVE_API_35EC8E86
     BUILD_GRAPH_321CBB04 -->|imports x2| OTHER_D0941E68
     OTHER_D0941E68 -->|imports x2| TESTS_FIXTURES_B84B1DCC
     TESTS_FIXTURES_B84B1DCC -->|imports| OTHER_D0941E68
@@ -141,19 +141,19 @@ flowchart LR
     <h4>Architecture Layers</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
-      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>63</td><td><code>31, 15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>100</td><td><code>32, 36, 37, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Serving API</td><td>24</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>28</td><td><code>62, 77, 78, 79, 80</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>comments-engine.js</td><td>30</td><td><code>3</code></td></tr><tr><td>Other</td><td>413</td><td><code>5, 6, 11, 33, 28, 34, 35, 8, 9, 2, 12, 60, 68, 61, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 63, 70, 76, 24, 65, 71, 72, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
+      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>19</td><td><code>15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>100</td><td><code>32, 36, 37, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>45</td><td><code>31</code></td></tr><tr><td>Serving API</td><td>24</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>28</td><td><code>62, 77, 78, 79, 80</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>Other</td><td>443</td><td><code>3, 5, 6, 11, 33, 28, 34, 35, 8, 9, 2, 12, 60, 68, 61, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 63, 70, 76, 24, 65, 71, 72, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Core Flow</h4>
-    <div class="arrow-chain">Analysis &amp; Clustering -&gt; Graph Build -&gt; Other -&gt; Serving API -&gt; Outputs &amp; Docs -&gt; CLI &amp; Skill Installers -&gt; Security &amp; Global Graph</div>
+    <div class="arrow-chain">Analysis &amp; Clustering -&gt; Graph Build -&gt; Other -&gt; Serving API -&gt; Outputs &amp; Docs -&gt; CLI &amp; Skill Installers -&gt; Ingestion &amp; Updates</div>
   </div>
 </div>
 <div class="grid">
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>1054 nodes · 1755 edges · 81 communities (73 shown, 6 thin omitted)</li>
+      <li>1055 nodes · 1754 edges · 81 communities (73 shown, 6 thin omitted)</li>
       <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 50 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `triggerAutoSave()` - 45 edges</li>
@@ -786,12 +786,12 @@ flowchart LR
 
 <!-- ====== 4. Outputs & Docs ====== -->
 <h2 id="outputs-docs">4. Outputs &amp; Docs</h2>
-<p>Outputs &amp; Docs groups implementation around handoffmd, docs, public, september, mostly in docs/HANDOFF.md, studio/js/canvas-panzoom.js, js/effects/particle-canvas.js. This section covers 63 nodes and 72 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Outputs &amp; Docs groups implementation around public, canvas, panzoomjs, studio, mostly in studio/js/canvas-panzoom.js, js/effects/particle-canvas.js. This section covers 19 nodes and 29 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Outputs &amp; Docs (63 nodes, 72 edges)
+    %% Section: Outputs &amp; Docs (19 nodes, 29 edges)
     subgraph outputs_docs_studio_js_canvas_panzoom_js_85f97aef["studio/js/canvas-panzoom.js"]
         public_studio_js_canvas_panzoom_init_07bc1ff3("init()<br/><small>studio/js/canvas-panzoom.js</small>")
         public_studio_js_canvas_panzoom_fittocontent_5e019de5("fitToContent()<br/><small>studio/js/canvas-panzoom.js</small>")
@@ -824,7 +824,7 @@ flowchart LR
     public_studio_js_canvas_panzoom_zoomdelta_dc195a1e -->|calls| public_studio_js_canvas_panzoom_applytransform_a7c39078
     public_js_effects_particle_canvas_animateparticl_2c52bf14 -->|calls| public_js_effects_particle_canvas_getscrollveloc_ee243907
     public_js_effects_particle_canvas_initparticleca_9d11a828 -->|calls| public_js_effects_particle_canvas_isguardactive_f3fa967e
-    %% Omitted for readability: 45 nodes, 0 edges
+    %% Omitted for readability: 1 nodes, 0 edges
     class public_studio_js_canvas_panzoom_init_07bc1ff3 function;
     class public_studio_js_canvas_panzoom_fittocontent_5e019de5 function;
     class public_studio_js_canvas_panzoom_resetview_8c815beb function;
@@ -866,243 +866,155 @@ flowchart LR
 </tr>
 <tr>
   <td>1</td>
-  <td><code>HANDOFF.md</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>applyTransform()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small><br><code>resetView()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small><br><code>step()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small><br>+1 more</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing HANDOFF.md.</td>
+  <td>applyTransform() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>2</td>
-  <td><code>1. Executive Summary &amp; Brand Shift</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>canvasToScreen()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing 1. Executive Summary &amp; Brand Shift.</td>
+  <td>canvasToScreen() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>3</td>
-  <td><code>2. Core Pages &amp; Component Architecture</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>fitToContent()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing 2. Core Pages &amp; Component Architecture.</td>
+  <td><code>getCanvasBounds()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small><br><code>smoothPanTo()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td>fitToContent() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>4</td>
-  <td><code>3. Backend Architecture (`server/index.js`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>getCanvasBounds()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>fitToContent()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing 3. Backend Architecture (`server/index.js`).</td>
+  <td>getCanvasBounds() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>5</td>
-  <td><code>4. Git &amp; Repository Status</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing 4. Git &amp; Repository Status.</td>
+  <td><code>applyTransform()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small><br><code>screenToCanvas()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small><br><code>setTool()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td>init() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>6</td>
-  <td><code>5. Major Milestones &amp; Integrations (September 2026 Session)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>resetView()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing 5. Major Milestones &amp; Integrations (September 2026 Session).</td>
+  <td><code>applyTransform()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td>resetView() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>7</td>
-  <td><code>6. Next Priority Roadmap (Ready for Next Conversation)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>screenToCanvas()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing 6. Next Priority Roadmap (Ready for Next Conversation).</td>
+  <td>screenToCanvas() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>8</td>
-  <td><code>7. How to Start a Fresh Antigravity Chat</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>setTool()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing 7. How to Start a Fresh Antigravity Chat.</td>
+  <td>setTool() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>9</td>
-  <td><code>A. Agent Reach &amp; Internet Capabilities (`agent-reach`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A. Agent Reach &amp; Internet Capabilities (`agent-reach`).</td>
+  <td><code>smoothPanTo()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>fitToContent()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><code>step()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td>smoothPanTo() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>10</td>
-  <td><code>A. Main Experience (`public/index.html`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A. Main Experience (`public/index.html`).</td>
+  <td><code>step()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>smoothPanTo()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><code>applyTransform()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td>step() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>11</td>
-  <td><code>B. Executive Partnership Application (`public/apply.html`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>zoomDelta()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing B. Executive Partnership Application (`public/apply.html`).</td>
+  <td><code>applyTransform()</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td>zoomDelta() node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>12</td>
-  <td><code>B. Graphify Codebase Knowledge Graph (`graphify`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>canvas-panzoom.js</code><br><small style="color:var(--muted)">studio/js/canvas-panzoom.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing B. Graphify Codebase Knowledge Graph (`graphify`).</td>
+  <td>canvas-panzoom.js node in studio/js/canvas-panzoom.js.</td>
 </tr>
 <tr>
   <td>13</td>
-  <td><code>B. POLISH Board Studio (`public/studio/`) &amp; Boards Hub (`/boards`, `app.polishmediaco.com`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing B. POLISH Board Studio (`public/studio/`) &amp; Boards Hub (`/boards`, `app.polishmediaco.com`).</td>
+  <td><code>animateParticles()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>initParticleCanvas()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small><br><code>resume()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td><code>getScrollVelocity()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td>animateParticles() node in js/effects/particle-canvas.js.</td>
 </tr>
 <tr>
   <td>14</td>
-  <td><code>C. Creator &amp; UGC Portal (`public/creators.html`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>getScrollVelocity()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>animateParticles()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing C. Creator &amp; UGC Portal (`public/creators.html`).</td>
+  <td>getScrollVelocity() node in js/effects/particle-canvas.js.</td>
 </tr>
 <tr>
   <td>15</td>
-  <td><code>C. The Four Comprehensive Audits Conducted</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>initParticleCanvas()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing C. The Four Comprehensive Audits Conducted.</td>
+  <td><code>animateParticles()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small><br><code>isGuardActive()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td>initParticleCanvas() node in js/effects/particle-canvas.js.</td>
 </tr>
 <tr>
   <td>16</td>
-  <td><code>D. Admin Portal &amp; Live CMS (`public/admin.html`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>isGuardActive()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>initParticleCanvas()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing D. Admin Portal &amp; Live CMS (`public/admin.html`).</td>
+  <td>isGuardActive() node in js/effects/particle-canvas.js.</td>
 </tr>
 <tr>
   <td>17</td>
-  <td><code>E. Brand Asset Vault &amp; Guidelines (`public/brand-pack.html` / `/brand-pack`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>pause()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing E. Brand Asset Vault &amp; Guidelines (`public/brand-pack.html` / `/brand-pack`).</td>
+  <td>pause() node in js/effects/particle-canvas.js.</td>
 </tr>
 <tr>
   <td>18</td>
-  <td><code>F. Executive Invoicing Atelier &amp; Generator (`public/invoice.html` / `/admin/invoice`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>resume()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing F. Executive Invoicing Atelier &amp; Generator (`public/invoice.html` / `/admin/invoice`).</td>
+  <td><code>animateParticles()</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td>resume() node in js/effects/particle-canvas.js.</td>
 </tr>
 <tr>
   <td>19</td>
-  <td><code>H. Award-Winning Luxury Cards &amp; Tactile Micro-Interactions</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>particle-canvas.js</code><br><small style="color:var(--muted)">js/effects/particle-canvas.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing H. Award-Winning Luxury Cards &amp; Tactile Micro-Interactions.</td>
-</tr>
-<tr>
-  <td>20</td>
-  <td><code>I. Logo Optical Sizing &amp; Multi-Format Vector Lockups (Resolved September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing I. Logo Optical Sizing &amp; Multi-Format Vector Lockups (Resolved September 2026).</td>
-</tr>
-<tr>
-  <td>21</td>
-  <td><code>POLISH Media Co — Project State &amp; Handoff Document</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing POLISH Media Co — Project State &amp; Handoff Document.</td>
-</tr>
-<tr>
-  <td>22</td>
-  <td><code>Sprint 10: Presentation Slide Sequencer &amp; Custom Pitch Order Screen (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 10: Presentation Slide Sequencer &amp; Custom Pitch Order Screen (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>23</td>
-  <td><code>Sprint 11: Favicon, Social Link Preview &amp; Brand Card Overhaul (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 11: Favicon, Social Link Preview &amp; Brand Card Overhaul (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>24</td>
-  <td><code>Sprint 12: Presentation Executive Branding &amp; Laser Engine Overhaul (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 12: Presentation Executive Branding &amp; Laser Engine Overhaul (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>25</td>
-  <td><code>Sprint 13: Executive Admin Invoicing Atelier Contrast, Shadow Bleed &amp; Layout Polish (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 13: Executive Admin Invoicing Atelier Contrast, Shadow Bleed &amp; Layout Polish (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>26</td>
-  <td><code>Sprint 14: Minimalist Luxury Presentation Engine &amp; Zero-Clutter Architecture (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 14: Minimalist Luxury Presentation Engine &amp; Zero-Clutter Architecture (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>27</td>
-  <td><code>Sprint 16: Inbound CRM Dossiers &amp; Executive Lead Management Overhaul (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 16: Inbound CRM Dossiers &amp; Executive Lead Management Overhaul (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>28</td>
-  <td><code>Sprint 16: Official Brand Watermark, Silk Sheen &amp; Zero-Distortion Presentation Mode (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 16: Official Brand Watermark, Silk Sheen &amp; Zero-Distortion Presentation Mode (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>29</td>
-  <td><code>Sprint 17: Invoicing Atelier Redesign &amp; Trilingual Optimization (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 17: Invoicing Atelier Redesign &amp; Trilingual Optimization (Completed September 2026).</td>
-</tr>
-<tr>
-  <td>30</td>
-  <td><code>Sprint 18: Laser Pointer Stacking Context &amp; Direct Click-Toggle Engine (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Sprint 18: Laser Pointer Stacking Context &amp; Direct Click-Toggle Engine (Completed September 2026).</td>
+  <td>particle-canvas.js node in js/effects/particle-canvas.js.</td>
 </tr>
 </table>
 
@@ -1111,14 +1023,13 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>docs/HANDOFF.md</code></td><td>44 nodes</td></tr>
-<tr><td><code>studio/js/canvas-panzoom.js</code></td><td>12 nodes</td></tr>
+      <tr><td><code>studio/js/canvas-panzoom.js</code></td><td>12 nodes</td></tr>
 <tr><td><code>js/effects/particle-canvas.js</code></td><td>7 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x59, calls x10, indirect call x3. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x16, calls x10, indirect call x3. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -1471,8 +1382,348 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 6. Serving API ====== -->
-<h2 id="serve-api">6. Serving API</h2>
+<!-- ====== 6. Ingestion & Updates ====== -->
+<h2 id="ingest-cache-update">6. Ingestion &amp; Updates</h2>
+<p>Ingestion &amp; Updates groups implementation around handoffmd, docs, september, 2026, mostly in docs/HANDOFF.md. This section covers 45 nodes and 44 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Ingestion &amp; Updates (45 nodes, 44 edges)
+    docs_handoff_6_next_priority_roadmap_ready_for_n_dd9d04e1("6. Next Priority Roadmap (Ready for Nex...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_2_core_pages_component_architecture_f0da1d17("2. Core Pages &amp; Component Architecture<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_polish_media_co_project_state_hando_48b5771d("POLISH Media Co — Project State &amp; Hando...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_5_major_milestones_integrations_sep_1d5176a3("5. Major Milestones &amp; Integrations (Sep...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_3_backend_architecture_server_index_0aa52e02("3. Backend Architecture (server/index....<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_f9f494ee("HANDOFF.md")
+    docs_handoff_1_executive_summary_brand_shift_de1bc60a("1. Executive Summary &amp; Brand Shift<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_4_git_repository_status_6b6dd96d("4. Git &amp; Repository Status<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_7_how_to_start_a_fresh_antigravity_2c55029e("7. How to Start a Fresh Antigravity Chat<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_a_agent_reach_internet_capabilities_182c0a86("A. Agent Reach &amp; Internet Capabilities...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_a_main_experience_public_index_html_4ce787ab("A. Main Experience (public/index.html)<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_b_executive_partnership_application_968d1195("B. Executive Partnership Application (...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_b_graphify_codebase_knowledge_graph_49106be7("B. Graphify Codebase Knowledge Graph (...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_b_polish_board_studio_public_studio_dbc8d676("B. POLISH Board Studio (public/studio/...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_c_creator_ugc_portal_public_creator_da2879fa("C. Creator &amp; UGC Portal (public/creato...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_c_the_four_comprehensive_audits_con_8fcca515("C. The Four Comprehensive Audits Conducted<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_d_admin_portal_live_cms_public_admi_787c5b4f("D. Admin Portal &amp; Live CMS (public/adm...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_e_brand_asset_vault_guidelines_publ_e9f6eff9("E. Brand Asset Vault &amp; Guidelines (pub...<br/><small>docs/HANDOFF.md</small>")
+    docs_handoff_f9f494ee -->|contains| docs_handoff_polish_media_co_project_state_hando_48b5771d
+    docs_handoff_2_core_pages_component_architecture_f0da1d17 -->|contains| docs_handoff_a_main_experience_public_index_html_4ce787ab
+    docs_handoff_2_core_pages_component_architecture_f0da1d17 -->|contains| docs_handoff_b_executive_partnership_application_968d1195
+    docs_handoff_2_core_pages_component_architecture_f0da1d17 -->|contains| docs_handoff_c_creator_ugc_portal_public_creator_da2879fa
+    docs_handoff_2_core_pages_component_architecture_f0da1d17 -->|contains| docs_handoff_d_admin_portal_live_cms_public_admi_787c5b4f
+    docs_handoff_2_core_pages_component_architecture_f0da1d17 -->|contains| docs_handoff_e_brand_asset_vault_guidelines_publ_e9f6eff9
+    docs_handoff_3_backend_architecture_server_index_0aa52e02 -->|contains| docs_handoff_b_polish_board_studio_public_studio_dbc8d676
+    docs_handoff_5_major_milestones_integrations_sep_1d5176a3 -->|contains| docs_handoff_a_agent_reach_internet_capabilities_182c0a86
+    docs_handoff_5_major_milestones_integrations_sep_1d5176a3 -->|contains| docs_handoff_b_graphify_codebase_knowledge_graph_49106be7
+    docs_handoff_5_major_milestones_integrations_sep_1d5176a3 -->|contains| docs_handoff_c_the_four_comprehensive_audits_con_8fcca515
+    docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_3_backend_architecture_server_index_0aa52e02
+    docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_4_git_repository_status_6b6dd96d
+    docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_5_major_milestones_integrations_sep_1d5176a3
+    docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_6_next_priority_roadmap_ready_for_n_dd9d04e1
+    docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_2_core_pages_component_architecture_f0da1d17
+    docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_7_how_to_start_a_fresh_antigravity_2c55029e
+    docs_handoff_polish_media_co_project_state_hando_48b5771d -->|contains| docs_handoff_1_executive_summary_brand_shift_de1bc60a
+    %% Omitted for readability: 27 nodes, 0 edges
+    class docs_handoff_6_next_priority_roadmap_ready_for_n_dd9d04e1 concept;
+    class docs_handoff_2_core_pages_component_architecture_f0da1d17 concept;
+    class docs_handoff_polish_media_co_project_state_hando_48b5771d concept;
+    class docs_handoff_5_major_milestones_integrations_sep_1d5176a3 concept;
+    class docs_handoff_3_backend_architecture_server_index_0aa52e02 concept;
+    class docs_handoff_f9f494ee concept;
+    class docs_handoff_1_executive_summary_brand_shift_de1bc60a concept;
+    class docs_handoff_4_git_repository_status_6b6dd96d concept;
+    class docs_handoff_7_how_to_start_a_fresh_antigravity_2c55029e concept;
+    class docs_handoff_a_agent_reach_internet_capabilities_182c0a86 concept;
+    class docs_handoff_a_main_experience_public_index_html_4ce787ab concept;
+    class docs_handoff_b_executive_partnership_application_968d1195 concept;
+    class docs_handoff_b_graphify_codebase_knowledge_graph_49106be7 concept;
+    class docs_handoff_b_polish_board_studio_public_studio_dbc8d676 concept;
+    class docs_handoff_c_creator_ugc_portal_public_creator_da2879fa concept;
+    class docs_handoff_c_the_four_comprehensive_audits_con_8fcca515 concept;
+    class docs_handoff_d_admin_portal_live_cms_public_admi_787c5b4f concept;
+    class docs_handoff_e_brand_asset_vault_guidelines_publ_e9f6eff9 concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>HANDOFF.md</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing HANDOFF.md.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>1. Executive Summary &amp; Brand Shift</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 1. Executive Summary &amp; Brand Shift.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>2. Core Pages &amp; Component Architecture</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 2. Core Pages &amp; Component Architecture.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>3. Backend Architecture (`server/index.js`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 3. Backend Architecture (`server/index.js`).</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>4. Git &amp; Repository Status</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 4. Git &amp; Repository Status.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>5. Major Milestones &amp; Integrations (September 2026 Session)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 5. Major Milestones &amp; Integrations (September 2026 Session).</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>6. Next Priority Roadmap (Ready for Next Conversation)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 6. Next Priority Roadmap (Ready for Next Conversation).</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>7. How to Start a Fresh Antigravity Chat</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 7. How to Start a Fresh Antigravity Chat.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>A. Agent Reach &amp; Internet Capabilities (`agent-reach`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing A. Agent Reach &amp; Internet Capabilities (`agent-reach`).</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>A. Main Experience (`public/index.html`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing A. Main Experience (`public/index.html`).</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>B. Executive Partnership Application (`public/apply.html`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing B. Executive Partnership Application (`public/apply.html`).</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>B. Graphify Codebase Knowledge Graph (`graphify`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing B. Graphify Codebase Knowledge Graph (`graphify`).</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>B. POLISH Board Studio (`public/studio/`) &amp; Boards Hub (`/boards`, `app.polishmediaco.com`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing B. POLISH Board Studio (`public/studio/`) &amp; Boards Hub (`/boards`, `app.polishmediaco.com`).</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>C. Creator &amp; UGC Portal (`public/creators.html`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing C. Creator &amp; UGC Portal (`public/creators.html`).</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>C. The Four Comprehensive Audits Conducted</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing C. The Four Comprehensive Audits Conducted.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>D. Admin Portal &amp; Live CMS (`public/admin.html`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing D. Admin Portal &amp; Live CMS (`public/admin.html`).</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>E. Brand Asset Vault &amp; Guidelines (`public/brand-pack.html` / `/brand-pack`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing E. Brand Asset Vault &amp; Guidelines (`public/brand-pack.html` / `/brand-pack`).</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>F. Executive Invoicing Atelier &amp; Generator (`public/invoice.html` / `/admin/invoice`)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing F. Executive Invoicing Atelier &amp; Generator (`public/invoice.html` / `/admin/invoice`).</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>H. Award-Winning Luxury Cards &amp; Tactile Micro-Interactions</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing H. Award-Winning Luxury Cards &amp; Tactile Micro-Interactions.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>I. Logo Optical Sizing &amp; Multi-Format Vector Lockups (Resolved September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing I. Logo Optical Sizing &amp; Multi-Format Vector Lockups (Resolved September 2026).</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>POLISH Media Co — Project State &amp; Handoff Document</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing POLISH Media Co — Project State &amp; Handoff Document.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>Sprint 10: Presentation Slide Sequencer &amp; Custom Pitch Order Screen (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 10: Presentation Slide Sequencer &amp; Custom Pitch Order Screen (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>Sprint 11: Favicon, Social Link Preview &amp; Brand Card Overhaul (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 11: Favicon, Social Link Preview &amp; Brand Card Overhaul (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>Sprint 12: Presentation Executive Branding &amp; Laser Engine Overhaul (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 12: Presentation Executive Branding &amp; Laser Engine Overhaul (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>Sprint 13: Executive Admin Invoicing Atelier Contrast, Shadow Bleed &amp; Layout Polish (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 13: Executive Admin Invoicing Atelier Contrast, Shadow Bleed &amp; Layout Polish (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>Sprint 14: Minimalist Luxury Presentation Engine &amp; Zero-Clutter Architecture (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 14: Minimalist Luxury Presentation Engine &amp; Zero-Clutter Architecture (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>Sprint 16: Inbound CRM Dossiers &amp; Executive Lead Management Overhaul (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 16: Inbound CRM Dossiers &amp; Executive Lead Management Overhaul (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>Sprint 16: Official Brand Watermark, Silk Sheen &amp; Zero-Distortion Presentation Mode (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 16: Official Brand Watermark, Silk Sheen &amp; Zero-Distortion Presentation Mode (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>Sprint 17: Invoicing Atelier Redesign &amp; Trilingual Optimization (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 17: Invoicing Atelier Redesign &amp; Trilingual Optimization (Completed September 2026).</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>Sprint 18: Laser Pointer Stacking Context &amp; Direct Click-Toggle Engine (Completed September 2026)</code><br><small style="color:var(--muted)">docs/HANDOFF.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Sprint 18: Laser Pointer Stacking Context &amp; Direct Click-Toggle Engine (Completed September 2026).</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>docs/HANDOFF.md</code></td><td>45 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x44. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 7. Serving API ====== -->
+<h2 id="serve-api">7. Serving API</h2>
 <p>Serving API groups implementation around server, supabasejs, services, apijs, mostly in server/services/supabase.js, server/routes/api.js. This section covers 24 nodes and 28 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -1719,7 +1970,7 @@ flowchart LR
   <td>22</td>
   <td><code>keepAliveService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td>No direct outbound edge</td>
   <td>keepAliveService node in server/services/supabase.js.</td>
 </tr>
@@ -1757,8 +2008,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 7. Security & Global Graph ====== -->
-<h2 id="security-global">7. Security &amp; Global Graph</h2>
+<!-- ====== 8. Security & Global Graph ====== -->
+<h2 id="security-global">8. Security &amp; Global Graph</h2>
 <p>Security &amp; Global Graph groups implementation around security, agents, skills, vibe, mostly in docs/SECURITY_AUDIT_REPORT.md, vibe-security/references/database-security.md, vibe-security/references/deployment.md. This section covers 82 nodes and 74 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -2101,8 +2352,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 8. Tests & Fixtures ====== -->
-<h2 id="tests-fixtures">8. Tests &amp; Fixtures</h2>
+<!-- ====== 9. Tests & Fixtures ====== -->
+<h2 id="tests-fixtures">9. Tests &amp; Fixtures</h2>
 <p>Tests &amp; Fixtures groups implementation around test, tests, puppeteer, miro, mostly in scripts/test-miro-suite.js, tests/test_presentation_page.js, tests/test_auth_flow.js. This section covers 28 nodes and 27 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -2426,8 +2677,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 9. studio-core.js ====== -->
-<h2 id="studio-core-js">9. studio-core.js</h2>
+<!-- ====== 10. studio-core.js ====== -->
+<h2 id="studio-core-js">10. studio-core.js</h2>
 <p>studio-core.js groups implementation around studio, corejs, public, addcallout, mostly in studio/js/studio-core.js. This section covers 74 nodes and 258 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -2773,8 +3024,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 10. presentation.js ====== -->
-<h2 id="presentation-js">10. presentation.js</h2>
+<!-- ====== 11. presentation.js ====== -->
+<h2 id="presentation-js">11. presentation.js</h2>
 <p>presentation.js groups implementation around presentationjs, public, studio, buildpresentationsequence, mostly in studio/js/presentation.js. This section covers 42 nodes and 93 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -3115,8 +3366,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 11. invoice.js ====== -->
-<h2 id="invoice-js">11. invoice.js</h2>
+<!-- ====== 12. invoice.js ====== -->
+<h2 id="invoice-js">12. invoice.js</h2>
 <p>invoice.js groups implementation around invoicejs, public, addserviceitem, attachinlineeditlisteners, mostly in public/js/invoice.js. This section covers 42 nodes and 129 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -3462,8 +3713,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 12. inspector.js ====== -->
-<h2 id="inspector-js">12. inspector.js</h2>
+<!-- ====== 13. inspector.js ====== -->
+<h2 id="inspector-js">13. inspector.js</h2>
 <p>inspector.js groups implementation around inspectorjs, public, studio, addboxtoframe, mostly in studio/js/inspector.js. This section covers 33 nodes and 86 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -3809,8 +4060,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 13. elements-factory.js ====== -->
-<h2 id="elements-factory-js">13. elements-factory.js</h2>
+<!-- ====== 14. elements-factory.js ====== -->
+<h2 id="elements-factory-js">14. elements-factory.js</h2>
 <p>elements-factory.js groups implementation around elements, factoryjs, public, studio, mostly in studio/js/elements-factory.js. This section covers 33 nodes and 63 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -4149,8 +4400,8 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 14. luxury-effects.js ====== -->
-<h2 id="luxury-effects-js">14. luxury-effects.js</h2>
+<!-- ====== 15. luxury-effects.js ====== -->
+<h2 id="luxury-effects-js">15. luxury-effects.js</h2>
 <p>luxury-effects.js groups implementation around luxury, effectsjs, public, animateparticles, mostly in public/js/luxury-effects.js. This section covers 32 nodes and 75 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
@@ -4495,75 +4746,73 @@ flowchart LR
 </div>
 <hr>
 
-<!-- ====== 15. comments-engine.js ====== -->
-<h2 id="comments-engine-js">15. comments-engine.js</h2>
-<p>comments-engine.js groups implementation around comments, enginejs, public, studio, mostly in studio/js/comments-engine.js. This section covers 30 nodes and 86 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<!-- ====== 16. Other ====== -->
+<h2 id="other">16. Other</h2>
+<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 443 nodes and 681 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: comments-engine.js (30 nodes, 86 edges)
+    %% Section: Other (443 nodes, 681 edges)
+    subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
+        public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_detectlanguage_d4213613("detectLanguage()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_init_509e1b43("init()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e("renderLanguageToggles()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_setlanguage_c0fb6d07("setLanguage()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_applylanguage_757a2a9f("applyLanguage()<br/><small>public/js/i18n.js</small>")
+        public_js_i18n_polishi18n_t_98627983("t()<br/><small>public/js/i18n.js</small>")
+    end
+    subgraph other_studio_js_firebase_config_js_1083d1f9["studio/js/firebase-config.js"]
+        public_studio_js_firebase_config_deleteboard_1dc02471("deleteBoard()<br/><small>studio/js/firebase-config.js</small>")
+        public_studio_js_firebase_config_getauthheaders_838705ea("getAuthHeaders()<br/><small>studio/js/firebase-config.js</small>")
+        public_studio_js_firebase_config_init_114423c3("init()<br/><small>studio/js/firebase-config.js</small>")
+        public_studio_js_firebase_config_notifyauthliste_5ea65e48("_notifyAuthListeners()<br/><small>studio/js/firebase-config.js</small>")
+        public_studio_js_firebase_config_initlocalfallba_501deb4a("_initLocalFallback()<br/><small>studio/js/firebase-config.js</small>")
+    end
+    subgraph other_public_js_presentation_page_js_67cd495b["public/js/presentation-page.js"]
+        public_js_presentation_page_init_cdf60e4b("init()<br/><small>public/js/presentation-page.js</small>")
+        public_js_presentation_page_saveconfigmodal_023a3dce("saveConfigModal()<br/><small>public/js/presentation-page.js</small>")
+    end
+    scripts_generate_brand_pack_buildbrandpack_7048962a("buildBrandPack()<br/><small>scripts/generate-brand-pack.js</small>")
     public_studio_js_comments_engine_bindeventlisten_57dd061e("bindEventListeners()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_toggleresolve_113ae49d("toggleResolve()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_addreply_f4cbd52d("addReply()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_deletecomment_16ac400d("deleteComment()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_savedraftpin_0724dbeb("saveDraftPin()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_init_a6dd48cd("init()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_renderpins_a0dce9cd("renderPins()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_renderexistingp_af08212d("renderExistingPopoverContent()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_updatepopoverpo_8c6be4d9("updatePopoverPosition()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_synclocalandclo_f4eddbe4("syncLocalAndCloudBoard()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_handledroppinat_e8f89ecb("handleDropPinAt()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_togglepindropmo_c1c3d80d("togglePinDropMode()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_canceldraftpin_13ed902f("cancelDraftPin()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_closepopover_36b17b82("closePopover()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_toggletray_f201bd99("toggleTray()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_showclienttoast_cbcbda8e("showClientToast()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_openpopover_2e9c7456("openPopover()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_setupdomcontain_89c9f8f3("setupDOMContainers()<br/><small>studio/js/comments-engine.js</small>")
-    public_studio_js_comments_engine_addreply_f4cbd52d -->|calls| public_studio_js_comments_engine_renderpins_a0dce9cd
-    public_studio_js_comments_engine_addreply_f4cbd52d -->|calls| public_studio_js_comments_engine_renderexistingp_af08212d
-    public_studio_js_comments_engine_addreply_f4cbd52d -->|calls| public_studio_js_comments_engine_updatepopoverpo_8c6be4d9
-    public_studio_js_comments_engine_addreply_f4cbd52d -->|calls| public_studio_js_comments_engine_synclocalandclo_f4eddbe4
-    public_studio_js_comments_engine_bindeventlisten_57dd061e -->|calls| public_studio_js_comments_engine_handledroppinat_e8f89ecb
-    public_studio_js_comments_engine_bindeventlisten_57dd061e -->|calls| public_studio_js_comments_engine_updatepopoverpo_8c6be4d9
-    public_studio_js_comments_engine_bindeventlisten_57dd061e -->|calls| public_studio_js_comments_engine_togglepindropmo_c1c3d80d
-    public_studio_js_comments_engine_bindeventlisten_57dd061e -->|calls| public_studio_js_comments_engine_canceldraftpin_13ed902f
-    public_studio_js_comments_engine_bindeventlisten_57dd061e -->|calls| public_studio_js_comments_engine_closepopover_36b17b82
-    public_studio_js_comments_engine_bindeventlisten_57dd061e -->|calls| public_studio_js_comments_engine_toggletray_f201bd99
-    public_studio_js_comments_engine_canceldraftpin_13ed902f -->|calls| public_studio_js_comments_engine_closepopover_36b17b82
-    public_studio_js_comments_engine_canceldraftpin_13ed902f -->|calls| public_studio_js_comments_engine_renderpins_a0dce9cd
-    public_studio_js_comments_engine_deletecomment_16ac400d -->|calls| public_studio_js_comments_engine_closepopover_36b17b82
-    public_studio_js_comments_engine_deletecomment_16ac400d -->|calls| public_studio_js_comments_engine_renderpins_a0dce9cd
-    public_studio_js_comments_engine_deletecomment_16ac400d -->|calls| public_studio_js_comments_engine_synclocalandclo_f4eddbe4
-    public_studio_js_comments_engine_deletecomment_16ac400d -->|calls| public_studio_js_comments_engine_showclienttoast_cbcbda8e
-    public_studio_js_comments_engine_handledroppinat_e8f89ecb -->|calls| public_studio_js_comments_engine_togglepindropmo_c1c3d80d
-    public_studio_js_comments_engine_handledroppinat_e8f89ecb -->|calls| public_studio_js_comments_engine_renderpins_a0dce9cd
-    public_studio_js_comments_engine_handledroppinat_e8f89ecb -->|calls| public_studio_js_comments_engine_openpopover_2e9c7456
-    public_studio_js_comments_engine_init_a6dd48cd -->|calls| public_studio_js_comments_engine_setupdomcontain_89c9f8f3
-    public_studio_js_comments_engine_init_a6dd48cd -->|calls| public_studio_js_comments_engine_bindeventlisten_57dd061e
-    public_studio_js_comments_engine_openpopover_2e9c7456 -->|calls| public_studio_js_comments_engine_renderexistingp_af08212d
-    public_studio_js_comments_engine_openpopover_2e9c7456 -->|calls| public_studio_js_comments_engine_updatepopoverpo_8c6be4d9
-    public_studio_js_comments_engine_renderpins_a0dce9cd -->|calls| public_studio_js_comments_engine_openpopover_2e9c7456
-    %% Omitted for readability: 12 nodes, 10 edges
+    public_studio_js_studio_ai_init_a56126fc("init()<br/><small>studio/js/studio-ai.js</small>")
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_constructor_34fce30d
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_detectlanguage_d4213613
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_init_509e1b43
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_setlanguage_c0fb6d07
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_applylanguage_757a2a9f
+    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_t_98627983
+    public_studio_js_firebase_config_deleteboard_1dc02471 -->|calls| public_studio_js_firebase_config_getauthheaders_838705ea
+    public_studio_js_firebase_config_init_114423c3 -->|calls| public_studio_js_firebase_config_notifyauthliste_5ea65e48
+    public_studio_js_firebase_config_init_114423c3 -->|calls| public_studio_js_firebase_config_initlocalfallba_501deb4a
+    public_studio_js_firebase_config_initlocalfallba_501deb4a -->|calls| public_studio_js_firebase_config_notifyauthliste_5ea65e48
+    public_js_i18n_polishi18n_constructor_34fce30d -->|calls| public_js_i18n_polishi18n_detectlanguage_d4213613
+    public_js_i18n_polishi18n_constructor_34fce30d -->|calls| public_js_i18n_polishi18n_init_509e1b43
+    public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
+    public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
+    public_js_i18n_polishi18n_setlanguage_c0fb6d07 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
+    %% Omitted for readability: 425 nodes, 0 edges
+    class public_js_i18n_polishi18n_72987c12 klass;
+    class public_js_i18n_polishi18n_constructor_34fce30d function;
+    class public_js_i18n_polishi18n_detectlanguage_d4213613 function;
+    class public_js_i18n_polishi18n_init_509e1b43 function;
+    class public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e function;
+    class public_js_i18n_polishi18n_setlanguage_c0fb6d07 function;
+    class public_js_i18n_polishi18n_applylanguage_757a2a9f function;
+    class public_js_i18n_polishi18n_t_98627983 function;
+    class public_studio_js_firebase_config_deleteboard_1dc02471 function;
+    class public_studio_js_firebase_config_getauthheaders_838705ea function;
+    class public_studio_js_firebase_config_init_114423c3 function;
+    class public_studio_js_firebase_config_notifyauthliste_5ea65e48 function;
+    class public_studio_js_firebase_config_initlocalfallba_501deb4a function;
+    class public_js_presentation_page_init_cdf60e4b function;
+    class public_js_presentation_page_saveconfigmodal_023a3dce function;
+    class scripts_generate_brand_pack_buildbrandpack_7048962a function;
     class public_studio_js_comments_engine_bindeventlisten_57dd061e function;
-    class public_studio_js_comments_engine_toggleresolve_113ae49d function;
-    class public_studio_js_comments_engine_addreply_f4cbd52d function;
-    class public_studio_js_comments_engine_deletecomment_16ac400d function;
-    class public_studio_js_comments_engine_savedraftpin_0724dbeb function;
-    class public_studio_js_comments_engine_init_a6dd48cd function;
-    class public_studio_js_comments_engine_renderpins_a0dce9cd function;
-    class public_studio_js_comments_engine_renderexistingp_af08212d function;
-    class public_studio_js_comments_engine_updatepopoverpo_8c6be4d9 function;
-    class public_studio_js_comments_engine_synclocalandclo_f4eddbe4 function;
-    class public_studio_js_comments_engine_handledroppinat_e8f89ecb function;
-    class public_studio_js_comments_engine_togglepindropmo_c1c3d80d function;
-    class public_studio_js_comments_engine_canceldraftpin_13ed902f function;
-    class public_studio_js_comments_engine_closepopover_36b17b82 function;
-    class public_studio_js_comments_engine_toggletray_f201bd99 function;
-    class public_studio_js_comments_engine_showclienttoast_cbcbda8e entry;
-    class public_studio_js_comments_engine_openpopover_2e9c7456 function;
-    class public_studio_js_comments_engine_setupdomcontain_89c9f8f3 function;
+    class public_studio_js_studio_ai_init_a56126fc function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -4833,363 +5082,18 @@ flowchart LR
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
       <tr><td><code>studio/js/comments-engine.js</code></td><td>30 nodes</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: calls x57, contains x29. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
-  </div>
-</div>
-<hr>
-
-<!-- ====== 16. Other ====== -->
-<h2 id="other">16. Other</h2>
-<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/studio-ai.js, scripts/generate-brand-pack.js, server/index.js. This section covers 413 nodes and 596 internal edges; the diagram shows only representative relationships to stay readable.</p>
-
-<div class="mermaid">
-%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
-flowchart LR
-    %% Section: Other (413 nodes, 596 edges)
-    subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
-        public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_detectlanguage_d4213613("detectLanguage()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_init_509e1b43("init()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e("renderLanguageToggles()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_setlanguage_c0fb6d07("setLanguage()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_applylanguage_757a2a9f("applyLanguage()<br/><small>public/js/i18n.js</small>")
-        public_js_i18n_polishi18n_t_98627983("t()<br/><small>public/js/i18n.js</small>")
-    end
-    subgraph other_studio_js_firebase_config_js_1083d1f9["studio/js/firebase-config.js"]
-        public_studio_js_firebase_config_deleteboard_1dc02471("deleteBoard()<br/><small>studio/js/firebase-config.js</small>")
-        public_studio_js_firebase_config_getauthheaders_838705ea("getAuthHeaders()<br/><small>studio/js/firebase-config.js</small>")
-        public_studio_js_firebase_config_init_114423c3("init()<br/><small>studio/js/firebase-config.js</small>")
-        public_studio_js_firebase_config_notifyauthliste_5ea65e48("_notifyAuthListeners()<br/><small>studio/js/firebase-config.js</small>")
-        public_studio_js_firebase_config_initlocalfallba_501deb4a("_initLocalFallback()<br/><small>studio/js/firebase-config.js</small>")
-    end
-    subgraph other_public_js_presentation_page_js_67cd495b["public/js/presentation-page.js"]
-        public_js_presentation_page_init_cdf60e4b("init()<br/><small>public/js/presentation-page.js</small>")
-        public_js_presentation_page_saveconfigmodal_023a3dce("saveConfigModal()<br/><small>public/js/presentation-page.js</small>")
-    end
-    public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54("initLuxuryScroll()<br/><small>js/effects/luxury-scroll.js</small>")
-    scripts_generate_brand_pack_buildbrandpack_7048962a("buildBrandPack()<br/><small>scripts/generate-brand-pack.js</small>")
-    public_studio_js_studio_ai_init_a56126fc("init()<br/><small>studio/js/studio-ai.js</small>")
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_constructor_34fce30d
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_detectlanguage_d4213613
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_init_509e1b43
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_setlanguage_c0fb6d07
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    public_js_i18n_polishi18n_72987c12 -->|method| public_js_i18n_polishi18n_t_98627983
-    public_studio_js_firebase_config_deleteboard_1dc02471 -->|calls| public_studio_js_firebase_config_getauthheaders_838705ea
-    public_studio_js_firebase_config_init_114423c3 -->|calls| public_studio_js_firebase_config_notifyauthliste_5ea65e48
-    public_studio_js_firebase_config_init_114423c3 -->|calls| public_studio_js_firebase_config_initlocalfallba_501deb4a
-    public_studio_js_firebase_config_initlocalfallba_501deb4a -->|calls| public_studio_js_firebase_config_notifyauthliste_5ea65e48
-    public_js_i18n_polishi18n_constructor_34fce30d -->|calls| public_js_i18n_polishi18n_detectlanguage_d4213613
-    public_js_i18n_polishi18n_constructor_34fce30d -->|calls| public_js_i18n_polishi18n_init_509e1b43
-    public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
-    public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    public_js_i18n_polishi18n_setlanguage_c0fb6d07 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    %% Omitted for readability: 395 nodes, 0 edges
-    class public_js_i18n_polishi18n_72987c12 klass;
-    class public_js_i18n_polishi18n_constructor_34fce30d function;
-    class public_js_i18n_polishi18n_detectlanguage_d4213613 function;
-    class public_js_i18n_polishi18n_init_509e1b43 function;
-    class public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e function;
-    class public_js_i18n_polishi18n_setlanguage_c0fb6d07 function;
-    class public_js_i18n_polishi18n_applylanguage_757a2a9f function;
-    class public_js_i18n_polishi18n_t_98627983 function;
-    class public_studio_js_firebase_config_deleteboard_1dc02471 function;
-    class public_studio_js_firebase_config_getauthheaders_838705ea function;
-    class public_studio_js_firebase_config_init_114423c3 function;
-    class public_studio_js_firebase_config_notifyauthliste_5ea65e48 function;
-    class public_studio_js_firebase_config_initlocalfallba_501deb4a function;
-    class public_js_presentation_page_init_cdf60e4b function;
-    class public_js_presentation_page_saveconfigmodal_023a3dce function;
-    class public_js_effects_luxury_scroll_initluxuryscroll_fa2dae54 function;
-    class scripts_generate_brand_pack_buildbrandpack_7048962a function;
-    class public_studio_js_studio_ai_init_a56126fc function;
-    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
-    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
-    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
-    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
-    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
-    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
-    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
-    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
-    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
-</div>
-
-<h3>Call Details</h3>
-<table class="call-table">
-<tr>
-  <th style="width:5%">#</th>
-  <th style="width:28%">Node</th>
-  <th style="width:10%">Type</th>
-  <th style="width:17%">Caller</th>
-  <th style="width:20%">Callees</th>
-  <th style="width:20%">Description</th>
-</tr>
-<tr>
-  <td>1</td>
-  <td><code>appendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><code>insertCardsToCanvas()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>renderMarkdown()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>appendMessage() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>2</td>
-  <td><code>applyCreatorPersona()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>onTemplateLoaded()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><code>sendPreset()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>applyCreatorPersona() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>3</td>
-  <td><code>applySavedState()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>toggleDock()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>applySavedState() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>4</td>
-  <td><code>auditCurrentBoard()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>auditCurrentBoard() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>5</td>
-  <td><code>clearChat()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>updatePillCardsCount()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>Supports retrieval-augmented Q&amp;A or streaming chat.</td>
-</tr>
-<tr>
-  <td>6</td>
-  <td><code>clearSelectionContext()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>onCanvasSelectionChange()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><code>updateSelectionBadge()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>clearSelectionContext() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>7</td>
-  <td><code>close()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>toggleWindow()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>close() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>8</td>
-  <td><code>getSelectionContext()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>onCanvasSelectionChange()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>open()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>getSelectionContext() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>9</td>
-  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>applyCreatorPersona()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>applySavedState()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>initDraggable()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br>+3 more</td>
-  <td>init() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>10</td>
-  <td><code>initDraggable()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>Supports retrieval-augmented Q&amp;A or streaming chat.</td>
-</tr>
-<tr>
-  <td>11</td>
-  <td><code>injectStrategyFlow()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>insertCardsToCanvas()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>injectStrategyFlow() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>12</td>
-  <td><code>insertCardsToCanvas()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>appendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>injectStrategyFlow()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>insertCardsToCanvas() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>minimize()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>toggleWindow()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>minimize() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>onCanvasSelectionChange()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-async">Async</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>clearSelectionContext()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>getSelectionContext()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>updateSelectionBadge()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>onCanvasSelectionChange() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>onTemplateLoaded()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>applyCreatorPersona()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>onTemplateLoaded() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>16</td>
-  <td><code>open()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>getSelectionContext()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>updateSelectionBadge()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>open() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>17</td>
-  <td><code>removeTypingIndicator()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>removeTypingIndicator() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>18</td>
-  <td><code>renderMarkdown()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>appendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>Exports documentation data to a target format.</td>
-</tr>
-<tr>
-  <td>19</td>
-  <td><code>restore()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-hook">UI</span></td>
-  <td><code>toggleWindow()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>restore() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>20</td>
-  <td><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>auditCurrentBoard()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>init()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>sendPreset()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><code>appendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>getSelectionContext()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>removeTypingIndicator()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br>+3 more</td>
-  <td>sendMessage() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>21</td>
-  <td><code>sendPreset()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>applyCreatorPersona()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>sendPreset() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>22</td>
-  <td><code>setSendButtonState()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>setSendButtonState() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>23</td>
-  <td><code>showTypingIndicator()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>showTypingIndicator() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>24</td>
-  <td><code>toggleDock()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>applySavedState()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>toggleDock() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>25</td>
-  <td><code>toggleDrawer()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>toggleWindow()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>toggleDrawer() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>26</td>
-  <td><code>toggleWindow()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>init()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>toggleDrawer()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><code>close()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>minimize()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>restore()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>toggleWindow() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>27</td>
-  <td><code>updatePillCardsCount()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>clearChat()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>sendMessage()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>updatePillCardsCount() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>28</td>
-  <td><code>updateSelectionBadge()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>clearSelectionContext()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>onCanvasSelectionChange()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small><br><code>open()</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>updateSelectionBadge() node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>29</td>
-  <td><code>studio-ai.js</code><br><small style="color:var(--muted)">studio/js/studio-ai.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>studio-ai.js node in studio/js/studio-ai.js.</td>
-</tr>
-<tr>
-  <td>30</td>
-  <td><code>buildBrandPack()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>createHorizontalLogoSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br><code>createInstagramAvatarSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br><code>createLinkedInBannerSvg()</code><br><small style="color:var(--muted)">scripts/generate-brand-pack.js</small><br>+7 more</td>
-  <td>buildBrandPack() node in scripts/generate-brand-pack.js.</td>
-</tr>
-</table>
-
-<div class="grid">
-  <div class="card">
-    <h4>Key Files</h4>
-    <table style="width:100%;font-size:0.85rem;">
-      <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>studio/js/studio-ai.js</code></td><td>29 nodes</td></tr>
+<tr><td><code>studio/js/studio-ai.js</code></td><td>29 nodes</td></tr>
 <tr><td><code>scripts/generate-brand-pack.js</code></td><td>24 nodes</td></tr>
 <tr><td><code>server/index.js</code></td><td>19 nodes</td></tr>
 <tr><td><code>HANDOFF_EMAN_AL_KATHEERI.md</code></td><td>18 nodes</td></tr>
 <tr><td><code>docs/brand-guidelines.md</code></td><td>17 nodes</td></tr>
 <tr><td><code>brand-pack/06_guidelines/POLISH_BRAND_GUIDELINES.md</code></td><td>17 nodes</td></tr>
 <tr><td><code>public/js/presentation-page.js</code></td><td>17 nodes</td></tr>
-<tr><td><code>scripts/generate-logo-concepts.js</code></td><td>17 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x346, calls x204, indirect call x27, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x375, calls x261, indirect call x27, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -5200,8 +5104,8 @@ flowchart LR
   <div class="card">
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>Nodes</td><td>1054</td></tr>
-      <tr><td>Edges</td><td>1755</td></tr>
+      <tr><td>Nodes</td><td>1055</td></tr>
+      <tr><td>Edges</td><td>1754</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
       <tr><td>Communities</td><td>81</td></tr>
       <tr><td>Documented Sections</td><td>15</td></tr>
@@ -5210,7 +5114,7 @@ flowchart LR
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>1705</td></tr>
+      <tr><td>EXTRACTED</td><td>1704</td></tr>
       <tr><td>INFERRED</td><td>50</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
@@ -5219,7 +5123,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>polishmedia — Architecture Documentation</p>
-  <p>Generated: 2026-09-13 17:01 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 17:03 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

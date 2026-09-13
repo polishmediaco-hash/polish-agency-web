@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 97 files · ~731,088 words
+- 85 files · ~900,681 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1098 nodes · 1796 edges · 78 communities (70 shown, 6 thin omitted)
+- 998 nodes · 1710 edges · 74 communities (65 shown, 7 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fcfc505f`
+- Built from commit: `887ec014`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -46,37 +46,34 @@
 - presentation-page.js
 - 4. Prioritized Refactoring Recommendations
 - 6. Next Priority Roadmap (Ready for Next Conversation)
-- OWASP Top 10 — Audit Checklist
+- 3. OWASP Top 10 Audit Protocol
 - 3. The 8-Zone Strategic Architecture
 - POLISH Media Co. — Official Brand Guidelines & Standards Book (v2.0)
 - POLISH Media Co. — Official Brand Guidelines & Standards Book (v2.0)
-- 1. The Direct-Response Beauty Audit Heuristic
-- 🔍 Core Audit Dimensions
-- POLISH Luxury Beauty & Architectural UI Design Skill
+- test_presentation_page.js
+- capture_presentation_views.js
+- POLISH Luxury Beauty Design System & UI Architecture
 - POLISH Media Co. — Typography Hierarchy & Specifications
 - POLISH Media Agency — Web & Lead Engine (`polishmediaco.com`)
-- Core Pillars of High-Converting Luxury Copy & Funnels
+- test-miro-suite.js
 - 🛠️ Automated Execution Workflow
-- Database Security
-- Deployment Security
-- Award-Winning Luxury Cards: Architectural & Design Guide
+- puppeteer
+- test-liquid-browser.js
+- test_mobile_phone_app.js
 - Luxury Design Critic Rubric (Awwwards & Haute Parfumerie Standards)
-- Luxury Web UI Master Skill
-- Authentication & Authorization
-- Data Access & Input Validation
-- Rate Limiting & Abuse Prevention
+- test-scroll-views.js
+- test_auth_flow.js
+- test_logo_render.js
+- test_sequencer_e2e.js
 - POLISH Media Co — Agent Guidelines & Context
 - Clean Code & Production Performance Optimization Skill
-- AI / LLM Integration Security
-- Secrets & Environment Variables
-- Luxury Beauty Direct-Response Copywriting Framework
-- vibe-security/SKILL.md
+- 2. The Direct-Response Beauty Audit Gates
 - POLISH Media Co. — Official Social Media Profile Picture Suite (2026 Specifications)
 - rules/graphify.md
 - workflows/graphify.md
 - supabase-config.js
 - calendlySync.js
-- puppeteer
+- capture-live-views.js
 - auth.js
 - seed-supabase.js
 - templates-vault.js
@@ -89,7 +86,6 @@
 - kinetic-typography.js
 - invoice.js
 - POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
-- Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)
 - Zero-Fluff & Anti-Filler Rule
 
 ## God Nodes (most connected - your core abstractions)
@@ -111,7 +107,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (78 total, 6 thin omitted)
+## Communities (74 total, 7 thin omitted)
 
 ### Community 0 - "studio-core.js"
 Cohesion: 0.10
@@ -229,9 +225,9 @@ Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects
 Cohesion: 0.04
 Nodes (48): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+40 more)
 
-### Community 32 - "OWASP Top 10 — Audit Checklist"
-Cohesion: 0.11
-Nodes (18): A01: Broken Access Control (Most Critical), A02: Cryptographic Failures, A03: Injection, A04: Insecure Design, A05: Security Misconfiguration, A06: Vulnerable & Outdated Components, A07: Identification & Authentication Failures, A08: Software & Data Integrity Failures (+10 more)
+### Community 32 - "3. OWASP Top 10 Audit Protocol"
+Cohesion: 0.20
+Nodes (9): 1. The Core Security Mandate, 2. POLISH Media Co Threat Surface & Mitigations, 3. OWASP Top 10 Audit Protocol, 4. Express Hardening Blueprint, A01: Broken Access Control, A02: Security Headers & Transport Encryption, A03: Input Validation & Injection Defense, A04: Atomic File Storage & Race Condition Defense (+1 more)
 
 ### Community 33 - "3. The 8-Zone Strategic Architecture"
 Cohesion: 0.11
@@ -245,17 +241,17 @@ Nodes (16): 1. Brand Essence & Strategic Positioning, 2. Logo System & Architect
 Cohesion: 0.12
 Nodes (16): 1. Brand Essence & Strategic Positioning, 2. Logo System & Architecture, 3. Color Hierarchy & Specifications, 4. Typography Rules & Hierarchy, 5. Trilingual Code of Excellence, 6. Asset Directory Inventory, Arabic (Gulf Prestige & Private Office Voice), Brand Archetype: The Elite Cosmetic Architect (+8 more)
 
-### Community 36 - "1. The Direct-Response Beauty Audit Heuristic"
-Cohesion: 0.20
-Nodes (9): 1. The Direct-Response Beauty Audit Heuristic, 2. Copy Review Matrix & Redlines, 3. Execution Protocol, Bilingual Copywriting & Funnel Building Critic (EN / FR), Gate A: The 3-Second Founder Value Test, Gate B: The Agitation & Diagnosis Gate (The "Mirror" Test), Gate C: The Proprietary Growth Engine (Mechanism of Action), Gate D: The Funnel Friction & Momentum Equation (+1 more)
+### Community 36 - "test_presentation_page.js"
+Cohesion: 0.33
+Nodes (6): apiRequest(), fs, http, path, puppeteer, runTest()
 
-### Community 37 - "🔍 Core Audit Dimensions"
-Cohesion: 0.20
-Nodes (9): 1. Spatial Rhythm, Layout & Proportions, 2. Typography & Text Hierarchy, 3. Color, Lighting & Glassmorphism, 4. Background 3D Cosmetic Ecosystem, 5. Header & Navigation Architecture, 6. Interactive Forms & Conversion Flows, 🔍 Core Audit Dimensions, 🎯 Purpose (+1 more)
+### Community 37 - "capture_presentation_views.js"
+Cohesion: 0.33
+Nodes (4): fs, path, puppeteer, VIEWPORTS
 
-### Community 38 - "POLISH Luxury Beauty & Architectural UI Design Skill"
+### Community 38 - "POLISH Luxury Beauty Design System & UI Architecture"
 Cohesion: 0.22
-Nodes (8): 1. Core Directives & Non-Negotiable Guardrails, 🔒 1. Preserve Code Architecture & State, 2. Multi-Language & RTL Standards (EN / FR / AR), 🎨 2. The Luxury Glassmorphic Design System, 3. Editorial Typography & Visual Hierarchy, 4. Fluid Multi-View Viewport Standards, 5. Execution Workflow for Optimization Tasks, POLISH Luxury Beauty & Architectural UI Design Skill
+Nodes (8): 1. Master Brand Tokens & Color Palette, 2. Award-Winning Luxury Cards & Glassmorphism, 3. Phone-Native Mobile Ergonomics (Screens <= 768px), 4. Trilingual & RTL Architecture (EN / FR / AR), 5. Visual Audit & Inspection Checklist, A. Dynamic Cursor Spotlight (RAF-Throttled Tracking), B. JavaScript Cursor Tracking Implementation, POLISH Luxury Beauty Design System & UI Architecture
 
 ### Community 39 - "POLISH Media Co. — Typography Hierarchy & Specifications"
 Cohesion: 0.22
@@ -265,45 +261,41 @@ Nodes (8): 1. Font Families, 2. Typographic Scale & Cadence, 3. Tabular Numerals
 Cohesion: 0.22
 Nodes (8): 1. Install & Run Locally, 🌐 Deploying to `polishmediaco.com`, ⚡ Key Capabilities & Architecture, Option A: Railway / Render / DigitalOcean (Recommended), Option B: VPS (Ubuntu with PM2 & NGINX), POLISH Media Agency — Web & Lead Engine (`polishmediaco.com`), 🚀 Quickstart, 💬 WhatsApp Customization
 
-### Community 41 - "Core Pillars of High-Converting Luxury Copy & Funnels"
-Cohesion: 0.25
-Nodes (7): 1. The Ruthless Fluff Elimination Test, 2. Cognitive Load & Scanning Architecture, 3. Funnel Flow & Friction Reduction, 4. Bilingual Precision (EN & FR), Audit Checklist, Copywriting & Funnel Building Critic Skill, Core Pillars of High-Converting Luxury Copy & Funnels
+### Community 41 - "test-miro-suite.js"
+Cohesion: 0.33
+Nodes (5): fs, http, path, puppeteer, runMiroSuite()
 
 ### Community 42 - "🛠️ Automated Execution Workflow"
 Cohesion: 0.25
 Nodes (7): 🛠️ Automated Execution Workflow, 📋 Critique Output Format, Live Visual Design Critic & Multi-Viewport Audit Skill, 🎯 Purpose, Step 1: Run the Visual Capture Engine, Step 2: Inspect Generated Visual Evidence, Step 3: Conduct Structured Visual Design Critique
 
-### Community 43 - "Database Security"
-Cohesion: 0.25
-Nodes (7): Atomic Write Pattern (Immediate Fix), Database Security, File-Based JSON Storage (POLISH Media Current State), Firebase Security Rules, Known Risks, Migration Recommendation, Sensitive Data in Boards
+### Community 43 - "puppeteer"
+Cohesion: 0.40
+Nodes (4): puppeteer, fs, path, puppeteer
 
-### Community 44 - "Deployment Security"
-Cohesion: 0.25
-Nodes (7): CORS Configuration, Deployment Security, Environment Separation (Vercel), HTTPS Enforcement, Production Configuration, Security Headers, Sensitive Files Exposed to Public
+### Community 44 - "test-liquid-browser.js"
+Cohesion: 0.40
+Nodes (3): fs, path, puppeteer
 
-### Community 45 - "Award-Winning Luxury Cards: Architectural & Design Guide"
-Cohesion: 0.29
-Nodes (6): 1. The 5 Pillars of Award-Winning Cards, 2. Technical Implementation Architecture, 3. Mobile Phone-Native Rules, A. CSS Custom Property Setup, Award-Winning Luxury Cards: Architectural & Design Guide, B. Ultra-Performant Spotlight Mouse Tracking (RAF Throttle)
+### Community 45 - "test_mobile_phone_app.js"
+Cohesion: 0.40
+Nodes (3): fs, path, puppeteer
 
 ### Community 46 - "Luxury Design Critic Rubric (Awwwards & Haute Parfumerie Standards)"
 Cohesion: 0.29
 Nodes (6): 1. Spatial Rhythm & Monolith Presence (Weight: 20%), 2. Haute Luxury Typography (Weight: 25%), 3. Glassmorphism & Caustic Depth (Weight: 20%), 4. Conversion Architecture & Ergonomics (Weight: 20%), 5. Multilingual Polish (Weight: 15%), Luxury Design Critic Rubric (Awwwards & Haute Parfumerie Standards)
 
-### Community 47 - "Luxury Web UI Master Skill"
-Cohesion: 0.29
-Nodes (6): 1.1 Smoked Obsidian Canvas & Specular Bevels, 1. Core Visual Principles, 2.1 Physics & Movement Guidelines, 2. 3D Liquid Chrome & Caustic Background Engine, 3. High-Ticket B2B Ergonomics, Luxury Web UI Master Skill
+### Community 48 - "test_auth_flow.js"
+Cohesion: 0.50
+Nodes (3): fs, path, puppeteer
 
-### Community 48 - "Authentication & Authorization"
-Cohesion: 0.29
-Nodes (6): Admin Routes Without Server-Side Auth, Authentication & Authorization, Firebase Authentication Server-Side Verification, JWT Handling, Middleware Is Not Enough (Express), Static Admin Keys
+### Community 49 - "test_logo_render.js"
+Cohesion: 0.50
+Nodes (3): fs, path, puppeteer
 
-### Community 49 - "Data Access & Input Validation"
-Cohesion: 0.29
-Nodes (6): Data Access & Input Validation, File Upload Security, Input Validation for Express APIs, JSON File Storage Race Conditions (POLISH Media Specific), SQL Injection (If Using Raw Queries), XSS Prevention
-
-### Community 50 - "Rate Limiting & Abuse Prevention"
-Cohesion: 0.29
-Nodes (6): Combine Per-IP and Per-User Limiting, Current Issues in POLISH Media Stack, Don't Trust Client-Submitted Counters, Express Rate Limiting with express-rate-limit, Rate Limiting & Abuse Prevention, Where Rate Limiting Is Required
+### Community 50 - "test_sequencer_e2e.js"
+Cohesion: 0.50
+Nodes (3): fs, path, puppeteer
 
 ### Community 51 - "POLISH Media Co — Agent Guidelines & Context"
 Cohesion: 0.33
@@ -313,21 +305,9 @@ Nodes (5): Key Files, POLISH Media Co — Agent Guidelines & Context, Project Ov
 Cohesion: 0.33
 Nodes (5): 1. Static Code Cleanup Protocol, 2. Runtime & Rendering Performance Optimization, 3. Automated Performance Verification Checklist, 4. Production Deployment Verification, Clean Code & Production Performance Optimization Skill
 
-### Community 53 - "AI / LLM Integration Security"
-Cohesion: 0.33
-Nodes (5): AI / LLM Integration Security, API Keys Are Server-Side Only, Prompt Injection, Spending Caps, Third-Party API Credential Security (POLISH Media Specific)
-
-### Community 54 - "Secrets & Environment Variables"
-Cohesion: 0.33
-Nodes (5): API Key Exposure via Endpoints, Client-Side Environment Variable Prefixes, .env File Hygiene, Hardcoded Credentials, Secrets & Environment Variables
-
-### Community 55 - "Luxury Beauty Direct-Response Copywriting Framework"
-Cohesion: 0.40
-Nodes (4): 🎯 Core Philosophy: Humanized Authority over AI Slop, Luxury Beauty Direct-Response Copywriting Framework, 💎 The 4 Tenets of POLISH Voice & Tone, 🚫 The Banned "AI Slop" Vocabulary & Patterns:
-
-### Community 56 - "vibe-security/SKILL.md"
-Cohesion: 0.40
-Nodes (4): Audit Process, For the POLISH Media Co Stack (Node.js + Express + Firebase), Output Format, The Core Principle
+### Community 55 - "2. The Direct-Response Beauty Audit Gates"
+Cohesion: 0.18
+Nodes (10): 1. Core Philosophy: Humanized Authority over AI Slop, 2. The Direct-Response Beauty Audit Gates, 3. Trilingual Precision Matrix (EN / FR / AR), Gate A: The 3-Second Founder Value Test, Gate B: The Agitation & Mirror Test, Gate C: The 4-Pillar Growth Engine (Mechanism of Action), Gate D: Funnel Friction & Momentum Equation, POLISH Luxury Beauty Copywriting & Funnel Architecture (+2 more)
 
 ### Community 57 - "POLISH Media Co. — Official Social Media Profile Picture Suite (2026 Specifications)"
 Cohesion: 0.40
@@ -341,9 +321,9 @@ Nodes (12): _formatUser(), getAuthHeaders(), getBoard(), getIdToken(), init(), l
 Cohesion: 0.23
 Nodes (13): checkNewCalendlyMeetings(), fs, initNotifiedCache(), notifiedEventUris, { notifyNewMeeting }, path, startCalendlyPoller(), escapeTg() (+5 more)
 
-### Community 62 - "puppeteer"
-Cohesion: 0.04
-Nodes (36): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, fs, path (+28 more)
+### Community 62 - "capture-live-views.js"
+Cohesion: 0.29
+Nodes (5): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer
 
 ### Community 64 - "auth.js"
 Cohesion: 0.31
@@ -385,30 +365,26 @@ Nodes (41): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), cle
 Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
-### Community 81 - "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)"
-Cohesion: 0.20
-Nodes (9): 1. The Core Rule, 2. Banned Words, Tropes & Theatrical Fluff, 3. The Operator Copy Standard, 4. Rules for Critiques & Reviews, 5. Pre-Response Filter (Apply Before Every Output), 🚫 The AI Buzzword & Throat-Clearing Blacklist, 🚫 The Theatrical Luxury Fluff Blacklist (NEVER USE), 🚫 The Theatrical UI Label Blacklist (From Real Code Audits) (+1 more)
-
 ### Community 82 - "Zero-Fluff & Anti-Filler Rule"
 Cohesion: 0.33
 Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy Standard, 4. Output Structure, Zero-Fluff & Anti-Filler Rule
 
 ## Knowledge Gaps
-- **388 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+383 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 474 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **317 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+312 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 392 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`?**
-  _High betweenness centrality (0.016) - this node is a cross-community bridge._
+- **Why does `puppeteer` connect `puppeteer` to `test_presentation_page.js`, `capture_presentation_views.js`, `generate-social-avatars.js`, `package.json`, `test-miro-suite.js`, `test-liquid-browser.js`, `test_mobile_phone_app.js`, `test-scroll-views.js`, `test_auth_flow.js`, `test_logo_render.js`, `test_sequencer_e2e.js`, `capture-live-views.js`?**
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `supabase.js`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `supabase.js`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _388 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _317 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

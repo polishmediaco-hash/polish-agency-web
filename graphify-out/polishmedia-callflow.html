@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>polishmedia — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 1098 nodes, 1796 edges, 78 communities. Commit: fcfc505</p>
+<p class="subtitle">Generated from graphify knowledge graph: 998 nodes, 1710 edges, 74 communities. Commit: 887ec01</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -94,15 +94,15 @@ flowchart LR
     class ANALYSIS_CLUSTERING_C79796DA module;
     OUTPUTS_DOCS_ED82387C("Outputs &amp; Docs<br/><small>19 nodes</small>")
     class OUTPUTS_DOCS_ED82387C module;
-    CLI_SKILLS_9964CBB8("CLI &amp; Skill Installers<br/><small>110 nodes</small>")
+    CLI_SKILLS_9964CBB8("CLI &amp; Skill Installers<br/><small>40 nodes</small>")
     class CLI_SKILLS_9964CBB8 module;
     INGEST_CACHE_UPDATE_FF457338("Ingestion &amp; Updates<br/><small>49 nodes</small>")
     class INGEST_CACHE_UPDATE_FF457338 module;
     SERVE_API_35EC8E86("Serving API<br/><small>30 nodes</small>")
     class SERVE_API_35EC8E86 module;
-    SECURITY_GLOBAL_5B9C6A04("Security &amp; Global Graph<br/><small>82 nodes</small>")
+    SECURITY_GLOBAL_5B9C6A04("Security &amp; Global Graph<br/><small>43 nodes</small>")
     class SECURITY_GLOBAL_5B9C6A04 module;
-    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>48 nodes</small>")
+    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>44 nodes</small>")
     class TESTS_FIXTURES_B84B1DCC module;
     STUDIO_CORE_JS_962D5B3D("studio-core.js<br/><small>74 nodes</small>")
     class STUDIO_CORE_JS_962D5B3D module;
@@ -116,15 +116,15 @@ flowchart LR
     class ELEMENTS_FACTORY_JS_7A50F465 module;
     LUXURY_EFFECTS_JS_FB489F07("luxury-effects.js<br/><small>32 nodes</small>")
     class LUXURY_EFFECTS_JS_FB489F07 module;
-    OTHER_D0941E68("Other<br/><small>446 nodes</small>")
+    OTHER_D0941E68("Other<br/><small>459 nodes</small>")
     class OTHER_D0941E68 module;
     SERVE_API_35EC8E86 -->|imports x10| OTHER_D0941E68
     OTHER_D0941E68 -->|imports x5| SERVE_API_35EC8E86
     OTHER_D0941E68 -->|imports x4| BUILD_GRAPH_321CBB04
+    OTHER_D0941E68 -->|imports x3| TESTS_FIXTURES_B84B1DCC
     BUILD_GRAPH_321CBB04 -->|imports x2| OTHER_D0941E68
     TESTS_FIXTURES_B84B1DCC -->|imports| OTHER_D0941E68
     BUILD_GRAPH_321CBB04 -->|imports| TESTS_FIXTURES_B84B1DCC
-    OTHER_D0941E68 -->|imports| TESTS_FIXTURES_B84B1DCC
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -141,7 +141,7 @@ flowchart LR
     <h4>Architecture Layers</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
-      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>19</td><td><code>15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>110</td><td><code>32, 36, 37, 81, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>49</td><td><code>31</code></td></tr><tr><td>Serving API</td><td>30</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>48</td><td><code>62</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>Other</td><td>446</td><td><code>3, 5, 6, 11, 28, 33, 34, 35, 8, 9, 2, 12, 61, 60, 68, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 70, 76, 24, 65, 71, 72, 82, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
+      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>19</td><td><code>15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>40</td><td><code>55, 38, 42, 51, 52</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>49</td><td><code>31</code></td></tr><tr><td>Serving API</td><td>30</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>43</td><td><code>13, 32</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>44</td><td><code>36, 41, 43, 44, 45, 47, 48, 49, 50</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>Other</td><td>459</td><td><code>3, 5, 6, 11, 28, 33, 34, 35, 8, 9, 2, 12, 61, 60, 68, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 62, 70, 76, 24, 37, 65, 71, 72, 82, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
     </table>
   </div>
   <div class="card">
@@ -153,7 +153,7 @@ flowchart LR
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>1098 nodes · 1796 edges · 78 communities (70 shown, 6 thin omitted)</li>
+      <li>998 nodes · 1710 edges · 74 communities (65 shown, 7 thin omitted)</li>
       <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `triggerAutoSave()` - 45 edges</li>
@@ -1036,67 +1036,72 @@ flowchart LR
 
 <!-- ====== 5. CLI & Skill Installers ====== -->
 <h2 id="cli-skills">5. CLI &amp; Skill Installers</h2>
-<p>CLI &amp; Skill Installers groups implementation around skillmd, agents, skills, critic, mostly in skills/cybersecurity-web/SKILL.md, skills/bilingual-copywriting-funnel-critic/SKILL.md, skills/design-critic/SKILL.md. This section covers 110 nodes and 97 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>CLI &amp; Skill Installers groups implementation around skillmd, agents, skills, luxury, mostly in skills/luxury-beauty-copywriting/SKILL.md, skills/luxury-beauty-design-system/SKILL.md, skills/live-visual-design-critic/SKILL.md. This section covers 40 nodes and 35 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: CLI &amp; Skill Installers (110 nodes, 97 edges)
-    subgraph cli_skills_skills_award_winning_luxury_cards_SKI_931ccc1c["skills/award-winning-luxury-cards/SKILL.md"]
-        agents_skills_award_winning_luxury_cards_skill_a_d55022d3("Award-Winning Luxury Cards: Architectur...<br/><small>skills/award-winning-luxury-cards/SKILL.md</small>")
-        agents_skills_award_winning_luxury_cards_skill_2_3f3775c6("2. Technical Implementation Architecture<br/><small>skills/award-winning-luxury-cards/SKILL.md</small>")
+    %% Section: CLI &amp; Skill Installers (40 nodes, 35 edges)
+    subgraph cli_skills_AGENTS_md_c2f84881["AGENTS.md"]
+        agents_polish_media_co_agent_guidelines_context_7e6c9035("POLISH Media Co — Agent Guidelines &amp; Co...<br/><small>AGENTS.md</small>")
+        agents_e7052aeb("AGENTS.md")
+        agents_key_files_4e865f7b("Key Files<br/><small>AGENTS.md</small>")
+        agents_project_overview_f947947e("Project Overview<br/><small>AGENTS.md</small>")
+        agents_tech_stack_architecture_c72da435("Tech Stack &amp; Architecture<br/><small>AGENTS.md</small>")
+        agents_workflow_rules_for_agents_ecaa6c92("Workflow Rules for Agents<br/><small>AGENTS.md</small>")
     end
-    subgraph cli_skills_skills_bilingual_copywriting_funnel_c_0400d158["skills/bilingual-copywriting-funnel-critic/SKILL.md"]
-        agents_skills_bilingual_copywriting_funnel_criti_5d7f63ed("1. The Direct-Response Beauty Audit Heu...<br/><small>skills/bilingual-copywriting-funnel-critic/SKILL.md</small>")
-        agents_skills_bilingual_copywriting_funnel_criti_62675102("Bilingual Copywriting &amp; Funnel Building...<br/><small>skills/bilingual-copywriting-funnel-critic/SKILL.md</small>")
+    subgraph cli_skills_skills_clean_code_and_performance_opt_2aef8aeb["skills/clean-code-and-performance-optimizer/SKILL.md"]
+        agents_skills_clean_code_and_performance_optimiz_6f6f1cbe("Clean Code &amp; Production Performance Opt...<br/><small>skills/clean-code-and-performance-optimizer/SKILL.md</small>")
+        agents_skills_clean_code_and_performance_optimiz_05df44c3("1. Static Code Cleanup Protocol<br/><small>skills/clean-code-and-performance-optimizer/SKILL.md</small>")
+        agents_skills_clean_code_and_performance_optimiz_50277ce5("2. Runtime &amp; Rendering Performance Opti...<br/><small>skills/clean-code-and-performance-optimizer/SKILL.md</small>")
+        agents_skills_clean_code_and_performance_optimiz_aaa44108("3. Automated Performance Verification C...<br/><small>skills/clean-code-and-performance-optimizer/SKILL.md</small>")
     end
-    subgraph cli_skills_skills_copywriting_and_funnel_critic_f049f9ed["skills/copywriting-and-funnel-critic/SKILL.md"]
-        agents_skills_copywriting_and_funnel_critic_skil_4268cb07("Core Pillars of High-Converting Luxury...<br/><small>skills/copywriting-and-funnel-critic/SKILL.md</small>")
-        agents_skills_copywriting_and_funnel_critic_skil_0c4df4ea("Copywriting &amp; Funnel Building Critic Skill<br/><small>skills/copywriting-and-funnel-critic/SKILL.md</small>")
-    end
-    subgraph cli_skills_skills_cybersecurity_web_SKILL_md_87a667ca["skills/cybersecurity-web/SKILL.md"]
-        agents_skills_cybersecurity_web_skill_owasp_top_b3d9dba9("OWASP Top 10 — Audit Checklist<br/><small>skills/cybersecurity-web/SKILL.md</small>")
-        agents_skills_cybersecurity_web_skill_cybersecur_8d3129f7("Cybersecurity — Web Application Security<br/><small>skills/cybersecurity-web/SKILL.md</small>")
+    subgraph cli_skills_skills_luxury_beauty_copywriting_SKIL_3d88c431["skills/luxury-beauty-copywriting/SKILL.md"]
+        agents_skills_luxury_beauty_copywriting_skill_2_df5741df("2. The Direct-Response Beauty Audit Gates<br/><small>skills/luxury-beauty-copywriting/SKILL.md</small>")
+        agents_skills_luxury_beauty_copywriting_skill_po_9e9ae3db("POLISH Luxury Beauty Copywriting &amp; Funn...<br/><small>skills/luxury-beauty-copywriting/SKILL.md</small>")
+        agents_skills_luxury_beauty_copywriting_skill_1_949d3581("1. Core Philosophy: Humanized Authority...<br/><small>skills/luxury-beauty-copywriting/SKILL.md</small>")
+        agents_skills_luxury_beauty_copywriting_skill_3_11ce09e0("3. Trilingual Precision Matrix (EN / FR...<br/><small>skills/luxury-beauty-copywriting/SKILL.md</small>")
     end
     subgraph cli_skills_skills_live_visual_design_critic_SKIL_a3a23d89["skills/live-visual-design-critic/SKILL.md"]
-        agents_skills_live_visual_design_critic_skill_li_21b8a210("Live Visual Design Critic &amp; Multi-Viewp...<br/><small>skills/live-visual-design-critic/SKILL.md</small>")
         agents_skills_live_visual_design_critic_skill_au_b57f0b9f("🛠️ Automated Execution Workflow<br/><small>skills/live-visual-design-critic/SKILL.md</small>")
+        agents_skills_live_visual_design_critic_skill_li_21b8a210("Live Visual Design Critic &amp; Multi-Viewp...<br/><small>skills/live-visual-design-critic/SKILL.md</small>")
     end
-    subgraph cli_skills_skills_zero_fluff_operator_SKILL_md_91fd259a["skills/zero-fluff-operator/SKILL.md"]
-        agents_skills_zero_fluff_operator_skill_zero_flu_d38d4cc3("Zero-Fluff Operator Standard (Anti-Fill...<br/><small>skills/zero-fluff-operator/SKILL.md</small>")
-        agents_skills_zero_fluff_operator_skill_2_banned_741b0bae("2. Banned Words, Tropes &amp; Theatrical Fluff<br/><small>skills/zero-fluff-operator/SKILL.md</small>")
+    subgraph cli_skills_skills_luxury_beauty_design_system_SK_39d94675["skills/luxury-beauty-design-system/SKILL.md"]
+        agents_skills_luxury_beauty_design_system_skill_786eed6a("POLISH Luxury Beauty Design System &amp; UI...<br/><small>skills/luxury-beauty-design-system/SKILL.md</small>")
+        agents_skills_luxury_beauty_design_system_skill_027a49d6("2. Award-Winning Luxury Cards &amp; Glassmo...<br/><small>skills/luxury-beauty-design-system/SKILL.md</small>")
     end
-    agents_polish_media_co_agent_guidelines_context_7e6c9035("POLISH Media Co — Agent Guidelines &amp; Co...<br/><small>AGENTS.md</small>")
-    agents_skills_clean_code_and_performance_optimiz_6f6f1cbe("Clean Code &amp; Production Performance Opt...<br/><small>skills/clean-code-and-performance-optimizer/SKILL.md</small>")
-    agents_skills_design_critic_skill_core_audit_dim_2653b46a("🔍 Core Audit Dimensions<br/><small>skills/design-critic/SKILL.md</small>")
-    agents_skills_luxury_beauty_design_system_skill_a517218a("POLISH Luxury Beauty &amp; Architectural UI...<br/><small>skills/luxury-beauty-design-system/SKILL.md</small>")
-    agents_skills_luxury_web_ui_master_skill_luxury_5cfe6386("Luxury Web UI Master Skill<br/><small>skills/luxury-web-ui-master/SKILL.md</small>")
-    agents_skills_vibe_security_skill_07c12ecc("vibe-security/SKILL.md")
-    agents_skills_cybersecurity_web_skill_cybersecur_8d3129f7 -->|contains| agents_skills_cybersecurity_web_skill_owasp_top_b3d9dba9
-    agents_skills_bilingual_copywriting_funnel_criti_62675102 -->|contains| agents_skills_bilingual_copywriting_funnel_criti_5d7f63ed
-    agents_skills_copywriting_and_funnel_critic_skil_0c4df4ea -->|contains| agents_skills_copywriting_and_funnel_critic_skil_4268cb07
+    agents_skills_luxury_beauty_design_system_skill_786eed6a -->|contains| agents_skills_luxury_beauty_design_system_skill_027a49d6
     agents_skills_live_visual_design_critic_skill_li_21b8a210 -->|contains| agents_skills_live_visual_design_critic_skill_au_b57f0b9f
-    agents_skills_award_winning_luxury_cards_skill_a_d55022d3 -->|contains| agents_skills_award_winning_luxury_cards_skill_2_3f3775c6
-    agents_skills_zero_fluff_operator_skill_zero_flu_d38d4cc3 -->|contains| agents_skills_zero_fluff_operator_skill_2_banned_741b0bae
-    %% Omitted for readability: 92 nodes, 0 edges
-    class agents_skills_award_winning_luxury_cards_skill_a_d55022d3 concept;
-    class agents_skills_award_winning_luxury_cards_skill_2_3f3775c6 concept;
-    class agents_skills_bilingual_copywriting_funnel_criti_5d7f63ed concept;
-    class agents_skills_bilingual_copywriting_funnel_criti_62675102 concept;
-    class agents_skills_copywriting_and_funnel_critic_skil_4268cb07 concept;
-    class agents_skills_copywriting_and_funnel_critic_skil_0c4df4ea concept;
-    class agents_skills_cybersecurity_web_skill_owasp_top_b3d9dba9 concept;
-    class agents_skills_cybersecurity_web_skill_cybersecur_8d3129f7 concept;
-    class agents_skills_live_visual_design_critic_skill_li_21b8a210 concept;
-    class agents_skills_live_visual_design_critic_skill_au_b57f0b9f concept;
-    class agents_skills_zero_fluff_operator_skill_zero_flu_d38d4cc3 concept;
-    class agents_skills_zero_fluff_operator_skill_2_banned_741b0bae concept;
+    agents_e7052aeb -->|contains| agents_polish_media_co_agent_guidelines_context_7e6c9035
+    agents_polish_media_co_agent_guidelines_context_7e6c9035 -->|contains| agents_key_files_4e865f7b
+    agents_polish_media_co_agent_guidelines_context_7e6c9035 -->|contains| agents_workflow_rules_for_agents_ecaa6c92
+    agents_polish_media_co_agent_guidelines_context_7e6c9035 -->|contains| agents_project_overview_f947947e
+    agents_polish_media_co_agent_guidelines_context_7e6c9035 -->|contains| agents_tech_stack_architecture_c72da435
+    agents_skills_clean_code_and_performance_optimiz_6f6f1cbe -->|contains| agents_skills_clean_code_and_performance_optimiz_05df44c3
+    agents_skills_clean_code_and_performance_optimiz_6f6f1cbe -->|contains| agents_skills_clean_code_and_performance_optimiz_50277ce5
+    agents_skills_clean_code_and_performance_optimiz_6f6f1cbe -->|contains| agents_skills_clean_code_and_performance_optimiz_aaa44108
+    agents_skills_luxury_beauty_copywriting_skill_po_9e9ae3db -->|contains| agents_skills_luxury_beauty_copywriting_skill_1_949d3581
+    agents_skills_luxury_beauty_copywriting_skill_po_9e9ae3db -->|contains| agents_skills_luxury_beauty_copywriting_skill_2_df5741df
+    agents_skills_luxury_beauty_copywriting_skill_po_9e9ae3db -->|contains| agents_skills_luxury_beauty_copywriting_skill_3_11ce09e0
+    %% Omitted for readability: 22 nodes, 0 edges
     class agents_polish_media_co_agent_guidelines_context_7e6c9035 concept;
+    class agents_e7052aeb concept;
+    class agents_key_files_4e865f7b concept;
+    class agents_project_overview_f947947e concept;
+    class agents_tech_stack_architecture_c72da435 concept;
+    class agents_workflow_rules_for_agents_ecaa6c92 concept;
     class agents_skills_clean_code_and_performance_optimiz_6f6f1cbe concept;
-    class agents_skills_design_critic_skill_core_audit_dim_2653b46a concept;
-    class agents_skills_luxury_beauty_design_system_skill_a517218a concept;
-    class agents_skills_luxury_web_ui_master_skill_luxury_5cfe6386 concept;
-    class agents_skills_vibe_security_skill_07c12ecc concept;
+    class agents_skills_clean_code_and_performance_optimiz_05df44c3 concept;
+    class agents_skills_clean_code_and_performance_optimiz_50277ce5 concept;
+    class agents_skills_clean_code_and_performance_optimiz_aaa44108 concept;
+    class agents_skills_luxury_beauty_copywriting_skill_2_df5741df concept;
+    class agents_skills_luxury_beauty_copywriting_skill_po_9e9ae3db concept;
+    class agents_skills_luxury_beauty_copywriting_skill_1_949d3581 concept;
+    class agents_skills_luxury_beauty_copywriting_skill_3_11ce09e0 concept;
+    class agents_skills_live_visual_design_critic_skill_au_b57f0b9f concept;
+    class agents_skills_live_visual_design_critic_skill_li_21b8a210 concept;
+    class agents_skills_luxury_beauty_design_system_skill_786eed6a concept;
+    class agents_skills_luxury_beauty_design_system_skill_027a49d6 concept;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -1120,243 +1125,243 @@ flowchart LR
 </tr>
 <tr>
   <td>1</td>
-  <td><code>cybersecurity-web/SKILL.md</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
+  <td><code>luxury-beauty-copywriting/SKILL.md</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing cybersecurity-web/SKILL.md.</td>
+  <td>Documentation node describing luxury-beauty-copywriting/SKILL.md.</td>
 </tr>
 <tr>
   <td>2</td>
-  <td><code>A01: Broken Access Control (Most Critical)</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
+  <td><code>1. Core Philosophy: Humanized Authority over AI Slop</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing A01: Broken Access Control (Most Critical).</td>
+  <td>Documentation node describing 1. Core Philosophy: Humanized Authority over AI Slop.</td>
 </tr>
 <tr>
   <td>3</td>
-  <td><code>A02: Cryptographic Failures</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
+  <td><code>2. The Direct-Response Beauty Audit Gates</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing A02: Cryptographic Failures.</td>
+  <td>Documentation node describing 2. The Direct-Response Beauty Audit Gates.</td>
 </tr>
 <tr>
   <td>4</td>
-  <td><code>A03: Injection</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
+  <td><code>3. Trilingual Precision Matrix (EN / FR / AR)</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing A03: Injection.</td>
+  <td>Documentation node describing 3. Trilingual Precision Matrix (EN / FR / AR).</td>
 </tr>
 <tr>
   <td>5</td>
-  <td><code>A04: Insecure Design</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A04: Insecure Design.</td>
-</tr>
-<tr>
-  <td>6</td>
-  <td><code>A05: Security Misconfiguration</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A05: Security Misconfiguration.</td>
-</tr>
-<tr>
-  <td>7</td>
-  <td><code>A06: Vulnerable &amp; Outdated Components</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A06: Vulnerable &amp; Outdated Components.</td>
-</tr>
-<tr>
-  <td>8</td>
-  <td><code>A07: Identification &amp; Authentication Failures</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A07: Identification &amp; Authentication Failures.</td>
-</tr>
-<tr>
-  <td>9</td>
-  <td><code>A08: Software &amp; Data Integrity Failures</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A08: Software &amp; Data Integrity Failures.</td>
-</tr>
-<tr>
-  <td>10</td>
-  <td><code>A09: Security Logging &amp; Monitoring Failures</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A09: Security Logging &amp; Monitoring Failures.</td>
-</tr>
-<tr>
-  <td>11</td>
-  <td><code>A10: Server-Side Request Forgery (SSRF)</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing A10: Server-Side Request Forgery (SSRF).</td>
-</tr>
-<tr>
-  <td>12</td>
-  <td><code>API Security</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing API Security.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>CSRF Protection</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing CSRF Protection.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>Cybersecurity — Web Application Security</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Cybersecurity — Web Application Security.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>Express.js Hardening Checklist (Node.js Specific)</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Express.js Hardening Checklist (Node.js Specific).</td>
-</tr>
-<tr>
-  <td>16</td>
-  <td><code>HTTP Security Headers — Reference</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing HTTP Security Headers — Reference.</td>
-</tr>
-<tr>
-  <td>17</td>
-  <td><code>OWASP Top 10 — Audit Checklist</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing OWASP Top 10 — Audit Checklist.</td>
-</tr>
-<tr>
-  <td>18</td>
-  <td><code>Session Management Security</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Session Management Security.</td>
-</tr>
-<tr>
-  <td>19</td>
-  <td><code>Threat Model: POLISH Media Co</code><br><small style="color:var(--muted)">skills/cybersecurity-web/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Threat Model: POLISH Media Co.</td>
-</tr>
-<tr>
-  <td>20</td>
-  <td><code>bilingual-copywriting-funnel-critic/SKILL.md</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing bilingual-copywriting-funnel-critic/SKILL.md.</td>
-</tr>
-<tr>
-  <td>21</td>
-  <td><code>1. The Direct-Response Beauty Audit Heuristic</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing 1. The Direct-Response Beauty Audit Heuristic.</td>
-</tr>
-<tr>
-  <td>22</td>
-  <td><code>2. Copy Review Matrix &amp; Redlines</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing 2. Copy Review Matrix &amp; Redlines.</td>
-</tr>
-<tr>
-  <td>23</td>
-  <td><code>3. Execution Protocol</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing 3. Execution Protocol.</td>
-</tr>
-<tr>
-  <td>24</td>
-  <td><code>Bilingual Copywriting &amp; Funnel Building Critic (EN / FR)</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Bilingual Copywriting &amp; Funnel Building Critic (EN / FR).</td>
-</tr>
-<tr>
-  <td>25</td>
-  <td><code>Gate A: The 3-Second Founder Value Test</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
+  <td><code>Gate A: The 3-Second Founder Value Test</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>Documentation node describing Gate A: The 3-Second Founder Value Test.</td>
 </tr>
 <tr>
-  <td>26</td>
-  <td><code>Gate B: The Agitation &amp; Diagnosis Gate (The &quot;Mirror&quot; Test)</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
+  <td>6</td>
+  <td><code>Gate B: The Agitation &amp; Mirror Test</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing Gate B: The Agitation &amp; Diagnosis Gate (The &quot;Mirror&quot; Test).</td>
+  <td>Documentation node describing Gate B: The Agitation &amp; Mirror Test.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>Gate C: The 4-Pillar Growth Engine (Mechanism of Action)</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Gate C: The 4-Pillar Growth Engine (Mechanism of Action).</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>Gate D: Funnel Friction &amp; Momentum Equation</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Gate D: Funnel Friction &amp; Momentum Equation.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>POLISH Luxury Beauty Copywriting &amp; Funnel Architecture</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing POLISH Luxury Beauty Copywriting &amp; Funnel Architecture.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>🚫 The Banned &quot;AI Slop&quot; Vocabulary &amp; Formulaic Patterns</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 🚫 The Banned &quot;AI Slop&quot; Vocabulary &amp; Formulaic Patterns.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>Typographic Rules:</code><br><small style="color:var(--muted)">skills/luxury-beauty-copywriting/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Typographic Rules:.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>luxury-beauty-design-system/SKILL.md</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing luxury-beauty-design-system/SKILL.md.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>1. Master Brand Tokens &amp; Color Palette</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 1. Master Brand Tokens &amp; Color Palette.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>2. Award-Winning Luxury Cards &amp; Glassmorphism</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 2. Award-Winning Luxury Cards &amp; Glassmorphism.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>3. Phone-Native Mobile Ergonomics (Screens &lt;= 768px)</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 3. Phone-Native Mobile Ergonomics (Screens &lt;= 768px).</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>4. Trilingual &amp; RTL Architecture (EN / FR / AR)</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 4. Trilingual &amp; RTL Architecture (EN / FR / AR).</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>5. Visual Audit &amp; Inspection Checklist</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 5. Visual Audit &amp; Inspection Checklist.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>A. Dynamic Cursor Spotlight (RAF-Throttled Tracking)</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing A. Dynamic Cursor Spotlight (RAF-Throttled Tracking).</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>B. JavaScript Cursor Tracking Implementation</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing B. JavaScript Cursor Tracking Implementation.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>POLISH Luxury Beauty Design System &amp; UI Architecture</code><br><small style="color:var(--muted)">skills/luxury-beauty-design-system/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing POLISH Luxury Beauty Design System &amp; UI Architecture.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>live-visual-design-critic/SKILL.md</code><br><small style="color:var(--muted)">skills/live-visual-design-critic/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing live-visual-design-critic/SKILL.md.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>🛠️ Automated Execution Workflow</code><br><small style="color:var(--muted)">skills/live-visual-design-critic/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 🛠️ Automated Execution Workflow.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>📋 Critique Output Format</code><br><small style="color:var(--muted)">skills/live-visual-design-critic/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 📋 Critique Output Format.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>Live Visual Design Critic &amp; Multi-Viewport Audit Skill</code><br><small style="color:var(--muted)">skills/live-visual-design-critic/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Live Visual Design Critic &amp; Multi-Viewport Audit Skill.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>🎯 Purpose</code><br><small style="color:var(--muted)">skills/live-visual-design-critic/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing 🎯 Purpose.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>Step 1: Run the Visual Capture Engine</code><br><small style="color:var(--muted)">skills/live-visual-design-critic/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Step 1: Run the Visual Capture Engine.</td>
 </tr>
 <tr>
   <td>27</td>
-  <td><code>Gate C: The Proprietary Growth Engine (Mechanism of Action)</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
+  <td><code>Step 2: Inspect Generated Visual Evidence</code><br><small style="color:var(--muted)">skills/live-visual-design-critic/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing Gate C: The Proprietary Growth Engine (Mechanism of Action).</td>
+  <td>Documentation node describing Step 2: Inspect Generated Visual Evidence.</td>
 </tr>
 <tr>
   <td>28</td>
-  <td><code>Gate D: The Funnel Friction &amp; Momentum Equation</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
+  <td><code>Step 3: Conduct Structured Visual Design Critique</code><br><small style="color:var(--muted)">skills/live-visual-design-critic/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing Gate D: The Funnel Friction &amp; Momentum Equation.</td>
+  <td>Documentation node describing Step 3: Conduct Structured Visual Design Critique.</td>
 </tr>
 <tr>
   <td>29</td>
-  <td><code>Gate E: Bilingual Haute Beauté Precision (EN vs. FR)</code><br><small style="color:var(--muted)">skills/bilingual-copywriting-funnel-critic/SKILL.md</small></td>
+  <td><code>AGENTS.md</code><br><small style="color:var(--muted)">AGENTS.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing Gate E: Bilingual Haute Beauté Precision (EN vs. FR).</td>
+  <td>Documentation node describing AGENTS.md.</td>
 </tr>
 <tr>
   <td>30</td>
-  <td><code>design-critic/SKILL.md</code><br><small style="color:var(--muted)">skills/design-critic/SKILL.md</small></td>
+  <td><code>Key Files</code><br><small style="color:var(--muted)">AGENTS.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing design-critic/SKILL.md.</td>
+  <td>Documentation node describing Key Files.</td>
 </tr>
 </table>
 
@@ -1365,19 +1370,16 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>skills/cybersecurity-web/SKILL.md</code></td><td>19 nodes</td></tr>
-<tr><td><code>skills/bilingual-copywriting-funnel-critic/SKILL.md</code></td><td>10 nodes</td></tr>
-<tr><td><code>skills/design-critic/SKILL.md</code></td><td>10 nodes</td></tr>
-<tr><td><code>skills/zero-fluff-operator/SKILL.md</code></td><td>10 nodes</td></tr>
+      <tr><td><code>skills/luxury-beauty-copywriting/SKILL.md</code></td><td>11 nodes</td></tr>
 <tr><td><code>skills/luxury-beauty-design-system/SKILL.md</code></td><td>9 nodes</td></tr>
-<tr><td><code>skills/copywriting-and-funnel-critic/SKILL.md</code></td><td>8 nodes</td></tr>
 <tr><td><code>skills/live-visual-design-critic/SKILL.md</code></td><td>8 nodes</td></tr>
-<tr><td><code>skills/award-winning-luxury-cards/SKILL.md</code></td><td>7 nodes</td></tr>
+<tr><td><code>skills/clean-code-and-performance-optimizer/SKILL.md</code></td><td>6 nodes</td></tr>
+<tr><td><code>AGENTS.md</code></td><td>6 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x97. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x35. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -2059,12 +2061,12 @@ flowchart LR
 
 <!-- ====== 8. Security & Global Graph ====== -->
 <h2 id="security-global">8. Security &amp; Global Graph</h2>
-<p>Security &amp; Global Graph groups implementation around security, agents, skills, vibe, mostly in docs/SECURITY_AUDIT_REPORT.md, vibe-security/references/database-security.md, vibe-security/references/deployment.md. This section covers 82 nodes and 74 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Security &amp; Global Graph groups implementation around security, audit, reportmd, docs, mostly in docs/SECURITY_AUDIT_REPORT.md, skills/production-security/SKILL.md. This section covers 43 nodes and 41 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Security &amp; Global Graph (82 nodes, 74 edges)
+    %% Section: Security &amp; Global Graph (43 nodes, 41 edges)
     subgraph security_global_docs_SECURITY_AUDIT_REPORT_md_688b54cd["docs/SECURITY_AUDIT_REPORT.md"]
         docs_security_audit_report_polish_media_co_secur_d0171211("POLISH Media Co — Security, API Boundar...<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
         docs_security_audit_report_1_api_endpoint_securi_33f72871("1. API Endpoint Security &amp; Validation<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
@@ -2076,19 +2078,25 @@ flowchart LR
         docs_security_audit_report_3_1_content_security_ba5a45d1("3.1 Content Security Policy (CSP)<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
         docs_security_audit_report_3_2_cors_configuratio_e7c4765a("3.2 CORS Configuration Vulnerability (B...<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
         docs_security_audit_report_executive_summary_fe1abf9f("Executive Summary<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
+        docs_security_audit_report_1_2_status_of_post_ap_78b3ce86("1.2 Status of POST /api/leads vs. Arc...<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
+        docs_security_audit_report_1_3_webhook_integrity_90137691("1.3 Webhook Integrity: POST /api/calen...<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
+        docs_security_audit_report_1_4_polish_ai_strateg_4ef27082("1.4 Polish AI Strategy Engine: POST /a...<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
+        docs_security_audit_report_1_5_cms_endpoints_get_725fd15d("1.5 CMS Endpoints (GET /api/content,...<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
+        docs_security_audit_report_1_6_strategy_boards_a_743f34b8("1.6 Strategy Boards API (/api/boards)<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
+        docs_security_audit_report_2_2_path_traversal_fi_4c1dc9f9("2.2 Path Traversal &amp; File System Bounda...<br/><small>docs/SECURITY_AUDIT_REPORT.md</small>")
     end
-    subgraph security_global_vibe_security_references_databas_835b0f4b["vibe-security/references/database-security.md"]
-        agents_skills_vibe_security_references_database_fcbb85d1("Database Security<br/><small>vibe-security/references/database-security.md</small>")
-        agents_skills_vibe_security_references_database_cc95e6b1("File-Based JSON Storage (POLISH Media C...<br/><small>vibe-security/references/database-security.md</small>")
+    subgraph security_global_skills_production_security_SKILL_01825624["skills/production-security/SKILL.md"]
+        agents_skills_production_security_skill_3_owasp_a52ff643("3. OWASP Top 10 Audit Protocol<br/><small>skills/production-security/SKILL.md</small>")
+        agents_skills_production_security_skill_producti_e0645ed1("Production Web Security &amp; Server Harden...<br/><small>skills/production-security/SKILL.md</small>")
     end
-    agents_skills_vibe_security_references_ai_integr_80a12f0c("AI / LLM Integration Security<br/><small>vibe-security/references/ai-integration.md</small>")
-    agents_skills_vibe_security_references_authentic_fb020cf8("Authentication &amp; Authorization<br/><small>vibe-security/references/authentication.md</small>")
-    agents_skills_vibe_security_references_data_acce_6fd47bfa("Data Access &amp; Input Validation<br/><small>vibe-security/references/data-access.md</small>")
-    agents_skills_vibe_security_references_deploymen_0b150e33("Deployment Security<br/><small>vibe-security/references/deployment.md</small>")
-    agents_skills_vibe_security_references_rate_limi_a284fadc("Rate Limiting &amp; Abuse Prevention<br/><small>vibe-security/references/rate-limiting.md</small>")
-    agents_skills_vibe_security_references_secrets_a_d2d5157c("Secrets &amp; Environment Variables<br/><small>vibe-security/references/secrets-and-env.md</small>")
     docs_security_audit_report_1_api_endpoint_securi_33f72871 -->|contains| docs_security_audit_report_1_1_ingestion_endpoin_e7912aff
+    docs_security_audit_report_1_api_endpoint_securi_33f72871 -->|contains| docs_security_audit_report_1_2_status_of_post_ap_78b3ce86
+    docs_security_audit_report_1_api_endpoint_securi_33f72871 -->|contains| docs_security_audit_report_1_3_webhook_integrity_90137691
+    docs_security_audit_report_1_api_endpoint_securi_33f72871 -->|contains| docs_security_audit_report_1_4_polish_ai_strateg_4ef27082
+    docs_security_audit_report_1_api_endpoint_securi_33f72871 -->|contains| docs_security_audit_report_1_5_cms_endpoints_get_725fd15d
+    docs_security_audit_report_1_api_endpoint_securi_33f72871 -->|contains| docs_security_audit_report_1_6_strategy_boards_a_743f34b8
     docs_security_audit_report_2_data_layer_file_sto_56dcc4a3 -->|contains| docs_security_audit_report_2_1_file_based_atomic_88effe09
+    docs_security_audit_report_2_data_layer_file_sto_56dcc4a3 -->|contains| docs_security_audit_report_2_2_path_traversal_fi_4c1dc9f9
     docs_security_audit_report_3_http_headers_transp_696ad458 -->|contains| docs_security_audit_report_3_1_content_security_ba5a45d1
     docs_security_audit_report_3_http_headers_transp_696ad458 -->|contains| docs_security_audit_report_3_2_cors_configuratio_e7c4765a
     docs_security_audit_report_polish_media_co_secur_d0171211 -->|contains| docs_security_audit_report_2_data_layer_file_sto_56dcc4a3
@@ -2096,8 +2104,8 @@ flowchart LR
     docs_security_audit_report_polish_media_co_secur_d0171211 -->|contains| docs_security_audit_report_3_http_headers_transp_696ad458
     docs_security_audit_report_polish_media_co_secur_d0171211 -->|contains| docs_security_audit_report_1_api_endpoint_securi_33f72871
     docs_security_audit_report_polish_media_co_secur_d0171211 -->|contains| docs_security_audit_report_6_complementary_harde_ec99f260
-    agents_skills_vibe_security_references_database_fcbb85d1 -->|contains| agents_skills_vibe_security_references_database_cc95e6b1
-    %% Omitted for readability: 64 nodes, 0 edges
+    agents_skills_production_security_skill_producti_e0645ed1 -->|contains| agents_skills_production_security_skill_3_owasp_a52ff643
+    %% Omitted for readability: 25 nodes, 0 edges
     class docs_security_audit_report_polish_media_co_secur_d0171211 concept;
     class docs_security_audit_report_1_api_endpoint_securi_33f72871 concept;
     class docs_security_audit_report_2_data_layer_file_sto_56dcc4a3 concept;
@@ -2108,14 +2116,14 @@ flowchart LR
     class docs_security_audit_report_3_1_content_security_ba5a45d1 concept;
     class docs_security_audit_report_3_2_cors_configuratio_e7c4765a concept;
     class docs_security_audit_report_executive_summary_fe1abf9f concept;
-    class agents_skills_vibe_security_references_database_fcbb85d1 concept;
-    class agents_skills_vibe_security_references_database_cc95e6b1 concept;
-    class agents_skills_vibe_security_references_ai_integr_80a12f0c concept;
-    class agents_skills_vibe_security_references_authentic_fb020cf8 concept;
-    class agents_skills_vibe_security_references_data_acce_6fd47bfa concept;
-    class agents_skills_vibe_security_references_deploymen_0b150e33 concept;
-    class agents_skills_vibe_security_references_rate_limi_a284fadc concept;
-    class agents_skills_vibe_security_references_secrets_a_d2d5157c concept;
+    class docs_security_audit_report_1_2_status_of_post_ap_78b3ce86 concept;
+    class docs_security_audit_report_1_3_webhook_integrity_90137691 concept;
+    class docs_security_audit_report_1_4_polish_ai_strateg_4ef27082 concept;
+    class docs_security_audit_report_1_5_cms_endpoints_get_725fd15d concept;
+    class docs_security_audit_report_1_6_strategy_boards_a_743f34b8 concept;
+    class docs_security_audit_report_2_2_path_traversal_fi_4c1dc9f9 concept;
+    class agents_skills_production_security_skill_3_owasp_a52ff643 concept;
+    class agents_skills_production_security_skill_producti_e0645ed1 concept;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -2385,38 +2393,35 @@ flowchart LR
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
       <tr><td><code>docs/SECURITY_AUDIT_REPORT.md</code></td><td>33 nodes</td></tr>
-<tr><td><code>vibe-security/references/database-security.md</code></td><td>8 nodes</td></tr>
-<tr><td><code>vibe-security/references/deployment.md</code></td><td>8 nodes</td></tr>
-<tr><td><code>vibe-security/references/authentication.md</code></td><td>7 nodes</td></tr>
-<tr><td><code>vibe-security/references/data-access.md</code></td><td>7 nodes</td></tr>
-<tr><td><code>vibe-security/references/rate-limiting.md</code></td><td>7 nodes</td></tr>
-<tr><td><code>vibe-security/references/ai-integration.md</code></td><td>6 nodes</td></tr>
-<tr><td><code>vibe-security/references/secrets-and-env.md</code></td><td>6 nodes</td></tr>
+<tr><td><code>skills/production-security/SKILL.md</code></td><td>10 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x74. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x41. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
 
 <!-- ====== 9. Tests & Fixtures ====== -->
 <h2 id="tests-fixtures">9. Tests &amp; Fixtures</h2>
-<p>Tests &amp; Fixtures groups implementation around test, tests, scripts, capture, mostly in live-visual-design-critic/scripts/capture-live-views.js, tests/test_presentation_page.js, scripts/capture_presentation_views.js. This section covers 48 nodes and 48 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Tests &amp; Fixtures groups implementation around test, tests, scripts, puppeteer, mostly in tests/test_presentation_page.js, scripts/test-miro-suite.js, scripts/test-liquid-browser.js. This section covers 44 nodes and 44 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Tests &amp; Fixtures (48 nodes, 48 edges)
-    subgraph tests_fixtures_live_visual_design_critic_scripts_690f209c["live-visual-design-critic/scripts/capture-live-views.js"]
-        agents_skills_live_visual_design_critic_scripts_abd92f05("capture-live-views.js")
-        agents_skills_live_visual_design_critic_scripts_1ec9cc2e("AUDIT_VIEWPORTS<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
-        agents_skills_live_visual_design_critic_scripts_cd532171("LANGUAGES<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
-        agents_skills_live_visual_design_critic_scripts_74ea90e9("captureLiveViews()<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
-        agents_skills_live_visual_design_critic_scripts_1ddc4352("fs<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
-        agents_skills_live_visual_design_critic_scripts_355e8131("path<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
-        agents_skills_live_visual_design_critic_scripts_cb89dcbf("puppeteer<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
+    %% Section: Tests &amp; Fixtures (44 nodes, 44 edges)
+    subgraph tests_fixtures_scripts_test_liquid_browser_js_191e26e7["scripts/test-liquid-browser.js"]
+        scripts_test_liquid_browser_bf7366f1("test-liquid-browser.js")
+        scripts_test_liquid_browser_fs_ee4c1374("fs<br/><small>scripts/test-liquid-browser.js</small>")
+        scripts_test_liquid_browser_path_8ee462c1("path<br/><small>scripts/test-liquid-browser.js</small>")
+        scripts_test_liquid_browser_puppeteer_8cef0be1("puppeteer<br/><small>scripts/test-liquid-browser.js</small>")
+        scripts_test_liquid_browser_testliquid_77d6f313("testLiquid()<br/><small>scripts/test-liquid-browser.js</small>")
+    end
+    subgraph tests_fixtures_scripts_test_miro_suite_js_d3388c70["scripts/test-miro-suite.js"]
+        scripts_test_miro_suite_ba6aec94("test-miro-suite.js")
+        scripts_test_miro_suite_fs_10a0136d("fs<br/><small>scripts/test-miro-suite.js</small>")
+        scripts_test_miro_suite_http_98f034b3("http<br/><small>scripts/test-miro-suite.js</small>")
     end
     subgraph tests_fixtures_tests_test_presentation_page_js_72e945a6["tests/test_presentation_page.js"]
         tests_test_presentation_page_runtest_5e03bc21("runTest()<br/><small>tests/test_presentation_page.js</small>")
@@ -2424,37 +2429,36 @@ flowchart LR
         tests_test_presentation_page_c6deb0f4("test_presentation_page.js")
     end
     ref_puppeteer_8ead168e("puppeteer<br/><small>package.json</small>")
-    scripts_capture_presentation_views_d9dd1568("capture_presentation_views.js")
-    scripts_test_miro_suite_ba6aec94("test-miro-suite.js")
+    scripts_test_scroll_views_4ba4fbca("test-scroll-views.js")
     tests_test_auth_flow_b31ab4be("test_auth_flow.js")
     tests_test_laser_and_branding_fea5d1e9("test_laser_and_branding.js")
     tests_test_logo_render_36041aa6("test_logo_render.js")
     tests_test_mobile_phone_app_77808cce("test_mobile_phone_app.js")
     tests_test_sequencer_e2e_a6da4f8e("test_sequencer_e2e.js")
     tests_test_presentation_page_runtest_5e03bc21 -->|calls| tests_test_presentation_page_apirequest_828dfa9d
-    agents_skills_live_visual_design_critic_scripts_abd92f05 -->|imports| ref_puppeteer_8ead168e
-    scripts_capture_presentation_views_d9dd1568 -->|imports| ref_puppeteer_8ead168e
-    scripts_test_miro_suite_ba6aec94 -->|imports| ref_puppeteer_8ead168e
-    tests_test_auth_flow_b31ab4be -->|imports| ref_puppeteer_8ead168e
-    tests_test_laser_and_branding_fea5d1e9 -->|imports| ref_puppeteer_8ead168e
-    tests_test_logo_render_36041aa6 -->|imports| ref_puppeteer_8ead168e
-    tests_test_mobile_phone_app_77808cce -->|imports| ref_puppeteer_8ead168e
     tests_test_presentation_page_c6deb0f4 -->|imports| ref_puppeteer_8ead168e
+    scripts_test_miro_suite_ba6aec94 -->|imports| ref_puppeteer_8ead168e
+    tests_test_laser_and_branding_fea5d1e9 -->|imports| ref_puppeteer_8ead168e
+    scripts_test_liquid_browser_bf7366f1 -->|imports| ref_puppeteer_8ead168e
+    tests_test_mobile_phone_app_77808cce -->|imports| ref_puppeteer_8ead168e
+    scripts_test_scroll_views_4ba4fbca -->|imports| ref_puppeteer_8ead168e
+    tests_test_auth_flow_b31ab4be -->|imports| ref_puppeteer_8ead168e
+    tests_test_logo_render_36041aa6 -->|imports| ref_puppeteer_8ead168e
     tests_test_sequencer_e2e_a6da4f8e -->|imports| ref_puppeteer_8ead168e
-    %% Omitted for readability: 30 nodes, 0 edges
-    class agents_skills_live_visual_design_critic_scripts_abd92f05 module;
-    class agents_skills_live_visual_design_critic_scripts_1ec9cc2e klass;
-    class agents_skills_live_visual_design_critic_scripts_cd532171 klass;
-    class agents_skills_live_visual_design_critic_scripts_74ea90e9 function;
-    class agents_skills_live_visual_design_critic_scripts_1ddc4352 function;
-    class agents_skills_live_visual_design_critic_scripts_355e8131 function;
-    class agents_skills_live_visual_design_critic_scripts_cb89dcbf function;
+    %% Omitted for readability: 26 nodes, 0 edges
+    class scripts_test_liquid_browser_bf7366f1 test;
+    class scripts_test_liquid_browser_fs_ee4c1374 test;
+    class scripts_test_liquid_browser_path_8ee462c1 test;
+    class scripts_test_liquid_browser_puppeteer_8cef0be1 test;
+    class scripts_test_liquid_browser_testliquid_77d6f313 test;
+    class scripts_test_miro_suite_ba6aec94 test;
+    class scripts_test_miro_suite_fs_10a0136d test;
+    class scripts_test_miro_suite_http_98f034b3 test;
     class tests_test_presentation_page_runtest_5e03bc21 test;
     class tests_test_presentation_page_apirequest_828dfa9d test;
     class tests_test_presentation_page_c6deb0f4 test;
     class ref_puppeteer_8ead168e function;
-    class scripts_capture_presentation_views_d9dd1568 module;
-    class scripts_test_miro_suite_ba6aec94 test;
+    class scripts_test_scroll_views_4ba4fbca test;
     class tests_test_auth_flow_b31ab4be test;
     class tests_test_laser_and_branding_fea5d1e9 test;
     class tests_test_logo_render_36041aa6 test;
@@ -2483,38 +2487,6 @@ flowchart LR
 </tr>
 <tr>
   <td>1</td>
-  <td><code>captureLiveViews()</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>captureLiveViews() node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>2</td>
-  <td><code>capture()</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>capture() node in scripts/capture_presentation_views.js.</td>
-</tr>
-<tr>
-  <td>3</td>
-  <td><code>runMiroSuite()</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
-  <td>runMiroSuite() node in scripts/test-miro-suite.js.</td>
-</tr>
-<tr>
-  <td>4</td>
-  <td><code>runPhoneAppTest()</code><br><small style="color:var(--muted)">tests/test_mobile_phone_app.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Verifies imports, entry points, or version behavior.</td>
-</tr>
-<tr>
-  <td>5</td>
   <td><code>apiRequest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td><code>runTest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
@@ -2522,7 +2494,7 @@ flowchart LR
   <td>apiRequest() node in tests/test_presentation_page.js.</td>
 </tr>
 <tr>
-  <td>6</td>
+  <td>2</td>
   <td><code>runTest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2530,95 +2502,55 @@ flowchart LR
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>7</td>
-  <td><code>capture-live-views.js</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
+  <td>3</td>
+  <td><code>test_presentation_page.js</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>capture-live-views.js node in live-visual-design-critic/scripts/capture-live-views.js.</td>
+  <td>Organizes documentation pages, navigation, or content lookup.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in tests/test_presentation_page.js.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>http</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>http node in tests/test_presentation_page.js.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>path</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>path node in tests/test_presentation_page.js.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in tests/test_presentation_page.js.</td>
 </tr>
 <tr>
   <td>8</td>
-  <td><code>AUDIT_VIEWPORTS</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
+  <td><code>runMiroSuite()</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>AUDIT_VIEWPORTS node in live-visual-design-critic/scripts/capture-live-views.js.</td>
+  <td><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
+  <td>runMiroSuite() node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
   <td>9</td>
-  <td><code>fs</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>fs node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>10</td>
-  <td><code>LANGUAGES</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>LANGUAGES node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>11</td>
-  <td><code>path</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>path node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>12</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>puppeteer node in live-visual-design-critic/scripts/capture-live-views.js.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>capture_presentation_views.js</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>capture_presentation_views.js node in scripts/capture_presentation_views.js.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>fs</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>fs node in scripts/capture_presentation_views.js.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>path</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>path node in scripts/capture_presentation_views.js.</td>
-</tr>
-<tr>
-  <td>16</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>puppeteer node in scripts/capture_presentation_views.js.</td>
-</tr>
-<tr>
-  <td>17</td>
-  <td><code>VIEWPORTS</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>VIEWPORTS node in scripts/capture_presentation_views.js.</td>
-</tr>
-<tr>
-  <td>18</td>
   <td><code>test-miro-suite.js</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2626,7 +2558,7 @@ flowchart LR
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>19</td>
+  <td>10</td>
   <td><code>fs</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2634,7 +2566,7 @@ flowchart LR
   <td>fs node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>20</td>
+  <td>11</td>
   <td><code>http</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2642,7 +2574,7 @@ flowchart LR
   <td>http node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>21</td>
+  <td>12</td>
   <td><code>path</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2650,7 +2582,7 @@ flowchart LR
   <td>path node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>22</td>
+  <td>13</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2658,39 +2590,7 @@ flowchart LR
   <td>puppeteer node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>23</td>
-  <td><code>test_auth_flow.js</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>Verifies imports, entry points, or version behavior.</td>
-</tr>
-<tr>
-  <td>24</td>
-  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>fs node in tests/test_auth_flow.js.</td>
-</tr>
-<tr>
-  <td>25</td>
-  <td><code>path</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>path node in tests/test_auth_flow.js.</td>
-</tr>
-<tr>
-  <td>26</td>
-  <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>puppeteer node in tests/test_auth_flow.js.</td>
-</tr>
-<tr>
-  <td>27</td>
+  <td>14</td>
   <td><code>test_laser_and_branding.js</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2698,7 +2598,7 @@ flowchart LR
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>28</td>
+  <td>15</td>
   <td><code>fs</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2706,7 +2606,7 @@ flowchart LR
   <td>fs node in tests/test_laser_and_branding.js.</td>
 </tr>
 <tr>
-  <td>29</td>
+  <td>16</td>
   <td><code>path</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2714,12 +2614,116 @@ flowchart LR
   <td>path node in tests/test_laser_and_branding.js.</td>
 </tr>
 <tr>
-  <td>30</td>
+  <td>17</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>puppeteer node in tests/test_laser_and_branding.js.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>capture-live-views.js</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small><br><code>capture_presentation_views.js</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small><br><code>generate-social-avatars.js</code><br><small style="color:var(--muted)">scripts/generate-social-avatars.js</small><br>+10 more</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in package.json.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>testLiquid()</code><br><small style="color:var(--muted)">scripts/test-liquid-browser.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>test-liquid-browser.js</code><br><small style="color:var(--muted)">scripts/test-liquid-browser.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">scripts/test-liquid-browser.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in scripts/test-liquid-browser.js.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>path</code><br><small style="color:var(--muted)">scripts/test-liquid-browser.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>path node in scripts/test-liquid-browser.js.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/test-liquid-browser.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in scripts/test-liquid-browser.js.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>runPhoneAppTest()</code><br><small style="color:var(--muted)">tests/test_mobile_phone_app.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>test_mobile_phone_app.js</code><br><small style="color:var(--muted)">tests/test_mobile_phone_app.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_mobile_phone_app.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>fs node in tests/test_mobile_phone_app.js.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>path</code><br><small style="color:var(--muted)">tests/test_mobile_phone_app.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>path node in tests/test_mobile_phone_app.js.</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_mobile_phone_app.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>puppeteer node in tests/test_mobile_phone_app.js.</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>captureScrolledViews()</code><br><small style="color:var(--muted)">scripts/test-scroll-views.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>captureScrolledViews() node in scripts/test-scroll-views.js.</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>test-scroll-views.js</code><br><small style="color:var(--muted)">scripts/test-scroll-views.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 </table>
 
@@ -2728,11 +2732,11 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>live-visual-design-critic/scripts/capture-live-views.js</code></td><td>7 nodes</td></tr>
-<tr><td><code>tests/test_presentation_page.js</code></td><td>7 nodes</td></tr>
-<tr><td><code>scripts/capture_presentation_views.js</code></td><td>6 nodes</td></tr>
+      <tr><td><code>tests/test_presentation_page.js</code></td><td>7 nodes</td></tr>
 <tr><td><code>scripts/test-miro-suite.js</code></td><td>6 nodes</td></tr>
+<tr><td><code>scripts/test-liquid-browser.js</code></td><td>5 nodes</td></tr>
 <tr><td><code>tests/test_mobile_phone_app.js</code></td><td>5 nodes</td></tr>
+<tr><td><code>scripts/test-scroll-views.js</code></td><td>4 nodes</td></tr>
 <tr><td><code>tests/test_auth_flow.js</code></td><td>4 nodes</td></tr>
 <tr><td><code>tests/test_laser_and_branding.js</code></td><td>4 nodes</td></tr>
 <tr><td><code>tests/test_logo_render.js</code></td><td>4 nodes</td></tr>
@@ -2740,7 +2744,7 @@ flowchart LR
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x38, imports x9, calls x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x34, imports x9, calls x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -4816,12 +4820,12 @@ flowchart LR
 
 <!-- ====== 16. Other ====== -->
 <h2 id="other">16. Other</h2>
-<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 446 nodes and 682 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 459 nodes and 693 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Other (446 nodes, 682 edges)
+    %% Section: Other (459 nodes, 693 edges)
     subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
         public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
         public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
@@ -4860,7 +4864,7 @@ flowchart LR
     public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
     public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
     public_js_i18n_polishi18n_setlanguage_c0fb6d07 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    %% Omitted for readability: 428 nodes, 0 edges
+    %% Omitted for readability: 441 nodes, 0 edges
     class public_js_i18n_polishi18n_72987c12 klass;
     class public_js_i18n_polishi18n_constructor_34fce30d function;
     class public_js_i18n_polishi18n_detectlanguage_d4213613 function;
@@ -5159,7 +5163,7 @@ flowchart LR
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x376, calls x259, indirect call x28, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x387, calls x259, indirect call x28, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -5170,17 +5174,17 @@ flowchart LR
   <div class="card">
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>Nodes</td><td>1098</td></tr>
-      <tr><td>Edges</td><td>1796</td></tr>
+      <tr><td>Nodes</td><td>998</td></tr>
+      <tr><td>Edges</td><td>1710</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
-      <tr><td>Communities</td><td>78</td></tr>
+      <tr><td>Communities</td><td>74</td></tr>
       <tr><td>Documented Sections</td><td>15</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>1745</td></tr>
+      <tr><td>EXTRACTED</td><td>1659</td></tr>
       <tr><td>INFERRED</td><td>51</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
@@ -5189,7 +5193,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>polishmedia — Architecture Documentation</p>
-  <p>Generated: 2026-09-13 20:55 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 22:13 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

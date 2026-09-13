@@ -1,9 +1,9 @@
 {
   ".agents/skills/live-visual-design-critic/scripts/capture-live-views.js": {
-    "mtime": 1788520530.7907841,
-    "seen": 1788993504.516892,
-    "ast_hash": "40e22056f82f00cb9f225cb05731c122",
-    "semantic_hash": "40e22056f82f00cb9f225cb05731c122"
+    "mtime": 1789337070.111535,
+    "seen": 1789337170.7043352,
+    "ast_hash": "a25d5f51d43ce700372830bd99ec2f43",
+    "semantic_hash": ""
   },
   "package.json": {
     "mtime": 1788996723.7748535,
@@ -233,118 +233,34 @@
     "ast_hash": "f1e53ecc9194573d3c28fc116c743a2e",
     "semantic_hash": ""
   },
-  ".agents/skills/award-winning-luxury-cards/SKILL.md": {
-    "mtime": 1788504588.1041598,
-    "seen": 1788996280.989148,
-    "ast_hash": "029cadfe9fce9f2f974f5022a9c4f95e",
-    "semantic_hash": ""
-  },
-  ".agents/skills/bilingual-copywriting-funnel-critic/SKILL.md": {
-    "mtime": 1788327308.5037134,
-    "seen": 1788996280.9891489,
-    "ast_hash": "81bf98766f3ed51efbadfbf0943d5b98",
-    "semantic_hash": ""
-  },
   ".agents/skills/clean-code-and-performance-optimizer/SKILL.md": {
-    "mtime": 1788335695.75683,
-    "seen": 1788996280.9891489,
-    "ast_hash": "0b1505d5baf03012ecb27df36c34a737",
-    "semantic_hash": ""
-  },
-  ".agents/skills/copywriting-and-funnel-critic/SKILL.md": {
-    "mtime": 1788326383.5758116,
-    "seen": 1788996280.9891489,
-    "ast_hash": "e4df9bc1e8f89bf990cb153c2b2d05a7",
-    "semantic_hash": ""
-  },
-  ".agents/skills/cybersecurity-web/SKILL.md": {
-    "mtime": 1788909819.6674244,
-    "seen": 1788996280.98915,
-    "ast_hash": "e9b6cca4ea435da681c2a8f9033f2d70",
-    "semantic_hash": ""
-  },
-  ".agents/skills/design-critic/SKILL.md": {
-    "mtime": 1788235729.7940679,
-    "seen": 1788996280.98915,
-    "ast_hash": "2c3fdcd850bc8e15c6ed2c67143a0eff",
+    "mtime": 1789337124.0558302,
+    "seen": 1789337170.705029,
+    "ast_hash": "ed05572b4ea03a3109045e520ec79ed5",
     "semantic_hash": ""
   },
   ".agents/skills/live-visual-design-critic/SKILL.md": {
-    "mtime": 1788520475.9728932,
-    "seen": 1788996280.989151,
-    "ast_hash": "fb6c62aa1baff496eb44f2b0d53ec3b2",
+    "mtime": 1789337088.2506044,
+    "seen": 1789337170.705029,
+    "ast_hash": "b1b18aa8ef03a38169a19a9bd87c8752",
     "semantic_hash": ""
   },
   ".agents/skills/live-visual-design-critic/references/critique-rubric.md": {
-    "mtime": 1788520540.5441444,
-    "seen": 1788996280.989151,
-    "ast_hash": "b7db78815edc29adaac4792da2aff782",
+    "mtime": 1789337076.388954,
+    "seen": 1789337170.70503,
+    "ast_hash": "dc86fa17f974f0220d14b1d189360937",
     "semantic_hash": ""
   },
   ".agents/skills/luxury-beauty-copywriting/SKILL.md": {
-    "mtime": 1788234759.015597,
-    "seen": 1788996280.989152,
-    "ast_hash": "77cf72bd2b5016609a7d90983697c0ff",
+    "mtime": 1789337096.1269221,
+    "seen": 1789337170.70503,
+    "ast_hash": "96816cfac5050971656ecdbfedea79ef",
     "semantic_hash": ""
   },
   ".agents/skills/luxury-beauty-design-system/SKILL.md": {
-    "mtime": 1788390481.2879431,
-    "seen": 1788996280.989152,
-    "ast_hash": "6ad4aa28f888894de1e994f1cda6e3df",
-    "semantic_hash": ""
-  },
-  ".agents/skills/luxury-web-ui-master/SKILL.md": {
-    "mtime": 1788230124.381463,
-    "seen": 1788996280.989152,
-    "ast_hash": "056ae1b30b11c6a04cd27de6f589c15e",
-    "semantic_hash": ""
-  },
-  ".agents/skills/vibe-security/SKILL.md": {
-    "mtime": 1788909660.1275086,
-    "seen": 1788996280.989153,
-    "ast_hash": "6d066ccade4c97f289ed205ff6d93f62",
-    "semantic_hash": ""
-  },
-  ".agents/skills/vibe-security/references/ai-integration.md": {
-    "mtime": 1788909771.9631193,
-    "seen": 1788996280.989153,
-    "ast_hash": "70a520c750aaba39cc9a3e6920d996b1",
-    "semantic_hash": ""
-  },
-  ".agents/skills/vibe-security/references/authentication.md": {
-    "mtime": 1788909710.632502,
-    "seen": 1788996280.989153,
-    "ast_hash": "16e3b18942a3670fb441a2f7791d5665",
-    "semantic_hash": ""
-  },
-  ".agents/skills/vibe-security/references/data-access.md": {
-    "mtime": 1788909744.2769678,
-    "seen": 1788996280.989154,
-    "ast_hash": "7fec278c86045b66669212b16ab2b92f",
-    "semantic_hash": ""
-  },
-  ".agents/skills/vibe-security/references/database-security.md": {
-    "mtime": 1788909771.969131,
-    "seen": 1788996280.989154,
-    "ast_hash": "fd26160e969c07065e25879027f3b18e",
-    "semantic_hash": ""
-  },
-  ".agents/skills/vibe-security/references/deployment.md": {
-    "mtime": 1788909758.048143,
-    "seen": 1788996280.989155,
-    "ast_hash": "1737c923ba024b252c73a8fd49344d10",
-    "semantic_hash": ""
-  },
-  ".agents/skills/vibe-security/references/rate-limiting.md": {
-    "mtime": 1788909728.6700723,
-    "seen": 1788996280.989155,
-    "ast_hash": "45842060c78583365bccf4f23f46d459",
-    "semantic_hash": ""
-  },
-  ".agents/skills/vibe-security/references/secrets-and-env.md": {
-    "mtime": 1788909694.786279,
-    "seen": 1788996280.989155,
-    "ast_hash": "4450d65b16fee9169b8943ca439c4a82",
+    "mtime": 1789337060.481309,
+    "seen": 1789337170.705031,
+    "ast_hash": "367eafbf883ea6ae686a7691f98d3208",
     "semantic_hash": ""
   },
   ".agents/workflows/graphify.md": {
@@ -1957,7 +1873,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789332114.65797,
+    "seen": 1789337577.544272,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -2087,12 +2003,6 @@
     "ast_hash": "27ef4dcaa182b9bfb4b161856fed6d41",
     "semantic_hash": ""
   },
-  ".agents/skills/zero-fluff-operator/SKILL.md": {
-    "mtime": 1789319677.1395998,
-    "seen": 1789319727.085276,
-    "ast_hash": "78f7a9fa2d38f88e750319e0258ddcac",
-    "semantic_hash": ""
-  },
   "scripts/capture_presentation_views.js": {
     "mtime": 1789324679.0263996,
     "seen": 1789324893.8784032,
@@ -2109,6 +2019,42 @@
     "mtime": 1789332879.8394768,
     "seen": 1789332907.536787,
     "ast_hash": "c7955b528550e8104b3ac9e4160d62c4",
+    "semantic_hash": ""
+  },
+  ".agents/skills/production-security/SKILL.md": {
+    "mtime": 1789337105.651229,
+    "seen": 1789337170.7050319,
+    "ast_hash": "e5f73cf9fd804eb45b8d00c0c846afdb",
+    "semantic_hash": ""
+  },
+  "scripts/test-liquid-browser.js": {
+    "mtime": 1789337400.562334,
+    "seen": 1789337577.544273,
+    "ast_hash": "78c5d9f509607501c6d16734168945cc",
+    "semantic_hash": ""
+  },
+  "scripts/test-scroll-views.js": {
+    "mtime": 1789337441.5030782,
+    "seen": 1789337577.5442739,
+    "ast_hash": "8265d1530939040c473bac177a149bdc",
+    "semantic_hash": ""
+  },
+  "public/test-liquid.html": {
+    "mtime": 1789337488.331276,
+    "seen": 1789337577.544301,
+    "ast_hash": "077b74f89dbda9c253a833db18d905ad",
+    "semantic_hash": ""
+  },
+  "artifacts/quickliquid/quickliquid-test-cosmetics.png": {
+    "mtime": 1789337425.6881247,
+    "seen": 1789337577.544302,
+    "ast_hash": "d7edf1eeebb49a881c30a140ea4b639e",
+    "semantic_hash": ""
+  },
+  "artifacts/quickliquid/quickliquid-test-desktop.png": {
+    "mtime": 1789337424.3107612,
+    "seen": 1789337577.5443041,
+    "ast_hash": "52c2155226c891eb695405ee89c70dd6",
     "semantic_hash": ""
   }
 }

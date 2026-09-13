@@ -31,6 +31,8 @@ const LOCAL_LEADS_FILE = IS_VERCEL ? path.join('/tmp', 'leads.json') : path.join
 const LOCAL_CMS_FILE = IS_VERCEL ? path.join('/tmp', 'content.json') : path.join(__dirname, '../db/content.json');
 const LOCAL_BOARDS_DIR = IS_VERCEL ? path.join('/tmp', 'boards') : path.join(__dirname, '../db/boards');
 const LOCAL_INVOICES_FILE = IS_VERCEL ? path.join('/tmp', 'invoices.json') : path.join(__dirname, '../db/invoices.json');
+const LOCAL_PRESENTATIONS_FILE = IS_VERCEL ? path.join('/tmp', 'presentations.json') : path.join(__dirname, '../db/presentations.json');
+
 
 // ── Entity Mappers: camelCase (JS) <-> snake_case (Postgres) ─────────────────
 function mapDbLeadToLead(row) {
@@ -650,6 +652,261 @@ const invoicesService = {
   }
 };
 
+function mapDbRowToPresentation(row) {
+  if (!row) return null;
+  const meta = row.metadata || {};
+  return {
+    id: row.id,
+    slug: meta.slug || row.id,
+    brandName: row.brand_name || meta.brandName || '',
+    contactName: row.full_name || meta.contactName || '',
+    email: row.email || meta.email || '',
+    phone: row.phone || meta.phone || '',
+    title: meta.title || 'Growth Strategy Walkthrough',
+    video: meta.video || '',
+    boardId: meta.boardId || 'polish-cosmetics-launch',
+    chapters: Array.isArray(meta.chapters) ? meta.chapters : [],
+    deliverables: Array.isArray(meta.deliverables) ? meta.deliverables : [],
+    url: meta.url || `/p/${meta.slug || row.id}`,
+    status: row.status || 'ACTIVE',
+    createdAt: row.submitted_at || row.created_at || meta.createdAt || new Date().toISOString(),
+    updatedAt: row.updated_at || meta.updatedAt || new Date().toISOString()
+  };
+}
+
+function slugifyProposal(text) {
+  return String(text || '')
+    .trim()
+    .toLowerCase()
+    .replace(/['"]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+const presentationsService = {
+  async listPresentations() {
+    if (isConfigured) {
+      const { data, error } = await supabase
+        .from('leads')
+        .select('*')
+        .eq('type', 'PRESENTATION')
+        .order('updated_at', { ascending: false });
+
+      if (!error && data && data.length > 0) {
+        return data.map(mapDbRowToPresentation);
+      }
+      if (error) {
+        console.warn('[Supabase presentationsService.listPresentations error, falling back]:', error?.message);
+      }
+    }
+
+    // Local Fallback (or when cloud has no rows yet)
+    try {
+      if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
+        return JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
+      }
+    } catch (e) {
+      console.error('Local presentations read error:', e);
+    }
+    return [];
+  },
+
+  async getPresentationBySlug(slugOrId) {
+    if (!slugOrId) return null;
+    const clean = String(slugOrId).trim().toLowerCase();
+
+    if (isConfigured) {
+      // 1. Try by ID first
+      const { data: byId, error: errId } = await supabase
+        .from('leads')
+        .select('*')
+        .eq('id', clean)
+        .eq('type', 'PRESENTATION')
+        .maybeSingle();
+
+      if (!errId && byId) {
+        return mapDbRowToPresentation(byId);
+      }
+
+      // 2. Try by metadata->>slug
+      const { data: bySlug, error: errSlug } = await supabase
+        .from('leads')
+        .select('*')
+        .eq('type', 'PRESENTATION');
+
+      if (!errSlug && bySlug) {
+        const found = bySlug.find(r => {
+          const s = (r.metadata?.slug || r.id || '').toLowerCase();
+          return s === clean;
+        });
+        if (found) return mapDbRowToPresentation(found);
+      }
+      console.warn('[Supabase presentationsService.getPresentationBySlug error, falling back]:', errId?.message || errSlug?.message);
+    }
+
+    // Local Fallback
+    try {
+      if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
+        const presentations = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
+        return presentations.find(p => 
+          (p.slug && p.slug.toLowerCase() === clean) || 
+          (p.id && p.id.toLowerCase() === clean)
+        ) || null;
+      }
+    } catch (e) {
+      console.error('Local presentation get error:', e);
+    }
+    return null;
+  },
+
+  async savePresentation(presData) {
+    const rawBrand = (presData.brandName || presData.brand || 'Client Brand').trim();
+    const rawSlug = (presData.slug || slugifyProposal(rawBrand) || `pres-${Date.now().toString(36)}`).trim().toLowerCase();
+    const id = (presData.id || rawSlug).trim().toLowerCase();
+    const now = new Date().toISOString();
+
+    const enriched = {
+      ...presData,
+      id,
+      slug: rawSlug,
+      brandName: rawBrand,
+      contactName: (presData.contactName || presData.contact || '').trim(),
+      email: (presData.email || '').trim().toLowerCase(),
+      phone: (presData.phone || '').trim(),
+      title: (presData.title || 'Growth Strategy Walkthrough').trim(),
+      video: (presData.video || '').trim(),
+      boardId: (presData.boardId || presData.board || 'polish-cosmetics-launch').trim(),
+      chapters: Array.isArray(presData.chapters) && presData.chapters.length ? presData.chapters : [
+        { time: '00:00', seconds: 0, title: '01 • Diagnostic & Market Positioning' },
+        { time: '03:15', seconds: 195, title: '02 • Revenue Velocity & CAC Compression' },
+        { time: '06:40', seconds: 400, title: '03 • Creative & UGC Performance Matrix' },
+        { time: '09:50', seconds: 590, title: '04 • 90-Day Roadmap & Retainer Scope' }
+      ],
+      deliverables: Array.isArray(presData.deliverables) && presData.deliverables.length ? presData.deliverables : [
+        {
+          num: '01',
+          title: 'Diagnostic Bottlenecks Solved',
+          desc: 'Systematic eradication of creative fatigue, breaking past historical ad ceiling barriers, and reducing blended CAC through angle diversification.'
+        },
+        {
+          num: '02',
+          title: '90-Day Scaling Levers',
+          desc: 'Proprietary daily regimen bundling to expand basket AOV, lamellar barrier replenishment loops for recurring LTV, and creator video seeding.'
+        },
+        {
+          num: '03',
+          title: 'Retainer Scope & Milestones',
+          desc: 'Dedicated creative director, weekly strategy calibration sprints, ongoing high-converting performance asset drops, and VIP founder communication.'
+        }
+      ],
+      url: presData.url || `/p/${rawSlug}`,
+      status: presData.status || 'ACTIVE',
+      updatedAt: now
+    };
+    if (!enriched.createdAt) enriched.createdAt = now;
+
+    if (isConfigured) {
+      const row = {
+        id,
+        type: 'PRESENTATION',
+        full_name: enriched.contactName || 'Founder',
+        brand_name: enriched.brandName,
+        email: enriched.email || 'client@polishmediaco.com',
+        phone: enriched.phone || null,
+        monthly_revenue: enriched.title,
+        status: enriched.status,
+        notes: enriched.url,
+        metadata: enriched,
+        submitted_at: enriched.createdAt,
+        updated_at: now
+      };
+
+      const { data, error } = await supabase
+        .from('leads')
+        .upsert(row, { onConflict: 'id' })
+        .select()
+        .single();
+
+      if (!error && data) {
+        // Update local file cache for instant offline access
+        try {
+          let localList = [];
+          if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
+            localList = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
+          }
+          const mapped = mapDbRowToPresentation(data);
+          const idx = localList.findIndex(p => p.id === id || p.slug === rawSlug);
+          if (idx >= 0) localList[idx] = mapped;
+          else localList.unshift(mapped);
+          const dir = path.dirname(LOCAL_PRESENTATIONS_FILE);
+          if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+          fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(localList, null, 2), 'utf8');
+        } catch (_) {}
+
+        return mapDbRowToPresentation(data);
+      }
+      console.warn('[Supabase presentationsService.savePresentation error, falling back]:', error?.message);
+    }
+
+    // Local Fallback
+    try {
+      let localList = [];
+      if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
+        localList = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
+      }
+      const idx = localList.findIndex(p => p.id === id || p.slug === rawSlug);
+      if (idx >= 0) localList[idx] = enriched;
+      else localList.unshift(enriched);
+
+      const dir = path.dirname(LOCAL_PRESENTATIONS_FILE);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(localList, null, 2), 'utf8');
+      return enriched;
+    } catch (e) {
+      console.error('Local presentation save error:', e);
+      return enriched;
+    }
+  },
+
+  async deletePresentation(idOrSlug) {
+    if (!idOrSlug) return false;
+    const clean = String(idOrSlug).trim().toLowerCase();
+
+    if (isConfigured) {
+      const { error } = await supabase
+        .from('leads')
+        .delete()
+        .or(`id.eq.${clean},metadata->>slug.eq.${clean}`)
+        .eq('type', 'PRESENTATION');
+
+      if (!error) {
+        try {
+          if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
+            let localList = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
+            localList = localList.filter(p => p.id !== clean && p.slug !== clean);
+            fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(localList, null, 2), 'utf8');
+          }
+        } catch (_) {}
+        return true;
+      }
+      console.warn('[Supabase presentationsService.deletePresentation error, falling back]:', error?.message);
+    }
+
+    // Local Fallback
+    try {
+      if (fs.existsSync(LOCAL_PRESENTATIONS_FILE)) {
+        let localList = JSON.parse(fs.readFileSync(LOCAL_PRESENTATIONS_FILE, 'utf8') || '[]');
+        localList = localList.filter(p => p.id !== clean && p.slug !== clean);
+        fs.writeFileSync(LOCAL_PRESENTATIONS_FILE, JSON.stringify(localList, null, 2), 'utf8');
+        return true;
+      }
+    } catch (e) {
+      console.error('Local presentation delete error:', e);
+    }
+    return false;
+  }
+};
+
 module.exports = {
   supabase,
   isConfigured,
@@ -657,5 +914,7 @@ module.exports = {
   boardsService,
   cmsService,
   invoicesService,
+  presentationsService,
   keepAliveService
 };
+

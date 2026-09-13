@@ -1,7 +1,8 @@
 /**
  * POLISH Media Co. — Executive Presentation & Walkthrough Engine
- * Supports YouTube Unlisted Embeds, Native MP4s, Live Board Studio Iframe,
- * Dynamic URL Parameter Customization, and Chapter Navigation.
+ * Supports Bespoke Slug Routing (/p/:slug), Public Proposals API,
+ * Confidential Portal Gating, YouTube Unlisted Embeds, Native MP4s,
+ * Live Board Studio Iframe, and Interactive Chapter Sync.
  */
 
 (function () {
@@ -9,12 +10,11 @@
 
   // Default Fallback State
   const DEFAULTS = {
-    client: 'Celestia Cosmetics',
-    name: 'Yasmine',
+    client: 'Client Brand',
+    name: '',
     board: 'polish-cosmetics-launch',
-    title: 'Growth Strategy',
-    // Default video recording ID (Unlisted YouTube ID or MP4)
-    video: '', // Safe clean default; provided via ?video=
+    title: 'Growth Strategy Walkthrough',
+    video: '',
     chapters: [
       { time: '00:00', seconds: 0, title: '01 • Diagnostic & Market Positioning' },
       { time: '03:15', seconds: 195, title: '02 • Revenue Velocity & CAC Compression' },
@@ -27,8 +27,32 @@
   let ytPlayer = null;
   let nativeVideoEl = null;
   let playbackPollTimer = null;
+  let currentChapters = DEFAULTS.chapters;
 
-  // ── 1. URL Parameter Parser ──────────────────────────────────────────────────
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ── 1. Route & Slug Extraction ──────────────────────────────────────────────
+  function extractSlugFromPath() {
+    const path = window.location.pathname.replace(/\/+$/, '');
+    const pMatch = path.match(/^\/p\/([^/?#]+)/i);
+    if (pMatch && pMatch[1]) return decodeURIComponent(pMatch[1]).trim().toLowerCase();
+    const presMatch = path.match(/^\/presentation\/([^/?#]+)/i);
+    if (presMatch && presMatch[1]) return decodeURIComponent(presMatch[1]).trim().toLowerCase();
+    const propMatch = path.match(/^\/proposal\/([^/?#]+)/i);
+    if (propMatch && propMatch[1]) return decodeURIComponent(propMatch[1]).trim().toLowerCase();
+    const briefMatch = path.match(/^\/briefing\/([^/?#]+)/i);
+    if (briefMatch && briefMatch[1]) return decodeURIComponent(briefMatch[1]).trim().toLowerCase();
+    return null;
+  }
+
+  // Legacy URL Parameter Parser (Fallback)
   function getParams() {
     const params = new URLSearchParams(window.location.search);
     const client = (params.get('client') || params.get('brand') || DEFAULTS.client).trim();
@@ -40,7 +64,31 @@
     return { client, name, board, title, video };
   }
 
-  // ── 2. DOM Hydration ─────────────────────────────────────────────────────────
+  // ── 2. Gate & View Management ───────────────────────────────────────────────
+  function showGate(gateId) {
+    const loadingGate = document.getElementById('presLoadingGate');
+    const confGate = document.getElementById('presConfidentialGate');
+    const notFoundGate = document.getElementById('presNotFoundGate');
+    const content = document.getElementById('presentationContent');
+
+    if (loadingGate) loadingGate.style.display = (gateId === 'loading') ? 'flex' : 'none';
+    if (confGate) confGate.style.display = (gateId === 'confidential') ? 'flex' : 'none';
+    if (notFoundGate) notFoundGate.style.display = (gateId === 'notfound') ? 'flex' : 'none';
+    if (content) content.style.display = (gateId === 'content') ? 'block' : 'none';
+  }
+
+  function submitGateCode() {
+    const input = document.getElementById('gateSlugInput');
+    if (!input) return;
+    let val = (input.value || '').trim();
+    if (!val) return;
+    val = val.replace(/^https?:\/\/[^/]+/i, '').replace(/^\/?(p|presentation|proposal|briefing)\//i, '').replace(/^\/+|\/+$/g, '');
+    if (val) {
+      window.location.href = `/p/${encodeURIComponent(val.toLowerCase())}`;
+    }
+  }
+
+  // ── 3. DOM Hydration ─────────────────────────────────────────────────────────
   function hydratePage(state) {
     // Document Title
     document.title = `POLISH Media Co. × ${state.client} — Strategy Walkthrough`;
@@ -68,7 +116,7 @@
 
     // External Bridges: Calendly / Book
     const bookButtons = document.querySelectorAll('.js-btn-book');
-    const bookUrl = `/book?brand=${encodeURIComponent(state.client)}&name=${encodeURIComponent(state.name)}`;
+    const bookUrl = `/book?brand=${encodeURIComponent(state.client)}&name=${encodeURIComponent(state.name || '')}`;
     bookButtons.forEach(btn => btn.setAttribute('href', bookUrl));
 
     // External Bridges: WhatsApp Founder Line (+213 662 41 77 61)
@@ -78,9 +126,26 @@
     );
     const waUrl = `https://wa.me/213662417761?text=${waText}`;
     waButtons.forEach(btn => btn.setAttribute('href', waUrl));
+
+    // Deliverables rendering if custom deliverables present
+    if (Array.isArray(state.deliverables) && state.deliverables.length) {
+      renderDeliverables(state.deliverables);
+    }
   }
 
-  // ── 3. Universal Video Parser & Mounting ────────────────────────────────────
+  function renderDeliverables(deliverables) {
+    const grid = document.getElementById('presHighlightsGrid');
+    if (!grid || !Array.isArray(deliverables) || !deliverables.length) return;
+    grid.innerHTML = deliverables.map((d, i) => `
+      <div class="pres-card">
+        <div class="pres-card-num">${escapeHtml(d.num || String(i + 1).padStart(2, '0'))}</div>
+        <h3 class="pres-card-title">${escapeHtml(d.title || '')}</h3>
+        <p class="pres-card-desc">${escapeHtml(d.desc || d.description || '')}</p>
+      </div>
+    `).join('');
+  }
+
+  // ── 4. Universal Video Parser & Mounting ────────────────────────────────────
   function parseVideoSource(rawVideo) {
     if (!rawVideo) return { type: 'placeholder' };
 
@@ -106,7 +171,7 @@
       return { type: 'native', url: clean };
     }
 
-    // Default to native URL or YouTube fallback
+    // Default to native URL
     if (clean.startsWith('http://') || clean.startsWith('https://') || clean.startsWith('/')) {
       return { type: 'native', url: clean };
     }
@@ -172,7 +237,7 @@
     }
   }
 
-  // ── 4. YouTube API Integration (For Chapters Seeking & Sync) ────────────────
+  // ── 5. YouTube API Integration (For Chapters Seeking & Sync) ────────────────
   function startProgressSync() {
     if (playbackPollTimer) clearInterval(playbackPollTimer);
     playbackPollTimer = setInterval(syncActiveChapterWithTime, 500);
@@ -197,7 +262,7 @@
       return;
     }
 
-    const chapters = DEFAULTS.chapters;
+    const chapters = currentChapters;
     let activeIndex = 0;
     for (let i = 0; i < chapters.length; i++) {
       if (currentTime >= chapters[i].seconds) {
@@ -255,7 +320,7 @@
     }
   };
 
-  // ── 5. Chapter Navigation ───────────────────────────────────────────────────
+  // ── 6. Chapter Navigation ───────────────────────────────────────────────────
   function seekToTime(seconds, pillElement) {
     if (activePlayerType === 'youtube') {
       if (ytPlayer && typeof ytPlayer.seekTo === 'function') {
@@ -292,27 +357,27 @@
     const bar = document.getElementById('chaptersBar');
     if (!bar) return;
 
+    currentChapters = Array.isArray(chapters) && chapters.length ? chapters : DEFAULTS.chapters;
     bar.innerHTML = '';
-    chapters.forEach((ch, idx) => {
+    currentChapters.forEach((ch, idx) => {
       const pill = document.createElement('button');
       pill.type = 'button';
       pill.className = `pres-chapter-pill ${idx === 0 ? 'is-active' : ''}`;
       if (idx === 0) pill.setAttribute('aria-current', 'true');
       pill.innerHTML = `
-        <span class="pres-chapter-time">${ch.time}</span>
-        <span>${ch.title}</span>
+        <span class="pres-chapter-time">${escapeHtml(ch.time)}</span>
+        <span>${escapeHtml(ch.title)}</span>
       `;
       pill.addEventListener('click', () => seekToTime(ch.seconds, pill));
       bar.appendChild(pill);
     });
   }
 
-  // ── 6. Live Board Iframe Mounting ───────────────────────────────────────────
+  // ── 7. Live Board Iframe Mounting ───────────────────────────────────────────
   function mountBoard(boardId) {
     const wrap = document.getElementById('boardIframeWrapper');
     if (!wrap) return;
 
-    // Use local client viewer /studio/view.html?id=...
     const boardUrl = `/studio/view.html?id=${encodeURIComponent(boardId)}`;
     let iframe = document.getElementById('boardIframe');
     if (!iframe) {
@@ -339,13 +404,69 @@
     }
   }
 
-  // ── 7. Initialize Engine ────────────────────────────────────────────────────
-  function init() {
-    const state = getParams();
-    hydratePage(state);
-    renderChapters(DEFAULTS.chapters);
-    mountVideo(parseVideoSource(state.video));
-    mountBoard(state.board);
+  // ── 8. Initialize Engine ────────────────────────────────────────────────────
+  async function init() {
+    const slug = extractSlugFromPath();
+
+    if (slug) {
+      // 1. Bespoke Slug Mode (/p/:slug or /presentation/:slug)
+      showGate('loading');
+      try {
+        const res = await fetch(`/api/presentations/${encodeURIComponent(slug)}`);
+        if (!res.ok) {
+          throw new Error(`Presentation not found: status ${res.status}`);
+        }
+        const data = await res.json();
+        if (!data || !data.success || !data.presentation) {
+          throw new Error('Invalid presentation payload');
+        }
+
+        const pres = data.presentation;
+        const state = {
+          client: pres.brandName || pres.brand || 'Client Brand',
+          name: pres.contactName || pres.contact || '',
+          title: pres.title || 'Growth Strategy Walkthrough',
+          board: pres.boardId || pres.board || DEFAULTS.board,
+          video: pres.video || '',
+          chapters: (Array.isArray(pres.chapters) && pres.chapters.length) ? pres.chapters : DEFAULTS.chapters,
+          deliverables: pres.deliverables || []
+        };
+
+        hydratePage(state);
+        renderChapters(state.chapters);
+        mountVideo(parseVideoSource(state.video));
+        mountBoard(state.board);
+        showGate('content');
+      } catch (err) {
+        console.warn('[POLISH Proposal] Failed to load proposal for slug:', slug, err);
+        const slugDisplay = document.getElementById('notFoundSlugDisplay');
+        if (slugDisplay) slugDisplay.textContent = `/p/${slug}`;
+        const headerClientEl = document.getElementById('headerClientName');
+        if (headerClientEl) headerClientEl.textContent = 'Briefing Unavailable';
+        showGate('notfound');
+      }
+    } else {
+      // 2. No slug in path: Check legacy query parameters
+      const params = new URLSearchParams(window.location.search);
+      const hasClientParam = params.has('client') || params.has('brand');
+      const hasVideoParam = params.has('video') || params.has('v');
+
+      if (hasClientParam || hasVideoParam) {
+        // Backwards-compatible query parameter proposal
+        const state = getParams();
+        hydratePage(state);
+        renderChapters(DEFAULTS.chapters);
+        mountVideo(parseVideoSource(state.video));
+        mountBoard(state.board);
+        showGate('content');
+      } else {
+        // Bare /presentation page with no slug and no query params!
+        // Show confidential briefing portal gate.
+        const headerClientEl = document.getElementById('headerClientName');
+        if (headerClientEl) headerClientEl.textContent = 'Confidential Portal';
+        showGate('confidential');
+      }
+    }
 
     // Board Interactive Overlay Barrier (Prevents Scroll Hijacking)
     const boardOverlay = document.getElementById('boardOverlay');
@@ -387,7 +508,8 @@
   window.PresEngine = {
     init,
     toggleBoardFullscreen,
-    seekToTime
+    seekToTime,
+    submitGateCode
   };
 
   if (document.readyState === 'loading') {

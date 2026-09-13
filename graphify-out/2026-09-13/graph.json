@@ -2645,12 +2645,48 @@
       "source_location": "L342"
     },
     {
+      "id": "server_routes_api_getdefaultcontent",
+      "label": "getDefaultContent()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "getdefaultcontent()",
+      "source_file": "server/routes/api.js",
+      "source_location": "L606"
+    },
+    {
+      "id": "server_routes_api_readcontent",
+      "label": "readContent()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "readcontent()",
+      "source_file": "server/routes/api.js",
+      "source_location": "L843"
+    },
+    {
+      "id": "server_routes_api_writecontent",
+      "label": "writeContent()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "writecontent()",
+      "source_file": "server/routes/api.js",
+      "source_location": "L858"
+    },
+    {
       "id": "server_services_supabase_mapboardtodbrow",
       "label": "mapBoardToDbRow()",
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "mapboardtodbrow()",
       "source_file": "server/services/supabase.js",
@@ -2662,7 +2698,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "mapdbboardtoboard()",
       "source_file": "server/services/supabase.js",
@@ -2674,7 +2710,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "mapdbleadtolead()",
       "source_file": "server/services/supabase.js",
@@ -2686,7 +2722,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "mapdbrowtoinvoice()",
       "source_file": "server/services/supabase.js",
@@ -2698,7 +2734,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "mapleadtodbrow()",
       "source_file": "server/services/supabase.js",
@@ -2885,42 +2921,6 @@
       "source_location": "L34"
     },
     {
-      "id": "public_js_presentation_page_closeconfigmodal",
-      "label": "closeConfigModal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "presentation-page.js",
-      "file_type": "code",
-      "norm_label": "closeconfigmodal()",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L402"
-    },
-    {
-      "id": "public_js_presentation_page_copyclientsharelink",
-      "label": "copyClientShareLink()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "presentation-page.js",
-      "file_type": "code",
-      "norm_label": "copyclientsharelink()",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L372"
-    },
-    {
-      "id": "public_js_presentation_page_fallbackcopy",
-      "label": "fallbackCopy()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "presentation-page.js",
-      "file_type": "code",
-      "norm_label": "fallbackcopy()",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L383"
-    },
-    {
       "id": "public_js_presentation_page_getparams",
       "label": "getParams()",
       "_callable": true,
@@ -2954,7 +2954,7 @@
       "file_type": "code",
       "norm_label": "init()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L431"
+      "source_location": "L343"
     },
     {
       "id": "public_js_presentation_page_inityoutubeapi",
@@ -2966,7 +2966,7 @@
       "file_type": "code",
       "norm_label": "inityoutubeapi()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L238"
+      "source_location": "L222"
     },
     {
       "id": "public_js_presentation_page_mountboard",
@@ -2978,7 +2978,7 @@
       "file_type": "code",
       "norm_label": "mountboard()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L327"
+      "source_location": "L311"
     },
     {
       "id": "public_js_presentation_page_mountvideo",
@@ -2990,19 +2990,7 @@
       "file_type": "code",
       "norm_label": "mountvideo()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L133"
-    },
-    {
-      "id": "public_js_presentation_page_openconfigmodal",
-      "label": "openConfigModal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "presentation-page.js",
-      "file_type": "code",
-      "norm_label": "openconfigmodal()",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L397"
+      "source_location": "L117"
     },
     {
       "id": "public_js_presentation_page_parsevideosource",
@@ -3014,7 +3002,7 @@
       "file_type": "code",
       "norm_label": "parsevideosource()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L100"
+      "source_location": "L84"
     },
     {
       "id": "public_js_presentation_page_renderchapters",
@@ -3026,19 +3014,7 @@
       "file_type": "code",
       "norm_label": "renderchapters()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L307"
-    },
-    {
-      "id": "public_js_presentation_page_saveconfigmodal",
-      "label": "saveConfigModal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "presentation-page.js",
-      "file_type": "code",
-      "norm_label": "saveconfigmodal()",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L407"
+      "source_location": "L291"
     },
     {
       "id": "public_js_presentation_page_seektotime",
@@ -3050,19 +3026,7 @@
       "file_type": "code",
       "norm_label": "seektotime()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L275"
-    },
-    {
-      "id": "public_js_presentation_page_showtoast",
-      "label": "showToast()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "presentation-page.js",
-      "file_type": "code",
-      "norm_label": "showtoast()",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L359"
+      "source_location": "L259"
     },
     {
       "id": "public_js_presentation_page_startprogresssync",
@@ -3074,7 +3038,7 @@
       "file_type": "code",
       "norm_label": "startprogresssync()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L192"
+      "source_location": "L176"
     },
     {
       "id": "public_js_presentation_page_stopprogresssync",
@@ -3086,7 +3050,7 @@
       "file_type": "code",
       "norm_label": "stopprogresssync()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L197"
+      "source_location": "L181"
     },
     {
       "id": "public_js_presentation_page_syncactivechapterwithtime",
@@ -3098,7 +3062,7 @@
       "file_type": "code",
       "norm_label": "syncactivechapterwithtime()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L204"
+      "source_location": "L188"
     },
     {
       "id": "public_js_presentation_page_toggleboardfullscreen",
@@ -3110,7 +3074,7 @@
       "file_type": "code",
       "norm_label": "toggleboardfullscreen()",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L345"
+      "source_location": "L329"
     },
     {
       "id": "public_js_cms_loaddynamiccontent",
@@ -4623,42 +4587,6 @@
       "norm_label": "runtest()",
       "source_file": "tests/test_presentation_page.js",
       "source_location": "L17"
-    },
-    {
-      "id": "server_routes_api_getdefaultcontent",
-      "label": "getDefaultContent()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "getdefaultcontent()",
-      "source_file": "server/routes/api.js",
-      "source_location": "L606"
-    },
-    {
-      "id": "server_routes_api_readcontent",
-      "label": "readContent()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "readcontent()",
-      "source_file": "server/routes/api.js",
-      "source_location": "L843"
-    },
-    {
-      "id": "server_routes_api_writecontent",
-      "label": "writeContent()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "writecontent()",
-      "source_file": "server/routes/api.js",
-      "source_location": "L858"
     },
     {
       "id": "server_middleware_auth_getadminemails",
@@ -7351,6 +7279,17 @@
       "source_location": "L264"
     },
     {
+      "id": "ref_express",
+      "label": "express",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "boards.js",
+      "file_type": "concept",
+      "norm_label": "express",
+      "source_file": "package.json",
+      "source_location": "L16"
+    },
+    {
       "id": "package_dependencies",
       "label": "dependencies",
       "_origin": "ast",
@@ -7461,11 +7400,99 @@
       "source_location": "L1"
     },
     {
+      "id": "server_routes_api",
+      "label": "api.js",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "api.js",
+      "source_file": "server/routes/api.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "server_routes_api_express",
+      "label": "express",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "express",
+      "source_file": "server/routes/api.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "server_routes_api_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "server/routes/api.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "server_routes_api_leadsservice_cmsservice_keepaliveservice_invoicesservice",
+      "label": "{ leadsService, cmsService, keepAliveService, invoicesService }",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "{ leadsservice, cmsservice, keepaliveservice, invoicesservice }",
+      "source_file": "server/routes/api.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "server_routes_api_notifynewlead_notifynewmeeting_sendwhatsappmessage",
+      "label": "{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "{ notifynewlead, notifynewmeeting, sendwhatsappmessage }",
+      "source_file": "server/routes/api.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "server_routes_api_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "server/routes/api.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "server_routes_api_requireadminauth",
+      "label": "{ requireAdminAuth }",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "{ requireadminauth }",
+      "source_file": "server/routes/api.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "server_routes_api_router",
+      "label": "router",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "api.js",
+      "file_type": "code",
+      "norm_label": "router",
+      "source_file": "server/routes/api.js",
+      "source_location": "L8"
+    },
+    {
       "id": "server_services_supabase",
       "label": "supabase.js",
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "supabase.js",
       "source_file": "server/services/supabase.js",
@@ -7476,7 +7503,7 @@
       "label": "cmsService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "cmsservice",
       "source_file": "server/services/supabase.js",
@@ -7487,7 +7514,7 @@
       "label": "{ createClient }",
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "{ createclient }",
       "source_file": "server/services/supabase.js",
@@ -7498,7 +7525,7 @@
       "label": "fs",
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "fs",
       "source_file": "server/services/supabase.js",
@@ -7509,7 +7536,7 @@
       "label": "invoicesService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "invoicesservice",
       "source_file": "server/services/supabase.js",
@@ -7520,7 +7547,7 @@
       "label": "keepAliveService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "keepaliveservice",
       "source_file": "server/services/supabase.js",
@@ -7531,7 +7558,7 @@
       "label": "leadsService",
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "leadsservice",
       "source_file": "server/services/supabase.js",
@@ -7542,7 +7569,7 @@
       "label": "path",
       "_origin": "ast",
       "community": 23,
-      "community_name": "supabase.js",
+      "community_name": "api.js",
       "file_type": "code",
       "norm_label": "path",
       "source_file": "server/services/supabase.js",
@@ -8073,7 +8100,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L761"
+      "source_location": "L779"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -8434,6 +8461,18 @@
       "norm_label": "sprint 25: presentation hardening, studio camera bubble engine & dual-delivery whatsapp notification gateway (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L725"
+    },
+    {
+      "id": "docs_handoff_sprint_26_client_presentation_decoupling_centralized_admin_proposal_hub_completed_september_2026",
+      "label": "Sprint 26: Client Presentation Decoupling & Centralized Admin Proposal Hub (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 26: client presentation decoupling & centralized admin proposal hub (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L759"
     },
     {
       "id": "docs_handoff_sprint_2_security_performance_hardening_completed_september_2026",
@@ -12066,105 +12105,6 @@
       "source_location": "L23"
     },
     {
-      "id": "server_routes_api",
-      "label": "api.js",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "api.js",
-      "source_file": "server/routes/api.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "server_routes_api_express",
-      "label": "express",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "express",
-      "source_file": "server/routes/api.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "server_routes_api_fs",
-      "label": "fs",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "server/routes/api.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "server_routes_api_leadsservice_cmsservice_keepaliveservice_invoicesservice",
-      "label": "{ leadsService, cmsService, keepAliveService, invoicesService }",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "{ leadsservice, cmsservice, keepaliveservice, invoicesservice }",
-      "source_file": "server/routes/api.js",
-      "source_location": "L6"
-    },
-    {
-      "id": "server_routes_api_notifynewlead_notifynewmeeting_sendwhatsappmessage",
-      "label": "{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "{ notifynewlead, notifynewmeeting, sendwhatsappmessage }",
-      "source_file": "server/routes/api.js",
-      "source_location": "L4"
-    },
-    {
-      "id": "server_routes_api_path",
-      "label": "path",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "server/routes/api.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "server_routes_api_requireadminauth",
-      "label": "{ requireAdminAuth }",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "{ requireadminauth }",
-      "source_file": "server/routes/api.js",
-      "source_location": "L5"
-    },
-    {
-      "id": "server_routes_api_router",
-      "label": "router",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "router",
-      "source_file": "server/routes/api.js",
-      "source_location": "L8"
-    },
-    {
-      "id": "ref_express",
-      "label": "express",
-      "_origin": "ast",
-      "community": 63,
-      "community_name": "api.js",
-      "file_type": "concept",
-      "norm_label": "express",
-      "source_file": "package.json",
-      "source_location": "L16"
-    },
-    {
       "id": "server_middleware_auth",
       "label": "auth.js",
       "_origin": "ast",
@@ -14844,42 +14784,6 @@
       "weight": 1.0
     },
     {
-      "source": "public_js_presentation_page_copyclientsharelink",
-      "target": "public_js_presentation_page_showtoast",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L376",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_copyclientsharelink",
-      "target": "public_js_presentation_page_fallbackcopy",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L377",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_fallbackcopy",
-      "target": "public_js_presentation_page_showtoast",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L390",
-      "weight": 1.0
-    },
-    {
       "source": "public_js_presentation_page_init",
       "target": "public_js_presentation_page_getparams",
       "relation": "calls",
@@ -14888,7 +14792,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L432",
+      "source_location": "L344",
       "weight": 1.0
     },
     {
@@ -14900,7 +14804,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L433",
+      "source_location": "L345",
       "weight": 1.0
     },
     {
@@ -14912,7 +14816,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L434",
+      "source_location": "L346",
       "weight": 1.0
     },
     {
@@ -14924,7 +14828,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L435",
+      "source_location": "L347",
       "weight": 1.0
     },
     {
@@ -14936,7 +14840,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L435",
+      "source_location": "L347",
       "weight": 1.0
     },
     {
@@ -14948,7 +14852,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L436",
+      "source_location": "L348",
       "weight": 1.0
     },
     {
@@ -14960,7 +14864,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L157",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -14972,79 +14876,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L321",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_saveconfigmodal",
-      "target": "public_js_presentation_page_closeconfigmodal",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L421",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_saveconfigmodal",
-      "target": "public_js_presentation_page_hydratepage",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L424",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_saveconfigmodal",
-      "target": "public_js_presentation_page_mountvideo",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L425",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_saveconfigmodal",
-      "target": "public_js_presentation_page_parsevideosource",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L425",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_saveconfigmodal",
-      "target": "public_js_presentation_page_mountboard",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L426",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_saveconfigmodal",
-      "target": "public_js_presentation_page_showtoast",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L427",
+      "source_location": "L305",
       "weight": 1.0
     },
     {
@@ -21540,6 +21372,30 @@
       "weight": 1.0
     },
     {
+      "source": "server_index",
+      "target": "server_services_calendlysync_startcalendlypoller",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/index.js",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "server_index",
+      "target": "server_services_supabase_keepaliveservice",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/index.js",
+      "source_location": "L493",
+      "weight": 1.0
+    },
+    {
       "source": "server_middleware_auth",
       "target": "server_services_supabase_isconfigured",
       "relation": "imports",
@@ -21585,6 +21441,66 @@
       "context": "import",
       "source_file": "server/routes/api.js",
       "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_middleware_auth_requireadminauth",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_services_supabase_cmsservice",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_services_supabase_invoicesservice",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_services_supabase_keepaliveservice",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "server_routes_api",
+      "target": "server_services_supabase_leadsservice",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "server/routes/api.js",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -24569,6 +24485,17 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_26_client_presentation_decoupling_centralized_admin_proposal_hub_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L759",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -24631,7 +24558,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L761",
+      "source_location": "L779",
       "weight": 1.0
     },
     {
@@ -26990,24 +26917,13 @@
     },
     {
       "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_parsevideosource",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L100",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
       "target": "public_js_presentation_page_mountvideo",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L133",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -27018,7 +26934,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L192",
+      "source_location": "L176",
       "weight": 1.0
     },
     {
@@ -27029,7 +26945,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L197",
+      "source_location": "L181",
       "weight": 1.0
     },
     {
@@ -27040,7 +26956,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L204",
+      "source_location": "L188",
       "weight": 1.0
     },
     {
@@ -27051,7 +26967,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L238",
+      "source_location": "L222",
       "weight": 1.0
     },
     {
@@ -27062,7 +26978,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L275",
+      "source_location": "L259",
       "weight": 1.0
     },
     {
@@ -27073,7 +26989,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L307",
+      "source_location": "L291",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_mountboard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L311",
       "weight": 1.0
     },
     {
@@ -27089,90 +27016,13 @@
     },
     {
       "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_mountboard",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L327",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
       "target": "public_js_presentation_page_toggleboardfullscreen",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L345",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_showtoast",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L359",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_copyclientsharelink",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L372",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_fallbackcopy",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L383",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_openconfigmodal",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L397",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_closeconfigmodal",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L402",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page",
-      "target": "public_js_presentation_page_saveconfigmodal",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L407",
+      "source_location": "L329",
       "weight": 1.0
     },
     {
@@ -27183,7 +27033,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L431",
+      "source_location": "L343",
       "weight": 1.0
     },
     {
@@ -27195,6 +27045,17 @@
       "confidence_score": 1.0,
       "source_file": "public/js/presentation-page.js",
       "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "public_js_presentation_page",
+      "target": "public_js_presentation_page_parsevideosource",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/js/presentation-page.js",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -32850,54 +32711,6 @@
     },
     {
       "source": "public_js_presentation_page_init",
-      "target": "public_js_presentation_page_copyclientsharelink",
-      "relation": "indirect_call",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "argument",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L469",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_init",
-      "target": "public_js_presentation_page_openconfigmodal",
-      "relation": "indirect_call",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "argument",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L471",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_init",
-      "target": "public_js_presentation_page_closeconfigmodal",
-      "relation": "indirect_call",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "argument",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L474",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_init",
-      "target": "public_js_presentation_page_saveconfigmodal",
-      "relation": "indirect_call",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "argument",
-      "source_file": "public/js/presentation-page.js",
-      "source_location": "L477",
-      "weight": 1.0
-    },
-    {
-      "source": "public_js_presentation_page_init",
       "target": "public_js_presentation_page_toggleboardfullscreen",
       "relation": "indirect_call",
       "_origin": "ast",
@@ -32905,7 +32718,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L487",
+      "source_location": "L372",
       "weight": 1.0
     },
     {
@@ -32917,7 +32730,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L173",
+      "source_location": "L157",
       "weight": 1.0
     },
     {
@@ -32929,7 +32742,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "public/js/presentation-page.js",
-      "source_location": "L194",
+      "source_location": "L178",
       "weight": 1.0
     },
     {

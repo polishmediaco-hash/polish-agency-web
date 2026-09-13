@@ -3668,11 +3668,22 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
               <div class="form-group">
                 <label for="presGenBrand" style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); margin-bottom: 6px;">Client Brand Name *</label>
-                <input type="text" id="presGenBrand" class="input-field" placeholder="e.g. Celestia Cosmetics" required style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13.5px;" oninput="updatePresGenOutput()">
+                <input type="text" id="presGenBrand" class="input-field" placeholder="e.g. Celestia Cosmetics" required style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13.5px;" oninput="onPresBrandInput()">
               </div>
               <div class="form-group">
                 <label for="presGenContact" style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); margin-bottom: 6px;">Contact Person Name</label>
                 <input type="text" id="presGenContact" class="input-field" placeholder="e.g. Yasmine" style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13.5px;" oninput="updatePresGenOutput()">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label for="presGenSlug" style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim);">Proposal Link Slug (URL Route) *</label>
+                <span style="font-size: 11px; color: var(--muted);">Clean Client Link</span>
+              </div>
+              <div style="display: flex; align-items: center; background: rgba(0,0,0,0.4); border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden;">
+                <span style="padding: 10px 12px; font-family: monospace; font-size: 12px; color: var(--dim); background: rgba(255,255,255,0.03); border-right: 1px solid var(--card-border); user-select: none;">/p/</span>
+                <input type="text" id="presGenSlug" class="input-field" placeholder="celestia-cosmetics" required style="flex: 1; border: none; background: transparent; padding: 10px 12px; color: var(--cyan); font-size: 13.5px; font-family: monospace; outline: none;" oninput="onPresSlugManualInput()">
               </div>
             </div>
 
@@ -3706,7 +3717,7 @@
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
               <button type="button" class="btn-cta" onclick="saveCurrentPresentation()" style="padding: 10px 20px;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                <span>Save to Archive</span>
+                <span>Publish &amp; Save Proposal</span>
               </button>
               <button type="button" class="btn-ghost" onclick="resetPresGenForm()" style="padding: 10px 16px;">
                 <span>Reset Form</span>
@@ -3790,6 +3801,7 @@
             <thead>
               <tr style="border-bottom: 1px solid var(--card-border); color: var(--dim); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em;">
                 <th style="padding: 10px 12px;">Client Brand</th>
+                <th style="padding: 10px 12px;">Route / Link</th>
                 <th style="padding: 10px 12px;">Contact</th>
                 <th style="padding: 10px 12px;">Title</th>
                 <th style="padding: 10px 12px;">Board</th>
@@ -3799,8 +3811,8 @@
             </thead>
             <tbody id="presSavedTableBody">
               <tr>
-                <td colspan="6" style="padding: 30px; text-align: center; color: var(--dim);">
-                  No saved presentations yet. Build one above and click "Save to Archive".
+                <td colspan="7" style="padding: 30px; text-align: center; color: var(--dim);">
+                  No saved presentations yet. Build one above and click "Publish &amp; Save Proposal".
                 </td>
               </tr>
             </tbody>
@@ -4064,8 +4076,10 @@
     if (activeAdminToken) {
       headers['Authorization'] = `Bearer ${activeAdminToken}`;
     }
-    if (activeAdminKey) {
-      headers['x-api-key'] = activeAdminKey;
+    const key = activeAdminKey || new URLSearchParams(window.location.search).get('key') || localStorage.getItem('polish_admin_key');
+    if (key) {
+      headers['x-api-key'] = key;
+      headers['x-admin-key'] = key;
     }
     return headers;
   }
@@ -6154,6 +6168,31 @@
   // ── Client Presentation Generator & Proposals Hub ──────────
   let presHubBoardsLoaded = false;
   let currentPresLeadPhone = '';
+  let presSlugManuallyEdited = false;
+  let cachedPresentationsList = [];
+
+  function slugifyPresText(text) {
+    return String(text || '')
+      .trim()
+      .toLowerCase()
+      .replace(/['"]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function onPresBrandInput() {
+    const brand = (document.getElementById('presGenBrand')?.value || '').trim();
+    if (!presSlugManuallyEdited) {
+      const slugInput = document.getElementById('presGenSlug');
+      if (slugInput) slugInput.value = slugifyPresText(brand);
+    }
+    updatePresGenOutput();
+  }
+
+  function onPresSlugManualInput() {
+    presSlugManuallyEdited = true;
+    updatePresGenOutput();
+  }
 
   async function initPresentationsHub() {
     if (!presHubBoardsLoaded) {
@@ -6162,6 +6201,10 @@
     const brandInput = document.getElementById('presGenBrand');
     if (brandInput && !brandInput.value.trim()) {
       brandInput.value = 'Celestia Cosmetics';
+    }
+    const slugInput = document.getElementById('presGenSlug');
+    if (slugInput && !slugInput.value.trim()) {
+      slugInput.value = 'celestia-cosmetics';
     }
     const contactInput = document.getElementById('presGenContact');
     if (contactInput && !contactInput.value.trim()) {
@@ -6172,7 +6215,7 @@
       titleInput.value = '90-Day DTC Growth Roadmap & Whiteboard';
     }
     updatePresGenOutput();
-    renderSavedPresentations();
+    await loadSavedPresentationsFromApi();
   }
 
   async function populatePresBoardSelect() {
@@ -6234,6 +6277,10 @@
 
   function getPresFormValues() {
     const brand = (document.getElementById('presGenBrand')?.value || '').trim();
+    let slug = (document.getElementById('presGenSlug')?.value || '').trim();
+    if (!slug && brand) slug = slugifyPresText(brand);
+    slug = slugifyPresText(slug);
+
     const contact = (document.getElementById('presGenContact')?.value || '').trim();
     const title = (document.getElementById('presGenTitle')?.value || '').trim();
     const rawVideo = (document.getElementById('presGenVideo')?.value || '').trim();
@@ -6243,21 +6290,15 @@
     if (board === '__custom__') {
       board = (document.getElementById('presGenCustomBoard')?.value || '').trim() || 'polish-cosmetics-launch';
     }
-    return { brand, contact, title, video, board };
+    return { brand, slug, contact, title, video, board };
   }
 
   function updatePresGenOutput() {
-    const { brand, contact, title, video, board } = getPresFormValues();
+    const { brand, slug, contact, title, video, board } = getPresFormValues();
     const origin = window.location.origin;
-    const url = new URL('/presentation', origin);
+    const cleanSlug = slug || (brand ? slugifyPresText(brand) : 'client-proposal');
+    const fullUrl = `${origin}/p/${cleanSlug}`;
 
-    if (brand) url.searchParams.set('client', brand);
-    if (contact) url.searchParams.set('name', contact);
-    if (title) url.searchParams.set('title', title);
-    if (board) url.searchParams.set('board', board);
-    if (video) url.searchParams.set('video', video);
-
-    const fullUrl = url.toString();
     const outInput = document.getElementById('presGenOutputUrl');
     if (outInput) outInput.value = fullUrl;
 
@@ -6307,84 +6348,149 @@
     saveCurrentPresentation();
   }
 
-  function saveCurrentPresentation() {
-    const { brand, contact, title, video, board } = getPresFormValues();
+  async function saveCurrentPresentation() {
+    const { brand, slug, contact, title, video, board } = getPresFormValues();
     if (!brand) {
       notifyToast('Please enter a client brand name.', true);
       document.getElementById('presGenBrand')?.focus();
       return;
     }
+    if (!slug) {
+      notifyToast('Please enter a proposal link slug.', true);
+      document.getElementById('presGenSlug')?.focus();
+      return;
+    }
 
-    const item = {
-      id: 'pres_' + Date.now(),
-      brand,
-      contact,
+    const payload = {
+      id: slug,
+      slug,
+      brandName: brand,
+      contactName: contact,
       title: title || 'Growth Strategy Walkthrough',
       video,
-      board,
-      url: document.getElementById('presGenOutputUrl')?.value || '',
-      phone: currentPresLeadPhone || '',
-      savedAt: new Date().toISOString()
+      boardId: board,
+      url: `${window.location.origin}/p/${slug}`,
+      phone: currentPresLeadPhone || ''
     };
 
-    let list = [];
     try {
-      list = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
-    } catch (_) { list = []; }
+      const headers = await getAuthHeaders({ 'Content-Type': 'application/json' });
+      const res = await fetch('/api/presentations', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload)
+      });
 
-    list.unshift(item);
-    if (list.length > 50) list = list.slice(0, 50);
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Failed to save proposal to backend');
+      }
 
-    localStorage.setItem('polish_saved_presentations', JSON.stringify(list));
-    renderSavedPresentations();
-    notifyToast(`✓ Saved presentation for ${brand}.`);
+      // Also update local cache
+      let list = [];
+      try {
+        list = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
+      } catch (_) { list = []; }
+
+      const idx = list.findIndex(p => p.id === payload.id || p.slug === payload.slug);
+      if (idx >= 0) list[idx] = payload;
+      else list.unshift(payload);
+      localStorage.setItem('polish_saved_presentations', JSON.stringify(list));
+
+      await loadSavedPresentationsFromApi();
+      notifyToast(`✓ Published bespoke proposal for ${brand} (/p/${slug}).`);
+    } catch (err) {
+      console.warn('[Presentations Hub] Save API warning, fallback to local storage:', err);
+      // Fallback
+      let list = [];
+      try {
+        list = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
+      } catch (_) { list = []; }
+      const idx = list.findIndex(p => p.id === payload.id || p.slug === payload.slug);
+      if (idx >= 0) list[idx] = payload;
+      else list.unshift(payload);
+      localStorage.setItem('polish_saved_presentations', JSON.stringify(list));
+      renderSavedPresentationsUI(list);
+      notifyToast(`Saved locally: /p/${slug}`);
+    }
   }
 
-  function renderSavedPresentations() {
+  async function loadSavedPresentationsFromApi() {
+    try {
+      const headers = await getAuthHeaders();
+      const res = await fetch('/api/presentations', { headers });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.success && Array.isArray(data.presentations)) {
+          cachedPresentationsList = data.presentations;
+          localStorage.setItem('polish_saved_presentations', JSON.stringify(cachedPresentationsList));
+          renderSavedPresentationsUI(cachedPresentationsList);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('[Presentations Hub] Failed to fetch presentations from API, using cached:', err);
+    }
+
+    // Fallback to local storage
+    try {
+      cachedPresentationsList = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
+    } catch (_) { cachedPresentationsList = []; }
+    renderSavedPresentationsUI(cachedPresentationsList);
+  }
+
+  function renderSavedPresentationsUI(list) {
     const tbody = document.getElementById('presSavedTableBody');
     const badge = document.getElementById('presSavedCountBadge');
     if (!tbody) return;
 
-    let list = [];
-    try {
-      list = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
-    } catch (_) { list = []; }
+    const items = Array.isArray(list) ? list : [];
+    if (badge) badge.textContent = `${items.length} Saved`;
 
-    if (badge) badge.textContent = `${list.length} Saved`;
-
-    if (!list.length) {
-      tbody.innerHTML = `<tr><td colspan="6" style="padding: 30px; text-align: center; color: var(--dim);">No saved presentations yet. Build one above and click "Save to Archive".</td></tr>`;
+    if (!items.length) {
+      tbody.innerHTML = `<tr><td colspan="7" style="padding: 30px; text-align: center; color: var(--dim);">No saved presentations yet. Build one above and click "Publish &amp; Save Proposal".</td></tr>`;
       return;
     }
 
-    tbody.innerHTML = list.map(item => {
-      const d = new Date(item.savedAt);
+    tbody.innerHTML = items.map(item => {
+      const brand = item.brandName || item.brand || 'Client Brand';
+      const slug = item.slug || item.id || 'proposal';
+      const clientUrl = `${window.location.origin}/p/${slug}`;
+      const contact = item.contactName || item.contact || '—';
+      const title = item.title || 'Growth Strategy Walkthrough';
+      const board = item.boardId || item.board || 'polish-cosmetics-launch';
+      const d = item.updatedAt || item.createdAt || item.savedAt ? new Date(item.updatedAt || item.createdAt || item.savedAt) : new Date();
       const dateStr = !isNaN(d.getTime()) ? d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '—';
       const cleanPhone = (item.phone || '').replace(/[^0-9]/g, '');
       const waShareUrl = cleanPhone 
-        ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi ' + (item.contact || item.brand) + ', here is your private strategy walkthrough: ' + item.url)}` 
-        : `https://wa.me/?text=${encodeURIComponent('Hi ' + (item.contact || item.brand) + ', here is your private strategy walkthrough: ' + item.url)}`;
+        ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi ' + (contact !== '—' ? contact : brand) + ', here is your private strategy walkthrough: ' + clientUrl)}` 
+        : `https://wa.me/?text=${encodeURIComponent('Hi ' + (contact !== '—' ? contact : brand) + ', here is your private strategy walkthrough: ' + clientUrl)}`;
 
       return `
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
-          <td style="padding: 12px; font-weight: 700; color: #FFFFFF;">${esc(item.brand)}</td>
-          <td style="padding: 12px; color: var(--dim);">${esc(item.contact || '—')}</td>
-          <td style="padding: 12px; color: var(--muted); max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(item.title)}">${esc(item.title)}</td>
-          <td style="padding: 12px;"><code style="font-size: 11px; color: var(--cyan); background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">${esc(item.board)}</code></td>
+          <td style="padding: 12px; font-weight: 700; color: var(--text-color, inherit);">${esc(brand)}</td>
+          <td style="padding: 12px;">
+            <a href="${esc(clientUrl)}" target="_blank" style="color: var(--cyan); text-decoration: none; font-family: monospace; font-size: 11.5px; background: rgba(226,199,153,0.08); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(226,199,153,0.2);">
+              /p/${esc(slug)} ↗
+            </a>
+          </td>
+          <td style="padding: 12px; color: var(--dim);">${esc(contact)}</td>
+          <td style="padding: 12px; color: var(--muted); max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${esc(title)}">${esc(title)}</td>
+          <td style="padding: 12px;"><code style="font-size: 11px; color: var(--cyan); background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">${esc(board)}</code></td>
           <td style="padding: 12px; color: var(--dim); font-size: 12px;">${dateStr}</td>
           <td style="padding: 12px; text-align: right;">
             <div style="display: inline-flex; align-items: center; gap: 6px;">
-              <button type="button" class="btn-ghost" style="padding: 4px 8px; font-size: 11px;" title="Copy Presentation Link" onclick="navigator.clipboard.writeText('${esc(item.url)}'); notifyToast('✓ Link copied for ${esc(item.brand)}');">
+              <button type="button" class="btn-ghost" style="padding: 4px 8px; font-size: 11px;" title="Copy Presentation Link" onclick="navigator.clipboard.writeText('${esc(clientUrl)}'); notifyToast('✓ Link copied for ${esc(brand)}');">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 Copy
               </button>
-              <a href="${esc(item.url)}" target="_blank" class="btn-ghost" style="padding: 4px 8px; font-size: 11px; text-decoration: none;" title="Open Client View">
+              <a href="${esc(clientUrl)}" target="_blank" class="btn-ghost" style="padding: 4px 8px; font-size: 11px; text-decoration: none;" title="Open Client View">
                 ↗
               </a>
               <a href="${esc(waShareUrl)}" target="_blank" class="btn-ghost" style="padding: 4px 8px; font-size: 11px; text-decoration: none; color: #25D366;" title="Share via WhatsApp">
                 WA
               </a>
-              <button type="button" class="btn-danger" style="padding: 4px 8px; font-size: 11px;" title="Delete" onclick="deleteSavedPresentation('${esc(item.id)}')">
+              <button type="button" class="btn-danger" style="padding: 4px 8px; font-size: 11px;" title="Delete" onclick="deleteSavedPresentation('${esc(item.id || slug)}')">
                 &times;
               </button>
             </div>
@@ -6394,19 +6500,31 @@
     }).join('');
   }
 
-  function deleteSavedPresentation(id) {
-    let list = [];
+  async function deleteSavedPresentation(id) {
+    if (!confirm('Are you sure you want to permanently delete this client proposal?')) return;
     try {
-      list = JSON.parse(localStorage.getItem('polish_saved_presentations') || '[]');
-    } catch (_) { list = []; }
-    list = list.filter(item => item.id !== id);
-    localStorage.setItem('polish_saved_presentations', JSON.stringify(list));
-    renderSavedPresentations();
+      const headers = await getAuthHeaders();
+      const res = await fetch(`/api/presentations/${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers
+      });
+      if (!res.ok) {
+        throw new Error('Failed to delete proposal on server');
+      }
+    } catch (err) {
+      console.warn('[Presentations Hub] Delete API error:', err);
+    }
+
+    cachedPresentationsList = cachedPresentationsList.filter(item => item.id !== id && item.slug !== id);
+    localStorage.setItem('polish_saved_presentations', JSON.stringify(cachedPresentationsList));
+    renderSavedPresentationsUI(cachedPresentationsList);
     notifyToast('Presentation removed from vault.');
   }
 
   function resetPresGenForm() {
+    presSlugManuallyEdited = false;
     fillVal('presGenBrand', 'Celestia Cosmetics');
+    fillVal('presGenSlug', 'celestia-cosmetics');
     fillVal('presGenContact', 'Yasmine');
     fillVal('presGenTitle', '90-Day DTC Growth Roadmap & Whiteboard');
     fillVal('presGenVideo', '');
@@ -6431,12 +6549,15 @@
   }
 
   function createPresentationForLead(brandName, contactName, phone) {
+    presSlugManuallyEdited = false;
     switchMainTab('presentationsTabPane');
     const brandInput = document.getElementById('presGenBrand');
+    const slugInput = document.getElementById('presGenSlug');
     const contactInput = document.getElementById('presGenContact');
     const titleInput = document.getElementById('presGenTitle');
 
     if (brandInput && brandName) brandInput.value = brandName;
+    if (slugInput && brandName) slugInput.value = slugifyPresText(brandName);
     if (contactInput && contactName) contactInput.value = contactName;
     if (titleInput && brandName) titleInput.value = `${brandName} • 90-Day DTC Growth Blueprint`;
     currentPresLeadPhone = phone || '';

@@ -774,6 +774,33 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Updated and executed `tests/test_presentation_page.js` against the live local server: 11/11 tests passed with 100% success rate (including client decoupling verification and admin generator lifecycle verification).
    - Visual verification: Captured retina screenshot of Admin Presentations Hub at `tests/screenshots/admin_presentations_hub.png`.
 
+### Sprint 27: Bespoke Client Proposal URLs (`/p/:slug`), Confidential Gating & Dual-Persistence Architecture (Completed September 2026)
+1. ✅ **Bespoke Vanity Proposal Slugs (`https://polishmediaco.com/p/:slug`)**:
+   - Transitioned from messy query-parameter URLs (`/presentation?client=...&video=...`) to dedicated, permanent, co-branded URLs (e.g. `https://polishmediaco.com/p/celestia-cosmetics`).
+   - Routed `/p/:slug`, `/proposal/:slug`, and `/presentation/:slug` to `public/presentation.html` in `server/index.js`.
+   - Vercel serverless rewrite compatibility verified (`/(.*) -> /server/index.js`).
+
+2. ✅ **Confidential Briefing Gate & 404 Protection**:
+   - **Confidential Strategic Briefing Room Gate (`#presConfidentialGate`)**: Visiting the bare `/presentation` URL without a slug or parameters no longer reveals mock/sample client data. It displays an Obsidian & Champagne Gold security gate informing visitors that this is a private, confidential strategic briefing room requiring a dedicated invitation URL.
+   - **404 Not Found Gate (`#presNotFoundGate`)**: Visiting a non-existent proposal slug renders a clean, luxury 404 gate with 1-tap bridges to founder WhatsApp and strategy booking.
+   - **Instant Loading Shimmer (`#presLoadingGate`)**: Eliminates visual layout shift during client data hydration.
+
+3. ✅ **Dual-Persistence Engine & REST API (`server/services/supabase.js`, `server/routes/api.js`)**:
+   - Proposals are dual-persisted across both Supabase (`leads` table with `type: 'PRESENTATION'`) and an atomic fallback JSON database (`server/db/presentations.json`).
+   - Endpoints added:
+     - `GET /api/presentations/:slug`: Public read endpoint returning client proposal data.
+     - `GET /api/presentations`: Protected admin endpoint listing all registered proposals.
+     - `POST /api/presentations`: Protected admin endpoint creating/upserting proposals with auto-slug generation.
+     - `DELETE /api/presentations/:id`: Protected admin endpoint to remove proposals.
+
+4. ✅ **Admin Slug Builder & Persistent Vault (`public/admin.html`)**:
+   - Added `#presGenSlug` field with live auto-slugification from brand name (`presAutoSlugify`).
+   - Generates clean links (`/p/:slug`), provides 1-click clipboard copy and pre-formatted WhatsApp outreach.
+   - "Save Proposal to Database" button persists directly via `POST /api/presentations` and renders a live, theme-consistent proposals table.
+
+5. ✅ **100% Automated E2E Test Suite**:
+   - `node tests/test_presentation_page.js` runs 10 comprehensive end-to-end tests covering REST CRUD, bespoke proposal hydration, video stage, chapter navigation, board stage, confidential gate, 404 gate, admin link builder, and mobile responsiveness. All 10 tests passed (100%).
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat

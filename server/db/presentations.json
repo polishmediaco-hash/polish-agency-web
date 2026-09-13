@@ -1,0 +1,55 @@
+[
+  {
+    "id": "celestia-cosmetics",
+    "slug": "celestia-cosmetics",
+    "brandName": "Celestia Cosmetics",
+    "contactName": "Yasmine",
+    "email": "partnerships@celestiacosmetics.com",
+    "phone": "+213 563 05 28 57",
+    "title": "90-Day DTC Growth Roadmap & Creative Strategy",
+    "video": "dQw4w9WgXcQ",
+    "boardId": "polish-cosmetics-launch",
+    "chapters": [
+      {
+        "time": "00:00",
+        "seconds": 0,
+        "title": "01 • Diagnostic & Market Positioning"
+      },
+      {
+        "time": "03:15",
+        "seconds": 195,
+        "title": "02 • Revenue Velocity & CAC Compression"
+      },
+      {
+        "time": "06:40",
+        "seconds": 400,
+        "title": "03 • Creative & UGC Performance Matrix"
+      },
+      {
+        "time": "09:50",
+        "seconds": 590,
+        "title": "04 • 90-Day Roadmap & Retainer Scope"
+      }
+    ],
+    "deliverables": [
+      {
+        "num": "01",
+        "title": "Diagnostic Bottlenecks Solved",
+        "desc": "Systematic eradication of creative fatigue, breaking past historical ad ceiling barriers, and reducing blended CAC through angle diversification."
+      },
+      {
+        "num": "02",
+        "title": "90-Day Scaling Levers",
+        "desc": "Proprietary daily regimen bundling to expand basket AOV, lamellar barrier replenishment loops for recurring LTV, and creator video seeding."
+      },
+      {
+        "num": "03",
+        "title": "Retainer Scope & Milestones",
+        "desc": "Dedicated creative director, weekly strategy calibration sprints, ongoing high-converting performance asset drops, and VIP founder communication."
+      }
+    ],
+    "status": "ACTIVE",
+    "createdAt": "2026-09-13T20:00:00.000Z",
+    "updatedAt": "2026-09-13T20:00:00.000Z"
+  }
+]

@@ -954,3 +954,246 @@ video.pres-native-video {
     height: 780px;
   }
 }
+
+/* ==========================================================================
+   CONFIDENTIAL ACCESS GATES & LOADING SKELETONS
+   ========================================================================== */
+.pres-gate-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 60px auto 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pres-gate-card {
+  width: 100%;
+  background: rgba(18, 16, 14, 0.88);
+  border: 1px solid rgba(226, 199, 153, 0.22);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(226, 199, 153, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pres-gate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brand-gold), transparent);
+}
+
+.pres-gate-loading-card {
+  width: 100%;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.pres-loading-spinner {
+  width: 38px;
+  height: 38px;
+  border: 2px solid rgba(226, 199, 153, 0.2);
+  border-top-color: var(--brand-gold);
+  border-radius: 50%;
+  animation: presSpin 0.9s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+@keyframes presSpin {
+  to { transform: rotate(360deg); }
+}
+
+.pres-loading-text {
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  color: var(--brand-platinum);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.pres-gate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(226, 199, 153, 0.12);
+  border: 1px solid rgba(226, 199, 153, 0.3);
+  color: var(--brand-gold);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.pres-gate-badge-danger {
+  background: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  color: #F87171 !important;
+}
+
+.pres-gate-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin: 0 0 1rem;
+}
+
+.pres-gate-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin: 0 auto 2rem;
+}
+
+.pres-gate-input-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.pres-gate-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--brand-platinum);
+  margin-bottom: 8px;
+}
+
+.pres-gate-input-row {
+  display: flex;
+  align-items: center;
+  background: rgba(10, 8, 7, 0.85);
+  border: 1px solid rgba(226, 199, 153, 0.25);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pres-gate-input-row:focus-within {
+  border-color: var(--brand-gold);
+  box-shadow: 0 0 0 2px rgba(226, 199, 153, 0.2);
+}
+
+.pres-gate-prefix {
+  padding: 0 10px 0 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.pres-gate-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  outline: none;
+  min-width: 0;
+}
+
+.pres-gate-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+  height: 42px;
+  background: var(--brand-gold);
+  color: #080706;
+  border: none;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.pres-gate-submit-btn:hover {
+  background: #ecd5ad;
+}
+
+.pres-gate-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pres-gate-divider::before,
+.pres-gate-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pres-gate-divider span {
+  padding: 0 14px;
+}
+
+.pres-gate-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pres-gate-code {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--brand-gold);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(226, 199, 153, 0.2);
+}
+
+@media (max-width: 680px) {
+  .pres-gate-card {
+    padding: 2rem 1.25rem;
+  }
+  .pres-gate-title {
+    font-size: 1.8rem;
+  }
+  .pres-gate-prefix {
+    display: none;
+  }
+  .pres-gate-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .pres-gate-actions .pres-btn-primary,
+  .pres-gate-actions .pres-btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

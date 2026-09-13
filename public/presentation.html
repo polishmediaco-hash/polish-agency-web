@@ -60,15 +60,89 @@
   <!-- ========================================================== -->
   <main class="pres-main-wrapper">
 
-    <!-- Hero Title Cluster -->
-    <section class="pres-hero-intro">
-      <h1 class="pres-main-heading">
-        Strategy Walkthrough <span class="pres-serif-italic">for</span> <span id="heroClientName">Celestia Cosmetics</span>
-      </h1>
-      <p class="pres-subtitle-desc" id="heroPresentationTitle">
-        Growth strategy walkthrough and interactive whiteboard.
-      </p>
+    <!-- A. LOADING SKELETON STATE -->
+    <div id="presLoadingGate" class="pres-gate-container">
+      <div class="pres-gate-loading-card">
+        <div class="pres-loading-spinner" aria-hidden="true"></div>
+        <div class="pres-loading-text">Loading confidential briefing...</div>
+      </div>
+    </div>
+
+    <!-- B. CONFIDENTIAL ACCESS GATE (Shown when accessing /presentation directly with no slug or parameters) -->
+    <section id="presConfidentialGate" class="pres-gate-container" style="display: none;">
+      <div class="pres-gate-card">
+        <div class="pres-gate-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Executive Briefing Portal • Confidential</span>
+        </div>
+        <h1 class="pres-gate-title">Private Strategic Briefing Room</h1>
+        <p class="pres-gate-desc">
+          This portal houses proprietary brand diagnostics, custom video walkthroughs, and interactive growth whiteboards reserved for partnered beauty &amp; cosmetics founders.
+        </p>
+
+        <div class="pres-gate-input-box">
+          <label for="gateSlugInput" class="pres-gate-label">Have a personalized partner link or brand code?</label>
+          <form id="gateSlugForm" onsubmit="event.preventDefault(); window.PresEngine && window.PresEngine.submitGateCode();" class="pres-gate-input-row">
+            <span class="pres-gate-prefix">polishmediaco.com/p/</span>
+            <input type="text" id="gateSlugInput" class="pres-gate-input" placeholder="brand-slug" autocomplete="off" spellcheck="false">
+            <button type="submit" id="btnGateAccess" class="pres-gate-submit-btn">
+              <span>Enter</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="pres-gate-divider">
+          <span>or connect directly with executive desk</span>
+        </div>
+
+        <div class="pres-gate-actions">
+          <a href="https://wa.me/213662417761?text=Hi%20Faycal%2C%20I%20am%20looking%20for%20our%20confidential%20strategic%20proposal%20link." target="_blank" rel="noopener noreferrer" class="pres-btn-whatsapp js-btn-wa">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.981.534 1.895.814 2.8.814 3.182 0 5.768-2.587 5.768-5.766.001-3.181-2.586-5.766-5.772-5.766zm9.969 5.766c0 5.485-4.464 9.949-9.969 9.949-1.637 0-3.176-.402-4.536-1.109l-5.495 1.442 1.468-5.364c-.815-1.424-1.282-3.076-1.282-4.838 0-5.485 4.465-9.949 9.969-9.949 5.505 0 9.969 4.464 9.969 9.949z"/></svg>
+            <span>Message Founder via WhatsApp</span>
+          </a>
+          <a href="/apply" class="pres-btn-primary">
+            <span>Apply for Brand Partnership</span>
+          </a>
+        </div>
+      </div>
     </section>
+
+    <!-- C. NOT FOUND / EXPIRED GATE -->
+    <section id="presNotFoundGate" class="pres-gate-container" style="display: none;">
+      <div class="pres-gate-card">
+        <div class="pres-gate-badge pres-gate-badge-danger">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Proposal Not Found or Expired</span>
+        </div>
+        <h1 class="pres-gate-title">Briefing Link Unavailable</h1>
+        <p class="pres-gate-desc">
+          The requested strategy walkthrough for <code id="notFoundSlugDisplay" class="pres-gate-code"></code> could not be retrieved. Please check the URL provided or contact your account lead.
+        </p>
+        <div class="pres-gate-actions" style="margin-top: 24px;">
+          <a href="https://wa.me/213662417761?text=Hi%20Faycal%2C%20our%20strategic%20proposal%20link%20shows%20as%20expired." target="_blank" rel="noopener noreferrer" class="pres-btn-whatsapp js-btn-wa">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.981.534 1.895.814 2.8.814 3.182 0 5.768-2.587 5.768-5.766.001-3.181-2.586-5.766-5.772-5.766zm9.969 5.766c0 5.485-4.464 9.949-9.969 9.949-1.637 0-3.176-.402-4.536-1.109l-5.495 1.442 1.468-5.364c-.815-1.424-1.282-3.076-1.282-4.838 0-5.485 4.465-9.949 9.969-9.949 5.505 0 9.969 4.464 9.969 9.949z"/></svg>
+            <span>Message Executive Desk</span>
+          </a>
+          <a href="/" class="pres-btn-primary">
+            <span>Return to Homepage</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- D. BESPOKE PRESENTATION CONTENT (Revealed when verified proposal loaded) -->
+    <div id="presentationContent" style="display: none;">
+
+      <!-- Hero Title Cluster -->
+      <section class="pres-hero-intro">
+        <h1 class="pres-main-heading">
+          Strategy Walkthrough <span class="pres-serif-italic">for</span> <span id="heroClientName">Client Brand</span>
+        </h1>
+        <p class="pres-subtitle-desc" id="heroPresentationTitle">
+          Growth strategy walkthrough and interactive whiteboard.
+        </p>
+      </section>
 
     <!-- ========================================================== -->
     <!-- 3. THEATER VIDEO STAGE                                     -->
@@ -131,7 +205,7 @@
         </div>
       </div>
 
-      <div class="pres-highlights-grid">
+      <div class="pres-highlights-grid" id="presHighlightsGrid">
         <div class="pres-card">
           <div class="pres-card-num">01</div>
           <h3 class="pres-card-title">Diagnostic Bottlenecks Solved</h3>
@@ -163,7 +237,7 @@
     <!-- ========================================================== -->
     <section class="pres-signoff-card">
       <h2 class="pres-signoff-title">
-        Ready to Deploy the Blueprint <span class="pres-serif-italic">for</span> <span id="signoffClientName">Celestia Cosmetics</span>?
+        Ready to Deploy the Blueprint <span class="pres-serif-italic">for</span> <span id="signoffClientName">Client Brand</span>?
       </h2>
       <p class="pres-signoff-desc">
         Select your kickoff onboarding slot or message our executive founder line directly to finalize retainer commencement and creative deployment.
@@ -179,6 +253,8 @@
         </a>
       </div>
     </section>
+
+    </div> <!-- /#presentationContent -->
 
   </main>
 

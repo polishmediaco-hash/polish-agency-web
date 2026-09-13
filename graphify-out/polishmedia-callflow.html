@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>polishmedia — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 1079 nodes, 1770 edges, 78 communities. Commit: 61e3884</p>
+<p class="subtitle">Generated from graphify knowledge graph: 1089 nodes, 1787 edges, 78 communities. Commit: efbd71c</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -98,11 +98,11 @@ flowchart LR
     class CLI_SKILLS_9964CBB8 module;
     INGEST_CACHE_UPDATE_FF457338("Ingestion &amp; Updates<br/><small>47 nodes</small>")
     class INGEST_CACHE_UPDATE_FF457338 module;
-    SERVE_API_35EC8E86("Serving API<br/><small>24 nodes</small>")
+    SERVE_API_35EC8E86("Serving API<br/><small>27 nodes</small>")
     class SERVE_API_35EC8E86 module;
     SECURITY_GLOBAL_5B9C6A04("Security &amp; Global Graph<br/><small>82 nodes</small>")
     class SECURITY_GLOBAL_5B9C6A04 module;
-    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>41 nodes</small>")
+    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>43 nodes</small>")
     class TESTS_FIXTURES_B84B1DCC module;
     STUDIO_CORE_JS_962D5B3D("studio-core.js<br/><small>74 nodes</small>")
     class STUDIO_CORE_JS_962D5B3D module;
@@ -116,7 +116,7 @@ flowchart LR
     class ELEMENTS_FACTORY_JS_7A50F465 module;
     LUXURY_EFFECTS_JS_FB489F07("luxury-effects.js<br/><small>32 nodes</small>")
     class LUXURY_EFFECTS_JS_FB489F07 module;
-    OTHER_D0941E68("Other<br/><small>442 nodes</small>")
+    OTHER_D0941E68("Other<br/><small>447 nodes</small>")
     class OTHER_D0941E68 module;
     SERVE_API_35EC8E86 -->|imports x10| OTHER_D0941E68
     OTHER_D0941E68 -->|imports x5| SERVE_API_35EC8E86
@@ -141,7 +141,7 @@ flowchart LR
     <h4>Architecture Layers</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
-      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>19</td><td><code>15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>110</td><td><code>32, 36, 37, 81, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>47</td><td><code>31</code></td></tr><tr><td>Serving API</td><td>24</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>41</td><td><code>62</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>Other</td><td>442</td><td><code>3, 5, 6, 11, 33, 34, 35, 8, 9, 2, 12, 61, 28, 60, 68, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 70, 76, 24, 65, 71, 72, 82, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
+      <tr><td>Graph Build</td><td>34</td><td><code>10, 20, 27</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>24</td><td><code>30</code></td></tr><tr><td>Outputs &amp; Docs</td><td>19</td><td><code>15, 69</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>110</td><td><code>32, 36, 37, 81, 38, 41, 42, 45, 47, 51, 52, 55, 56</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>47</td><td><code>31</code></td></tr><tr><td>Serving API</td><td>27</td><td><code>23</code></td></tr><tr><td>Security &amp; Global Graph</td><td>82</td><td><code>13, 43, 44, 48, 49, 50, 53, 54</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>43</td><td><code>62</code></td></tr><tr><td>studio-core.js</td><td>74</td><td><code>0</code></td></tr><tr><td>presentation.js</td><td>42</td><td><code>22</code></td></tr><tr><td>invoice.js</td><td>42</td><td><code>75</code></td></tr><tr><td>inspector.js</td><td>33</td><td><code>1</code></td></tr><tr><td>elements-factory.js</td><td>33</td><td><code>4</code></td></tr><tr><td>luxury-effects.js</td><td>32</td><td><code>7</code></td></tr><tr><td>Other</td><td>447</td><td><code>3, 5, 6, 11, 28, 33, 34, 35, 8, 9, 2, 12, 61, 60, 68, 14, 16, 17, 18, 39, 40, 64, 25, 21, 46, 70, 76, 24, 65, 71, 72, 82, 26, 57, 66, 73, 67, 74, 19, 29, 58, 59</code></td></tr>
     </table>
   </div>
   <div class="card">
@@ -153,7 +153,7 @@ flowchart LR
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>1079 nodes · 1770 edges · 78 communities (70 shown, 6 thin omitted)</li>
+      <li>1089 nodes · 1787 edges · 78 communities (70 shown, 6 thin omitted)</li>
       <li>Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `triggerAutoSave()` - 45 edges</li>
@@ -1724,12 +1724,12 @@ flowchart LR
 
 <!-- ====== 7. Serving API ====== -->
 <h2 id="serve-api">7. Serving API</h2>
-<p>Serving API groups implementation around server, supabasejs, services, apijs, mostly in server/services/supabase.js, server/routes/api.js. This section covers 24 nodes and 28 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Serving API groups implementation around server, supabasejs, services, apijs, mostly in server/services/supabase.js, server/routes/api.js. This section covers 27 nodes and 32 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Serving API (24 nodes, 28 edges)
+    %% Section: Serving API (27 nodes, 32 edges)
     subgraph serve_api_server_routes_api_js_65a7595a["server/routes/api.js"]
         server_routes_api_38dd1944("api.js")
         server_routes_api_readcontent_cf076324("readContent()<br/><small>server/routes/api.js</small>")
@@ -1739,7 +1739,7 @@ flowchart LR
         server_routes_api_path_06e4e8e0("path<br/><small>server/routes/api.js</small>")
         server_routes_api_router_cd79d1c3("router<br/><small>server/routes/api.js</small>")
         server_routes_api_writecontent_2d9e46aa("writeContent()<br/><small>server/routes/api.js</small>")
-        server_routes_api_leadsservice_cmsservice_keepal_13dfa868("leadsService, cmsService, keepAliveSe...<br/><small>server/routes/api.js</small>")
+        server_routes_api_leadsservice_cmsservice_keepal_9f0753f2("leadsService, cmsService, keepAliveSe...<br/><small>server/routes/api.js</small>")
         server_routes_api_notifynewlead_notifynewmeeting_a7041441("notifyNewLead, notifyNewMeeting, send...<br/><small>server/routes/api.js</small>")
         server_routes_api_requireadminauth_fb58ac11("requireAdminAuth<br/><small>server/routes/api.js</small>")
     end
@@ -1748,17 +1748,18 @@ flowchart LR
         server_services_supabase_invoicesservice_db455f35("invoicesService<br/><small>server/services/supabase.js</small>")
         server_services_supabase_keepaliveservice_e4109ecb("keepAliveService<br/><small>server/services/supabase.js</small>")
         server_services_supabase_leadsservice_9328bb0b("leadsService<br/><small>server/services/supabase.js</small>")
+        server_services_supabase_presentationsservice_4925daa2("presentationsService<br/><small>server/services/supabase.js</small>")
         server_services_supabase_d73bfd86("supabase.js")
         server_services_supabase_fs_14212ca7("fs<br/><small>server/services/supabase.js</small>")
-        server_services_supabase_mapboardtodbrow_73f54afa("mapBoardToDbRow()<br/><small>server/services/supabase.js</small>")
     end
     server_routes_api_readcontent_cf076324 -->|calls| server_routes_api_getdefaultcontent_d88080fe
     server_routes_api_38dd1944 -->|imports| server_services_supabase_cmsservice_444a4c27
     server_routes_api_38dd1944 -->|imports| server_services_supabase_invoicesservice_db455f35
     server_routes_api_38dd1944 -->|imports| server_services_supabase_keepaliveservice_e4109ecb
     server_routes_api_38dd1944 -->|imports| server_services_supabase_leadsservice_9328bb0b
+    server_routes_api_38dd1944 -->|imports| server_services_supabase_presentationsservice_4925daa2
     server_routes_api_38dd1944 -->|imports| server_services_supabase_d73bfd86
-    %% Omitted for readability: 6 nodes, 0 edges
+    %% Omitted for readability: 9 nodes, 0 edges
     class server_routes_api_38dd1944 api;
     class server_routes_api_readcontent_cf076324 function;
     class server_routes_api_getdefaultcontent_d88080fe function;
@@ -1767,16 +1768,16 @@ flowchart LR
     class server_routes_api_path_06e4e8e0 function;
     class server_routes_api_router_cd79d1c3 api;
     class server_routes_api_writecontent_2d9e46aa function;
-    class server_routes_api_leadsservice_cmsservice_keepal_13dfa868 async;
+    class server_routes_api_leadsservice_cmsservice_keepal_9f0753f2 async;
     class server_routes_api_notifynewlead_notifynewmeeting_a7041441 function;
     class server_routes_api_requireadminauth_fb58ac11 function;
     class server_services_supabase_cmsservice_444a4c27 async;
     class server_services_supabase_invoicesservice_db455f35 async;
     class server_services_supabase_keepaliveservice_e4109ecb function;
     class server_services_supabase_leadsservice_9328bb0b async;
+    class server_services_supabase_presentationsservice_4925daa2 async;
     class server_services_supabase_d73bfd86 module;
     class server_services_supabase_fs_14212ca7 function;
-    class server_services_supabase_mapboardtodbrow_73f54afa function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -1856,6 +1857,14 @@ flowchart LR
 </tr>
 <tr>
   <td>8</td>
+  <td><code>mapDbRowToPresentation()</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>mapDbRowToPresentation() node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>9</td>
   <td><code>mapLeadToDbRow()</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1863,15 +1872,23 @@ flowchart LR
   <td>mapLeadToDbRow() node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>9</td>
+  <td>10</td>
+  <td><code>slugifyProposal()</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>slugifyProposal() node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>11</td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-endpoint">API</span></td>
   <td><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
-  <td><code>auth.js</code><br><small style="color:var(--muted)">server/middleware/auth.js</small><br><code>cmsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small><br><code>express</code><br><small style="color:var(--muted)">package.json</small><br>+9 more</td>
+  <td><code>auth.js</code><br><small style="color:var(--muted)">server/middleware/auth.js</small><br><code>cmsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small><br><code>express</code><br><small style="color:var(--muted)">package.json</small><br>+10 more</td>
   <td>api.js node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>10</td>
+  <td>12</td>
   <td><code>express</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1879,7 +1896,7 @@ flowchart LR
   <td>express node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>11</td>
+  <td>13</td>
   <td><code>fs</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1887,15 +1904,15 @@ flowchart LR
   <td>fs node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>12</td>
-  <td><code>{ leadsService, cmsService, keepAliveService, invoicesService }</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
+  <td>14</td>
+  <td><code>{ leadsService, cmsService, keepAliveService, invoicesService, presentationsService }</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-async">Async</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>{ leadsService, cmsService, keepAliveService, invoicesService } node in server/routes/api.js.</td>
+  <td>{ leadsService, cmsService, keepAliveService, invoicesService, presentationsService } node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>13</td>
+  <td>15</td>
   <td><code>{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1903,7 +1920,7 @@ flowchart LR
   <td>{ notifyNewLead, notifyNewMeeting, sendWhatsAppMessage } node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>14</td>
+  <td>16</td>
   <td><code>path</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1911,7 +1928,7 @@ flowchart LR
   <td>path node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>15</td>
+  <td>17</td>
   <td><code>{ requireAdminAuth }</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1919,7 +1936,7 @@ flowchart LR
   <td>{ requireAdminAuth } node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>16</td>
+  <td>18</td>
   <td><code>router</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
   <td><span class="tag tag-endpoint">API</span></td>
   <td>External entry / no inbound edge</td>
@@ -1927,7 +1944,7 @@ flowchart LR
   <td>router node in server/routes/api.js.</td>
 </tr>
 <tr>
-  <td>17</td>
+  <td>19</td>
   <td><code>supabase.js</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-class">Module</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>auth.js</code><br><small style="color:var(--muted)">server/middleware/auth.js</small><br><code>boards.js</code><br><small style="color:var(--muted)">server/routes/boards.js</small><br>+1 more</td>
@@ -1935,7 +1952,7 @@ flowchart LR
   <td>supabase.js node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>18</td>
+  <td>20</td>
   <td><code>cmsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-async">Async</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
@@ -1943,7 +1960,7 @@ flowchart LR
   <td>cmsService node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>19</td>
+  <td>21</td>
   <td><code>{ createClient }</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-cmd">Entry</span></td>
   <td>External entry / no inbound edge</td>
@@ -1951,7 +1968,7 @@ flowchart LR
   <td>{ createClient } node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>20</td>
+  <td>22</td>
   <td><code>fs</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -1959,7 +1976,7 @@ flowchart LR
   <td>fs node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>21</td>
+  <td>23</td>
   <td><code>invoicesService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-async">Async</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
@@ -1967,7 +1984,7 @@ flowchart LR
   <td>invoicesService node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>22</td>
+  <td>24</td>
   <td><code>keepAliveService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small><br><code>index.js</code><br><small style="color:var(--muted)">server/index.js</small></td>
@@ -1975,7 +1992,7 @@ flowchart LR
   <td>keepAliveService node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>23</td>
+  <td>25</td>
   <td><code>leadsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-async">Async</span></td>
   <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
@@ -1983,12 +2000,20 @@ flowchart LR
   <td>leadsService node in server/services/supabase.js.</td>
 </tr>
 <tr>
-  <td>24</td>
+  <td>26</td>
   <td><code>path</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>path node in server/services/supabase.js.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>presentationsService</code><br><small style="color:var(--muted)">server/services/supabase.js</small></td>
+  <td><span class="tag tag-async">Async</span></td>
+  <td><code>api.js</code><br><small style="color:var(--muted)">server/routes/api.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>presentationsService node in server/services/supabase.js.</td>
 </tr>
 </table>
 
@@ -1997,13 +2022,13 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>server/services/supabase.js</code></td><td>13 nodes</td></tr>
+      <tr><td><code>server/services/supabase.js</code></td><td>16 nodes</td></tr>
 <tr><td><code>server/routes/api.js</code></td><td>11 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x22, imports x4, calls x1, imports x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x25, imports x5, calls x1, imports x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -2354,12 +2379,12 @@ flowchart LR
 
 <!-- ====== 9. Tests & Fixtures ====== -->
 <h2 id="tests-fixtures">9. Tests &amp; Fixtures</h2>
-<p>Tests &amp; Fixtures groups implementation around test, tests, scripts, capture, mostly in live-visual-design-critic/scripts/capture-live-views.js, scripts/capture_presentation_views.js, scripts/test-miro-suite.js. This section covers 41 nodes and 40 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Tests &amp; Fixtures groups implementation around test, tests, scripts, capture, mostly in live-visual-design-critic/scripts/capture-live-views.js, tests/test_presentation_page.js, scripts/capture_presentation_views.js. This section covers 43 nodes and 43 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Tests &amp; Fixtures (41 nodes, 40 edges)
+    %% Section: Tests &amp; Fixtures (43 nodes, 43 edges)
     subgraph tests_fixtures_live_visual_design_critic_scripts_690f209c["live-visual-design-critic/scripts/capture-live-views.js"]
         agents_skills_live_visual_design_critic_scripts_abd92f05("capture-live-views.js")
         agents_skills_live_visual_design_critic_scripts_1ec9cc2e("AUDIT_VIEWPORTS<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
@@ -2369,19 +2394,22 @@ flowchart LR
         agents_skills_live_visual_design_critic_scripts_355e8131("path<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
         agents_skills_live_visual_design_critic_scripts_cb89dcbf("puppeteer<br/><small>live-visual-design-critic/scripts/capture-live-views.js</small>")
     end
+    subgraph tests_fixtures_tests_test_presentation_page_js_72e945a6["tests/test_presentation_page.js"]
+        tests_test_presentation_page_runtest_5e03bc21("runTest()<br/><small>tests/test_presentation_page.js</small>")
+        tests_test_presentation_page_apirequest_828dfa9d("apiRequest()<br/><small>tests/test_presentation_page.js</small>")
+        tests_test_presentation_page_c6deb0f4("test_presentation_page.js")
+    end
     subgraph tests_fixtures_scripts_capture_presentation_view_bb1946b2["scripts/capture_presentation_views.js"]
         scripts_capture_presentation_views_d9dd1568("capture_presentation_views.js")
         scripts_capture_presentation_views_viewports_fc8b5b82("VIEWPORTS<br/><small>scripts/capture_presentation_views.js</small>")
-        scripts_capture_presentation_views_capture_78dfa24f("capture()<br/><small>scripts/capture_presentation_views.js</small>")
-        scripts_capture_presentation_views_fs_c18aeb96("fs<br/><small>scripts/capture_presentation_views.js</small>")
     end
     ref_puppeteer_8ead168e("puppeteer<br/><small>package.json</small>")
     scripts_test_miro_suite_ba6aec94("test-miro-suite.js")
     tests_test_auth_flow_b31ab4be("test_auth_flow.js")
     tests_test_laser_and_branding_fea5d1e9("test_laser_and_branding.js")
     tests_test_logo_render_36041aa6("test_logo_render.js")
-    tests_test_presentation_page_c6deb0f4("test_presentation_page.js")
     tests_test_sequencer_e2e_a6da4f8e("test_sequencer_e2e.js")
+    tests_test_presentation_page_runtest_5e03bc21 -->|calls| tests_test_presentation_page_apirequest_828dfa9d
     agents_skills_live_visual_design_critic_scripts_abd92f05 -->|imports| ref_puppeteer_8ead168e
     scripts_capture_presentation_views_d9dd1568 -->|imports| ref_puppeteer_8ead168e
     scripts_test_miro_suite_ba6aec94 -->|imports| ref_puppeteer_8ead168e
@@ -2390,7 +2418,7 @@ flowchart LR
     tests_test_logo_render_36041aa6 -->|imports| ref_puppeteer_8ead168e
     tests_test_presentation_page_c6deb0f4 -->|imports| ref_puppeteer_8ead168e
     tests_test_sequencer_e2e_a6da4f8e -->|imports| ref_puppeteer_8ead168e
-    %% Omitted for readability: 23 nodes, 0 edges
+    %% Omitted for readability: 25 nodes, 0 edges
     class agents_skills_live_visual_design_critic_scripts_abd92f05 module;
     class agents_skills_live_visual_design_critic_scripts_1ec9cc2e klass;
     class agents_skills_live_visual_design_critic_scripts_cd532171 klass;
@@ -2398,16 +2426,16 @@ flowchart LR
     class agents_skills_live_visual_design_critic_scripts_1ddc4352 function;
     class agents_skills_live_visual_design_critic_scripts_355e8131 function;
     class agents_skills_live_visual_design_critic_scripts_cb89dcbf function;
+    class tests_test_presentation_page_runtest_5e03bc21 test;
+    class tests_test_presentation_page_apirequest_828dfa9d test;
+    class tests_test_presentation_page_c6deb0f4 test;
     class scripts_capture_presentation_views_d9dd1568 module;
     class scripts_capture_presentation_views_viewports_fc8b5b82 klass;
-    class scripts_capture_presentation_views_capture_78dfa24f function;
-    class scripts_capture_presentation_views_fs_c18aeb96 function;
     class ref_puppeteer_8ead168e function;
     class scripts_test_miro_suite_ba6aec94 test;
     class tests_test_auth_flow_b31ab4be test;
     class tests_test_laser_and_branding_fea5d1e9 test;
     class tests_test_logo_render_36041aa6 test;
-    class tests_test_presentation_page_c6deb0f4 test;
     class tests_test_sequencer_e2e_a6da4f8e test;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
@@ -2456,14 +2484,22 @@ flowchart LR
 </tr>
 <tr>
   <td>4</td>
-  <td><code>runTest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><code>apiRequest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>runTest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
   <td>No direct outbound edge</td>
-  <td>Verifies imports, entry points, or version behavior.</td>
+  <td>apiRequest() node in tests/test_presentation_page.js.</td>
 </tr>
 <tr>
   <td>5</td>
+  <td><code>runTest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>apiRequest()</code><br><small style="color:var(--muted)">tests/test_presentation_page.js</small></td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>6</td>
   <td><code>capture-live-views.js</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-class">Module</span></td>
   <td>External entry / no inbound edge</td>
@@ -2471,7 +2507,7 @@ flowchart LR
   <td>capture-live-views.js node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>6</td>
+  <td>7</td>
   <td><code>AUDIT_VIEWPORTS</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -2479,7 +2515,7 @@ flowchart LR
   <td>AUDIT_VIEWPORTS node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>7</td>
+  <td>8</td>
   <td><code>fs</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2487,7 +2523,7 @@ flowchart LR
   <td>fs node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>8</td>
+  <td>9</td>
   <td><code>LANGUAGES</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -2495,7 +2531,7 @@ flowchart LR
   <td>LANGUAGES node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>9</td>
+  <td>10</td>
   <td><code>path</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2503,7 +2539,7 @@ flowchart LR
   <td>path node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>10</td>
+  <td>11</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">live-visual-design-critic/scripts/capture-live-views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2511,7 +2547,7 @@ flowchart LR
   <td>puppeteer node in live-visual-design-critic/scripts/capture-live-views.js.</td>
 </tr>
 <tr>
-  <td>11</td>
+  <td>12</td>
   <td><code>capture_presentation_views.js</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
   <td><span class="tag tag-class">Module</span></td>
   <td>External entry / no inbound edge</td>
@@ -2519,7 +2555,7 @@ flowchart LR
   <td>capture_presentation_views.js node in scripts/capture_presentation_views.js.</td>
 </tr>
 <tr>
-  <td>12</td>
+  <td>13</td>
   <td><code>fs</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2527,7 +2563,7 @@ flowchart LR
   <td>fs node in scripts/capture_presentation_views.js.</td>
 </tr>
 <tr>
-  <td>13</td>
+  <td>14</td>
   <td><code>path</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2535,7 +2571,7 @@ flowchart LR
   <td>path node in scripts/capture_presentation_views.js.</td>
 </tr>
 <tr>
-  <td>14</td>
+  <td>15</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -2543,7 +2579,7 @@ flowchart LR
   <td>puppeteer node in scripts/capture_presentation_views.js.</td>
 </tr>
 <tr>
-  <td>15</td>
+  <td>16</td>
   <td><code>VIEWPORTS</code><br><small style="color:var(--muted)">scripts/capture_presentation_views.js</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -2551,7 +2587,7 @@ flowchart LR
   <td>VIEWPORTS node in scripts/capture_presentation_views.js.</td>
 </tr>
 <tr>
-  <td>16</td>
+  <td>17</td>
   <td><code>test-miro-suite.js</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2559,7 +2595,7 @@ flowchart LR
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>17</td>
+  <td>18</td>
   <td><code>fs</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2567,7 +2603,7 @@ flowchart LR
   <td>fs node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>18</td>
+  <td>19</td>
   <td><code>http</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2575,7 +2611,7 @@ flowchart LR
   <td>http node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>19</td>
+  <td>20</td>
   <td><code>path</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2583,7 +2619,7 @@ flowchart LR
   <td>path node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>20</td>
+  <td>21</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">scripts/test-miro-suite.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2591,7 +2627,7 @@ flowchart LR
   <td>puppeteer node in scripts/test-miro-suite.js.</td>
 </tr>
 <tr>
-  <td>21</td>
+  <td>22</td>
   <td><code>test_auth_flow.js</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2599,7 +2635,7 @@ flowchart LR
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>22</td>
+  <td>23</td>
   <td><code>fs</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2607,7 +2643,7 @@ flowchart LR
   <td>fs node in tests/test_auth_flow.js.</td>
 </tr>
 <tr>
-  <td>23</td>
+  <td>24</td>
   <td><code>path</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2615,7 +2651,7 @@ flowchart LR
   <td>path node in tests/test_auth_flow.js.</td>
 </tr>
 <tr>
-  <td>24</td>
+  <td>25</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_auth_flow.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2623,7 +2659,7 @@ flowchart LR
   <td>puppeteer node in tests/test_auth_flow.js.</td>
 </tr>
 <tr>
-  <td>25</td>
+  <td>26</td>
   <td><code>test_laser_and_branding.js</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2631,7 +2667,7 @@ flowchart LR
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>26</td>
+  <td>27</td>
   <td><code>fs</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2639,7 +2675,7 @@ flowchart LR
   <td>fs node in tests/test_laser_and_branding.js.</td>
 </tr>
 <tr>
-  <td>27</td>
+  <td>28</td>
   <td><code>path</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2647,7 +2683,7 @@ flowchart LR
   <td>path node in tests/test_laser_and_branding.js.</td>
 </tr>
 <tr>
-  <td>28</td>
+  <td>29</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">tests/test_laser_and_branding.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -2655,20 +2691,12 @@ flowchart LR
   <td>puppeteer node in tests/test_laser_and_branding.js.</td>
 </tr>
 <tr>
-  <td>29</td>
+  <td>30</td>
   <td><code>test_logo_render.js</code><br><small style="color:var(--muted)">tests/test_logo_render.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
   <td><code>puppeteer</code><br><small style="color:var(--muted)">package.json</small></td>
   <td>Verifies imports, entry points, or version behavior.</td>
-</tr>
-<tr>
-  <td>30</td>
-  <td><code>fs</code><br><small style="color:var(--muted)">tests/test_logo_render.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>fs node in tests/test_logo_render.js.</td>
 </tr>
 </table>
 
@@ -2678,9 +2706,9 @@ flowchart LR
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
       <tr><td><code>live-visual-design-critic/scripts/capture-live-views.js</code></td><td>7 nodes</td></tr>
+<tr><td><code>tests/test_presentation_page.js</code></td><td>7 nodes</td></tr>
 <tr><td><code>scripts/capture_presentation_views.js</code></td><td>6 nodes</td></tr>
 <tr><td><code>scripts/test-miro-suite.js</code></td><td>6 nodes</td></tr>
-<tr><td><code>tests/test_presentation_page.js</code></td><td>5 nodes</td></tr>
 <tr><td><code>tests/test_auth_flow.js</code></td><td>4 nodes</td></tr>
 <tr><td><code>tests/test_laser_and_branding.js</code></td><td>4 nodes</td></tr>
 <tr><td><code>tests/test_logo_render.js</code></td><td>4 nodes</td></tr>
@@ -2689,7 +2717,7 @@ flowchart LR
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x32, imports x8. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x34, imports x8, calls x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -4765,12 +4793,12 @@ flowchart LR
 
 <!-- ====== 16. Other ====== -->
 <h2 id="other">16. Other</h2>
-<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 442 nodes and 673 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Other groups implementation around public, studio, brand, scripts, mostly in studio/js/comments-engine.js, studio/js/studio-ai.js, scripts/generate-brand-pack.js. This section covers 447 nodes and 683 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Other (442 nodes, 673 edges)
+    %% Section: Other (447 nodes, 683 edges)
     subgraph other_public_js_i18n_js_d4792dc7["public/js/i18n.js"]
         public_js_i18n_polishi18n_72987c12("PolishI18n<br/><small>public/js/i18n.js</small>")
         public_js_i18n_polishi18n_constructor_34fce30d("constructor()<br/><small>public/js/i18n.js</small>")
@@ -4809,7 +4837,7 @@ flowchart LR
     public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_renderlanguagetoggles_37d0f86e
     public_js_i18n_polishi18n_init_509e1b43 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
     public_js_i18n_polishi18n_setlanguage_c0fb6d07 -->|calls| public_js_i18n_polishi18n_applylanguage_757a2a9f
-    %% Omitted for readability: 424 nodes, 0 edges
+    %% Omitted for readability: 429 nodes, 0 edges
     class public_js_i18n_polishi18n_72987c12 klass;
     class public_js_i18n_polishi18n_constructor_34fce30d function;
     class public_js_i18n_polishi18n_detectlanguage_d4213613 function;
@@ -5099,16 +5127,16 @@ flowchart LR
       <tr><td><code>studio/js/comments-engine.js</code></td><td>30 nodes</td></tr>
 <tr><td><code>studio/js/studio-ai.js</code></td><td>29 nodes</td></tr>
 <tr><td><code>scripts/generate-brand-pack.js</code></td><td>24 nodes</td></tr>
+<tr><td><code>public/js/presentation-page.js</code></td><td>19 nodes</td></tr>
 <tr><td><code>server/index.js</code></td><td>19 nodes</td></tr>
 <tr><td><code>HANDOFF_EMAN_AL_KATHEERI.md</code></td><td>18 nodes</td></tr>
 <tr><td><code>docs/brand-guidelines.md</code></td><td>17 nodes</td></tr>
 <tr><td><code>brand-pack/06_guidelines/POLISH_BRAND_GUIDELINES.md</code></td><td>17 nodes</td></tr>
-<tr><td><code>scripts/generate-logo-concepts.js</code></td><td>17 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x372, calls x254, indirect call x28, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x377, calls x259, indirect call x28, method x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -5119,8 +5147,8 @@ flowchart LR
   <div class="card">
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>Nodes</td><td>1079</td></tr>
-      <tr><td>Edges</td><td>1770</td></tr>
+      <tr><td>Nodes</td><td>1089</td></tr>
+      <tr><td>Edges</td><td>1787</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
       <tr><td>Communities</td><td>78</td></tr>
       <tr><td>Documented Sections</td><td>15</td></tr>
@@ -5129,7 +5157,7 @@ flowchart LR
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>1719</td></tr>
+      <tr><td>EXTRACTED</td><td>1736</td></tr>
       <tr><td>INFERRED</td><td>51</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
@@ -5138,7 +5166,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>polishmedia — Architecture Documentation</p>
-  <p>Generated: 2026-09-13 20:18 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 20:35 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

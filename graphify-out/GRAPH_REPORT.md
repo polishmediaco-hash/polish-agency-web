@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 95 files · ~726,557 words
+- 96 files · ~729,112 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1079 nodes · 1770 edges · 78 communities (70 shown, 6 thin omitted)
+- 1089 nodes · 1787 edges · 78 communities (70 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `61e38842`
+- Built from commit: `efbd71c6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -198,8 +198,8 @@ Cohesion: 0.11
 Nodes (38): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+30 more)
 
 ### Community 23 - "api.js"
-Cohesion: 0.10
-Nodes (16): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+8 more)
+Cohesion: 0.09
+Nodes (17): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService, presentationsService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+9 more)
 
 ### Community 24 - "app.js"
 Cohesion: 0.67
@@ -218,8 +218,8 @@ Cohesion: 0.33
 Nodes (5): builds, crons, headers, rewrites, version
 
 ### Community 28 - "presentation-page.js"
-Cohesion: 0.26
-Nodes (12): getParams(), hydratePage(), init(), initYouTubeApi(), mountBoard(), mountVideo(), parseVideoSource(), renderChapters() (+4 more)
+Cohesion: 0.20
+Nodes (16): escapeHtml(), extractSlugFromPath(), getParams(), hydratePage(), init(), initYouTubeApi(), mountBoard(), mountVideo() (+8 more)
 
 ### Community 30 - "4. Prioritized Refactoring Recommendations"
 Cohesion: 0.08
@@ -343,7 +343,7 @@ Nodes (13): checkNewCalendlyMeetings(), fs, initNotifiedCache(), notifiedEventUr
 
 ### Community 62 - "puppeteer"
 Cohesion: 0.05
-Nodes (30): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, fs, path (+22 more)
+Nodes (33): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, fs, path (+25 more)
 
 ### Community 64 - "auth.js"
 Cohesion: 0.31
@@ -394,21 +394,21 @@ Cohesion: 0.33
 Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy Standard, 4. Output Structure, Zero-Fluff & Anti-Filler Rule
 
 ## Knowledge Gaps
-- **381 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+376 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 463 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **382 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+377 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 466 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
+  _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
-  _381 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _382 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

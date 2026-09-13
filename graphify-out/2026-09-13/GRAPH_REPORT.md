@@ -1,12 +1,12 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 95 files · ~724,570 words
+- 95 files · ~726,557 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1084 nodes · 1781 edges · 79 communities (71 shown, 6 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 55 edges (avg confidence: 0.85)
+- 1079 nodes · 1770 edges · 78 communities (70 shown, 6 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
@@ -38,7 +38,7 @@
 - dependencies
 - drawing-engine.js
 - presentation.js
-- supabase.js
+- api.js
 - app.js
 - minimap.js
 - whatsapp.js
@@ -77,7 +77,6 @@
 - supabase-config.js
 - calendlySync.js
 - puppeteer
-- api.js
 - auth.js
 - seed-supabase.js
 - templates-vault.js
@@ -97,13 +96,13 @@
 1. `triggerAutoSave()` - 45 edges
 2. `pushHistory()` - 36 edges
 3. `renderElement()` - 32 edges
-4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 26 edges
-5. `selectElement()` - 19 edges
-6. `pushHistory()` - 19 edges
+4. `6. Next Priority Roadmap (Ready for Next Conversation)` - 27 edges
+5. `pushHistory()` - 19 edges
+6. `selectElement()` - 19 edges
 7. `renderInvoiceSheet()` - 18 edges
 8. `setupToolbar()` - 18 edges
-9. `bindKeyboardShortcuts()` - 16 edges
-10. `getCanvasCenter()` - 16 edges
+9. `getCanvasCenter()` - 16 edges
+10. `bindKeyboardShortcuts()` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `checkNewCalendlyMeetings()` --calls--> `notifyNewMeeting()`  [EXTRACTED]
@@ -112,7 +111,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (79 total, 6 thin omitted)
+## Communities (78 total, 6 thin omitted)
 
 ### Community 0 - "studio-core.js"
 Cohesion: 0.10
@@ -123,8 +122,8 @@ Cohesion: 0.16
 Nodes (31): addBoxToFrame(), applyCoverBanner(), closeCoverModal(), cycleAlign(), handleDeviceCoverUpload(), hide(), init(), openCoverModal() (+23 more)
 
 ### Community 2 - "boards.js"
-Cohesion: 0.16
-Nodes (12): { boardsService }, BUNDLED_BOARDS_DIR, express, fs, getStarterBoard(), path, readBoardFile(), { requireUserOrAdminAuth } (+4 more)
+Cohesion: 0.15
+Nodes (13): express, { boardsService }, BUNDLED_BOARDS_DIR, express, fs, getStarterBoard(), path, readBoardFile() (+5 more)
 
 ### Community 3 - "comments-engine.js"
 Cohesion: 0.20
@@ -198,9 +197,9 @@ Nodes (5): attachStrokeEvents(), bindEvents(), getSmoothSvgPath(), init(), rende
 Cohesion: 0.11
 Nodes (38): buildPresentationSequence(), clearSpotlight(), closeSequencer(), escapeHtml(), focusOnElement(), getSlideTitle(), goToStep(), initLaser() (+30 more)
 
-### Community 23 - "supabase.js"
-Cohesion: 0.15
-Nodes (7): cmsService, { createClient }, fs, invoicesService, keepAliveService, leadsService, path
+### Community 23 - "api.js"
+Cohesion: 0.10
+Nodes (16): express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent(), { requireAdminAuth } (+8 more)
 
 ### Community 24 - "app.js"
 Cohesion: 0.67
@@ -219,8 +218,8 @@ Cohesion: 0.33
 Nodes (5): builds, crons, headers, rewrites, version
 
 ### Community 28 - "presentation-page.js"
-Cohesion: 0.23
-Nodes (18): closeConfigModal(), copyClientShareLink(), fallbackCopy(), getParams(), hydratePage(), init(), initYouTubeApi(), mountBoard() (+10 more)
+Cohesion: 0.26
+Nodes (12): getParams(), hydratePage(), init(), initYouTubeApi(), mountBoard(), mountVideo(), parseVideoSource(), renderChapters() (+4 more)
 
 ### Community 30 - "4. Prioritized Refactoring Recommendations"
 Cohesion: 0.08
@@ -228,7 +227,7 @@ Nodes (23): 1.1 `public/studio/js/studio-core.js`, 1.2 `public/js/luxury-effects
 
 ### Community 31 - "6. Next Priority Roadmap (Ready for Next Conversation)"
 Cohesion: 0.04
-Nodes (45): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+37 more)
+Nodes (46): 1. Executive Summary & Brand Shift, 2. Core Pages & Component Architecture, 3. Backend Architecture (`server/index.js`), 4. Git & Repository Status, 5. Major Milestones & Integrations (September 2026 Session), 6. Next Priority Roadmap (Ready for Next Conversation), 7. How to Start a Fresh Antigravity Chat, A. Agent Reach & Internet Capabilities (`agent-reach`) (+38 more)
 
 ### Community 32 - "OWASP Top 10 — Audit Checklist"
 Cohesion: 0.11
@@ -346,10 +345,6 @@ Nodes (13): checkNewCalendlyMeetings(), fs, initNotifiedCache(), notifiedEventUr
 Cohesion: 0.05
 Nodes (30): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, fs, path (+22 more)
 
-### Community 63 - "api.js"
-Cohesion: 0.18
-Nodes (10): express, express, fs, getDefaultContent(), { leadsService, cmsService, keepAliveService, invoicesService }, { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage }, path, readContent() (+2 more)
-
 ### Community 64 - "auth.js"
 Cohesion: 0.31
 Nodes (8): crypto, getAdminEmails(), requireAdminAuth(), requireUserOrAdminAuth(), { supabase, isConfigured }, tokenCache, verifySupabaseToken(), isConfigured
@@ -399,21 +394,21 @@ Cohesion: 0.33
 Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy Standard, 4. Output Structure, Zero-Fluff & Anti-Filler Rule
 
 ## Knowledge Gaps
-- **384 isolated node(s):** `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)`, `C. Creator & UGC Portal (`public/creators.html`)`, `D. Admin Portal & Live CMS (`public/admin.html`)` (+379 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 466 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **381 isolated node(s):** `puppeteer`, `path`, `fs`, `AUDIT_VIEWPORTS`, `LANGUAGES` (+376 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 463 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **Why does `express` connect `api.js` to `boards.js`, `package.json`, `index.js`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **What connects `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)` to the rest of the system?**
-  _384 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
+  _381 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

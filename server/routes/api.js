@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage } = require('../services/notification');
 const { requireAdminAuth } = require('../middleware/auth');
-const { leadsService, cmsService, keepAliveService, invoicesService } = require('../services/supabase');
+const { leadsService, cmsService, keepAliveService, invoicesService, presentationsService } = require('../services/supabase');
 
 const router = express.Router();
 // On Vercel serverless the project root is read-only; use /tmp which is writable.
@@ -121,7 +121,69 @@ router.delete('/invoices/:id', requireAdminAuth, async (req, res) => {
   }
 });
 
+// ── PRESENTATIONS API ────────────────────────────────────────────────────────
+// GET /api/presentations/:slug (Public Read: Fetch personalized proposal by slug or ID)
+router.get('/presentations/:slug', async (req, res) => {
+  try {
+    const slug = req.params.slug;
+    if (!slug) {
+      return res.status(400).json({ success: false, error: 'Presentation slug is required.' });
+    }
+    const presentation = await presentationsService.getPresentationBySlug(slug);
+    if (!presentation) {
+      return res.status(404).json({ success: false, error: 'Presentation proposal not found.' });
+    }
+    res.json({ success: true, presentation });
+  } catch (err) {
+    console.error('[API /api/presentations/:slug Error]:', err);
+    res.status(500).json({ success: false, error: 'Failed to retrieve presentation.' });
+  }
+});
+
+// GET /api/presentations (List all presentations, Protected by Admin Auth)
+router.get('/presentations', requireAdminAuth, async (req, res) => {
+  try {
+    const presentations = await presentationsService.listPresentations();
+    res.json({ success: true, presentations });
+  } catch (err) {
+    console.error('[API /api/presentations Error]:', err);
+    res.status(500).json({ success: false, error: 'Failed to retrieve presentations.' });
+  }
+});
+
+// POST /api/presentations (Create / Update presentation proposal, Protected by Admin Auth)
+router.post('/presentations', requireAdminAuth, async (req, res) => {
+  try {
+    if (!req.body || typeof req.body !== 'object') {
+      return res.status(400).json({ success: false, error: 'Invalid presentation payload.' });
+    }
+    if (!req.body.brandName && !req.body.brand) {
+      return res.status(400).json({ success: false, error: 'Brand name is required.' });
+    }
+    const saved = await presentationsService.savePresentation(req.body);
+    res.json({ success: true, presentation: saved });
+  } catch (err) {
+    console.error('[API POST /api/presentations Error]:', err);
+    res.status(500).json({ success: false, error: 'Failed to save presentation.' });
+  }
+});
+
+// DELETE /api/presentations/:id (Delete presentation, Protected by Admin Auth)
+router.delete('/presentations/:id', requireAdminAuth, async (req, res) => {
+  try {
+    const ok = await presentationsService.deletePresentation(req.params.id);
+    if (!ok) {
+      return res.status(404).json({ success: false, error: 'Presentation could not be deleted.' });
+    }
+    res.json({ success: true, message: 'Presentation proposal permanently deleted.' });
+  } catch (err) {
+    console.error('[API DELETE /api/presentations/:id Error]:', err);
+    res.status(500).json({ success: false, error: 'Failed to delete presentation.' });
+  }
+});
+
 // POST /api/apply (Multi-Step Brand Partnership Dossier Intake)
+
 router.post('/apply', async (req, res) => {
   try {
     const {

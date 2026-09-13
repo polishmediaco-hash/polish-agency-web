@@ -424,7 +424,7 @@ app.get('/brand-pack', (req, res) => {
 });
 
 // ── 13. Client Proposal & Sensitive Documents (De-indexed from Search) ───────
-app.get(['/presentation', '/presentation/:id', '/briefing', '/briefing/:id', '/review'], (req, res) => {
+app.get(['/p/:slug', '/proposal/:slug', '/presentation', '/presentation/:slug', '/briefing', '/briefing/:id', '/review'], (req, res) => {
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.sendFile(path.join(__dirname, '../public/presentation.html'));

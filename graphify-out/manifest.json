@@ -1957,8 +1957,8 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789280284.336582,
-    "ast_hash": "",
+    "seen": 1789280694.692239,
+    "ast_hash": "9d679501ccc8722f71c8d90ebd230e69",
     "semantic_hash": ""
   },
   "tests/test_sequencer_e2e.js": {

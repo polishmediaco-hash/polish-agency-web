@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 92 files · ~720,475 words
+- 94 files · ~721,316 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1055 nodes · 1754 edges · 81 communities (73 shown, 6 thin omitted)
+- 1071 nodes · 1768 edges · 83 communities (75 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 50 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `bc7b6e67`
+- Built from commit: `205ff28d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -94,6 +94,8 @@
 - test_presentation_page.js
 - test_laser_and_branding.js
 - test_sequencer_e2e.js
+- Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)
+- Zero-Fluff & Anti-Filler Rule
 
 ## God Nodes (most connected - your core abstractions)
 1. `triggerAutoSave()` - 45 edges
@@ -114,7 +116,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (81 total, 6 thin omitted)
+## Communities (83 total, 6 thin omitted)
 
 ### Community 0 - "studio-core.js"
 Cohesion: 0.10
@@ -408,9 +410,17 @@ Nodes (3): fs, path, puppeteer
 Cohesion: 0.50
 Nodes (3): fs, path, puppeteer
 
+### Community 81 - "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)"
+Cohesion: 0.20
+Nodes (9): 1. The Core Rule, 2. Banned Words, Tropes & Theatrical Fluff, 3. The Operator Copy Standard, 4. Rules for Critiques & Reviews, 5. Pre-Response Filter (Apply Before Every Output), 🚫 The AI Buzzword & Throat-Clearing Blacklist, 🚫 The Theatrical Luxury Fluff Blacklist (NEVER USE), 🚫 The Theatrical UI Label Blacklist (From Real Code Audits) (+1 more)
+
+### Community 82 - "Zero-Fluff & Anti-Filler Rule"
+Cohesion: 0.33
+Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy Standard, 4. Output Structure, Zero-Fluff & Anti-Filler Rule
+
 ## Knowledge Gaps
-- **364 isolated node(s):** `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)`, `C. Creator & UGC Portal (`public/creators.html`)`, `D. Admin Portal & Live CMS (`public/admin.html`)` (+359 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 442 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **375 isolated node(s):** `1. Core Mandate`, `2. Strictly Banned Vocabulary & Tropes`, `3. UI Copy Standard`, `4. Output Structure`, `1. The Core Rule` (+370 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 455 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -419,14 +429,14 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`, `test-miro-suite.js`, `test_presentation_page.js`, `test_laser_and_branding.js`, `test_sequencer_e2e.js`, `capture-live-views.js`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
-- **What connects `1. Executive Summary & Brand Shift`, `A. Main Experience (`public/index.html`)`, `B. Executive Partnership Application (`public/apply.html`)` to the rest of the system?**
-  _364 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **What connects `1. Core Mandate`, `2. Strictly Banned Vocabulary & Tropes`, `3. UI Copy Standard` to the rest of the system?**
+  _375 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**
   _Cohesion score 0.11931818181818182 - nodes in this community are weakly interconnected._
 - **Should `studio-ai.js` be split into smaller, more focused modules?**
   _Cohesion score 0.14532019704433496 - nodes in this community are weakly interconnected._
-- **Should `generate-brand-pack.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.14492753623188406 - nodes in this community are weakly interconnected._

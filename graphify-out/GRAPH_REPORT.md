@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 94 files · ~721,316 words
+- 95 files · ~722,192 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1071 nodes · 1768 edges · 83 communities (75 shown, 6 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 50 edges (avg confidence: 0.85)
+- 1080 nodes · 1779 edges · 78 communities (70 shown, 6 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 52 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `205ff28d`
+- Built from commit: `5fd86cd5`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -77,7 +77,6 @@
 - supabase-config.js
 - calendlySync.js
 - puppeteer
-- capture-live-views.js
 - auth.js
 - seed-supabase.js
 - templates-vault.js
@@ -90,10 +89,6 @@
 - kinetic-typography.js
 - invoice.js
 - POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
-- test-miro-suite.js
-- test_presentation_page.js
-- test_laser_and_branding.js
-- test_sequencer_e2e.js
 - Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)
 - Zero-Fluff & Anti-Filler Rule
 
@@ -116,7 +111,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (83 total, 6 thin omitted)
+## Communities (78 total, 6 thin omitted)
 
 ### Community 0 - "studio-core.js"
 Cohesion: 0.10
@@ -223,8 +218,8 @@ Cohesion: 0.33
 Nodes (5): builds, crons, headers, rewrites, version
 
 ### Community 28 - "presentation-page.js"
-Cohesion: 0.28
-Nodes (16): closeConfigModal(), copyClientShareLink(), fallbackCopy(), getParams(), hydratePage(), init(), initYouTubeApi(), mountBoard() (+8 more)
+Cohesion: 0.23
+Nodes (18): closeConfigModal(), copyClientShareLink(), fallbackCopy(), getParams(), hydratePage(), init(), initYouTubeApi(), mountBoard() (+10 more)
 
 ### Community 30 - "4. Prioritized Refactoring Recommendations"
 Cohesion: 0.08
@@ -347,12 +342,8 @@ Cohesion: 0.26
 Nodes (11): checkNewCalendlyMeetings(), fs, initNotifiedCache(), notifiedEventUris, { notifyNewMeeting }, path, startCalendlyPoller(), escapeTg() (+3 more)
 
 ### Community 62 - "puppeteer"
-Cohesion: 0.22
-Nodes (7): puppeteer, fs, path, puppeteer, fs, path, puppeteer
-
-### Community 63 - "capture-live-views.js"
-Cohesion: 0.29
-Nodes (5): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer
+Cohesion: 0.05
+Nodes (30): AUDIT_VIEWPORTS, fs, LANGUAGES, path, puppeteer, puppeteer, fs, path (+22 more)
 
 ### Community 64 - "auth.js"
 Cohesion: 0.31
@@ -394,22 +385,6 @@ Nodes (41): addServiceItem(), attachInlineEditListeners(), checkAdminAuth(), cle
 Cohesion: 0.29
 Nodes (6): 1. Overview & Rebranding Evolution, 2. Standard Client & Payment Profile (Verified Defaults), 3. How to Use the Invoicing Studio (`/invoice`), A. Agency Credentials, B. Settlement & Banking Rails, POLISH Media Co. — Luxury Invoicing Suite Standards (v2.2)
 
-### Community 77 - "test-miro-suite.js"
-Cohesion: 0.33
-Nodes (5): fs, http, path, puppeteer, runMiroSuite()
-
-### Community 78 - "test_presentation_page.js"
-Cohesion: 0.40
-Nodes (3): fs, path, puppeteer
-
-### Community 79 - "test_laser_and_branding.js"
-Cohesion: 0.50
-Nodes (3): fs, path, puppeteer
-
-### Community 80 - "test_sequencer_e2e.js"
-Cohesion: 0.50
-Nodes (3): fs, path, puppeteer
-
 ### Community 81 - "Zero-Fluff Operator Standard (Anti-Filler & Direct Execution)"
 Cohesion: 0.20
 Nodes (9): 1. The Core Rule, 2. Banned Words, Tropes & Theatrical Fluff, 3. The Operator Copy Standard, 4. Rules for Critiques & Reviews, 5. Pre-Response Filter (Apply Before Every Output), 🚫 The AI Buzzword & Throat-Clearing Blacklist, 🚫 The Theatrical Luxury Fluff Blacklist (NEVER USE), 🚫 The Theatrical UI Label Blacklist (From Real Code Audits) (+1 more)
@@ -419,21 +394,21 @@ Cohesion: 0.33
 Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy Standard, 4. Output Structure, Zero-Fluff & Anti-Filler Rule
 
 ## Knowledge Gaps
-- **375 isolated node(s):** `1. Core Mandate`, `2. Strictly Banned Vocabulary & Tropes`, `3. UI Copy Standard`, `4. Output Structure`, `1. The Core Rule` (+370 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 455 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **379 isolated node(s):** `puppeteer`, `path`, `fs`, `VIEWPORTS`, `puppeteer` (+374 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 461 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`, `test-miro-suite.js`, `test_presentation_page.js`, `test_laser_and_branding.js`, `test_sequencer_e2e.js`, `capture-live-views.js`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Why does `@supabase/supabase-js` connect `seed-supabase.js` to `package.json`, `api.js`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **What connects `1. Core Mandate`, `2. Strictly Banned Vocabulary & Tropes`, `3. UI Copy Standard` to the rest of the system?**
-  _375 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
+  _379 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `studio-core.js` be split into smaller, more focused modules?**
   _Cohesion score 0.09552017771195853 - nodes in this community are weakly interconnected._
 - **Should `elements-factory.js` be split into smaller, more focused modules?**

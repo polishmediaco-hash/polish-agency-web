@@ -4673,6 +4673,18 @@
       "source_location": "L6"
     },
     {
+      "id": "tests_test_mobile_phone_app_runphoneapptest",
+      "label": "runPhoneAppTest()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "runphoneapptest()",
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L18"
+    },
+    {
       "id": "tests_test_presentation_page_apirequest",
       "label": "apiRequest()",
       "_callable": true,
@@ -8230,7 +8242,7 @@
       "node_kind": "heading",
       "norm_label": "7. how to start a fresh antigravity chat",
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L806"
+      "source_location": "L832"
     },
     {
       "id": "docs_handoff_a_agent_reach_internet_capabilities_agent_reach",
@@ -8615,6 +8627,18 @@
       "norm_label": "sprint 27: bespoke client proposal urls (`/p/:slug`), confidential gating & dual-persistence architecture (completed september 2026)",
       "source_file": "docs/HANDOFF.md",
       "source_location": "L777"
+    },
+    {
+      "id": "docs_handoff_sprint_28_complete_deletion_of_legacy_presentation_link_gate_purge_completed_september_2026",
+      "label": "Sprint 28: Complete Deletion of Legacy `/presentation` Link & Gate Purge (Completed September 2026)",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "6. Next Priority Roadmap (Ready for Next Conversation)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sprint 28: complete deletion of legacy `/presentation` link & gate purge (completed september 2026)",
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L804"
     },
     {
       "id": "docs_handoff_sprint_2_security_performance_hardening_completed_september_2026",
@@ -12146,6 +12170,50 @@
       "norm_label": "puppeteer",
       "source_file": "tests/test_logo_render.js",
       "source_location": "L1"
+    },
+    {
+      "id": "tests_test_mobile_phone_app",
+      "label": "test_mobile_phone_app.js",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "test_mobile_phone_app.js",
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_mobile_phone_app_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L16"
+    },
+    {
+      "id": "tests_test_mobile_phone_app_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L15"
+    },
+    {
+      "id": "tests_test_mobile_phone_app_puppeteer",
+      "label": "puppeteer",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "puppeteer",
+      "file_type": "code",
+      "norm_label": "puppeteer",
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L14"
     },
     {
       "id": "tests_test_presentation_page",
@@ -22113,6 +22181,18 @@
       "weight": 1.0
     },
     {
+      "source": "tests_test_mobile_phone_app",
+      "target": "ref_puppeteer",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
       "source": "tests_test_presentation_page",
       "target": "ref_puppeteer",
       "relation": "imports_from",
@@ -24744,6 +24824,17 @@
       "weight": 1.0
     },
     {
+      "source": "docs_handoff_6_next_priority_roadmap_ready_for_next_conversation",
+      "target": "docs_handoff_sprint_28_complete_deletion_of_legacy_presentation_link_gate_purge_completed_september_2026",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HANDOFF.md",
+      "source_location": "L804",
+      "weight": 1.0
+    },
+    {
       "source": "docs_handoff_polish_media_co_project_state_handoff_document",
       "target": "docs_handoff_3_backend_architecture_server_index_js",
       "relation": "contains",
@@ -24806,7 +24897,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/HANDOFF.md",
-      "source_location": "L806",
+      "source_location": "L832",
       "weight": 1.0
     },
     {
@@ -32631,6 +32722,50 @@
       "weight": 1.0
     },
     {
+      "source": "tests_test_mobile_phone_app",
+      "target": "tests_test_mobile_phone_app_puppeteer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_mobile_phone_app",
+      "target": "tests_test_mobile_phone_app_path",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_mobile_phone_app",
+      "target": "tests_test_mobile_phone_app_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_mobile_phone_app",
+      "target": "tests_test_mobile_phone_app_runphoneapptest",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_mobile_phone_app.js",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
       "source": "tests_test_presentation_page",
       "target": "tests_test_presentation_page_puppeteer",
       "relation": "contains",
@@ -33475,5 +33610,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "86bf2d75456841b44a45c307c5f6f9741ae0d98a"
+  "built_at_commit": "fcfc505f3bff5e4045b61fcd93380bd6a4995f13"
 }

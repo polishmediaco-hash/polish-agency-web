@@ -41,6 +41,11 @@
       "icons": [{ "src": "/brand-pack/02_favicons_and_icons/android-chrome-192x192.png", "sizes": "192x192" }]
     },
     {
+      "name": "Proposals",
+      "url": "/admin?tab=proposals",
+      "icons": [{ "src": "/brand-pack/02_favicons_and_icons/android-chrome-192x192.png", "sizes": "192x192" }]
+    },
+    {
       "name": "Invoices",
       "url": "/admin?tab=invoices",
       "icons": [{ "src": "/brand-pack/02_favicons_and_icons/android-chrome-192x192.png", "sizes": "192x192" }]

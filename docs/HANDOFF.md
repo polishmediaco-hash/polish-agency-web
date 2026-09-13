@@ -818,6 +818,15 @@ Four concurrent specialized subagents completed a deep audit of the codebase, yi
    - Removed "Live Client View" header button from Presentations tab.
    - Updated link preview button to require a valid generated proposal slug before navigating.
 
+4. ✅ **Phone App & Mobile Bottom Dock Integration (`public/admin.html`, `public/manifest-admin.json`, `public/sw-admin.js`)**:
+   - **5th Mobile Dock Tab**: Integrated **Proposals** tab (`presentationsTabPane`) into `#mobileBottomDock` alongside Leads, Invoices, Content, and Studio.
+   - **Dynamic Dock Badge**: Added `#dockPresCount` badge counter that mirrors the total count of saved proposals in real-time.
+   - **Phone-Native Luxury Proposal Cards**: Implemented `.pres-mobile-list` with `.pres-mob-card` matching the `award-winning-luxury-cards` specification (18px border radius, frosted glassmorphism, touch active feedback `:active { transform: scale(0.985); }`, 1-tap touch actions for Copy Link, Preview ↗, Direct WhatsApp Share, and Delete).
+   - **Responsive Layout Collapse**: `.pres-hub-layout` and `.pres-form-row-2` collapse to 1 column on mobile (`<= 768px`) with zero horizontal overflow; desktop 7-column table is hidden (`display: none`).
+   - **PWA Manifest Shortcut**: Added `"Proposals"` quick shortcut (`/admin?tab=proposals`) to `public/manifest-admin.json`.
+   - **Service Worker Cache**: Bumped `CACHE_NAME` to `polish-admin-v2.0` in `public/sw-admin.js`.
+   - **Automated Verification**: Created `tests/test_mobile_phone_app.js` which verifies manifest, service worker, mobile bottom dock visibility, tab switching, 1-column layout collapse, luxury card rendering, and dock counter badge at 393px iPhone 15 Pro resolution with 100% pass rate.
+
 ---
 
 ## 7. How to Start a Fresh Antigravity Chat
@@ -828,3 +837,4 @@ To maintain maximum speed, zero context rot, and optimal token efficiency:
 2. Ensure workspace is set to: `/Users/Shared/polishmedia`
 3. Send this exact prompt to kick off the next session:
    > *"I am continuing work on POLISH Media Co. Please review `@docs/HANDOFF.md`."*
+

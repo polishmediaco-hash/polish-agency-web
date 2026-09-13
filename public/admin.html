@@ -740,6 +740,7 @@
       font-size: 10.5px;
       font-weight: 600;
       letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
     .dock-tab.active {
@@ -965,6 +966,99 @@
     .btn-dossier-clean:active {
       background: rgba(226, 199, 153, 0.1);
       border-color: var(--cyan);
+    }
+
+    /* ================= CLIENT PROPOSALS & PRESENTATIONS HUB ================= */
+    .pres-hub-layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 1.2fr) minmax(320px, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .pres-form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .pres-saved-table-wrap {
+      overflow-x: auto;
+    }
+    .pres-mobile-list {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pres-mob-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+      touch-action: manipulation;
+    }
+    .pres-mob-card:active {
+      transform: scale(0.985);
+      border-color: var(--card-border-hover);
+    }
+    .pres-mob-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .pres-mob-brand {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+    }
+    .pres-mob-slug-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      background: rgba(226, 199, 153, 0.1);
+      border: 1px solid rgba(226, 199, 153, 0.25);
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .pres-mob-meta {
+      font-size: 11.5px;
+      color: var(--dim);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .pres-mob-title {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .pres-mob-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 12px;
+    }
+    body.theme-light .pres-mob-actions {
+      border-top-color: rgba(0, 0, 0, 0.05);
     }
 
     /* Fluid Bottom Sheet Drawer Grabber */
@@ -2260,6 +2354,31 @@
       .leads-mobile-list {
         display: flex !important;
         flex-direction: column !important;
+      }
+
+      /* Phone-Native Presentations Hub */
+      #presentationsTabPane .page-header {
+        margin-bottom: 14px !important;
+      }
+      #presentationsTabPane .page-header p {
+        display: none !important;
+      }
+      .pres-hub-layout {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+      .pres-form-row-2 {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-bottom: 12px !important;
+      }
+      .pres-saved-table-wrap {
+        display: none !important;
+      }
+      .pres-mobile-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
       }
 
       /* Fluid iOS-Style Bottom Sheet Modal */
@@ -3638,7 +3757,7 @@
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: minmax(320px, 1.2fr) minmax(320px, 1fr); gap: 20px; align-items: start;">
+      <div class="pres-hub-layout">
         
         <!-- Generator Form Card -->
         <div class="admin-card">
@@ -3651,7 +3770,7 @@
           </div>
 
           <form id="presGenForm" onsubmit="event.preventDefault(); onPresGenFormSubmit();">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div class="pres-form-row-2">
               <div class="form-group">
                 <label for="presGenBrand" style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); margin-bottom: 6px;">Client Brand Name *</label>
                 <input type="text" id="presGenBrand" class="input-field" placeholder="e.g. Celestia Cosmetics" required style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px; color: #FFFFFF; font-size: 13.5px;" oninput="onPresBrandInput()">
@@ -3782,7 +3901,7 @@
           Persistently stored client proposals for quick re-copying, review, or status follow-up.
         </p>
 
-        <div style="overflow-x: auto;">
+        <div class="pres-saved-table-wrap">
           <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
             <thead>
               <tr style="border-bottom: 1px solid var(--card-border); color: var(--dim); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em;">
@@ -3804,6 +3923,7 @@
             </tbody>
           </table>
         </div>
+        <div class="pres-mobile-list" id="presSavedMobileList"></div>
       </div>
 
     </section>
@@ -3819,6 +3939,13 @@
       <span class="dock-badge" id="dockLeadsCount" style="display:none;">0</span>
     </div>
     <span class="dock-tab-label">Leads</span>
+  </button>
+  <button type="button" class="dock-tab" data-pane="presentationsTabPane" onclick="switchMainTab('presentationsTabPane')">
+    <div class="dock-tab-icon-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <span class="dock-badge" id="dockPresCount" style="display:none;">0</span>
+    </div>
+    <span class="dock-tab-label">Proposals</span>
   </button>
   <button type="button" class="dock-tab" data-pane="invoicesTabPane" onclick="switchMainTab('invoicesTabPane')">
     <div class="dock-tab-icon-wrap">
@@ -6427,17 +6554,33 @@
 
   function renderSavedPresentationsUI(list) {
     const tbody = document.getElementById('presSavedTableBody');
+    const mobileList = document.getElementById('presSavedMobileList');
     const badge = document.getElementById('presSavedCountBadge');
+    const dockBadge = document.getElementById('dockPresCount');
     if (!tbody) return;
 
     const items = Array.isArray(list) ? list : [];
     if (badge) badge.textContent = `${items.length} Saved`;
+    if (dockBadge) {
+      dockBadge.textContent = items.length;
+      dockBadge.style.display = items.length > 0 ? 'inline-block' : 'none';
+    }
 
     if (!items.length) {
       tbody.innerHTML = `<tr><td colspan="7" style="padding: 30px; text-align: center; color: var(--dim);">No saved presentations yet. Build one above and click "Publish &amp; Save Proposal".</td></tr>`;
+      if (mobileList) {
+        mobileList.innerHTML = `
+          <div style="text-align: center; padding: 36px 16px; color: var(--dim); background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" style="margin-bottom: 8px; opacity: 0.8;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <div style="font-weight: 700; color: var(--text); font-size: 14px;">No saved proposals yet</div>
+            <div style="font-size: 12px; margin-top: 4px; color: var(--dim);">Build a personalized proposal above to save it here.</div>
+          </div>
+        `;
+      }
       return;
     }
 
+    // Desktop Table Rows
     tbody.innerHTML = items.map(item => {
       const brand = item.brandName || item.brand || 'Client Brand';
       const slug = item.slug || item.id || 'proposal';
@@ -6484,6 +6627,58 @@
         </tr>
       `;
     }).join('');
+
+    // Phone-Native Luxury Card Stream
+    if (mobileList) {
+      mobileList.innerHTML = items.map(item => {
+        const brand = item.brandName || item.brand || 'Client Brand';
+        const slug = item.slug || item.id || 'proposal';
+        const clientUrl = `${window.location.origin}/p/${slug}`;
+        const contact = item.contactName || item.contact || '';
+        const title = item.title || 'Growth Strategy Walkthrough';
+        const board = item.boardId || item.board || 'polish-cosmetics-launch';
+        const d = item.updatedAt || item.createdAt || item.savedAt ? new Date(item.updatedAt || item.createdAt || item.savedAt) : new Date();
+        const dateStr = !isNaN(d.getTime()) ? d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : 'Recent';
+        const cleanPhone = (item.phone || '').replace(/[^0-9]/g, '');
+        const waShareUrl = cleanPhone 
+          ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi ' + (contact || brand) + ', here is your private strategy walkthrough: ' + clientUrl)}` 
+          : `https://wa.me/?text=${encodeURIComponent('Hi ' + (contact || brand) + ', here is your private strategy walkthrough: ' + clientUrl)}`;
+
+        return `
+          <div class="pres-mob-card">
+            <div class="pres-mob-head">
+              <div class="pres-mob-brand">${esc(brand)}</div>
+              <a href="${esc(clientUrl)}" target="_blank" class="pres-mob-slug-pill">
+                <span>/p/${esc(slug)}</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+            <div class="pres-mob-meta">
+              ${contact ? `<span>${esc(contact)}</span> • ` : ''}
+              <span style="color: var(--cyan); background: rgba(226,199,153,0.08); padding: 2px 6px; border-radius: 4px; font-size: 10.5px;">${esc(board)}</span> • 
+              <span>${dateStr}</span>
+            </div>
+            <div class="pres-mob-title">${esc(title)}</div>
+            <div class="pres-mob-actions">
+              <button type="button" class="btn-ghost" style="padding: 8px 12px; font-size: 11.5px; border-radius: 8px;" onclick="navigator.clipboard.writeText('${esc(clientUrl)}'); notifyToast('✓ Link copied for ${esc(brand)}');">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+              <a href="${esc(clientUrl)}" target="_blank" class="btn-ghost" style="padding: 8px 12px; font-size: 11.5px; border-radius: 8px; text-decoration: none;">
+                <span>Preview ↗</span>
+              </a>
+              <a href="${esc(waShareUrl)}" target="_blank" rel="noopener" class="btn-wa-direct" style="padding: 8px 12px; font-size: 11.5px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <span>WhatsApp</span>
+              </a>
+              <button type="button" class="btn-danger" style="padding: 8px 10px; border-radius: 8px;" title="Delete proposal" onclick="deleteSavedPresentation('${esc(item.id || slug)}')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
   }
 
   async function deleteSavedPresentation(id) {

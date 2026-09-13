@@ -7,23 +7,63 @@
  * 3. Discord / Slack / Custom Webhooks (Real-time channel alert)
  */
 
-async function sendWhatsAppMessage(text) {
-  const rawTarget = (
-    process.env.WHATSAPP_ALERT_CHAT_ID ||
+/**
+ * Formats a raw recipient phone number or group ID into Green-API / WhatsApp chat ID format.
+ */
+function formatChatId(raw) {
+  if (!raw) return '';
+  const str = String(raw).trim();
+  if (str.includes('@g.us') || str.includes('@c.us')) {
+    return str;
+  }
+  // WhatsApp Group IDs typically start with 120363 or have > 15 digits
+  if (str.length > 15 || str.startsWith('120363')) {
+    return `${str}@g.us`;
+  }
+  const cleanNumber = str.replace(/\D/g, '');
+  if (!cleanNumber) return '';
+  return `${cleanNumber}@c.us`;
+}
+
+/**
+ * Resolves all configured notification recipients.
+ * If both direct phone and group ID are configured, dispatches to BOTH for redundancy.
+ */
+function getWhatsAppTargets(overrideTarget) {
+  if (overrideTarget) {
+    const list = Array.isArray(overrideTarget) ? overrideTarget : [overrideTarget];
+    return list.map(formatChatId).filter(Boolean);
+  }
+
+  const targets = new Set();
+
+  // 1. Direct phone number (Push directly to founder)
+  const directNum = (
     process.env.WHATSAPP_ALERT_NUMBER ||
     process.env.WHATSAPP_NUMBER ||
     '213662417761'
   ).trim();
-
-  let chatId = '';
-  if (rawTarget.includes('@g.us') || rawTarget.includes('@c.us')) {
-    chatId = rawTarget;
-  } else if (rawTarget.length > 15 || rawTarget.startsWith('120363')) {
-    chatId = `${rawTarget}@g.us`;
-  } else {
-    const cleanNumber = rawTarget.replace(/\D/g, '');
-    chatId = `${cleanNumber}@c.us`;
+  if (directNum) {
+    const formatted = formatChatId(directNum);
+    if (formatted) targets.add(formatted);
   }
+
+  // 2. Alert Group Chat ID (Push to team/audit group)
+  const groupChatId = (process.env.WHATSAPP_ALERT_CHAT_ID || '').trim();
+  if (groupChatId) {
+    const formatted = formatChatId(groupChatId);
+    if (formatted) targets.add(formatted);
+  }
+
+  if (targets.size === 0) {
+    targets.add('213662417761@c.us');
+  }
+
+  return Array.from(targets);
+}
+
+async function sendWhatsAppMessage(text, overrideTarget = null) {
+  const targets = getWhatsAppTargets(overrideTarget);
 
   // 1. GREEN-API (Free Developer Plan Gateway)
   const greenApiUrl = process.env.GREEN_API_URL || 'https://7105.api.greenapi.com';
@@ -31,48 +71,86 @@ async function sendWhatsAppMessage(text) {
   const greenToken = process.env.GREEN_API_TOKEN_INSTANCE;
 
   if (greenId && greenToken) {
-    try {
-      const endpoint = `${greenApiUrl.replace(/\/$/, '')}/waInstance${greenId}/sendMessage/${greenToken}`;
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chatId: chatId,
-          message: text
-        })
-      });
-      const resData = await res.json();
-      console.log(`[Notification Service] Green-API WhatsApp alert dispatched to ${chatId}:`, resData);
-      return { success: true, provider: 'green-api', chatId, data: resData };
-    } catch (err) {
-      console.error('[Notification Service] Green-API WhatsApp dispatch error:', err.message);
-      return { success: false, provider: 'green-api', error: err.message };
+    const endpoint = `${greenApiUrl.replace(/\/$/, '')}/waInstance${greenId}/sendMessage/${greenToken}`;
+    const dispatches = [];
+
+    for (const chatId of targets) {
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chatId: chatId,
+            message: text
+          })
+        });
+        const resData = await res.json();
+        const success = res.ok && Boolean(resData.idMessage);
+        dispatches.push({
+          chatId,
+          success,
+          messageId: resData.idMessage || null,
+          data: resData
+        });
+        console.log(`[Notification Service] Green-API WhatsApp alert to ${chatId}:`, resData);
+      } catch (err) {
+        console.error(`[Notification Service] Green-API WhatsApp alert to ${chatId} failed:`, err.message);
+        dispatches.push({
+          chatId,
+          success: false,
+          error: err.message
+        });
+      }
     }
+
+    const anySuccess = dispatches.some(d => d.success);
+    return {
+      success: anySuccess,
+      provider: 'green-api',
+      targets,
+      dispatches
+    };
   }
 
   // 2. UltraMsg (Fallback if configured)
   const ultraInstance = process.env.ULTRAMSG_INSTANCE_ID;
   const ultraToken = process.env.ULTRAMSG_TOKEN;
   if (ultraInstance && ultraToken) {
-    try {
-      const targetNumber = rawTarget.replace(/\D/g, '');
-      const params = new URLSearchParams();
-      params.append('token', ultraToken);
-      params.append('to', targetNumber);
-      params.append('body', text);
+    const dispatches = [];
+    for (const target of targets) {
+      try {
+        const targetNumber = target.replace(/@(c|g)\.us$/, '').replace(/\D/g, '');
+        const params = new URLSearchParams();
+        params.append('token', ultraToken);
+        params.append('to', targetNumber);
+        params.append('body', text);
 
-      const res = await fetch(`https://api.ultramsg.com/${ultraInstance}/messages/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString()
-      });
-      const resData = await res.json();
-      console.log('[Notification Service] UltraMsg WhatsApp alert sent:', resData);
-      return { success: true, provider: 'ultramsg', data: resData };
-    } catch (err) {
-      console.error('[Notification Service] UltraMsg WhatsApp dispatch error:', err.message);
-      return { success: false, provider: 'ultramsg', error: err.message };
+        const res = await fetch(`https://api.ultramsg.com/${ultraInstance}/messages/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString()
+        });
+        const resData = await res.json();
+        dispatches.push({
+          target,
+          success: res.ok,
+          data: resData
+        });
+        console.log(`[Notification Service] UltraMsg alert to ${target}:`, resData);
+      } catch (err) {
+        dispatches.push({
+          target,
+          success: false,
+          error: err.message
+        });
+      }
     }
+    return {
+      success: dispatches.some(d => d.success),
+      provider: 'ultramsg',
+      targets,
+      dispatches
+    };
   }
 
   console.log('[Notification Service] No WhatsApp credentials configured in .env. Skipping WhatsApp alert.');
@@ -116,9 +194,14 @@ async function notifyNewLead(lead) {
       `*Ref:* ${lead.id}`;
   }
 
-  sendWhatsAppMessage(waText).catch(err => {
-    console.error('[Notification Service] Async WhatsApp error:', err.message);
-  });
+  // 1. WhatsApp Alert (via Green-API / UltraMsg)
+  let waResult = null;
+  try {
+    waResult = await sendWhatsAppMessage(waText);
+  } catch (err) {
+    console.error('[Notification Service] WhatsApp lead notification error:', err.message);
+    waResult = { success: false, error: err.message };
+  }
 
   // 2. Telegram Bot Notification
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -197,7 +280,7 @@ async function notifyNewLead(lead) {
     }
   }
 
-  return { success: true };
+  return { success: true, leadId: lead.id, whatsapp: waResult };
 }
 
 async function notifyNewMeeting(meeting) {
@@ -211,7 +294,7 @@ async function notifyNewMeeting(meeting) {
       }) + ' UTC'
     : 'Not specified';
 
-  // 1. WhatsApp Alert (via UltraMsg)
+  // 1. WhatsApp Alert (via Green-API / UltraMsg)
   const waText = `*POLISH — New Meeting Scheduled!* 📅\n\n` +
     `*Invitee:* ${meeting.fullName}\n` +
     `*Email:* ${meeting.email || 'None'}\n` +
@@ -222,9 +305,13 @@ async function notifyNewMeeting(meeting) {
     (meeting.notes ? `*Notes:* ${meeting.notes}\n` : '') +
     `*Ref:* ${meeting.id}`;
 
-  sendWhatsAppMessage(waText).catch(err => {
+  let waResult = null;
+  try {
+    waResult = await sendWhatsAppMessage(waText);
+  } catch (err) {
     console.error('[Notification Service] Async WhatsApp error for meeting:', err.message);
-  });
+    waResult = { success: false, error: err.message };
+  }
 
   // 2. Telegram Alert
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -274,7 +361,7 @@ async function notifyNewMeeting(meeting) {
     }
   }
 
-  return { success: true };
+  return { success: true, meetingId: meeting.id, whatsapp: waResult };
 }
 
 function escapeTg(str) {
@@ -282,4 +369,10 @@ function escapeTg(str) {
   return String(str).replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
 }
 
-module.exports = { notifyNewLead, notifyNewMeeting, sendWhatsAppMessage };
+module.exports = {
+  notifyNewLead,
+  notifyNewMeeting,
+  sendWhatsAppMessage,
+  getWhatsAppTargets,
+  formatChatId
+};

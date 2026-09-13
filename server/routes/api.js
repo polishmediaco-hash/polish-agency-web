@@ -376,7 +376,7 @@ router.delete('/leads/:id', requireAdminAuth, async (req, res) => {
   }
 });
 
-// POST /api/notifications/test (Test Notification Service)
+// POST /api/notifications/test (Test All Notification Channels: WhatsApp + Telegram + Webhooks)
 router.post('/notifications/test', requireAdminAuth, async (req, res) => {
   const testLead = {
     id: `TEST-${Date.now().toString(36).toUpperCase()}`,
@@ -392,20 +392,37 @@ router.post('/notifications/test', requireAdminAuth, async (req, res) => {
   };
 
   try {
-    await notifyNewLead(testLead);
+    const result = await notifyNewLead(testLead);
+    const waSuccess = result.whatsapp?.success;
+    const waDispatches = result.whatsapp?.dispatches || [];
+    const waTargetCount = waDispatches.length;
+    const waSuccessCount = waDispatches.filter(d => d.success).length;
+
+    let summary = 'Test lead alert dispatched.';
+    if (waSuccess) {
+      summary += ` WhatsApp delivered to ${waSuccessCount}/${waTargetCount} destination(s).`;
+    } else if (result.whatsapp?.skipped) {
+      summary += ' WhatsApp skipped (credentials not configured).';
+    } else {
+      summary += ' WhatsApp failed to deliver.';
+    }
+
     res.json({
       success: true,
-      message: 'Test notification triggered. Check your configured Telegram or Webhook channel.'
+      message: summary,
+      channels: {
+        whatsapp: result.whatsapp || null,
+        leadId: testLead.id
+      },
+      details: result
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// GET /api/test-whatsapp (One-Click WhatsApp Alert Verification)
-router.get('/test-whatsapp', requireAdminAuth, async (req, res) => {
-
-  const targetNumber = process.env.WHATSAPP_ALERT_NUMBER || process.env.WHATSAPP_NUMBER || '213662417761';
+// ALL /api/test-whatsapp (One-Click WhatsApp Alert Verification)
+router.all('/test-whatsapp', requireAdminAuth, async (req, res) => {
   const hasGreenApi = Boolean(process.env.GREEN_API_ID_INSTANCE && process.env.GREEN_API_TOKEN_INSTANCE);
   const hasUltraMsg = Boolean(process.env.ULTRAMSG_INSTANCE_ID && process.env.ULTRAMSG_TOKEN);
 
@@ -413,31 +430,82 @@ router.get('/test-whatsapp', requireAdminAuth, async (req, res) => {
     return res.status(400).json({
       success: false,
       error: 'WhatsApp credentials not configured.',
-      help: 'Add GREEN_API_ID_INSTANCE and GREEN_API_TOKEN_INSTANCE to your .env file.',
-      targetNumber
+      help: 'Add GREEN_API_ID_INSTANCE and GREEN_API_TOKEN_INSTANCE to your .env file.'
     });
   }
 
-  const testMessage = `*POLISH Media Co — WhatsApp Alert Gateway Active!* 🚀\n\n` +
-    `Connected recipient: +${targetNumber}\n` +
-    `Provider: ${hasGreenApi ? 'GREEN-API (Developer Free Tier)' : 'UltraMsg'}\n` +
+  const directNumber = process.env.WHATSAPP_ALERT_NUMBER || process.env.WHATSAPP_NUMBER || '213662417761';
+  const groupChatId = process.env.WHATSAPP_ALERT_CHAT_ID || '';
+  const customMessage = req.body?.message || req.query?.message;
+
+  const testMessage = customMessage || (
+    `*POLISH Media Co — WhatsApp Gateway Verification* 🚀\n\n` +
+    `Connected Targets:\n` +
+    `• Direct Phone: +${directNumber}\n` +
+    (groupChatId ? `• Alert Group: ${groupChatId}\n` : '') +
+    `Provider: ${hasGreenApi ? 'GREEN-API (Active)' : 'UltraMsg'}\n` +
     `Timestamp: ${new Date().toUTCString()}\n\n` +
-    `You will receive instant push notifications on this chat whenever:\n` +
-    `• A brand applies (/apply)\n` +
-    `• A meeting is booked (/book)\n` +
-    `• A creator registers (/creators)`;
+    `Real-time lead push notifications are operational for:\n` +
+    `• Brand Applications (/apply)\n` +
+    `• Strategy Bookings (/book)\n` +
+    `• Creator Registrations (/creators)`
+  );
 
   try {
-    const result = await sendWhatsAppMessage(testMessage);
+    const overrideTarget = req.body?.target || req.query?.target || null;
+    const result = await sendWhatsAppMessage(testMessage, overrideTarget);
+
     return res.json({
-      success: true,
-      message: 'Test ping dispatched successfully to WhatsApp.',
+      success: result.success,
+      message: result.success
+        ? `WhatsApp alert successfully dispatched to ${result.dispatches?.length || 1} destination(s).`
+        : 'WhatsApp dispatch failed to deliver to one or more destinations.',
       provider: result.provider || (hasGreenApi ? 'green-api' : 'ultramsg'),
-      recipient: targetNumber,
+      targets: result.targets || [directNumber],
+      dispatches: result.dispatches || [],
       gatewayResponse: result
     });
   } catch (err) {
     return res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET /api/whatsapp-status (Live Green-API Gateway Health & Recipient Status)
+router.get('/whatsapp-status', requireAdminAuth, async (req, res) => {
+  const greenApiUrl = process.env.GREEN_API_URL || 'https://7105.api.greenapi.com';
+  const greenId = process.env.GREEN_API_ID_INSTANCE;
+  const greenToken = process.env.GREEN_API_TOKEN_INSTANCE;
+  const directNumber = process.env.WHATSAPP_ALERT_NUMBER || process.env.WHATSAPP_NUMBER || '213662417761';
+  const groupId = process.env.WHATSAPP_ALERT_CHAT_ID || '';
+
+  if (!greenId || !greenToken) {
+    return res.json({
+      configured: false,
+      provider: 'none',
+      status: 'unconfigured'
+    });
+  }
+
+  try {
+    const stateRes = await fetch(`${greenApiUrl.replace(/\/$/, '')}/waInstance${greenId}/getStateInstance/${greenToken}`);
+    const stateData = await stateRes.json();
+    return res.json({
+      configured: true,
+      provider: 'green-api',
+      stateInstance: stateData.stateInstance || 'unknown',
+      directNumber,
+      groupId,
+      instanceId: greenId
+    });
+  } catch (err) {
+    return res.json({
+      configured: true,
+      provider: 'green-api',
+      stateInstance: 'error',
+      error: err.message,
+      directNumber,
+      groupId
+    });
   }
 });
 

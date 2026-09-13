@@ -12,6 +12,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/brand-pack/02_favicons_and_icons/apple-touch-icon-180x180.png">
   <link rel="stylesheet" href="/studio/css/board-elements.css">
   <link rel="stylesheet" href="/studio/css/studio.css">
+  <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v6">
   <style>
     /* View-Only Luxury Polish Customizations */
     body {
@@ -1302,6 +1303,10 @@
     <button class="vp-btn" onclick="CanvasEngine.resetView()" title="Fit to Blueprint">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
     </button>
+    <div class="dock-divider" style="height:14px; margin:0 2px"></div>
+    <button id="btnCameraBubble" class="vp-btn" onclick="StudioCamera.toggle()" title="Camera Bubble">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    </button>
   </div>
 
   <!-- ========================================================== -->
@@ -1454,5 +1459,6 @@
       setTimeout(() => toast.classList.remove('visible'), 2800);
     }
   </script>
+  <script src="/studio/js/camera-bubble.js?v=20260909_v3"></script>
 </body>
 </html>

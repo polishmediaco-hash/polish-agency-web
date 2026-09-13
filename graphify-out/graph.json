@@ -1517,6 +1517,18 @@
       "source_location": "L19"
     },
     {
+      "id": "public_studio_js_camera_bubble_notifytoast",
+      "label": "notifyToast()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "camera-bubble.js",
+      "file_type": "code",
+      "norm_label": "notifytoast()",
+      "source_file": "public/studio/js/camera-bubble.js",
+      "source_location": "L110"
+    },
+    {
       "id": "public_studio_js_camera_bubble_start",
       "label": "start()",
       "_callable": true,
@@ -1526,7 +1538,7 @@
       "file_type": "code",
       "norm_label": "start()",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L110"
+      "source_location": "L132"
     },
     {
       "id": "public_studio_js_camera_bubble_stop",
@@ -1538,7 +1550,7 @@
       "file_type": "code",
       "norm_label": "stop()",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L148"
+      "source_location": "L167"
     },
     {
       "id": "public_studio_js_camera_bubble_toggle",
@@ -1550,7 +1562,7 @@
       "file_type": "code",
       "norm_label": "toggle()",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L163"
+      "source_location": "L182"
     },
     {
       "id": "public_studio_js_camera_bubble_togglemirror",
@@ -1562,7 +1574,7 @@
       "file_type": "code",
       "norm_label": "togglemirror()",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L181"
+      "source_location": "L200"
     },
     {
       "id": "public_studio_js_camera_bubble_togglesize",
@@ -1574,7 +1586,7 @@
       "file_type": "code",
       "norm_label": "togglesize()",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L171"
+      "source_location": "L190"
     },
     {
       "id": "public_studio_js_camera_bubble_updatehudbuttonstate",
@@ -1586,7 +1598,7 @@
       "file_type": "code",
       "norm_label": "updatehudbuttonstate()",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L187"
+      "source_location": "L206"
     },
     {
       "id": "public_studio_js_canvas_panzoom_applytransform",
@@ -15044,7 +15056,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L111",
+      "source_location": "L133",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_camera_bubble_start",
+      "target": "public_studio_js_camera_bubble_notifytoast",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/studio/js/camera-bubble.js",
+      "source_location": "L136",
       "weight": 1.0
     },
     {
@@ -15056,7 +15080,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L134",
+      "source_location": "L158",
       "weight": 1.0
     },
     {
@@ -15068,7 +15092,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L144",
+      "source_location": "L163",
       "weight": 1.0
     },
     {
@@ -15080,7 +15104,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L160",
+      "source_location": "L179",
       "weight": 1.0
     },
     {
@@ -15092,7 +15116,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L165",
+      "source_location": "L184",
       "weight": 1.0
     },
     {
@@ -15104,7 +15128,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L167",
+      "source_location": "L186",
       "weight": 1.0
     },
     {
@@ -15116,7 +15140,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L184",
+      "source_location": "L203",
       "weight": 1.0
     },
     {
@@ -15128,7 +15152,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L178",
+      "source_location": "L197",
       "weight": 1.0
     },
     {
@@ -15140,7 +15164,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L190",
+      "source_location": "L209",
       "weight": 1.0
     },
     {
@@ -27222,7 +27246,7 @@
     },
     {
       "source": "public_studio_js_camera_bubble",
-      "target": "public_studio_js_camera_bubble_start",
+      "target": "public_studio_js_camera_bubble_notifytoast",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -27233,13 +27257,24 @@
     },
     {
       "source": "public_studio_js_camera_bubble",
+      "target": "public_studio_js_camera_bubble_start",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/camera-bubble.js",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_camera_bubble",
       "target": "public_studio_js_camera_bubble_stop",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L148",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -27250,40 +27285,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L163",
-      "weight": 1.0
-    },
-    {
-      "source": "public_studio_js_camera_bubble",
-      "target": "public_studio_js_camera_bubble_togglesize",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L171",
-      "weight": 1.0
-    },
-    {
-      "source": "public_studio_js_camera_bubble",
-      "target": "public_studio_js_camera_bubble_togglemirror",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L181",
-      "weight": 1.0
-    },
-    {
-      "source": "public_studio_js_camera_bubble",
-      "target": "public_studio_js_camera_bubble_updatehudbuttonstate",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "public/studio/js/camera-bubble.js",
-      "source_location": "L187",
+      "source_location": "L182",
       "weight": 1.0
     },
     {
@@ -27295,6 +27297,39 @@
       "confidence_score": 1.0,
       "source_file": "public/studio/js/camera-bubble.js",
       "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_camera_bubble",
+      "target": "public_studio_js_camera_bubble_togglesize",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/camera-bubble.js",
+      "source_location": "L190",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_camera_bubble",
+      "target": "public_studio_js_camera_bubble_togglemirror",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/camera-bubble.js",
+      "source_location": "L200",
+      "weight": 1.0
+    },
+    {
+      "source": "public_studio_js_camera_bubble",
+      "target": "public_studio_js_camera_bubble_updatehudbuttonstate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/studio/js/camera-bubble.js",
+      "source_location": "L206",
       "weight": 1.0
     },
     {
@@ -33236,5 +33271,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f2915de01f0b0545ac72099efecfe8b747ef8dd2"
+  "built_at_commit": "422d23d63d0b90245b19e1f482376ea0740d662f"
 }

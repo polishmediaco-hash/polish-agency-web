@@ -107,13 +107,33 @@ window.StudioCamera = (function () {
     bubbleEl.style.top = `${posY}px`;
   }
 
+  function notifyToast(msg) {
+    if (window.StudioCore && typeof window.StudioCore.showToast === 'function') {
+      window.StudioCore.showToast(msg);
+      return;
+    }
+    if (typeof window.showToast === 'function') {
+      window.showToast(msg);
+      return;
+    }
+    let toast = document.getElementById('studioCameraToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'studioCameraToast';
+      toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#080706;border:1px solid #E2C799;color:#F5E6D3;padding:10px 20px;border-radius:30px;font-family:"Plus Jakarta Sans",sans-serif;font-size:0.82rem;font-weight:700;z-index:99999;box-shadow:0 8px 30px rgba(0,0,0,0.7);transition:opacity 0.25s ease;pointer-events:none;';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 3200);
+  }
+
   async function start() {
     init();
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        if (window.StudioCore && window.StudioCore.showToast) {
-          window.StudioCore.showToast('Camera not supported in this browser.');
-        }
+        notifyToast('Camera not supported in this browser.');
         return;
       }
 
@@ -127,20 +147,19 @@ window.StudioCamera = (function () {
       });
 
       videoEl.srcObject = stream;
-      await videoEl.play();
+      try {
+        await videoEl.play();
+      } catch (playErr) {
+        console.warn('Auto-play attempt error:', playErr);
+      }
 
       bubbleEl.style.display = 'block';
       isActive = true;
       updateHudButtonState(true);
-
-      if (window.StudioCore && window.StudioCore.showToast) {
-        window.StudioCore.showToast('Camera active — Drag circle anywhere');
-      }
+      notifyToast('Camera active — Drag circle anywhere');
     } catch (err) {
       console.warn('Camera access error:', err);
-      if (window.StudioCore && window.StudioCore.showToast) {
-        window.StudioCore.showToast('Could not access camera. Check permissions.');
-      }
+      notifyToast('Could not access camera. Check browser permissions.');
       stop();
     }
   }
@@ -185,10 +204,10 @@ window.StudioCamera = (function () {
   }
 
   function updateHudButtonState(active) {
-    const btn = document.getElementById('btnCameraBubble') || document.querySelector('.vp-btn[onclick*="StudioCamera"], .vp-btn[onclick*="takeCameraSnapshot"]');
-    if (btn) {
+    const btns = document.querySelectorAll('#btnCameraBubble, #btnPresentationCamera, .js-camera-btn, .vp-btn[onclick*="StudioCamera"], .pres-board-action-btn[onclick*="StudioCamera"]');
+    btns.forEach(btn => {
       btn.classList.toggle('camera-active', active);
-    }
+    });
   }
 
   return {

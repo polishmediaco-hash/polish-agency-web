@@ -28,6 +28,7 @@
 
   <!-- Presentation Stylesheet -->
   <link rel="stylesheet" href="/css/presentation-page.css">
+  <link rel="stylesheet" href="/studio/css/camera-bubble.css?v=20260909_v6">
 </head>
 <body class="presentation-body">
 
@@ -112,6 +113,10 @@
           <span class="pres-board-title-text" id="boardHeaderTitle">Strategic Whiteboard Blueprint</span>
         </div>
         <div class="pres-board-actions">
+          <button type="button" class="pres-board-action-btn js-camera-btn" id="btnPresentationCamera" onclick="StudioCamera.toggle()" title="Toggle Camera Bubble" aria-label="Toggle Camera Bubble">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <span>Camera</span>
+          </button>
           <button type="button" class="pres-board-action-btn" id="btnToggleFullscreen" title="Toggle Full Screen View" aria-label="Toggle Full Screen View">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
             <span>Full Screen Board</span>
@@ -237,6 +242,8 @@
   <!-- Client Link Copied Toast -->
   <div class="pres-toast" id="presToast">✓ Client Presentation Link Copied</div>
 
+  <!-- Studio Camera Bubble Engine -->
+  <script src="/studio/js/camera-bubble.js?v=20260909_v3"></script>
   <!-- Page Logic Engine -->
   <script src="/js/presentation-page.js"></script>
 </body>

@@ -336,7 +336,7 @@
       iframe.id = 'boardIframe';
       iframe.className = 'pres-board-iframe';
       iframe.title = 'POLISH Board Studio Whiteboard';
-      iframe.allow = 'fullscreen';
+      iframe.allow = 'camera; microphone; display-capture; fullscreen';
       wrap.appendChild(iframe);
     }
     iframe.src = boardUrl;

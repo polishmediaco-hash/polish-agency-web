@@ -573,6 +573,14 @@ video.pres-native-video {
   color: #FFFFFF;
 }
 
+.pres-board-action-btn.camera-active {
+  background: var(--brand-gold) !important;
+  border-color: var(--brand-gold) !important;
+  color: #080706 !important;
+  font-weight: 700;
+  box-shadow: 0 0 14px rgba(226, 199, 153, 0.5) !important;
+}
+
 .pres-board-iframe-wrap {
   position: relative;
   width: 100%;

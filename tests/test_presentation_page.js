@@ -243,8 +243,30 @@ async function runTest() {
       throw new Error(`Expected ultra-wide board canvas height to be 780px, got ${boardWrapHeight}`);
     }
 
+    // ── Test 11: Face Camera Bubble Availability & Permissions ──
+    console.log('\n[Test 11] Verifying Studio Camera Bubble in Presentation & Board...');
+    const hasCameraBtn = await page.$eval('#btnPresentationCamera', el => !!el);
+    console.log(`✓ Presentation Camera Button Rendered: ${hasCameraBtn}`);
+    if (!hasCameraBtn) throw new Error('Presentation missing Camera button');
+
+    const iframeAllow = await page.$eval('#boardIframe', el => el.getAttribute('allow') || '');
+    console.log(`✓ Board Iframe Permissions Allow: "${iframeAllow}"`);
+    if (!iframeAllow.includes('camera') || !iframeAllow.includes('microphone')) {
+      throw new Error('Board iframe missing camera/microphone permissions delegation');
+    }
+
+    const hasStudioCamera = await page.evaluate(() => typeof window.StudioCamera === 'object' && typeof window.StudioCamera.toggle === 'function');
+    console.log(`✓ StudioCamera Global API Mounted: ${hasStudioCamera}`);
+    if (!hasStudioCamera) throw new Error('StudioCamera engine not mounted');
+
+    // Trigger StudioCamera init
+    await page.evaluate(() => window.StudioCamera.init());
+    const hasCameraBubbleDOM = await page.$eval('#cameraBubble', el => !!el);
+    console.log(`✓ Camera Bubble DOM Initialized: ${hasCameraBubbleDOM}`);
+    if (!hasCameraBubbleDOM) throw new Error('Camera bubble DOM failed to initialize');
+
     console.log('\n======================================================');
-    console.log('  🎉 ALL 10 PRESENTATION TESTS PASSED PERFECTLY! (100%)');
+    console.log('  🎉 ALL 11 PRESENTATION TESTS PASSED PERFECTLY! (100%)');
     console.log('======================================================\n');
   } finally {
     await browser.close();

@@ -116,7 +116,7 @@ app.use(
 app.use((req, res, next) => {
   res.setHeader(
     'Permissions-Policy',
-    'camera=(), microphone=(), geolocation=(), payment=(), usb=()'
+    'camera=(self), microphone=(self), display-capture=(self), geolocation=(), payment=(), usb=()'
   );
   next();
 });

@@ -54,10 +54,10 @@
     "semantic_hash": "303a73948c1cf172b194c3549d87c831"
   },
   "public/studio/js/camera-bubble.js": {
-    "mtime": 1788925313.6114469,
-    "seen": 1788993504.5169,
-    "ast_hash": "9dbd2b6995628d25f86413f356031ffd",
-    "semantic_hash": "9dbd2b6995628d25f86413f356031ffd"
+    "mtime": 1789325883.141069,
+    "seen": 1789326245.9146528,
+    "ast_hash": "d18f7abbdef66c678748d2b3038ab3a9",
+    "semantic_hash": ""
   },
   "public/studio/js/canvas-panzoom.js": {
     "mtime": 1789268212.4522853,
@@ -186,9 +186,9 @@
     "semantic_hash": "acfe4ba5bf5cca5ee6948950496ce55a"
   },
   "server/index.js": {
-    "mtime": 1789318407.5832725,
-    "seen": 1789318897.226149,
-    "ast_hash": "436875ea0a0c35c9763dc7355d39031f",
+    "mtime": 1789325857.3296187,
+    "seen": 1789326245.914955,
+    "ast_hash": "496b2d51cb047f336608a45457fdb4b0",
     "semantic_hash": ""
   },
   "server/middleware/auth.js": {
@@ -510,9 +510,9 @@
     "semantic_hash": ""
   },
   "public/studio/view.html": {
-    "mtime": 1789001312.1312568,
-    "seen": 1789001350.8862588,
-    "ast_hash": "60131e65c81f68b049482b5f37226026",
+    "mtime": 1789325918.4752972,
+    "seen": 1789326245.915643,
+    "ast_hash": "c5e01de573b2550c8aa49170ae35ba1f",
     "semantic_hash": ""
   },
   "public/POLISH_MEDIA_Eman_Partnership_Options.pdf": {
@@ -1957,7 +1957,7 @@
   },
   "scripts/supabase-schema.sql": {
     "mtime": 1789261507.1780927,
-    "seen": 1789324897.31949,
+    "seen": 1789325378.6822011,
     "ast_hash": "",
     "semantic_hash": ""
   },
@@ -2064,21 +2064,21 @@
     "semantic_hash": ""
   },
   "public/js/presentation-page.js": {
-    "mtime": 1789325260.848899,
-    "seen": 1789325369.417397,
-    "ast_hash": "41207565053cd2204c2eda4007f92436",
+    "mtime": 1789325952.2058427,
+    "seen": 1789326245.914623,
+    "ast_hash": "18b9786976d08fa081db5f2e83863202",
     "semantic_hash": ""
   },
   "tests/test_presentation_page.js": {
-    "mtime": 1789325299.2880774,
-    "seen": 1789325369.4178612,
-    "ast_hash": "3c1b630bf9f89d50495568a16aa1a825",
+    "mtime": 1789326034.6802657,
+    "seen": 1789326245.915052,
+    "ast_hash": "1d06f565505bdf442094699ddde0bdeb",
     "semantic_hash": ""
   },
   "public/presentation.html": {
-    "mtime": 1789321937.6271064,
-    "seen": 1789324893.879099,
-    "ast_hash": "f4f7a3dd6f873150f14241336e2982b9",
+    "mtime": 1789325944.1626508,
+    "seen": 1789326245.9155781,
+    "ast_hash": "00c499efb2180fa85eef28716df99e48",
     "semantic_hash": ""
   },
   ".agents/rules/no-filler.md": {

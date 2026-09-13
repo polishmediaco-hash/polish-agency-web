@@ -1,16 +1,16 @@
 # Graph Report - polishmedia  (2026-09-13)
 
 ## Corpus Check
-- 95 files · ~722,357 words
+- 95 files · ~722,677 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1080 nodes · 1781 edges · 78 communities (70 shown, 6 thin omitted)
+- 1081 nodes · 1783 edges · 78 communities (70 shown, 6 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 52 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f2915de0`
+- Built from commit: `422d23d6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -170,8 +170,8 @@ Cohesion: 0.06
 Nodes (32): 1.1 Ingestion Endpoints (`POST /api/apply`, `POST /api/creators/apply`, `POST /api/intake`), 1.2 Status of `POST /api/leads` vs. Architectural Ingestion, 1.3 Webhook Integrity: `POST /api/calendly-webhook`, 1.4 Polish AI Strategy Engine: `POST /api/ai/chat`, 1.5 CMS Endpoints (`GET /api/content`, `POST /api/content`, `POST /api/content/reset`), 1.6 Strategy Boards API (`/api/boards`), 1. API Endpoint Security & Validation, 2.1 File-Based Atomic JSON Storage & Concurrency Hazards (+24 more)
 
 ### Community 14 - "camera-bubble.js"
-Cohesion: 0.36
-Nodes (11): clampAndApplyPos(), handlePointerDown(), onPointerMove(), onPointerUp(), init(), start(), stop(), toggle() (+3 more)
+Cohesion: 0.33
+Nodes (12): clampAndApplyPos(), handlePointerDown(), onPointerMove(), onPointerUp(), init(), notifyToast(), start(), stop() (+4 more)
 
 ### Community 15 - "canvas-panzoom.js"
 Cohesion: 0.29
@@ -402,9 +402,9 @@ Nodes (5): 1. Core Mandate, 2. Strictly Banned Vocabulary & Tropes, 3. UI Copy S
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `puppeteer` connect `puppeteer` to `generate-social-avatars.js`, `package.json`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.013) - this node is a cross-community bridge._
 - **Why does `express` connect `boards.js` to `package.json`, `index.js`, `api.js`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **What connects `puppeteer`, `path`, `fs` to the rest of the system?**
